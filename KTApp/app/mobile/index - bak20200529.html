@@ -1,0 +1,4097 @@
+﻿<html>
+
+<head>
+    <title>Twproject</title>
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-startup-image" href="images/splash-mobile-hand.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/mobile.css?_33=65017" type="text/css">
+    <link rel="stylesheet" href="css/twMobile.css?44_=65017" type="text/css">
+
+    <script src="../commons/js/jquery/jquery-2.1.3.min.js?_=65017"></script>
+    <script src="../commons/js/platform.mobile.js"></script>
+
+    <script src="../commons/js/i18nJs.js?_=1590654155940"></script>
+
+    <script src="js/iscroll.js?_=65017"></script>
+    <script src="js/jquery.touchSwipe.min.js?_=65017"></script>
+    <script src="js/mobileEngine.js?7"></script>
+
+
+    <script src="/commons/js/jquery/tinyTimers/jquery.tinyTimers.js?_=65017"></script>
+    <script></script>
+</head>
+
+<body class="level30 mobile isIos offline">
+
+
+
+
+    <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+    <div id="__COUNTER" style="display:none;" class="twTimeCounter" onclick="showTimeCounterEditor();"><span
+            class="teamworkIcon">A</span></div>
+
+
+
+
+
+
+
+    <div data-role="defaultPage" id="_defaultPage">
+
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow hiddenElement">
+            <div class="groupCell col6"></div>
+            <div class="groupCell col6"></div>
+        </div>
+
+    </div>
+
+
+
+    <div data-role="page" id="home" class="onScreen" title="Twproject" style="display: block;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title">Twproject</div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 685px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+
+                <div class="homeListPlace">
+
+                    <div id="wphMilesOver" data-role="list_line" class="wpHLBox wpHLGrave wpHLBoxClosed"
+                        onclick="taskSearch('PF_MILESTONES_OVERDUE',$(this).find('h2').html());">
+                        <h2>逾期里程碑</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">项目还没有开始，也没有结束还。</p>
+                    </div>
+                    <div id="wphProjectBudgetOverflow" data-role="list_line" class="wpHLBox wpHLGrave wpHLBoxClosed"
+                        onclick="taskSearch('PF_BUDGET_OVERFLOW',$(this).find('h2').html());">
+                        <h2>预算超支</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">项目的总成本超过了预算。</p>
+                    </div>
+                    <div id="wphTasksOver" data-role="list_line" class="wpHLBox wpHLGrave"
+                        onclick="taskSearch('PF_OVERDUE_TASK',$(this).find('h2').html());">
+                        <h2>已超时的项目</h2>
+                        <span class="wphlNumber">5</span>
+                        <p class="wpDesc">应该已经关闭的项目</p>
+                    </div>
+                    <div id="wphIssuesOver" data-role="list_line" class="wpHLBox wpHLGrave wpHLBoxClosed"
+                        onclick="issueSearch('PF_EXPIRED_ISSUES',$(this).find('h2').html());">
+                        <h2>我的问题过期</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">Issues that should be already closed
+                        </p>
+                    </div>
+
+
+
+                    <div id="wphMyAssignments" data-role="list_line" class="wpHLBox wpHLBoxMy"
+                        onclick="taskSearch('PF_MY_OPEN_TASK',$(this).find('h2').html());">
+                        <h2>我的分工</h2>
+                        <span class="wphlNumber">13</span>
+                        <p class="wpDesc">MY_ASSIGNMENTS_DESCR</p>
+                    </div>
+
+                    <div id="wphMyIssues" data-role="list_line" class="wpHLBox wpHLBoxMy"
+                        onclick="issueSearch('PF_MY_OPEN_ISSUES',$(this).find('h2').html());">
+                        <h2>我报告的问题</h2>
+                        <span class="wphlNumber">1</span>
+                        <p class="wpDesc">MYISSUES_DESCR</p>
+                    </div>
+
+
+
+
+
+
+
+                    <div id="wphMyPlan" data-role="list_line" class="wpHLBox wpHLBoxClosed wpHLBoxMy">
+                        <h2>我的计划</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">PLANNED_WORK_DESCR</p>
+                    </div>
+
+
+
+                    <div id="wphMilesForthcoming" data-role="list_line" class="wpHLBox wpHLBoxClosed"
+                        onclick="taskSearch('PF_FORTHCOMING_MILESTONES',$(this).find('h2').html());">
+                        <h2>下一个里程碑</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">在接下来的一周大事记</p>
+                    </div>
+                    <div id="wphTasksForthcoming" data-role="list_line" class="wpHLBox"
+                        onclick="taskFreeSearch({END:'T:1w',STATUS:'STATUS_ACTIVE'},$(this).find('h2').html());">
+                        <h2>即将结束的项目</h2>
+                        <span class="wphlNumber">2</span>
+                        <p class="wpDesc">项目将关闭一周</p>
+                    </div>
+                    <div id="wphIssuesForthcoming" data-role="list_line" class="wpHLBox wpHLBoxClosed">
+                        <h2>即将到来的问题</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">有问题在一个星期内被关闭</p>
+                    </div>
+                    <div id="wphOpenProjects" data-role="list_line" class="wpHLBox"
+                        onclick="taskSearch('PF_OPEN_PROJECT',$(this).find('h2').html());">
+                        <h2>进行中的项目</h2>
+                        <span class="wphlNumber">6</span>
+                        <p class="wpDesc">项目当前处于活动状态。</p>
+                    </div>
+
+                    <div id="wphProjectCreated" data-role="list_line" class="wpHLBox wpHLBoxClosed"
+                        onclick="taskFreeSearch({'CREATED_ON':'>-1w','ROOT_OR_STANDALONE':'yes'},$(this).find('h2').html());">
+                        <h2>最近创建的项目</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">在过去七天内创建项目</p>
+                    </div>
+                    <div id="wphProjectClosed" data-role="list_line" class="wpHLBox wpHLBoxClosed"
+                        onclick="taskFreeSearch({'STATUS_CHANGE_DATE':'>-1w','ROOT_OR_STANDALONE':'yes',STATUS:'STATUS_DONE,STATUS_FAILED'},$(this).find('h2').html());">
+                        <h2>项目最近关闭</h2>
+                        <span class="wphlNumber"></span>
+                        <p class="wpDesc">项目关闭或未能在过去七天</p>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 677px; transform: translate(0px, 0px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow hiddenElement">
+            <div class="groupCell col6"></div>
+            <div class="groupCell col6"></div>
+        </div>
+    </div>
+
+
+
+    <div data-role="page" class="editor" id="timeCounterEditor" title="计时器" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="timeCounterEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell inputBox col6">
+                <button onmousedown="stopTimeCounter();" class="stop">停止</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="info" class="editor info" title="Twproject" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+            <div class="groupRow">
+                <div class="groupCell  col12">
+                    <p align="center">登录身份：</p>
+                    <p align="center"><img id="" class="face big"
+                            src="/img/svgavatar?.jsp?code=%E7%8E%89%E5%8F%B2&amp;fill=hsl%28240%2C70%25%2C80%25%29&amp;stroke=hsl%28240%2C90%25%2C20%25%29">
+                    </p>
+                    <h2 align="center">史 玉平</h2>
+                </div>
+            </div>
+            <p align="center">
+                <b>版本
+                </b>
+                6.5.65017<br><br><br><br>
+                <a href="javascript:void(0);" class="button"
+                    onclick="  createCookie('browseTwAsDefault',1);self.location.href= contextPath + '/'">Desktop
+                    version</a>
+            </p>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell  col4 left">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell col4">
+                <button onmousedown="window.location.reload()" class="teamworkIcon big" title="刷新">‹</button>
+            </div>
+            <div class="groupCell col4 right">
+
+                <button onmousedown="changeUser();" class="edit" title="注销">注销</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-role="page" id="noConnectionPage" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" style="height: 685px;">
+            <img src="images/splash-mobile-hand.png" style="width:80%; margin: 50px auto; display: block ">
+
+            <h2>No connection available</h2>
+
+            <p>You must be online to use Twproject mobile.</p>
+            <br>
+            <button onclick="checkLogin();" class="full first">Retry</button>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow hiddenElement">
+            <div class="groupCell col6"></div>
+            <div class="groupCell col6"></div>
+        </div>
+    </div>
+
+
+
+    <div data-role="mainMenu" class="mainMenuBox">
+
+        <div data-role="user-box">
+            <img id="userAvatar" class="face"
+                src="/img/svgavatar?.jsp?code=%E7%8E%89%E5%8F%B2&amp;fill=hsl%28240%2C70%25%2C80%25%29&amp;stroke=hsl%28240%2C90%25%2C20%25%29"
+                onmouseup="goToPage('info');">
+            <div id="userDisplayName" onmouseup="goToPage('info');">史 玉平</div>
+            <button id="notificationCounterPlace" onmouseup="goToPage('notifications');"></button>
+        </div>
+
+        <div onmouseup="manageMainMenuView();" class="mainMenuCloser"></div>
+
+        <div data-role="content" class="scroll">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+
+                <button data-role="home" onmouseup="backHome();">
+                    <span>控制面板</span>
+                </button>
+
+                <button data-role="taskFilter,taskList,taskView" onmouseup="goToPage('taskFilter');">
+                    <span>项目</span>
+                </button>
+
+                <button data-role="issueFilter,issueList,issueView" onmouseup="goToPage('issueFilter');">
+                    <span>问题</span>
+                </button>
+
+                <button data-role="resourceList,resourceView" onmouseup="goToPage('resourceList');">
+                    <span>联系人</span>
+                </button>
+
+                <button data-role="calendarPage,calendarDayList" onmouseup="goToPage('calendarPage');">
+                    <span>日程</span>
+                </button>
+
+                <button data-role="worklogList" onmouseup="goToPage('worklogList')">
+                    <span>工作记录</span>
+                </button>
+
+                <button data-role="documentFilter,explorer,fileStorages" onmouseup="goToPage('documentFilter');">
+                    <span>文档</span>
+                </button>
+
+                <button data-role="expenseList" onmouseup="goToPage('expenseList');">
+                    <span>成本</span>
+                </button>
+
+
+
+                <button data-role="stickyList" onmouseup="goToPage('stickyList');">
+                    <span>条消息 (<span id="stickyCount">0</span>)</span>
+                </button>
+
+
+
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 648px; transform: translate(0px, 0px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="loader"></div>
+
+
+
+
+
+
+
+    <script></script>
+
+
+
+
+    <script type="text/javascript">
+
+        var teamworkUrl = "..";
+        var controller = "ajax/mobileAjax";
+
+        var CHECK_LOGIN_EVERY = 10; //in secondi dall'ultima chiamata ajax al server
+
+        var currentFilter = new Object();
+        var allMyTags;
+        var applicationCache;
+        var userLogged;
+
+        var currentDate = new Date();
+        var lastServerCallMillis = new Date().getTime();
+
+        var mobileFullDateFormat = "EEEE " + Date.defaultFormat;
+
+        function startup(oldHash) {
+            //console.debug("startup",location.href, location.hash);
+
+            if ($("body.level5,body.level10").size() > 0) {
+                var msg = $("<div>").addClass("upgradeMsg").css({ position: "fixed", display: "none", "z-index": 10000 }).html("<div><p>The mobile version is not included in your plan. Upgrade to the Advanced Plan to access Twproject mobile.</p></div>")
+                $("body").append(msg);
+                setTimeout(function () {
+                    msg.fadeIn(500);;
+                }, 1200);
+
+
+
+            }
+
+            //bind ajax events
+            $(document).ajaxSend(function (event, jqxhr, settings) {
+                lastServerCallMillis = new Date().getTime();
+            });
+
+            setupLocalVariables();
+            checkLogin(function () {
+                checkStickyNotes();
+                checkNotifications();
+
+                //bind keepAlive
+                $("body").everyTime(10 * 1000, "keepAlive", keepAlive);
+
+                location.hash = "#home"
+            });
+        }
+
+        if (!window.navigator.standalone && !(/Android/i).test(navigator.userAgent)) {
+            $("#bookmarkme").show();
+        }
+
+        function setupLocalVariables() {
+            applicationCache = new Object();
+            applicationCache.user = new Object();
+            applicationCache.tasks = new Object();
+            applicationCache.assignments = new Object();
+            applicationCache.issues = new Object();
+            applicationCache.resources = new Object(); //e.g. {id1:{res1},...,idn:{resn}}
+            applicationCache.documents = new Object();
+            applicationCache.events = new Object();//e.g. {yyyymm:[{event1},...,{eventn}], ...}
+            applicationCache.eventsDays = [];  //e.g. [yyyymmdd,20110111,20101215]
+            applicationCache.eventsHolidays = undefined;//new Object(); //e.g. {week:[5,6], holidays:[yyyymmdd,mmdd]}
+            applicationCache.worklogs = new Object();//new Object(); //e.g. {yyyymm:{yyyymmdd:[{wl1},...,{wln}],...}, ... }
+            applicationCache.expenses = new Object();//new Object(); //e.g. {yyyymm:{yyyymmdd:[{cost1},...,{costn}],...}, ... }
+            applicationCache.stickies = [];
+            applicationCache.countedAssignment = undefined;
+        }
+
+        function updateApplicationCacheElement(elements, newElement) {
+            var oldElement = elements[newElement.id];
+
+            if (!oldElement || newElement.lastModified > oldElement.lastModified || newElement.loadComplete == true)
+                elements[newElement.id] = newElement;
+        }
+
+
+        function updateIssueListinTaskCache(newElement) {
+            var task = getTaskById(newElement.taskId)
+            if (task && task.issues) {
+                var oldElement;
+
+                for (var i = 0; i < task.issues.length; i++) {
+                    if (task.issues[i].id == newElement.id) {
+                        oldElement = task.issues[i];
+                        break;
+                    }
+                }
+
+
+                if (!oldElement) {
+                    task.issues.push(newElement);
+                } else if (newElement.lastModified > oldElement.lastModified || newElement.loadComplete == true) {
+                    task.issues[i] = newElement;
+                }
+
+                if ((oldElement && oldElement.statusName != "open" && newElement.statusName == "open") || !oldElement && newElement.statusName == "open")
+                    task.openIssues++;
+                else if (oldElement && oldElement.statusName == "open" && newElement.statusName != "open")
+                    task.openIssues--
+
+                updateApplicationCacheElement(applicationCache.tasks, task);
+            }
+        }
+
+
+        function updateDocumentListinTaskCache(newElement) {
+            var task = getTaskById(newElement.taskId)
+            if (task && task.documents) {
+                var oldElement;
+
+                for (var i = 0; i < task.documents.length; i++) {
+                    if (task.documents[i].id == newElement.id) {
+                        oldElement = task.documents[i];
+                        break;
+                    }
+                }
+                if (!oldElement) {
+                    task.documents.push(newElement);
+                } else if (newElement.lastModified > oldElement.lastModified) {
+                    task.documents[i] = newElement;
+                }
+
+                updateApplicationCacheElement(applicationCache.tasks, task);
+            }
+        }
+
+        function updateDocumentListinIssueCache(newElement) {
+            var issue = getIssueById(newElement.issueId)
+            if (issue && issue.documents) {
+                var oldElement;
+
+                for (var i = 0; i < issue.documents.length; i++) {
+                    if (issue.documents[i].id == newElement.id) {
+                        oldElement = issue.documents[i];
+                        break;
+                    }
+                }
+                if (!oldElement) {
+                    issue.documents.push(newElement);
+                } else if (newElement.lastModified > oldElement.lastModified) {
+                    issue.documents[i] = newElement;
+                }
+
+                updateApplicationCacheElement(applicationCache.issues, issue);
+            }
+        }
+
+        function updateSubTaskListinTaskCache(newElement) {
+            var task = getTaskById(newElement.parentId)
+            if (task && task.children) {
+                var oldElement;
+                for (var i = 0; i < task.children.length; i++) {
+                    if (task.children[i].id == newElement.id) {
+                        oldElement = task.children[i];
+                        break;
+                    }
+                }
+                if (!oldElement) {
+                    task.children.push(newElement);
+                } else if (newElement.lastModified > oldElement.lastModified || newElement.loadComplete == true) {
+                    task.children[i] = newElement;
+                }
+
+                updateApplicationCacheElement(applicationCache.tasks, task);
+            }
+        }
+
+        function updateListWithCache(templateName, divToReload, list) {
+            if (list && list.length > 0) {
+                for (var i in list) {
+                    var obj = list[i];
+                    divId.append($.JST.createFromTemplate(obj, template, true));
+                }
+            }
+        }
+
+
+        function resetEnvironment() {
+            setupLocalVariables();
+        }
+
+        /* -------------------------------------------------------------------------------------  GENERAL FUNCTIONS -------------------------------------------------*/
+
+        function callController(filter, callback) {
+            showSavingMessage();
+            debugger;
+            $.getJSON(controller, filter, function (response) {
+                debugger;
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    if (typeof (callback) == "function") {
+                        callback(response);
+
+                        if (currentPage)
+                            refreshIscroll();
+
+                    }
+                }
+                hideSavingMessage();
+            });
+        }
+
+        function backHome() {
+            goToPage("home");
+        }
+
+        function checkLogin(callBackAfterLogin) {
+            //console.debug("checkLogin",callBackAfterLogin);
+            showSavingMessage();
+            //rise a timer in order to test connection if no connection go to appiccia the net page
+            $("body").stopTime("testOnLine");
+            $("body").oneTime(4000, "testOnLine", function () {
+                goToPage("noConnectionPage");
+                hideSavingMessage();
+            });
+
+            //provo a fare un login con i cookies
+            $.getJSON(teamworkUrl + "/api/loginClient", { CM: "LI" }, function (response) {
+                $("body").stopTime("testOnLine");
+                jsonResponseHandling(response);
+                hideSavingMessage();
+                if (response.ok) {
+                    if (response.loginOk) {
+                        applicationCache.user = response.user;
+                        userLogged = true;
+                        $.get("sessionRefresh");
+
+                        if (typeof (callBackAfterLogin) == "function")
+                            callBackAfterLogin();
+
+                    } else {
+                        location.href = teamworkUrl + "/mobile/mobile.jsp";
+                    }
+                } else {
+                    location.href = teamworkUrl + "/mobile/mobile.jsp";
+                }
+            });
+        }
+
+        function changeUser() {
+            showSavingMessage();
+            // clear client
+            resetEnvironment();
+
+            //location.href=teamworkUrl+"/app/security/login.html?CM=LO";
+            //perform a logout
+            $.getJSON(teamworkUrl + '/api/loginClient', { CM: "LO" }, function (response) {
+                userLogged = false;
+                hideSavingMessage();
+                location.href = teamworkUrl + "/mobile";
+            });
+        }
+
+        function keepAlive() {
+            //console.debug("keepAlive:"+ parseInt((new Date().getTime()-lastServerCallMillis)/1000)) ;
+            if (new Date().getTime() - lastServerCallMillis > CHECK_LOGIN_EVERY * 1000) { //ogni x secondi controlla se siamo ancora loggati
+                $.getJSON(teamworkUrl + "/api/loginClient", { CM: "TST" }, function (response) {
+                    var ok = false;
+                    if (response.ok) {
+                        if (response.loginOk) {
+                            ok = true;
+                            if (response.newSession) {
+                                $.get("sessionRefresh");
+                            }
+                        }
+                    }
+
+                    //se qualcosa Ã¨ andato storto si fa un login e si va alla pagina iniziale
+                    if (!ok) {
+                        $.getJSON(teamworkUrl + '/api/loginClient', { CM: "LO" }, function (response) {
+                            location.href = "mobile.jsp"
+                        });
+
+                    }
+
+                });
+            }
+            lastServerCallMillis = new Date().getTime();
+        }
+
+        function showFeedbackMessage(typeOrObject, message, title, autoCloseTime) {
+            //console.debug("showFeedbackMessage",typeOrObject, message, title);
+
+            if (!autoCloseTime)
+                autoCloseTime = 2000;
+
+            var place = $("#__FEEDBACKMESSAGEPLACE");
+            var mess;
+            if (typeof (typeOrObject) == "object")
+                mess = typeOrObject;
+            else
+                mess = { type: typeOrObject, message: message, title: title };
+            //if exists append error message
+            var etm = $(".FFC_" + mess.type + ":visible ._errorTemplateMessage");
+            if (etm.length > 0) {
+                etm.append("<hr>" + (mess.title ? "<b>" + mess.title + "</b><br>" : "") + mess.message + "<br>");
+            } else {
+                etm = $.JST.createFromTemplate(mess, "ERROR_FEEDBACK");
+                place.append(etm);
+                place.addClass("msg-on");
+                place.fadeIn();
+            }
+
+            if (autoCloseTime > 0)
+                setTimeout(function () {
+                    $("#__FEEDBACKMESSAGEPLACE").fadeOut().empty();
+                    place.removeClass("msg-on");
+                }, autoCloseTime);
+
+            $("body").oneTime(1200, function () {
+                $(".FFC_OK").fadeOut();
+            });
+        }
+
+        function hideFeedbackMessages() {
+            var place = $("#__FEEDBACKMESSAGEPLACE");
+            $("#__FEEDBACKMESSAGEPLACE").fadeOut().empty();
+            place.removeClass("msg-on");
+
+        }
+
+
+        function homeEnter(event, data, fromPage, isBack) {
+            //console.debug("homePageEnter",event, data, fromPage, isBack);
+
+            //si resetta la data corrente in modo da rientrare sempre ad oggi nelle altre pagine
+            currentDate = new Date();
+
+            //si carica headline
+            var request = { "CM": "GETHEADLINE" };
+
+            callController(request, function (response) {
+                for (var headName in response.headlineData) {
+                    var count = parseInt(response.headlineData[headName]);
+                    var box = $("#" + headName);
+                    if (box.size() > 0) {
+                        if (count > 0) {
+                            box.find(".wphlNumber").html(count);
+                            box.removeClass("wpHLBoxClosed");
+                        } else {
+                            box.addClass("wpHLBoxClosed");
+                        }
+                    }
+                }
+
+                $(".mainMenuBox .face, .info .face.big").attr("src", applicationCache.user.person.avatarUrl);
+                $("#userDisplayName").html(applicationCache.user.person.displayName);
+
+                var request = { "CM": "CHECKTIMECOUNTER" };
+
+                callController(request, function (response) {
+                    if (response.assigId) {
+                        showTimeCounterIcon();
+                        applicationCache.countedAssignment = response.assigId;
+                    }
+                });
+
+
+            });
+
+        }
+
+
+    </script>
+
+
+
+
+
+    <div data-role="page" id="taskFilter" title="项目" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div class="searchBox">
+                    <input type="text" placeholder="搜索 ..."
+                        onblur="taskFreeSearch({'NAME_DESCRIPTION_NOTE_CODE':$(this).val()},'项目: '+$(this).val());"
+                        onkeypress="if(event.keyCode==13)this.blur();" class="search"><br>
+                </div>
+
+                <div class="buttonList">
+                    <button onclick="taskSearch('PF_MY_OPEN_TASK',$(this).html());" class="full first">开始的任务 </button>
+                    <button onclick="taskSearch('PF_MY_OPEN_PROJECT',$(this).html());" class="full">我的项目</button>
+                    <button onclick="taskSearch('PF_MY_OVERDUE_TASK',$(this).html());" class="full">延期的任务</button>
+                    <button onclick="taskSearch('PF_MY_FORTHCOMING_MILESTONES',$(this).html());"
+                        class="full">下一个里程碑</button>
+                    <button onclick="taskSearch('PF_OVERDUE_TASK',$(this).html());" class="full">已超时的项目 (全部)</button>
+                </div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="addTask();" class="first addRootProject"><span
+                        class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="taskList" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="taskListPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="addTask();" class="first addRootProject"><span
+                        class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" class="editor" id="taskEditor" title="任务数据" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="taskEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="saveTask($(this));" class="save saveTask">保存</button>
+                <button onmousedown="saveTaskStatus($(this));" style="display: none" class="save saveTaskStatus">save
+                    task status</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div data-role="page" class="editor" id="assigEditor" title="分工" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="assigEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="saveAssig($(this));" class="save">保存</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div data-role="page" id="taskView" title="任务" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="taskViewPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="editTask($(this));" class="edit">编辑</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+
+
+        $.JST.loadDecorator("TASK_ROW", function (domEl, task) {
+            domEl.find("#progressPlace").append($.JST.createFromTemplate({ width: 50, perc: task.progress }, "PERCENTILE"));
+
+            if (task.endIsMilestone == true)
+                domEl.find(".taskDates").addClass("isMilestone");
+
+            if (parseInt(task.end) < new Date().getTime())
+                domEl.find(".taskDates").addClass("warning");
+
+
+            if (!task.myAssId) {
+                domEl.find(".swipeBox .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+            }
+
+        });
+
+        $.JST.loadDecorator("TASK_EDITOR", function (domEl, task) {
+
+            //dobbiamo discriminare il new dall'edit
+            var isNewRoot = task.id == -1 && task.parent == "undefined";
+            var isNewChild = task.id == -1 && (task.parent != "undefined");
+            var isEdit = task.id != -1;
+            var canEdit = false;
+            var canEditStatus = false;
+
+            if (isNewRoot) {
+                var user = applicationCache.user;
+                canEdit = user.canCreateProject
+                canEditStatus = true;
+
+            } else if (isNewChild) {
+                var parent = getTaskById(task.parent)
+                canEdit = parent.canAddTask;
+                canEditStatus = true;
+
+            } else if (isEdit) {
+                canEdit = task.canWriteTask;
+                canEditStatus = task.canChangeTaskStatus;
+            }
+
+            if (!canEdit) {
+                domEl.find("#TASK_CODE").attr("readonly", "true").addClass("disabled");
+                domEl.find("#TASK_NAME").attr("readonly", "true").addClass("disabled");
+                domEl.find("#TASK_DURATION").attr("readonly", "true").addClass("disabled");
+                domEl.find("#TASK_TYPE").parents(".touchEl").css({ "pointer-events": "none" }).addClass("disabled");
+                domEl.find("#RELEVANCE").attr("readonly", "true").addClass("disabled");
+                domEl.find("#PROGRESS").attr("readonly", "true").addClass("disabled");
+                domEl.find("#ENDISMILESTONE").attr("disabled", "true").addClass("disabled");
+                domEl.find("#STARTISMILESTONE").attr("disabled", "true").addClass("disabled");
+                domEl.find("#DESCRIPTION").attr("readonly", "true").addClass("disabled");
+                domEl.find("#START").attr("readonly", "true").addClass("disabled");
+                domEl.find("#END").attr("readonly", "true").addClass("disabled");
+            }
+
+            if (!canEditStatus) {
+                domEl.find(".cvcColorSquare").parents(".touchEl").css({ "pointer-events": "none" }).addClass("disabled");
+            }
+
+            if (!task.myAssId) {
+                domEl.find(".swipeBox .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+            }
+
+        });
+
+
+        $.JST.loadDecorator("TASK_VIEW", function (domEl, task) {
+            //console.debug("loadDecorator:\"TASK_VIEW\"",task);
+
+            domEl.find("#progressPlace").append($.JST.createFromTemplate({ width: 50, perc: task.progress }, "PERCENTILE"));
+
+            if (task.startIsMilestone == true)
+                domEl.find(".taskStart").addClass("isMilestone");
+
+            if (task.endIsMilestone == true)
+                domEl.find(".taskEnd").addClass("isMilestone");
+
+            if (parseInt(task.end) < new Date().getTime())
+                domEl.find(".taskDates").addClass("warning");
+
+            //add assigs
+            var ndo = domEl.find(".assigPlace");
+            if (task.assignments) {
+                for (var i = 0; i < task.assignments.length; i++) {
+                    var assigRow = $.JST.createFromTemplate(task.assignments[i], "ASSIG_TASK_ROW");
+                    if (task.canAssign)
+                        assigRow.bind("click", function () {
+                            editAssig($(this));
+                        });
+                    ndo.append(assigRow);
+
+                }
+            }
+
+            if (!task.canAssign) {
+                ndo.find("div.addAssig").remove()
+            }
+
+            //add issue
+            var ndo = domEl.find(".issuesPlace");
+            if (task.issues) {
+                for (var i = 0; i < task.issues.length; i++) {
+
+                    var issueRow = $.JST.createFromTemplate(task.issues[i], "ISSUE_TASK_ROW");
+                    issueRow.bind("click", function () {
+                        editIssue($(this));
+                    });
+                    ndo.append(issueRow);
+
+                    if (!task.canDeleteIssue) {
+                        ndo.find(".swipeBox .delete .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+                    }
+                    updateApplicationCacheElement(applicationCache.issues, task.issues[i]);
+                }
+
+            }
+            if (!task.canAddIssue) {
+                ndo.find("div.addIssue").remove()
+            }
+
+            if (!task.canAddDocument) {
+                ndo.find("#holder").remove();
+            } else {
+                domEl.find("#holder").uploadize({
+                    fieldName: "attachment",
+                    url: "../mobile/ajax/mobileAjax",
+                    maxSize: 20971520,
+                    multi: false,
+                    showPlaceHolder: true,
+                    additionalRequestParameters: { CM: "TASKATTACH", taskId: task.id },
+                    onLoadCallback: function (response) {
+                        if (response.ok) {
+                            currentPage.find(".documentsPlace").append($.JST.createFromTemplate(response.attachment, "DOCUMENT_TASK_ROW"));
+                            var doc = response.taskDoc;
+                            doc.taskId = task.id;
+                            updateDocumentListinTaskCache(doc);
+                        }
+                    },
+                    fileAreaSelector: "#holder"
+                });
+
+            }
+
+            var ndo = domEl.find(".documentsPlace");
+            if (task.documents) {
+                for (var i = 0; i < task.documents.length; i++) {
+
+                    var doc = task.documents[i];
+                    doc.taskId = task.id;
+
+                    var docRow = $.JST.createFromTemplate(task.documents[i], "DOCUMENT_TASK_ROW");
+                    ndo.append(docRow);
+
+                    if (!task.canDeleteDocument) {
+                        ndo.find(".delete").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+                    }
+
+                    updateApplicationCacheElement(applicationCache.documents, task.documents[i]);
+                    updateDocumentListinTaskCache(task.documents[i]);
+                }
+            }
+            //add children
+            ndo = domEl.find(".childrenPlace");
+            if (task.children) {
+                for (var i = 0; i < task.children.length; i++) {
+                    ndo.append($.JST.createFromTemplate(task.children[i], "CHILD_TASK_ROW"));
+                }
+            }
+            if (!task.canWriteTask && !task.canChangeTaskStatus) {
+                $("#taskView").find("button.edit").hide()
+            } else {
+                $("#taskView").find("button.edit").show()
+            }
+
+            if (!task.canAddTask) {
+                ndo.find("div.addChild").remove()
+            }
+
+        });
+
+        $.JST.loadDecorator("ISSUE_TASK_ROW", function (domEl, issue) {
+            var swipeBox = domEl.find(".swipeBox");
+            if (!issue.canCreateIssue) {
+                domEl.find(".swipeBox .delete .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+            }
+        });
+
+        //$.JST.loadDecorator("ASSIG_TASK_ROW", function(domEl, assig) {
+        //  var swipeBox =  domEl.find(".swipeBox");
+        //
+        //  if(!assig.canCreate){ //todo
+        //    swipeBox.find(".delete").remove()
+        //  }
+        //});
+
+
+        function taskFreeSearch(searchParameters, label) {
+
+            var search_value = label.replace("Projects: ", "");
+            if (!search_value || search_value.length == 0)
+                return false;
+
+            var params = { "searchType": "FREE", "label": label };
+            for (var p in searchParameters)
+                params[p] = searchParameters[p];
+
+            goToPage("taskList", params);
+        }
+
+        function taskSearch(filterName, label) {
+            goToPage("taskList", { "FLNM": filterName, "label": label });
+        }
+
+
+        function viewTask(el, event) {
+            goToPage("taskView", { "taskId": el.attr("taskId") });
+        }
+
+        function taskFilterEnter(event, data, fromPage, isBack) {
+            var page = $(this);
+            if (!applicationCache.user.canCreateProject) {
+                page.find(".addRootProject").remove();
+            }
+        }
+
+        function taskListEnter(event, data, fromPage, isBack) {
+            debugger;
+            var ndo = $("#taskListPlace");
+            if (isBack)
+                updateListWithCache("TASK_ROW", ndo, applicationCache.tasks);
+
+            var page = $(this);
+            page.find("[data-role=title]").html(data.label);
+
+            ndo.empty();
+
+            debugger;
+            var filter = { "CM": "TASKSEARCH" };
+            $.extend(filter, data);
+
+            if (data.searchType)
+                filter.SCHTYPE = data.searchType;
+
+            callController(filter, function (response) {
+                if (response.tasks && response.tasks.length > 0) {
+                    debugger;
+                    for (var i = 0; i < response.tasks.length; i++) {
+                        var task = response.tasks[i];
+                        var template = $.JST.createFromTemplate(task, "TASK_ROW");
+
+                        if (applicationCache.countedAssignment && applicationCache.countedAssignment == task.myAssId) {
+                            template.find("span.play").removeClass("play").addClass("stop").html("s").attr("onclick", "showTimeCounterEditor()");
+                        }
+                        ndo.append(template);
+                        updateApplicationCacheElement(applicationCache.tasks, task);
+                    }
+                    //enable swipe action on list row
+                    enableSwipe();
+
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+                }
+
+            });
+            if (!applicationCache.user.canCreateProject || (data.FLNM && data.FLNM == "PF_MY_OPEN_PROJECT")) {
+                page.find(".addRootProject").remove();
+            }
+        }
+
+
+        function taskViewEnter(event, data, fromPage, isBack) {
+
+            var taskId = data.taskId;
+            var task = getTaskById(taskId);
+
+            if (task && task.loadComplete) { // load from cache
+                ndo = $("#taskViewPlace").empty().append($.JST.createFromTemplate(task, "TASK_VIEW"));
+                $(".accordion").accordion({
+                    heightStyle: "content",
+                    animate: 200,
+                    collapsible: true,
+                    active: false,
+                    activate: function (event, ui) {
+                        enableSwipe();
+                        refreshIscroll();
+                    }
+
+                });
+
+            } else {
+                var filter = { "CM": "LOADTASK", "ID": taskId };
+                callController(filter, function (response) {
+
+                    var task = response.task;
+                    var issueFilter = { "command": "list", "object": "issue", "filters": { "taskId": task.id, "status": "11122" }, "page": 1, "pageSize": 100 }
+                    callAPI(issueFilter, function (response) {
+
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            var issues = response.objects;
+                            task.issues = issues;
+
+
+                            ndo = $("#taskViewPlace").empty();
+                            ndo.append($.JST.createFromTemplate(task, "TASK_VIEW"));
+                            $(".accordion").accordion({
+                                heightStyle: "content",
+                                animate: 200,
+                                collapsible: true,
+                                active: false,
+                                activate: function (event, ui) {
+                                    enableSwipe();
+                                    refreshIscroll();
+                                }
+                            });
+                            //update cache
+                            updateApplicationCacheElement(applicationCache.tasks, task);
+
+                        }
+                    })
+                })
+
+            }
+            //enableSwipe();
+
+        }
+
+        function taskEditorEnter(event, data, fromPage, isBack) {
+            var edit = false;
+            var page = $(this)
+
+            if (data.taskId) {
+                edit = true;
+                var taskId = data.taskId;
+                var task = getTaskById(taskId);
+            } else {
+                var task = { id: -1 }
+                if (data.parent) {
+                    task.parent = data.parent;
+                } else {
+                    task.parent = -1;
+                }
+            }
+
+            var taskEditor = $(this).find("#taskEditorPlace");
+            taskEditor.empty().append($.JST.createFromTemplate(task, "TASK_EDITOR"));
+            if (edit) {
+                cvc_redraw(taskEditor.find(".cvcComponent"));
+            } else {
+                cvc_selectFirstElement(taskEditor.find(".cvcComponent"));
+            }
+
+
+            //bind dateField on dates, duration
+            taskEditor.find("#START,#END,#TASK_DURATION").click(function () {
+                var input = $(this);
+                if (input.is("[entrytype=DATE]")) {
+                    input.dateField({
+                        inputField: input,
+                        callback: function (d) {
+                            $(this).blur();
+                        }
+                    });
+                }
+            }).blur(function () {
+                var inp = $(this);
+                if (inp.validateField()) {
+                    resynchDates(inp.attr("id"), "START", "startIsMilestone", "TASK_DURATION", "END", "endIsMilestone");
+                }
+            });
+
+            taskEditor.find("#startIsMilestone,#endIsMilestone").click(function () {
+                var inp = $(this);
+                resynchDates(inp.attr("id"), "START", "startIsMilestone", "TASK_DURATION", "END", "endIsMilestone");
+            });
+
+            if (task.canChangeTaskStatus && !task.canWriteTask) {
+                page.find(".saveTask").hide();
+                page.find(".saveTaskStatus").show();
+            }
+        }
+
+        function taskEditorLeave(event, data, fromPage, isBack) {
+            $(this).find("#taskEditorPlace").empty();
+        }
+
+
+        function assigEditorEnter(event, data, fromPage, isBack) {
+            var taskId = data.OBJID;
+            var task = getTaskById(taskId);
+            var assig = { id: -1, taskId: taskId }
+            if (data.assigId) {
+                for (var i = 0; i < task.assignments.length; i++) {
+                    if (task.assignments[i].id == data.assigId)
+                        assig = task.assignments[i];
+                }
+            }
+
+            var assigEditor = $(this).find("#assigEditorPlace");
+            assigEditor.empty().append($.JST.createFromTemplate(assig, "ASSIG_EDITOR"));
+
+        }
+
+        function assigEditorLeave(event, data, fromPage, isBack) {
+            $(this).find("#assigEditorPlace").empty();
+        }
+
+
+        function editTask(el) {
+            goToPage("taskEditor", { "taskId": $("div.editor.task").attr("taskId") });
+        }
+
+        function addTask() {
+            var parent = currentPage.find("div.editor.task").attr("taskId");
+            goToPage("taskEditor", { "parent": parent }, true);
+        }
+
+        function addAssig() {
+            goToPage("assigEditor", { "OBJID": currentPage.find("div.editor.task").attr("taskId") });
+        }
+
+        function addTaskIssue() {
+            var task = getTaskById(currentPage.find("div.editor.task").attr("taskId"))
+            goToPage("issueEditor", { "taskId": task.id, "taskName": task.name });
+        }
+
+        function editAssig(el) {
+            goToPage("assigEditor", { "OBJID": el.attr("taskId"), "assigId": el.attr("assId") });
+        }
+
+        function getTaskById(taskId) {
+            for (i in applicationCache.tasks) {
+                if (applicationCache.tasks[i].id == taskId)
+                    return applicationCache.tasks[i];
+            }
+            return false;
+        }
+
+
+        function saveTask(el) {
+
+            var ed = el.closest("#taskEditor").find("#taskEditorPlace");
+            ed.find(":input").clearErrorAlert();
+            if (canSubmitForm("taskEditorPlace")) {
+                var taskid = ed.find("div.editor").attr("taskId");
+                var request = { "CM": "SAVEPROJECT" };
+                if (taskid != -1)
+                    request["OBJID"] = taskid;
+                ed.fillJsonWithInputValues(request);
+                callController(request, function (response) {
+                    if (response.ok) {
+                        updateApplicationCacheElement(applicationCache.tasks, response.task);
+                        if (response.task.parentId) {
+                            updateSubTaskListinTaskCache(response.task);
+                        }
+                        goToPage("taskView", { "taskId": response.task.id });
+                    }
+                });
+            }
+
+        } function saveTaskStatus(el) {
+
+            var ed = el.closest("#taskEditor").find("#taskEditorPlace");
+            ed.find(":input").clearErrorAlert();
+            if (canSubmitForm("taskEditorPlace")) {
+                var taskid = ed.find("div.editor").attr("taskId");
+                var request = { "CM": "SAVETASKSTATUS" };
+                request["OBJID"] = taskid;
+                request["NEW_STATUS"] = ed.find("#STATUS").val();
+                callController(request, function (response) {
+                    if (response.ok) {
+                        updateApplicationCacheElement(applicationCache.tasks, response.task);
+                        if (response.task.parentId) {
+                            updateSubTaskListinTaskCache(response.task);
+                        }
+                        goToPage("taskView", { "taskId": response.task.id });
+                    }
+                });
+            }
+
+        }
+
+
+        function saveAssig(el) {
+
+            var ed = el.closest("#assigEditor").find("#assigEditorPlace");
+            ed.find(":input").clearErrorAlert();
+            if (canSubmitForm("assigEditorPlace")) {
+                var assigId = ed.find("div.editor").attr("assigId");
+                var taskId = ed.find("div.editor").attr("taskId");
+                var request = { "CM": "SAVEASSIGNMENT" };
+                if (assigId != -1)
+                    request["OBJID"] = assigId;
+                request["TASK_ID"] = taskId;
+                ed.fillJsonWithInputValues(request);
+
+                callController(request, function (response) {
+                    if (response.ok) {
+                        updateApplicationCacheElement(applicationCache.tasks, response.task);
+                        backPage();
+                    }
+                });
+            }
+        }
+
+
+        function addWorklogFromTask(el) {
+
+            var div = el.closest("div[assId]");
+            var assId = div.attr("assId");
+            var taskId = div.attr("taskId");
+
+            goToPage("worklogEditor", { "assId": assId, "taskName": applicationCache.tasks[taskId].name, "wlDoneOn": (new Date()).toInt() });
+
+        }
+
+        function addExpensesFromTask(el) {
+
+            var div = el.closest("div[assId]");
+            var assId = div.attr("assId");
+            var taskId = div.attr("taskId");
+
+            goToPage("expenseEditor", { "assId": assId, "taskName": applicationCache.tasks[taskId].name });
+
+        }
+
+        function taskOpenCalendar(el) {
+            var inp = el.closest(".touchEl").find(".calendarInput");
+            if (inp.is(".componentOverlayTF"))
+                return;
+            var config = {
+                inputField: inp,
+                centerOnScreen: true,
+                useYears: 1,
+                useMonths: 3,
+                showToday: true,
+                //notAfterMillis: new Date().getTime() + 3600000 * 24,
+                width: "100%"
+            };
+            inp.dateField(config);
+        }
+
+    </script>
+
+
+
+
+
+    <!-- -----------------------------------  resource list page -------------------------------------- -->
+    <div data-role="page" id="resourceList" title="联系人" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-position="fixed" class="searchBox">
+            <input type="text" placeholder="搜索 ..." onblur="resourceSearch($(this));"
+                onkeypress="if(event.keyCode==13)this.blur();" class="search">
+        </div>
+        <div data-role="content" class="scroll" style="height: 596px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="resourceListPlace"></div>
+
+
+                <div class="small entityLog">您可以通过发送到vCard新Teamwork的联系： <a
+                        href="mailto://demo@teamworkhost.com">demo@teamworkhost.com</a></div>
+
+
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="resourceEditor();" class="first addRootResource"><span
+                        class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <div data-role="page" class="editor" id="resourceEditor" title="资源" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="resourceEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="saveResource($(this));" class="save">保存</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- -----------------------------------  resource view page -------------------------------------- -->
+    <div data-role="page" id="resourceView" title="联系人" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="resourceViewPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="resourceEditor();" class="edit">编辑</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script>
+        $.JST.loadDecorator("RESOURCE_VIEW", function (domEl, resource) {
+            //add personal data
+
+            var ndo = domEl.find(".personalDataPlace");
+            for (var i in resource.personalData) {
+                var pda = resource.personalData[i];
+                pda.resId = resource.id;
+                ndo.append($.JST.createFromTemplate(pda, "PERSONAL_DATA_ROW"));
+            }
+            //add assigs
+            ndo = domEl.find(".assigPlace");
+            for (var i in resource.assignments) {
+                ndo.append($.JST.createFromTemplate(resource.assignments[i], "ASSIG_RES_ROW"));
+            }
+            if (!resource.canWrite) {
+                $("#resourceView").find("button.edit").hide()
+            } else {
+                $("#resourceView").find("button.edit").show()
+            }
+
+        });
+    </script>
+
+
+
+    <script>
+
+        function resourceListEnter(event, data, fromPage, isBack) {
+            var filter = { "CM": "RESOURCESEARCH" };
+
+            var page = $(this);
+            if (data && data.search)
+                filter.SEARCH = data.search;
+
+            callController(filter, function (response) {
+                var resources = response.resources;
+                var ndo = $("#resourceListPlace");
+                ndo.empty();
+                if (resources && resources.length > 0) {
+                    for (var i in resources) {
+                        var resource = resources[i];
+                        ndo.append($.JST.createFromTemplate(resource, "RESOURCE_ROW"));
+                        updateApplicationCacheElement(applicationCache.resources, resource);
+                    }
+
+                    //enable swipe action on list row
+                    enableSwipe();
+
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+                }
+            });
+
+            if (!applicationCache.user.canCreateResource) {
+                page.find(".addRootResource").remove();
+            }
+        }
+
+        function resourceViewEnter(event, data, fromPage, isBack) {
+            var resource = getResourceById(data.resourceId);
+            if (resource && resource.loadComplete) { // load from cache
+                var ndo = $("#resourceViewPlace").empty().append($.JST.createFromTemplate(resource, "RESOURCE_VIEW"));
+
+                $(".accordion").accordion({
+                    heightStyle: "content",
+                    animate: 200,
+                    collapsible: true,
+                    active: false,
+                    activate: function (event, ui) {
+                        enableSwipe();
+                        refreshIscroll();
+                    }
+
+                });
+
+            } else {
+                var filter = { "CM": "LOADRESOURCE", "ID": data.resourceId };
+                callController(filter, function (response) {
+                    var ndo = $("#resourceViewPlace").empty().append($.JST.createFromTemplate(response.resource, "RESOURCE_VIEW"));
+
+                    $(".accordion").accordion({
+                        heightStyle: "content",
+                        animate: 200,
+                        collapsible: true,
+                        active: false,
+                        activate: function (event, ui) {
+                            enableSwipe();
+                            refreshIscroll();
+                        }
+
+                    });
+
+                    //update cache
+                    updateApplicationCacheElement(applicationCache.resources, response.resource);
+
+                });
+            }
+        }
+
+        function resourceEditorEnter(event, data, fromPage, isBack) {
+
+            if (!data.personalData) {
+                data.personalData = [{ id: "new" + new Date().getTime(), order: 0 }];
+            }
+            $(this).find("#resourceEditorPlace").empty().append($.JST.createFromTemplate(data, "RESOURCE_EDITOR"));
+        }
+
+
+        function resourceEditorLeave(event, data, fromPage, isBack) {
+            $(this).find("#resourceEditorPlace").empty();
+        }
+
+
+        function resourceEditor(el) {
+            var id = currentPage.find("div.resource").attr("resourceid");
+            var res = {};
+
+            if (id) {
+                res = getResourceById(id);
+            } else {
+                res.id = -1;
+            }
+            goToPage("resourceEditor", res);
+        }
+
+
+        function resourceSearch(el) {
+            goToPage("resourceList", { search: el.val() });
+        }
+
+
+        function viewResource(el) {
+            goToPage("resourceView", { resourceId: el.attr("resourceId") });
+        }
+
+        function saveResource(el) {
+
+            var ed = currentPage.find("#resourceEditorPlace");
+            ed.find(":input").clearErrorAlert();
+
+            var resourceId = ed.find("div.editor").attr("resourceId");
+
+            var request = { "CM": "SAVERESOURCE" };
+
+            if (canSubmitForm("resourceEditorPlace")) {
+
+                var ads = [];
+                currentPage.find(".ADEditor").each(function (order) {
+                    var editor = $(this);
+                    var idAD = editor.attr("idAD");
+                    var fromEdi = {};
+                    if (idAD) {
+                        fromEdi.id = idAD;
+                    } else {
+                        fromEdi.id = "new" + new Date().getTime();
+                    }
+                    fromEdi.order = 0;
+                    editor.fillJsonWithInputValues(fromEdi);
+                    ads.push(fromEdi);
+
+                });
+
+                if (ads.length > 0) {
+                    request["ads"] = (JSON.stringify(ads));
+                }
+                currentPage.find(".generalData").fillJsonWithInputValues(request);
+
+
+                if (resourceId != -1) {
+                    request["OBJID"] = resourceId;
+                }
+
+                request["RESOURCE_TYPE"] = "com.twproject.resource.Person";
+
+                callController(request, function (response) {
+                    if (response.ok) {
+
+                        updateApplicationCacheElement(applicationCache.resources, response.resource);
+                        backPage();
+                    }
+                });
+            }
+
+
+        }
+
+
+
+        function getResourceById(id) {
+            for (i in applicationCache.resources) {
+                if (applicationCache.resources[i].id == id)
+                    return applicationCache.resources[i];
+            }
+            return false;
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+    <div data-role="page" id="issueFilter" title="问题" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+
+            <div class="searchBox">
+                <input type="text" placeholder="搜索 ..." onblur="issueSearch('SEARCH',$(this).val());"
+                    onkeypress="if(event.keyCode==13)this.blur();" class="search">
+            </div>
+
+            <div class="buttonList">
+
+                <button onclick="issueSearch('PF_MY_OPEN_ISSUES',$(this).html());" class="full first">待解决的问题
+                </button>
+                <button onclick="issueSearch('PF_MY_OPEN_SEVERE_ISSUES',$(this).html());" class="full">我已发现的严重问题
+                </button>
+                <button onclick="issueSearch('PF_MY_INSERTED_ISSUES',$(this).html());" class="full">我感兴趣的问题
+                </button>
+                <button onclick="issueSearch('PF_ISSUES_OPENED_RECENTLY',$(this).html());" class="full">最近出现的问题
+                </button>
+                <button onclick="issueSearch('PF_ISSUES_CLOSED_RECENTLY',$(this).html());" class="full">最近关闭的问题
+                </button>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="addIssue();" class="first addRootIssue"><span
+                        class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div data-role="page" id="issueList" class="issueList" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="issueListPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="addIssue();" class="first addRootIssue"><span
+                        class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div data-role="page" id="issueView" title="问题" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+            <div id="issueViewPlace"></div>
+
+
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell col4">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell col4">
+                <button class="first" onmousedown="closeIssue($(this));"
+                    style="(#=obj.canWriteIssue &amp;&amp; obj.isOpen?'':'display:none'#)">关闭
+                </button>
+            </div>
+            <div class="groupCell col4">
+                <button class="button icon delete pullRight" msg="确认删除?" onmousedown="deleteIssue($(this));"
+                    style="display:(#=obj.canCreateIssue?'':'none'#)"><span class="icon">d</span>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div data-role="page" class="editor noFooter" id="issueEditor" title="问题" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="issueEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right col6">
+                <button class="save" onmousedown="saveIssue($(this));">保存</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+
+        $.JST.loadDecorator("ISSUE_ROW", function (domEl, issue) {
+            var swipeBox = domEl.find(".swipeBox");
+            if (!issue.isMine) {
+                domEl.find(".swipeBox .addWorklog .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+            }
+
+            if (!issue.canCreateIssue) {
+                domEl.find(".swipeBox .cloneIssue .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+            }
+
+            if (!issue.canDeleteIssue) {
+                domEl.find(".swipeBox .delete .teamworkIcon").attr("onclick", "").css({ "opacity": 0.3, color: "#fff" });//this is required to remove the swipe funcion
+            }
+        });
+
+        $.JST.loadDecorator("ISSUE_EDITOR", function (domEl, issue) {
+
+            var ndo = domEl.find(".issueDocumentsPlace");
+            if (!issue.canWriteIssue || issue.id == -1) {
+                ndo.find("#holder").remove();
+            } else {
+                domEl.find("#holder").uploadize({
+                    fieldName: "attachment",
+                    url: "../mobile/ajax/mobileAjax",
+                    maxSize: 20971520,
+                    multi: false,
+                    showPlaceHolder: true,
+                    additionalRequestParameters: { CM: "ISSUEATTACH", issueId: issue.id },
+                    onLoadCallback: function (response) {
+                        if (response.ok) {
+                            currentPage.find(".issueDocumentsPlace").append($.JST.createFromTemplate(response.attachment, "DOCUMENT_ISSUE_ROW"));
+                            updateDocumentListinIssueCache(response.attachment);
+                            var updatedIssue = getIssueById(issue.id)
+                            var task = getTaskById(issue.taskId);
+                            if (task) {
+                                updateIssueListinTaskCache(updatedIssue);
+                            }
+
+                        }
+                    },
+                    fileAreaSelector: "#holder"
+                });
+
+            }
+
+            var ndo = domEl.find(".issueDocumentsPlace");
+            if (issue.documents) {
+                for (var i = 0; i < issue.documents.length; i++) {
+
+                    var doc = issue.documents[i];
+                    doc.issueId = issue.id;
+
+                    var docRow = $.JST.createFromTemplate(issue.documents[i], "DOCUMENT_ISSUE_ROW");
+                    ndo.append(docRow);
+
+                    updateApplicationCacheElement(applicationCache.documents, issue.documents[i]);
+                    updateDocumentListinIssueCache(issue.documents[i]);
+                }
+            }
+
+        });
+
+
+    </script>
+
+
+
+    <script>
+
+
+        function issueFilterEnter(event, data, fromPage, isBack) {
+            var page = $(this);
+            if (!applicationCache.user.canCreateIssue) {
+                page.find(".addRootIssue").remove();
+            }
+        }
+        function issueListEnter(event, data, fromPage, isBack) {
+
+            var ndo = $("#issueListPlace");
+            if (isBack) {
+                updateListWithCache("ISSUE_ROW", ndo, applicationCache.issues)
+                enableSwipe();
+            }
+
+            var page = $(this);
+            if ("SEARCH" == data.searchType)
+                page.find("[data-role=title]").html("\"" + data.label + "\"");
+            else
+                page.find("[data-role=title]").html(data.label);
+
+
+            var filter = { "CM": "ISSUESEARCH", "SCHTYPE": data.searchType, "SEARCH": data.label };
+            filter.TASKID = data.taskId;
+
+            callController(filter, function (response) {
+                ndo.empty();
+                var issues = response.issues;
+                if (issues && issues.length > 0) {
+                    for (var i = 0; i < issues.length; i++) {
+                        var issue = issues[i];
+                        var template = $.JST.createFromTemplate(issue, "ISSUE_ROW", true);
+                        updateApplicationCacheElement(applicationCache.issues, issue);
+
+                        ndo.append(template);
+                    }
+
+
+                    //enable swipe action on list row
+                    enableSwipe();
+
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+                }
+            });
+
+            if (!applicationCache.user.canCreateIssue) {
+                page.find(".addRootIssue").remove();
+            }
+
+        }
+
+
+        function issueEditorEnter(event, data, fromPage, isBack) {
+            var page = $(this);
+            var edit = false;
+            var issue = {};
+
+            if (data && data.issueId) {
+                edit = true;
+                var issueId = data.issueId;
+                issue = getIssueById(issueId);
+
+            } else if (data) { //caso del save and clone ci sono i dati ma la issue Ã¨ vuota
+
+                issue = data;
+                issue.id = -1;
+
+            } else {
+                issue.id = -1;
+            }
+
+            page.find("#issueEditorPlace").empty().append($.JST.createFromTemplate(issue, "ISSUE_EDITOR"));
+
+            if (edit) {
+                cvc_redraw(page.find(".cvcComponent"));
+                cvc_redraw(page.find("[cvctype=ISSUE_STATUS]"));
+            } else {
+                cvc_selectFirstElement(page.find(".cvcComponent"));
+            }
+        }
+
+
+        function issueSearch(searchType, label) {
+            if (label.length)
+                goToPage("issueList", { "searchType": searchType, "label": label });
+        }
+
+
+        function viewIssuesForTask(el) {
+            goToPage("issueList", { "searchType": "TASK", "taskId": el.closestAttr("taskId") });
+        }
+
+
+        function viewIssue(el) {
+            goToPage("issueView", { "issueId": el.attr("issueId") });
+        }
+
+
+        function editIssue(el) {
+            goToPage("issueEditor", { "issueId": el.attr("issueId") });
+        }
+
+
+        function getIssueById(id) {
+            for (i in applicationCache.issues) {
+                if (applicationCache.issues[i].id == id)
+                    return applicationCache.issues[i];
+            }
+            return false;
+        }
+
+
+        function closeIssue(el) {
+            var id = el.closestAttr("issueId");
+            var command = { "CM": "CLOSEISSUE", "ID": id };
+            callController(command, function (response) {
+                var issue = response.issue;
+
+                //update cache
+                updateApplicationCacheElement(applicationCache.issues, issue);
+
+                if (response.askWL) {
+                    $("#issueViewPlace").empty().append($.JST.createFromTemplate(issue, "ISSUE_VIEW", true));
+                    $("#issueViewPlace #wlEd").attr("assId", response.assId).show();
+                } else {
+                    backPage();
+                }
+            });
+        }
+
+
+        function addIssue() {
+            goToPage("issueEditor");
+        }
+
+
+        function addWorklogFromIssue(el) {
+
+            var div = el.closest("div[assId]");
+            var assId = div.attr("assId");
+            var issueid = div.attr("issueid");
+            var taskName = div.find("div.issueTaskName").html();
+            goToPage("worklogEditor", { "assId": assId, "taskName": taskName, issueId: issueid, "wlDoneOn": (new Date()).toInt() });
+
+        }
+
+        function reloadAssignee(taskIdField) {
+            //console.debug("reloadAssignee",hiddenAssigId,hiddenAssigId.isValueChanged());
+            if (taskIdField.isValueChanged()) {
+                showSavingMessage();
+                var taskId = taskIdField.val();
+                var assigneeName = $("#ASSIGNEE_txt").val();
+                var assigneeId = $("#ASSIGNEE").val();
+                var issueId = "";//todo
+                var request = { CM: "TASKCHANGED", TASKID: taskId, ISSUEID: issueId, SIZE: 30 };
+                $.post("../issue/issueAjaxControllerJson", request, function (response) {
+                    hideSavingMessage();
+                });
+            }
+        }
+
+
+        function cloneIssue(el) {
+            var div = el.closest("div[assId]");
+            var issueid = div.attr("issueid");
+            var clonedIssue = getIssueById(issueid)
+            clonedIssue.id = "";
+            clonedIssue.description = "";
+            clonedIssue.documents = "";
+            goToPage("issueEditor", clonedIssue)
+        }
+
+
+        function saveIssue(el) {
+
+            var ed = currentPage.find("#issueEditorPlace");
+            ed.find(":input").clearErrorAlert();
+            if (canSubmitForm("issueEditorPlace")) {
+                var issueId = ed.find("div.editor").attr("issueId");
+                var request = { "CM": "SVISSUE" };
+                if (issueId != -1)
+                    request["OBJID"] = issueId;
+
+                ed.fillJsonWithInputValues(request);
+                request["ASSIGNED_BY"] = applicationCache.user.person.id;
+
+                callController(request, function (response) {
+                    if (response.ok) {
+
+                        updateApplicationCacheElement(applicationCache.issues, response.issue);
+                        updateIssueListinTaskCache(response.issue);
+
+                        if (response.issue.askForWorklog) {
+                            goToPage("worklogEditor", { "assId": response.issue.assId, "taskName": response.issue.taskName, issueId: response.issue.id, "wlDoneOn": (new Date()).toInt() });
+                        } else {
+                            backPage();
+                        }
+                    }
+                });
+            }
+        }
+
+        function deleteIssue(el) {
+            el.confirm(function () {
+                var ed = el.closest("[issueId]");
+                var issueId = ed.attr("issueId");
+                var issue = getIssueById(issueId);
+                var task = getTaskById(issue.taskId);
+                var filter = { "CM": "DLISSUE", "ISSUEID": issueId };
+
+                callController(filter, function (response) {
+                    //update cache
+                    delete applicationCache.issues[issueId];
+                    if (task && task.issues) {
+
+                        for (var i = 0; i < task.issues.length; i++) {
+                            if (task.issues[i].id == issueId) {
+                                task.issues.splice(i, 1);
+                                break;
+                            }
+
+                        }
+                        updateApplicationCacheElement(applicationCache.tasks, task)
+
+                    }
+                    //remove issue row
+                    currentPage.find("[issueId=" + issueId + "]").remove();
+                    var accordionIssue = currentPage.find("#issuesSize");
+                    if (accordionIssue) {
+                        accordionIssue.html("(" + task.issues.length + ")");
+                    }
+                    //backPage();
+                });
+            });
+        }
+
+
+        function deleteIssueDocument(el) {
+            el.confirm(function () {
+                var ed = el.closest("[fileUID]");
+                var docId = ed.attr("fileUID");
+                var issueId = ed.attr("issueId");
+                var issue;
+                if (issueId) {
+                    var issue = getIssueById(issueId);
+                }
+
+
+                var filter = { "CM": "DELSCRSHT", "fileUID": docId, "issueId": issueId };
+
+                callController(filter, function (response) {
+                    for (var i = 0; i < issue.documents.length; i++) {
+                        if (issue.documents[i].uid == docId) {
+                            issue.documents.splice(i, 1);
+                            updateApplicationCacheElement(applicationCache.issues, issue);
+                            break;
+                        }
+                    }
+
+
+                    var task = getTaskById(issue.taskId);
+                    if (task) {
+                        updateIssueListinTaskCache(issue);
+                    }
+                    //remove issue row
+                    el.closest(".documentRow").remove();
+                });
+            });
+
+
+        }
+
+
+        function issueOpenCalendar(el) {
+            var inp = el.closest("[data-role=page]").find("#ISSUE_DATE_CLOSE_BY");
+            setTimeout(function () {
+                inp.dateField({
+                    inputField: inp,
+                    centerOnScreen: true,
+                    useYears: 1,
+                    useMonths: 3,
+                    width: "100%"
+                });
+            }, 100)
+        }
+
+    </script>
+
+
+
+
+
+
+    <div data-role="page" id="calendarPage" title="日程" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+            <div id="calendarPlace" class="calBoxPicker">
+                <div class="calYearCP"><span class="calElementCP" millis="1559031765276"
+                        style="width: 138px;">2019</span><span class="calElementCP today selected"
+                        millis="1590654165276" style="width: 138px;">2020</span><span class="calElementCP"
+                        millis="1622190165276" style="width: 138px;">2021</span></div>
+                <div class="calMonthCP"><span class="calElementCP" millis="1582878165276"
+                        style="width: 59.1429px;">二月</span><span class="calElementCP" millis="1585383765276"
+                        style="width: 59.1429px;">三月</span><span class="calElementCP" millis="1588062165276"
+                        style="width: 59.1429px;">四月</span><span class="calElementCP today selected"
+                        millis="1590654165276" style="width: 59.1429px;">五月</span><span class="calElementCP"
+                        millis="1593332565276" style="width: 59.1429px;">六月</span><span class="calElementCP"
+                        millis="1595924565276" style="width: 59.1429px;">七月</span><span class="calElementCP"
+                        millis="1598602965276" style="width: 59.1429px;">八月</span></div>
+                <div class="calDayCP calFullMonthCP"><span class="calDayHeaderCP" day="0"
+                        style="width: 59.1429px;">星期日</span><span class="calDayHeaderCP" day="1"
+                        style="width: 59.1429px;">星期一</span><span class="calDayHeaderCP" day="2"
+                        style="width: 59.1429px;">星期二</span><span class="calDayHeaderCP" day="3"
+                        style="width: 59.1429px;">星期三</span><span class="calDayHeaderCP" day="4"
+                        style="width: 59.1429px;">星期四</span><span class="calDayHeaderCP" day="5"
+                        style="width: 59.1429px;">星期五</span><span class="calDayHeaderCP" day="6"
+                        style="width: 59.1429px;">星期六</span><span class="calElementCP calOutOfScope holy"
+                        millis="1587889365276" style="width: 59.1429px;"><span class="dayNumber">26</span></span><span
+                        class="calElementCP calOutOfScope" millis="1587975765276" style="width: 59.1429px;"><span
+                            class="dayNumber">27</span></span><span class="calElementCP calOutOfScope"
+                        millis="1588062165276" style="width: 59.1429px;"><span class="dayNumber">28</span></span><span
+                        class="calElementCP calOutOfScope" millis="1588148565276" style="width: 59.1429px;"><span
+                            class="dayNumber">29</span></span><span class="calElementCP calOutOfScope"
+                        millis="1588234965276" style="width: 59.1429px;"><span class="dayNumber">30</span></span><span
+                        class="calElementCP" millis="1588321365276" style="width: 59.1429px;"><span
+                            class="dayNumber">1</span></span><span class="calElementCP holy" millis="1588407765276"
+                        style="width: 59.1429px;"><span class="dayNumber">2</span></span><span class="calElementCP holy"
+                        millis="1588494165276" style="width: 59.1429px;"><span class="dayNumber">3</span></span><span
+                        class="calElementCP" millis="1588580565276" style="width: 59.1429px;"><span
+                            class="dayNumber">4</span></span><span class="calElementCP" millis="1588666965276"
+                        style="width: 59.1429px;"><span class="dayNumber">5</span></span><span class="calElementCP"
+                        millis="1588753365276" style="width: 59.1429px;"><span class="dayNumber">6</span></span><span
+                        class="calElementCP" millis="1588839765276" style="width: 59.1429px;"><span
+                            class="dayNumber">7</span></span><span class="calElementCP" millis="1588926165276"
+                        style="width: 59.1429px;"><span class="dayNumber">8</span></span><span class="calElementCP holy"
+                        millis="1589012565276" style="width: 59.1429px;"><span class="dayNumber">9</span></span><span
+                        class="calElementCP holy" millis="1589098965276" style="width: 59.1429px;"><span
+                            class="dayNumber">10</span></span><span class="calElementCP" millis="1589185365276"
+                        style="width: 59.1429px;"><span class="dayNumber">11</span></span><span class="calElementCP"
+                        millis="1589271765276" style="width: 59.1429px;"><span class="dayNumber">12</span></span><span
+                        class="calElementCP" millis="1589358165276" style="width: 59.1429px;"><span
+                            class="dayNumber">13</span></span><span class="calElementCP" millis="1589444565276"
+                        style="width: 59.1429px;"><span class="dayNumber">14</span></span><span class="calElementCP"
+                        millis="1589530965276" style="width: 59.1429px;"><span class="dayNumber">15</span></span><span
+                        class="calElementCP holy" millis="1589617365276" style="width: 59.1429px;"><span
+                            class="dayNumber">16</span></span><span class="calElementCP holy" millis="1589703765276"
+                        style="width: 59.1429px;"><span class="dayNumber">17</span></span><span class="calElementCP"
+                        millis="1589790165276" style="width: 59.1429px;"><span class="dayNumber">18</span></span><span
+                        class="calElementCP" millis="1589876565276" style="width: 59.1429px;"><span
+                            class="dayNumber">19</span></span><span class="calElementCP" millis="1589962965276"
+                        style="width: 59.1429px;"><span class="dayNumber">20</span></span><span class="calElementCP"
+                        millis="1590049365276" style="width: 59.1429px;"><span class="dayNumber">21</span></span><span
+                        class="calElementCP" millis="1590135765276" style="width: 59.1429px;"><span
+                            class="dayNumber">22</span></span><span class="calElementCP holy" millis="1590222165276"
+                        style="width: 59.1429px;"><span class="dayNumber">23</span></span><span
+                        class="calElementCP holy" millis="1590308565276" style="width: 59.1429px;"><span
+                            class="dayNumber">24</span></span><span class="calElementCP" millis="1590394965276"
+                        style="width: 59.1429px;"><span class="dayNumber">25</span></span><span class="calElementCP"
+                        millis="1590481365276" style="width: 59.1429px;"><span class="dayNumber">26</span></span><span
+                        class="calElementCP" millis="1590567765276" style="width: 59.1429px;"><span
+                            class="dayNumber">27</span></span><span class="calElementCP today selected"
+                        millis="1590654165276" style="width: 59.1429px;"><span class="dayNumber">28</span></span><span
+                        class="calElementCP" millis="1590740565276" style="width: 59.1429px;"><span
+                            class="dayNumber">29</span></span><span class="calElementCP holy" millis="1590826965276"
+                        style="width: 59.1429px;"><span class="dayNumber">30</span></span><span
+                        class="calElementCP holy" millis="1590913365276" style="width: 59.1429px;"><span
+                            class="dayNumber">31</span></span><span class="calElementCP calOutOfScope"
+                        millis="1590999765276" style="width: 59.1429px;"><span class="dayNumber">1</span></span><span
+                        class="calElementCP calOutOfScope" millis="1591086165276" style="width: 59.1429px;"><span
+                            class="dayNumber">2</span></span><span class="calElementCP calOutOfScope"
+                        millis="1591172565276" style="width: 59.1429px;"><span class="dayNumber">3</span></span><span
+                        class="calElementCP calOutOfScope" millis="1591258965276" style="width: 59.1429px;"><span
+                            class="dayNumber">4</span></span><span class="calElementCP calOutOfScope"
+                        millis="1591345365276" style="width: 59.1429px;"><span class="dayNumber">5</span></span><span
+                        class="calElementCP calOutOfScope holy" millis="1591431765276" style="width: 59.1429px;"><span
+                            class="dayNumber">6</span></span></div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell inputBox col6">
+                <button onmousedown="goToDayAndList(new Date());" class="">今天</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="calendarDayList" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+
+
+                <div id="calendarDayListPlace" style="position:relative;"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell inputBox col6">
+                <button onmousedown="addAgendaEvent($(this));" millis="(#=obj.millis#)" class="first"><span
+                        class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div data-role="page" id="eventView" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="eventViewPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell inputBox col6">
+                <button class="delete" msg="确认删除?" onmousedown="deleteAgendaEvent($(this));"
+                    style="display:(#=obj.authorId!=applicationCache.user.person.id?'none':''#)">删除</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" class="editor noFooter" id="eventEditor" title="事件日期" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="eventEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell inputBox col6">
+                <button onmousedown="saveAgendaEvent($(this));" class="save">保存</button>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+    </script>
+
+
+
+    <script>
+        /* -------------------------------------------------------------------------------------  CALENDAR FUNCTIONS -------------------------------------------------*/
+        function calendarPageEnter(event, data, fromPage, isBack) {
+            $("#calendarPlace").oneTime(10, "dpCD", function () { $(this).trigger("changeDate", [currentDate]).resize() });
+        }
+
+        function calendarDayListEnter(event, data, fromPage, isBack) {
+            //console.debug("calendarDayListEnter",event, data, fromPage, isBack);
+            fillDayList();
+
+            var ndo = $("#calendarDayListPlace");
+
+            ndo.swipe({
+                swipeLeft: function (event, direction, distance, duration, fingerCount) {
+                    5
+                    if (distance > 140)
+                        agendaMove(true);
+                },
+                swipeRight: function (event, direction, distance, duration, fingerCount) {
+                    if (distance > 140)
+                        agendaMove(false);
+                },
+                threshold: 50,
+                fingers: 'all'
+            });
+
+
+
+        }
+
+        function fillDayList() {
+            loadCalendar(currentDate, function () {
+                var ndo = $("#calendarDayListPlace");
+                ndo.empty();
+                var oneHourHeight = 60;
+                var oneHour = 1000 * 60 * 60;
+                var startDayMillis = 1000 * 60 * 60 * 7;
+                var endDayMillis = 1000 * 60 * 60 * 23;
+
+                millis = startDayMillis;
+                //print the grid
+                while (millis <= endDayMillis) {
+                    ndo.append($.JST.createFromTemplate({ millis: millis, top: (millis - startDayMillis) / oneHour * oneHourHeight }, "AGENDA_GRID"));
+                    millis += oneHour;
+                }
+                ndo.css("height", ((endDayMillis - startDayMillis) / oneHour + 1) * oneHourHeight);
+                // $("#calendarDayList [data-role=title]").html("October");
+                $("#calendarDayList [data-role=title]").html(currentDate.format(mobileFullDateFormat));
+
+                var dateInt = currentDate.toInt();
+
+                var monthEvents = applicationCache.events[parseInt(dateInt / 100)]; //201105
+                if (monthEvents && monthEvents.length > 0) {
+                    for (var i in monthEvents) {
+                        var ev = monthEvents[i];
+                        if (new Date(ev.startMillis).toInt() == dateInt) {
+                            var ed = new Date(ev.startMillis);
+                            ed.setHours(0, 0, 0, 0);
+                            ev.top = (ev.startMillis - ed.getTime() - startDayMillis) / oneHour * oneHourHeight;
+                            ev.top = ev.top < 0 ? 0 : ev.top;
+                            ev.height = (ev.endMillis - ev.startMillis) / oneHour * oneHourHeight;
+                            var evRow = $.JST.createFromTemplate(ev, "EVENT_ROW");
+                            evRow.data("event", ev);
+                            ndo.append(evRow);
+                        }
+                    }
+
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+                }
+
+                //test glieogg
+                var ora = new Date();
+                if (currentDate.toInt() == ora.toInt()) {
+                    //appiccik rig
+                    var now = $("<div>").css({ "border-top": "2px solid #F05D5D", "position": "absolute", "width": "100%", "height": "4px", "top": ((ora.getHours() * 60 * 60 + ora.getMinutes() * 60 + ora.getSeconds()) * 1000 - startDayMillis) / oneHour * oneHourHeight });
+                    //now.append("&nbsp;");
+                    ndo.append(now);
+                }
+
+            });
+        }
+
+
+        function loadCalendar(date, callback) {
+            //console.debug("loadCalendar ",date);
+            var dateInt = date.toInt();
+            var monthEvents = applicationCache.events[parseInt(dateInt / 100)];
+            if (!monthEvents) {
+
+                var filter = { "CM": "LOADEVENTS", "DATEINT": dateInt, "LDHOLY": !applicationCache.eventsHolidays ? "yes" : "no" };
+                callController(filter, function (response) {
+
+                    //update cache
+                    if (response.eventsHolidays) {
+                        applicationCache.eventsHolidays = response.eventsHolidays;
+                    }
+
+                    applicationCache.events[parseInt(dateInt / 100)] = response.events;
+                    for (var i in response.events) {
+                        var ev = response.events[i];
+                        applicationCache.eventsDays.push(new Date(ev.startMillis).toInt());
+                    }
+
+                    $("#calendarPlace").trigger("repaintDays");
+
+                    if (typeof (callback) == "function")
+                        callback();
+                });
+
+            } else {
+                if (typeof (callback) == "function")
+                    callback();
+            }
+        }
+
+
+        function goToDayAndList(date) {
+            currentDate = date;
+            goToPage("calendarDayList");
+        }
+
+
+
+        function agendaMove(forward) {
+            currentDate = new Date(currentDate.getTime() + (forward ? 1 : -1) * 24 * 60 * 60 * 1000);
+            fillDayList();
+        }
+
+
+
+        function eventViewEnter(event, data, fromPage, isBack) {
+            var page = $(this);
+            var ageEvent = getEventById(data.eventId);
+
+            $("#eventView [data-role=title]").html(new Date(ageEvent.startMillis).format(mobileFullDateFormat));
+            if (ageEvent.description)
+                ageEvent.description = ageEvent.description.replace(/\n/g, "<br>");
+            var view = $.JST.createFromTemplate(ageEvent, "EVENT_VIEW");
+            var schedule = ageEvent.schedule;
+
+            if (schedule.days) {
+                var ret = [];
+                for (var i in schedule.days) {
+                    ret.push(Date.dayNames[schedule.days[i] + 6].toLowerCase());
+                }
+                schedule.days = ret;
+            }
+
+            var scheduleView = $.JST.createFromTemplate(schedule, "SCHEDULE_" + (schedule.type.toUpperCase()));
+            view.find("#schedulePlace").append(scheduleView);
+            $("#eventViewPlace").empty().append(view);
+        }
+
+
+        function viewEvent(row) {
+            goToPage('eventView', { eventId: row.attr("eventId") });
+        }
+
+        function eventEditorEnter(event, data, fromPage, isBack) {
+            var page = $(this);
+            page.find("#eventEditorPlace").empty().append($.JST.createFromTemplate({ "millis": data.millis, date: currentDate }, "EVENT_EDITOR"))
+        }
+
+        function addAgendaEvent(el) {
+            goToPage("eventEditor", { millis: el.attr("millis") });
+        }
+
+
+        function saveAgendaEvent(el) {
+
+            var ed = $("#eventEditorPlace");
+
+            if (ed.find(":input[required=true]").isFullfilled()) {
+
+                var start = parseInt(ed.find("select.startMillis").val());
+                var dur = millisFromHourMinute(ed.find("select.duration").val());
+                var filter = { "CM": "SAVEEVENT" };
+
+                ed.fillJsonWithInputValues(filter);
+
+                filter.SCHEDULE = JSON.stringify({ type: "period", startMillis: start, endMillis: start + dur });
+                filter.AGENDA_SUMMARY = ed.find("input.subject").val(),
+                    filter.IS_PERSONAL = ed.find("input.personal").get(0).checked ? "yes" : "no",
+                    filter.IS_REMINDER = ed.find("input.reminder").get(0).checked ? "yes" : "no",
+                    filter.AGENDA_DESCRIPTION = ed.find("textarea.description").val(),
+                    filter.LOCATION = ed.find("input.location").val()
+
+
+                callController(filter, function (response) {
+                    //update cache
+                    var agEv = response.event;
+                    if (agEv) {
+
+                        var dateInt = new Date(agEv.startMillis).toInt();
+                        var monthEvents = applicationCache.events[parseInt(dateInt / 100)];
+                        if (monthEvents) {
+                            monthEvents.push(agEv);
+                        }
+                    }
+
+                    backPage();
+                    //goToPage("calendarDayList");
+                    //goToDayAndList(currentDate);
+
+                });
+            }
+        }
+
+        function deleteAgendaEvent(el) {
+            el.confirm(function () {
+                var evid = currentPage.find("div[eventId]").attr("eventId")
+                var filter = { "CM": "DLAGEEVENT", "EVID": evid };
+                callController(filter, function (response) {
+                    //update cache
+                    var dateInt = currentDate.toInt();
+                    var monthEvents = applicationCache.events[parseInt(dateInt / 100)];
+                    if (monthEvents) {
+                        for (var i in monthEvents) {
+                            if (monthEvents[i].id == evid) {
+                                monthEvents.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    backPage();
+                });
+            });
+        }
+
+
+
+        //the calendar use the daysWithStrip var to highlight cells
+        $("#calendarPlace").calendarPicker({
+            useWheel: false,
+            callback: function (theDiv) {
+                loadCalendar(theDiv.data("options").currentDate);
+            },
+            dayClick: function (theDiv) {
+                currentDate = theDiv.data("options").currentDate;
+                goToPage("calendarDayList");
+            },
+            fullMonth: true,
+            firstDayOfWeek: Date.firstDayOfWeek,
+            dayRenderer: function (el, date) {
+                if (jQuery.inArray(date.toInt(), applicationCache.eventsDays) >= 0)
+                    el.addClass("dayWithStrip");
+                else
+                    el.removeClass("dayWithStrip");
+
+                if (date.isHoliday())
+                    el.addClass("holy");
+                else
+                    el.removeClass("holy");
+            },
+
+            dayHeaderRenderer: function (el, day) {
+                var d = new Date();
+                d.getD
+                if (applicationCache.eventsHolidays && applicationCache.eventsHolidays.week.indexOf(day) >= 0)
+                    el.addClass("holy");
+            }
+
+        });
+
+        function getEventById(eventId) {
+            for (var m in applicationCache.events) {
+                var evs = applicationCache.events[m];
+                for (var i = 0; i < evs.length; i++) {
+                    if (evs[i].id == eventId)
+                        return evs[i];
+                }
+            }
+            return false;
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <div data-role="page" id="documentFilter" title="文档" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+
+            <div class="searchBox"><input type="text" placeholder="搜索 ..."
+                    onblur="documentSearch('SEARCH',$(this).val());" onkeypress="if(event.keyCode==13)this.blur();"
+                    class="search"></div>
+
+            <div class="buttonList">
+                <button onclick="fillFileStorageList();" class="full first">查看文件存储列表</button>
+                <button onclick="documentSearch(&quot;PF_DOCUMENTS_RECENTLY_CHANGED&quot;,$(this).html());"
+                    class="full">文件最近更改</button>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="documentList" title="文档列表" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+            <div id="documentsPlace"></div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="documentView" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 636px;">
+            <div id="documentViewPlace"></div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="fileStorages" title="查看文件存储列表" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="fileStoragesPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-role="page" id="explorer" title="查看文件存储列表" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="explorerPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        $.JST.loadDecorator("DOCUMENT_VIEW", function (domEl, document) {
+            if (document.remoteFile) {
+                domEl.find("#documentLinkPlace").append(getFileStorageElement(document.remoteFile));
+            }
+
+            if (document.persFile) {
+                domEl.find("#documentLinkPlace").append($.JST.createFromTemplate(document.persFile, "PERS_FILE"));
+            }
+
+        });
+    </script>
+
+
+
+    <script>
+        function fileStoragesEnter(event, data, fromPage, isBack) {
+            var ndo = $("#fileStoragesPlace");
+            ndo.empty();
+            if (applicationCache.fileStorages.length > 0) {
+                for (var i in applicationCache.fileStorages) {
+                    var fs = applicationCache.fileStorages[i];
+                    ndo.append($.JST.createFromTemplate(fs, "FS_ROW"));
+                }
+            } else {
+                ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+            }
+        }
+
+
+        function explorerEnter(event, data, fromPage, isBack) {
+            var fs = getFSById(data.fsId);
+            $("#explorer [data-role=title]").html(fs.name);
+
+            var filter = { "CM": "EXPLOREFS", "FSID": data.fsId, "PATH": data.path };
+            callController(filter, function (response) {
+
+                var ndo = $("#explorerPlace");
+                ndo.empty();
+
+                if (response.dirs && response.dirs.length > 0) {
+                    for (var i in response.dirs) {
+                        ndo.append(getFileStorageElement(response.dirs[i]));
+                    }
+                }
+
+                if (response.files && response.files.length > 0) {
+                    for (var i in response.files) {
+                        ndo.append(getFileStorageElement(response.files[i]));
+                    }
+                }
+            });
+        }
+
+
+        function documentListEnter(event, data, fromPage, isBack) {
+            //console.debug("documentListEnter", data,isBack);
+            if (isBack)
+                return;
+            var page = $(this);
+            if ("SEARCH" == data.searchType)
+                page.find("[data-role=title]").html("\"" + data.label + "\"");
+            else
+                page.find("[data-role=title]").html(data.label);
+
+            var filter = { "CM": "DOCSEARCH", "SCHTYPE": data.searchType, "SEARCH": data.label, "TASKID": data.taskId };
+            callController(filter, function (response) {
+                var ndo = $("#documentsPlace");
+                ndo.empty();
+
+                if (response.documents && response.documents.length > 0) {
+                    for (var i in response.documents) {
+                        var doc = response.documents[i];
+                        ndo.append($.JST.createFromTemplate(doc, "DOCUMENT_ROW"));
+                        updateApplicationCacheElement(applicationCache.documents, doc);
+                    }
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+                }
+            });
+        }
+
+
+        function documentViewEnter(event, data, fromPage, isBack) {
+            var doc = getDocumentById(data.docId);
+            $("#documentView [data-role=title]").html(doc.name);
+
+            if (doc && doc.loadComplete) { // load from cache
+                ndo = $("#documentViewPlace").empty().append($.JST.createFromTemplate(doc, "DOCUMENT_VIEW"));
+            } else {
+                var filter = { "CM": "LOADDOCUMENT", "ID": data.docId };
+                callController(filter, function (response) {
+                    $("#documentViewPlace").empty().append($.JST.createFromTemplate(response.document, "DOCUMENT_VIEW", true));
+
+                    //update cache
+                    updateApplicationCacheElement(applicationCache.documents, response.document);
+                });
+            }
+        }
+
+
+        function documentSearch(searchType, label) {
+            //console.debug("documentSearch: "+searchType+" "+label);
+
+            if (!label || label.length == 0)
+                return false;
+
+            goToPage("documentList", { "searchType": searchType, "label": label });
+        }
+
+
+
+        function fillFileStorageList() {
+            if (!applicationCache.fileStorages) {
+                var filter = { "CM": "FILESTORAGES" };
+                callController(filter, function (response) {
+                    applicationCache.fileStorages = response.fileStorages;
+                    fillFileStorageList();
+                });
+            } else {
+                goToPage("fileStorages");
+            }
+        }
+
+
+        function navigateFileStorage(fsId, path) {
+            goToPage("explorer", { fsId: fsId, path: path });
+        }
+
+        function viewDocumentsForTask(el) {
+            var taskId = el.closestAttr("taskId");
+            var label = "";
+            goToPage("documentList", { "searchType": "TASK", "label": label, "taskId": taskId });
+        }
+
+
+        function viewDocument(el) {
+            var id = el.attr("docId");
+            goToPage("documentView", { docId: id });
+        }
+
+        function getFSById(FSid) {
+            for (i in applicationCache.fileStorages) {
+                if (applicationCache.fileStorages[i].id == FSid)
+                    return applicationCache.fileStorages[i];
+            }
+            return false;
+        }
+
+        function getFileStorageElement(dirOrFile) {
+            if (dirOrFile.isDirectory)
+                return $.JST.createFromTemplate(dirOrFile, "FS_DIR");
+            else
+                return $.JST.createFromTemplate(dirOrFile, "FS_FILE");
+        }
+
+
+        function getDocumentById(docId) {
+            for (i in applicationCache.documents) {
+                if (applicationCache.documents[i].id == docId)
+                    return applicationCache.documents[i];
+            }
+            return false;
+        }
+
+
+        function deleteDocument(el) {
+            el.confirm(function () {
+                var ed = el.closest("[docId]");
+                var docId = ed.attr("docId");
+                var taskId = ed.attr("taskId");
+                var task;
+                if (taskId) {
+                    var task = getTaskById(taskId);
+                }
+
+
+                var filter = { "CM": "DLDOC", "DOCID": docId };
+
+                callController(filter, function (response) {
+
+                    delete applicationCache.documents[docId];
+                    if (task) {
+                        for (i in task.documents) {
+                            if (task.documents[i].id == docId) {
+                                task.documents.splice(i, 1);
+                                updateApplicationCacheElement(applicationCache.tasks, task);
+                                break;
+                            }
+                        }
+                    }
+
+                    //remove issue row
+                    currentPage.find(".documentRow[docId=" + docId + "]").remove();
+                });
+            });
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+    <div data-role="page" id="worklogList" title="工作记录" class="worklogList" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0" class="worklogNav" data-position="fixed">
+            <tbody>
+                <tr>
+                    <td width="10%">
+                        <div data-role="button" onclick="worklogMove(false);" class="prev full" title="上一个"></div>
+                    </td>
+                    <td>
+                        <div data-role="date"></div>
+                    </td>
+                    <td width="10%">
+                        <div data-role="button" onclick="worklogMove(true);" class="next full" title="下一个"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div data-role="content" class="scroll" style="height: 585px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="worklogListPlace" width="100%"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="worklogEditor();" class="first"><span class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" class="editor" id="worklogEditor" title="新增的工作日志" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="worklogEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="saveWorklog($(this));" class="save">保存</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+
+
+    </script>
+
+
+
+    <script>
+
+        var maxWorklogAgeInDays = 30
+        var maxWorklogFutureAgeInDays = 7
+
+        function worklogEditorEnter(event, data, fromPage, isBack) {
+            if (!data) {
+                data = {};
+            }
+            $(this).find("#worklogEditorPlace").empty().append($.JST.createFromTemplate(data, "WORKLOG_EDITOR"));
+            if (data.assId) {
+                wlAssigSelected(currentPage.find("#wlAssId"))
+            }
+        }
+
+
+        function worklogEditorLeave(event, data, fromPage, isBack) {
+            $(this).find("#worklogEditorPlace").empty();
+        }
+
+        function worklogListEnter(event, data, fromPage, isBack) {
+            fillWordlogDay();
+        }
+
+
+        function fillWordlogDay() {
+            var page = $("#worklogList");
+            currentDate = currentDate || new Date();
+
+            var dateInt = currentDate.toInt();
+            var monthWorklogs = applicationCache.worklogs[parseInt(dateInt / 100)];
+
+            if (!monthWorklogs) {
+                var filter = { "CM": "LOADWORKLOG", "DATEINT": dateInt };
+                callController(filter, function (response) {
+
+                    //update cache
+                    var month = new Object();
+                    for (var day in response.worklogs) {
+                        var wls = response.worklogs[day];
+                        month[day] = wls;
+                    }
+                    applicationCache.worklogs[parseInt(dateInt / 100)] = month;
+
+                    //call itself
+                    fillWordlogDay();
+                });
+
+            } else {
+                //set title
+                page.find("[data-role=date]").html(currentDate.format(mobileFullDateFormat));
+
+                //draw rows
+                var dayWorklogs = monthWorklogs[dateInt];
+                var ndo = $("#worklogList #worklogListPlace");
+                ndo.empty();
+                if (dayWorklogs && dayWorklogs.length > 0) {
+                    var wlTot = 0;
+                    for (var i in dayWorklogs) {
+                        var wl = dayWorklogs[i];
+                        wlTot += wl.duration;
+                        ndo.append($.JST.createFromTemplate(wl, "WORKLOG_ROW"));
+                    }
+
+                    ndo.append($.JST.createFromTemplate({ wlTot: getMillisInHoursMinutes(wlTot) }, "WORKLOG_TOTAL"));
+
+                    //enable swipe action on list row
+                    enableSwipe();
+
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_WORKLOGS"));
+                }
+            }
+
+            refreshIscroll();
+
+        }
+
+
+        function worklogMove(forward) {
+            currentDate.setDate(currentDate.getDate() + (forward ? 1 : -1));
+            fillWordlogDay();
+        }
+
+
+        function worklogEditor(el) {
+            goToPage("worklogEditor", {});
+        }
+
+
+        function wlAssigSelected(el) {
+            var assId = el.val();
+
+            var wlId = el.closestAttr("wlId");
+            var box = $("#worklogCustomFormPlace");
+
+            var request = { assId: assId };
+            if (wlId)
+                request.wlId = wlId;
+
+
+
+            box.load("/applications/teamwork/task/worklog/worklogDescriptionForm.jsp", request, function (html) {
+                box.find("#descr").remove();
+
+                if (currentPage)
+                    refreshIscroll();
+
+            });
+        }
+
+        function saveWorklog(el) {
+            var ed = currentPage.find("#worklogEditorPlace");
+
+            if (ed.find(":input").isFullfilled()) {
+
+                var request = { "CM": "SAVEWORKLOG" };
+                ed.fillJsonWithInputValues(request);
+
+                request.ASSID = request.wlAssId;
+
+                request.DATEINT = Date.parseString(request.wlDoneOn).toInt();
+
+                callController(request, function (response) {
+                    //update cache
+                    var worklog = response.worklog;
+
+                    currentDate = new Date(worklog.insertedMillis);
+                    var dateInt = currentDate.toInt();
+                    var monthWorklogs = applicationCache.worklogs[parseInt(dateInt / 100)];
+                    if (monthWorklogs) {
+                        var wlDay = monthWorklogs[dateInt];
+                        if (!wlDay) {
+                            wlDay = [];
+                            monthWorklogs[dateInt] = wlDay;
+                        }
+                        wlDay.push(worklog);
+                    }
+
+                    backPage();
+                    //fillWordlogDay();
+
+                });
+            }
+        }
+
+
+        function deleteWorklog(el) {
+
+            el.confirm(function () {
+
+                var row = el.closest("[wlId]");
+
+                var d = new Date(parseInt(row.attr("millis")));
+
+                var wlId = row.attr("wlId");
+                var filter = { "CM": "DLWL", "WLID": wlId };
+
+                callController(filter, function (response) {
+                    //update cache
+
+                    var dateInt = d.toInt();
+                    var dayWorklogs = applicationCache.worklogs[parseInt(dateInt / 100)][dateInt];
+                    for (var i in dayWorklogs) {
+                        if (dayWorklogs[i].id == wlId) {
+                            dayWorklogs.splice(i, 1);
+                            break;
+                        }
+                    }
+                    fillWordlogDay();
+                });
+            }, "确认删除?");
+        }
+
+
+        function wlOpenCalendar(el) {
+            var inp = el.closest("[data-role=page]").find("#wlDoneOn");
+            if (inp.is(".componentOverlayTF"))
+                return;
+            var config = {
+                inputField: inp,
+                centerOnScreen: true,
+                useYears: 1,
+                useMonths: 3,
+                showToday: true,
+                width: "100%"
+            };
+            if (maxWorklogAgeInDays > 0)
+                config.notBeforeMillis = new Date() - 3600000 * 24 * maxWorklogAgeInDays;
+
+            if (maxWorklogFutureAgeInDays > 0)
+                config.notAfterMillis = new Date() + 3600000 * 24 * maxWorklogFutureAgeInDays;
+            inp.dateField(config);
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+    <div data-role="page" id="timeCounters" title="计时器" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" style="height: 685px;">
+            <div id="timeCountersPlace"></div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow hiddenElement">
+            <div class="groupCell col6"></div>
+            <div class="groupCell col6"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+
+        function timeCounterEditorEnter(event, data, fromPage, isBack) {
+
+            //si carica l'assignement
+            var request = { "CM": "GETASSIGNMENT", assId: applicationCache.countedAssignment };
+
+            callController(request, function (response) {
+                if (response.assignment) {
+                    var ndo = $("#timeCounterEditorPlace");
+                    var etm = $.JST.createFromTemplate(response.assignment, "TIME_COUNTER");
+                    var watch = etm.find(".counterwatch");
+                    var format = '%0h:%0m:%0s';
+                    watch.data("time", response.assignment.countingStartedMillis).activateTimeCounter(format);
+                    ndo.append(etm);
+                }
+            });
+
+
+        }
+
+
+        function timeCounterEditorLeave(event, data, fromPage, isBack) {
+            $(this).find("#timeCounterEditorPlace").empty();
+            $(this).find("button.save").removeClass("save").addClass("stop").attr("onclick", "stopTimeCounter($(this))").html("stop");
+        }
+
+
+        function saveTimeCounterWorklog(el) {
+
+            var request = { "CM": "SAVEWORKLOG" };
+
+            request.ASSID = currentPage.find("div.timeCounter").attr("assId");
+            request.DATEINT = (new Date()).toInt();
+            request.WORKLOG_ACTION = currentPage.find("#worklogaction").val()
+            request.DURATION = currentPage.find(".timecounter").attr("worklogtime")
+
+            callController(request, function (response) {
+                //update cache
+                var worklog = response.worklog;
+
+                if (worklog) {
+
+                    currentDate = new Date(worklog.insertedMillis);
+                    var dateInt = currentDate.toInt();
+                    var monthWorklogs = applicationCache.worklogs[parseInt(dateInt / 100)];
+                    if (monthWorklogs) {
+                        var wlDay = monthWorklogs[dateInt];
+                        if (!wlDay) {
+                            wlDay = [];
+                            monthWorklogs[dateInt] = wlDay;
+                        }
+                        wlDay.push(worklog);
+                    }
+                    backPage();
+                } else {
+                    //todo messaggino
+                }
+
+            });
+        }
+
+
+        function startTimeCounter(el) {
+
+            var div = el.closest("div[assId]");
+            var assId = div.attr("assId");
+
+            if (applicationCache.countedAssignment) {
+                stopTimeCounter(true);
+            }
+
+            var request = { CM: "STARTCOUNTER", assId: assId };
+            callController(request, function (response) {
+                if (response.ok) {
+                    showTimeCounterIcon();
+                    applicationCache.countedAssignment = assId;
+                    div.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                    el.removeClass("play").addClass("stop").html("s").attr("onclick", "showTimeCounterEditor()");
+
+                }
+            });
+        }
+
+
+        function stopTimeCounter(switching) {
+
+            var assId = applicationCache.countedAssignment;
+            var request = { CM: "STOPCOUNTER", assId: assId };
+            callController(request, function (response) {
+                if (response.ok && response.worklog) {
+
+                    hideTimeCounterIcon();
+                    applicationCache.countedAssignment = "";
+                    currentPage.find(".counterwatch").stopTimeCounterWatch().hide();
+
+                    var duration = getMillisInHoursMinutes(response.worklog.duration);
+
+                    var delay = 0;
+                    if (!switching) { //se sei nella lista dei task e quindi non passi dall viewer del counter non deve fare back
+                        backPage();
+                        delay = 500;
+                    }
+                    setTimeout(function () {
+                        goToPage("worklogEditor", { "assId": assId, "taskName": response.worklog.taskName, "duration": duration, "wlDoneOn": (new Date()).toInt() });
+                    }, delay)
+
+                }
+
+            });
+
+        }
+
+
+
+        function showTimeCounterEditor() {
+            goToPage("timeCounterEditor");
+        }
+
+
+        function showTimeCounterIcon() {
+            return $("#__COUNTER").show().addClass("animate");
+        }
+
+
+        function hideTimeCounterIcon() {
+
+            return $("#__COUNTER").hide().removeClass("animate");
+
+        }
+
+        $.fn.activateTimeCounter = function (format) {
+            if (!format)
+                format = '%0h<span class="counterLabel">h</span> %0m<span class="counterLabel">m</span><span class="sec"> %0s<span class="counterLabel">s</span></span>';
+            var el = $(this);
+            var millis = el.data("time") || new Date().getTime();
+            var d = new Date(millis).toString();
+            el.tinyTimer({ from: d, format: format });
+            return el;
+        };
+
+        $.fn.stopTimeCounterWatch = function () {
+            var tt = $(this).data("tinyTimer");
+            if (tt)
+                tt.stop();
+            return $(this).removeData("tinyTimer");
+        };
+
+    </script>
+
+
+
+
+
+
+
+
+    <!-- -----------------------------------  sticky list page -------------------------------------- -->
+    <div data-role="page" id="stickyList" title="条消息" class="stickyList" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="stickyListPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="notifications" title="通知" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="notificationsListPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col12">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+    </script>
+
+
+    <script>
+
+        function stickyListEnter(event, data, fromPage, isBack) {
+            var ndo = $("#stickyListPlace").empty();
+            if (applicationCache.stickies.length > 0) {
+                for (var i in applicationCache.stickies) {
+                    ndo.append($.JST.createFromTemplate(applicationCache.stickies[i], "STICKY_MESSAGE", true));
+                }
+            } else {
+                ndo.append($.JST.createFromTemplate({}, "NO_ELEMENT_FOUND"));
+            }
+        }
+
+        function notificationsEnter(event, data, fromPage, isBack) {
+            var ndo = $("#notificationsListPlace").empty();
+
+            ndo.load(contextPath + "/messageList.html", function (ret) {
+                if (ret.length > 200)
+                    $(".showAllMessages").show();
+                else
+                    $(".showAllMessages").hide();
+
+
+                /**
+                 * infinite scroll
+                 */
+                var myScroll = currentPage.data("iscroll");
+
+                if (!myScroll.eventBinded) {
+                    myScroll.on('scrollEnd', function () {
+                        if (this.y < this.maxScrollY + 100) {
+                            $(".loadMore .button").click();
+                        }
+                    });
+                    myScroll.eventBinded = true;
+                }
+                refreshIscroll();
+            });
+        }
+
+        /* -------------------------------------------------------------------------------------  STICKY NOTES FUNCTIONS -------------------------------------------------*/
+        function checkStickyNotes() {
+            var filter = { "CM": "GETSTICKY" };
+            callController(filter, function (response) {
+                if (response.stickies && response.stickies.length > 0) {
+                    applicationCache.stickies = response.stickies;
+                } else {
+                    applicationCache.stickies = [];
+                }
+                updateStickyCounter();
+            });
+        }
+
+        function checkNotifications() {
+            var filter = { "CM": "CHECKNOTIFICATIONS" };
+            callController(filter, function (response) {
+                updateNotificationCounter(response.unreadNotifications);
+            });
+        }
+
+        function updateNotificationCounter(quant) {
+            if (quant) {
+                $("#notificationCounterPlace").empty().append($.JST.createFromTemplate({ count: quant }, "STICKY_COUNT"));
+            } else {
+                $("#notificationCounterPlace").empty();
+            }
+        }
+
+        function updateStickyCounter() {
+            $("#stickyCount").html(applicationCache.stickies.length)
+        }
+
+        function loadMessageListMore(el, topMillis) {
+            var listPlace = el.closest("#notificationsListPlace");
+
+            $.get(contextPath + "/messageList.html?topMillis=" + topMillis, function (res) {
+                el.parent().remove();
+                listPlace.append(res);
+                listPlace[0].canScroll = true;
+
+                refreshIscroll();
+
+            })
+        }
+
+        function removeAllStickies() {
+            var ids = $.map(applicationCache.stickies, function (stk, i) {
+                return (stk.id);
+            });
+
+            var filter = { "CM": "RMSTK", "IDS": ids.join() };
+            callController(filter, function (response) {
+                applicationCache.stickies = [];
+                backPage();
+                updateStickyCounter();
+            });
+        }
+
+        function removeSticky(el) {
+            var row = el.closest("[stickyId]");
+
+            var stkId = row.attr("stickyId");
+            var filter = { "CM": "RMSTK", "IDS": stkId };
+            callController(filter, function (response) {
+                row.remove();
+                applicationCache.stickies = $.map(applicationCache.stickies, function (stk, i) {
+                    return (stk.id == stkId ? null : stk);
+                });
+
+                if (applicationCache.stickies.length <= 0) {
+                    backPage();
+                }
+                updateStickyCounter();
+            });
+
+        }
+
+        function followMessageLink(el) {
+            var href = el.find(".message_link a:first").attr("href");
+            if (href)
+                self.location.href = href;
+        }
+    </script>
+
+
+
+
+
+
+
+
+    <div data-role="page" id="expenseList" title="成本" style="display: none;">
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmouseup="manageMainMenuView();" class="mainMenuOpener" style="padding:15px"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <table width="100%" cellspacing="0" cellpadding="0" class="worklogNav" data-position="fixed">
+            <tbody>
+                <tr>
+                    <td width="10%">
+                        <div data-role="button" onclick="expenseMove(false);" class="prev full" title="上一个"></div>
+                    </td>
+                    <td>
+                        <div data-role="date"></div>
+                    </td>
+                    <td width="10%">
+                        <div data-role="button" onclick="expenseMove(true);" class="next full" title="下一个"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div data-role="content" class="scroll" style="height: 585px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="expenseListPlace" width="100%"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="expenseEditor();" class="first"><span class="teamworkIcon big">P</span></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="expenseEditor" class="editor" title="添加花费" style="display: none;">
+
+        <div data-role="header" data-position="fixed">
+            <div data-role="button" onmousedown="backPage();" class="close"></div>
+            <div data-role="title"></div>
+        </div>
+
+        <div data-role="content" class="scroll" style="height: 636px;">
+            <div class="iscroll"
+                style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+                <div id="expenseEditorPlace"></div>
+            </div>
+            <div class="iScrollVerticalScrollbar iScrollLoneScrollbar"
+                style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none;">
+                <div class="iScrollIndicator"
+                    style="box-sizing: border-box; position: absolute; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 3px; width: 100%; transition-duration: 0ms; display: none; height: 8px; transform: translate(0px, -8px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);">
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="footer" data-position="fixed" class="groupRow">
+            <div class="groupCell left inputBox col6">
+                <div data-role="button" onmousedown="backPage();" class="back" title="返回"></div>
+            </div>
+            <div class="groupCell right inputBox col6">
+                <button onmousedown="saveExpense($(this));" class="save" id="saveExpButton">保存</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+        $.JST.loadDecorator("EXPENSE_ROW", function (row, cost) {
+            //se c'Ã¨ un allegato si fa il bind del click all'open aleggato
+            if (cost.attachment) {
+                row.find("attachment").data("attachment", cost.attachment).click(function () {
+
+                })
+            }
+        });
+
+
+        $.JST.loadDecorator("EXPENSE_EDITOR", function (editor, cost) {
+
+            editor.find("#holder").uploadize({
+                fieldName: "attachment",
+                url: "../applications/teamwork/task/financial/costAjaxController.jsp",
+                maxSize: 20971520,
+                multi: false,
+                showPlaceHolder: true,
+                additionalRequestParameters: { CM: "COSTATTACH", costId: "-1" },
+                onStartProcess: function () { $("#saveExpButton").prop("disabled", true) },
+                onLoadCallback: function (response) {
+                    if (response.ok) {
+                        //in caso di nuovo costo mette da una parte i pf temporanei
+                        if (true) {
+                            $("#PENDING_PF").val(response.attachment.uid);
+                        }
+                        // currentPage.find(".documentsPlace").append($.JST.createFromTemplate(response.attachment, "DOCUMENT_EXPENSES_ROW"));
+
+                        $("#holder").append($.JST.createFromTemplate(response.attachment, "FILEBOX")).removeClass("uploadizeDrop").attr("disabled", true);
+                        $("#saveExpButton").prop("disabled", false)
+                    }
+                },
+                fileAreaSelector: "#holder"
+            });
+        });
+
+        $.JST.loadDecorator("FILEBOX", function (box, pf) {
+            //console.debug(box,pf)
+            box.data("pf", pf);
+
+            //delete file
+            box.find(".del").click(function (ev) {
+                ev.stopPropagation();
+                var el = $(this);
+                var fb = el.closest(".repoFileBox");
+
+                var editor = el.closest(".editor");
+                fb.confirm(function () {
+                    var box = $(this);
+                    showSavingMessage();
+                    var request = { CM: "DELCOSTATTACH", costId: editor.attr("costId"), assId: $("#expAssId").val() || editor.attr("assId"), fileUID: box.data("pf").uid };
+                    $.getJSON("../applications/teamwork/task/financial/costAjaxController.jsp", request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            $("#PENDING_PF").val("");
+                            box.fadeOut(200, function () { $(this).remove(); $("#holder").addClass("uploadizeDrop").removeAttr("disabled"); });
+                        }
+                        hideSavingMessage();
+                    });
+                }, "确认删除?");
+
+            });
+        });
+    </script>
+
+
+
+    <script>
+        var maxCostAgeInDays = 30;
+
+        function expenseEditorEnter(event, data, fromPage, isBack) {
+            if (!data) {
+                data = {};
+            }
+            var editor = $.JST.createFromTemplate(data, "EXPENSE_EDITOR");
+            $(this).find("#expenseEditorPlace").empty().append(editor);
+            if (data.assId) {
+                wlAssigSelected(currentPage.find("#wlAssId"))
+            }
+        }
+        function expenseEditorLeave(event, data, newPage, isBack) {
+            //console.debug("expenseEditorLeave",data);
+            $(this).find("#expenseEditorPlace").empty();
+        }
+
+        function expenseListEnter(event, data, fromPage, isBack) {
+            //console.debug("expenseListEnter",data);
+            fillExpenseDay();
+        }
+
+
+        function fillExpenseDay() {
+            //console.debug("fillExpenseDay",currentDate);
+
+            var page = $("#expenseList");
+            currentDate = currentDate || new Date();
+
+            var dateInt = currentDate.toInt();
+            var monthExpenses = applicationCache.expenses[parseInt(dateInt / 100)];
+
+            if (!monthExpenses) {
+                var filter = { "CM": "LOADEXPENSES", "DATEINT": dateInt };
+                callController(filter, function (response) {
+
+                    //update cache
+                    var month = new Object();
+                    for (var day in response.expenses) {
+                        var wls = response.expenses[day];
+                        month[day] = wls;
+                    }
+                    applicationCache.expenses[parseInt(dateInt / 100)] = month;
+
+                    //call itself
+                    fillExpenseDay();
+                });
+
+            } else {
+                //set title
+                page.find("[data-role=date]").html(currentDate.format(mobileFullDateFormat));
+
+                //draw rows
+                var dayExpenses = monthExpenses[dateInt];
+                var ndo = $("#expenseList #expenseListPlace");
+                ndo.empty();
+
+                var notOlderThan = 0;
+                var readOnly = false;
+                if (maxCostAgeInDays > 0) {
+                    var nb = new Date();
+                    nb.setDate(nb.getDate() - maxCostAgeInDays);
+                    notOlderThan = nb.getTime();
+                    readOnly = currentDate.getTime() < notOlderThan;
+                }
+
+                // page.find("[addButton]").prop("disabled",readOnly);
+
+                if (dayExpenses && dayExpenses.length > 0) {
+                    var expTot = 0;
+                    for (var i in dayExpenses) {
+                        var exp = dayExpenses[i];
+                        expTot += exp.realCost;
+                        exp.readOnly = readOnly || exp.status;
+
+                        ndo.append($.JST.createFromTemplate(exp, "EXPENSE_ROW"));
+                    }
+
+                    ndo.append($.JST.createFromTemplate({ expTot: expTot }, "EXPENSE_TOTAL"));
+
+
+                    //enable swipe action on list row
+                    enableSwipe();
+
+
+
+                } else {
+                    ndo.append($.JST.createFromTemplate({}, "NO_EXPENSES"));
+                }
+            }
+        }
+
+
+        function expenseMove(forward) {
+            currentDate.setDate(currentDate.getDate() + (forward ? 1 : -1));
+            fillExpenseDay();
+        }
+
+
+        function expenseEditor(el) {
+            goToPage("expenseEditor");
+        }
+
+
+        function saveExpense(el) {
+            var ed = currentPage.find("#expenseEditorPlace");
+
+            if (ed.find(":input").isFullfilled()) {
+                showSavingMessage();
+
+                var request = { "CM": "SVASSCOST" };
+                ed.fillJsonWithInputValues(request);
+
+                //si copiano le CE locali su quelli che servono per il controller
+                request.assId = request.expAssId;
+                request.classification = request.expClassification;
+                request.creationDate = request.doneOn;
+
+                request.costId = "-1";
+
+                showSavingMessage();
+                $.getJSON("../applications/teamwork/task/financial/costAjaxController.jsp", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+
+                        //update cache
+                        var cost = response.cost;
+
+                        currentDate = new Date(cost.creationMillis);
+                        var dateInt = currentDate.toInt();
+                        var monthExpenses = applicationCache.expenses[parseInt(dateInt / 100)];
+                        if (monthExpenses) {
+                            var expDay = monthExpenses[dateInt];
+                            if (!expDay) {
+                                expDay = [];
+                                monthExpenses[dateInt] = expDay;
+                            }
+                            expDay.push(cost);
+                        }
+
+                        backPage();
+                    }
+                    //hideSavingMessage();
+                });
+
+
+            }
+        }
+
+
+        function deleteExpense(el) {
+            el.confirm(function () {
+                var row = el.closest("[expId][assId]");
+                var expId = row.attr("expId");
+                var assId = row.attr("assId");
+                var request = { "CM": "DLASSCOST", costId: expId, assId: assId };
+
+                $.getJSON("../applications/teamwork/task/financial/costAjaxController.jsp", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        //update cache
+                        var dateInt = currentDate.toInt();
+                        var dayExpenses = applicationCache.expenses[parseInt(dateInt / 100)][dateInt];
+                        for (var i in dayExpenses) {
+                            if (dayExpenses[i].id == expId) {
+                                dayExpenses.splice(i, 1);
+                                break;
+                            }
+                        }
+                        fillExpenseDay();
+                    }
+                    hideSavingMessage();
+                });
+            }, "确认删除?");
+        }
+
+
+        function expOpenCalendar(el) {
+            var inp = el.closest("[data-role=page]").find("#doneOn");
+            var config = {
+                inputField: inp,
+                centerOnScreen: true,
+                useYears: 1,
+                useMonths: 3,
+                showToday: true,
+                notAfterMillis: new Date().getTime() + 3600000 * 24,
+                width: "100%"
+            };
+            if (maxCostAgeInDays > 0)
+                config.notBeforeMillis = new Date() - 3600000 * 24 * maxCostAgeInDays;
+            inp.dateField(config);
+        }
+
+    </script>
+</body>
+
+</html>

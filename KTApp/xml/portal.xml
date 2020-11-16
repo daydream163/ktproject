@@ -1,0 +1,2652 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="wp_headline">
+    <data>
+      <![CDATA[
+<div class="wpHeadLineContainer">
+    <div class="wpHLBox-wrapper">
+        <div id="wphMilesOver" class="wpHLBox wpHLGrave waiting"></div>
+        <div id="wphTasksOver" class="wpHLBox wpHLGrave waiting"></div>
+        <div id="wphIssuesOver" class="wpHLBox wpHLGrave waiting"></div>
+        <div id="wphProjectBudgetOverflow" class="wpHLBox wpHLGrave waiting"></div>
+        <div id="wphIssuesToday" class="wpHLBox waiting"></div>
+        <div id="wphMilesForthcoming" class="wpHLBox waiting"></div>
+        <div id="wphTasksForthcoming" class="wpHLBox waiting"></div>
+        <div id="wphIssuesForthcoming" class="wpHLBox waiting"></div>
+        <div id="wphOpenProjects" class="wpHLBox waiting"></div>
+        <div id="wphWorklog" class="wpHLBox waiting"></div>
+        <div id="wphTaskDiscussions" class="wpHLBox waiting"></div>
+
+        <div id="wphProjectCreated" class="wpHLBox waiting"></div>
+        <div id="wphProjectClosed" class="wpHLBox waiting"></div>
+        <div id="wphAssigCreated" class="wpHLBox waiting"></div>
+
+    </div>
+    <!-- Add Arrows -->
+    <div class="wpHLBox-next" style="display: none"></div>
+    <div class="wpHLBox-prev" style="display: none"></div>
+</div>
+
+<style>
+    .wpHeadLineContainer { position: relative; display: block; width: 100vw; vertical-align: top; padding: 0; background: #356A8C; }
+    .wpHLBox-wrapper { position: relative; overflow: hidden; width: 100%; opacity: 1; white-space: nowrap; }
+    .wpHLBox { min-width: 280px; height: 75px; border-radius: 4px; display: inline-block; margin: 10px 6px; position: relative; vertical-align: top; text-align: left; font-size: 18px; opacity: 1; }
+        .wpHLBox:first-of-type { margin-left: 8px; }
+        .wpHLBox:last-of-type { margin-right: 8px; }
+        .wpHLBox.waiting { opacity: 0; }
+        .wpHLBox a { display: block; position: relative; height: 100%; padding: 7px 15px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; color: #fff; overflow: hidden; }
+        .wpHLBox:hover a { text-decoration: none; color: #2F97C6 !important; background-color: #fff; }
+        .wpHLBox.wpHLGrave:hover a .wphlNumber { border-color: transparent; }
+        .wpHLBox h2 { font-size: 20px; margin: 0; padding-right: 50px; text-overflow: ellipsis; overflow: hidden; font-weight: 300; }
+        .wpHLBox p { font-size: 11px; white-space: normal; margin: 0; padding: 2px 0 0; }
+        .wpHLBox .wphlNumber { font-weight: 300; position: absolute; right: 5px; top: 12px; min-width: 25px; padding: 0 6px; line-height: 23px; text-align: center; font-size: 35px; }
+        .wpHLBox.wpHLGrave a { padding-left: 17px; }
+            .wpHLBox.wpHLGrave a:before { content: ""; position: absolute; width: 10px; height: 100%; left: 0; top: 0; background-color: rgba(255, 36, 26, 0.85); }
+    .wpHLBox-next { position: absolute; top: 0; right: 0; width: 80px; height: 100%; cursor: pointer; background-image: linear-gradient(to right, rgba(53, 106, 140,0) 25%, #356B8C 50%, #356B8C 100%); }
+    .wpHLBox-prev { position: absolute; top: 0; left: 0; width: 80px; height: 100%; cursor: pointer; background-image: linear-gradient(to right, #356B8C 25%, #356B8C 50%, rgba(53, 106, 140,0) 100%); }
+        .wpHLBox-prev:after,
+        .wpHLBox-next:after { cursor: pointer; transition: all .5s; font-family: "icons"; position: absolute; font-size: 200%; color: #fff; top: 0; bottom: 0; margin: auto; width: 20px; height: 20px; }
+    .wpHLBox-next:after { content: "}"; right: 10px; }
+    .wpHLBox-prev:after { content: "{"; left: 10px; }
+    .wpHLBox-prev:hover:after, .wpHLBox-next:hover:after { color: #ffffff; }
+    @media only screen and (max-width: 1024px) {
+        .wpHLBox .wphlNumber { font-size: 30px; }
+        .wpHLBox h2 { padding-right: 55px; }
+    }
+    .neg .wpHLBox a { background-color: #fff; }
+    .neg .wpHLBox a { color: #444; }
+    .neg .wpHLGrave .wphlNumber { color: #ff5524; }
+    .neg .wpHLBox:hover a { background-color: rgba(255, 255, 255, 0.8); }
+</style>
+
+<script>
+
+    if ($("#portletList").size() <= 0)
+        $(".wpHeadLineContainer").insertBefore("#twInnerContainer");
+
+
+    var killEmpty = function () {
+        var el = $(this);
+        if (el.text().length < 10) {
+            $(this).remove();
+        } else {
+            el.removeClass("waiting");
+        }
+    };
+
+    $.fn.slideHeadLine = function () {
+        var $headLine = $(this);
+        var headLine = $headLine[0];
+        var $headLineSlider = $(".wpHLBox-wrapper", $headLine);
+
+        var next = $(".wpHLBox-next", $headLine);
+        var prev = $(".wpHLBox-prev", $headLine);
+        var elementWidth = $(".wpHLBox", $headLineSlider).outerWidth();
+
+        var headLineWidth = $headLineSlider.outerWidth();
+        var headLineLeft = $headLineSlider.scrollLeft();
+
+        next.on("click", function () {
+            var step = headLineLeft + headLineWidth - elementWidth;
+            var isAtTheEnd = ((headLineLeft + headLineWidth) >= $headLineSlider[0].scrollWidth - 10);
+            step = isAtTheEnd ? $headLineSlider[0].scrollWidth : step;
+
+            $headLineSlider.animate({ scrollLeft: step }, 500, checkPrevNextVisibility);
+        });
+
+        prev.on("click", function () {
+            var step = headLineLeft - headLineWidth + elementWidth;
+            var isAtTheStart = (headLineLeft <= 10);
+            step = isAtTheStart ? 0 : step;
+
+            $headLineSlider.animate({ scrollLeft: step }, 500, checkPrevNextVisibility);
+        });
+
+        var checkPrevNextVisibility = function () {
+
+            headLineWidth = $headLine.width();
+            headLineLeft = $headLineSlider.scrollLeft();
+
+            if ((headLineLeft + headLineWidth) >= $headLineSlider[0].scrollWidth - 10) {
+                next.fadeOut();
+            } else {
+                next.fadeIn();
+            }
+
+            if (headLineLeft <= 0) {
+                prev.fadeOut();
+            } else {
+                prev.fadeIn();
+            }
+        };
+
+        $(window).on("resize.headLine", checkPrevNextVisibility).resize();
+
+    };
+
+    $(function () {
+        setTimeout(function () {
+            $(".wpHeadLineContainer").slideHeadLine();
+        }, 1000);
+
+    });
+
+    $(".wpHeadLineContainer .wpHLBox").each(function (i) {
+        var box = $(this);
+        box.load(contextPath + "/parts/partWPHeadline", { CM: box.prop("id"), "_": new Date().getTime() + "." + i }, killEmpty)
+    });
+</script>
+
+
+      ]]>
+    </data>
+  </node>
+  <node id="wp_welcome">
+    <![CDATA[
+    
+
+<link href="/commons/layout/disclose/mb.disclose.css?_=65022"
+      rel="stylesheet" type="text/css">
+<script type="text/javascript"
+        src="/commons/layout/disclose/jquery.mb.disclose.js?_=65022"></script>
+<style>
+
+    .welcomeDiv { height: 330px; background-color: #586874; border: none; }
+
+        .welcomeDiv h2 { font-weight: 200; font-size: 35px; line-height: 1.1em; }
+
+    #wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 280px; }
+
+    #mbCarousel { position: relative; width: 100%; margin: auto; height: 280px; }
+
+        #mbCarousel .banner { position: relative; padding: 30px 40px; border-top-left-radius: 5px; border-top-right-radius: 5px; color: #fff; font-size: 20px; font-weight: 200; }
+
+        #mbCarousel .button.light { color: #fff; border: 1px solid #fff; background-color: transparent; font-size: 14px; min-width: 120px; margin-bottom: 10px; }
+
+            #mbCarousel .button.light:hover { background-color: rgba(0, 0, 0, 0.1);; }
+
+    #welcomeDiv #buttonBar { float: right; text-align: right; padding: 10px; opacity: 0.5; }
+
+        #welcomeDiv #buttonBar .button.textual { color: #fff; }
+
+    #projects { background: #6bc2e7; }
+
+    #projectsdone { background: #46b5a0; }
+
+    #resource { background: #68b645; }
+
+    #aboutYou { background: #a8b547; }
+
+    #issues { background: #f2b64c; }
+
+    #home { background: #f79a66; }
+
+    #welcomeDiv #slideIndex { text-align: left; padding: 8px 0 0 40px; display: inline-block; }
+
+
+
+    .idxPage { width: 20px; height: 20px; }
+
+        .idxPage.sel { box-shadow: none; }
+
+        .idxPage.done { background-image: url(/img/check-inactive.png); background-color: #586874; background-repeat: no-repeat; border: 1px solid rgba(255, 255, 255, 1); background-position: center; }
+
+            .idxPage.done.sel { background-image: url(/img/check-active.png); background-color: #fff; background-repeat: no-repeat; }
+
+    .step-img { float: right; width: 220px; margin-left: 80px; }
+
+        .step-img.gantt { width: 260px; margin-left: 0; }
+
+    .task-number { position: absolute; right: 50px; bottom: 50px; font-size: 5em; background-color: #fff; border-radius: 50%; width: 130px; height: 130px; text-align: center; box-shadow: -8px 5px 0 rgba(0, 0, 0, 0.3); }
+
+        .task-number a.button.textual { color: #68b645; font-weight: 200; }
+
+            .task-number a.button.textual:hover { color: #333; text-decoration: none; }
+</style>
+<div id="welcomeDiv" class="welcomeDiv portletBox">
+
+    <div id="wrapper">
+        <div id="mbCarousel">
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- TASK-------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+
+            <div id="projectsdone" class="banner done">
+                <div class="task-number">
+                    <a class="button  textual   " id="domId_650817355" style="" href="/app/task/taskList.html?V_ID=2050911183&CM=FN&FLNM=PF_MY_OPEN_TASK">3</a>
+
+                </div>
+                <img src="/img/step-1b.png" class="step-img">
+
+                <h2>You created your first project, great!</h2>
+
+                <div class="bannerText">
+                    <p>Check your project progress or feel free to explore a little bit around.</p>
+                </div>
+            </div>
+
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- RESOURCE -------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="resource" class="banner done">
+                <img src="/img/step-2.png" class="step-img">
+
+                <h2>Involve your team</h2>
+
+                <div class="bannerText">
+                    <p>Create your collegues and start collaborating. You can even add your clients.</p>
+                </div>
+                <a class="button     light" id="domId_1061356689" style="" href="/resource/resourceEditor.html?V_ID=318572699&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
+
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- OPTION -------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="aboutYou" class="banner ">
+                <img src="/img/step-3.png" class="step-img">
+
+                <h2>Let's talk about you</h2>
+
+                <div class="bannerText">
+                    <p>Upload your photo, update your info, set location and language.</p>
+                </div>
+                <a class="button     light" id="domId_909586672" style="" href="/resource/resourceOptions.html?V_ID=185726077&CM=EDIT_OPT&OBJID=15089">Update info</a>
+
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- ISSUE -------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="issues" class="banner done">
+                <img src="/img/step-4.png" class="step-img">
+
+                <h2>Manage your every day activities</h2>
+
+                <div class="bannerText">
+                    <p>Define your task's activities, to-dos, ideas, issues and assign them to your team.</p>
+                </div>
+                <a class="button     light" id="domId_792609114" style="" href="/app/task/taskIssueList.html?V_ID=244283950&OBJID=53595">Manage activities</a>
+
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- DASHBOARD-------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="home" class="banner done">
+                <img src="/img/step-5.png" class="step-img">
+
+                <h2>Make it feel like home</h2>
+
+                <div class="bannerText">
+                    <p>
+                        Customize your homepage and you are ready to go.
+                        If you need a hand just visit our support site.
+                    </p>
+                </div>
+                <button type="button" class="button noprint    light" id="domId_1603795306" style="" onclick="customizeThisPage($(this));return false; ">Customize page</button>
+
+
+            </div>
+        </div>
+        <div id="slideIndex"></div>
+        <div id="buttonBar">
+
+            <button class="button textual small" onclick="removePortlet($(this))">
+                Don't show this help again <span class="teamworkIcon">x</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#mbCarousel").disclose({
+            animationIn: { opacity: 0 },
+            animationOut: { opacity: 0 }
+        });
+
+        $('#mbCarousel').disclose('goto', "aboutYou");
+    });
+
+    function removePortlet(el) {
+        var portletId = el.closestAttr("portletId");
+        var pageId = el.closest(".wsPage[pageId]").attr("pageId");
+        var req = { CM: "REMPORTLET", portletId: portletId, pageId: pageId };
+
+        showSavingMessage();
+        $.getJSON(contextPath + "/applications/website/admin/ajax/ajaxCustomizationController.jsp", req, function (response) {
+            hideSavingMessage();
+            jsonResponseHandling(response);
+            if (response.ok) {
+                el.closest("[portletId]").fadeOut(500, function () {
+                    $(this.remove())
+                });
+            }
+        })
+    }
+
+    function customizeThisPage(el) {
+        var pageId = el.closest(".wsPage[pageId]").attr("pageId");
+        getTop().location.href = "/applications/website/admin/customizePage.jsp?V_ID=335579956&PAGEID=" + pageId
+    }
+</script>
+
+
+    ]]>
+  </node>
+  <node id="wp_myAssignments">
+    <![CDATA[
+    
+<div id="myAssigsExDiv">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/applications/teamwork/portal/portlet/wp_myAssignments.jsp" name="MYASSIGS_FORM" id="MYASSIGS_FORM"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="MYASSIGS_FORMV_ID" name="V_ID" value="1689973667" savedValue="">
+        <input type="hidden" id="MYASSIGS_FORMCM" name="CM" value="" savedValue="">
+
+        <div class="portletBox wp_myAssignemnt">
+            <style type="text/css">
+
+                .wp_myAssignemnt #wp_myAssig_table .facesBox { white-space: nowrap; }
+            </style>
+
+            <div style="float:right" class="portletParamIcons">
+
+                &nbsp;<button type="button" class="button noprint textual icon  ruzzol" id="domId_332122932" style="" title="过滤" onclick="$('#myAssigs').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+
+            </div>
+            <h1>
+                <a class="button  textual   " id="domId_380911577" style="" title="我的分工" href="/app/task/taskList.html?V_ID=1238245034">我的分工</a>
+
+            </h1>
+
+            <div class="portletParams" id="myAssigs" style="display:none;">
+                <input type=hidden name="ASSIG_SHOW_NOTACTIVE" id="ASSIG_SHOW_NOTACTIVE" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASSIG_SHOW_NOTACTIVE" name="ck_ASSIG_SHOW_NOTACTIVE" value="yes"
+                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('MYASSIGS_FORMCM').value='';ajaxSubmit('MYASSIGS_FORM','myAssigsExDiv');">
+                <label for="ck_ASSIG_SHOW_NOTACTIVE">显示非活动分工</label>&nbsp;&nbsp;&nbsp;&nbsp;<label for="ASSIG_SHOW_HORIZON" class=" ">显示分工:</label>&nbsp;<input type=text name="ASSIG_SHOW_HORIZON" id="ASSIG_SHOW_HORIZON" size=4 class="formElements" autocomplete='off' maxlength=255 onBlur="obj('MYASSIGS_FORMCM').value='';ajaxSubmit('MYASSIGS_FORM','myAssigsExDiv');" value="0" oldValue='1'><input type="text" style="display:none;">
+            </div><table class="table" id="wp_myAssig_table">
+                <thead class="dataTableHead" style="">
+                    <tr>
+                        <th class="tableHead" colspan="2" id="wpMAputFilerHere"><span class="tableHeadEl">任务</span></th>
+                        <th class="tableHead"><span class="tableHeadEl">角色</span></th>
+                        <th class="tableHead"><span class="tableHeadEl lreq20 lreqLabel">优先</span></th>
+                        <th class="tableHead"><span class="tableHeadEl">问题</span></th>
+                        <th class="tableHead"><span class="tableHeadEl">已完成工时</span></th>
+                        <th class="tableHead lreq20 lreqHide">&nbsp;</th>
+                        <th class="tableHead">&nbsp;</th>
+                        <th class="tableHead"><span class="tableHeadEl">项目小组</span></th>
+                        <th class="tableHead" style="width: 5px;"><span class="tableHeadEl">%</span></th>
+                    </tr>
+                </thead>
+                <tbody class="myAssigsEvidence">
+
+                    <tr assId="28254" class="assigRow alternate expired">
+                        <td class="columnTaskName" style="position: relative;">
+                            <div class="taskColored" style="background-color: #ffd8ff;"></div>
+                            <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
+
+
+                            <a class="button  textual   bolder" id="domId_460330889" style="" title="T53596.01 - 第一个子任务 [&#39;Worker&#39;]" href="/app/taskOverview.html?V_ID=1804312213&CM=ED&OBJID=53597">第一个子任务</a>
+
+
+                        </td>
+                        <td class="textSmall columnTaskCode" title="T53596.01"><span>T53596.01</span></td>
+                        <td align="center" title="Worker&nbsp;(梦想飞扬)">WK</td>
+                        <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                        <td align="right">
+                            2/3&nbsp;<a class="button  textual   " id="domId_1204899462" style="" href="/app/issueList.html?V_ID=357278968&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                        </td>
+                        <td align="right">
+                            <span class="wlg">4:00</span> <button type="button" class="button noprint textual icon  " id="domId_423338164" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                        </td>
+                        <td class="lreq20 lreqHide">
+                            <button type="button" class="button noprint textual icon  " id="domId_431199837" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                        </td>
+                        <td nowrap align="center"></td>
+
+                        <td>
+                            <div class="facesBox">
+                                <span class="button buttonImg  " id="domId_1399857934" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=557988083&CM=LIST_ASSIGS&TASK_ID=53597','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d758109814" title="Dream Wing (WK)" alt="Dream Wing (WK)" id="d758109814" " resId="15089" class="face small active"></span>
+                                <span class="button buttonImg  " id="domId_44624532" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=1408148326&CM=LIST_ASSIGS&TASK_ID=53597','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d1562156950" title=" 第一个员工 (WK)" alt=" 第一个员工 (WK)" id="d1562156950" " resId="15163" class="face small "></span>
+
+                            </div>
+                        </td>
+
+                        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                            <div style="width:45px;height:15px;position: relative" title="">
+                                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+
+                <tr assId="28252" class="assigRow alternate ">
+                    <td class="columnTaskName" style="position: relative;">
+                        <div class="taskColored" style="background-color: #bc4cff;"></div>
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_1743045223" style="" title="T53595 - 第一个项目 [&#39;Project manager&#39;]" href="/app/taskOverview.html?V_ID=417849144&CM=ED&OBJID=53595">第一个项目</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T53595"><span>T53595</span></td>
+                    <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
+                    <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                    <td align="right">
+                        4/4&nbsp;<a class="button  textual   " id="domId_519037518" style="" href="/app/issueList.html?V_ID=174029573&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                    </td>
+                    <td align="right">
+                        <span class="wlg">8:00</span> <button type="button" class="button noprint textual icon  " id="domId_42306197" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'28252',title:'T53595 - 第一个项目'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                    </td>
+                    <td class="lreq20 lreqHide">
+                        <button type="button" class="button noprint textual icon  " id="domId_223165822" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'28252',title:'T53595 - 第一个项目'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                    </td>
+                    <td nowrap align="center"></td>
+
+                    <td>
+                        <div class="facesBox">
+                            <span class="button buttonImg  " id="domId_621921048" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=303003658&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d115104959" title=" 第一个员工 (SH)" alt=" 第一个员工 (SH)" id="d115104959" " resId="15163" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_898752969" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=1249712716&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d480738862" title=" 第二个员工 (SH)" alt=" 第二个员工 (SH)" id="d480738862" " resId="15164" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_1531550152" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=427101264&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1463103880" title="Zhang Fei (PM)" alt="Zhang Fei (PM)" id="d1463103880" " resId="15189" class="face small "></span>
+                            <a href="/app/task/taskAssignmentList.html?V_ID=1400595774&CM=LIST_ASSIGS&TASK_ID=53595" class="faceMore" title="更多..."><span class="teamworkIcon" style="line-height:25px; font-size:15px">&hellip;</span></a>
+                        </div>
+                    </td>
+
+                    <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                        <div style="width:45px;height:15px;position: relative" title="">
+                            <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                            </div>
+                        </div>
+
+
+                    </td>
+                </tr>
+
+                <tr assId="28253" class="assigRow alternate ">
+                    <td class="columnTaskName" style="position: relative;">
+
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_417956036" style="" title="T53596 - 第二个项目 [&#39;Project manager&#39;]" href="/app/taskOverview.html?V_ID=112780877&CM=ED&OBJID=53596">第二个项目</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T53596"><span>T53596</span></td>
+                    <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
+                    <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                    <td align="right">
+                        3/4&nbsp;<a class="button  textual   " id="domId_1427623085" style="" href="/app/issueList.html?V_ID=1939228011&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                    </td>
+                    <td align="right">
+                        <span class="wlg">2:00</span> <button type="button" class="button noprint textual icon  " id="domId_245870358" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'28253',title:'T53596 - 第二个项目'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                    </td>
+                    <td class="lreq20 lreqHide">
+                        <button type="button" class="button noprint textual icon  " id="domId_584570078" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'28253',title:'T53596 - 第二个项目'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                    </td>
+                    <td nowrap align="center"></td>
+
+                    <td>
+                        <div class="facesBox">
+                            <span class="button buttonImg  " id="domId_1212866428" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=446081115&CM=LIST_ASSIGS&TASK_ID=53596','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d541644323" title="Dream Wing (PM)" alt="Dream Wing (PM)" id="d541644323" " resId="15089" class="face small active"></span>
+                            <span class="button buttonImg  " id="domId_419888128" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=644868209&CM=LIST_ASSIGS&TASK_ID=53596','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1341521587" title="Zhang Fei (WK)" alt="Zhang Fei (WK)" id="d1341521587" " resId="15189" class="face small "></span>
+
+                        </div>
+                    </td>
+
+                    <td class="textSmall" nowrap style="text-align: right">
+
+                        <div style="width:45px;height:15px;position: relative" title="">
+                            <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+
+
+
+    <script type="text/javascript">
+
+        //bind for worklogSaved event
+        registerEvent("worklogEvent.wpMyAssignment", function (ev, data) {
+            //console.debug("worklogEvent.wpMyAssignment",data);
+            if (data.type == "save" && data.response && data.response.worklog)
+                $(".wp_myAssignemnt tr[assId=" + data.response.worklog.assId + "] .wlg").html(getMillisInHoursMinutes(data.response.worklog.totalWl));
+            else if (data.type == "delete")
+                refreshPortlet($(".wp_myAssignemnt"));
+        });
+
+
+        //inject the table search
+        createTableFilterElement($("#wpMAputFilerHere"), '#wp_myAssig_table .assigRow', '.columnTaskName,.columnTaskCode');
+
+    </script>
+
+
+</div>
+
+    ]]>
+  </node>
+  <node id="wp_myIssues">
+    <![CDATA[
+    
+<style>
+    .myIssue .columnTaskName { width: 10%; }
+</style>
+<div class="portletBox myIssue">
+    <div style="float:right;padding-top: 5px">
+        &nbsp;<button type="button" class="button noprint textual icon  ruzzol" id="domId_450296493" style="" title="过滤" onclick="$('#myIssues').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+    </div>
+    <h1>
+        <a class="button  textual   " id="domId_583694627" style="" href="/app/issueList.html?V_ID=1973787779&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
+
+    </h1>
+
+    <div id="myIssues" class="portletParams" style="display:none">
+        <label for="MAX_MY_ISSUES_DISPLAY" class=" ">问题最大显示数</label>&nbsp;<input type=text name="MAX_MY_ISSUES_DISPLAY" id="MAX_MY_ISSUES_DISPLAY" size=2 class="formElements" autocomplete='off' maxlength=255 onBlur="refreshPortlet($(this),{'MAX_MY_ISSUES_DISPLAY':$(this).val()});" value="8" oldValue='1'>&nbsp;&nbsp;<input type=hidden name="SHOW_ALSO_DEP" id="SHOW_ALSO_DEP" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_SHOW_ALSO_DEP" name="ck_SHOW_ALSO_DEP" checked value="yes"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+        <label for="ck_SHOW_ALSO_DEP">展会还发出从我的部门</label>
+    </div>
+
+
+    <table class="table dataTable">
+        <thead>
+            <tr>
+                <th class="tableHead" width="1%">级别</th>
+                <th class="tableHead">问题状态</th>
+                <th class="tableHead">描述</th>
+                <th class="tableHead" colspan="2">任务</th>
+                <th class="tableHead" nowrap>分工给</th>
+                <th class="tableHead" nowrap>做</th>
+                <th class="tableHead" nowrap></th>
+                <th class="tableHead" nowrap></th>
+            </tr>
+        </thead>
+        <tbody id="wp_myIssuesExpired" style="display:none;"></tbody>
+        <tbody id="wp_myIssues"></tbody>
+    </table>
+
+
+
+
+    <script type="text/javascript">
+        var defs = [initialize(contextPath + "/parts/partIssuePortletSupport", "html"),
+        initialize(contextPath + "/parts/partIssueNotes", "html")];
+
+        $.when.apply(null, defs) // per chiamare la when con un array [a,b,c,d] invece che parametri sep.  (a,b,c,d)
+            .done(function () {
+                $("#wp_myIssueTemplates").loadTemplates().remove();
+
+                var expired = [{ "id": "14479", "lastModifier": "Dream Wing", "lastModified": 1605077682000, "creator": "Dream Wing", "creationDate": 1604915613000, "areaId": 5819, "area": "梦想飞扬", "description": "第三个问题", "estimatedDuration": 7200000, "worklogDone": 10800000, "tags": "", "icodid": "14479", "signalledOn": 1604880000000, "orderByTask": 0, "orderByRes": 2, "commentSize": 0, "taskId": "53597", "taskName": "第一个子任务", "taskCode": "T53596.01", "tcodid": "T53596.01", "taskPath": "第二个项目", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28254", "shouldCloseBy": 1604880000000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14477", "lastModifier": "Dream Wing", "lastModified": 1605106558000, "creator": "Dream Wing", "creationDate": 1604915586000, "areaId": 5819, "area": "梦想飞扬", "description": "第一个问题的描述", "estimatedDuration": 0, "worklogDone": 0, "tags": "第一个, 问题", "icodid": "14477", "signalledOn": 1604880000000, "orderByTask": 1, "orderByRes": 1, "commentSize": 0, "taskId": "53595", "taskName": "第一个项目", "taskCode": "T53595", "tcodid": "T53595", "taskPath": "", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28252", "shouldCloseBy": 1605139200000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "04_GRAVITY_CRITICAL", "gravityName": "关键的", "gravityColor": "#8C6044", "gravityOrder": 2, "documents": [{ "id": 1012, "uid": "FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx", "type": "FR", "name": "K-SQL 10.0 参考大全（20160620）.docx", "img": "application_vnd.openxmlformats-officedocument.wordprocessingml.document.png", "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=98312708&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khe7cgzh.c93a8bcbea93fd352b1ecc226772b6ed", "ext": ".docx", "ck": "khe7cgzh.c93a8bcbea93fd352b1ecc226772b6ed", "issueId": "14477" }] }];
+                var issues = [];
+
+                var ndo = $("#wp_myIssuesExpired");
+                for (var i = 0; i < expired.length; i++) {
+                    var iss = $.JST.createFromTemplate(expired[i], "MYISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+                if (expired.length > 0)
+                    ndo.show();
+
+                ndo = $("#wp_myIssues");
+                for (var i = 0; i < issues.length; i++) {
+                    var iss = $.JST.createFromTemplate(issues[i], "MYISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+
+
+                //bind  issueEvent
+                registerEvent("issueEvent.wpMyIssues", function (e, data) {
+                    //console.debug("wp_myIssues",data);
+                    refreshPortlet($("#myIssues"));
+                });
+
+            })
+
+    </script>
+</div>
+
+
+
+    ]]>
+  </node>
+  <node id="wp_worklogDay">
+    <![CDATA[
+    <div id="wp_worklogDay" class="portletBox">
+    <div style="float:right">
+        <button type="button" class="button noprint textual icon  " id="domId_680650863" style="" title="过滤" onclick="$('#configWorklogDay').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+    </div><h1>今天的工作记录</h1>
+
+
+
+
+    <div id="configWorklogDay" class="portletParams" style="display:none;">
+        <table class="table">
+            <tr>
+                <td>
+                    <input type=hidden name="WORKLOG_SHOW_TODAY" id="WORKLOG_SHOW_TODAY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_WORKLOG_SHOW_TODAY" name="ck_WORKLOG_SHOW_TODAY" checked value="yes"
+                                                                                                                                                                                 onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'WORKLOG_SHOW_TODAY':$('#WORKLOG_SHOW_TODAY').val()});">
+                    &nbsp;<label for="ck_WORKLOG_SHOW_TODAY">显示今天的活动</label>&nbsp;
+                <td>
+            </tr>
+        </table>
+    </div>
+
+
+    <table class="table">
+        <tr>
+            <td class="calHeader left">
+                <span class="button textual today noprint" onclick="wpWLDGoToMillis(new Date().getTime())">今天</span>
+                <span class="button textual teamworkIcon" onclick="wpWLDGoToMillis(new Date(focusMillis).add('d',-1).getTime())" title="前一天">{</span>
+                <span class="button textual teamworkIcon" onclick="wpWLDGoToMillis(new Date(focusMillis).add('d',1).getTime())" title="后一天">}</span>
+            </td>
+            <td class="calHeader">
+                <h2 style="margin: 0" id="wpWLTIT"></h2>
+            </td>
+
+        </tr>
+    </table>
+
+
+
+    <table class="table" cellpadding="2" cellspacing="0" border="0">
+        <tbody id="wlDayRowPlace">
+
+
+
+            <div id="wp_WLDayTemplates">
+                <div class="__template__" type="WLDAYROW">
+                    <!--
+                          <tr wlid="(#=obj.id#)" assId="(#=obj.assId#)" class="alternate">
+                            <td><button type="button" class="button noprint textual icon  "  id="domId_1521142701" style=""   onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=709231593&CM=FN&ASS_ID=(#=obj.assId#)');return false; " ><span class='teamworkIcon '>A</span></button>
+
+                    <td class="columnTaskName"><span>(#!obj.taskName#)</span></td><td class="textSmall columnTaskCode"><span>(#!obj.taskCode#)</span></td><td width="55%" align="center"><input type=TEXT name="WLACT" id="WLACT" size=40 class="formElements" autocomplete='off' maxlength=255 style="width:100%;overflow:hidden;"  value="" onkeydown= "if (event.keyCode==13) { $(this).blur();event.preventDefault();return false;}" oldValue='1' ></td><td width="1%" align="center"><input type=text name="WLDUR" id="WLDUR" size=5 class="formElements validated durationmillis" autocomplete='off' maxlength=255 value="(#=getMillisInHoursMinutes(obj.duration)#)" onkeydown= "if (event.keyCode==13) { $(this).blur();event.preventDefault();return false;}" required="true"  oldValue='1' entryType="DURATIONMILLIS" ></td><td><button type="button" class="button noprint textual icon  delete"  id="domId_1119816812" style=""   onclick="$(this).confirm(function(){wpWLDDeleteWL($(this))},'您确实想删除这个工作记录?');return false; " ><span class='teamworkIcon '>d</span></button>
+
+                    </td>
+                          </tr>
+                          -->
+                </div>
+            </div>
+
+        </tbody>
+
+
+
+        <tr class="alternate highlight" id="wlDayLineEdit">
+            <td width="95%" nowrap align="left" colspan="4">
+                <script>
+                    function letSubmitASSIG() {
+                        $(this).closest('tr').find('.button').click(); return false;
+                    }
+                </script>&nbsp;<input type=text name="ASSIG_txt" id="ASSIG_txt" placeholder="Which assignment" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,200); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" style="width:98%;" onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASSIG" id="ASSIG" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" required="true" oldValue='1'>
+            </td>
+            <td width="5%" align="center" colspan="2">
+                <button type="button" class="button noprint textual icon  " id="domId_1189483480" style="" onclick="wpWDAddWl($(this));return false; "><span class='teamworkIcon '>w</span></button>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="totals">
+            <td colspan="4" align="right">每天工作记录总计</td>
+            <td id="wpWLDtotWorklog" colspan="2"></td>
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+    var focusMillis = 1605147447262;
+    var workable = 0;
+    var notBeyond = 1602555447278;
+    var notFutureBeyond = 1605752247278;
+
+    (function startup() {
+
+        //listen for worklogEvent
+        registerEvent("worklogEvent.wpWoklogDay", function (e, data) {
+            wpWLDGoToMillis(focusMillis);
+        });
+
+
+        $("#wp_WLDayTemplates").loadTemplates().remove();
+        $.JST.loadDecorator("WLDAYROW", function (row, wl) {
+            row.find("#WLACT").val(wl.action);
+
+            if (wl.insertedMillis && wl.insertedMillis >= notBeyond && wl.insertedMillis < notFutureBeyond) {
+                row.find(":input").blur(function () {
+                    wlDSaveWl($(this));
+                });
+            } else {
+                row.find(":input").prop("disabled", true); //disabilita le righe nel passato
+                //row.find("span.delete").remove();
+            }
+        });
+        wpWLDGoToMillis(focusMillis);
+
+    })();
+
+
+    function wpWLDDrawRows(response) {
+        //console.debug("wpWLDDrawRows",response);
+        var focusDate = new Date(focusMillis);
+
+        $("#wpWLTIT").html(focusDate.format(Date.masks.fullDate) + (focusDate.isToday() ? " (今天)" : ""));
+
+        var tbodyRows = $("#wlDayRowPlace").empty();
+
+        for (var i = 0; i < response.worklogs.length; i++) {
+            tbodyRows.append($.JST.createFromTemplate(response.worklogs[i], "WLDAYROW"));
+        }
+        workable = response.workable;
+        wpWLDUpdateTotals();
+    }
+
+    function wpWLDGoToMillis(millis) {
+        focusMillis = millis;
+        showSavingMessage();
+        $.getJSON(contextPath + "/worklog/worklogAjax", { CM: "LISTWL1DAY", "FOCUS_MILLIS": focusMillis }, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok) {
+                wpWLDDrawRows(response);
+            }
+            hideSavingMessage();
+        });
+
+        //si disabilita la riga di input se troppo nel passato
+        $("#wlDayLineEdit :input").attr("disabled", focusMillis < notBeyond)
+    }
+
+    function wpWLDUpdateTotals() {
+        var tot = 0;
+        $("#wlDayRowPlace [name=WLDUR]").each(function () {
+            var el = $(this);
+            tot += millisFromString(el.val(), true);
+        });
+        var diff = tot - workable;
+        var diffStr = getMillisInHoursMinutes(tot - workable);
+        $("#wpWLDtotWorklog").html(getMillisInHoursMinutes(tot) + ((Math.abs(diff) < 5 ? "" : " (" + (diff > 0 ? "+" : "") + diffStr + ")")));
+
+        $(window).resize();
+
+    }
+
+
+    function wlDSaveWl(el) {
+        //console.debug("wlDSaveWl")
+        var row = el.closest("[wlId]");
+        var durField = row.find("[name=WLDUR]");
+        if (el.isValueChanged() && durField.validateField()) {
+            showSavingMessage();
+            var request = {
+                CM: "SV",
+                wlId: row.attr("wlId"),
+                assId: row.attr("assId"),
+                WORKLOG_DURATION: durField.val(),
+                WORKLOG_ACTION: row.find("[name=WLACT]").val(),
+                WORKLOG_INSERTIONDATE: new Date(focusMillis).format()
+            };
+            $.getJSON(contextPath + "/worklog/worklogAjax", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    if (response.duration == 0) {
+                        row.fadeOut(200, function () {
+                            $(this).remove();
+                            wpWLDUpdateTotals(workable);
+                            $("body").trigger("worklogEvent", [{ type: "delete", response: response }])
+                        })
+                    } else {
+                        wpWLDUpdateTotals(workable);
+                        row.find(":input").updateOldValue();
+                        $("body").trigger("worklogEvent", [{ type: "save", response: response }])
+
+                    }
+
+                }
+                hideSavingMessage();
+            });
+        }
+    }
+
+    function wpWDAddWl(el) {
+        //console.debug("wpWDAddWl")
+        var row = el.closest("tr");
+        if (row.find(":input").isFullfilled()) {
+            openWorklogEditorPopup(el, { assId: row.find("#ASSIG").val(), title: row.find("#ASSIG_txt").val(), "WORKLOG_INSERTIONDATE": new Date(focusMillis).format() });
+        }
+    }
+
+
+
+    function wpWLDDeleteWL(el) {
+        var row = el.closest("[wlId]");
+        showSavingMessage();
+        var request = { CM: "REMOVEWL", wlId: row.attr("wlId") };
+        $.getJSON(contextPath + "/worklog/worklogAjax", request, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok) {
+                row.fadeOut(200, function () {
+                    $(this).remove();
+                    wpWLDUpdateTotals(workable);
+                    $("body").trigger("worklogEvent", [{ type: "delete", response: response }])
+
+                })
+            }
+            hideSavingMessage();
+        });
+    }
+
+
+</script>
+
+    ]]>
+  </node>
+  <node id="wp_teamLoad">
+    <![CDATA[
+    
+<div class="portletBox" id="teamLoad"><input type=hidden name="wpTL_WG_IDS" id="wpTL_WG_IDS" size=20 class="formElements grayed" autocomplete='off' readonly maxlength=255 value="15089" oldValue='1' ><div style="float:right;padding-top: 5px">
+  <button type="button" class="button noprint textual icon  ruzzol"  id="domId_320579826" style="" title="更改工作组"  onclick="wptl_openWorkGroup();return false; " ><span class='teamworkIcon '>g</span></button>
+
+
+</div>
+<h1><a  class="button  textual   "  id="domId_575727264" style=""  href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=1890379906&WG_IDS=15089">团队费用</a>
+
+<span style="font-size: 9px;">&nbsp;&nbsp;（7天）</span></h1>
+<hr>
+
+  <table class="table" cellpadding="6" id="teamLoadTable" ></table>
+</div>
+
+
+<div style="display:none;" id="tmldmplt">
+  <div class="__template__" type="wptl_TEAMLOAD"><!--
+  <tr resId="(#=obj.id#)" resName="(#!obj.displayName+obj.id#)">
+    <td style=""><a href="(#=contextPath#)/applications/teamwork/task/plan/operatorLoad.jsp?WG_IDS=(#=obj.id#)"><img src="(#=obj.avatarUrl#)" border="0" title="(#!obj.displayName#)" resid="(#=obj.id#)" class="face small"> (#!obj.displayName#)</a>
+    </td>
+    <td class="workloadInfo" style="font-weight: bolder;"></td>
+  </tr>
+  --></div>
+</div>
+
+
+<script>
+
+
+function computeResourceLoad(el,period, resId, currentWorkload,assId) {
+  //console.debug("computeResourceLoad",period, resId, currentWorkload,assId);
+
+  if (!period || false)
+    return;
+
+  var row = el.closest("tr");
+  //si chiama con delay sulla riga in modo da
+  row.stopTime("loadOpLoad");
+  var workloadInfo = row.find(".workloadInfo");
+  workloadInfo.removeClass("loading").empty();
+
+  if (resId) {
+    workloadInfo.addClass("loading");
+    row.oneTime(1000, "loadOpLoad", function () {
+      getOperatorLoad(resId, period.startMillis, period.endMillis, currentWorkload, assId, function (response) {
+        if (response.ok && response.stats) {
+          var bl = $("<div>").attr({"data-timer": 0, "data-forceposition": "left"});
+          bl.attr("data-balloon", "<b>工作量期</b><br><span class='textSmall'>" +
+              (new Date().format()) + " : " + (new Date(period.endMillis).format()) + "<br>" +
+              "工作量 - min: " + getMillisInHoursMinutes(response.stats.minLoad) + "  max: <b>" + getMillisInHoursMinutes(response.stats.maxLoad) + "</b><br>" +
+              "平均工作能力: " + getMillisInHoursMinutes(response.stats.meanCapacity) + "<br>"
+          );
+          bl.css("cursor", "pointer");
+          bl.addClass("");
+          if (response.stats.meanLoadPerc > 100)
+            bl.addClass("warning alertIcon");
+          else if (response.stats.meanLoadPerc > 90)
+            bl.addClass("attention");
+          bl.append(parseInt(response.stats.meanLoadPerc) + "%");
+          workloadInfo.empty().append(bl);
+        } else {
+          workloadInfo.empty();
+        }
+        workloadInfo.removeClass("loading");
+      });
+    })
+  }
+}
+
+
+
+function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callback) {
+  //console.debug("getOperatorLoad",resId, startMillis, endMillis, currentWL, assId);
+//se il progetto doveva giÃ  essere chiuso non si calcola niente
+  if (endMillis < new Date().getTime()) {
+    if (typeof (callback) == "function") {
+      callback({ok: false});
+    }
+    return;
+  }
+
+  var request = {
+    CM:            "GETOPLOAD",
+    resId:         resId,
+    startMillis:   startMillis,
+    endMillis:     endMillis,
+    simulatedLoad: currentWL,
+    assId:assId
+  };
+  $.getJSON(contextPath + "/plan/planAjax", request, function (response) {
+    jsonResponseHandling(response);
+    if (typeof (callback) == "function") {
+      callback(response);
+    }
+  })
+}
+</script>
+
+<script type="text/javascript">
+  $("#tmldmplt").loadTemplates().remove();
+  $.JST.loadDecorator("wptl_TEAMLOAD",function(row,person){
+    computeResourceLoad(row.find(".workloadInfo"),{"type":"period","startMillis":1605139200000,"endMillis":1605743999998,"duration":604799998,"freq":0,"repeat":1,"trimmed":false},person.id,0,false);
+  });
+  drawTeamLoad();
+
+  function drawTeamLoad(){
+    var teamIds=$("#wpTL_WG_IDS").val().split(",");
+
+    var ndo=$("#teamLoadTable");
+
+    for (var i=0;i<teamIds.length;i++) {
+      var request = {"command": "get", "object": "person", "id": parseInt(teamIds[i]),"full":false};
+      callAPI(request, function (response) {
+        jsonResponseHandling(response);
+        if (response.ok && response.object) {
+          var person=response.object;
+          var row = $.JST.createFromTemplate(person, "wptl_TEAMLOAD");
+          //si mettono in ordine
+          var rows=ndo.find("tr[resId]");
+          if (rows.length==0){
+            ndo.append(row);
+          } else {
+            var lastRow=rows.eq(0);
+            for (var i=0;i<rows.length;i++){
+              var oldRow=rows.eq(i);
+              var attr = oldRow.attr("resName");
+              //console.debug("attr "+attr +" --- "+person.displayName )
+              lastRow=oldRow;
+              if (attr.toUpperCase()>(person.displayName+person.id).toUpperCase()) {
+                break;
+              }
+            };
+            row.insertBefore(lastRow);
+          }
+
+
+        }
+
+      })
+
+    }
+  }
+
+
+
+  function wptl_openWorkGroup() {
+    var url = contextPath+"/app/workgroup/workgroupPopup.html?" +
+      "canBeEmpty=yes&" +
+      "useCallbackFunction=yes&" +
+      "title="+encodeURIComponent("选择您的团队")+"&" +
+      "WG_IDS="+encodeURIComponent($("#teamLoad :input[name=wpTL_WG_IDS]").val())+"&" +
+      "PERM_REQUIRED=TW_ass_man";
+    openBlackPopup(url,700, 580,wptl_wgCallback);
+  }
+
+  function wptl_wgCallback(selectedResources) {
+    //console.debug("wptl_wgCallback",selectedResources);
+    if (selectedResources) {
+      var tmp=[];
+      for (var i=0;i<selectedResources.length;i++)
+        tmp.push(selectedResources[i].id);
+      refreshPortlet($("#teamLoad"),{"wpTL_WG_IDS":tmp.join(",")});
+    } else {
+      //refreshPortlet($("#teamLoad"),{"wpTL_WG_IDS":""});
+    }
+
+  }
+</script>
+
+    ]]>
+  </node>
+  <node id="wp_teamworkActivity">
+    <![CDATA[
+<div class=" twActivity portletBox small">
+
+    <h1>最近 30 工作日 的活跃积分</h1>
+    <table class="table" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="3"><hr></td>
+        </tr>
+        <tr>
+            <td width="40" valign="top" style="padding-top: 2px">
+                <span class="button buttonImg  " id="domId_320383426" style=" " onClick="stopBubble(event);try{ window.open('/resource/resourceEditor.html?V_ID=459067105&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d2065344562" title="Dream Wing" alt="Dream Wing" id="d2065344562" class='face small'></span>
+            </td>
+            <td valign="top">
+                <a class="button  textual   " id="domId_1779573711" style="" href="/resource/resourceEditor.html?V_ID=1680762756&CM=ED&OBJID=15089">Dream Wing</a>
+
+                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_682152939" style="" title="发送消息" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=579747454&CM=AD&POP=yes&receiver=15089','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+
+
+            <td>
+                <span title="最后登录 2(d.)">2020-11-11 上午9:07</span>
+            </td>
+
+        </tr>
+        <tr><td colspan="3"><hr></td></tr>
+        <tr>
+            <td width="40" valign="top" style="padding-top: 2px"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1656612275" title="Zhang Fei" alt="Zhang Fei" id="d1656612275" class='face small'></td>
+            <td valign="top">
+                <a class="button  textual   " id="domId_557022570" style="" href="/resource/resourceEditor.html?V_ID=1725765078&CM=ED&OBJID=15189">Zhang Fei</a>
+
+                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_461362735" style="" title="发送消息" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1019529564&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+
+
+            <td>
+                <span title="最后登录 2(d.)">2020-11-11 上午9:06</span>
+            </td>
+
+        </tr>
+        <tr><td colspan="3"><hr></td></tr>
+    </table>
+</div>
+
+    ]]>
+  </node>
+  <node id="wp_panicBoard">
+    <![CDATA[
+<div id="wpPanicDiv" class="portletBox">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/portal/wp_panicBoard" name="d969728610" id="d969728610"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d969728610V_ID" name="V_ID" value="969728610" savedValue="">
+        <input type="hidden" id="d969728610CM" name="CM" value="" savedValue="">
+
+        <h1>恐慌板</h1><div style="display: inline-block; vertical-align: top;">
+            <div>
+                <span class="teamworkIcon" style="color:#3BBF67;font-size:15px;" title="进行中">&copy;</span>
+                &nbsp;<small title="参考代码">T#T53595#&nbsp;&nbsp;</small>
+            </div>
+            <script>
+                function letSubmitPANIC_TASK() {
+                    $("#cntdwn").stopTime("ctd"); obj('d969728610CM').value = ''; ajaxSubmit('d969728610', 'wpPanicDiv');
+                }
+            </script><input type=text name="PANIC_TASK_txt" id="PANIC_TASK_txt" placeholder="选择" size=40 class="formElements formElementsBig smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" style=width:300px onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="第一个项目"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="PANIC_TASK" id="PANIC_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="53595" oldValue='1'>
+        </div>
+        <div style="display: inline-block;height: 120px">
+            <h3 style="margin: 25px 0 30px 30px; display: inline-block; vertical-align: top;" class="">剩余时间</h3>
+            <span id="cntdwn" style="display: inline-block; margin: 10px;"></span>
+        </div>
+
+
+        <table cellspacing="3" cellpadding="1" width="100%">
+            <tr>
+                <td align="center" style="background-color:#f0f0f0;">
+                    已完成工期/预估量<br>
+
+
+
+                    <div style="width:100px;height:15px;position: relative" title="28800000/360000000">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#ffff00;width:0%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+                <td align="center" style="background-color:#f0f0f0;">
+                    时间已消耗<br>
+
+
+
+                    <div style="width:100px;height:15px;position: relative" title="4.0/16">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:25%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">25%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+                <td align="center" style="background-color:#f0f0f0;">
+                    已经关闭的子任务/总数<br>
+
+
+
+                    <div style="width:100px;height:15px;position: relative" title="1.0/4.0">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:25%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">25%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background-color:#f0f0f0;">
+                    该小组/总人数<br>
+
+
+
+                    <div style="width:100px;height:15px;position: relative" title="2.0/193.0">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:1%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">1%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+                <td align="center" style="background-color:#f0f0f0;">
+                    已关闭的问题<br>
+
+
+
+                    <div style="width:100px;height:15px;position: relative" title="0.0/4.0">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+                <td align="center" style="background-color:#f0f0f0;">
+                    已关闭的中断任务<br>
+
+
+
+                    <div style="width:100px;height:15px;position: relative" title="12.0/12.0">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+        </table>
+
+
+        <style type="text/css">
+
+            .panicNumberWrapper { display: inline-block; margin-right: 10px; }
+            .panicNumber { font-size: 25px; font-weight: 600; display: block; border-radius: 3px; text-align: center; padding: 10px 5px; width: 55px; /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e8e8e8+0,f1f1f1+50,e1e1e1+51,f6f6f6+100 */ background: #e8e8e8; /* Old browsers */ background: -moz-linear-gradient(top, #e8e8e8 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(top, #e8e8e8 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to bottom, #e8e8e8 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */ }
+
+            #wpPanicDiv label { display: block; text-align: center; }
+        </style>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#cntdwn").everyTime(1000, "ctd", drawTime);
+            });
+
+            function drawTime() {
+                var taskStart = 1604880000000;
+                var taskEnd = 1606780799000;
+                var now = new Date().getTime();
+                var diff = 0;
+                if (now < taskStart)
+                    diff = taskStart - now;
+                else if (now < taskEnd)
+                    diff = taskEnd - now;
+                else
+                    diff = now - taskEnd;
+
+                $("#cntdwn").html(getMillisInDaysHoursMinutesSeconds(diff));
+
+            }
+
+            function getMillisInDaysHoursMinutesSeconds(millis) {
+                var millisInDay = 86400000;
+
+                var sgn = millis >= 0 ? 1 : -1;
+                millis = Math.abs(millis);
+                var days = Math.floor(millis / millisInDay);
+                var hour = Math.floor((millis % millisInDay) / 3600000);
+                var min = Math.floor((millis - days * millisInDay - hour * 3600000) / 60000);
+                var sec = Math.floor((millis - days * millisInDay - hour * 3600000 - min * 60000) / 1000);
+                return (days > 0 ? "<div class='panicNumberWrapper'><span class='panicNumber'>" + days + "</span><label class='textSmall'>天</label></div>" : "") +
+                    (hour > 0 ? "<div class='panicNumberWrapper'><span class='panicNumber'>" + pad(hour, 2, "0") + "</span><label class='textSmall'>小时</label></div> " : "") +
+                    "<div class='panicNumberWrapper'><span class='panicNumber'>" + pad(min, 2, "0") + "</span><label class='textSmall'>分钟</label></div> " +
+                    "<div class='panicNumberWrapper'><span class='panicNumber'>" + pad(sec, 2, "0") + "</span><label class='textSmall'>第二</label></div>";
+
+                /*return (days > 0 ? ": <span class='warning' style='font-weight: 700'>"+days+"</span> " : "") +
+                    ( hour>0 ?  ": <span class='warning' style='font-weight: 700'>"+pad(hour,2,"0")+"</span> ":"")+
+                    ": <span class='warning' style='font-weight: 700'>" + pad(min,2,"0")+"</span> "+
+                    "<//%=I18n.get("SECONDS")%>: <span class='warning' style='font-weight: 700'>"+pad(sec,2,"0")+"</span>";*/
+            }
+
+
+        </script>
+
+
+
+    </form>
+</div>
+
+
+    ]]>
+  </node>
+  <node id="wp_projectsSummary">
+    <![CDATA[
+<form enctype="application/x-www-form-urlencoded" method="POST"
+      action="/applications/teamwork/portal/portlet/wp_projectsSummary.jsp" name="d1533449435" id="d1533449435"
+      savedAction="" savedTarget="">
+    <input type="hidden" id="d1533449435V_ID" name="V_ID" value="1533449435" savedValue="">
+    <input type="hidden" id="d1533449435CM" name="CM" value="" savedValue="">
+
+    <div id="wp_projSumm" style="vertical-align:top;" class="portletBox">
+        <div style="float:right" class="portletParamIcons">
+            <button type="button" class="button noprint textual icon  " id="domId_865364317" style="" title="打印To-do" onclick="openBlackPopup('/applications/teamwork/portal/portlet/wp_projectsSummary.jsp?V_ID=1952681053&CM=PRINT','1000px','600px');return false; "><span class='teamworkIcon '>p</span></button>
+
+            &nbsp;<button type="button" class="button noprint textual icon  ruzzol" id="domId_1418818335" style="" title="过滤" onclick="$('#configProjSumm').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+        </div>
+        <h1>进行中的项目</h1>
+        <div id="configProjSumm" class="portletParams" style="display:none;">
+            <table class="table">
+                <tr>
+                    <td><label for="OVERDUE_WARN" class=" ">超时提醒（提前天数）</label><br><input type=text name="OVERDUE_WARN" id="OVERDUE_WARN" size=2 class="formElements validated integer" autocomplete='off' maxlength=255 onBlur="obj('d1533449435CM').value='';ajaxSubmit('d1533449435','wp_projSumm');" value="3" oldValue='1' entryType="INTEGER"></td>
+                    <td><label for="OVERDUE_ERR" class=" ">超时报错（超过天数）</label><br><input type=text name="OVERDUE_ERR" id="OVERDUE_ERR" size=2 class="formElements validated integer" autocomplete='off' maxlength=255 onBlur="obj('d1533449435CM').value='';ajaxSubmit('d1533449435','wp_projSumm');" value="1" oldValue='1' entryType="INTEGER"></td>
+                    <td>
+                        <label for="TASK_TYPE_SUMM_txt" class=" ">根据类型过滤</label><br><input type=text name="TASK_TYPE_SUMM_txt" id="TASK_TYPE_SUMM_txt" size=15 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );obj('d1533449435CM').value='';ajaxSubmit('d1533449435','wp_projSumm');" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="TASK_TYPE_SUMM" id="TASK_TYPE_SUMM" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                    </td>
+                    <td>
+                        <input type=hidden name="TASK_SHOW_CHILDREN" id="TASK_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_SHOW_CHILDREN" name="ck_TASK_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d1533449435CM').value='';ajaxSubmit('d1533449435','wp_projSumm');">
+                        &nbsp;<label for="ck_TASK_SHOW_CHILDREN">显示子任务</label>&nbsp;
+                    </td>
+                    <td>
+                        <input type=hidden name="TASK_SHOW_COSTS" id="TASK_SHOW_COSTS" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_SHOW_COSTS" name="ck_TASK_SHOW_COSTS" value="yes"
+                                                                                                                                                                              onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d1533449435CM').value='';ajaxSubmit('d1533449435','wp_projSumm');">
+                        &nbsp;<label for="ck_TASK_SHOW_COSTS">显示费用</label>&nbsp;
+                    </td>
+                    <td><a class="button  textual   " id="domId_674244939" style="" href="/app/task/taskList.html?V_ID=2024613322&CM=FN&STATUS=STATUS_ACTIVE&ROOT_OR_STANDALONE=yes">&gt;&gt; 进一步过滤</a>
+
+                    <td>
+                </tr>
+            </table>
+        </div>
+        <table class="table projectSummary" id="wp_ps_default" cellpadding="2" style="vertical-align:top;">
+            <thead class="dataTableHead">
+                <tr>
+                    <th class="tableHead" id="wpPSputFilerHere">任务</th>
+                    <th class="tableHead">代码</th>
+                    <th class="tableHead">重要性</th>
+                    <th class="tableHead">结束日期</th>
+                    <th class="tableHead">剩余天数</th>
+                    <th class="tableHead">%</th>
+                </tr>
+            </thead>
+            <style type="text/css">
+                .expired .columnTaskName .button.textual { color: #D30202; }
+            </style>
+
+            <tr class="alternate " taskId="53595">
+                <td class="columnTaskName" style="position: relative">
+                    <div class="taskColored" style="background-color: #bc4cff;"></div>
+                    <a class="button  textual   bolder" id="domId_5975346" style="" href="/app/taskOverview.html?V_ID=1709891153&CM=ED&OBJID=53595">第一个项目</a>
+
+                </td>
+                <td class="textSmall columnTaskCode" title="T53595"><span>T53595</span></td>
+                <td align="center" class="textSmall">50%</td>
+                <td align="right" class="textSmall ">2020-11-30</td>
+                <td align="center" nowrap>
+                    <span style="color:#38d056; ">13</span>
+
+                </td>
+
+                <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                    <div style="width:70px;height:15px;position: relative" title="">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+
+            <style type="text/css">
+                .expired .columnTaskName .button.textual { color: #D30202; }
+            </style>
+
+            <tr class="alternate " taskId="53596">
+                <td class="columnTaskName" style="position: relative">
+
+                    <a class="button  textual   bolder" id="domId_1298627861" style="" href="/app/taskOverview.html?V_ID=981466897&CM=ED&OBJID=53596">第二个项目</a>
+
+                </td>
+                <td class="textSmall columnTaskCode" title="T53596"><span>T53596</span></td>
+                <td align="center" class="textSmall">0%</td>
+                <td align="right" class="textSmall ">2020-11-20</td>
+                <td align="center" nowrap>
+                    <span style="color:#38d056; ">7</span>
+                </td>
+
+                <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                    <div style="width:70px;height:15px;position: relative" title="">
+                        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                            <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                            <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        //inject the table search
+        createTableFilterElement($("#wpPSputFilerHere"), '#wp_ps_default [taskId]', '.columnTaskName,.columnTaskCode');
+
+    </script>
+
+
+
+</form>
+
+
+    ]]>
+  </node>
+  <node id="wp_iframe">
+    <![CDATA[
+<div id="wp_iframe" class="portletBox">
+    <label>To see content here, you must configure the iframe portlet from admin -> manage portlets.</label>
+</div>
+    ]]>
+  </node>
+  <node id="wp_issueSummary">
+    <![CDATA[
+
+<div id="issueSummaryExDiv" class="issueSummary">
+    <div class="portletBox">
+        <div style="float:right" class="portletParamIcons">
+            <button type="button" class="button noprint textual icon  ruzzol" id="domId_878355108" style="" title="过滤" onclick="$('#issueSummaryParam').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+        </div>
+        <h1>问题摘要</h1>
+
+        <div class="portletParams" id="issueSummaryParam" style="display:none;">
+            <label for="ck_SHOW_WHERE_IM_INVOLVED_ONLY">仅显示我参与的任务</label><input type=hidden name="SHOW_WHERE_IM_INVOLVED_ONLY" id="SHOW_WHERE_IM_INVOLVED_ONLY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_SHOW_WHERE_IM_INVOLVED_ONLY" name="ck_SHOW_WHERE_IM_INVOLVED_ONLY" checked value="yes"
+                                                                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'SHOW_WHERE_IM_INVOLVED_ONLY':$('#SHOW_WHERE_IM_INVOLVED_ONLY').val()});">
+
+        </div>
+
+
+
+
+        <table class="table" id="wp_issueSummary_table">
+            <thead class="dataTableHead" style="">
+                <tr>
+                    <th class="tableHead" colspan="2" id="wpMICputFilerHere"><span class="tableHeadEl">任务</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">已发现的问题</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">过期</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">今天</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">中断</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">未分工</span></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr taskId="53597" class="alternate expired ">
+                    <td class="columnTaskName" style="position: relative;">
+                        <div class="taskColored" style="background-color: #ffd8ff;"></div>
+                        <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_1493141990" style="" href="/app/taskOverview.html?V_ID=938199272&CM=ED&OBJID=53597">第一个子任务</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T53596.01"><span>T53596.01</span></td>
+                    <td align="center"><a class="issBtn issOpen">2</a></td>
+                    <td align="center"><a class="issBtn issExpired">2</a></td>
+                    <td align="center"><a class="issBtn issToday"></a></td>
+                    <td align="center"><a class="issBtn issBlock"></a></td>
+                    <td align="center"><a class="issBtn issUnassigned"></a></td>
+
+
+                </tr>
+
+
+
+                <tr taskId="53595" class="alternate  ">
+                    <td class="columnTaskName" style="position: relative;">
+                        <div class="taskColored" style="background-color: #bc4cff;"></div>
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_1490228230" style="" href="/app/taskOverview.html?V_ID=1875363283&CM=ED&OBJID=53595">第一个项目</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T53595"><span>T53595</span></td>
+                    <td align="center"><a class="issBtn issOpen">3</a></td>
+                    <td align="center"><a class="issBtn issExpired">2</a></td>
+                    <td align="center"><a class="issBtn issToday">1</a></td>
+                    <td align="center"><a class="issBtn issBlock">1</a></td>
+                    <td align="center"><a class="issBtn issUnassigned"></a></td>
+
+
+                </tr>
+
+
+
+                <tr taskId="53596" class="alternate  ">
+                    <td class="columnTaskName" style="position: relative;">
+
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_613210362" style="" href="/app/taskOverview.html?V_ID=327154015&CM=ED&OBJID=53596">第二个项目</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T53596"><span>T53596</span></td>
+                    <td align="center"><a class="issBtn issOpen">1</a></td>
+                    <td align="center"><a class="issBtn issExpired">1</a></td>
+                    <td align="center"><a class="issBtn issToday"></a></td>
+                    <td align="center"><a class="issBtn issBlock"></a></td>
+                    <td align="center"><a class="issBtn issUnassigned"></a></td>
+
+
+                </tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        //inject the table search
+        //createTableFilterElement($("#wpMAputFilerHere"),'#wp_myAssig_table .assigRow','.columnTaskName,.columnTaskCode');
+
+        $("#wp_issueSummary_table [taskId] a.issBtn").each(function () {
+            var el = $(this);
+            if (el.text() == "") {
+                el.remove();
+            } else {
+                var row = el.closest("[taskId]");
+                var taskExpired = row.is(".expired");
+                var toBeDoneToday = row.is(".toBeDoneToday");
+                var issExpired = el.is(".issExpired");
+                var issToday = el.is(".issToday");
+                var taskId = row.attr("taskId");
+                var link = contextPath + "/app/task/taskIssueList.html?OBJID=" + taskId;
+
+                if (taskExpired && (issExpired || issToday)) {
+                    link += ""; // si devono vedere tutte quelle aperte
+                } else if (toBeDoneToday && issToday) {
+                    link += ""; // si devono vedere tutte quelle aperte
+
+                } else if (!taskExpired && issExpired) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");
+                } else if (issToday) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=t";
+                } else if (el.is(".issBlock")) {
+                    link += "&FLT_ISSUE_GRAVITY=" + encodeURIComponent("05_GRAVITY_BLOCK");
+                } else if (el.is(".issUnassigned")) {
+                    link += "&FLT_ISSUE_UNASSIGNED=yes";
+                } else {
+                    // do nothing
+                }
+
+                el.prop("href", link);
+            }
+        });
+
+
+    </script>
+</div>
+
+
+    ]]>
+  </node>
+  <node id="wp_issuesCreatedByMe">
+    <![CDATA[
+
+<div class="portletBox">
+    <div style="float:right;padding-top: 5px">
+        <button type="button" class="button noprint textual icon  ruzzol" id="domId_837554864" style="" onclick="$('#myCreatedIssues').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+    </div>
+
+    <h1>我感兴趣的问题</h1>
+
+
+    <div id="myCreatedIssues" class="portletParams" style="display:none"><label for="MAX_ISSUES_DISPLAY" class=" ">问题最大显示数</label>&nbsp;<input type=text name="MAX_ISSUES_DISPLAY" id="MAX_ISSUES_DISPLAY" size=2 class="formElements" autocomplete='off' maxlength=255 onBlur="refreshPortlet($(this),{'MAX_ISSUES_DISPLAY':$(this).val()});" value="8" oldValue='1'></div>
+    <table class="table dataTable">
+        <thead>
+            <tr>
+                <th class="tableHead" width="1%">级别</th>
+                <th class="tableHead" width="1%">问题状态</th>
+                <th class="tableHead">描述</th>
+                <th class="tableHead">任务</th>
+                <th class="tableHead" nowrap>分工给</th>
+                <th class="tableHead">做</th>
+                <th class="tableHead"></th>
+                <th class="tableHead"></th>
+            </tr>
+        </thead>
+
+        <tbody id="wp_myInsIssuesExpired" style="display:none;"></tbody>
+
+        <tbody id="wp_myInsIssues"></tbody>
+    </table>
+
+
+    <script type="text/javascript">
+
+        var defs = [initialize(contextPath + "/parts/partIssuePortletSupport", "html"),
+        initialize(contextPath + "/parts/partIssueNotes", "html")];
+
+
+        $.when.apply(null, defs) // per chiamare la when con un array [a,b,c,d] invece che parametri sep.  (a,b,c,d)
+            .done(function () {
+                $("#wp_myInsIssueTemplates").loadTemplates().remove();
+
+                var expired = [{ "id": "14515", "lastModifier": "Dream Wing", "lastModified": 1605072154000, "creator": "Dream Wing", "creationDate": 1605071765000, "areaId": 5819, "area": "梦想飞扬", "description": "第四个问题", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "14515", "signalledOn": 1605052800000, "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "53596", "taskName": "第二个项目", "taskCode": "T53596", "tcodid": "T53596", "taskPath": "", "assigneeId": "15189", "assigneeName": "Zhang Fei", "rcodid": "15189", "assigneeAvatarUrl": "/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29", "assigneeConnectionStatus": "", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28281", "shouldCloseBy": 1604880000000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14479", "lastModifier": "Dream Wing", "lastModified": 1605077682000, "creator": "Dream Wing", "creationDate": 1604915613000, "areaId": 5819, "area": "梦想飞扬", "description": "第三个问题", "estimatedDuration": 7200000, "worklogDone": 10800000, "tags": "", "icodid": "14479", "signalledOn": 1604880000000, "orderByTask": 0, "orderByRes": 2, "commentSize": 0, "taskId": "53597", "taskName": "第一个子任务", "taskCode": "T53596.01", "tcodid": "T53596.01", "taskPath": "第二个项目", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28254", "shouldCloseBy": 1604880000000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14516", "lastModifier": "Dream Wing", "lastModified": 1605075390000, "creator": "Dream Wing", "creationDate": 1605071792000, "areaId": 5819, "area": "梦想飞扬", "description": "第五个问题", "estimatedDuration": 7200000, "worklogDone": 0, "tags": "", "icodid": "14516", "signalledOn": 1605052800000, "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "53597", "taskName": "第一个子任务", "taskCode": "T53596.01", "tcodid": "T53596.01", "taskPath": "第二个项目", "assigneeId": "15163", "assigneeName": " 第一个员工", "rcodid": "15163", "assigneeAvatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29", "assigneeConnectionStatus": "", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28273", "shouldCloseBy": 1604966400000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14520", "lastModifier": "Dream Wing", "lastModified": 1605106345000, "creator": "Dream Wing", "creationDate": 1605106345000, "areaId": 5819, "area": "梦想飞扬", "description": "大家如何看待美国大选", "estimatedDuration": 10800000, "worklogDone": 0, "tags": "大选", "icodid": "14520", "signalledOn": 1605052800000, "orderByTask": 0, "orderByRes": 0, "commentSize": 1, "taskId": "53595", "taskName": "第一个项目", "taskCode": "T53595", "tcodid": "T53595", "taskPath": "", "assigneeId": "15163", "assigneeName": " 第一个员工", "rcodid": "15163", "assigneeAvatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29", "assigneeConnectionStatus": "", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28286", "shouldCloseBy": 1604966400000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14521", "lastModifier": "Dream Wing", "lastModified": 1605106589000, "creator": "Dream Wing", "creationDate": 1605106520000, "areaId": 5819, "area": "梦想飞扬", "description": "系统无法登陆怎么办", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "14521", "signalledOn": 1605052800000, "orderByTask": 1, "orderByRes": 0, "commentSize": 0, "taskId": "53595", "taskName": "第一个项目", "taskCode": "T53595", "tcodid": "T53595", "taskPath": "", "assigneeId": "15189", "assigneeName": "Zhang Fei", "rcodid": "15189", "assigneeAvatarUrl": "/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29", "assigneeConnectionStatus": "", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28280", "shouldCloseBy": 1605052800000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "05_GRAVITY_BLOCK", "gravityName": "中断", "gravityColor": "#DB2727", "gravityOrder": 1, "documents": [] }, { "id": "14477", "lastModifier": "Dream Wing", "lastModified": 1605106558000, "creator": "Dream Wing", "creationDate": 1604915586000, "areaId": 5819, "area": "梦想飞扬", "description": "第一个问题的描述", "estimatedDuration": 0, "worklogDone": 0, "tags": "第一个, 问题", "icodid": "14477", "signalledOn": 1604880000000, "orderByTask": 1, "orderByRes": 1, "commentSize": 0, "taskId": "53595", "taskName": "第一个项目", "taskCode": "T53595", "tcodid": "T53595", "taskPath": "", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28252", "shouldCloseBy": 1605139200000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "04_GRAVITY_CRITICAL", "gravityName": "关键的", "gravityColor": "#8C6044", "gravityOrder": 2, "documents": [{ "id": 1012, "uid": "FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx", "type": "FR", "name": "K-SQL 10.0 参考大全（20160620）.docx", "img": "application_vnd.openxmlformats-officedocument.wordprocessingml.document.png", "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=369186096&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khe7chdd.5d6202eb9a47cccec5305388abbf0162", "ext": ".docx", "ck": "khe7chdd.5d6202eb9a47cccec5305388abbf0162", "issueId": "14477" }] }];
+                var issues = [];
+
+                var ndo = $("#wp_myInsIssuesExpired");
+                for (var i = 0; i < expired.length; i++) {
+                    var iss = $.JST.createFromTemplate(expired[i], "MYINSISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+                if (expired.length > 0)
+                    ndo.show();
+
+                ndo = $("#wp_myInsIssues");
+                for (var i = 0; i < issues.length; i++) {
+                    var iss = $.JST.createFromTemplate(issues[i], "MYINSISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+
+                //bind  issueEvent
+                registerEvent("issueEvent.myCreatedIssues", function (e, data) {
+                    refreshPortlet($("#myCreatedIssues"));
+                });
+            });
+    </script>
+</div>
+
+
+
+
+    ]]>
+  </node>
+  <node id="wp_create_issues">
+    <![CDATA[
+
+
+<div id="createIssuesExDiv" class="portletBox" style="background-color: #FBFBD4">
+    <script>
+
+        function saveAndReloadIssues(button) {
+            //console.debug("saveAndReloadIssues")
+            if (canSubmitForm('CREATEISSUE_FORM')) {
+                showSavingMessage();
+                var request = { CM: "SV", OBJID: "new", setValuesAsDefault: "yes" };
+                $("#issueCreateLine").fillJsonWithInputValues(request);
+
+                $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        showFeedbackMessageInDiv("OK", "正确保存的问题", "createIssuesExDiv");
+                        //$("#ISSUE_DESCRIPTION").val("");
+                        $("body").trigger("issueEvent", [
+                            { type: "save", response: response }
+                        ])
+                    }
+                    hideSavingMessage();
+                });
+            }
+        }
+
+    </script>
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/applications/teamwork/portal/portlet/wp_create_issues.jsp" name="CREATEISSUE_FORM" id="CREATEISSUE_FORM" novalidate
+          savedAction="" savedTarget="">
+        <input type="hidden" id="CREATEISSUE_FORMV_ID" name="V_ID" value="744536495" savedValue="">
+        <input type="hidden" id="CREATEISSUE_FORMCM" name="CM" value="" savedValue="">
+
+
+        <div style="float:right;padding-top: 15px">
+
+        </div>
+        <h1>
+            <a class="button  textual   " id="domId_1417090502" style="" href="/app/issueList.html?V_ID=1481263301">创建问题</a>
+
+
+        </h1>
+        <div class="issueRow issueRowFocused">
+
+
+            <table id="issueCreateLine" width="100%" border="0">
+                <tr>
+
+                    <td nowrap valign="top" colspan="3"><textarea name="ISSUE_DESCRIPTION" id="ISSUE_DESCRIPTION" COLS="70" ROWS="10" class="formElements" style='height:123px;width:100%;' title="描述" required="true" oldValue='1' maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><input type=text name="ISSUE_TAGS" id="ISSUE_TAGS" placeholder="创建标签" size=20 class="formElements tagBox" autocomplete='off' maxlength=255 style='width:100%' autocomplete='off' taggableClass="com.twproject.task.Issue" maxResult="30" tagPropertyName="tags" areaId="5819" value="" oldValue='1'></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="createIssues">
+                            <label for="ISSUE_TASK_txt" class="required">任务*</label><br><input type=text name="ISSUE_TASK_txt" id="ISSUE_TASK_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,true );" onKeyDown="manageKeyEvent ($(this),event,true,true);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ISSUE_TASK" id="ISSUE_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                        </div>
+                    </td>
+                    <td align="left" nowrap> </td>
+
+                    <td>
+                        <label for="ASSIGNED_BY_txt" class=" ">提问人</label><br><input type=text name="ASSIGNED_BY_txt" id="ASSIGNED_BY_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASSIGNED_BY" id="ASSIGNED_BY" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <script type="text/javascript">
+
+                            (function () {
+                                var cvd = { values: [{ "code": "05_GRAVITY_BLOCK", "color": "#DB2727", "value": "中断", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "04_GRAVITY_CRITICAL", "color": "#8C6044", "value": "关键的", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "03_GRAVITY_HIGH", "color": "#F9791C", "value": "高", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "02_GRAVITY_MEDIUM", "color": "#F9C154", "value": "中", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "01_GRAVITY_LOW", "color": "#EEEEEE", "value": "低", "enabled": true, "textColor": "#000000", "index": 5 }] };
+
+
+                                _colorValueData["ISSGRLIN"] = cvd;
+
+                            })();
+                        </script>
+
+
+
+                        <label for="domId_1127827843">级别</label><br> <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ISSGRLIN" displayValue='true'>
+                            <input type=hidden name="ISSUE_GRAVITY" id="ISSUE_GRAVITY" size=2 class="formElements" autocomplete='off' maxlength=255 value="02_GRAVITY_MEDIUM" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                <div class="cvcStatuses ellipsis">
+                                    <div class="cvcSelBox " title="中" code="02_GRAVITY_MEDIUM"
+                                         style=" color:#000000;background-color:#F9C154"><span class="cvcDescription">中</span></div>
+                                </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td valign="top">
+
+                        <script type="text/javascript">
+
+                            (function () {
+                                var cvd = { values: [{ "code": "13720", "color": "#3BBF67", "value": "open", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "13721", "color": "#6EBEF4", "value": "closed", "enabled": true, "textColor": "#000000", "index": 2 }, { "code": "13722", "color": "#763A96", "value": "aborted", "enabled": true, "textColor": "#FFFFFF", "index": 3 }] };
+
+
+                                _colorValueData["STATUSLINE"] = cvd;
+
+                            })();
+                        </script>
+
+
+
+                        <label for="domId_411534562">问题状态</label><br> <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="STATUSLINE" displayValue='true'>
+                            <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                <div class="cvcStatuses ellipsis">
+                                    <div class="cvcSelBox " title="open" code="13720"
+                                         style=" color:#FFFFFF;background-color:#3BBF67"><span class="cvcDescription">open</span></div>
+                                </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                            </div>
+
+                        </div>
+                    </td>
+
+                    <td>
+                        <label for="ISSUE_DATE_CLOSE_BY" class=" ">截止日期</label><br><input type=text name="ISSUE_DATE_CLOSE_BY" id="ISSUE_DATE_CLOSE_BY" size=8 class="formElements dateField validated date" autocomplete='off' maxlength=255 onchange="$(this).oneTime(100,'dfblur',function(){if ($(this).is('.formElementsError')) {$(this).focus();} });" format="yyyy-M-d" value="" oldValue='1' entryType="DATE" maxValue="3020-11-20" minValue="1020-10-30"><span title="日历" id="ISSUE_DATE_CLOSE_BYs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                         onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:false,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                    </td>
+                </tr>
+
+            </table>
+            <div class="editButton">
+                <div class="noprint buttonArea notFix" id="domId_899410037" style="text-align:left;">
+                    <div class="bbButtons">
+                        <button type="button" class="button noprint    first" id="domId_247100626" style="" onclick="saveAndReloadIssues($(this));return false; ">保存</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+    ]]>
+  </node>
+  <node id="wp_links">
+    <![CDATA[
+
+
+
+<div id="managFavDiv" class="bookmarksDiv portletBox small">
+    <style>
+
+        .bookmarksDiv h2, .customPagesDiv h2 { padding: 0; border: 0 }
+
+        .customPagesDiv .button.textual { color: #617777; display: block; font-size: 14px; line-height: 24px; text-align: left; }
+
+        .bookmarksDiv .linkLine, .customPagesDiv .linkLine { position: relative; border-bottom: 1px solid #CCCCCC; }
+
+        .linkLine .button.textual { line-height: 30px; }
+    </style>
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/applications/teamwork/portal/portlet/wp_links.jsp" name="d497720348" id="d497720348"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d497720348V_ID" name="V_ID" value="497720348" savedValue="">
+        <input type="hidden" id="d497720348CM" name="CM" value="" savedValue="">
+        <input type="hidden" id="d497720348OBJID" name="OBJID" value="dummy" savedValue="">
+
+
+
+        <div>
+
+
+            <span style="float: right;">
+                <button type="button" class="button noprint textual icon  edit " id="domId_1734701822" style="" title="添加链接" onclick="$('#addDiv').toggle();return false; "><span class='teamworkIcon '>P</span></button>
+
+
+            </span>
+            <h1>书签</h1>
+
+            <div id="addDiv" style="display:none">
+                <table class="table">
+                    <tr>
+                        <td><label for="TITLE" class="required">书签*</label><br><input type=text name="TITLE" id="TITLE" size=30 class="formElements" autocomplete='off' maxlength=255 style=width:100% value="" required="true" oldValue='1'></td>
+                    </tr>
+                    <tr><td><label for="URL" class="required">书签 URL*</label><br><input type=text name="URL" id="URL" size=30 class="formElements" autocomplete='off' maxlength=255 style=width:100% value="" required="true" oldValue='1'></td></tr>
+                    <tr>
+                        <td>
+                            <button type="button" class="button noprint    small" id="domId_1002822931" style="" onClick="stopBubble(event);obj('d497720348CM').value='SV';ajaxSubmit('d497720348','managFavDiv');">添加</button>
+
+                        </td>
+                    </tr>
+                </table><div class="separator"></div>
+            </div>
+
+            <div class="linkLine">
+                <a class="button  textual   " id="domId_1501462981" style="" href="https://www.baidu.com" target="_blank">baidu</a>
+
+                <div style="float:right">
+                    <button type="button" class="button noprint textual icon  delete" id="domId_7985770" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                </div>
+            </div><div class="linkLine">
+                <a class="button  textual   " id="domId_1072850276" style="" href="https://www.cnki.net" target="_blank">cnki</a>
+
+                <div style="float:right">
+                    <button type="button" class="button noprint textual icon  delete" id="domId_1121888520" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                </div>
+            </div><div class="linkLine">
+                <a class="button  textual   " id="domId_673934980" style="" href="https://oa.cnki.net" target="_blank">OA</a>
+
+                <div style="float:right">
+                    <button type="button" class="button noprint textual icon  delete" id="domId_996454582" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function deleteBookmark(el) {
+
+                var row = el.closest(".linkLine");
+                var link = row.find("a:first").text();
+                var request = { CM: "DELBOOKMARK", "LNKLBL": link };
+                showSavingMessage();
+                $.getJSON(contextPath + "/applications/teamwork/portal/portalAjaxController.jsp", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok == true) {
+                        row.remove();
+                    }
+                    hideSavingMessage();
+                });
+
+
+            }
+
+
+        </script>
+
+    </form>
+</div>
+
+
+
+    ]]>
+  </node>
+  <node id="wp_myResponsabilities">
+    <![CDATA[
+<div class="myResponsabilities portletBox small">
+    <h1>我的答复</h1><div class="myResponsability">
+        <b>Project manager</b><br>
+        Can manage the project and its descendants on which she/he has been assigned.
+    </div><div class="myResponsability">
+        <b>Area manager</b><br>
+        Has complete control on the area.
+    </div><div class="myResponsability">
+        <b>Worker</b><br>
+        Can work (e.g. insert worklog, manage issues and documents) on the project and its descendants on which she/he has been assigned.
+    </div>
+</div>
+
+    ]]>
+  </node>
+  <node id="wp_scrumBurnDown">
+    <![CDATA[
+
+<div id="wpScrumBDDiv">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/applications/teamwork/portal/portlet/wp_scrumBurnDown.jsp" name="d1541180461" id="d1541180461"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d1541180461V_ID" name="V_ID" value="1541180461" savedValue="">
+        <input type="hidden" id="d1541180461CM" name="CM" value="" savedValue="">
+
+        <div class="portletBox">
+
+            <div style="float:right" class="portletParamIcons">
+                <button type="button" class="button noprint textual icon  " id="domId_1622407551" style="" title="过滤" onclick="$('#burnDownParams').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+            </div>
+            <h1 style="padding-bottom: 10px">第一个项目</h1>
+            <div style="width:100px;float:left;margin-right:20px">
+
+
+
+                <div class="progressBar" style="width:100px;height:15px;position: relative">
+
+                    <div data-balloon="<strong>进度: 0%</strong> " data-timer="3000" data-forceposition="left" class="perc" style="width:100%;height:15px;background-color:#00E51E;position:relative; display: inline-block; overflow:hidden;">
+                        <div style="background-color:#008100;width:0%;height:15px;"></div>
+                        <div style="cursor: pointer;width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 4px; text-align: left;font-size:11px;color:#FFFFFF">0%</div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="pathCodeWrapper">
+                <span class="teamworkIcon" style="color:#3BBF67;font-size:10px;" title="进行中">&copy;</span>
+                <span class='pathCode' title='参考代码'>T#T53595#</span>
+            </div>
+            <div id="burnDownParams" class="portletParams" style="display:none">
+                <script>
+                    function letSubmitBURNDOWN_TASK() {
+                        obj('d1541180461CM').value = ''; ajaxSubmit('d1541180461', 'wpScrumBDDiv');
+                    }
+                </script><label for="BURNDOWN_TASK_txt" class=" ">选择一个项目</label>&nbsp;<input type=text name="BURNDOWN_TASK_txt" id="BURNDOWN_TASK_txt" size=40 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="第一个项目"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="BURNDOWN_TASK" id="BURNDOWN_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="53595" oldValue='1'>
+            </div>
+            <div class="container level_2">
+                <br>
+                <h2>燃尽图</h2>
+                <div id="plot" style="width:90%; height:400px; margin:0 auto"></div><br>
+
+
+
+                <div class="container level_1">
+                    <table class="table">
+                        <tr>
+                            <th class="tableHead">责任人</th>
+                            <th class="tableHead">已完成/已分工</th>
+                            <th class="tableHead">% on assigned</th>
+                            <th class="tableHead">% on total done</th>
+                        </tr>
+                        <tr class="alternate">
+                            <td width="20%">Dream Wing</td>
+
+                            <td width="10%" align="right">8:00/100:00</td>
+                            <td align="center">
+
+
+
+                                <div style="width:120px;height:12px;position: relative" title="">
+                                    <div class="perc" style="width:100%;height:12px;background-color:#e0e0e0;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                        <div style="background-color:#ffff00;width:8%;height:12px;"></div>
+                                        <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:8px;color:#000000">8%</div>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                            <td align="center">
+
+
+
+                                <div style="width:120px;height:12px;position: relative" title="">
+                                    <div class="perc" style="width:100%;height:12px;background-color:#e0e0e0;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                        <div style="background-color:#ffff00;width:100%;height:12px;"></div>
+                                        <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:8px;color:#FFFFFF">100%</div>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </table>
+                </div><h2 style="padding-top: 30px">问题</h2><table width="100%"><tr><td valign="top"><div id="statusPie" style="width:100%;height:200px;"></div></td><td valign="top"><div id="gravityPie" style="width:100%;height:200px;"></div></td><td valign="top"><div id="gravityPieHis" style="width:100%;height:200px;"></div></td></tr></table><table width="100%"><tr><td valign="top"><div id="assigneePie" style="width:100%;height:250px;"></div></td><td valign="top"><div id="assigneePieHis" style="width:100%;height:250px;"></div></td></tr></table>
+
+
+                <script type="text/javascript">
+                    var defs = [initialize(contextPath + "/commons/js/jquery/jqplot/jquery.jqplot.min.css", "css"),
+                    initialize(contextPath + "/commons/js/jquery/jqplot/jquery.jqplot.min.js", "script")];
+
+                    $.when.apply(null, defs).done(function () {
+                        var defs1 = [initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.dateAxisRenderer.min.js", "script"),
+                        initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.highlighter.min.js", "script"),
+                        initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.cursor.min.js", "script"),
+                        initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.pieRenderer.js", "script")];
+
+                        $.when.apply(null, defs1).done(startup)
+                    });
+
+                    function startup() {
+                        var plot = $.jqplot("plot", [[[1604880000000, 370800000], [1606780799000, 0]], [[1604880000000, 1], [1604915586000, 2], [1605106345000, 3], [1605106520000, 4], [1606780799000, 4]], [[1604880000000, 0], [1604910679000, 360000000], [1604915242000, 331200000], [1605106345000, 342000000], [1606780799000, 342000000]]], {
+                            title: "T53595 - 第一个项目: 2020-11-9 - 2020-11-30",
+                            legend: { show: true },
+                            series: [
+                                { label: "理想趋势" },
+                                {
+                                    label: "已发现的问题",
+                                    yaxis: "y2axis"
+                                },
+                                { label: "其余的时间" }
+
+                            ],
+                            axes: {
+                                xaxis: {
+                                    renderer: $.jqplot.DateAxisRenderer,
+                                    tickOptions: { formatString: '%b %#d' },
+                                    numberTicks: 20
+                                },
+                                yaxis: {
+                                    label: "hours",
+                                    tickOptions: { formatter: durationFromMillis },
+                                    min: 0,
+                                    numberTicks: 10
+                                },
+                                y2axis: {
+                                    label: "issues",
+                                    tickOptions: { formatString: "%i" },
+                                    min: 0,
+                                    padMin: 1
+                                }
+                            },
+                            cursor: { tooltipLocation: 'sw' }
+                        });
+                        drawPies();
+                    }
+
+
+                    function durationFromMillis(bo, millis) {
+                        return getMillisInHours(millis) + " h";
+                    }
+
+
+                    function drawPies() {
+                        if (parseInt("3") > 0) {
+                            $.jqplot("statusPie", [[["open: 3", 3]]], {
+                                seriesColors: ["#3BBF67"],
+                                title: "问题状态",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                        }
+
+
+                        if (parseInt("3") > 0) {
+                            $.jqplot("gravityPie", [[["中断: 1", 1], ["关键的: 1", 1], ["中: 1", 1]]], {
+                                seriesColors: ["#DB2727", "#8C6044", "#F9C154"],
+                                title: "级别",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                        }
+
+                        if (parseInt("3") > 0) {
+                            var tort = $.jqplot("assigneePie", [[["Dream Wing: 1", 1], [" 第一个员工: 1", 1], ["Zhang Fei: 1", 1]]], {
+                                title: "责任人",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                            wrapLegend(tort);
+                        }
+
+                        if (parseInt("3") > 0) {
+                            $.jqplot("gravityPieHis", [[["中断: 1", 1], ["关键的: 1", 1], ["中: 1", 1]]], {
+                                seriesColors: ["#DB2727", "#8C6044", "#F9C154"],
+                                title: "项目开始的重要性",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                        }
+
+                        if (parseInt("3") > 0) {
+                            var tort = $.jqplot("assigneePieHis", [[["Dream Wing: 1", 1], [" 第一个员工: 1", 1], ["Zhang Fei: 1", 1]]], {
+                                title: "人员在该项目的开始",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+
+                            wrapLegend(tort);
+                        }
+                    }
+
+
+                    function wrapLegend(tort) {
+                        var lege = tort.target.find("table");
+                        lege.css("position", "relative");
+                        lege.remove();
+                        tort.target.append(lege);
+                        lege.css({ top: 0, left: 0 });
+                        lege.wrap("<div style='height:190px;overflow:auto;position:absolute;top:28px;left:10px;'>");
+                    }
+
+                </script>
+
+
+            </div>
+
+    </form>
+</div>
+
+    ]]>
+  </node>
+  <node id="wp_issueSummaryByCustomer">
+    <![CDATA[
+
+<div id="issueSBCExDiv">
+
+    <div class="portletBox">
+        <div style="float:right" class="portletParamIcons">
+            <button type="button" class="button noprint textual icon  ruzzol" id="domId_1970381868" style="" title="过滤" onclick="$('#issueSBCParam').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+        </div>
+        <h1>我的客户问题</h1>
+
+        <div class="portletParams" id="issueSBCParam" style="display:none;">
+            <label for="ck_SHOW_WHERE_IM_INVOLVED_ONLY_CUST">仅显示我参与的任务</label><input type=hidden name="SHOW_WHERE_IM_INVOLVED_ONLY_CUST" id="SHOW_WHERE_IM_INVOLVED_ONLY_CUST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_SHOW_WHERE_IM_INVOLVED_ONLY_CUST" name="ck_SHOW_WHERE_IM_INVOLVED_ONLY_CUST" checked value="yes"
+                                                                                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'SHOW_WHERE_IM_INVOLVED_ONLY_CUST':$('#SHOW_WHERE_IM_INVOLVED_ONLY_CUST').val()});">
+
+        </div>
+
+        <table class="table issueSummary" id="wp_issueSBCtable">
+            <thead class="dataTableHead" style="">
+                <tr>
+                    <th class="tableHead" id="wpISBCputFilerHere"><span class="tableHeadEl">顾客</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">已发现的问题</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">过期</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">今天</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">中断</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">未分工</span></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr customerId="15164" class="alternate">
+                    <td class="columnCustomerName" style="position: relative;" width="80%">
+                        <a class="button  textual   bolder" id="domId_133892981" style="" href="/resource/resourceEditor.html?V_ID=103419510&CM=ED&OBJID=15164">第二个员工 </a>
+
+
+                    </td>
+                    <td align="center"><a class="issBtn issOpen">4</a></td>
+                    <td align="center"><a class="issBtn issExpired">2</a></td>
+                    <td align="center"><a class="issBtn issToday">1</a></td>
+                    <td align="center"><a class="issBtn issBlock">1</a></td>
+                    <td align="center"><a class="issBtn issUnassigned">1</a></td>
+
+
+                </tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        //inject the table search
+        //createTableFilterElement($("#wpMAputFilerHere"),'#wp_myAssig_table .assigRow','.columnTaskName,.columnTaskCode');
+
+        $("#wp_issueSBCtable [customerId] a.issBtn").each(function () {
+            var el = $(this);
+            if (el.text() == "") {
+                el.remove();
+            } else {
+                var row = el.closest("[customerId]");
+                var custId = row.attr("customerId");
+                var issExpired = el.is(".issExpired");
+                var issToday = el.is(".issToday");
+                var link = "/app/issueList.html?V_ID=857434147&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
+
+                if (issExpired) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");
+                } else if (issToday) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("=t");
+                } else if (el.is(".issBlock")) {
+                    link += "&FLT_ISSUE_GRAVITY=" + encodeURIComponent("05_GRAVITY_BLOCK");
+                } else if (el.is(".issUnassigned")) {
+                    link += "&FLT_ISSUE_UNASSIGNED=yes";
+                } else {
+                    // do nothing
+                }
+
+                el.prop("href", link);
+            }
+        });
+
+
+    </script>
+</div>
+
+
+    ]]>
+  </node>
+  <node id="wp_demoInfo">
+    <![CDATA[
+
+<div class="portletBox wp_demoInfo">
+    <h3>
+        Welcome to your testing environment.<br>Trial ends on 17 十一月 2020<br>
+    </h3>
+    <div>
+        <a class="button" href="https://twproject.com/demo-create-subscription" target="_blank" title="Twproject prices">Buy Twproject</a><br><br>
+        支持网站: <a href="https://twproject.com/support/" target="_blank" title="Twproject help">twproject.com/support</a><br>
+    </div>
+</div>
+<style>
+    .wp_demoInfo { background: #2F97C6 url(/img/twprojectHand.svg) no-repeat right bottom !important; color: white !important; }
+
+        .wp_demoInfo a { color: white; text-decoration: underline; }
+
+            .wp_demoInfo a:hover { background-color: #36C0F6; text-decoration: none; color: #fff; }
+
+        .wp_demoInfo .button { color: white; border: 1px solid white; text-decoration: none; }
+
+            .wp_demoInfo .button:hover { color: #36C0F6; background-color: #fff; }
+</style>
+    ]]>
+  </node>
+  <node id="wp_myAppointments">
+    <![CDATA[
+
+
+<div class="myAppointments portletBox small">
+
+    <style type="text/css">
+        .myAppointments .eventDetail { padding: 1px 4px; }
+        .myAppointments .eventLine { margin-bottom: 5px; color: #444; }
+            .myAppointments .eventLine em { color: #a5a5a5; }
+        .myAppointments h4 { border-bottom: 1px solid #cccccc; font-weight: 600; }
+        .myAppointments .button.textual.icon { margin: 12px 8px 0 0; }
+        .eventDetail > i { font-size: 90%; }
+        .eventDetail .teamworkIcon { background-color: #afdcff; color: transparent; }
+        .eventDetail .teamworkIcon { margin-right: 2px; display: inline-block; color: transparent; box-sizing: border-box; border: 2px solid #fff; }
+        .teamworkIcon.isMeeting { background-color: #CFF7EA; }
+        .teamworkIcon.isPersonal { background-color: #afdcff; }
+        .teamworkIcon.isReminder { background-color: #FCEC6B; }
+        .teamworkIcon.isUnavailability { background-color: #f4cdcb; }
+    </style>
+
+    <div style="float:right;"></div>
+
+    <h1>
+        <a class="button  textual   " id="domId_534478608" style="" title="日程" href="/app/agendaWeekDay.html?V_ID=945025363">我的约会</a>
+
+    </h1>
+
+    <div class="events">
+        <h5>今天 - 星期四 12</h5><div class="event today"></div>
+        <div class="eventLine"><em>没有任何事件</em></div>
+        <div class="event"><h5>明天 - 星期五 13</h5></div>
+        <div class="eventLine"><em>没有任何事件</em></div>
+
+
+    </div>
+</div>
+
+    ]]>
+  </node>
+  <node id="wp_myPlan">
+    <![CDATA[
+    ]]>
+  </node>
+  <node id="wp_todo">
+    <![CDATA[
+
+<style type="text/css">
+    .todoLine { border-bottom: 1px solid #CCCCCC; background: #F7F7F7; position: relative; min-height: 25px; padding: 0; }
+        .todoLine:first-of-type { border-top: 1px solid #CCCCCC; }
+        .todoLine.done .body { text-decoration: line-through; }
+    .doIt span.teamworkIcon { position: relative; cursor: pointer; }
+    .todoLine.done .body { color: #656565 }
+    .confirmBox { background-color: #fff }
+    .todoLine .body { word-wrap: break-word; }
+    .todos.small input.formElements { padding: 10px; /*!*!*background-image: url("/img/crossed-bg.png")*!*!*/ }
+    div.issueDrag.dragHandler { opacity: .6; }
+</style>
+
+<div class="portletBox todos small todo-list" style="position: relative; overflow: auto">
+    <h1>To-do</h1>
+
+
+    <div class="container">
+        <input type="text" style="font-size:16px;width:100%;margin-bottom: 10px" placeholder="To-do" onkeypress="saveTodo(event,$(this));" class="formElements">
+
+        <div id="wp_todo_list"></div>
+
+        <div id="todotempl" style="display:none">
+            <div class="__template__" type="TODOLINE">
+                <!--
+                <div issueId="(#=obj.id#)" assignee="(#=obj.assigneeId#)" gravity="(#=obj.gravityId#)" status="(#=obj.statusId#)" isOpen="(#=obj.isOpen#)" orderByRes="(#=obj.orderByRes#)" class="todoLine (#=obj.isOpen?'':'done'#)">
+                  <div class="issueDrag dragHandler" style="width:25px;height:95%; opacity:1; position: absolute;left:0"></div>
+                  <div class="doIt" style="position: absolute;left:30px; top:5px"><span onclick="doUndo($(this));"  class="teamworkIcon">(#=obj.isOpen?'&iexcl;':';'#)</span></div>
+                  <div style="position: absolute;right:2px; top:5px;">
+                    <div class="teamworkIcon delete" onclick="removeTodo($(this));" style="cursor:pointer">d</div>
+                  </div>
+                  <div class="body" style="padding: 4px 20px 4px 52px">(#!obj.description#)</div>
+
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    //    $(function () {
+    $("#todotempl").loadTemplates().remove();
+    var ndo = $("#wp_todo_list");
+    var todos = [{ "id": "14525", "lastModifier": "Dream Wing", "lastModified": 1605151132000, "creator": "Dream Wing", "creationDate": 1605151132000, "areaId": 5819, "area": "梦想飞扬", "description": "3.have lunch", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "14525", "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "-1", "taskName": "有没有任务。没有任务\n有没有任务。", "taskCode": "", "tcodid": "", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14526", "lastModifier": "Dream Wing", "lastModified": 1605151153000, "creator": "Dream Wing", "creationDate": 1605151153000, "areaId": 5819, "area": "梦想飞扬", "description": "4.meeting", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "14526", "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "-1", "taskName": "有没有任务。没有任务\n有没有任务。", "taskCode": "", "tcodid": "", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, { "id": "14524", "lastModifier": "Dream Wing", "lastModified": 1605151139000, "creator": "Dream Wing", "creationDate": 1605151104000, "areaId": 5819, "area": "梦想飞扬", "description": "2.working", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "14524", "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "-1", "taskName": "有没有任务。没有任务\n有没有任务。", "taskCode": "", "tcodid": "", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "statusId": 13721, "statusName": "closed", "statusColor": "#6EBEF4", "statusOrder": 2, "isOpen": false, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }];
+
+
+    for (var i = 0; i < todos.length; i++) {
+        var todo = $.JST.createFromTemplate(todos[i], "TODOLINE");
+        ndo.append(todo);
+    }
+
+    $("#wp_todo_list").sortable({
+        handle: ".dragHandler",
+        axis: "y",
+        //    scroll: false,
+        update: function (table, row) {
+            var sortedIds = [];
+            $(this).children().each(function () {
+                sortedIds.push($(this).attr("issueId"));
+            });
+
+            var request = { CM: "SORT_ISSUES", SORT_FLAVOUR: "BY_RESOURCE", issues: sortedIds.join(",") };
+            showSavingMessage();
+            $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    //do nothing
+                }
+                hideSavingMessage();
+            });
+        },
+        start: function (e, ui) {
+            ui.placeholder.height(ui.helper.outerHeight());
+        }
+    })//.disableSelection();
+    //});
+
+    function removeTodo(el) {
+        if (el.confirm(function () {
+            var row = el.closest("[issueId]");
+            var request = { CM: "DL", OBJID: row.attr("issueId") };
+            showSavingMessage();
+            $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    row.fadeOut(300, function () {
+                        $(this).remove();
+                    });
+                }
+                hideSavingMessage();
+            });
+        }));
+    }
+
+
+    function saveTodo(ev, el) {
+        if (ev.keyCode == 13 && el.val() != "") {
+            var row = el.closest("[issueId]");
+            var request = { CM: "ADDTODO", descr: el.val() };
+            showSavingMessage();
+            $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    if (response.todo) {
+                        var domTodo = insertSorted(response.todo);
+                        domTodo.effect("highlight", { color: "#F9EFC5" }, 2000);
+                        el.val("");
+                    }
+                }
+                hideSavingMessage();
+            });
+        }
+    }
+
+
+    function doUndo(el) {
+        var row = el.closest("[issueId]");
+
+        var request = { CM: "TDDONE", OBJID: row.attr("issueId"), done: row.is(".done") ? "no" : "yes" };
+        showSavingMessage();
+        $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok) {
+                if (response.todo) {
+                    row.remove();
+                    var domTodo = insertSorted(response.todo);
+                    domTodo.effect("highlight", { color: "#F9EFC5" }, 2000);
+                }
+            }
+            hideSavingMessage();
+        });
+    }
+
+
+    function insertSorted(jsTodo) {
+        var ndo = $("#wp_todo_list");
+        var foundOne = false;
+        var todo = $.JST.createFromTemplate(jsTodo, "TODOLINE");
+        ndo.find("[issueId]").each(function () {
+            var row = $(this);
+            var isOpen = row.attr("isOpen") == "true";
+            if (isOpen < jsTodo.isOpen) {
+                row.before(todo);
+                foundOne = true;
+                return false;
+            } else if (isOpen == jsTodo.isOpen) {
+                if (parseInt(row.attr("orderByRes")) >= parseInt(jsTodo.orderByRes)) {
+                    row.before(todo);
+                    foundOne = true;
+                    return false;
+                }
+            }
+        });
+        if (!foundOne) {
+            ndo.append(todo);
+        }
+        return todo;
+    }
+
+</script>
+
+    ]]>
+  </node>
+  <node id="wp_activity">
+    <![CDATA[
+    ]]>
+  </node>
+  <node id="wp_companyNews">
+    <![CDATA[
+    ]]>
+  </node>
+  <node id="wp_summaryBar">
+    <![CDATA[
+
+
+
+<div id="summaryBar" style="height:50px;overflow: hidden;" class="summaryBar"></div>
+
+<style>
+    .sbAgeEv { background-color: #BCFF3A; box-shadow: 0 0 0 1px #6e9325; opacity: .5; }
+    .sbTask { background-color: #2f2f2f; opacity: .5; }
+    .sbTaskMil { color: #2f2f2f; font-size: 12px; opacity: .7; }
+    .sbIssue { color: #2f2f2f; font-size: 12px; opacity: .7; }
+</style>
+
+<script type="text/javascript">
+
+    sb_startup(1605147448637);
+
+    function sb_startup(focusMillis) {
+        var date = new Date(focusMillis);
+        date.clearTime();
+        date.setFirstDayOfThisWeek();
+
+        var startMillis = date.getTime();
+        date.setDate(date.getDate() + 6);
+        date.setHours(23, 59, 59);
+        var endMillis = date.getTime();
+
+
+        var barFolio = sb_createBarFolio(startMillis, endMillis);
+        barFolio.redraw();
+
+        sb_loadAppointments(barFolio, focusMillis);
+        sb_loadIssues(barFolio, focusMillis);
+        sb_loadTasks(barFolio, startMillis, endMillis);
+    }
+
+
+
+    function sb_createBarFolio(startMillis, endMillis) {
+        //console.debug("createBarFolio")
+        var moveBar = $("#summaryBar");
+        moveBar.empty();
+
+        var barFolio = new Folio(moveBar);
+        barFolio.width = endMillis - startMillis;
+        barFolio.height = 50;
+        barFolio.left = startMillis;
+        barFolio.inPercent = true;
+
+        var d = new Date(startMillis);
+        while (d.getTime() < endMillis) {
+            var headLbl = $("<span>").html(d.format("EEE dd")).addClass("moveBarEl");
+            barFolio.addElement(headLbl, 0, d.getTime(), 24 * 3600000, 50);
+            d.setDate(d.getDate() + 1);
+        }
+
+        //today
+        var today = $("<span>").prop("title", "今天").addClass("moveBarToday");
+        barFolio.addElement(today, 0, new Date().getTime(), barFolio.getPixelWidth() * 2, 50);
+
+        return barFolio;
+    }
+
+
+
+    function sb_loadAppointments(folio, focusMillis) {
+        var request = {
+            CM: "GETEVENTS",
+            type: "WEEK",
+            focusMillis: focusMillis,
+            FILTER: "NONE",
+            WG_IDS: "15089"
+        };
+
+        showSavingMessage();
+        $.getJSON(contextPath + "/agenda/agendaAjax", request, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok == true) {
+                for (var i = 0; response.events && i < response.events.length; i++) {
+                    var agev = response.events[i];
+                    var ev = $("<span>").prop("title", agev.summary).addClass("sbAgeEv");
+                    folio.addElement(ev, 15, agev.startMillis, agev.endMillis - agev.startMillis, 10);
+                }
+                folio.redraw();
+            }
+            hideSavingMessage();
+        });
+    }
+
+    function sb_loadTasks(folio, startMillis, endMillis) {
+        var request = {
+            CM: "GTSKOPPER",
+            startMillis: startMillis,
+            endMillis: endMillis
+        };
+
+        showSavingMessage();
+        $.getJSON(contextPath + "/task/taskAjax", request, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok == true) {
+                //onsole.debug(response)
+
+                for (var i = 0; response.tasks && i < response.tasks.length; i++) {
+                    var tsk = response.tasks[i];
+
+                    //var tk = $("<span>").prop("title", tsk.code + " " + tsk.name).addClass("sbTask");
+                    //folio.addElement(tk, 27, tsk.start, tsk.end-tsk.start, 10);
+
+
+                    //si disegnano le milestones
+                    if (tsk.startIsMilestone) {
+                        var tk = $("<span>").prop("title", tsk.code + " " + tsk.name).addClass("teamworkIcon sbTaskMil").html("^");
+                        folio.addElement(tk, 27, tsk.start, folio.getPixelWidth() * 10, 10);
+                    }
+                    if (tsk.endIsMilestone) {
+                        var tk = $("<span>").prop("title", tsk.code + " " + tsk.name).addClass("teamworkIcon sbTaskMil").html("^");
+                        folio.addElement(tk, 27, tsk.end - folio.getPixelWidth() * 10, folio.getPixelWidth() * 10, 10);
+                    }
+
+                }
+                folio.redraw();
+            }
+            hideSavingMessage();
+        });
+    }
+
+
+    function sb_loadIssues(folio, focusMillis) {
+        var request = {
+            CM: "GETTASKISS",
+            type: "WEEK",
+            focusMillis: focusMillis,
+            FILTER: "NONE",
+            ISSUEONLY: "yes",
+            WG_IDS: "15089"
+        };
+
+        showSavingMessage();
+        $.getJSON(contextPath + "/agenda/agendaAjax", request, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok == true) {
+                for (var i = 0; response.issues && i < response.issues.length; i++) {
+                    var iss = response.issues[i];
+                    var start = Date.fromInt(iss[0]);
+                    start.clearTime().getTime();
+                    var qta = iss[2];
+                    var wl = iss[3];
+
+                    var is = $("<span>").addClass("sbIssue").append($("<span>").addClass("teamworkIcon").append("i")).append(qta);
+                    folio.addElement(is, 35, start, wl, 10);
+                }
+                folio.redraw();
+            }
+            hideSavingMessage();
+        });
+    }
+
+
+</script>
+
+
+
+    ]]>
+  </node>
+</nodes>

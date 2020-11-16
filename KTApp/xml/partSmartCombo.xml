@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="ISSUE_TASK">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+        <tr class="trNormal trHl trSel scTr" id="ROW_1" selectText="第一个项目" selectValue="53595">
+            <td class="">第一个项目</td>
+            <td class="textSmall">T53595</td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_2" selectText="第一个子任务" selectValue="53597">
+            <td class="">第一个子任务</td>
+            <td class="textSmall">T53596.01</td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_3" selectText="第二个子任务" selectValue="53598">
+            <td class="">第二个子任务</td>
+            <td class="textSmall">T53596.02</td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_4" selectText="第二个项目" selectValue="53596">
+            <td class="">第二个项目</td>
+            <td class="textSmall">T53596</td>
+        </tr>
+    </table>    
+]]>
+  </node>
+ <node id="ASSIGNEE">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+        <tr class="trNormal trHl trSel scTr" id="ROW_1" selectText="Wing Dream" selectValue="15089">
+            <td class="">Wing Dream</td>
+            <td class="textSmall"> </td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_2" selectText="梦工厂" selectValue="15162">
+            <td class="">梦工厂</td>
+            <td class="textSmall"></td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_3" selectText="梦想飞扬" selectValue="15090">
+            <td class="">梦想飞扬</td>
+            <td class="textSmall"> </td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_4" selectText="第一个员工" selectValue="15163">
+            <td class="">第一个员工 </td>
+            <td class="textSmall"></td>
+        </tr>
+        <tr class="trNormal   scTr" id="ROW_5" selectText="第二个员工" selectValue="15164">
+            <td class="">第二个员工 </td>
+            <td class="textSmall"></td>
+        </tr>
+    </table>   
+]]>
+  </node>
+  <node id="resourceId">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal trHl  scTr" id="ROW_1" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="梦工厂" selectValue="15162"><td class="">梦工厂</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_4" selectText="梦想飞扬部门" selectValue="15090"><td class="">梦想飞扬部门</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_5" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_6" selectText="第二个员工" selectValue="15164"><td class="">第二个员工 </td><td class="textSmall"></td></tr>
+    <tr class="unselectable" class="addEntityLine">
+        <td colspan="90">
+            <button type="button" class="button noprint textual   " id="domId_1104667381" style="" onclick="createNewResource($(this));return false; ">添加资源</button>
+
+        </td>
+    </tr>
+</table>
+]]>
+  </node>
+
+  <node id="roleId">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal   scTr" id="ROW_1" selectText="(梦想飞扬) Customer" selectValue="35064"><td class="">(梦想飞扬) Customer</td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="(梦想飞扬) Project manager" selectValue="35063"><td class="">(梦想飞扬) Project manager</td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="(梦想飞扬) Worker" selectValue="35065"><td class="">(梦想飞扬) Worker</td></tr>
+</table>
+]]>
+  </node>
+  <node id="PANIC_TASK">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal  trSel scTr" id="ROW_1" selectText="第一个项目" selectValue="53595"><td class="">第一个项目</td><td class="textSmall">T53595</td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="第一个子任务" selectValue="53597"><td class="">第一个子任务</td><td class="textSmall">T53596.01</td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="第三个子任务" selectValue="53684"><td class="">第三个子任务</td><td class="textSmall">T53595.03</td></tr>
+    <tr class="trNormal   scTr" id="ROW_4" selectText="第二个子任务" selectValue="53683"><td class="">第二个子任务</td><td class="textSmall">T53595.02</td></tr>
+    <tr class="trNormal   scTr" id="ROW_5" selectText="第二个项目" selectValue="53596"><td class="">第二个项目</td><td class="textSmall">T53596</td></tr>
+    <tr class="trNormal   scTr" id="ROW_6" selectText="第四个子任务" selectValue="53685"><td class="">第四个子任务</td><td class="textSmall">T53595.04</td></tr>
+</table>
+]]>
+  </node>
+  <node id="TASK_TYPE">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal   scTr" id="ROW_1" selectText="国家级项目" selectValue="46221"><td class="">国家级项目</td><td class="textSmall">GJ</td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="省级项目" selectValue="46222"><td class="">省级项目</td><td class="textSmall">SJ</td></tr>
+    <tr class="unselectable" class="addEntityLine">
+        <td colspan="90">
+            <button type="button" class="button noprint textual   small" id="domId_1044679172" style="" onclick="openBlackPopup('/app/task/taskType.html?V_ID=120168936&once=yes&DESC='+encodeURIComponent($('#TASK_TYPE_txt').val()),$(window).width()-100,$(window).height()-50,taskTypeAddedCallback);return false; ">添加类型</button>
+        </td>
+    </tr>
+</table>
+]]>
+  </node>
+  <node id="ASSIGNED_BY">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal   scTr" id="ROW_1" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"> </td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="梦工厂" selectValue="15162"><td class="">梦工厂</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_4" selectText="梦想飞扬部门" selectValue="15090"><td class="">梦想飞扬部门</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_5" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_6" selectText="第二个员工" selectValue="15164"><td class="">第二个员工 </td><td class="textSmall"></td></tr>
+</table>
+]]>
+  </node>
+  <node id="receiver">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal   scTr" id="ROW_1" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"> </td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
+</table>
+]]>
+  </node>
+  <node id="typeId">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal   scTr" id="ROW_1" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"> </td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
+</table>
+]]>
+  </node>
+  <node id="TASK_ADD">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal   scTr" id="ROW_1" selectText="3级子任务1" selectValue="53692"><td class="">3级子任务1</td><td class="textSmall">T53595.04.01</td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="3级子任务2" selectValue="53693"><td class="">3级子任务2</td><td class="textSmall">T53595.04.02</td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="3级子任务3" selectValue="53694"><td class="">3级子任务3</td><td class="textSmall">T53595.04.03</td></tr>
+    <tr class="trNormal   scTr" id="ROW_4" selectText="第一个子任务" selectValue="53682"><td class="">第一个子任务</td><td class="textSmall">T53595.01</td></tr>
+    <tr class="trNormal   scTr" id="ROW_5" selectText="第一个子任务" selectValue="53597"><td class="">第一个子任务</td><td class="textSmall">T53596.01</td></tr>
+    <tr class="trNormal   scTr" id="ROW_6" selectText="第一个项目" selectValue="53595"><td class="">第一个项目</td><td class="textSmall">T53595</td></tr>
+    <tr class="trNormal   scTr" id="ROW_7" selectText="第三个子任务" selectValue="53684"><td class="">第三个子任务</td><td class="textSmall">T53595.03</td></tr>
+    <tr class="trNormal   scTr" id="ROW_8" selectText="第三个项目" selectValue="53690"><td class="">第三个项目</td><td class="textSmall">T53690</td></tr>
+    <tr class="trNormal   scTr" id="ROW_9" selectText="第二个子任务" selectValue="53683"><td class="">第二个子任务</td><td class="textSmall">T53595.02</td></tr>
+    <tr class="trNormal   scTr" id="ROW_10" selectText="第二个子任务" selectValue="53598"><td class="">第二个子任务</td><td class="textSmall">T53596.02</td></tr>
+    <tr class="trNormal   scTr" id="ROW_11" selectText="第二个项目" selectValue="53596"><td class="">第二个项目</td><td class="textSmall">T53596</td></tr>
+    <tr class="trNormal   scTr" id="ROW_12" selectText="第四个子任务" selectValue="53685"><td class="">第四个子任务</td><td class="textSmall">T53595.04</td></tr>
+</table>
+]]>
+  </node>
+  <node id="ASS_ADD">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal trHl  scTr" id="ROW_1" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="梦工厂" selectValue="15162"><td class="">梦工厂</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_4" selectText="梦想飞扬部门" selectValue="15090"><td class="">梦想飞扬部门</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_5" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_6" selectText="第二个员工" selectValue="15164"><td class="">第二个员工 </td><td class="textSmall"></td></tr>
+</table>]]>
+  </node>
+  <node id="FLT_ISSUE_ASSIGNED_TO">
+    <![CDATA[
+<table width="100%" border="0" class="comboTable " style="cursor:pointer">
+    <tr class="trNormal trHl trSel scTr" id="ROW_1" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"> </td></tr>
+    <tr class="trNormal   scTr" id="ROW_2" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_3" selectText="梦工厂" selectValue="15162"><td class="">梦工厂</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_4" selectText="梦想飞扬部门" selectValue="15090"><td class="">梦想飞扬部门</td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_5" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
+    <tr class="trNormal   scTr" id="ROW_6" selectText="第二个员工" selectValue="15164"><td class="">第二个员工 </td><td class="textSmall"></td></tr>
+</table>
+]]>
+  </node>
+</nodes>

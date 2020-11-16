@@ -1,0 +1,80 @@
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+
+  file: prompt.html
+  last modified: 12/24/18 5:59 PM
+  Version:  0.1.28
+  Build:  4009
+
+  Open Lab s.r.l., Florence - Italy
+  email:  matbicoc@gmail.com
+  blog: 	http://pupunzi.open-lab.com
+  site: 	http://pupunzi.com
+  	      http://open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+<div id="variablesReplace-prompt">
+
+  <h2>Title</h2>
+  <h3>Title</h3>
+
+  <div class="prompt-list-container">
+    <ul id="variablesReplace-list"></ul>
+  </div>
+</div>
+
+<script>
+
+  $.editIt.ui.prompt.onLoad = function (editor, plugin) {
+
+    var prompt = $("#variablesReplace-prompt");
+    prompt.children("h2").html(_("Dynamic content"));
+    prompt.children("h3").html(_("Choose the variable:"));
+
+    /*
+     var predef = plugin.variables;
+
+     for (var p in predef) {
+     var inpt = $("<input/>").attr({type: "hidden", value: predef[p], name: p, "data-content-replace": true});
+     $("#variablesReplace-prompt").append(inpt);
+     }
+     */
+
+    var vars =  [];
+
+    $("[data-content-replace]").each(function(){
+      vars.push(this.name);
+    });
+
+    if(!vars.length){
+      prompt.children("#variablesReplace-list").replaceWith("<p>" + _("There're no available variables.") + "</p>");
+      $(".editIt-button.apply").hide();
+    }
+
+    for (var v in vars){
+
+      var listEl = $("<li/>");
+
+      var listChooser = $("<input/>").attr({
+        type: "radio",
+        name: "variable-name",
+        value: vars[v],
+        id: "radio_" + vars[v]
+      });
+      var label = $("<label/>").attr({for: "radio_" + vars[v]}).html(" "+ vars[v]);
+
+      listEl.append(listChooser).append(label);
+
+      $("#variablesReplace-list").append(listEl);
+
+    }
+
+  };
+
+</script>

@@ -1,0 +1,276 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js.jsp?_=65022"></script>
+    <script src="/commons/js/i18nJs.jsp?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=104179719&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 isPopup" level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainerPopup">
+        <div id="savingMessage" class="noprint">请稍候...</div>
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainerPopup" class="null">
+            <form enctype="application/x-www-form-urlencoded" method="POST"
+                  action="/applications/teamwork/agenda/eventType.jsp" name="d1219962919" id="d1219962919"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="d1219962919V_ID" name="V_ID" value="1219962919" savedValue="">
+                <input type="hidden" id="d1219962919CM" name="CM" value="" savedValue="">
+
+                <script>$("#AGENDA_MENU").addClass('selected');</script>
+                <h1>事件类型</h1>
+                <table class="table dataTable">
+                    <tr>
+                        <th class="tableHead">Id</th>
+                        <th class="tableHead">代码</th>
+                        <th class="tableHead">描述</th>
+                        <th class="tableHead">不可用</th>
+                        <th class="tableHead ">域</th>
+                        <th class="tableHead">删除</th>
+                    </tr>
+                    <tr class="alternate" objid="45890">
+                        <td>45890</td>
+                        <td><input type=TEXT name="CODE_45890" id="CODE_45890" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+                        <td><input type=TEXT name="DESC_45890" id="DESC_45890" size=30 class="formElements" autocomplete='off' maxlength=255 value="Holidays" oldValue='1'></td>
+                        <td align="center">
+                            <input type=hidden name="UNAV_45890" id="UNAV_45890" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_UNAV_45890" name="ck_UNAV_45890" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td class="">
+                            <SELECT NAME="AREA_45890" id="AREA_45890" CLASS="formElements" oldValue='1'>
+                                <option value="">- 选择 -</option>
+                                <option selected value="5819">梦想飞扬</option>
+                            </SELECT>
+                        </td>
+
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  delete" id="domId_1308087284" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+                        </td>
+                    </tr>
+                    <tr class="alternate" objid="45891">
+                        <td>45891</td>
+                        <td><input type=TEXT name="CODE_45891" id="CODE_45891" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+                        <td><input type=TEXT name="DESC_45891" id="DESC_45891" size=30 class="formElements" autocomplete='off' maxlength=255 value="Work Permit" oldValue='1'></td>
+                        <td align="center">
+                            <input type=hidden name="UNAV_45891" id="UNAV_45891" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_UNAV_45891" name="ck_UNAV_45891" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td class="">
+                            <SELECT NAME="AREA_45891" id="AREA_45891" CLASS="formElements" oldValue='1'>
+                                <option value="">- 选择 -</option>
+                                <option selected value="5819">梦想飞扬</option>
+                            </SELECT>
+                        </td>
+
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  delete" id="domId_866518563" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+                        </td>
+                    </tr>
+                    <tr class="alternate highlight">
+                        <td><span class="sectionTitle">新类型:</span></td>
+                        <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+                        <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+                        <td align="center">
+                            <input type=hidden name="UNAV" id="UNAV" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_UNAV" name="ck_UNAV" value="yes"
+                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td class="">
+                            <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+                                <option value="">- 选择 -</option>
+                                <option value="5819">梦想飞扬</option>
+                            </SELECT>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table><div class="noprint buttonArea" id="domId_2095670690" style="text-align:left;">
+                    <div class="bbButtons">
+                        <button type="button" class="button noprint    first" id="domId_1057992383" style="" onClick="stopBubble(event);obj('d1219962919CM').value='SV';if (canSubmitForm('d1219962919'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d1219962919').submit();} catch(e){};} ">保存</button>
+
+                    </div>
+                </div>
+
+            </form>
+
+            <script>
+
+                function delRow(el) {
+                    var issueRow = $(el).closest("[objid]");
+                    var issueId = issueRow.attr("objid");
+                    deletePreview("OBJ_DEL", issueId, function (response) {  // callback function
+                        if (response && response.ok) {
+                            issueRow.fadeOut(500, function () { $(this).remove(); });
+                        }
+                    });
+                }
+
+
+            </script>
+
+
+        </div>
+
+    </div>
+
+    <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (true) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿
+
+<div class="portletBox small" id="wpLogged">
+    <h1>Logged operators</h1>
+
+    <table class="table" id="wpLoggedTable">
+        <thead>
+            <tr>
+                <th class="tableHead">登录身份：</th>
+                <th class="tableHead">最后登录</th>
+                <th class="tableHead">最后请求</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+    </table>
+
+    <did id="wpLoggedTpl">
+        <div class="__template__" type="wpLoggedRow">
+            <!--
+            <tr class="alternate" opid="(#=obj.id#)" wsConnectionId="(#=obj.wsConnectionId#)">
+              <td>(#!obj.person.displayName#)</td>
+              <td align="center">(#=new Date(obj.lastLoggedOn).format("HH:mm")#)</td>
+              <td align="center">(#=new Date(obj.lastMessageOn).format("HH:mm")#)</td>
+            </tr>
+            -->
+        </div>
+    </did>
+
+    <script>
+  $(function(){
+    $("#wpLoggedTpl").loadTemplates().remove();
+    var loggedOperators=[{"id":6719,"lastModifier":"Ayesha ahmed","lastModified":1590992119000,"creationDate":1590752071000,"loginName":"waq_ash@hotmail.com","enabled":true,"hidden":false,"administrator":false,"lastLoggedOn":1590992119000,"person":{"id":"12948","lastModified":1590752071000,"creationDate":1590752071000,"area":"AT","areaId":5028,"displayName":"Ayesha ahmed","loadComplete":false,"ads_id":10954,"location":"office","address":"","city":"","province":"","country":"","zip":"","url":"","email":"waq_ash@hotmail.com","mobile":"","fax":"","telephone":"","avatarUrl":"/img/svgAvatar?code=AA&fill=hsl%2860%2C70%25%2C80%25%29&stroke=hsl%2860%2C90%25%2C20%25%29","resConnectionStatus":"","name":"Ayesha","surname":"ahmed"},"sessionId":"B6BA9230F5046636ECBD8AC464C9E3B8","lastMessageOn":1590992151043,"wsConnectionId":191,"isAway":true,"chatIsActive":true},{"id":6636,"lastModifier":"史 玉平","lastModified":1590993604000,"creationDate":1589627879000,"loginName":"215396052@qq.com","enabled":true,"hidden":false,"administrator":false,"lastLoggedOn":1590993604000,"person":{"id":"12771","lastModifier":"史玉平 shi","lastModified":1589869011000,"creationDate":1589793479000,"area":"同方知网","areaId":4957,"displayName":"史 玉平","loadComplete":false,"ads_id":10791,"location":"office","address":"北京市海淀区西小口路","city":"北京市","province":"昌平区","country":"汉","zip":"","url":"","email":"215396052@qq.com","mobile":"18500851205","fax":"","telephone":"","avatarUrl":"/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29","resConnectionStatus":"","name":"史","surname":"玉平","courtesyTitle":""},"sessionId":"CC99B3ED1A0DDE4DEFBAE1CE8678526A","lastMessageOn":1590998240723,"wsConnectionId":212,"isAway":false,"chatIsActive":true},{"id":6699,"lastModifier":"Balotelli Elena","lastModified":1590994111000,"creationDate":1590560672000,"loginName":"elena.balotelli@mg.marposs.com","enabled":true,"hidden":false,"administrator":false,"lastLoggedOn":1590994111000,"person":{"id":"12906","lastModified":1590560672000,"creationDate":1590560672000,"area":"MG Marposs","areaId":5013,"displayName":"Balotelli Elena","loadComplete":false,"ads_id":10924,"location":"office","address":"","city":"","province":"","country":"","zip":"","url":"","email":"elena.balotelli@mg.marposs.com","mobile":"","fax":"","telephone":"","avatarUrl":"/img/svgAvatar?code=EB&fill=hsl%2860%2C70%25%2C80%25%29&stroke=hsl%2860%2C90%25%2C20%25%29","resConnectionStatus":"","name":"Balotelli","surname":"Elena"},"sessionId":"8876FD45E2BB3B0A8E8BC75C538AFE12","lastMessageOn":1590998056148,"wsConnectionId":199,"isAway":false,"chatIsActive":true}];
+    drawOperatorsList(loggedOperators);
+  });
+
+
+  $("body").on("ws-connect.wpLogged ws-disconnect.wpLogged",function(e,data){
+    //console.debug("ws-logged", data);
+    top.twComm.sendToServer("ws-getLoggedOperators",{});
+  }).on("ws-getLoggedOperators.wpLogged",function(e,data){
+    //console.debug("ws-getLoggedOperators");
+    drawOperatorsList(data);
+  });
+
+
+  function drawOperatorsList(loggedOperators){
+    var ndo=$("#wpLoggedTable tbody");
+    ndo.empty();
+    for (var i=0;i<loggedOperators.length;i++){
+      var op=loggedOperators[i];
+      ndo.append($.JST.createFromTemplate(op,"wpLoggedRow"));
+    }
+    if (loggedOperators.length==0){
+      ndo.append("您是唯一活跃的操作者.");
+    }
+
+  }
+
+    </script>
+

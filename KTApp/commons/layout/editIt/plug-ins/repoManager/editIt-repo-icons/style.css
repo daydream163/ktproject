@@ -1,0 +1,83 @@
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ jquery.mb.components
+
+ file: style.css
+ last modified: 12/24/18 5:59 PM
+ Version:  0.1.28
+ Build:  4009
+
+ Open Lab s.r.l., Florence - Italy
+ email:  matbicoc@gmail.com
+ blog: 	http://pupunzi.open-lab.com
+ site: 	http://pupunzi.com
+ 	      http://open-lab.com
+
+ Licences: MIT, GPL
+ http://www.opensource.org/licenses/mit-license.php
+ http://www.gnu.org/licenses/gpl.html
+
+ Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+@font-face {
+    font-family: 'editIt-repo';
+    src:
+        url('fonts/editIt-repo.ttf?rqh5yj') format('truetype'),
+        url('fonts/editIt-repo.woff?rqh5yj') format('woff'),
+        url('fonts/editIt-repo.svg?rqh5yj#editIt-repo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="editIt-icon-"], [class*=" editIt-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'editIt-repo' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.editIt-icon-document-file-zip:before {
+    content: "\e900";
+}
+.editIt-icon-document-file-txt:before {
+    content: "\e901";
+}
+.editIt-icon-document-file-xml:before {
+    content: "\e902";
+}
+.editIt-icon-document-file-ppt:before {
+    content: "\e903";
+}
+.editIt-icon-document-file-docx:before {
+    content: "\e904";
+}
+.editIt-icon-document-file-xls:before {
+    content: "\e905";
+}
+.editIt-icon-document-file-jpg:before {
+    content: "\e906";
+}
+.editIt-icon-document-file-mov:before {
+    content: "\e907";
+}
+.editIt-icon-document-file-pdf:before {
+    content: "\e908";
+}
+.editIt-icon-document-zip:before {
+    content: "\e909";
+}
+.editIt-icon-document-upload:before {
+    content: "\e90a";
+}
+.editIt-icon-document-upload2:before {
+    content: "\e90b";
+}
+

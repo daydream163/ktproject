@@ -1,0 +1,174 @@
+﻿
+
+<div class="portletBox" id="teamLoad">
+    <input type=hidden name="wpTL_WG_IDS" id="wpTL_WG_IDS" size=20 class="formElements grayed" autocomplete='off' readonly maxlength=255 value="12771,12805" oldValue='1'><div style="float:right;padding-top: 5px">
+        <button type="button" class="button noprint textual icon  ruzzol" id="domId_1037168814" style="" title="更改工作组" onclick="wptl_openWorkGroup();return false; "><span class='teamworkIcon '>g</span></button>
+
+
+    </div>
+    <h1>
+        <a class="button  textual   " id="domId_1556133209" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=790247001&WG_IDS=12771%2C12805">团队费用</a>
+
+        <span style="font-size: 9px;">&nbsp;&nbsp;（7天）</span>
+    </h1>
+    <hr>
+
+    <table class="table" cellpadding="6" id="teamLoadTable"></table>
+</div>
+
+
+<div style="display:none;" id="tmldmplt">
+    <div class="__template__" type="wptl_TEAMLOAD">
+        <!--
+        <tr resId="(#=obj.id#)" resName="(#!obj.displayName+obj.id#)">
+          <td style=""><a href="(#=contextPath#)/applications/teamwork/task/plan/operatorLoad.jsp?WG_IDS=(#=obj.id#)"><img src="(#=obj.avatarUrl#)" border="0" title="(#!obj.displayName#)" resid="(#=obj.id#)" class="face small"> (#!obj.displayName#)</a>
+          </td>
+          <td class="workloadInfo" style="font-weight: bolder;"></td>
+        </tr>
+        -->
+    </div>
+</div>
+
+
+<script>
+
+
+function computeResourceLoad(el,period, resId, currentWorkload,assId) {
+  //console.debug("computeResourceLoad",period, resId, currentWorkload,assId);
+
+  if (!period || false)
+    return;
+
+  var row = el.closest("tr");
+  //si chiama con delay sulla riga in modo da
+  row.stopTime("loadOpLoad");
+  var workloadInfo = row.find(".workloadInfo");
+  workloadInfo.removeClass("loading").empty();
+
+  if (resId) {
+    workloadInfo.addClass("loading");
+    row.oneTime(1000, "loadOpLoad", function () {
+      getOperatorLoad(resId, period.startMillis, period.endMillis, currentWorkload, assId, function (response) {
+        if (response.ok && response.stats) {
+          var bl = $("<div>").attr({"data-timer": 0, "data-forceposition": "left"});
+          bl.attr("data-balloon", "<b>工作量期</b><br><span class='textSmall'>" +
+              (new Date().format()) + " : " + (new Date(period.endMillis).format()) + "<br>" +
+              "工作量 - min: " + getMillisInHoursMinutes(response.stats.minLoad) + "  max: <b>" + getMillisInHoursMinutes(response.stats.maxLoad) + "</b><br>" +
+              "平均工作能力: " + getMillisInHoursMinutes(response.stats.meanCapacity) + "<br>"
+          );
+          bl.css("cursor", "pointer");
+          bl.addClass("");
+          if (response.stats.meanLoadPerc > 100)
+            bl.addClass("warning alertIcon");
+          else if (response.stats.meanLoadPerc > 90)
+            bl.addClass("attention");
+          bl.append(parseInt(response.stats.meanLoadPerc) + "%");
+          workloadInfo.empty().append(bl);
+        } else {
+          workloadInfo.empty();
+        }
+        workloadInfo.removeClass("loading");
+      });
+    })
+  }
+}
+
+
+
+function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callback) {
+  //console.debug("getOperatorLoad",resId, startMillis, endMillis, currentWL, assId);
+//se il progetto doveva giÃ  essere chiuso non si calcola niente
+  if (endMillis < new Date().getTime()) {
+    if (typeof (callback) == "function") {
+      callback({ok: false});
+    }
+    return;
+  }
+
+  var request = {
+    CM:            "GETOPLOAD",
+    resId:         resId,
+    startMillis:   startMillis,
+    endMillis:     endMillis,
+    simulatedLoad: currentWL,
+    assId:assId
+  };
+  $.getJSON(contextPath + "/api/planAjax", request, function (response) {
+    jsonResponseHandling(response);
+    if (typeof (callback) == "function") {
+      callback(response);
+    }
+  })
+}
+</script>
+
+<script type="text/javascript">
+  $("#tmldmplt").loadTemplates().remove();
+  $.JST.loadDecorator("wptl_TEAMLOAD",function(row,person){
+    computeResourceLoad(row.find(".workloadInfo"),{"type":"period","startMillis":1590966000000,"endMillis":1591570799998,"duration":604799998,"freq":0,"repeat":1,"trimmed":false},person.id,0,false);
+  });
+  drawTeamLoad();
+
+  function drawTeamLoad(){
+    var teamIds=$("#wpTL_WG_IDS").val().split(",");
+
+    var ndo=$("#teamLoadTable");
+
+    for (var i=0;i<teamIds.length;i++) {
+      var request = {"command": "get", "object": "person", "id": parseInt(teamIds[i]),"full":false};
+      callAPI(request, function (response) {
+        jsonResponseHandling(response);
+        if (response.ok && response.object) {
+          var person=response.object;
+          var row = $.JST.createFromTemplate(person, "wptl_TEAMLOAD");
+          //si mettono in ordine
+          var rows=ndo.find("tr[resId]");
+          if (rows.length==0){
+            ndo.append(row);
+          } else {
+            var lastRow=rows.eq(0);
+            for (var i=0;i<rows.length;i++){
+              var oldRow=rows.eq(i);
+              var attr = oldRow.attr("resName");
+              //console.debug("attr "+attr +" --- "+person.displayName )
+              lastRow=oldRow;
+              if (attr.toUpperCase()>(person.displayName+person.id).toUpperCase()) {
+                break;
+              }
+            };
+            row.insertBefore(lastRow);
+          }
+
+
+        }
+
+      })
+
+    }
+  }
+
+
+
+  function wptl_openWorkGroup() {
+    var url = contextPath+"/app/workgroup/workgroupPopup.html?" +
+      "canBeEmpty=yes&" +
+      "useCallbackFunction=yes&" +
+      "title="+encodeURIComponent("选择您的团队")+"&" +
+      "WG_IDS="+encodeURIComponent($("#teamLoad :input[name=wpTL_WG_IDS]").val())+"&" +
+      "PERM_REQUIRED=TW_ass_man";
+    openBlackPopup(url,700, 580,wptl_wgCallback);
+  }
+
+  function wptl_wgCallback(selectedResources) {
+    //console.debug("wptl_wgCallback",selectedResources);
+    if (selectedResources) {
+      var tmp=[];
+      for (var i=0;i<selectedResources.length;i++)
+        tmp.push(selectedResources[i].id);
+      refreshPortlet($("#teamLoad"),{"wpTL_WG_IDS":tmp.join(",")});
+    } else {
+      //refreshPortlet($("#teamLoad"),{"wpTL_WG_IDS":""});
+    }
+
+  }
+</script>

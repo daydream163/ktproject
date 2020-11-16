@@ -1,0 +1,99 @@
+﻿
+
+<div class="portletBox" id="projectUpdates">
+    <div style="float:right;padding-top: 5px">
+        <button type="button" class="button noprint textual icon  ruzzol" id="domId_1101639604" style="" title="过滤" onclick="$('#wpProjectUpdatesParam').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+
+    </div>
+
+    <h1>最新项目更新</h1>
+
+    <div id="wpProjectUpdatesParam" class="portletParams" style="display:none">
+        <label for="MAX_AGE_IN_DAYS" class=" ">年龄限制（天）</label>&nbsp;<input type=text name="MAX_AGE_IN_DAYS" id="MAX_AGE_IN_DAYS" size=2 class="formElements" autocomplete='off' maxlength=255 onBlur="refreshPortlet($(this),{'MAX_AGE_IN_DAYS':$(this).val()});" value="1" oldValue='1'>&nbsp;&nbsp;<label for="ck_PROJECT_ONLY">仅显示项目</label><input type=hidden name="PROJECT_ONLY" id="PROJECT_ONLY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_PROJECT_ONLY" name="ck_PROJECT_ONLY" value="yes"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'PROJECT_ONLY':$('#PROJECT_ONLY').val()});">
+        &nbsp;&nbsp;<label for="ck_SHOW_ONLY_MINE">只显示我被分配到的地方</label><input type=hidden name="SHOW_ONLY_MINE" id="SHOW_ONLY_MINE" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_SHOW_ONLY_MINE" name="ck_SHOW_ONLY_MINE" value="yes"
+                                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'SHOW_ONLY_MINE':$('#SHOW_ONLY_MINE').val()});">
+        &nbsp;&nbsp;<label for="ck_SHOW_COMMENTS_ONLY">仅显示评论</label><input type=hidden name="SHOW_COMMENTS_ONLY" id="SHOW_COMMENTS_ONLY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_SHOW_COMMENTS_ONLY" name="ck_SHOW_COMMENTS_ONLY" value="yes"
+                                                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'SHOW_COMMENTS_ONLY':$('#SHOW_COMMENTS_ONLY').val()});">
+    </div>
+    <table class="table" cellpadding="6" id="taskLogTable" lastPage="1"></table>
+</div>
+
+
+<div style="display:none;" id="ietmplt">
+    <div class="__template__" type="TASKLOG">
+        <!--
+        <tr logId="(#=obj.id#)" ><td colspan="2" style="padding-bottom: 0; border-top: 1px solid #cecfd2"><a href="(#=contextPath+'/app/taskOverview.html??CM=ED&OBJID='+obj.taskId#)"><strong>(#!obj.taskCode#) - (#!obj.taskName#)</strong></a></td></tr>
+        <tr logId="(#=obj.id#)">
+          <td valign="top" style="padding: 6px;">
+            <div class="commentHeader">
+              <img class="face" src="(#=obj.ownerAvatarUrl#)" resid="(#=obj.ownerResourceId#)" title="(#!obj.ownerDisplayName#)">
+              <b>(#!obj.ownerDisplayName#)</b> <span title="(#=(new Date(obj.creationDate)).format()#)">(#=dateToRelative(new Date(obj.creationDate))#)</span></div>
+
+            <div style="width: 100%; overflow-x: hidden" class="commentBody">
+              (#if(obj.newStatus){#)
+              状态: <span class="teamworkIcon" style="color:(#=obj.oldStatusColor#)">&copy;</span>&nbsp;(#=obj.oldStatusLabel#) <span class="teamworkIcon fromTo">:</span> <span class="teamworkIcon" style="color:(#=obj.newStatusColor#)">&copy;</span>&nbsp;<strong>(#=obj.newStatusLabel#)</strong><br>
+              (#}#)
+              (#if(obj.newStartDate && obj.newStartDate!=obj.oldStartDate){#)
+              开始日期: (#=new Date(obj.oldStartDate).format()#) <span class="teamworkIcon fromTo">:</span> <strong>(#=new Date(obj.newStartDate).format()#)</strong> <br>
+              (#}
+              if(obj.newEndDate && obj.newEndDate!=obj.oldEndDate){#)
+                结束日期: (#=new Date(obj.oldEndDate).format()#) <span class="teamworkIcon fromTo">:</span> <strong>(#=new Date(obj.newEndDate).format()#)</strong> <br>
+              (#}#)
+              (#!obj.comment#)
+            </div>
+          </td>
+        </tr>
+        -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    //$(function(){
+      $("#ietmplt").loadTemplates().remove();
+      $.JST.loadDecorator("TASKLOG",function(histRow,taskLog){
+        histRow.find(".commentBody").activateTeamworkLinks(true);
+      });
+      drawHistory(1);
+    //});
+
+
+    function drawHistory(pageNumber){
+      //si cancella eventuale more
+      var maxAge=1;
+      $("tr.hasMore").remove();
+      var request= {"command": "list", "object": "taskLog", "filters": {"creationDate":">-"+maxAge+"d"},"page":pageNumber,"pageSize":5};
+
+      if($("#PROJECT_ONLY").val()=="yes")
+        request.filters.rootOnly=true;
+
+      if($("#SHOW_ONLY_MINE").val()=="yes")
+        request.filters.assigneeId=12771;
+
+      if($("#SHOW_COMMENTS_ONLY").val()=="yes")
+        request.filters.comment="!()";
+
+
+
+      callAPI(request,function(response){
+        jsonResponseHandling(response);
+        if (response.ok && response.objects) {
+          $("#projectUpdates").show();
+          //console.debug("drawHistory",issHists);
+          for (var i=0;i<response.objects.length;i++){
+            $("#taskLogTable").append($.JST.createFromTemplate(response.objects[i],"TASKLOG"));
+          }
+          if (response.hasMore){
+            var hm=$("<tr class='hasMore'><td colspan=3><span class='button noprint textual' onclick='drawHistory("+(pageNumber+1)+")'>更多...</span></td></tr>")
+            $("#taskLogTable").append(hm);
+          }
+        }
+
+      })
+    }
+</script>
+
+
+
+

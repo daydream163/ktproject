@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="GETEVENTS.WEEK">
+    <data>
+      <![CDATA[
+{
+    "ok": true,
+    "events": [
+        {
+            "id": "640",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1604916060000,
+            "creator": "Dream Wing",
+            "creationDate": 1604916034000,
+            "authorId": 15089,
+            "authorName": "Dream Wing",
+            "summary": "开了个会",
+            "description": "描述",
+            "location": "第三会议室",
+            "isPersonal": true,
+            "isReminder": true,
+            "isUnavailability": true,
+            "isMeeting": false,
+            "icalId": "TW_640",
+            "targets": [
+                {
+                    "resId": "15089",
+                    "resName": "Dream Wing",
+                    "resConnectionStatus": "active",
+                    "resAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29"
+                },
+                {
+                    "resId": "15164",
+                    "resName": " 第二个员工",
+                    "resConnectionStatus": "",
+                    "resAvatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29"
+                },
+                {
+                    "resId": "15163",
+                    "resName": " 第一个员工",
+                    "resConnectionStatus": "",
+                    "resAvatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29"
+                }
+            ],
+            "schedule": {
+                "id": 103895,
+                "type": "period",
+                "startMillis": 1604907000000,
+                "endMillis": 1604916000000,
+                "duration": 9000000,
+                "freq": 0,
+                "repeat": 1,
+                "trimmed": false
+            },
+            "type": "Holidays",
+            "typeId": 45890,
+            "isExternal": false,
+            "exceptions": "",
+            "canManage": true,
+            "isInvolved": true,
+            "startMillis": 1604907000000,
+            "endMillis": 1604916000000,
+            "trimmed": false
+        },
+        {
+            "id": "641",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1604916177000,
+            "creator": "Dream Wing",
+            "creationDate": 1604916177000,
+            "authorId": 15089,
+            "authorName": "Dream Wing",
+            "summary": "产品总结会",
+            "description": "产品总结会的描述信息",
+            "location": "210",
+            "isPersonal": true,
+            "isReminder": false,
+            "isUnavailability": true,
+            "isMeeting": false,
+            "icalId": "TW_641",
+            "targets": [
+                {
+                    "resId": "15089",
+                    "resName": "Dream Wing",
+                    "resConnectionStatus": "active",
+                    "resAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29"
+                }
+            ],
+            "schedule": {
+                "id": 103896,
+                "type": "period",
+                "startMillis": 1605059100000,
+                "endMillis": 1605070800000,
+                "duration": 11700000,
+                "freq": 0,
+                "repeat": 1,
+                "trimmed": false
+            },
+            "type": "Work Permit",
+            "typeId": 45891,
+            "isExternal": false,
+            "exceptions": "",
+            "canManage": true,
+            "isInvolved": true,
+            "startMillis": 1605059100000,
+            "endMillis": 1605070800000,
+            "trimmed": false
+        },
+        {
+            "id": "642",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605086745000,
+            "creator": "Dream Wing",
+            "creationDate": 1605086737000,
+            "authorId": 15089,
+            "authorName": "Dream Wing",
+            "summary": "j加会班？？",
+            "description": "j加会班？？",
+            "location": "公司",
+            "isPersonal": false,
+            "isReminder": false,
+            "isUnavailability": true,
+            "isMeeting": false,
+            "icalId": "TW_642",
+            "targets": [
+                {
+                    "resId": "15089",
+                    "resName": "Dream Wing",
+                    "resConnectionStatus": "active",
+                    "resAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29"
+                }
+            ],
+            "schedule": {
+                "id": 104040,
+                "type": "period",
+                "startMillis": 1605087000000,
+                "endMillis": 1605093300000,
+                "duration": 6300000,
+                "freq": 0,
+                "repeat": 1,
+                "trimmed": false
+            },
+            "type": "Work Permit",
+            "typeId": 45891,
+            "isExternal": false,
+            "exceptions": "",
+            "canManage": true,
+            "isInvolved": true,
+            "startMillis": 1605087000000,
+            "endMillis": 1605093300000,
+            "trimmed": false
+        },
+        {
+            "id": "643",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605188399000,
+            "creator": "Dream Wing",
+            "creationDate": 1605188399000,
+            "authorId": 15089,
+            "authorName": "Dream Wing",
+            "summary": "开会讨论奖金问题",
+            "isPersonal": false,
+            "isReminder": false,
+            "isUnavailability": true,
+            "isMeeting": false,
+            "icalId": "TW_643",
+            "targets": [
+                {
+                    "resId": "15089",
+                    "resName": "Dream Wing",
+                    "resConnectionStatus": "active",
+                    "resAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29"
+                }
+            ],
+            "schedule": {
+                "id": 104050,
+                "type": "period",
+                "startMillis": 1605146400000,
+                "endMillis": 1605153600000,
+                "duration": 7200000,
+                "freq": 0,
+                "repeat": 1,
+                "trimmed": false
+            },
+            "type": "Work Permit",
+            "typeId": 45891,
+            "isExternal": false,
+            "exceptions": "",
+            "canManage": true,
+            "isInvolved": true,
+            "startMillis": 1605146400000,
+            "endMillis": 1605153600000,
+            "trimmed": false
+        },
+        {
+            "id": "644",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605188429000,
+            "creator": "Dream Wing",
+            "creationDate": 1605188412000,
+            "authorId": 15089,
+            "authorName": "Dream Wing",
+            "summary": "工作周报总结",
+            "isPersonal": false,
+            "isReminder": false,
+            "isUnavailability": false,
+            "isMeeting": false,
+            "icalId": "TW_644",
+            "targets": [
+                {
+                    "resId": "15089",
+                    "resName": "Dream Wing",
+                    "resConnectionStatus": "active",
+                    "resAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29"
+                },
+                {
+                    "resId": "15189",
+                    "resName": "Zhang Fei",
+                    "resConnectionStatus": "",
+                    "resAvatarUrl": "/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29"
+                },
+                {
+                    "resId": "15163",
+                    "resName": " 第一个员工",
+                    "resConnectionStatus": "",
+                    "resAvatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29"
+                }
+            ],
+            "schedule": {
+                "id": 104052,
+                "type": "period",
+                "startMillis": 1605234600000,
+                "endMillis": 1605242700000,
+                "duration": 8100000,
+                "freq": 0,
+                "repeat": 1,
+                "trimmed": false
+            },
+            "isExternal": false,
+            "exceptions": "",
+            "canManage": true,
+            "isInvolved": true,
+            "startMillis": 1605234600000,
+            "endMillis": 1605242700000,
+            "trimmed": false
+        }
+    ]
+}
+]]>
+    </data>
+  </node>
+  <node id="GETTASKISS.WEEK">
+    <data>
+      <![CDATA[
+{
+    "ok": true,
+    "issues": [
+        [
+            20201109,
+            "15089",
+            1,
+            7200000
+        ],
+        [
+            20201112,
+            "15089",
+            1,
+            0
+        ]
+    ]
+}
+]]>
+    </data>
+  </node>
+</nodes>

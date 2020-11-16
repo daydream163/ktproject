@@ -1,0 +1,190 @@
+﻿
+
+
+<link href="/commons/layout/disclose/mb.disclose.css?_=65017"
+      rel="stylesheet" type="text/css">
+<script type="text/javascript"
+        src="/commons/layout/disclose/jquery.mb.disclose.js?_=65017"></script>
+<style>
+
+    .welcomeDiv { height: 330px; background-color: #586874; border: none; }
+
+        .welcomeDiv h2 { font-weight: 200; font-size: 35px; line-height: 1.1em; }
+
+    #wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 280px; }
+
+    #mbCarousel { position: relative; width: 100%; margin: auto; height: 280px; }
+
+        #mbCarousel .banner { position: relative; padding: 30px 40px; border-top-left-radius: 5px; border-top-right-radius: 5px; color: #fff; font-size: 20px; font-weight: 200; }
+
+        #mbCarousel .button.light { color: #fff; border: 1px solid #fff; background-color: transparent; font-size: 14px; min-width: 120px; margin-bottom: 10px; }
+
+            #mbCarousel .button.light:hover { background-color: rgba(0, 0, 0, 0.1);; }
+
+    #welcomeDiv #buttonBar { float: right; text-align: right; padding: 10px; opacity: 0.5; }
+
+        #welcomeDiv #buttonBar .button.textual { color: #fff; }
+
+    #projects { background: #6bc2e7; }
+
+    #projectsdone { background: #46b5a0; }
+
+    #resource { background: #68b645; }
+
+    #aboutYou { background: #a8b547; }
+
+    #issues { background: #f2b64c; }
+
+    #home { background: #f79a66; }
+
+    #welcomeDiv #slideIndex { text-align: left; padding: 8px 0 0 40px; display: inline-block; }
+
+
+
+    .idxPage { width: 20px; height: 20px; }
+
+        .idxPage.sel { box-shadow: none; }
+
+        .idxPage.done { background-image: url(/img/check-inactive.png); background-color: #586874; background-repeat: no-repeat; border: 1px solid rgba(255, 255, 255, 1); background-position: center; }
+
+            .idxPage.done.sel { background-image: url(/img/check-active.png); background-color: #fff; background-repeat: no-repeat; }
+
+    .step-img { float: right; width: 220px; margin-left: 80px; }
+
+        .step-img.gantt { width: 260px; margin-left: 0; }
+
+    .task-number { position: absolute; right: 50px; bottom: 50px; font-size: 5em; background-color: #fff; border-radius: 50%; width: 130px; height: 130px; text-align: center; box-shadow: -8px 5px 0 rgba(0, 0, 0, 0.3); }
+
+        .task-number a.button.textual { color: #68b645; font-weight: 200; }
+
+            .task-number a.button.textual:hover { color: #333; text-decoration: none; }
+</style>
+<div id="welcomeDiv" class="welcomeDiv portletBox">
+
+    <div id="wrapper">
+        <div id="mbCarousel">
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- TASK-------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+
+            <div id="projectsdone" class="banner done">
+                <div class="task-number">
+                    <a class="button  textual   " id="domId_1777957972" style="" href="/app/task/taskList.html?V_ID=103915655&CM=FN&FLNM=PF_MY_OPEN_TASK">13</a>
+
+                </div>
+                <img src="/img/step-1b.png" class="step-img">
+
+                <h2>You created your first project, great!</h2>
+
+                <div class="bannerText">
+                    <p>Check your project progress or feel free to explore a little bit around.</p>
+                </div>
+            </div>
+
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- RESOURCE -------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="resource" class="banner done">
+                <img src="/img/step-2.png" class="step-img">
+
+                <h2>Involve your team</h2>
+
+                <div class="bannerText">
+                    <p>Create your collegues and start collaborating. You can even add your clients.</p>
+                </div>
+                <a class="button     light" id="domId_941083318" style="" href="/resource/resourceEditor.html?V_ID=1524199953&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
+
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- OPTION -------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="aboutYou" class="banner ">
+                <img src="/img/step-3.png" class="step-img">
+
+                <h2>Let's talk about you</h2>
+
+                <div class="bannerText">
+                    <p>Upload your photo, update your info, set location and language.</p>
+                </div>
+                <a class="button     light" id="domId_1237421957" style="" href="/resource/resourceOptions.html?V_ID=480108984&CM=EDIT_OPT&OBJID=12771">Update info</a>
+
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- ISSUE -------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="issues" class="banner done">
+                <img src="/img/step-4.png" class="step-img">
+
+                <h2>Manage your every day activities</h2>
+
+                <div class="bannerText">
+                    <p>Define your task's activities, to-dos, ideas, issues and assign them to your team.</p>
+                </div>
+                <a class="button     light" id="domId_1095632309" style="" href="/app/task/taskIssueList.html?V_ID=889935362&OBJID=45748">Manage activities</a>
+
+
+            </div>
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--------------------------------------------------- DASHBOARD-------------------------------------------------------------->
+            <!----------------------------------------------------------------------------------------------------------------->
+            <div id="home" class="banner done">
+                <img src="/img/step-5.png" class="step-img">
+
+                <h2>Make it feel like home</h2>
+
+                <div class="bannerText">
+                    <p>
+                        Customize your homepage and you are ready to go.
+                        If you need a hand just visit our support site.
+                    </p>
+                </div>
+                <button type="button" class="button noprint    light" id="domId_2067511426" style="" onclick="customizeThisPage($(this));return false; ">Customize page</button>
+
+
+            </div>
+        </div>
+        <div id="slideIndex"></div>
+        <div id="buttonBar">
+
+            <button class="button textual small" onclick="removePortlet($(this))">
+                Don't show this help again <span class="teamworkIcon">x</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#mbCarousel").disclose({
+            animationIn: { opacity: 0 },
+            animationOut: { opacity: 0 }
+        });
+
+        $('#mbCarousel').disclose('goto', "aboutYou");
+    });
+
+    function removePortlet(el) {
+        var portletId = el.closestAttr("portletId");
+        var pageId = el.closest(".wsPage[pageId]").attr("pageId");
+        var req = { CM: "REMPORTLET", portletId: portletId, pageId: pageId };
+
+        showSavingMessage();
+        $.getJSON(contextPath + "/applications/website/admin/ajax/ajaxCustomizationController.jsp", req, function (response) {
+            hideSavingMessage();
+            jsonResponseHandling(response);
+            if (response.ok) {
+                el.closest("[portletId]").fadeOut(500, function () {
+                    $(this.remove())
+                });
+            }
+        })
+    }
+
+    function customizeThisPage(el) {
+        var pageId = el.closest(".wsPage[pageId]").attr("pageId");
+        getTop().location.href = "/app/admin/customizePage.html?V_ID=1606563730&PAGEID=" + pageId
+    }
+</script>
+

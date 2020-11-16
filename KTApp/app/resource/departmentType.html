@@ -1,0 +1,230 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65017" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65017" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65017"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65017" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65017"></script>
+
+
+    <script src="/commons/js/platform.js?_=65017"></script>
+    <script src="/commons/js/i18nJs.js?_=65017"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=1177803114&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level5 isPopup" level="5">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainerPopup">
+        <div id="savingMessage" class="noprint">请稍候...</div>
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainerPopup" class="null">
+            <script>$("#RESOURCE_MENU").addClass('selected');</script><h1>组织类型</h1><form enctype="application/x-www-form-urlencoded" method="POST"
+                                                                                         action="/applications/teamwork/resource/departmentType.jsp" name="d264934188" id="d264934188"
+                                                                                         savedAction="" savedTarget="">
+                <input type="hidden" id="d264934188V_ID" name="V_ID" value="264934188" savedValue="">
+                <input type="hidden" id="d264934188CM" name="CM" value="" savedValue="">
+
+                <table class="table">
+                    <tr><th class="tableHead">Id</th><th class="tableHead">代码</th><th class="tableHead">描述</th><th class="tableHead">删除</th></tr>
+                    <tr class="alternate" objid="1">
+                        <td>1</td>
+                        <td><input type=TEXT name="CODE_1" id="CODE_1" size=15 class="formElements" autocomplete='off' maxlength=255 value="COMPANY" oldValue='1'></td>
+                        <td><input type=TEXT name="DESC_1" id="DESC_1" size=30 class="formElements" autocomplete='off' maxlength=255 value="Company" oldValue='1'></td>
+
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  delete" id="domId_595351004" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+                        </td>
+                    </tr>
+                    <tr class="alternate" objid="2">
+                        <td>2</td>
+                        <td><input type=TEXT name="CODE_2" id="CODE_2" size=15 class="formElements" autocomplete='off' maxlength=255 value="DEPARTMENT" oldValue='1'></td>
+                        <td><input type=TEXT name="DESC_2" id="DESC_2" size=30 class="formElements" autocomplete='off' maxlength=255 value="Department" oldValue='1'></td>
+
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  delete" id="domId_422101903" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+                        </td>
+                    </tr>
+                    <tr class="alternate highlight"><td><span class="sectionTitle">新类型:</span></td><td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td><td colspan="2"><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td></tr>
+                </table><div class="noprint buttonArea" id="domId_892175651" style="text-align:left;">
+                    <div class="bbButtons">
+                        <button type="button" class="button noprint    first" id="domId_1065343003" style="" onClick="stopBubble(event);obj('d264934188CM').value='SV';if (canSubmitForm('d264934188'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d264934188').submit();} catch(e){};} ">保存</button>
+
+                    </div>
+                </div>
+
+            </form>
+
+            <script>
+
+                function delRow(el) {
+                    var issueRow = $(el).closest("[objid]");
+                    var issueId = issueRow.attr("objid");
+                    deletePreview("OBJ_DEL", issueId, function (response) {  // callback function
+                        if (response && response.ok) {
+                            issueRow.fadeOut(500, function () { $(this).remove(); });
+                        }
+                    });
+                }
+
+
+            </script>
+        </div>
+
+    </div>
+
+    <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (true) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 5;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

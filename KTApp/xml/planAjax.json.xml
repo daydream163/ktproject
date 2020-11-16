@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="GETOPLOAD">
+    <data>
+      <![CDATA[
+{
+    "ok": true,
+    "stats": {
+        "meanDone": 0,
+        "minCapacity": 0,
+        "maxCapacity": 28800000,
+        "minLoad": 0,
+        "maxLoad": 25476923,
+        "meanCapacity": 28800000,
+        "minDone": 0,
+        "meanLoad": 25476923,
+        "maxDone": 0,
+        "meanLoadPerc": 88.46153819444444
+    }
+}
+      ]]>
+    </data>
+  </node>
+  <node id="ISSUE_TASK">
+    <![CDATA[
+ 
+]]>
+  </node>
+</nodes>

@@ -1,0 +1,140 @@
+﻿
+
+
+<div id="createIssuesExDiv" class="portletBox" style="background-color: #FBFBD4">
+    <script>
+
+        function saveAndReloadIssues(button) {
+            //console.debug("saveAndReloadIssues")
+            if (canSubmitForm('CREATEISSUE_FORM')) {
+                showSavingMessage();
+                var request = { CM: "SV", OBJID: "new", setValuesAsDefault: "yes" };
+                $("#issueCreateLine").fillJsonWithInputValues(request);
+
+                $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        showFeedbackMessageInDiv("OK", "正确保存的问题", "createIssuesExDiv");
+                        //$("#ISSUE_DESCRIPTION").val("");
+                        $("body").trigger("issueEvent", [
+                            { type: "save", response: response }
+                        ])
+                    }
+                    hideSavingMessage();
+                });
+            }
+        }
+
+    </script>
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/portlethtml/wp_create_issues.html" name="CREATEISSUE_FORM" id="CREATEISSUE_FORM" novalidate
+          savedAction="" savedTarget="">
+        <input type="hidden" id="CREATEISSUE_FORMV_ID" name="V_ID" value="236663" savedValue="">
+        <input type="hidden" id="CREATEISSUE_FORMCM" name="CM" value="" savedValue="">
+
+
+        <div style="float:right;padding-top: 15px">
+
+        </div>
+        <h1>
+            <a class="button  textual   " id="domId_1915881338" style="" href="/app/issueList.html?V_ID=1171001091">创建问题</a>
+
+
+        </h1>
+        <div class="issueRow issueRowFocused">
+
+
+            <table id="issueCreateLine" width="100%" border="0">
+                <tr>
+
+                    <td nowrap valign="top" colspan="3"><textarea name="ISSUE_DESCRIPTION" id="ISSUE_DESCRIPTION" COLS="70" ROWS="10" class="formElements" style='height:123px;width:100%;' title="描述" required="true" oldValue='1' maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><input type=text name="ISSUE_TAGS" id="ISSUE_TAGS" placeholder="创建标签" size=20 class="formElements tagBox" autocomplete='off' maxlength=255 style='width:100%' autocomplete='off' taggableClass="com.twproject.task.Issue" maxResult="30" tagPropertyName="tags" areaId="4957" value="" oldValue='1'></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="createIssues">
+                            <label for="ISSUE_TASK_txt" class="required">任务*</label><br><input type=text name="ISSUE_TASK_txt" id="ISSUE_TASK_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,true );" onKeyDown="manageKeyEvent ($(this),event,true,true);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ISSUE_TASK" id="ISSUE_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                        </div>
+                    </td>
+                    <td align="left" nowrap> </td>
+
+                    <td>
+                        <label for="ASSIGNED_BY_txt" class=" ">提问人</label><br><input type=text name="ASSIGNED_BY_txt" id="ASSIGNED_BY_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASSIGNED_BY" id="ASSIGNED_BY" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <script type="text/javascript">
+
+                            (function () {
+                                var cvd = { values: [{ "code": "05_GRAVITY_BLOCK", "color": "#DB2727", "value": "中断", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "04_GRAVITY_CRITICAL", "color": "#8C6044", "value": "关键的", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "03_GRAVITY_HIGH", "color": "#F9791C", "value": "高", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "02_GRAVITY_MEDIUM", "color": "#F9C154", "value": "中", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "01_GRAVITY_LOW", "color": "#EEEEEE", "value": "低", "enabled": true, "textColor": "#000000", "index": 5 }] };
+
+
+                                _colorValueData["ISSGRLIN"] = cvd;
+
+                            })();
+                        </script>
+
+
+
+                        <label for="domId_1921055099">级别</label><br> <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ISSGRLIN" displayValue='true'>
+                            <input type=hidden name="ISSUE_GRAVITY" id="ISSUE_GRAVITY" size=2 class="formElements" autocomplete='off' maxlength=255 value="03_GRAVITY_HIGH" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                <div class="cvcStatuses ellipsis">
+                                    <div class="cvcSelBox " title="高" code="03_GRAVITY_HIGH"
+                                         style=" color:#FFFFFF;background-color:#F9791C"><span class="cvcDescription">高</span></div>
+                                </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td valign="top">
+
+                        <script type="text/javascript">
+
+                            (function () {
+                                var cvd = { values: [{ "code": "11122", "color": "#3BBF67", "value": "open", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "11123", "color": "#6EBEF4", "value": "closed", "enabled": true, "textColor": "#000000", "index": 2 }, { "code": "11124", "color": "#763A96", "value": "aborted", "enabled": true, "textColor": "#FFFFFF", "index": 3 }] };
+
+
+                                _colorValueData["STATUSLINE"] = cvd;
+
+                            })();
+                        </script>
+
+
+
+                        <label for="domId_1339194965">问题状态</label><br> <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="STATUSLINE" displayValue='true'>
+                            <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="11122" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                <div class="cvcStatuses ellipsis">
+                                    <div class="cvcSelBox " title="open" code="11122"
+                                         style=" color:#FFFFFF;background-color:#3BBF67"><span class="cvcDescription">open</span></div>
+                                </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                            </div>
+
+                        </div>
+                    </td>
+
+                    <td>
+                        <label for="ISSUE_DATE_CLOSE_BY" class=" ">截止日期</label><br><input type=text name="ISSUE_DATE_CLOSE_BY" id="ISSUE_DATE_CLOSE_BY" size=8 class="formElements dateField validated date" autocomplete='off' maxlength=255 onchange="$(this).oneTime(100,'dfblur',function(){if ($(this).is('.formElementsError')) {$(this).focus();} });" format="yyyy-M-d" value="" oldValue='1' entryType="DATE" maxValue="3020-6-9" minValue="1020-5-19"><span title="日历" id="ISSUE_DATE_CLOSE_BYs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:false,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                    </td>
+                </tr>
+
+            </table>
+            <div class="editButton">
+                <div class="noprint buttonArea notFix" id="domId_458704801" style="text-align:left;">
+                    <div class="bbButtons">
+                        <button type="button" class="button noprint    first" id="domId_2132781324" style="" onclick="saveAndReloadIssues($(this));return false; ">保存</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+

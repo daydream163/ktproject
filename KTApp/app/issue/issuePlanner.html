@@ -1,0 +1,1708 @@
+﻿
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            //top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
+        }
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=1946612415&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 " level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainer" style="">
+        <div id="savingMessage">请稍候...</div>
+
+
+
+
+        <div class="twHeader noprint">
+            <div id="headerWrapper ">
+                <a href="/app/getsThingsDone.html?V_ID=967909870" class="twLogo withArrowRight" title="Home" id="twLogoMainMenu"></a>
+                <div id="mainNav" class="noprint mainNav">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td id="DASHBOARD_MENU" ttitle="返回到主页.您可以通过自定义页面设置自己的个性化主页" class="withArrowRight">
+                                <div style="position: relative">
+                                    <span>
+                                        <a class="button     hasDivomo noLabel" id="domId_472559065" style="" href="/app/getsThingsDone.html?V_ID=1388229665"></a>
+
+                                        <span id="arrowOpener_divdomo_domId_905678849" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_905678849', 'arrowOpener_divdomo_domId_905678849'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_905678849" class="divomo divDark"
+                                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   " id="domId_468945813" style="" href="/helpDesk.page?V_ID=1221550212">Help Desk</a>
+
+                                            <a class="button  textual  focused " id="domId_307294601" style="" href="/getsThingsDone.page?V_ID=2130939024">Get things done</a>
+
+                                            <a class="button  textual   " id="domId_2187972" style="" href="/pm.page?V_ID=1900345741">Project Manager</a>
+
+                                            <a class="button  textual   " id="domId_266023405" style="" href="/supervisor.page?V_ID=1027412584">Supervisor</a>
+
+                                            <a class="button  textual   " id="domId_2141898428" style="" href="/applications/teamwork/documentation/documentation.jsp?V_ID=1739064450">关于</a>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </td>
+
+                            <td id="TASK_MENU" ttitle="这是Twproject的入口点.一旦创建和分配,Twproject就将开始为团队工作.">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_1203775480" style="" href="/app/task/taskList.html?V_ID=108451574">项目</a>
+
+                                    <span id="arrowOpener_divdomo_domId_411053973" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_411053973', 'arrowOpener_divdomo_domId_411053973'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_411053973" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_1203775480" style="" href="/app/task/taskList.html?V_ID=353486366">项目</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_129231812" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=1551354476">Portfolio</a>
+
+                                        <a class="button  textual   " id="domId_893097167" style="" href="/applications/teamwork/document/documentList.jsp?V_ID=856933332">文档</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_1520876886" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=166287263">额外费用</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1015025423" style="" onclick="openBlackPopup('/applications/teamwork/task/taskNew.jsp?V_ID=636115227&CM=AD','800px','720px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 新建项目</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="TIMESHEET_MENU" ttitle="工时计划,工作记录,记录的有效性检查和分析.">
+                                <span>
+                                    <a class="button     lreq10 lreqActive hasDivomo" id="domId_913804494" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=1865239473">工时表</a>
+
+                                    <span id="arrowOpener_divdomo_WKLOGSM" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_WKLOGSM', 'arrowOpener_divdomo_WKLOGSM'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_WKLOGSM" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_2010141819" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=1365252099">工时表</a>
+
+                                        <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_1557657555" style="" onclick="openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=240817329&FOCUS_MILLIS=1605249187900',$(window).width()-100,$(window).height()-50);return false; ">计时器</button>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_1724869955" style="" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=773684724">时间表概述</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1007582832" style="" href="/applications/teamwork/task/worklog/attendanceOverview.jsp?V_ID=676706557">出勤概述</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_1536100829" style="" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=1567142192&RES_ID=15089">工作记录审核</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_198228769" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=1377639009">工作记录分析</a>
+
+                                        <a class="button  textual   lreq30 lreqLabel lreqActive" id="domId_883784086" style="" href="/applications/teamwork/task/financial/expenseList.jsp?V_ID=222486805">费用控制</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="PLAN_MENU" ttitle="PLAN_MENU_HELP" valign="bottom">
+                                <span>
+                                    <a class="button     lreq20 lreqActive hasDivomo" id="domId_566702208" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1699811697&CM=FIND_BY_ENTITY">计划</a>
+
+                                    <span id="arrowOpener_divdomo_domId_474035411" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_474035411', 'arrowOpener_divdomo_domId_474035411'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_474035411" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq30 lreqActive lreqLabel" id="domId_2096305954" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1896790463&CM=FIND_BY_ENTITY">计划</a>
+
+                                        <a class="button  textual   lreq20 lreqActive lreqLabel" id="domId_997456196" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=159068853">工作负荷</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议">
+                                <a href="/app/agendaWeekDay.html?V_ID=2000555503&AGENDA_TYPE=WEEK&FOCUS_MILLIS=0" class="button">
+                                    日程
+                                </a>
+
+                            </td>
+                            <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
+To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
+                                <span>
+                                    <button type="button" class="button noprint    hasDivomo" id="domId_184877842" style="" onclick="window.location.href='/taskList.html'; ">问题</button>
+
+                                    <span id="arrowOpener_divdomo_domId_1980536932" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1980536932', 'arrowOpener_divdomo_domId_1980536932'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1980536932" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <button type="button" class="button noprint textual   hasDivomo" id="domId_184877842" style="" onclick="window.location.href='/taskList.html'; ">问题</button>
+
+                                        <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_887687624" style="" onclick="window.location.href='/issue/issueOrganizer.html'; ">组织（看板）</button>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_797000859" style="" href="/issue/issuePlanner.html?V_ID=302931581">计划者</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
+                                <a href="/app/resourceList.html?V_ID=1834838477" class="button">
+                                    资源
+                                </a>
+                            </td>
+
+                            <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
+
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_265112019" style="" href="/app/toolsIntro.html?V_ID=12230419">工具</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1856619455" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1856619455', 'arrowOpener_divdomo_domId_1856619455'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1856619455" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_265112019" style="" href="/app/toolsIntro.html?V_ID=565484317">工具</a>
+
+                                        <a class="button  textual   " id="domId_1265789275" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=618108201&CM=FN">讨论板</a>
+
+                                        <hr><span class='menuTitle'>书签</span><a class="button  textual   " id="domId_1397555810" style="" href="https://www.baidu.com" target="_blank">- baidu</a>
+
+                                        <a class="button  textual   " id="domId_1691851431" style="" href="https://oa.cnki.net" target="_blank">- OA</a>
+
+                                        <a class="button  textual   " id="domId_116030890" style="" href="https://www.cnki.net" target="_blank">- cnki</a>
+
+                                        <hr><a class="button  textual   " id="domId_216016754" style="" href="/applications/teamwork/tools/manageFavorites.jsp?V_ID=1272795554"><span class='teamworkIcon withLabel'>g</span>管理书签&nbsp;</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1346221048" style="" onclick="saveThisPageAsPreferred();return false; "><span class='teamworkIcon withLabel'>P</span>增加当前视图到书签</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="menuTools">
+
+                    <div id="HINT_SEARCH_span" class="menuSearch">
+                        <input type=text name="search" id="search" size=15 class="searchInput" autocomplete='off' maxlength=255 value="" onkeyup="if (event.keyCode==13) { fastSearch($(this));event.preventDefault();return false;}" oldValue='1'><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_keyDiv', 'domId_2000629929');  ">
+                            <button type="button" class="button noprint textual icon  fastSearchkeysButton" id="domId_2000629929" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                        </span>
+
+                        <div id="divdomo_keyDiv" class="divomo fSKeys"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class='menuTitle'>Search in:</span><button type="button" class="button noprint textual   ALL" id="domId_1618514876" style="" onclick="changeFastSearchKey('ALL');return false; ">全部</button>
+
+                                <button type="button" class="button noprint textual   W" id="domId_204164383" style="" onclick="changeFastSearchKey('W');return false; ">工作记录</button>
+
+                                <button type="button" class="button noprint textual   T" id="domId_1859400822" style="" onclick="changeFastSearchKey('T');return false; ">项目</button>
+
+                                <button type="button" class="button noprint textual   R" id="domId_767584210" style="" onclick="changeFastSearchKey('R');return false; ">资源</button>
+
+                                <button type="button" class="button noprint textual   I" id="domId_853549941" style="" onclick="changeFastSearchKey('I');return false; ">问题</button>
+
+                                <button type="button" class="button noprint textual   A" id="domId_423096427" style="" onclick="changeFastSearchKey('A');return false; ">日程</button>
+
+                                <button type="button" class="button noprint textual   B" id="domId_663293372" style="" onclick="changeFastSearchKey('B');return false; ">讨论板</button>
+
+                                <button type="button" class="button noprint textual   D" id="domId_384091627" style="" onclick="changeFastSearchKey('D');return false; ">文档</button>
+
+                            </div>
+                        </div><button type="button" class="button noprint textual icon  searchButton" id="domId_92132107" style="" onclick="fastSearch($('#search'));return false; "><span class='teamworkIcon '>L</span></button>
+
+                    </div>
+
+
+
+                    <div id="loggedOp" class="loggedOp">
+                        <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_264897214', 'domId_846628841');  ">
+                            <span class="button buttonImg  operatorButton" id="domId_846628841" style=" " onclick=";return false; "><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1227822752" title="Dream Wing" alt="Dream Wing" id="d1227822752" " resId="15089" class="face active"></span>
+
+                        </span>
+
+                        <div id="divdomo_domId_264897214" class="divomo divDark"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">Dream Wing <em>(93)</em></span><a class="button  textual   " id="domId_1651235827" style="" href="/applications/teamwork/resource/resourceEditor.jsp?V_ID=172198490&CM=ED&OBJID=15089">我的联系方式</a>
+
+                                <a class="button  textual   " id="domId_389374208" style="" href="/applications/teamwork/resource/resourceSecurity.jsp?V_ID=1065566634&CM=ED&OBJID=15089">登录信息</a>
+
+                                <a class="button  textual   " id="domId_829641447" style="" href="/applications/teamwork/resource/resourceOptions.jsp?V_ID=333974000&CM=EDIT_OPT&OBJID=15089">选项</a>
+
+                                <a class="button  textual   " id="domId_172479758" style="" href="/applications/teamwork/resource/resourceDocumentList.jsp?V_ID=552602953&CM=LIST_DOCS&RES_ID=15089">文档</a>
+
+                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_1861414307" style="" onclick="openBlackPopup('/applications/teamwork/sticky/stickyEditor.jsp?V_ID=1911852903&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
+
+                                <button type="button" class="button noprint textual   " id="domId_1633858403" style="" onclick="openBlackPopup('/applications/teamwork/sticky/stickyEditor.jsp?V_ID=248488253&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
+
+                                <hr><a class="button  textual   " id="domId_384785032" style="" href="http://twproject.com/support" target="_blank">支持</a>
+
+                                <hr><a class="button  textual   " id="domId_1008771707" style="" href="/applications/teamwork/security/login.jsp?V_ID=341454307&CM=LO" target="_top">注销</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="twChatNotifications">
+                        <div id="twChatOpener" class="messages button textual icon" onclick="twChatToggle();">
+
+                            <span class="teamworkIcon"></span>
+
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+
+                    <div id="notifications">
+                        <div id="messageListOpener" class="messages button textual icon" onclick="loadMessageList($(this));">
+                            <span class="teamworkIcon">b</span>
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+
+                    <div id="messageListBox" class="divomo divDark" style="position: absolute;left:-1000px; top:-1000px;">
+                        <div class="divomoArrow"></div>
+                        <span class="menuTitle">通知</span>
+                        <div id="messageListPlace" class="messageListPlace"></div>
+                        <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
+                            <a class="button  textual   " id="domId_854296732" style="" href="/applications/teamwork/messaging/messageListFull.jsp?V_ID=1170840874">全部显示</a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="menuTimeCounter" style="display:none;"><a href="javascript:openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=1214538383')" id="tcMenuCounter"></a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // unread messages managament
+            $("#messageListBox").on("hideDivOnMouseover", function () {
+                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "READALL" }, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        $("#messageListOpener .notificationNumber").fadeOut().html("0");
+                        $("#twChatOpener").data("totalUnreadChats", false);
+                    }
+                });
+            });
+
+            function followMessageLink(el) {
+                var href = el.find(".message_link a:first").attr("href");
+                if (href)
+                    self.location.href = href;
+            }
+
+            function saveThisPageAsPreferred() {
+                location.href = contextPath + "/applications/teamwork/tools/manageFavorites.jsp?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+            }
+
+            (function tmStartup() {
+                var counted = undefined;
+                var format = '%0h:%0m:%0s';
+                if (counted) {
+                    var ndo = $("#tcMenuCounter");
+                    ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+                    ndo.parent().show();
+                }
+
+                registerEvent("timeCounterEvent", function (e, data) {
+
+                    if (data.type == "start") {
+
+                        if (data.response.assignment) {
+
+                            //faccio partire il widget se c'Ã¨
+                            var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+                            if (ndoWidget) {
+                                ndoWidget.addClass("highlight");
+                                ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                                ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+                            }
+
+
+                            //faccio partire il counter sul menu
+                            var ndoMenu = $("#tcMenuCounter");
+                            ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+                            ndoMenu.parent().show();
+                        }
+
+                    } else if (data.type == "stop") {
+
+                        //fermo il widget
+                        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+                        if (ndoWidget) {
+                            ndoWidget.removeClass("highlight");
+                            ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+                            ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+                        }
+
+                        //faccio fermare il counter sul menu
+                        var ndoMenu = $("#tcMenuCounter");
+                        ndoMenu.stopTimeCounter();
+                        ndoMenu.parent().hide();
+                    }
+                })
+            })();
+
+            function twChatToggle() {
+                //console.debug(top.twChat.chatWindow.is(".closed"))
+
+                if (top.twChat.chatWindow.is(".closed")) {
+                    top.twChat.open();
+                } else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+                    top.twChat.chatWindow.addClass('showChats');
+                } else {
+                    top.twChat.close();
+                }
+            }
+
+
+            $(function () {
+                //lo stato del socket lo sa solo il client lato js -> twComm
+                if (!top.twComm || !top.twComm.isOpen)
+                    getTop().$("#twChatOpener").addClass("disabled");
+
+                /**
+                 * Manage chat opener state at start (chat could be open)
+                 */
+                if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+                    $("#twChatOpener").removeClass("open");
+                } else {
+                    $("#twChatOpener").addClass("open");
+                }
+
+            })
+        </script>
+
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainer" class="lreq20 lreqPage">
+            <form enctype="application/x-www-form-urlencoded" method="POST"
+                  action="/issue/issuePlanner.html" name="issueMultiEditor" alertOnChange="true" id="issueMultiEditor"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="issueMultiEditorV_ID" name="V_ID" value="914538346" savedValue="">
+                <input type="hidden" id="issueMultiEditorCM" name="CM" value="FN" savedValue="">
+
+
+
+                <div class="mainColumn">
+                    <h1 class="filterTitle" defaultTitle="计划者">
+                        计划者: 待解决的问题
+                    </h1>
+
+
+
+                    <div class="filterBar withButtons clearfix">
+
+
+                        <div class="filterActiveElements"></div>
+
+                        <div class="filterInactiveElements">
+                            <div class="filterElement  ">
+                                <label for="domId_1180569961_txt">任务</label> &nbsp;&nbsp;&nbsp;&nbsp;<input type=hidden name="FLT_TASK_ISSUE_SHOW_CHILDREN" id="FLT_TASK_ISSUE_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_TASK_ISSUE_SHOW_CHILDREN" name="ck_FLT_TASK_ISSUE_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label>包含子任务的问题</label><br><input type=text name="FLT_ISSUE_TASK_txt" id="FLT_ISSUE_TASK_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_TASK" id="FLT_ISSUE_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+
+                            </div>
+
+
+
+                            <div class="filterElement filterDefault"><label for="ISSUE_DESCRIPTION" class=" ">描述</label><br><input type=TEXT name="FLT_ISSUE_DESCRIPTION" id="ISSUE_DESCRIPTION" size=30 class="formElements qbe" autocomplete='off' maxlength=255 value=""></div>
+                            <div class="filterElement  ">
+                                <label for="domId_1621742738_txt">分工给</label> &nbsp;&nbsp;&nbsp;&nbsp; <input type=hidden name="FLT_ISSUE_UNASSIGNED" id="FLT_ISSUE_UNASSIGNED" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_ISSUE_UNASSIGNED" name="ck_FLT_ISSUE_UNASSIGNED" value="yes"
+                                                                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');if ($(this).prop('checked')){removeSmartComboEntry('FLT_ISSUE_ASSIGNED_TO')}">
+                                <label>未分工</label><br>
+                                <script>
+                                    function letSubmitFLT_ISSUE_ASSIGNED_TO() {
+                                        $('#ck_FLT_ISSUE_UNASSIGNED').prop('checked', false); $('#FLT_ISSUE_UNASSIGNED').val('no');
+                                    }
+                                </script><input type=text name="FLT_ISSUE_ASSIGNED_TO_txt" id="FLT_ISSUE_ASSIGNED_TO_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value="Wing Dream"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_ASSIGNED_TO" id="FLT_ISSUE_ASSIGNED_TO" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="15089">
+
+                            </div>
+
+                            <div class="filterElement  ">
+                                <label for="domId_1059972608_txt">分工给 公司/部门</label> &nbsp;&nbsp;&nbsp;&nbsp; <input type=hidden name="FLT_COMPANY_ISSUE_SHOW_CHILDREN" id="FLT_COMPANY_ISSUE_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_COMPANY_ISSUE_SHOW_CHILDREN" name="ck_FLT_COMPANY_ISSUE_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                                                                                                                      onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label>整支球队</label><br><input type=text name="FLT_ISSUE_ASSIGNED_COMPANY_txt" id="FLT_ISSUE_ASSIGNED_COMPANY_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_ASSIGNED_COMPANY" id="FLT_ISSUE_ASSIGNED_COMPANY" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+
+                            </div>
+
+
+
+                            <div class="filterElement centered">
+                                <input type=hidden name="FLT_ISSUE_INHISTORY" id="FLT_ISSUE_INHISTORY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_ISSUE_INHISTORY" name="ck_FLT_ISSUE_INHISTORY" value="yes" title="搜索联系人和记事的历史"
+                                                                                                                                                                                 onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label title="搜索联系人和记事的历史" for="ck_FLT_ISSUE_INHISTORY" title="搜索联系人和记事的历史">历史</label>
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_ASSIGNED_BY_txt" class=" ">分工创建者</label><br><input type=text name="FLT_ISSUE_ASSIGNED_BY_txt" id="FLT_ISSUE_ASSIGNED_BY_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_ASSIGNED_BY" id="FLT_ISSUE_ASSIGNED_BY" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+                            </div>
+                            <div class="filterElement"><label for="ISSUE_ESTIMATED" class=" ">预估工期</label><br><input type=TEXT name="FLT_ISSUE_ESTIMATED" id="ISSUE_ESTIMATED" size=10 class="formElements qbe" autocomplete='off' maxlength=255 value=""></div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "BEHAVES_AS_OPEN_ALL", "color": "#00ff00", "value": "- 所有打开状态 -", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "BEHAVES_AS_CLOSED_ALL", "color": "#0000ff", "value": "- 所有关闭状态 -", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "13720", "color": "#3BBF67", "value": "open", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "13721", "color": "#6EBEF4", "value": "closed", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "13722", "color": "#763A96", "value": "aborted", "enabled": true, "textColor": "#FFFFFF", "index": 5 }, { "code": "", "color": "gray", "value": "- 选择 -", "enabled": true, "textColor": "#FFFFFF", "index": 6 }] };
+
+
+                                        _colorValueData["FLT_ISSUE_STATUS"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_1819537139">问题状态</label><br> <div class="cvcComponent cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="FLT_ISSUE_STATUS" displayValue='true'>
+                                    <input type=hidden name="FLT_ISSUE_STATUS" id="FLT_ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="BEHAVES_AS_OPEN_ALL"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="- 所有打开状态 -" code="BEHAVES_AS_OPEN_ALL"
+                                                 style=" "><span class="teamworkIcon" style="color:#00ff00">&#169;</span><span class="cvcDescription">- 所有打开状态 -</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_STATUS_LAST_CHANGE" class=" ">状态最后变更</label><br><input type=text name="FLT_ISSUE_STATUS_LAST_CHANGE" id="FLT_ISSUE_STATUS_LAST_CHANGE" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_STATUS_LAST_CHANGEs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                                      onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_DATE_SIGNALLED" class=" ">被告知日期</label><br><input type=text name="FLT_ISSUE_DATE_SIGNALLED" id="FLT_ISSUE_DATE_SIGNALLED" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_DATE_SIGNALLEDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                         onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_DATE_CLOSE_BY" class=" ">截止日期</label><br><input type=text name="FLT_ISSUE_DATE_CLOSE_BY" id="FLT_ISSUE_DATE_CLOSE_BY" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_DATE_CLOSE_BYs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                     onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_LAST_MODIFIED" class=" ">最后编辑</label><br><input type=text name="FLT_ISSUE_LAST_MODIFIED" id="FLT_ISSUE_LAST_MODIFIED" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_LAST_MODIFIEDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                     onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "", "color": "gray", "value": "- 选择 -", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "05_GRAVITY_BLOCK", "color": "#DB2727", "value": "中断", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "04_GRAVITY_CRITICAL", "color": "#8C6044", "value": "关键的", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "03_GRAVITY_HIGH", "color": "#F9791C", "value": "高", "enabled": true, "textColor": "#FFFFFF", "index": 4 }, { "code": "02_GRAVITY_MEDIUM", "color": "#F9C154", "value": "中", "enabled": true, "textColor": "#000000", "index": 5 }, { "code": "01_GRAVITY_LOW", "color": "#EEEEEE", "value": "低", "enabled": true, "textColor": "#000000", "index": 6 }] };
+
+
+                                        _colorValueData["ISSUEGRAVITYFILTER"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_1329037417">级别</label><br> <div class="cvcComponent cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ISSUEGRAVITYFILTER" displayValue='true'>
+                                    <input type=hidden name="FLT_ISSUE_GRAVITY" id="FLT_ISSUE_GRAVITY" size=2 class="formElements" autocomplete='off' maxlength=255 value=""><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="- 选择 -" code=""
+                                                 style=" "><span class="teamworkIcon" style="color:gray">&#169;</span><span class="cvcDescription">- 选择 -</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement centered">
+                                <input type=hidden name="RECENTLY_USED" id="RECENTLY_USED" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_RECENTLY_USED" name="ck_RECENTLY_USED" value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                &nbsp;<label for="ck_RECENTLY_USED">最近浏览过的</label>&nbsp;
+                            </div>
+                            <div class="filterElement"><label for="FLT_ISSUE_EXTERNAL_REQUESTER" class=" ">外部请求者的电子邮件</label><br><input type=email name="FLT_ISSUE_EXTERNAL_REQUESTER" id="FLT_ISSUE_EXTERNAL_REQUESTER" size=20 class="formElements qbe" autocomplete='off' maxlength=255 value="" entryType="EMAIL"></div>
+
+                            <div class="filterElement">
+                                <label for="CUST_ID_txt" class=" ">顾客</label><br><input type=text name="CUST_ID_txt" id="CUST_ID_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="CUST_ID" id="CUST_ID" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+                            </div>
+                            <div class="filterElement">
+                                <label for="PROJECTMANAGER_ID_txt" class=" ">Project manager</label><br><input type=text name="PROJECTMANAGER_ID_txt" id="PROJECTMANAGER_ID_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="PROJECTMANAGER_ID" id="PROJECTMANAGER_ID" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+                            </div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "46221", "color": "#ffffff", "value": "国家级项目", "enabled": true, "textColor": "#000000", "index": 1 }, { "code": "46283", "color": "#ffffff", "value": "区级项目", "enabled": true, "textColor": "#000000", "index": 2 }, { "code": "46222", "color": "#ffffff", "value": "省级项目", "enabled": true, "textColor": "#000000", "index": 3 }, { "code": "", "color": "gray", "value": "- 选择 -", "enabled": true, "textColor": "#FFFFFF", "index": 4 }] };
+
+
+                                        _colorValueData["TTMS"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_235036349">任务类型</label><br> <div class="cvcComponent noBall cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="TTMS" displayValue='true'>
+                                    <input type=hidden name="ISSUE_TASK_TYPE" id="ISSUE_TASK_TYPE" size=2 class="formElements" autocomplete='off' maxlength=255 value=""><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="- 选择 -" code=""
+                                                 style=" "><span class="teamworkIcon" style="color:gray">&#169;</span><span class="cvcDescription">- 选择 -</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "STATUS_ACTIVE", "color": "#3BBF67", "value": "进行中", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "STATUS_WAITING", "color": "#F79136", "value": "等候", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "STATUS_SUSPENDED", "color": "#F9C154", "value": "暂停", "enabled": true, "textColor": "#000000", "index": 3 }, { "code": "STATUS_DONE", "color": "#6EBEF4", "value": "完成", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "STATUS_FAILED", "color": "#763A96", "value": "失败", "enabled": true, "textColor": "#FFFFFF", "index": 5 }, { "code": "STATUS_UNDEFINED", "color": "#dededf", "value": "未定义", "enabled": true, "textColor": "#000000", "index": 6 }, { "code": "", "color": "gray", "value": "全部", "enabled": true, "textColor": "#FFFFFF", "index": 7 }] };
+
+
+                                        _colorValueData["ISSUETASKSTATUSFILTER"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_1086821594">任务状态</label><br> <div class="cvcComponent cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ISSUETASKSTATUSFILTER" displayValue='true'>
+                                    <input type=hidden name="FLT_ISSUE_TASK_STATUS" id="FLT_ISSUE_TASK_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="STATUS_ACTIVE"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="进行中" code="STATUS_ACTIVE"
+                                                 style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span><span class="cvcDescription">进行中</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement"><label for="ISSUE_ID" class=" ">Id (db)</label><br><input type=TEXT name="ISSUE_ID" id="ISSUE_ID" size=8 class="formElements qbe" autocomplete='off' maxlength=255 value=""></div>
+                            <div class="filterElement"><label for="FLT_ISSUE_TAGS" class=" ">标签</label><br><input type=text name="FLT_ISSUE_TAGS" id="FLT_ISSUE_TAGS" size=20 class="formElements tagBox" autocomplete='off' maxlength=255 autocomplete='off' taggableClass="com.twproject.task.Issue" maxResult="30" tagPropertyName="tags" areaId="5819" value=""></div>
+                            <div class="filterElement centered">
+                                <input type=hidden name="FLT_ISSUE_HAVING_WRKLG" id="FLT_ISSUE_HAVING_WRKLG" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_ISSUE_HAVING_WRKLG" name="ck_FLT_ISSUE_HAVING_WRKLG" value="yes"
+                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                &nbsp;<label for="ck_FLT_ISSUE_HAVING_WRKLG">已有工作记录的问题</label>&nbsp;
+                            </div>
+
+
+
+
+
+                            <div class="filterElement ">
+                                <label for="FLT_AREA" class=" ">域</label><br><SELECT NAME="FLT_AREA" id="FLT_AREA" CLASS="formElements">
+                                    <option value="">- 选择 -</option>
+                                    <option value="5819">梦想飞扬</option>
+                                </SELECT>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="filterButtons">
+                            <div class="filterButtonsElement filterAdd">
+                                <span class="button" id="filterSelectorOpener" title="更多的过滤器" onclick="bjs_showMenuDiv('filterSelectorBox', 'filterSelectorOpener');"><span class="teamworkIcon">f</span></span>
+                            </div>
+                            <div class="filterButtonsElement filterSearch">
+                                <button type="button" class="button noprint    " id="domId_982726648" style="" onClick="stopBubble(event);obj('issueMultiEditorCM').value='FN';try {obj('issueMultiEditor').submit();} catch(e){};">搜索</button>
+
+                            </div>
+
+                            <div class="filterActions">
+                                <div class="filterButtonsElement filterSave">
+                                    <span onclick="lsfOpenEditor($(this))" lsfId="issueLSF" title="保存这个搜索" class="button textual">保存这个搜索</span>
+                                </div>
+                                <div class="filterButtonsElement filterHelp">
+                                    <button type="button" class="button noprint textual   " id="domId_1610374602" style="" title="如何使用示例查询（QBE）组成强大的搜索.<br>您可以保存您的搜索条件以便将来使用." onclick="openBlackPopup('/commons/help/qbe.jsp?V_ID=1055885509','800px','700px');return false; ">Help</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <script src="/commons/js/filterEngine.js"></script>
+
+
+
+                    <style type="text/css">
+
+
+                        [gravity="05_GRAVITY_BLOCK"] { background-color: #DB2727; color: #FFFFFF }
+
+                        [gravity="04_GRAVITY_CRITICAL"] { background-color: #8C6044; color: #FFFFFF }
+
+                        [gravity="03_GRAVITY_HIGH"] { background-color: #F9791C; color: #FFFFFF }
+
+                        [gravity="01_GRAVITY_LOW"] { background-color: #EEEEEE; color: #000000 }
+
+                        [gravity="02_GRAVITY_MEDIUM"] { background-color: #F9C154; color: #000000 }
+                    </style>
+
+                    <div id="templates" style="display:none;">
+                        <div class="__template__" type="ISSUE">
+                            <!--
+                            <div id="(#=obj.id#)" task="(#=obj.taskId#)" assignee="(#=obj.assigneeId#)" status="(#=obj.statusId#)" class="issue" millis="(#=obj.shouldCloseBy#)" estim="(#=obj.estimatedDuration#)">
+                              <div class="title dragHandler" gravity="(#=obj.gravityId#)"></div>
+                              <div class="rightCol">
+                                <span class="code">I#(#!obj.icodid#)#</span>
+                                <div class="status">
+                                  <span class="teamworkIcon" style="color:(#=obj.statusColor#);">©</span>
+                                  &nbsp;(#!obj.statusName#)
+                                </div>
+
+
+                                <div class="body">(#!obj.description#)</div>
+                                <div class="duration">(#=getMillisInHoursMinutes(obj.estimatedDuration)#)</div>
+                                <div class="type"><i>(#=(obj.type)#)</i></div>
+                                <div class="task" title="(#!obj.taskName#)">(#!obj.tcodid!=null?"T#"+obj.tcodid+"#":"" #)</div>
+                                <div class="taskExpanded" onclick="goToTask($(this))">(#!obj.taskName#)</div>
+                              </div>
+                            </div>
+                            -->
+                        </div>
+
+
+                        <div class="__template__" type="USER_ROW">
+                            <!--
+                            <tr assigneeId="##assigneeId##" class="resHead tableSection" assigneeOrder="##assigneeName##">
+                              <td colspan="9" class="assigneeLabel"><div class="childNode"><h2><img src="##assigneeAvatarUrl##" class='face small' align="absmiddle">&nbsp;##assigneeName##&nbsp;&nbsp;<span onclick="removeRow($(this))" class="button textual"><small>[Hide]</small></span>
+                              </h2></div></td>
+                            <tr assigneeId="##assigneeId##" class="resIssues" style="height:50px;">
+                              <td day="-1" class="wwDayBody wwResched"><label>计划</label>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1604817187900" day="1" valign="top" width="8%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1604903587900" day="2" valign="top" width="15%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1604989987900" day="3" valign="top" width="15%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1605076387900" day="4" valign="top" width="15%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1605162787900" day="5" valign="top" width="15%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1605249187900" day="6" valign="top" width="15%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+
+                              <td class="wwDayBody wwDayColumn" millis="1605335587900" day="7" valign="top" width="8%">
+                                <div class="wwDayLoadBox"></div>
+                                <div class="wwDayLoadUnavail"></div>
+                              </td>
+                              </tr>
+                            -->
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="optionsBar clearfix">
+                        <div class="filterElement">
+                            <script>
+                                function letSubmitRESOURCE_COMBO() {
+                                    addResource();
+                                }
+                            </script><label for="RESOURCE_COMBO_txt" class=" ">添加资源</label><br><input type=text name="RESOURCE_COMBO_txt" id="RESOURCE_COMBO_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="RESOURCE_COMBO" id="RESOURCE_COMBO" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+
+                        </div>
+                    </div>
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tr>
+                            <td class="calHeader left">
+                                <span class="button textual today noprint" onclick="goToMillis(new Date().getTime())">今天</span>
+
+                                <div style="float:right">
+                                    <span class="button textual noprint" onclick="goToMillis(millis - 3600000 * 24 * 7)"><span class="teamworkIcon" style="font-size:18px">{</span></span>
+                                    <span class="button textual noprint" onclick="goToMillis(millis + 3600000 * 24 * 7)"><span class="teamworkIcon" style="font-size:18px">}</span></span>
+                                </div>
+                            </td>
+
+
+                            <td class="calHeader">
+                                <h2 style="margin:0">
+                                    <div style="position:relative;height:30px;">
+                                        <div id="topHeaderCentral"></div>
+                                        <div class="headerCalendarOpener" title="日历" id="openCal" onclick="$(this).dateField({inputField:$('#dummy'),callback:function(date){goToMillis(date.getTime());}}); ">
+                                            <input type="hidden" id="dummy"><span class="teamworkIcon">m</span>
+                                        </div>
+                                    </div>
+                                </h2>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="scrollingBox">
+                        <table id="desk" width="100%" cellspacing="0" cellpadding="0" class="table edged fixHead">
+                            <thead>
+                                <tr>
+                                    <th width="10%" class="label dayHeader" millis="0" day="-1" align="center">&nbsp;</th>
+
+                                    <th class="dayHeader wwDayColumn dayHHeader" nowrap day="1" width="8%" onclick="toggleEnlarge($(this));"></th>
+
+
+                                    <th class="dayHeader wwDayColumn " nowrap day="2" width="15%" onclick="toggleEnlarge($(this));"></th>
+
+
+                                    <th class="dayHeader wwDayColumn " nowrap day="3" width="15%" onclick="toggleEnlarge($(this));"></th>
+
+
+                                    <th class="dayHeader wwDayColumn " nowrap day="4" width="15%" onclick="toggleEnlarge($(this));"></th>
+
+
+                                    <th class="dayHeader wwDayColumn " nowrap day="5" width="15%" onclick="toggleEnlarge($(this));"></th>
+
+
+                                    <th class="dayHeader wwDayColumn " nowrap day="6" width="15%" onclick="toggleEnlarge($(this));"></th>
+
+
+                                    <th class="dayHeader wwDayColumn dayHHeader" nowrap day="7" width="8%" onclick="toggleEnlarge($(this));"></th>
+
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="wrapperFooter"></div>
+
+
+
+
+                </div>
+
+
+
+
+                <div class="rightColumn noprint">
+
+
+                    <div class="tools">
+                        <div class="toolsElement">
+                            <button type="button" class="button noprint    first" id="domId_46032320" style="" onclick="addIssue();return false; "><span class='teamworkIcon withLabel'>P</span>创建问题</button>
+
+                        </div><div class="toolsElement">
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1193782797', 'domId_571089320');  ">
+                                <button type="button" class="button noprint  icon  " id="domId_571089320" style="" title="导入/导出的问题" onclick=";return false; "><span class='teamworkIcon '>I</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_1193782797" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_2115238905" style="" onClick="stopBubble(event);saveFormValues('issueMultiEditor');  obj('issueMultiEditorCM').value='EXPORT';obj('issueMultiEditorBUTTON_ID').value='domId_2115238905';obj('issueMultiEditor').action='/commons/tools/exportXLS.jsp'; try {obj('issueMultiEditor').submit();} catch(e){};restoreFormValues('issueMultiEditor');  ">导出到Excel</button>
+
+                                </div>
+                            </div>
+                        </div><div class="toolsElement">
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1777820996', 'domId_712952287');  ">
+                                <button type="button" class="button noprint  icon  " id="domId_712952287" style="" title="打印" onclick=";return false; "><span class='teamworkIcon '>p</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_1777820996" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   " id="domId_1897499061" style="" onclick="submitInBlack('issueMultiEditor','/applications/teamwork/issue/issueListPrint.jsp');return false; ">打印</button>
+
+                                    <hr><button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_1134560277" style="" onClick="stopBubble(event);saveFormValues('issueMultiEditor');  obj('issueMultiEditorCM').value='FN';obj('issueMultiEditorreportName').value='issueListCompact';obj('issueMultiEditor').target='_blank'; obj('issueMultiEditor').action='/applications/teamwork/issue/issueIReportHelper.jsp'; try {obj('issueMultiEditor').submit();} catch(e){};restoreFormValues('issueMultiEditor');  ">issue  list  compact</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="rightColumnInner">
+
+
+
+                        <div class="noprint filters">
+                            <h2>我的过滤器...</h2>
+                            <div class="customSavedFilters" formId="issueMultiEditor" category="ISSUEFILTER" id="issueLSF">
+                                <input type="hidden" name="FLNMSEL" id="FLNMSEL">
+                                <input type="hidden" name="FLCAT" id="FLCAT" value="ISSUEFILTER">
+                                <input type="hidden" name="FLNM" id="FLNM" value="">
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("#issueMultiEditor").append($("#issueLSF input")); //sposta gli input dentro il form
+                                    var bts = [];
+                                    var div = $("#issueLSF");
+                                    for (var i = 0; i < bts.length; i++) {
+                                        div.append(lsfCreateButton(bts[i]));
+                                    }
+                                });
+                            </script>
+
+
+
+                            <div class="separator"></div><a class="button  textual   " id="domId_1548668926" style="" href="/issue/issuePlanner.html?V_ID=197767779&CM=FN&FLNM=PF_MY_TODAY_OPEN_ISSUES">我今天要做的事情</a>
+
+                            <a class="button  textual  focused " id="domId_1725859744" style="" href="/issue/issuePlanner.html?V_ID=796912125&CM=FN&FLNM=PF_MY_OPEN_ISSUES">待解决的问题</a>
+
+                            <a class="button  textual   " id="domId_1994062183" style="" href="/issue/issuePlanner.html?V_ID=2086824951&CM=FN&FLNM=PF_MY_EXPIRED_ISSUES">我的问题过期</a>
+
+                            <a class="button  textual   " id="domId_564028653" style="" href="/issue/issuePlanner.html?V_ID=998557190&CM=FN&FLNM=PF_MY_OPEN_SEVERE_ISSUES">我已发现的严重问题</a>
+
+                            <a class="button  textual   " id="domId_165991025" style="" href="/issue/issuePlanner.html?V_ID=601546701&CM=FN&FLNM=PF_MY_INSERTED_ISSUES">我感兴趣的问题</a>
+
+                            <a class="button  textual   " id="domId_1989877278" style="" href="/issue/issuePlanner.html?V_ID=1770523637&CM=FN&FLNM=PF_ISSUES_OPENED_RECENTLY">最近出现的问题</a>
+
+                            <a class="button  textual   " id="domId_1657354227" style="" href="/issue/issuePlanner.html?V_ID=406533800&CM=FN&FLNM=PF_ISSUES_CLOSED_RECENTLY">最近关闭的问题</a>
+
+                            <a class="button  textual   " id="domId_1468095493" style="" href="/issue/issuePlanner.html?V_ID=2001822406&CM=FN&FLNM=PF_LONG_STANDING_ISSUES">长期问题</a>
+
+                            <a class="button  textual   " id="domId_2880093" style="" href="/issue/issuePlanner.html?V_ID=135005030&CM=FN&FLNM=PF_OPEN_SEVERE_ISSUES">开放的严重问题</a>
+
+                            <a class="button  textual   " id="domId_1286807978" style="" href="/issue/issuePlanner.html?V_ID=410384397&CM=FN&FLNM=PF_RECENTLY_USED">最近浏览过的</a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="bottomBar noprint" id="moveBar" onclick="moveBarClick($(this),event);"></div>
+                <script type="application/javascript">
+
+                    $(function() {
+                      var moveBar = $("#moveBar");
+                      moveBar.empty();
+
+                      var startMillis = 1569884400000;
+                      var endMillis = 1632999600000;
+
+                      var barFolio = new Folio(moveBar);
+                      barFolio.width = endMillis - startMillis;
+                      barFolio.height = 50;
+                      barFolio.left = startMillis;
+                      barFolio.inPercent=true;
+
+                      var d = new Date(startMillis);
+                      while (d.getTime() < endMillis) {
+                        var headLbl = $("<span>").html(d.format("MM yyyy")).addClass("moveBarEl");
+                        barFolio.addElement(headLbl, 0, d.getTime(), 30 * 24 * 3600000, 50);
+                        d.setMonth(d.getMonth() + 1);
+                      }
+
+                      var periods=[];
+                      for (var i=0;i<periods.length;i++) {
+                        var highlight = $("<span>").css({"background-color":"#BCFF3A",opacity:.6});
+                        barFolio.addElement(highlight, 35, periods[i].startMillis, periods[i].endMillis-periods[i].startMillis, 15);
+                      }
+
+                      //start & end of displayed week
+                      var period = $("<span>").addClass("moveBarHL").prop("title","显示时期");
+                      barFolio.addElement(period, 25, 1604793600000, 604799999, 25);
+
+                      //today
+                      var today = $("<span>").prop("title", "今天").addClass("moveBarToday");
+                      barFolio.addElement(today, 0, new Date().getTime(), barFolio.getPixelWidth() * 2, 50);
+
+                      barFolio.redraw();
+                      return barFolio;
+                    });
+
+
+
+
+                    function moveBarClick(el, event) {
+                      var pos = event.clientX - el.offset().left;
+                      var folio = el.data("folio");
+                      var millis = parseInt(folio.getVirtualLeft(pos));
+                      goToMillis(millis);
+                    }
+
+
+                </script>
+
+
+                <input type="hidden" id="issueMultiEditorBUTTON_ID" name="BUTTON_ID" value="" savedValue="">
+                <input type="hidden" id="issueMultiEditoroutType" name="outType" value="" savedValue="">
+                <input type="hidden" id="issueMultiEditorreportName" name="reportName" value="" savedValue="">
+
+            </form>
+
+
+
+            <script type="text/javascript">
+                var millis = 1605249187900;
+                var weekStart, weekEnd;
+                var millisRange = 3600000 * 24 * 365 * 2;//2 year span
+
+                var dayMillis = {}; // used for speed-up decode day in millis
+
+                $(document).ready(function () {
+                    $("#ISSUES_MENU").addClass('selected');
+
+                    $("body").unselectable();
+
+                    //load templates and remove container
+                    $("#templates").loadTemplates().remove();
+
+
+                    deskRefill();
+
+                    //issue update events from black popup editor
+                    registerEvent("issueEvent", function (e, data) {
+
+                        if (data.type == "delete") {
+                            var issueId = data.response.deletedId;
+                            var oldDomIssue = $("#" + issueId);
+                            var cell = oldDomIssue.closest(".wwDayBody");
+                            updateCellLoadEstimation(cell, -parseInt(oldDomIssue.attr("estim")));
+
+                            oldDomIssue.effect("highlight", { color: "gray" }, 500, function () {
+                                $(this).fadeOut(200, function () {
+                                    $(this).remove();
+                                });
+                            });
+                        } else if (data.type == "save") {
+                            //remove issue and update cell estimation
+                            var jsonIssue = data.response.issue;
+                            var oldDomIssue = $("#" + jsonIssue.id);
+                            var cell = oldDomIssue.closest(".wwDayBody");
+                            updateCellLoadEstimation(cell, -parseInt(oldDomIssue.attr("estim")));
+                            oldDomIssue.remove();
+
+                            //create the new issue id in the week range
+                            var newDomIssue = insertIssue(jsonIssue, $("#desk"));
+                            if (newDomIssue) {
+                                newDomIssue.effect("highlight", { color: "#F9EFC5" }, 400);
+                                cell = newDomIssue.closest(".wwDayBody");
+                                updateCellLoadEstimation(cell, parseInt(newDomIssue.attr("estim")));
+                            }
+                        }
+                    });
+                });
+
+                function deskRefill() {
+                    //load estimations for existing resources
+                    var resIds = [];
+                    $("#desk tr[assigneeid].resIssues").each(function () {
+                        resIds.push($(this).attr("assigneeid"));
+                    });
+
+                    $(".wwDayLoadBox").empty().attr("estim", 0);
+                    $(".wwDayLoadUnavail").empty().hide();
+
+                    if (resIds.length > 0) {
+                        ajaxLoadEstimations(resIds);
+                    }
+                    ajaxLoadIssues();
+                }
+
+
+                function getDayFromMillis(millis) {
+                    return new Date(millis).getDay() + 1;
+                }
+
+
+                function updateIssue(cell, issue) {
+                    //console.debug("updateIssue:",cell,issue);
+                    var board = $("#desk");
+                    var organizeBy = board.attr("organizeBy");
+
+                    var day = cell.attr("day");
+                    //get day millis
+                    var newMillis = dayMillis[day];
+
+                    //get assignee
+                    var newAssig = cell.closestAttr("assigneeId");
+
+                    //check if the value is changed
+                    if (newMillis != issue.attr("millis") || newAssig != issue.attr("assignee")) {
+
+                        var oldAssig = issue.attr("assignee");
+                        var oldMillis = issue.attr("millis");
+
+                        //update the issue value on dom
+                        issue.attr("assignee", newAssig);
+                        issue.attr("millis", newMillis);
+
+                        showSavingMessage();
+
+                        var req = { "CM": "ISSCHPL", issueId: issue.prop("id"), newMillis: newMillis, newAssignee: newAssig };
+
+                        showSavingMessage();
+                        $.getJSON("issueAjaxControllerJson", req, function (response) {
+                            jsonResponseHandling(response);
+                            if (response.ok) {
+
+                                issue.css({ position: "relative", top: 0, left: 0 });
+                                issue.appendTo(cell);
+                                var issueLoad = parseInt(issue.attr("estim"));
+
+                                //update old cell estimations
+                                var lb = issue.data("cell");
+                                updateCellLoadEstimation(lb, -issueLoad);
+
+                                //update new cell estimations
+                                updateCellLoadEstimation(cell, issueLoad);
+                                issue.removeData("cell");
+                            } else {
+
+                                //restore old values
+                                issue.attr("assignee", oldAssig);
+                                issue.attr("millis", oldMillis);
+
+                                issue.data("cell").append(issue);
+                                issue.css({ position: "relative", top: 0, left: 0 });
+
+
+                            }
+                            hideSavingMessage();
+                        });
+                    }
+                }
+
+
+                function ajaxLoadIssues() {
+                    var filter = {};
+                    $("form:first").fillJsonWithInputValues(filter);
+
+                    filter.CM = "ISS_PLANNER";
+                    filter.FOCUS_MILLIS = millis;
+                    showSavingMessage();
+                    $.getJSON("issueAjaxControllerJson", filter, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            $("#desk .issue").remove();
+                            weekStart = response.weekStart;
+                            weekEnd = response.weekEnd;
+                            //clear headers and fill
+                            $("#topHeaderCentral").html(response.centralHeader);
+                            dayMillis = {}; //clear
+                            $("#desk .wwDayColumn.dayHeader").empty().each(function () {
+                                var day = $(this).attr("day");
+                                var dateInfo = response.dateHeaders[day];
+                                $(this).html(dateInfo.label).attr({ "millis": dateInfo.millis, "inUserFormat": dateInfo.inUserFormat });
+                                if (dateInfo.today)
+                                    $(this).addClass("dayTHeader");
+                                else
+                                    $(this).removeClass("dayTHeader");
+
+                                dayMillis[day] = dateInfo.millis;
+                            });
+                            millis = response.centralDay;
+
+                            var desk = $("#desk");
+
+                            var involvedResources = [];
+
+
+                            //loop for issue in current week
+                            for (var i = 0; response.issues && i < response.issues.length; i++) {
+                                insertIssue(response.issues[i], desk);
+                                if (involvedResources.indexOf(response.issues[i].assigneeId) < 0)
+                                    involvedResources.push(response.issues[i].assigneeId);
+                            }
+
+                            //loop for issues open out of week'scope
+                            for (var i = 0; response.toBeRescheduled && i < response.toBeRescheduled.length; i++) {
+                                insertIssue(response.toBeRescheduled[i], desk);
+                                if (involvedResources.indexOf(response.toBeRescheduled[i].assigneeId) < 0)
+                                    involvedResources.push(response.toBeRescheduled[i].assigneeId);
+                            }
+
+                            for (var assId in response.savedFilter) {
+                                getOrCreateRow({ assigneeId: assId, assigneeName: response.savedFilter[assId].displayName, assigneeAvatarUrl: response.savedFilter[assId].avatarUrl }, true);
+                                if (involvedResources.indexOf(assId) < 0)
+                                    involvedResources.push(assId);
+                            }
+
+                            ajaxLoadEstimations(involvedResources);
+
+                            if (typeof (callback) == "function") {
+                                callback(response);
+                            }
+                        }
+                        hideSavingMessage();
+                    });
+                }
+
+
+                function insertIssue(issue, desk) {
+                    var day;
+                    //place issue in the week cell if is in the range
+                    if (issue.shouldCloseBy && issue.shouldCloseBy >= weekStart && issue.shouldCloseBy <= weekEnd) {
+                        day = (new Date(issue.shouldCloseBy).getDay() + 1);
+
+                        //place issue in "rescheduled" if open and without shouldClose or open and in the past
+                    } else if (issue.isOpen && (!issue.shouldCloseBy || issue.shouldCloseBy <= weekStart)) {
+                        day = -1;
+                    }
+
+                    var domIssue;
+                    if (day) {
+                        var row = getOrCreateRow(issue);
+                        domIssue = $.JST.createFromTemplate(issue, "ISSUE");
+                        makeIssueDraggable(domIssue);
+                        row.find("[day=" + day + "]").append(domIssue);
+
+
+                        //    domIssue.click(function(){$(this).toggleClass("expanded")});
+
+                        domIssue.mouseover(function () {
+                            $(this).stopTime("tmrCollapse").oneTime(500, "tmrExpand", function () { $(this).addClass("expanded") })
+                        }).mouseout(function () { $(this).stopTime("tmrExpand").oneTime(100, "tmrCollapse", function () { $(this).removeClass("expanded") }) });
+
+
+                    }
+                    return domIssue;
+                }
+
+
+                function getOrCreateRow(assignee, highLight) {
+                    //console.debug("getOrCreateRow",assignee,highLight)
+
+                    var desk = $("#desk");
+                    var row = desk.find("tr[assigneeId=" + assignee.assigneeId + "].resIssues");
+                    if (row.size() == 0) {
+                        row = $.JST.createFromTemplate(assignee, "USER_ROW");
+                        makeRowDroppable(row);
+                        manageAddIssue(row);
+
+                        //if in enlarged mode hide unused columns
+                        var thEnlarged = $(".dayHeader.enlarged");
+                        if (thEnlarged.size() > 0) {
+                            var enlargedDay = thEnlarged.attr("day");
+                            row.find(".wwDayColumn[day!='" + enlargedDay + "']").hide();
+                            row.find(".wwDayColumn[day=" + enlargedDay + "]").addClass("enlarged");
+
+                        }
+                        var appended = false;
+
+                        $("#desk tr[assigneeOrder]").each(function () {
+                            if ($(this).attr("assigneeOrder").toLowerCase() >= assignee.assigneeName.toLowerCase() || assignee.assigneeId == "-1") {
+                                $(this).before(row);
+                                appended = true;
+                                return false;
+                            }
+                        });
+                        if (!appended)
+                            desk.append(row);
+
+                        //get load from user if the row is of real user
+                        //if (assignee.assigneeId){
+                        //  ajaxLoadEstimations([assignee.assigneeId]);
+                        //}
+                    }
+                    if (highLight) {
+                        row.effect("highlight", { color: "#F9EFC5" }, 1500);
+                    }
+
+                    return row;
+                }
+
+                function goToTask(el) {
+                    var taskId = el.closestAttr("task");
+                    if (taskId)
+                        window.location = contextPath + "/applications/teamwork/task/taskOverview.jsp?CM=GUESS&OBJID=" + taskId;
+
+                }
+
+                function removeRow(el) {
+                    var row = el.closest("tr[assigneeId]");
+                    var assigneeId = el.closest("tr[assigneeid]").attr("assigneeid");
+                    $("tr[assigneeId=" + assigneeId + "]").remove();
+                    refreshSavedFilter(assigneeId, false);
+
+                }
+
+                function ajaxLoadEstimations(resourcesIds, callback) {
+                    var request = { CM: "LDESTM", resId: resourcesIds.toString(), millis: millis };
+                    $.getJSON("issueAjaxControllerJson", request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            // set estimations
+                            for (var resId in response.estimations) {
+                                var ests = response.estimations[resId];
+                                var row = $("#desk tr[assigneeid=" + resId + "].resIssues");
+                                if (row.size() > 0) {
+                                    row.find(".wwDayLoadBox").empty().attr("estim", 0);
+                                    row.find(".wwDayLoadUnavail").empty().hide();
+
+                                    for (var i = 0; i < ests.length; i++) {
+                                        var est = ests[i];
+                                        var cell = row.find("[day=" + getDayFromMillis(est.millis) + "].wwDayBody");
+                                        updateCellLoadEstimation(cell, est.estim);
+                                    }
+
+
+                                }
+                            }
+
+                            // set unavailabilities
+                            for (var i = 0; i < response.unavailabilities.length; i++) {
+                                var unavail = response.unavailabilities[i];
+                                var row = $("#desk tr[assigneeid=" + unavail.resId + "].resIssues");
+                                if (row.size() > 0) {
+                                    row.find("[day=" + getDayFromMillis(unavail.millis) + "] .wwDayLoadUnavail").html(getMillisInHoursMinutes(unavail.unavail)).show();
+                                }
+                            }
+                        }
+                    });
+                }
+
+
+                function refreshSavedFilter(resourcesId, add, callback) {
+                    //console.debug("refreshSavedFilter");
+                    var req = { CM: "REFRESHFILTER", resId: resourcesId, add: add };
+                    $.getJSON("issueAjaxControllerJson", req, function (response) {
+                        if (callback) {
+                            callback(response);
+                        }
+                    });
+                }
+
+                function makeRowDroppable(row) {
+                    row.find(".wwDayBody").droppable({
+                        hoverClass: "dropOver",
+                        //accept:"["+organizeBy+"!="+value.id+"]",
+                        drop: function (event, ui) {
+                            var dragged = ui.draggable;
+                            var cell = $(this);
+                            updateIssue(cell, dragged);
+                        }
+                    });
+                }
+
+
+                function manageAddIssue(row) {
+                    row.find(".wwDayColumn").click(function (ev) {
+                        if ($(ev.target).is(".wwDayColumn")) {
+                            var el = $(this);
+                            var task = $("#FLT_ISSUE_TASK").val();
+                            var millis = parseInt(el.closestAttr("millis"));
+                            var resId = el.closestAttr("assigneeid");
+                            addIssue("ISSUE_TASK=" + task + "&ASSIGNEE=" + resId + (millis ? "&ISSUE_DATE_CLOSE_BY=" + (new Date(millis).format()) : ""));
+                        }
+                    })
+                }
+
+
+                function updateCellLoadEstimation(cell, load) {
+                    var cellLoad = cell.find(".wwDayLoadBox");
+                    var estim = parseInt(cellLoad.attr("estim"));
+                    estim = estim ? estim : 0;
+                    estim = estim + load;
+                    cellLoad.html(estim > 0 ? getMillisInHoursMinutes(estim) : "").attr("estim", estim);
+                }
+
+
+                function makeIssueDraggable(domIssue) {
+                    domIssue.draggable({
+                        revert: 'invalid',
+                        start: function (event, ui) {
+                            var draIss = $(this);
+                            draIss.addClass("issueDrag");
+                            draIss.data("cell", draIss.closest(".wwDayBody "));
+                        },
+                        stop: function (event, ui) {
+                            $(this).removeClass("issueDrag");
+                        }
+                    }).activateTeamworkLinks(true).emoticonize();
+                }
+
+                function goToMillis(newMillis) {
+                    $("body").stopTime("issuePlannerRefresh");
+                    millis = newMillis;
+                    var st = new Date(millis - 3600000 * 24 * 3);
+                    var en = new Date(millis + 3600000 * 24 * 3);
+                    if ($("td.enlarged").size() > 0)
+                        toggleEnlarge($("td.enlarged"));
+                    $("#topHeaderCentral").html(st.format("dd" + (st.getMonth() != en.getMonth() ? " MMMM" : "")) + " - " + en.format("dd MMMM yyyy") + "<sup>(" + en.format("ww") + ")</sup>");
+                    $("body").oneTime(500, "issuePlannerRefresh", function () {
+                        deskRefill();
+                    });
+                }
+
+
+                function addResource() {
+                    var resId = $("#RESOURCE_COMBO").val();
+                    if (resId) {
+                        //refresh savedfilter
+                        refreshSavedFilter(resId, true, function (response) {
+                            getOrCreateRow({ assigneeId: response.resource.id, assigneeName: response.resource.displayName, assigneeAvatarUrl: response.resource.avatarUrl }, true);
+                            ajaxLoadEstimations([response.resource.id]);
+                        });
+                    }
+                }
+
+
+                function toggleEnlarge(el) {
+                    if (el.is(".enlarged")) {
+
+                        el.removeClass("enlarged");
+                        $("#desk .wwDayBody[day=" + el.attr("day") + "]").removeClass("enlarged");
+                        $("#desk .wwDayColumn[day!='" + el.attr("day") + "']").show();
+
+                    } else {
+
+                        $("#desk .wwDayBody[day=" + el.attr("day") + "]").addClass("enlarged");
+                        $("#desk .wwDayColumn[day!='" + el.attr("day") + "']").hide();
+                        el.addClass("enlarged");
+                    }
+                }
+
+                function addIssue(paramString) {
+                    //console.debug("addIssue",paramString)
+                    var editUrl = contextPath + "/applications/teamwork/issue/issueEditor.jsp?CM=AD" + (paramString ? "&" + paramString : "");
+                    openBlackPopup(editUrl, 1024, $(window).height() - 50);
+                }
+
+            </script>
+
+        </div>
+
+        <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+        <script>
+            var __sns = [];
+            $(function () {
+                $("body").oneTime(500, function () {
+                    manageStickyNotes(__sns);
+                });
+
+                //event da webSocket
+                $("body").on("ws-stickySaved.twScreen", function (e, data) {
+                    //console.debug("ws-stickySaved.twScreen",data);
+                    if (data && data.stickyId)
+                        twSrc_drawSticky(data.stickyId);
+                }).on("ws-logSaved.twScreen", function (e, data) {
+                    //console.debug("ws-logSaved twScreen",data);
+                    if (data && data.messageId) {
+                        $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+                    }
+                }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+                    //console.debug("ws-updateGlobalCounter.twScreen", data);
+                    if (data) {
+                        $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+                        $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
+
+
+                        if (data.totalUnreadChats) {
+                            //top.twChat.chatWindow.addClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").show();
+                        } else {
+                            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").hide();
+                        }
+                        // add total unread chats to the top page title
+                        top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+                        top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+                    }
+                }).on("ws-socketClosed.twScreen", function (e, data) {
+                    //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+                }
+                );
+
+
+                //gestione chiusura tutti dopo 2
+                var firstClosed = false;
+                var doNotAskAgain = false;
+                $("body").on("containerHidden", ".container.sticky", function (e) {
+                    if (firstClosed && !doNotAskAgain) {
+                        var firstStick = $(this);
+                        var sticks = $(".container.sticky");
+                        if (sticks.size() > 2) {
+                            doNotAskAgain = true;
+                            if (confirm("全部关闭？")) {
+                                sticks.each(function () {
+                                    var stick = $(this);
+                                    if (stick.attr("status") != "ICONIZED")
+                                        if (stick.prop("id") != firstStick.prop("id"))
+                                            $(this).trigger("hide");
+                                });
+                            }
+                        }
+                        firstClosed = false;
+
+                    } else {
+                        firstClosed = true;
+                    }
+
+                });
+
+            });
+
+
+            function manageStickyNotes(sns) {
+                //console.debug("manageStickyNotes",sns);
+                if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+                    var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+                    var d = $("<div>").append(message + "<br>");
+                    var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+                    var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+                    d.append(closeAll).append(drawAll);
+                    showFeedbackMessage("INFO", d.html(), "");
+                } else {
+                    twSrc_drawAllSticky(sns)
+                }
+            }
+
+
+            function twSrc_drawAllSticky(sns) {
+                for (var i = 0; i < sns.length; i++) {
+                    twSrc_drawSticky(sns[i]);
+                }
+            }
+            function twSrc_drawSticky(stickyId) {
+                $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", { CM: "DRW", sid: stickyId }, function (response) {
+                    $("#STKN_" + stickyId).remove();
+                    $("body").append(response);
+                })
+            }
+
+
+            function closeAllSticky() {
+                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "REMOVEEALLSTK" }, function (response) {
+                    twSrc_drawAllSticky(__sns);//disegna i rimanenti
+                });
+            }
+        </script>
+    </div>
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (false) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+
+

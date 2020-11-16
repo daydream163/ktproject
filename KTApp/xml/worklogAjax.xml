@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="gethist">
+    <data>
+      <![CDATA[
+{"ok":true,"worklogs":[],"workable":28800000}
+      ]]>
+    </data>
+  </node>
+  <node id="ISSUE_TASK">
+    <![CDATA[
+ 
+]]>
+  </node>
+</nodes>

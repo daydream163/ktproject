@@ -1,0 +1,853 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            //// top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
+        }
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/app/security/login.html?V_ID=864615201&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 " level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainer" style="">
+        <div id="savingMessage">请稍候...</div>
+
+
+
+
+        <div class="twHeader noprint">
+            <div id="headerWrapper ">
+                <a href="/app/app/getsThingsDone.html?V_ID=208629667" class="twLogo withArrowRight" title="Home" id="twLogoMainMenu"></a>
+                <div id="mainNav" class="noprint mainNav">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td id="DASHBOARD_MENU" ttitle="返回到主页.您可以通过自定义页面设置自己的个性化主页" class="withArrowRight">
+                                <div style="position: relative">
+                                    <span>
+                                        <a class="button     hasDivomo noLabel" id="domId_1745501365" style="" href="/pm.page_kt.htm?V_ID=942457909"></a>
+
+                                        <span id="arrowOpener_divdomo_domId_2014823535" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_2014823535', 'arrowOpener_divdomo_domId_2014823535'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_2014823535" class="divomo divDark"
+                                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   " id="domId_1000246124" style="" href="/helpDesk.page?V_ID=1649038625">Help Desk</a>
+
+                                            <a class="button  textual  focused " id="domId_634617352" style="" href="/app/getsThingsDone.html?V_ID=633825854">Get things done</a>
+
+                                            <a class="button  textual   " id="domId_1610044062" style="" href="/pm.page?V_ID=1939421296">Project Manager</a>
+
+                                            <a class="button  textual   " id="domId_1716597834" style="" href="/supervisor.page?V_ID=1188831715">Supervisor</a>
+
+                                            <a class="button  textual   " id="domId_1564482240" style="" href="/applications/teamwork/documentation/documentation.jsp?V_ID=570257817">关于</a>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </td>
+
+                            <td id="TASK_MENU" ttitle="这是Twproject的入口点.一旦创建和分配,Twproject就将开始为团队工作.">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_103613758" style="" href="/app/task/taskList.html">项目</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1974676636" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1974676636', 'arrowOpener_divdomo_domId_1974676636'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1974676636" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_103613758" style="" href="/app/task/taskList.html?V_ID=1812581924">项目</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1177940514" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=238896077">Portfolio</a>
+
+                                        <a class="button  textual   " id="domId_2141960752" style="" href="/app/documentList.html">文档</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_1665984203" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=498311767">额外费用</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1330417755" style="" onclick="openBlackPopup('/app/task/taskNew.html?V_ID=1558784044&CM=AD','800px','720px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 新建项目</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="TIMESHEET_MENU" ttitle="工时计划,工作记录,记录的有效性检查和分析.">
+                                <span>
+                                    <a class="button     lreq10 lreqActive hasDivomo" id="domId_2087128316" style="" href="/app/agendaWeekDay.html">工时表</a>
+
+                                    <span id="arrowOpener_divdomo_WKLOGSM" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_WKLOGSM', 'arrowOpener_divdomo_WKLOGSM'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_WKLOGSM" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_553216110" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=1043373431">工时表</a>
+
+                                        <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_1019123909" style="" onclick="openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=1446452907&FOCUS_MILLIS=1605074628624',$(window).width()-100,$(window).height()-50);return false; ">计时器</button>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_85970091" style="" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=689527968">时间表概述</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1790308653" style="" href="/applications/teamwork/task/worklog/attendanceOverview.jsp?V_ID=1661233031">出勤概述</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_1324152854" style="" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=1048203773&RES_ID=15089">工作记录审核</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_663983317" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=1768971442">工作记录分析</a>
+
+                                        <a class="button  textual   lreq30 lreqLabel lreqActive" id="domId_1242579007" style="" href="/applications/teamwork/task/financial/expenseList.jsp?V_ID=1651645328">费用控制</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="PLAN_MENU" ttitle="PLAN_MENU_HELP" valign="bottom">
+                                <span>
+                                    <a class="button     lreq20 lreqActive hasDivomo" id="domId_829406574" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=260858917&CM=FIND_BY_ENTITY">计划</a>
+
+                                    <span id="arrowOpener_divdomo_domId_519936541" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_519936541', 'arrowOpener_divdomo_domId_519936541'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_519936541" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq30 lreqActive lreqLabel" id="domId_462484944" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=2060729145&CM=FIND_BY_ENTITY">计划</a>
+
+                                        <a class="button  textual   lreq20 lreqActive lreqLabel" id="domId_1241135315" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=1493484914">工作负荷</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议">
+                                <a href="/app/agendaWeekDay.html?V_ID=1212083462&AGENDA_TYPE=WEEK&FOCUS_MILLIS=0" class="button">
+                                    日程
+                                </a>
+
+                            </td>
+                            <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
+To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_456870392" style="" href="/app/issueList.html">问题</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1366640319" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1366640319', 'arrowOpener_divdomo_domId_1366640319'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1366640319" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_456870392" style="" href="/app/issueList.html?V_ID=539881324">问题</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1786236768" style="" href="/issue/issueOrganizer.html?V_ID=469792311">组织（看板）</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_1607458363" style="" href="/issue/issuePlanner.html?V_ID=1021357112">计划者</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
+                                <a href="/app/resourceList.html?V_ID=1112190913" class="button">
+                                    资源
+                                </a>
+                            </td>
+
+                            <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
+
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_895011303" style="" href="/app/toolsIntro.html?V_ID=166228302">工具</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1479505933" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1479505933', 'arrowOpener_divdomo_domId_1479505933'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1479505933" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_895011303" style="" href="/app/toolsIntro.html?V_ID=369097157">工具</a>
+
+                                        <a class="button  textual   " id="domId_343067318" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=1378063812&CM=FN">讨论板</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_667959902" style="" onclick="saveThisPageAsPreferred();return false; "><span class='teamworkIcon withLabel'>P</span>增加当前视图到书签</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="menuTools">
+
+                    <div id="HINT_SEARCH_span" class="menuSearch">
+                        <input type=text name="search" id="search" size=15 class="searchInput" autocomplete='off' maxlength=255 value="" onkeyup="if (event.keyCode==13) { fastSearch($(this));event.preventDefault();return false;}" oldValue='1'><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_keyDiv', 'domId_1611944333');  ">
+                            <button type="button" class="button noprint textual icon  fastSearchkeysButton" id="domId_1611944333" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                        </span>
+
+                        <div id="divdomo_keyDiv" class="divomo fSKeys"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class='menuTitle'>Search in:</span><button type="button" class="button noprint textual   ALL" id="domId_370937893" style="" onclick="changeFastSearchKey('ALL');return false; ">全部</button>
+
+                                <button type="button" class="button noprint textual   W" id="domId_208140410" style="" onclick="changeFastSearchKey('W');return false; ">工作记录</button>
+
+                                <button type="button" class="button noprint textual   T" id="domId_2112493554" style="" onclick="changeFastSearchKey('T');return false; ">项目</button>
+
+                                <button type="button" class="button noprint textual   R" id="domId_332026227" style="" onclick="changeFastSearchKey('R');return false; ">资源</button>
+
+                                <button type="button" class="button noprint textual   I" id="domId_1202282283" style="" onclick="changeFastSearchKey('I');return false; ">问题</button>
+
+                                <button type="button" class="button noprint textual   A" id="domId_1084695758" style="" onclick="changeFastSearchKey('A');return false; ">日程</button>
+
+                                <button type="button" class="button noprint textual   B" id="domId_492925323" style="" onclick="changeFastSearchKey('B');return false; ">讨论板</button>
+
+                                <button type="button" class="button noprint textual   D" id="domId_1751477182" style="" onclick="changeFastSearchKey('D');return false; ">文档</button>
+
+                            </div>
+                        </div><button type="button" class="button noprint textual icon  searchButton" id="domId_1518648445" style="" onclick="fastSearch($('#search'));return false; "><span class='teamworkIcon '>L</span></button>
+
+                    </div>
+
+
+
+                    <div id="loggedOp" class="loggedOp">
+                        <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1380695858', 'domId_1256731476');  ">
+                            <span class="button buttonImg  operatorButton" id="domId_1256731476" style=" " onclick=";return false; "><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d907008726" title="Dream Wing" alt="Dream Wing" id="d907008726" " resId="15089" class="face active"></span>
+
+                        </span>
+
+                        <div id="divdomo_domId_1380695858" class="divomo divDark"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">Dream Wing <em>(27)</em></span><a class="button  textual   " id="domId_1607478770" style="" href="/resource/resourceEditor.html?V_ID=1752011591&CM=ED&OBJID=15089">我的联系方式</a>
+
+                                <a class="button  textual   " id="domId_1551408130" style="" href="/resource/resourceSecurity.html?V_ID=1033647496&CM=ED&OBJID=15089">登录信息</a>
+
+                                <a class="button  textual   " id="domId_1917482683" style="" href="/resource/resourceOptions.html?V_ID=737794369&CM=EDIT_OPT&OBJID=15089">选项</a>
+
+                                <a class="button  textual   " id="domId_1991846299" style="" href="/resource/resourceapp/documentList.html?V_ID=864884048&CM=LIST_DOCS&RES_ID=15089">文档</a>
+
+                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_1055728219" style="" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1985657857&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
+
+                                <button type="button" class="button noprint textual   " id="domId_1734273893" style="" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1114285219&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
+
+                                <hr><a class="button  textual   " id="domId_145778920" style="" href="http://twproject.com/support" target="_blank">支持</a>
+
+                                <hr><a class="button  textual   " id="domId_1974950860" style="" href="/app/security/login.html?V_ID=1447893654&CM=LO" target="_top">注销</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="twChatNotifications">
+                        <div id="twChatOpener" class="messages button textual icon" onclick="twChatToggle();">
+
+                            <span class="teamworkIcon"></span>
+
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+
+                    <div id="notifications">
+                        <div id="messageListOpener" class="messages button textual icon" onclick="loadMessageList($(this));">
+                            <span class="teamworkIcon">b</span>
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+
+                    <div id="messageListBox" class="divomo divDark" style="position: absolute;left:-1000px; top:-1000px;">
+                        <div class="divomoArrow"></div>
+                        <span class="menuTitle">通知</span>
+                        <div id="messageListPlace" class="messageListPlace"></div>
+                        <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
+                            <a class="button  textual   " id="domId_708685971" style="" href="/app/messageListFull.html?V_ID=243593484">全部显示</a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="menuTimeCounter" style="display:none;"><a href="javascript:openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=2076894929')" id="tcMenuCounter"></a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // unread messages managament
+            $("#messageListBox").on("hideDivOnMouseover", function () {
+                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "READALL" }, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        $("#messageListOpener .notificationNumber").fadeOut().html("0");
+                        $("#twChatOpener").data("totalUnreadChats", false);
+                    }
+                });
+            });
+
+            function followMessageLink(el) {
+                var href = el.find(".message_link a:first").attr("href");
+                if (href)
+                    self.location.href = href;
+            }
+
+            function saveThisPageAsPreferred() {
+                location.href = contextPath + "/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+            }
+
+            (function tmStartup() {
+                var counted = undefined;
+                var format = '%0h:%0m:%0s';
+                if (counted) {
+                    var ndo = $("#tcMenuCounter");
+                    ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+                    ndo.parent().show();
+                }
+
+                registerEvent("timeCounterEvent", function (e, data) {
+
+                    if (data.type == "start") {
+
+                        if (data.response.assignment) {
+
+                            //faccio partire il widget se c'Ã¨
+                            var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+                            if (ndoWidget) {
+                                ndoWidget.addClass("highlight");
+                                ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                                ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+                            }
+
+
+                            //faccio partire il counter sul menu
+                            var ndoMenu = $("#tcMenuCounter");
+                            ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+                            ndoMenu.parent().show();
+                        }
+
+                    } else if (data.type == "stop") {
+
+                        //fermo il widget
+                        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+                        if (ndoWidget) {
+                            ndoWidget.removeClass("highlight");
+                            ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+                            ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+                        }
+
+                        //faccio fermare il counter sul menu
+                        var ndoMenu = $("#tcMenuCounter");
+                        ndoMenu.stopTimeCounter();
+                        ndoMenu.parent().hide();
+                    }
+                })
+            })();
+
+            function twChatToggle() {
+                //console.debug(top.twChat.chatWindow.is(".closed"))
+
+                if (top.twChat.chatWindow.is(".closed")) {
+                    top.twChat.open();
+                } else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+                    top.twChat.chatWindow.addClass('showChats');
+                } else {
+                    top.twChat.close();
+                }
+            }
+
+
+            $(function () {
+                //lo stato del socket lo sa solo il client lato js -> twComm
+                if (!top.twComm || !top.twComm.isOpen)
+                    getTop().$("#twChatOpener").addClass("disabled");
+
+                /**
+                 * Manage chat opener state at start (chat could be open)
+                 */
+                if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+                    $("#twChatOpener").removeClass("open");
+                } else {
+                    $("#twChatOpener").addClass("open");
+                }
+
+            })
+        </script>
+
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainer" class="null">
+
+            <script>$("#TOOLS_MENU").addClass('selected');</script>
+
+
+            <div class="mainColumn toolsIntro">
+                <style type="text/css">
+                    .teamworkIcon { font-size: 160%; }
+                </style>
+                <div class="inlineContainerWrapper">
+
+                    <div style="width: 30%" class="container ">
+
+
+                        <table width="100%" border="0" cellpadding="2" class="panel">
+                            <tr>
+                                <td valign="top">
+                                    <h2>讨论板及短消息</h2>
+                                    <ul>
+                                        <li>
+                                            <a class="button  textual   " id="domId_1173873365" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=2130895750&CM=FN">论坛列表</a>
+
+                                            - <button type="button" class="button noprint textual   edit" id="domId_1543339239" style="" onclick="openBlackPopup('/applications/teamwork/board/boardEditor.jsp?V_ID=380089231&CM=AD','600px','600px');return false; ">创建新的讨论板</button>
+
+                                            <br><label>公告板用于自由讨论, 例如讨论会议筹备过程.</label>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="button noprint    " id="domId_1830981948" style="" onclick="openBlackPopup('/applications/teamwork/messaging/composeMessage.jsp?V_ID=1595101407','800px','600px');return false; ">信息</button>
+
+                                            <br><label>您能够从Teamwork发送包含任务链接消息给工作组.</label>
+                                        </li>
+                                    </ul>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+
+                                    <h2>我的主板</h2>
+
+                                    <ul>当前没有活动的讨论板</ul>
+
+                                    <hr>
+
+                                    <table width="100%" border="0" cellpadding="2" class="panel">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top">
+
+                                                    <h2>通告&amp;公告</h2><a class="button  textual   " id="domId_1628716799" style="" href="/app/admin/news/newsList.html?V_ID=541333116">新闻管理</a>
+
+                                                    - <a class="button  textual   edit" id="domId_1444951920" style="" href="/app/admin/news/newsEditor.html?V_ID=1138212067&amp;CM=AD">创建通告</a>
+
+                                                    <br><label>添加并管理组织通告</label><br>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+
+
+
+                    </div>
+                    <div style="width: 30%" class="container">
+
+                        <table width="100%" border="0" cellpadding="2" class="panel">
+                            <tr>
+                                <td valign="top">
+                                    <h2>文档</h2><a class="button  textual   " id="domId_627372369" style="" href="/app/documentList.html">文档</a>
+
+
+                                    <label>在Teamwork中,文档总是被关联到任务或资源. 为便于搜索他们将被全文索引.</label>
+                                </td>
+                            </tr>
+                        </table>
+
+
+
+
+                        <hr>
+
+                        <table width="100%" border="0" cellpadding="2" class="panel">
+                            <tr>
+                                <td valign="top">
+                                    <h2>编码</h2>
+
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="button noprint textual   " id="domId_1732969709" style="" onclick="openBlackPopup('/app/task/taskType.html?V_ID=31151990',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>t</span>任务类型</button>
+
+                                        </li>
+                                        <li>
+                                            <!--<button type="button" class="button noprint textual   " disabled id="domId_946968247" style=""><span class='teamworkIcon withLabel'>M</span>组织类型</button>-->
+                                            <button type="button" class="button noprint textual   " id="domId_1764444630" style="" onclick="openBlackPopup('/app/resource/departmentType.html?V_ID=572017686',$(window).width()-100,$(window).height()-50);return false; "><span class="teamworkIcon withLabel">M</span>组织类型</button>
+
+                                        </li>
+                                        <li>
+                                            <button type="button" class="button noprint textual   " id="domId_1400570627" style="" onclick="openBlackPopup('/app/issue/issueStatus.html?V_ID=694019412',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>i</span>问题的状态</button>
+
+                                            &nbsp;-&nbsp;<button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_888773709" style="" onclick="openBlackPopup('/app/issue/issueImpact.html?V_ID=822273222',$(window).width()-100,$(window).height()-50);return false; ">问题的影响</button>
+
+                                            &nbsp;-&nbsp;<button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_1807446972" style="" onclick="openBlackPopup('/app/issue/issueType.html?V_ID=1870962278',$(window).width()-100,$(window).height()-50);return false; ">问题类型</button>
+
+                                        </li>
+                                        <li>
+                                            <button type="button" class="button noprint textual   " id="domId_1896106356" style="" onclick="openBlackPopup('/app/task/costClassification.html?V_ID=1605071589',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>$</span>费用分类</button>
+
+                                            &nbsp;-&nbsp;<button type="button" class="button noprint textual   " id="domId_327360152" style="" onclick="openBlackPopup('/app/task/costCenter.html?V_ID=1349687459&CM=FN',$(window).width()-100,$(window).height()-50);return false; ">费用中心</button>
+
+                                        </li>
+                                        <li>
+                                            <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_687819038" style="" onclick="openBlackPopup('/app/worklog/worklogStatus.html?V_ID=88971050',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>A</span>工作记录状态</button>
+
+                                        </li>
+                                        <li>
+                                            <button type="button" class="button noprint textual   " id="domId_1935484944" style="" onclick="openBlackPopup('/app/agenda/eventType.html?V_ID=270099865',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>m</span>事件类型</button>
+
+                                            &nbsp;
+                                        </li>
+                                    </ul>
+                                    <label>编码值允许您将数据标准化和便于搜索</label>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                    <div style="width: 30%" class="container">
+
+
+
+                        <table class="panel">
+                            <tr>
+                                <td valign="top">
+                                    <h2>安全设置</h2><ul class="lreq30 lreqLabel lreqActive">
+                                        <li>
+                                            <a class="button  textual   " id="domId_829427796" style="" href="/app/security/roleList.html?V_ID=1525360445">角色</a>
+
+                                        </li>
+                                    </ul>
+                                    <label>管理地区和角色。</label>
+
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+        <script>
+            var __sns = [];
+            $(function () {
+                $("body").oneTime(500, function () {
+                    manageStickyNotes(__sns);
+                });
+
+                //event da webSocket
+                $("body").on("ws-stickySaved.twScreen", function (e, data) {
+                    //console.debug("ws-stickySaved.twScreen",data);
+                    if (data && data.stickyId)
+                        twSrc_drawSticky(data.stickyId);
+                }).on("ws-logSaved.twScreen", function (e, data) {
+                    //console.debug("ws-logSaved twScreen",data);
+                    if (data && data.messageId) {
+                        $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+                    }
+                }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+                    //console.debug("ws-updateGlobalCounter.twScreen", data);
+                    if (data) {
+                        $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+                        $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
+
+
+                        if (data.totalUnreadChats) {
+                            //top.twChat.chatWindow.addClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").show();
+                        } else {
+                            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").hide();
+                        }
+                        // add total unread chats to the top page title
+                        top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+                        top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+                    }
+                }).on("ws-socketClosed.twScreen", function (e, data) {
+                    //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+                }
+                );
+
+
+                //gestione chiusura tutti dopo 2
+                var firstClosed = false;
+                var doNotAskAgain = false;
+                $("body").on("containerHidden", ".container.sticky", function (e) {
+                    if (firstClosed && !doNotAskAgain) {
+                        var firstStick = $(this);
+                        var sticks = $(".container.sticky");
+                        if (sticks.size() > 2) {
+                            doNotAskAgain = true;
+                            if (confirm("全部关闭？")) {
+                                sticks.each(function () {
+                                    var stick = $(this);
+                                    if (stick.attr("status") != "ICONIZED")
+                                        if (stick.prop("id") != firstStick.prop("id"))
+                                            $(this).trigger("hide");
+                                });
+                            }
+                        }
+                        firstClosed = false;
+
+                    } else {
+                        firstClosed = true;
+                    }
+
+                });
+
+            });
+
+
+            function manageStickyNotes(sns) {
+                //console.debug("manageStickyNotes",sns);
+                if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+                    var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+                    var d = $("<div>").append(message + "<br>");
+                    var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+                    var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+                    d.append(closeAll).append(drawAll);
+                    showFeedbackMessage("INFO", d.html(), "");
+                } else {
+                    twSrc_drawAllSticky(sns)
+                }
+            }
+
+
+            function twSrc_drawAllSticky(sns) {
+                for (var i = 0; i < sns.length; i++) {
+                    twSrc_drawSticky(sns[i]);
+                }
+            }
+            function twSrc_drawSticky(stickyId) {
+                $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", { CM: "DRW", sid: stickyId }, function (response) {
+                    $("#STKN_" + stickyId).remove();
+                    $("body").append(response);
+                })
+            }
+
+
+            function closeAllSticky() {
+                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "REMOVEEALLSTK" }, function (response) {
+                    twSrc_drawAllSticky(__sns);//disegna i rimanenti
+                });
+            }
+        </script>
+    </div>
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (false) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+
+
+

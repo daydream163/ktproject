@@ -1,0 +1,729 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/app/security/login.html?V_ID=1083008074&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 isPopup" level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainerPopup">
+        <div id="savingMessage" class="noprint">请稍候...</div>
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainerPopup" class="null">
+            <form enctype="multipart/form-data" method="POST"
+                  action="/app/task/taskNew.html" name="mainForm" alertOnChange="true" id="mainForm"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="mainFormV_ID" name="V_ID" value="45307746" savedValue="">
+                <input type="hidden" id="mainFormCM" name="CM" value="" savedValue="">
+                <input type="hidden" id="mainFormOBJID" name="OBJID" value="newEmptyId" savedValue="">
+                <input type="hidden" id="mainFormPARENT_ID" name="PARENT_ID" value="" savedValue="">
+
+
+
+                <h1>新建项目</h1>
+
+                <table border="0" class="table" cellpadding="5">
+
+                    <tr>
+                        <td colspan="3" valign="top"><label for="TASK_NAME" class="required">名称*</label><br><input type=text name="TASK_NAME" id="TASK_NAME" size=50 class="formElements" autocomplete='off' maxlength=255 style='width:100%' value="" required="true" oldValue='1'></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="height: 65px">
+                            <label for="TASK_CODE" class=" ">代码</label><br><input type=text name="TASK_CODE" id="TASK_CODE" size=15 class="formElements" autocomplete='off' maxlength=255 style='width:100%' onChange="$(this).removeAttr('invalid')" value="" oldValue='1'>
+                            <small></small>
+                        </td>
+                        <td nowrap valign="top">
+                            <label for="TASK_TYPE_txt" class=" ">类型</label><br><input type=text name="TASK_TYPE_txt" id="TASK_TYPE_txt" size=15 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="TASK_TYPE" id="TASK_TYPE" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                        </td>
+                        <td valign="top">
+                            <div style="margin:0; position: relative;">
+
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "STATUS_ACTIVE", "color": "#3BBF67", "value": "进行中", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "STATUS_WAITING", "color": "#F79136", "value": "等候", "enabled": false, "textColor": "#FFFFFF", "index": 2 }, { "code": "STATUS_SUSPENDED", "color": "#F9C154", "value": "暂停", "enabled": true, "textColor": "#000000", "index": 3 }, { "code": "STATUS_DONE", "color": "#6EBEF4", "value": "完成", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "STATUS_FAILED", "color": "#763A96", "value": "失败", "enabled": true, "textColor": "#FFFFFF", "index": 5 }, { "code": "STATUS_UNDEFINED", "color": "#dededf", "value": "未定义", "enabled": true, "textColor": "#000000", "index": 6 }] };
+
+
+                                        _colorValueData["STATUS"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_30833875">状态</label><br> <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="STATUS" displayValue='true'>
+                                    <input type=hidden name="STATUS" id="STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="STATUS_ACTIVE"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="进行中" code="STATUS_ACTIVE"
+                                                 style=" color:#FFFFFF;background-color:#3BBF67"><span class="cvcDescription">进行中</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="dateRow">
+                        <td nowrap valign="top">
+                            <div style="position:relative">
+                                <label for="START">开始日期</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type=hidden name="STARTISMILESTONE" id="STARTISMILESTONE" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_STARTISMILESTONE" name="ck_STARTISMILESTONE" value="yes"
+                                                                                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');resynchDates('MILES','START','STARTISMILESTONE','TASK_DURATION','END','ENDISMILESTONE');">
+                                &nbsp;<label for="ck_STARTISMILESTONE">作为里程碑</label>&nbsp;
+                                <br><input type=text name="START" id="START" size=8 class="formElements dateField validated date" autocomplete='off' maxlength=255 onchange="$(this).oneTime(100,'dfblur',function(){if ($(this).is('.formElementsError')) {$(this).focus();}  else{resynchDates('START','START','STARTISMILESTONE','TASK_DURATION','END','ENDISMILESTONE');datesChanged($(this));}});" format="yyyy-M-d" value="2020-11-11" oldValue='1' entryType="DATE" maxValue="3020-11-19" minValue="1020-10-29"><span title="日历" id="STARTs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:false,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                        </td>
+                        <td nowrap valign="top">
+                            <label for="END">结束日期</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type=hidden name="ENDISMILESTONE" id="ENDISMILESTONE" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ENDISMILESTONE" name="ck_ENDISMILESTONE" value="yes"
+                                                                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');resynchDates('MILES','START','STARTISMILESTONE','TASK_DURATION','END','ENDISMILESTONE');">
+                            &nbsp;<label for="ck_ENDISMILESTONE">作为里程碑</label>&nbsp;
+                            <br><input type=text name="END" id="END" size=8 class="formElements dateField validated date" autocomplete='off' maxlength=255 onchange="$(this).oneTime(100,'dfblur',function(){if ($(this).is('.formElementsError')) {$(this).focus();}  else{resynchDates('END','START','STARTISMILESTONE','TASK_DURATION','END','ENDISMILESTONE');datesChanged($(this));}});" format="yyyy-M-d" value="2020-11-11" oldValue='1' entryType="DATE" maxValue="3020-11-19" minValue="1020-10-29"><span title="日历" id="ENDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:false,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            <br><button type="button" class="button noprint textual   " disabled id="domId_1312886493" style=""><span class="descrEl">&nbsp;推算终点</span></button>
+
+                        </td>
+                        <td nowrap valign="top">
+                            <label for="TASK_DURATION" class=" ">天</label><br><input type=text name="TASK_DURATION" id="TASK_DURATION" size=4 class="formElements validated durationdays" title="Duration is in working days." autocomplete='off' maxlength=255 autocomplete="off" onBlur="resynchDates('TASK_DURATION','START','STARTISMILESTONE','TASK_DURATION','END','ENDISMILESTONE');datesChanged($(this));" value="" oldValue='1' entryType="DURATIONDAYS">&nbsp;
+                        </td>
+
+
+                    </tr>
+                    <tr>
+
+
+                        <td valign="top">
+                            <label for="RELEVANCE" class=" ">重要性</label><br><input type=text name="RELEVANCE" id="RELEVANCE" size=7 class="formElements validated percentile" autocomplete='off' maxlength=255 value="" oldValue='1' entryType="PERCENTILE">&nbsp;
+                        </td>
+
+                        <td valign="top" nowrap>
+                            <label>进度</label>
+                            <br><input type=text name="PROGRESS" id="PROGRESS" size=3 class="formElements validated percentile grayed" autocomplete='off' readonly maxlength=255 value="" oldValue='1' entryType="PERCENTILE"><SELECT NAME="PROGRESS_COMPUTE_TYPE" id="PROGRESS_COMPUTE_TYPE" onChange="$(this).val()!='0'? disableProgress(this) : enableProgress(this)" CLASS="formElements" oldValue='1'>
+                                <option value="0">手册</option>
+                                <option value="1">通过工作日志/估计</option>
+                                <option selected value="3">由子任务（加权）</option>
+                                <option value="2">由子任务完成/总计</option>
+                                <option value="4">by issue closed / total</option>
+                                <option value="5">by issue weight (closed..</option>
+                                <option value="7">按成本/估计</option>
+                                <option value="8">按成本/预算</option>
+                                <option value="6">按日期</option>
+                            </SELECT>
+                            <script type="text/javascript">
+                                function enableProgress(o) {
+                                    $('#PROGRESS').removeAttr('readonly');
+                                    $('#PROGRESS').css('backgroundColor', '#ffffff');
+                                }
+                                function disableProgress(o) {
+                                    $('#PROGRESS').attr('readonly', 'readonly');
+                                    $('#PROGRESS').css('backgroundColor', '#f3f3f3');
+                                }
+                            </script>
+                        </td>
+                        <td>
+                            <label for="COLOR">颜色</label><br>
+                            <span class="colorChooserGroup">
+                                <input type=text name="COLOR" id="COLOR" size=2 class="formElements colorChooserField" autocomplete='off' maxlength=255 value="" oldValue='1'>
+                            </span>
+                            <script type="text/javascript">
+
+                                var defs = [
+                                    initialize(contextPath + "/commons/js/jquery/spectrum/spectrum.css?_=65022", "css"),
+                                    initialize(contextPath + "/commons/js/jquery/spectrum/tw_spectrum.css?_=65022", "css"),
+                                    initialize(contextPath + "/commons/js/jquery/spectrum/spectrum.js?_=65022", "script")
+                                ];
+
+                                $.when.apply(null, defs).done(function () {
+                                    /*
+                                     SPECTRUM color chooser
+                                     https://bgrins.github.io/spectrum/#why-customizable
+
+                                     color: tinycolor,
+                                     flat: bool,
+                                     showInput: bool,
+                                     showInitial: bool,
+                                     allowEmpty: bool,
+                                     showAlpha: bool,
+                                     disabled: bool,
+                                     localStorageKey: string,
+                                     showPalette: bool,
+                                     showPaletteOnly: bool,
+                                     togglePaletteOnly: bool,
+                                     showSelectionPalette: bool,
+                                     clickoutFiresChange: bool,
+                                     cancelText: string,
+                                     chooseText: string,
+                                     togglePaletteMoreText: string,
+                                     togglePaletteLessText: string,
+                                     containerClassName: string,
+                                     replacerClassName: string,
+                                     preferredFormat: string,
+                                     maxSelectionSize: int,
+                                     palette: [[string]],
+                                     selectionPalette: [string]
+                                     */
+
+
+                                    $("#COLOR").spectrum({
+                                        color: $("#COLOR").val(),
+                                        allowEmpty: true,
+                                        palette: [["#464646", "#696969", "#8C8C8C", "#AFAFAF", "#D2D2D2", "#F5F5F5"], ["#CF0B0B", "#F22E2E", "#FF5151", "#FF7474", "#FF9797", "#FFBABA"], ["#FD9812", "#FFBB35", "#FFDE58", "#FFFF7B", "#FFFF9E", "#FFFFC1"], ["#18A106", "#3BC429", "#5EE74C", "#81FF6F", "#A4FF92", "#C7FFB5"], ["#0C40A3", "#2F63C6", "#5286E9", "#75A9FF", "#98CCFF", "#BBEFFF"], ["#9929ED", "#BC4CFF", "#DF6FFF", "#FF92FF", "#FFB5FF", "#FFD8FF"]],
+                                        showInput: false,
+                                        showPaletteOnly: true,
+                                        showPalette: false,
+                                        hideAfterPaletteSelect: false,
+                                        preferredFormat: "hex",
+
+                                        show: function (color) {
+                                            $("#COLOR").spectrum("option", "hideAfterPaletteSelect", true);
+
+                                            if (true) {
+
+                                                var clearButton = $("<div class='clear-palette' title='Clear color'>删除</div>");
+                                                clearButton.on("click.spectrum", function (e) {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    $(".sp-clear").click();
+                                                    $("#COLOR").val("").spectrum("hide");
+                                                });
+                                                $('.sp-palette').append(clearButton);
+
+                                            }
+                                        }
+
+                                    });
+
+                                });
+                            </script>
+
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <label>描述</label>
+                            <textarea name="DESCRIPTION" id="DESCRIPTION" COLS="22" ROWS="5" class="formElements autosize" style='width:100%;height:60px;' oldValue='1' maxHeight=500 minHeight=60 lineHeight=20 maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <label for="TASK_TAGS" class=" ">标签</label><br><input type=text name="TASK_TAGS" id="TASK_TAGS" size=36 class="formElements tagBox" autocomplete='off' maxlength=255 style='width:100%' autocomplete='off' taggableClass="com.twproject.task.Task" maxResult="30" tagPropertyName="tags" areaId="5819" value="" oldValue='1'>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+            <h2>
+                分工<span style="float: right">
+                    <button type="button" class="button noprint  icon   small lreq20" id="domId_394636871" style="" title="批量分配" onclick="openWorkGroup();return false; "><span class='teamworkIcon '>r</span></button>
+
+                </span>
+            </h2>
+
+            <table class="table dataTable fixHead fixFoot" assigs=true id="assigTable">
+                <thead class="dataTableHead">
+                    <tr>
+                        <th class="tableHead"><input type="checkbox" id="ck_chall" class="selector lreq20" onclick="selUnselAll($(this));" title="选择/取消选择"></th>
+                        <th class="tableHead">名称</th>
+                        <th class="tableHead">角色</th>
+                        <th class="tableHead" colspan="2">预估计划工期</th>
+                        <th class="tableHead" style="text-align: center"><span class="teamworkIcon edit" style="cursor: pointer" onclick="addAssigRow({});">P</span></th>
+                    </tr>
+                </thead>
+                <tbody class="dataTableBody" id="assigRowsPlace"></tbody>
+                <tfoot>
+                    <tr><td id="bulkPlace" colspan="99"></td></tr>
+                </tfoot>
+
+            </table>
+            <div id="bulkOp" style="display:none;">
+                <div id="bulkRowSel"></div>
+                <div>
+                    挑一个角色 &nbsp;&nbsp; <input type=text name="bkRoleId_txt" id="bkRoleId_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="bkRoleId" id="bkRoleId" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                    <span class="button small lreq20" onclick="assignRoleToSelected($(this));">执行</span>
+                </div>
+            </div>
+            <div class="noprint buttonArea" id="domId_133132743" style="text-align:left;">
+                <div class="bbButtons">
+                    <button type="button" class="button noprint    first big" id="domId_2031535074" style="" onclick="createNewProject($(this));return false; ">保存</button>
+
+                </div><div class="bbLoggedInfo"><span>任务尚未保存。</span></div>
+            </div>
+
+            <div id="gantEditorTemplates" style="display:none;">
+
+                <div class="__template__" type="ASSIGNMENT_ROW">
+                    <!--
+                    <tr class="assigRow" >
+                      <td><input type="checkbox" class="selector lreq20" onclick="refreshBulk($(this));"></td>
+                      <td><script>
+                          function letSubmitresourceId() {
+                            updateResourceLoad($(this));
+                          }
+                        </script><input type=text name="resourceId_txt" id="resourceId_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" style=width:100% onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="##resName##" ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="resourceId" id="resourceId" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="##resId##" oldValue='1' >
+                    </td>
+                      <td><input type=text name="roleId_txt" id="roleId_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );"  style='width:100%;' role onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="##roleName##" ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="roleId" id="roleId" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="##roleId##" oldValue='1' >
+                    </td>
+                      <td><input type="text" name="WL"  size="5" class="formElements validated durationmillis" onchange="updateResourceLoad($(this))" entryType="DURATIONMILLIS"></td>
+                      <td class="workloadInfo" align="center"></td>
+                      <td align="center"><span class="teamworkIcon delAssig delete" style="cursor: pointer" onclick="$(this).closest('tr').remove();refreshBulk($('#ck_chall'));">d</span></td>
+                    </tr>
+                    -->
+                </div>
+            </div>
+
+
+            <script>
+
+
+                function computeResourceLoad(el, period, resId, currentWorkload, assId) {
+                    //console.debug("computeResourceLoad",period, resId, currentWorkload,assId);
+
+                    if (!period || false)
+                        return;
+
+                    var row = el.closest("tr");
+                    //si chiama con delay sulla riga in modo da
+                    row.stopTime("loadOpLoad");
+                    var workloadInfo = row.find(".workloadInfo");
+                    workloadInfo.removeClass("loading").empty();
+
+                    if (resId) {
+                        workloadInfo.addClass("loading");
+                        row.oneTime(1000, "loadOpLoad", function () {
+                            getOperatorLoad(resId, period.startMillis, period.endMillis, currentWorkload, assId, function (response) {
+                                if (response.ok && response.stats) {
+                                    var bl = $("<div>").attr({ "data-timer": 0, "data-forceposition": "left" });
+                                    bl.attr("data-balloon", "<b>工作量期</b><br><span class='textSmall'>" +
+                                        (new Date().format()) + " : " + (new Date(period.endMillis).format()) + "<br>" +
+                                        "工作量 - min: " + getMillisInHoursMinutes(response.stats.minLoad) + "  max: <b>" + getMillisInHoursMinutes(response.stats.maxLoad) + "</b><br>" +
+                                        "平均工作能力: " + getMillisInHoursMinutes(response.stats.meanCapacity) + "<br>"
+                                    );
+                                    bl.css("cursor", "pointer");
+                                    bl.addClass("");
+                                    if (response.stats.meanLoadPerc > 100)
+                                        bl.addClass("warning alertIcon");
+                                    else if (response.stats.meanLoadPerc > 90)
+                                        bl.addClass("attention");
+                                    bl.append(parseInt(response.stats.meanLoadPerc) + "%");
+                                    workloadInfo.empty().append(bl);
+                                } else {
+                                    workloadInfo.empty();
+                                }
+                                workloadInfo.removeClass("loading");
+                            });
+                        })
+                    }
+                }
+
+
+
+                function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId, callback) {
+                    //console.debug("getOperatorLoad",resId, startMillis, endMillis, currentWL, assId);
+                    //se il progetto doveva giÃ  essere chiuso non si calcola niente
+                    if (endMillis < new Date().getTime()) {
+                        if (typeof (callback) == "function") {
+                            callback({ ok: false });
+                        }
+                        return;
+                    }
+
+                    var request = {
+                        CM: "GETOPLOAD",
+                        resId: resId,
+                        startMillis: startMillis,
+                        endMillis: endMillis,
+                        simulatedLoad: currentWL,
+                        assId: assId
+                    };
+                    $.getJSON(contextPath + "/applications/teamwork/task/plan/planAjaxController.jsp", request, function (response) {
+                        jsonResponseHandling(response);
+                        if (typeof (callback) == "function") {
+                            callback(response);
+                        }
+                    })
+                }
+            </script>
+            <script>
+                $(function () {
+                    $("#gantEditorTemplates").loadTemplates().remove();
+                    var isRoot = !$("[name=PARENT_ID]").val();
+                    if ($("table[assigs]").size() > 0 && isRoot) {
+                        addAssigRow({ resId: "15089", resName: "Wing Dream", roleId: "35063", roleName: "Project manager" });
+
+                        addAssigRow({ resId: "", resName: "", roleId: "35064", roleName: "Customer" });
+                        addAssigRow({ resId: "", resName: "", roleId: "35065", roleName: "Worker" });
+                    } else {
+                        addAssigRow({ resId: "", resName: "", roleId: "35065", roleName: "Worker" });
+                        addAssigRow({ resId: "", resName: "", roleId: "", roleName: "" });
+                    }
+
+                    //mostra carico primo utente
+                    datesChanged();
+                });
+
+
+                function addAssigRow(data) {
+                    //console.debug("addAssigRow",data)
+                    var row = $.JST.createFromTemplate(data, "ASSIGNMENT_ROW");
+                    $("#assigRowsPlace").append(row);
+                    return row;
+                }
+
+                function createNewProject(el) {
+                    //console.debug("createNewProject");
+                    el.disableForAWhile(1500);
+
+                    //if name filled -> role mandatory
+                    $("table[assigs] .assigRow").each(function () {
+                        var row = $(this);
+                        if (row.find("input[name=resourceId]").val()) {
+                            row.find("input[name=roleId],input[name=roleId_txt]").attr("required", true);
+                        } else {
+                            row.find("input[name=roleId],input[name=roleId_txt]").removeAttr("required").clearErrorAlert();
+                        }
+                    });
+
+                    if (canSubmitForm("mainForm") && canSubmitForm("assigTable")) {
+                        var form = $("#mainForm");
+
+                        var data = {};
+                        form.fillJsonWithInputValues(data);
+
+                        data.CM = "NEWTASK";
+
+                        //recover assignemnts
+                        var assigs = [];
+
+                        $("table[assigs] .assigRow").each(function () {
+                            var row = $(this);
+                            var ass = {
+                                resId: row.find("input[name=resourceId]").val(),
+                                roleId: row.find("input[name=roleId]").val(),
+                                estWl: row.find("input[name=WL]").val()
+                            };
+                            if (ass.resId && ass.roleId)
+                                assigs.push(ass);
+                        });
+
+                        data.assigs = JSON.stringify(assigs);
+                        $.getJSON(contextPath + "/applications/teamwork/task/taskAjaxController.jsp", data, function (response) {
+                            jsonResponseHandling(response);
+                            if (response.ok) {
+                                form.find(":input").updateOldValue(); // per non avere il messagio di leave
+                                getTop().location.href = contextPath + "/app/taskOverview.html??CM=ED&OBJID=" + response.taskId;
+
+                            } else {
+                                showFeedbackMessage("ERROR", "错误保存");
+                            }
+                            hideSavingMessage();
+
+                        });
+
+                    }
+                }
+
+
+                function updateResourceLoad(el) {
+                    var row = el.closest("tr");
+                    computeResourceLoad(el, getCurrentTaskPeriod(), row.find("[name=resourceId]").val(), millisFromString(row.find("[name=WL]").val(), -1));
+                }
+
+
+                function createNewResource(el) {
+                    var row = el.closest(".assigRow");
+                    var name = row.find("[name=resourceId_txt]").val();
+                    var url = contextPath + "/applications/teamwork/resource/resourceNew.jsp?CM=ADD&name=" + encodeURI(name);
+
+                    openBlackPopup(url, 700, 320, function (response) {
+                        //fillare lo smart combo
+                        if (response && response.resId && response.resName) {
+                            row.find("[name=resourceId]").val(response.resId);
+                            row.find("[name=resourceId_txt]").val(response.resName).focus().blur();
+
+                            //se è stata creato un login si comunicano i dati
+                            if (response.loginCreatedMessage)
+                                showFeedbackMessage("INFO", response.loginCreatedMessage);
+
+                        }
+                    })
+                }
+
+                function assignRoleToSelected(el) {
+                    var roleId = $("#bkRoleId").val();
+                    var roleTxt = $("#bkRoleId_txt").val();
+                    if (roleId && roleTxt) {
+                        $("table[assigs] tr.assigRow.selected").each(function () {
+                            var tr = $(this);
+                            tr.find("#roleId").val(roleId);
+                            tr.find("#roleId_txt").val(roleTxt);
+                            tr.removeClass("selected").find(":checkbox").prop("checked", false);
+                        });
+                        refreshBulk($("#ck_chall"));
+                    }
+                }
+
+                function openWorkGroup() {
+                    //WG_IDS, WG_CAND_IDS
+                    var wgIds = [];
+                    $(":input[name=resourceId]").each(function () {
+                        var inp = $(this);
+                        if (inp.val()) {
+                            wgIds.push(inp.val());
+                        }
+                    });
+                    var url = contextPath + "/app/workgroup/workgroupPopup.html?" +
+                        "useCallbackFunction=yes&" +
+                        "title=" + encodeURIComponent("批量分配") + "&" +
+                        "WG_IDS=" + encodeURIComponent(wgIds.join()) + "&" +
+                        "PERM_REQUIRED=TW_ass_man";
+                    openBlackPopup(url, 700, 580, wgCallback);
+                }
+
+                function wgCallback(selectedResources) {
+                    //console.debug("wgCallback",selectedResources);
+                    if (selectedResources) {
+                        //si eliminano le righe vuote
+                        $(":input[name=resourceId]").each(function () {
+                            var inp = $(this);
+                            if (!inp.val()) {
+                                inp.closest("tr").remove();
+                            }
+                        });
+
+                        var row;
+                        //for (var resId in selectedResources) {
+                        for (var i = 0; i < selectedResources.length; i++) {
+                            var res = selectedResources[i];
+                            //si deve controllare se c'è già
+                            var found = false;
+                            $(":input[name=resourceId]").each(function () {
+                                var inp = $(this);
+                                if (res.id == inp.val()) {
+                                    found = true;
+                                    return false;
+                                }
+                            });
+
+                            //se la risorsa non c'è già la aggiungo
+                            if (!found) {
+                                row = addAssigRow({ resId: res.id, resName: res.displayName });
+                                row.find(":checkbox").click();
+                                updateResourceLoad(row.children().eq(0))
+                            }
+                        }
+                    }
+                }
+
+
+
+                function taskTypeAddedCallback(taskType) {
+                    //console.debug("taskTypeAddedCallback",taskType)
+                    if (taskType) {
+                        $("#TASK_TYPE").val(taskType.id);
+                        $("#TASK_TYPE_txt").val(taskType.name).focus().blur();
+                    }
+
+                }
+
+
+
+                var lastPeriodChecked;
+
+                function getCurrentTaskPeriod() {
+                    var ret = { startMillis: Date.parseString($("#START").val()).setHours(0, 0, 0), endMillis: Date.parseString($("#END").val()).setHours(23, 59, 59) };
+                    lastPeriodChecked = ret;
+                    return ret;
+                }
+
+
+                function datesChanged(el) {
+                    //console.debug("datesChanged");
+                    var ret = { startMillis: Date.parseString($("#START").val()).setHours(0, 0, 0), endMillis: Date.parseString($("#END").val()).setHours(23, 59, 59) };
+                    if (!lastPeriodChecked || ret.startMillis != lastPeriodChecked.startMillis || ret.endMillis != lastPeriodChecked.endMillis) {
+                        $("tr.assigRow [name=resourceId]").each(function () {
+                            var inp = $(this);
+                            if (inp.val()) {
+                                updateResourceLoad(inp);
+                            }
+                        })
+                    }
+                }
+
+
+            </script>
+
+
+        </div>
+
+    </div>
+
+    <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (true) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (1)
+                $("#TASK_NAME").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+

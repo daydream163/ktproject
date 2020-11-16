@@ -1,0 +1,1519 @@
+﻿
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            //// top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
+        }
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/app/security/login.html?V_ID=1791170590&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 " level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainer" style="">
+        <div id="savingMessage">请稍候...</div>
+
+
+
+
+        <div class="twHeader noprint">
+            <div id="headerWrapper ">
+                <a href="/app/getsThingsDone.html?V_ID=1913710335" class="twLogo withArrowRight" title="Home" id="twLogoMainMenu"></a>
+                <div id="mainNav" class="noprint mainNav">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td id="DASHBOARD_MENU" ttitle="返回到主页.您可以通过自定义页面设置自己的个性化主页" class="withArrowRight">
+                                <div style="position: relative">
+                                    <span>
+                                        <a class="button     hasDivomo noLabel" id="domId_867019226" style="" href="/app/getsThingsDone.html?V_ID=1117553349"></a>
+
+                                        <span id="arrowOpener_divdomo_domId_1315586487" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1315586487', 'arrowOpener_divdomo_domId_1315586487'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_1315586487" class="divomo divDark"
+                                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   " id="domId_2012791027" style="" href="/helpDesk.page?V_ID=1416153636">Help Desk</a>
+
+                                            <a class="button  textual  focused " id="domId_1816383245" style="" href="/getsThingsDone.page?V_ID=2040845112">Get things done</a>
+
+                                            <a class="button  textual   " id="domId_1473156610" style="" href="/pm.page?V_ID=2094381491">Project Manager</a>
+
+                                            <a class="button  textual   " id="domId_1004178007" style="" href="/supervisor.page?V_ID=1834222983">Supervisor</a>
+
+                                            <a class="button  textual   " id="domId_145781876" style="" href="/applications/teamwork/documentation/documentation.jsp?V_ID=311772569">关于</a>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </td>
+
+                            <td id="TASK_MENU" ttitle="这是Twproject的入口点.一旦创建和分配,Twproject就将开始为团队工作.">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_101468503" style="" href="/app/task/taskList.html?V_ID=1202906892">项目</a>
+
+                                    <span id="arrowOpener_divdomo_domId_279114203" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_279114203', 'arrowOpener_divdomo_domId_279114203'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_279114203" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_101468503" style="" href="/app/task/taskList.html?V_ID=1966774091">项目</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_968124773" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=1519186548">Portfolio</a>
+
+                                        <a class="button  textual   " id="domId_1936950139" style="" href="/app/documentList.html?V_ID=645903066">文档</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_616381300" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=1409886414">额外费用</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1835689196" style="" onclick="openBlackPopup('/app/task/taskNew.html?V_ID=59395972&CM=AD','800px','720px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 新建项目</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="TIMESHEET_MENU" ttitle="工时计划,工作记录,记录的有效性检查和分析.">
+                                <span>
+                                    <a class="button     lreq10 lreqActive hasDivomo" id="domId_626399100" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=403250668">工时表</a>
+
+                                    <span id="arrowOpener_divdomo_WKLOGSM" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_WKLOGSM', 'arrowOpener_divdomo_WKLOGSM'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_WKLOGSM" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_233796556" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=2009989432">工时表</a>
+
+                                        <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_1829076037" style="" onclick="openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=1671126329&FOCUS_MILLIS=1605187730120',$(window).width()-100,$(window).height()-50);return false; ">计时器</button>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_52547054" style="" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=164108660">时间表概述</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_542557661" style="" href="/applications/teamwork/task/worklog/attendanceOverview.jsp?V_ID=325427310">出勤概述</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_551043265" style="" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=1199971954&RES_ID=15089">工作记录审核</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1434668991" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=1423767114">工作记录分析</a>
+
+                                        <a class="button  textual   lreq30 lreqLabel lreqActive" id="domId_535343221" style="" href="/applications/teamwork/task/financial/expenseList.jsp?V_ID=14042867">费用控制</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="PLAN_MENU" ttitle="PLAN_MENU_HELP" valign="bottom">
+                                <span>
+                                    <a class="button     lreq20 lreqActive hasDivomo" id="domId_1942748146" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1572030166&CM=FIND_BY_ENTITY">计划</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1426720834" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1426720834', 'arrowOpener_divdomo_domId_1426720834'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1426720834" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq30 lreqActive lreqLabel" id="domId_94654636" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1997104944&CM=FIND_BY_ENTITY">计划</a>
+
+                                        <a class="button  textual   lreq20 lreqActive lreqLabel" id="domId_1722568472" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=50555807">工作负荷</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议">
+                                <a href="/app/agendaWeekDay.html?V_ID=1435407684&AGENDA_TYPE=WEEK&FOCUS_MILLIS=0" class="button">
+                                    日程
+                                </a>
+
+                            </td>
+                            <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
+To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_65654590" style="" href="/app/issueList.html?V_ID=1154763442">问题</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1797583219" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1797583219', 'arrowOpener_divdomo_domId_1797583219'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1797583219" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_65654590" style="" href="/app/issueList.html?V_ID=2124439942">问题</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1181215737" style="" href="/issue/issueOrganizer.html?V_ID=29369801">组织（看板）</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_1354058891" style="" href="/issue/issuePlanner.html?V_ID=1421086463">计划者</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
+                                <a href="/app/resourceList.html?V_ID=2034545354" class="button">
+                                    资源
+                                </a>
+                            </td>
+
+                            <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
+
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_221653497" style="" href="/app/toolsIntro.html?V_ID=779443713">工具</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1593680181" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1593680181', 'arrowOpener_divdomo_domId_1593680181'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1593680181" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_221653497" style="" href="/app/toolsIntro.html?V_ID=2126259790">工具</a>
+
+                                        <a class="button  textual   " id="domId_1566756683" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=1705860387&CM=FN">讨论板</a>
+
+                                        <hr><span class='menuTitle'>书签</span><a class="button  textual   " id="domId_1832268050" style="" href="https://www.baidu.com" target="_blank">- baidu</a>
+
+                                        <a class="button  textual   " id="domId_13618370" style="" href="https://oa.cnki.net" target="_blank">- OA</a>
+
+                                        <a class="button  textual   " id="domId_1250678008" style="" href="https://www.cnki.net" target="_blank">- cnki</a>
+
+                                        <hr><a class="button  textual   " id="domId_575343620" style="" href="/tools/manageFavorites.html?V_ID=401634369"><span class='teamworkIcon withLabel'>g</span>管理书签&nbsp;</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1828842546" style="" onclick="saveThisPageAsPreferred();return false; "><span class='teamworkIcon withLabel'>P</span>增加当前视图到书签</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="menuTools">
+
+                    <div id="HINT_SEARCH_span" class="menuSearch">
+                        <input type=text name="search" id="search" size=15 class="searchInput" autocomplete='off' maxlength=255 value="" onkeyup="if (event.keyCode==13) { fastSearch($(this));event.preventDefault();return false;}" oldValue='1'><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_keyDiv', 'domId_1160792769');  ">
+                            <button type="button" class="button noprint textual icon  fastSearchkeysButton" id="domId_1160792769" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                        </span>
+
+                        <div id="divdomo_keyDiv" class="divomo fSKeys"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class='menuTitle'>Search in:</span><button type="button" class="button noprint textual   ALL" id="domId_701886370" style="" onclick="changeFastSearchKey('ALL');return false; ">全部</button>
+
+                                <button type="button" class="button noprint textual   W" id="domId_476547619" style="" onclick="changeFastSearchKey('W');return false; ">工作记录</button>
+
+                                <button type="button" class="button noprint textual   T" id="domId_1369312870" style="" onclick="changeFastSearchKey('T');return false; ">项目</button>
+
+                                <button type="button" class="button noprint textual   R" id="domId_1606644838" style="" onclick="changeFastSearchKey('R');return false; ">资源</button>
+
+                                <button type="button" class="button noprint textual   I" id="domId_420414888" style="" onclick="changeFastSearchKey('I');return false; ">问题</button>
+
+                                <button type="button" class="button noprint textual   A" id="domId_691823986" style="" onclick="changeFastSearchKey('A');return false; ">日程</button>
+
+                                <button type="button" class="button noprint textual   B" id="domId_1009267844" style="" onclick="changeFastSearchKey('B');return false; ">讨论板</button>
+
+                                <button type="button" class="button noprint textual   D" id="domId_1938810102" style="" onclick="changeFastSearchKey('D');return false; ">文档</button>
+
+                            </div>
+                        </div><button type="button" class="button noprint textual icon  searchButton" id="domId_1812008383" style="" onclick="fastSearch($('#search'));return false; "><span class='teamworkIcon '>L</span></button>
+
+                    </div>
+
+
+
+                    <div id="loggedOp" class="loggedOp">
+                        <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_813041290', 'domId_122011793');  ">
+                            <span class="button buttonImg  operatorButton" id="domId_122011793" style=" " onclick=";return false; "><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1710889989" title="Dream Wing" alt="Dream Wing" id="d1710889989" " resId="15089" class="face "></span>
+
+                        </span>
+
+                        <div id="divdomo_domId_813041290" class="divomo divDark"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">Dream Wing <em>(53)</em></span><a class="button  textual   " id="domId_976204655" style="" href="/resource/resourceEditor.html?V_ID=532085289&CM=ED&OBJID=15089">我的联系方式</a>
+
+                                <a class="button  textual   " id="domId_296573505" style="" href="/resource/resourceSecurity.html?V_ID=39894627&CM=ED&OBJID=15089">登录信息</a>
+
+                                <a class="button  textual   " id="domId_201353848" style="" href="/resource/resourceOptions.html?V_ID=2135407573&CM=EDIT_OPT&OBJID=15089">选项</a>
+
+                                <a class="button  textual   " id="domId_1867379311" style="" href="/resource/resourceapp/documentList.html?V_ID=2011304841&CM=LIST_DOCS&RES_ID=15089">文档</a>
+
+                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_415000671" style="" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1718062719&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
+
+                                <button type="button" class="button noprint textual   " id="domId_732871389" style="" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=2036875688&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
+
+                                <hr><a class="button  textual   " id="domId_1550719378" style="" href="http://twproject.com/support" target="_blank">支持</a>
+
+                                <hr><a class="button  textual   " id="domId_1079046054" style="" href="/app/security/login.html?V_ID=143414679&CM=LO" target="_top">注销</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="twChatNotifications">
+                        <div id="twChatOpener" class="messages button textual icon" onclick="twChatToggle();">
+
+                            <span class="teamworkIcon"></span>
+
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+
+                    <div id="notifications">
+                        <div id="messageListOpener" class="messages button textual icon" onclick="loadMessageList($(this));">
+                            <span class="teamworkIcon">b</span>
+                            <span class="notificationNumber" style="display:inline-block">10</span>
+                        </div>
+                    </div>
+
+                    <div id="messageListBox" class="divomo divDark" style="position: absolute;left:-1000px; top:-1000px;">
+                        <div class="divomoArrow"></div>
+                        <span class="menuTitle">通知</span>
+                        <div id="messageListPlace" class="messageListPlace"></div>
+                        <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
+                            <a class="button  textual   " id="domId_800643752" style="" href="/app/messageListFull.html?V_ID=491184772">全部显示</a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="menuTimeCounter" style="display:none;"><a href="javascript:openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=191426415')" id="tcMenuCounter"></a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // unread messages managament
+            $("#messageListBox").on("hideDivOnMouseover", function () {
+                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "READALL" }, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        $("#messageListOpener .notificationNumber").fadeOut().html("0");
+                        $("#twChatOpener").data("totalUnreadChats", false);
+                    }
+                });
+            });
+
+            function followMessageLink(el) {
+                var href = el.find(".message_link a:first").attr("href");
+                if (href)
+                    self.location.href = href;
+            }
+
+            function saveThisPageAsPreferred() {
+                location.href = contextPath + "/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+            }
+
+            (function tmStartup() {
+                var counted = undefined;
+                var format = '%0h:%0m:%0s';
+                if (counted) {
+                    var ndo = $("#tcMenuCounter");
+                    ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+                    ndo.parent().show();
+                }
+
+                registerEvent("timeCounterEvent", function (e, data) {
+
+                    if (data.type == "start") {
+
+                        if (data.response.assignment) {
+
+                            //faccio partire il widget se c'Ã¨
+                            var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+                            if (ndoWidget) {
+                                ndoWidget.addClass("highlight");
+                                ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                                ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+                            }
+
+
+                            //faccio partire il counter sul menu
+                            var ndoMenu = $("#tcMenuCounter");
+                            ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+                            ndoMenu.parent().show();
+                        }
+
+                    } else if (data.type == "stop") {
+
+                        //fermo il widget
+                        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+                        if (ndoWidget) {
+                            ndoWidget.removeClass("highlight");
+                            ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+                            ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+                        }
+
+                        //faccio fermare il counter sul menu
+                        var ndoMenu = $("#tcMenuCounter");
+                        ndoMenu.stopTimeCounter();
+                        ndoMenu.parent().hide();
+                    }
+                })
+            })();
+
+            function twChatToggle() {
+                //console.debug(top.twChat.chatWindow.is(".closed"))
+
+                if (top.twChat.chatWindow.is(".closed")) {
+                    top.twChat.open();
+                } else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+                    top.twChat.chatWindow.addClass('showChats');
+                } else {
+                    top.twChat.close();
+                }
+            }
+
+
+            $(function () {
+                //lo stato del socket lo sa solo il client lato js -> twComm
+                if (!top.twComm || !top.twComm.isOpen)
+                    getTop().$("#twChatOpener").addClass("disabled");
+
+                /**
+                 * Manage chat opener state at start (chat could be open)
+                 */
+                if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+                    $("#twChatOpener").removeClass("open");
+                } else {
+                    $("#twChatOpener").addClass("open");
+                }
+
+            })
+        </script>
+
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainer" class="lreq30 lreqPage">
+            <form enctype="application/x-www-form-urlencoded" method="POST"
+                  action="/applications/teamwork/security/roleEditor.jsp" name="d373253699" alertOnChange="true" id="d373253699"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="d373253699V_ID" name="V_ID" value="373253699" savedValue="">
+                <input type="hidden" id="d373253699CM" name="CM" value="ED" savedValue="">
+                <input type="hidden" id="d373253699OBJID" name="OBJID" value="35063" savedValue="">
+                <input type="hidden" id="d373253699LOCAL_TO_ASS" name="LOCAL_TO_ASS" value="yes" savedValue="">
+
+
+                <h1><a href="roleList.jsp">角色</a> / Project manager</h1>
+                <table border="0" cellpadding="5">
+                    <tr>
+                        <td><label for="ROLE_CODE" class="required">编码*</label><br><input type=text name="ROLE_CODE" id="ROLE_CODE" size=10 class="formElements" autocomplete='off' maxlength=255 value="PM" required="true" oldValue='1'></td>
+                        <td><label for="ROLE_NAME" class="required">名称*</label><br><input type=text name="ROLE_NAME" id="ROLE_NAME" size=30 class="formElements" autocomplete='off' maxlength=255 value="Project manager" required="true" oldValue='1'></td>
+                        <td class="displayNone">
+                            <label for="AREA" class="required">域*</label><br><SELECT NAME="AREA" id="AREA" onChange="if (this.value=='') {obj('ck_LOCAL_TO_ASS').disabled=true;obj('ck_LOCAL_TO_ASS').checked=false;obj('LOCAL_TO_ASS').value='no'} else {obj('ck_LOCAL_TO_ASS').disabled=false;}" CLASS="formElements" required="true" oldValue='1'>
+                                <option selected value="5819">域: 梦想飞扬</option>
+                            </SELECT>
+                        </td>
+                    </tr>
+                    <tr><td valign="top" colspan="3"><label for="FLD_ROLE_DESCRIPTION" class=" ">描述</label><br><textarea name="FLD_ROLE_DESCRIPTION" id="FLD_ROLE_DESCRIPTION" COLS="80" ROWS="6" class="formElements" oldValue='1' maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);">Can manage the project and its descendants on which she/he has been assigned.</textarea></td></tr>
+                </table>
+
+
+                <h2>项目许可权限</h2>
+                <table class="table dataTable">
+                    <tr>
+                    <thead class="dataTableHead">
+                    <th class="tableHead">名称</th>
+                    <th class="tableHead">&nbsp;</th>
+                    <th class="tableHead">描述</th>
+                    </thead>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_res_r">资源：允许查看</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_res_r" id="TW_res_r" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_res_r" name="ck_TW_res_r" checked value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许查看资源</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_ass_man">资源：管理</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_ass_man" id="TW_ass_man" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_ass_man" name="ck_TW_ass_man" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>它可以管理所有资源的工作</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_task_c">任务：允许创建</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_task_c" id="TW_task_c" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_task_c" name="ck_TW_task_c" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许创建任务。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_task_d">任务：删除</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_task_d" id="TW_task_d" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_task_d" name="ck_TW_task_d" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许删除任务。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_task_r">任务：读取</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_task_r" id="TW_task_r" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_task_r" name="ck_TW_task_r" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许读取任务</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_task_w">任务：修改</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_task_w" id="TW_task_w" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_task_w" name="ck_TW_task_w" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许修改任务</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_task_s">任务：改变状态</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_task_s" id="TW_task_s" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_task_s" name="ck_TW_task_s" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许更改状态。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_tk_cost_r">任务费用：读取</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_tk_cost_r" id="TW_tk_cost_r" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_tk_cost_r" name="ck_TW_tk_cost_r" checked value="yes"
+                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许读取任务费用</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_tk_cost_c">任务费用：创建</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_tk_cost_c" id="TW_tk_cost_c" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_tk_cost_c" name="ck_TW_tk_cost_c" checked value="yes"
+                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许创建任务费用</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_tk_cost_w">任务费用：修改</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_tk_cost_w" id="TW_tk_cost_w" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_tk_cost_w" name="ck_TW_tk_cost_w" checked value="yes"
+                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许修改任务费用</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_ass_crw">分工：创建，读取，写入</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_ass_crw" id="TW_ass_crw" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_ass_crw" name="ck_TW_ass_crw" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>它允许你创建，读取和写入分配。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_wl_man">工作记录：管理</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_wl_man" id="TW_wl_man" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_wl_man" name="ck_TW_wl_man" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许管理工作记录：批准、报账</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_exp_man">费用：管理</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_exp_man" id="TW_exp_man" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_exp_man" name="ck_TW_exp_man" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>它允许你管理资源的费用</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_issue_r">问题: 读取</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_issue_r" id="TW_issue_r" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_issue_r" name="ck_TW_issue_r" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许读取问题.</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_issue_w">问题: 修改</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_issue_w" id="TW_issue_w" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_issue_w" name="ck_TW_issue_w" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许修改问题.</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_issue_c">问题: 创建</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_issue_c" id="TW_issue_c" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_issue_c" name="ck_TW_issue_c" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>右键创建操作。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_issue_d">问题: 删除</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_issue_d" id="TW_issue_d" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_issue_d" name="ck_TW_issue_d" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许删除问题。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_issue_s">问题：变更状态</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_issue_s" id="TW_issue_s" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_issue_s" name="ck_TW_issue_s" checked value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许更改状态。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_doc_r">文档: 读取</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_doc_r" id="TW_doc_r" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_doc_r" name="ck_TW_doc_r" checked value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许读取文档.</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_doc_w">文档: 修改</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_doc_w" id="TW_doc_w" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_doc_w" name="ck_TW_doc_w" checked value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许修改文档.</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_doc_c">文档: 创建</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_doc_c" id="TW_doc_c" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_doc_c" name="ck_TW_doc_c" checked value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许创建文档。</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_doc_d">文件：删除</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_doc_d" id="TW_doc_d" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_doc_d" name="ck_TW_doc_d" checked value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许删除文档</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_filStoEx_r">浏览文件存储: 读取文件</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_filStoEx_r" id="TW_filStoEx_r" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_filStoEx_r" name="ck_TW_filStoEx_r" checked value="yes"
+                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许在文件存储中读取文件</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_filStoEx_w">浏览文件存储: 修改文件</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_filStoEx_w" id="TW_filStoEx_w" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_filStoEx_w" name="ck_TW_filStoEx_w" checked value="yes"
+                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许在文件存储中修改文件</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_filStoEx_c">浏览文件存储: 创建文件夹</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_filStoEx_c" id="TW_filStoEx_c" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_filStoEx_c" name="ck_TW_filStoEx_c" checked value="yes"
+                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许在文件存储中创建文件夹</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_TW_chat_c">聊天：创建</label></td>
+                        <td align="center">
+                            <input type=hidden name="TW_chat_c" id="TW_chat_c" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TW_chat_c" name="ck_TW_chat_c" checked value="yes"
+                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>允许创建一个新的聊天</td>
+                    </tr>
+                    <thead class="dataTableHead"><tr class="alternate"><th colspan="4" class="tableHead">对报告的权限</th></tr></thead>
+                    <tr class="alternate">
+                        <td><label for="ck_Report_issueListCompact">report issueListCompact</label></td>
+                        <td align="center">
+                            <input type=hidden name="Report_issueListCompact" id="Report_issueListCompact" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_Report_issueListCompact" name="ck_Report_issueListCompact" value="yes"
+                                                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>可以看到报告issueListCompact</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_Report_openProjects">report openProjects</label></td>
+                        <td align="center">
+                            <input type=hidden name="Report_openProjects" id="Report_openProjects" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_Report_openProjects" name="ck_Report_openProjects" value="yes"
+                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>可以看到报告openProjects</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_Report_projectProgress">report projectProgress</label></td>
+                        <td align="center">
+                            <input type=hidden name="Report_projectProgress" id="Report_projectProgress" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_Report_projectProgress" name="ck_Report_projectProgress" value="yes"
+                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>可以看到报告projectProgress</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_Report_resourcePhoneDirectory">report resourcePhoneDirectory</label></td>
+                        <td align="center">
+                            <input type=hidden name="Report_resourcePhoneDirectory" id="Report_resourcePhoneDirectory" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_Report_resourcePhoneDirectory" name="ck_Report_resourcePhoneDirectory" value="yes"
+                                                                                                                                                                                                              onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>可以看到报告resourcePhoneDirectory</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_Report_worklogByResource">report worklogByResource</label></td>
+                        <td align="center">
+                            <input type=hidden name="Report_worklogByResource" id="Report_worklogByResource" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_Report_worklogByResource" name="ck_Report_worklogByResource" value="yes"
+                                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>可以看到报告worklogByResource</td>
+                    </tr>
+                    <tr class="alternate">
+                        <td><label for="ck_Report_worklogByTask">report worklogByTask</label></td>
+                        <td align="center">
+                            <input type=hidden name="Report_worklogByTask" id="Report_worklogByTask" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_Report_worklogByTask" name="ck_Report_worklogByTask" value="yes"
+                                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td>可以看到报告worklogByTask</td>
+                    </tr>
+                </table>
+                <span style="float: right">
+                    <input type=hidden name="TASK_NOTIFY_DESC" id="TASK_NOTIFY_DESC" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_NOTIFY_DESC" name="ck_TASK_NOTIFY_DESC" checked value="yes"
+                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                    &nbsp;<label for="ck_TASK_NOTIFY_DESC"><small>包含子任务的事件</small></label>&nbsp;
+                </span>
+                <h2>选择缺省订阅</h2>
+                <table class="table">
+                    <thead class="dataTableHead">
+                        <tr>
+                            <th class="tableHead">事件类型</th>
+
+                            <th class="tableHead">
+                                电子邮件 <input type=hidden name="SELECT_ALL" id="SELECT_ALL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_SELECT_ALL" name="ck_SELECT_ALL" value="yes"
+                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');if (this.checked==true) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_EMAIL][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_EMAIL][type=checkbox]:enabled ');selector.each(function() {this.checked = true;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('yes');}); };if (this.checked==false) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_EMAIL][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_EMAIL][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_EMAIL][type=checkbox]:enabled ');selector.each(function() {this.checked = false;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('no');}); };">
+
+                            </th>
+
+                            <th class="tableHead">
+                                Digest <input type=hidden name="SELECT_ALL" id="SELECT_ALL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_SELECT_ALL" name="ck_SELECT_ALL" value="yes"
+                                                                                                                                                                      onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');if (this.checked==true) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_DIGEST][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_DIGEST][type=checkbox]:enabled ');selector.each(function() {this.checked = true;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('yes');}); };if (this.checked==false) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_DIGEST][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_DIGEST][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_DIGEST][type=checkbox]:enabled ');selector.each(function() {this.checked = false;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('no');}); };">
+
+                            </th>
+
+                            <th class="tableHead">
+                                记事帖 <input type=hidden name="SELECT_ALL" id="SELECT_ALL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_SELECT_ALL" name="ck_SELECT_ALL" value="yes"
+                                                                                                                                                                   onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');if (this.checked==true) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_STICKY][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_STICKY][type=checkbox]:enabled ');selector.each(function() {this.checked = true;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('yes');}); };if (this.checked==false) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_STICKY][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_STICKY][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_STICKY][type=checkbox]:enabled ');selector.each(function() {this.checked = false;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('no');}); };">
+
+                            </th>
+
+                            <th class="tableHead">
+                                Log <input type=hidden name="SELECT_ALL" id="SELECT_ALL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_SELECT_ALL" name="ck_SELECT_ALL" value="yes"
+                                                                                                                                                                   onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');if (this.checked==true) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_LOG][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_LOG][type=checkbox]:enabled ');selector.each(function() {this.checked = true;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('yes');}); };if (this.checked==false) {  var selector=$('input[id*=ck_TASK_NOTIFY_ASSIGNEE_LOG][type=checkbox]:enabled ,input[id*=ck_ISSUE_NOTIFY_ASSIGNEE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_DOCUMENT_ADDED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_STATUS_CHANGE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_DATE_CHANGE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_MILESTONE_CLOSER_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_EXPIRED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_ADDED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_ISSUE_CLOSED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_UPDATED_ISSUE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERFLOW_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_BUDGET_OVERFLOW_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_MISPLACED_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_WORKLOG_OVERTIME_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_DIARY_CHANGE_LOG][type=checkbox]:enabled ,input[id*=ck_TASK_CHILD_ADDED_LOG][type=checkbox]:enabled ');selector.each(function() {this.checked = false;var name = this.id; name = name.substring('ck_'.length,name.length); var hidden = $('input#'+name);hidden.val('no');}); };">
+
+                            </th>
+
+                        </tr>
+                    </thead>
+
+                    <tr class="alternate">
+                        <td>通知问题责任人</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_NOTIFY_ASSIGNEE_EMAIL" id="TASK_NOTIFY_ASSIGNEE_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_NOTIFY_ASSIGNEE_EMAIL" name="ck_TASK_NOTIFY_ASSIGNEE_EMAIL" value="yes"
+                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_NOTIFY_ASSIGNEE_DIGEST" id="TASK_NOTIFY_ASSIGNEE_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_NOTIFY_ASSIGNEE_DIGEST" name="ck_TASK_NOTIFY_ASSIGNEE_DIGEST" value="yes"
+                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_NOTIFY_ASSIGNEE_STICKY" id="TASK_NOTIFY_ASSIGNEE_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_NOTIFY_ASSIGNEE_STICKY" name="ck_TASK_NOTIFY_ASSIGNEE_STICKY" checked value="yes"
+                                                                                                                                                                                                           onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_NOTIFY_ASSIGNEE_LOG" id="TASK_NOTIFY_ASSIGNEE_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_NOTIFY_ASSIGNEE_LOG" name="ck_TASK_NOTIFY_ASSIGNEE_LOG" checked value="yes"
+                                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>分配新问题</td>
+
+                        <td align="center">
+                            <input type=hidden name="ISSUE_NOTIFY_ASSIGNEE_EMAIL" id="ISSUE_NOTIFY_ASSIGNEE_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ISSUE_NOTIFY_ASSIGNEE_EMAIL" name="ck_ISSUE_NOTIFY_ASSIGNEE_EMAIL" value="yes"
+                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="ISSUE_NOTIFY_ASSIGNEE_DIGEST" id="ISSUE_NOTIFY_ASSIGNEE_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ISSUE_NOTIFY_ASSIGNEE_DIGEST" name="ck_ISSUE_NOTIFY_ASSIGNEE_DIGEST" value="yes"
+                                                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="ISSUE_NOTIFY_ASSIGNEE_STICKY" id="ISSUE_NOTIFY_ASSIGNEE_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ISSUE_NOTIFY_ASSIGNEE_STICKY" name="ck_ISSUE_NOTIFY_ASSIGNEE_STICKY" value="yes"
+                                                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="ISSUE_NOTIFY_ASSIGNEE_LOG" id="ISSUE_NOTIFY_ASSIGNEE_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ISSUE_NOTIFY_ASSIGNEE_LOG" name="ck_ISSUE_NOTIFY_ASSIGNEE_LOG" value="yes"
+                                                                                                                                                                                                      onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>文件已被添加。</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DOCUMENT_ADDED_EMAIL" id="TASK_DOCUMENT_ADDED_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DOCUMENT_ADDED_EMAIL" name="ck_TASK_DOCUMENT_ADDED_EMAIL" value="yes"
+                                                                                                                                                                                                      onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DOCUMENT_ADDED_DIGEST" id="TASK_DOCUMENT_ADDED_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DOCUMENT_ADDED_DIGEST" name="ck_TASK_DOCUMENT_ADDED_DIGEST" value="yes"
+                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DOCUMENT_ADDED_STICKY" id="TASK_DOCUMENT_ADDED_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DOCUMENT_ADDED_STICKY" name="ck_TASK_DOCUMENT_ADDED_STICKY" value="yes"
+                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DOCUMENT_ADDED_LOG" id="TASK_DOCUMENT_ADDED_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_DOCUMENT_ADDED_LOG" name="ck_TASK_DOCUMENT_ADDED_LOG" checked value="yes"
+                                                                                                                                                                                                   onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>任务状态变更</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_STATUS_CHANGE_EMAIL" id="TASK_STATUS_CHANGE_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_STATUS_CHANGE_EMAIL" name="ck_TASK_STATUS_CHANGE_EMAIL" value="yes"
+                                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_STATUS_CHANGE_DIGEST" id="TASK_STATUS_CHANGE_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_STATUS_CHANGE_DIGEST" name="ck_TASK_STATUS_CHANGE_DIGEST" checked value="yes"
+                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_STATUS_CHANGE_STICKY" id="TASK_STATUS_CHANGE_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_STATUS_CHANGE_STICKY" name="ck_TASK_STATUS_CHANGE_STICKY" checked value="yes"
+                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_STATUS_CHANGE_LOG" id="TASK_STATUS_CHANGE_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_STATUS_CHANGE_LOG" name="ck_TASK_STATUS_CHANGE_LOG" checked value="yes"
+                                                                                                                                                                                                 onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>任务日期变更</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DATE_CHANGE_EMAIL" id="TASK_DATE_CHANGE_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DATE_CHANGE_EMAIL" name="ck_TASK_DATE_CHANGE_EMAIL" value="yes"
+                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DATE_CHANGE_DIGEST" id="TASK_DATE_CHANGE_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_DATE_CHANGE_DIGEST" name="ck_TASK_DATE_CHANGE_DIGEST" checked value="yes"
+                                                                                                                                                                                                   onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DATE_CHANGE_STICKY" id="TASK_DATE_CHANGE_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_DATE_CHANGE_STICKY" name="ck_TASK_DATE_CHANGE_STICKY" checked value="yes"
+                                                                                                                                                                                                   onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DATE_CHANGE_LOG" id="TASK_DATE_CHANGE_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_DATE_CHANGE_LOG" name="ck_TASK_DATE_CHANGE_LOG" checked value="yes"
+                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>里程碑接近/任务过期</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_MILESTONE_CLOSER_EMAIL" id="TASK_MILESTONE_CLOSER_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_MILESTONE_CLOSER_EMAIL" name="ck_TASK_MILESTONE_CLOSER_EMAIL" checked value="yes"
+                                                                                                                                                                                                           onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_MILESTONE_CLOSER_DIGEST" id="TASK_MILESTONE_CLOSER_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_MILESTONE_CLOSER_DIGEST" name="ck_TASK_MILESTONE_CLOSER_DIGEST" value="yes"
+                                                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_MILESTONE_CLOSER_STICKY" id="TASK_MILESTONE_CLOSER_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_MILESTONE_CLOSER_STICKY" name="ck_TASK_MILESTONE_CLOSER_STICKY" value="yes"
+                                                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_MILESTONE_CLOSER_LOG" id="TASK_MILESTONE_CLOSER_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_MILESTONE_CLOSER_LOG" name="ck_TASK_MILESTONE_CLOSER_LOG" checked value="yes"
+                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>任务过期</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_EXPIRED_EMAIL" id="TASK_EXPIRED_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_EXPIRED_EMAIL" name="ck_TASK_EXPIRED_EMAIL" checked value="yes"
+                                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_EXPIRED_DIGEST" id="TASK_EXPIRED_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_EXPIRED_DIGEST" name="ck_TASK_EXPIRED_DIGEST" checked value="yes"
+                                                                                                                                                                                           onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_EXPIRED_STICKY" id="TASK_EXPIRED_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_EXPIRED_STICKY" name="ck_TASK_EXPIRED_STICKY" checked value="yes"
+                                                                                                                                                                                           onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_EXPIRED_LOG" id="TASK_EXPIRED_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_EXPIRED_LOG" name="ck_TASK_EXPIRED_LOG" checked value="yes"
+                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>增加新问题</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_ADDED_EMAIL" id="TASK_ISSUE_ADDED_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_ADDED_EMAIL" name="ck_TASK_ISSUE_ADDED_EMAIL" value="yes"
+                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_ADDED_DIGEST" id="TASK_ISSUE_ADDED_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_ADDED_DIGEST" name="ck_TASK_ISSUE_ADDED_DIGEST" checked value="yes"
+                                                                                                                                                                                                   onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_ADDED_STICKY" id="TASK_ISSUE_ADDED_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_ADDED_STICKY" name="ck_TASK_ISSUE_ADDED_STICKY" value="yes"
+                                                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_ADDED_LOG" id="TASK_ISSUE_ADDED_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_ADDED_LOG" name="ck_TASK_ISSUE_ADDED_LOG" checked value="yes"
+                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>任务中的问题被关闭</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_CLOSED_EMAIL" id="TASK_ISSUE_CLOSED_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_CLOSED_EMAIL" name="ck_TASK_ISSUE_CLOSED_EMAIL" value="yes"
+                                                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_CLOSED_DIGEST" id="TASK_ISSUE_CLOSED_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_CLOSED_DIGEST" name="ck_TASK_ISSUE_CLOSED_DIGEST" checked value="yes"
+                                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_CLOSED_STICKY" id="TASK_ISSUE_CLOSED_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_CLOSED_STICKY" name="ck_TASK_ISSUE_CLOSED_STICKY" value="yes"
+                                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_ISSUE_CLOSED_LOG" id="TASK_ISSUE_CLOSED_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_ISSUE_CLOSED_LOG" name="ck_TASK_ISSUE_CLOSED_LOG" checked value="yes"
+                                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>问题更新</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_UPDATED_ISSUE_EMAIL" id="TASK_UPDATED_ISSUE_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_UPDATED_ISSUE_EMAIL" name="ck_TASK_UPDATED_ISSUE_EMAIL" value="yes"
+                                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_UPDATED_ISSUE_DIGEST" id="TASK_UPDATED_ISSUE_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_UPDATED_ISSUE_DIGEST" name="ck_TASK_UPDATED_ISSUE_DIGEST" value="yes"
+                                                                                                                                                                                                      onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_UPDATED_ISSUE_STICKY" id="TASK_UPDATED_ISSUE_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_UPDATED_ISSUE_STICKY" name="ck_TASK_UPDATED_ISSUE_STICKY" value="yes"
+                                                                                                                                                                                                      onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_UPDATED_ISSUE_LOG" id="TASK_UPDATED_ISSUE_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_UPDATED_ISSUE_LOG" name="ck_TASK_UPDATED_ISSUE_LOG" checked value="yes"
+                                                                                                                                                                                                 onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>工作记录超出分工</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERFLOW_EMAIL" id="TASK_WORKLOG_OVERFLOW_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERFLOW_EMAIL" name="ck_TASK_WORKLOG_OVERFLOW_EMAIL" value="yes"
+                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERFLOW_DIGEST" id="TASK_WORKLOG_OVERFLOW_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERFLOW_DIGEST" name="ck_TASK_WORKLOG_OVERFLOW_DIGEST" checked value="yes"
+                                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERFLOW_STICKY" id="TASK_WORKLOG_OVERFLOW_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERFLOW_STICKY" name="ck_TASK_WORKLOG_OVERFLOW_STICKY" checked value="yes"
+                                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERFLOW_LOG" id="TASK_WORKLOG_OVERFLOW_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERFLOW_LOG" name="ck_TASK_WORKLOG_OVERFLOW_LOG" checked value="yes"
+                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>预算超支</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_BUDGET_OVERFLOW_EMAIL" id="TASK_BUDGET_OVERFLOW_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_BUDGET_OVERFLOW_EMAIL" name="ck_TASK_BUDGET_OVERFLOW_EMAIL" checked value="yes"
+                                                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_BUDGET_OVERFLOW_DIGEST" id="TASK_BUDGET_OVERFLOW_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_BUDGET_OVERFLOW_DIGEST" name="ck_TASK_BUDGET_OVERFLOW_DIGEST" checked value="yes"
+                                                                                                                                                                                                           onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_BUDGET_OVERFLOW_STICKY" id="TASK_BUDGET_OVERFLOW_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_BUDGET_OVERFLOW_STICKY" name="ck_TASK_BUDGET_OVERFLOW_STICKY" checked value="yes"
+                                                                                                                                                                                                           onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_BUDGET_OVERFLOW_LOG" id="TASK_BUDGET_OVERFLOW_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_BUDGET_OVERFLOW_LOG" name="ck_TASK_BUDGET_OVERFLOW_LOG" checked value="yes"
+                                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>工作记录错误</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_MISPLACED_EMAIL" id="TASK_WORKLOG_MISPLACED_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_MISPLACED_EMAIL" name="ck_TASK_WORKLOG_MISPLACED_EMAIL" value="yes"
+                                                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_MISPLACED_DIGEST" id="TASK_WORKLOG_MISPLACED_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_MISPLACED_DIGEST" name="ck_TASK_WORKLOG_MISPLACED_DIGEST" checked value="yes"
+                                                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_MISPLACED_STICKY" id="TASK_WORKLOG_MISPLACED_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_MISPLACED_STICKY" name="ck_TASK_WORKLOG_MISPLACED_STICKY" checked value="yes"
+                                                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_MISPLACED_LOG" id="TASK_WORKLOG_MISPLACED_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_MISPLACED_LOG" name="ck_TASK_WORKLOG_MISPLACED_LOG" checked value="yes"
+                                                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>加时</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERTIME_EMAIL" id="TASK_WORKLOG_OVERTIME_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERTIME_EMAIL" name="ck_TASK_WORKLOG_OVERTIME_EMAIL" value="yes"
+                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERTIME_DIGEST" id="TASK_WORKLOG_OVERTIME_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERTIME_DIGEST" name="ck_TASK_WORKLOG_OVERTIME_DIGEST" checked value="yes"
+                                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERTIME_STICKY" id="TASK_WORKLOG_OVERTIME_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERTIME_STICKY" name="ck_TASK_WORKLOG_OVERTIME_STICKY" checked value="yes"
+                                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_WORKLOG_OVERTIME_LOG" id="TASK_WORKLOG_OVERTIME_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_WORKLOG_OVERTIME_LOG" name="ck_TASK_WORKLOG_OVERTIME_LOG" checked value="yes"
+                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>添加注释</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DIARY_CHANGE_EMAIL" id="TASK_DIARY_CHANGE_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DIARY_CHANGE_EMAIL" name="ck_TASK_DIARY_CHANGE_EMAIL" value="yes"
+                                                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DIARY_CHANGE_DIGEST" id="TASK_DIARY_CHANGE_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DIARY_CHANGE_DIGEST" name="ck_TASK_DIARY_CHANGE_DIGEST" value="yes"
+                                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DIARY_CHANGE_STICKY" id="TASK_DIARY_CHANGE_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_DIARY_CHANGE_STICKY" name="ck_TASK_DIARY_CHANGE_STICKY" value="yes"
+                                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_DIARY_CHANGE_LOG" id="TASK_DIARY_CHANGE_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_DIARY_CHANGE_LOG" name="ck_TASK_DIARY_CHANGE_LOG" checked value="yes"
+                                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="alternate">
+                        <td>增加子任务</td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_CHILD_ADDED_EMAIL" id="TASK_CHILD_ADDED_EMAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_CHILD_ADDED_EMAIL" name="ck_TASK_CHILD_ADDED_EMAIL" value="yes"
+                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_CHILD_ADDED_DIGEST" id="TASK_CHILD_ADDED_DIGEST" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_CHILD_ADDED_DIGEST" name="ck_TASK_CHILD_ADDED_DIGEST" value="yes"
+                                                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_CHILD_ADDED_STICKY" id="TASK_CHILD_ADDED_STICKY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_CHILD_ADDED_STICKY" name="ck_TASK_CHILD_ADDED_STICKY" value="yes"
+                                                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                        <td align="center">
+                            <input type=hidden name="TASK_CHILD_ADDED_LOG" id="TASK_CHILD_ADDED_LOG" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_TASK_CHILD_ADDED_LOG" name="ck_TASK_CHILD_ADDED_LOG" checked value="yes"
+                                                                                                                                                                                             onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+
+                        </td>
+
+                    </tr>
+
+                </table>
+                <div class="noprint buttonArea" id="domId_1833057582" style="text-align:left;">
+                    <div class="bbButtons">
+                        <button type="button" class="button noprint    first big" id="domId_398380812" style="" onClick="stopBubble(event);obj('d373253699CM').value='SV';if (canSubmitForm('d373253699'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d373253699').submit();} catch(e){};} ">保存</button>
+
+                        <button type="button" class="button noprint    big delete" id="domId_1823554078" style="" onclick="deletePreview('ROLE_DEL','35063');return false; ">删除</button>
+
+                        <div style="width:20px; height:1px; display:inline-block; overflow:hidden;"></div>
+                        <button type="button" class="button noprint    big" id="domId_2103612379" style="" onClick="stopBubble(event);obj('d373253699CM').value='CLONE';if (canSubmitForm('d373253699'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d373253699').submit();} catch(e){};} ">复制</button>
+
+                    </div><div class="bbLoggedInfo">
+                        <b>创建者</b>&nbsp;-&nbsp;
+                        <b>日期</b>&nbsp;2020-11-2 上午5:08&nbsp;&nbsp;&nbsp;<b>ID</b>&nbsp;
+                        35063&nbsp;&nbsp;&nbsp;<b>域</b>&nbsp;
+                        梦想飞扬<br><b>最后更新：</b>&nbsp;-&nbsp;
+                        <b>日期</b>&nbsp;2020-11-2 上午5:08
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+        <script>
+            var __sns = [];
+            $(function () {
+                $("body").oneTime(500, function () {
+                    manageStickyNotes(__sns);
+                });
+
+                //event da webSocket
+                $("body").on("ws-stickySaved.twScreen", function (e, data) {
+                    //console.debug("ws-stickySaved.twScreen",data);
+                    if (data && data.stickyId)
+                        twSrc_drawSticky(data.stickyId);
+                }).on("ws-logSaved.twScreen", function (e, data) {
+                    //console.debug("ws-logSaved twScreen",data);
+                    if (data && data.messageId) {
+                        $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+                    }
+                }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+                    //console.debug("ws-updateGlobalCounter.twScreen", data);
+                    if (data) {
+                        $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+                        $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
+
+
+                        if (data.totalUnreadChats) {
+                            //top.twChat.chatWindow.addClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").show();
+                        } else {
+                            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").hide();
+                        }
+                        // add total unread chats to the top page title
+                        top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+                        top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+                    }
+                }).on("ws-socketClosed.twScreen", function (e, data) {
+                    //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+                }
+                );
+
+
+                //gestione chiusura tutti dopo 2
+                var firstClosed = false;
+                var doNotAskAgain = false;
+                $("body").on("containerHidden", ".container.sticky", function (e) {
+                    if (firstClosed && !doNotAskAgain) {
+                        var firstStick = $(this);
+                        var sticks = $(".container.sticky");
+                        if (sticks.size() > 2) {
+                            doNotAskAgain = true;
+                            if (confirm("全部关闭？")) {
+                                sticks.each(function () {
+                                    var stick = $(this);
+                                    if (stick.attr("status") != "ICONIZED")
+                                        if (stick.prop("id") != firstStick.prop("id"))
+                                            $(this).trigger("hide");
+                                });
+                            }
+                        }
+                        firstClosed = false;
+
+                    } else {
+                        firstClosed = true;
+                    }
+
+                });
+
+            });
+
+
+            function manageStickyNotes(sns) {
+                //console.debug("manageStickyNotes",sns);
+                if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+                    var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+                    var d = $("<div>").append(message + "<br>");
+                    var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+                    var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+                    d.append(closeAll).append(drawAll);
+                    showFeedbackMessage("INFO", d.html(), "");
+                } else {
+                    twSrc_drawAllSticky(sns)
+                }
+            }
+
+
+            function twSrc_drawAllSticky(sns) {
+                for (var i = 0; i < sns.length; i++) {
+                    twSrc_drawSticky(sns[i]);
+                }
+            }
+            function twSrc_drawSticky(stickyId) {
+                $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", { CM: "DRW", sid: stickyId }, function (response) {
+                    $("#STKN_" + stickyId).remove();
+                    $("body").append(response);
+                })
+            }
+
+
+            function closeAllSticky() {
+                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "REMOVEEALLSTK" }, function (response) {
+                    twSrc_drawAllSticky(__sns);//disegna i rimanenti
+                });
+            }
+        </script>
+    </div>
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (false) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (1)
+                $("#ROLE_NAME").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+.noprint {
+  display:none !important;
+}
+
+BODY, TBODY {
+    font-family: arial;
+    font-size: 11px !important;
+    margin: 0;
+    color: #000;
+}
+
+td.dayHeader, th *, th {
+    font-size:90% !important;
+    padding:0 !important;
+}
+
+.mainColumn{
+  width:98% !important;
+}

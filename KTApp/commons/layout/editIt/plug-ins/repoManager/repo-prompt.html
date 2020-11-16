@@ -1,0 +1,311 @@
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+
+  file: repo-prompt.html
+  last modified: 12/24/18 5:59 PM
+  Version:  0.1.28
+  Build:  4009
+
+  Open Lab s.r.l., Florence - Italy
+  email:  matbicoc@gmail.com
+  blog: 	http://pupunzi.open-lab.com
+  site: 	http://pupunzi.com
+  	      http://open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+<div id="repo-prompt">
+  <h2><span class='editIt-icon-paperclip'></span> [[Insert a file:]]</h2>
+
+  <div id="file-list"></div>
+
+  <h4>[[Upload a new file:]]</h4>
+  <div id="file-uploader">
+    <div id="drop-here">
+      <span id="drop-here-label">[[Drop a file]]</span>
+      <br>
+      <button onclick="$('input#file-upload').click()">[[Or click here]]</button>
+      <input id="file-upload" style="visibility: collapse; width: 0px;" type="file" onchange="uploadFile(this.files[0])">
+    </div>
+  </div>
+
+  <div id="fileData">
+    <input type="hidden" name="fileName">
+    <input type="hidden" name="fileSize">
+    <input type="hidden" name="fileURL">
+    <input type="hidden" name="fileDate">
+  </div>
+</div>
+
+<script>
+
+  var repo = {};
+  repo.prompt = $("#repo-prompt");
+
+  function uploadFile(file) {
+
+    repo.file = {};
+
+    repo.fileList = null;
+
+    repo.uploader = $("#file-uploader");
+
+    repo.file.name = file.name;
+    repo.file.type = file.type;
+    repo.file.size = Math.floor(file.size / 1024); //in kb
+    repo.file.ext = repo.plugin.getFileExtentionFromName(repo.file.name);
+
+    repo.loadProgress = $("<div/>").addClass("loadProgress");
+    repo.uploader.append(repo.loadProgress);
+
+    if (repo.plugin.defaults.maxFileSize < repo.file.size) {
+      $.editIt.ui.alert.draw(null, _("<b>Attention!</b><br><br>\"%%\" is too big (<b>%%</b> Kb).<br>The file should be max %% Kb.", [repo.file.name, repo.file.size, repo.plugin.defaults.maxFileSize]));
+      repo.prompt.removeClass("drag-hover");
+      return;
+    }
+
+    if (repo.plugin.defaults.acceptFileByExtension.indexOf(repo.file.ext) < 0) {
+      $.editIt.ui.alert.draw(null, _("<b>Attention!</b><br><br>You can't upload a \"%%\" file.<br>Convert it to one of the allowed formats: <br><br> %% ", [repo.file.ext, repo.plugin.defaults.acceptFileByExtension.toString().replace(/,/g, ", ")]));
+      repo.prompt.removeClass("drag-hover");
+      return;
+    }
+
+    var file_data = file;
+
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    form_data.append('fileName', repo.file.name);
+    form_data.append('fileExt', repo.file.ext);
+    form_data.append('fileSize', repo.file.size);
+    form_data.append('fileRepo', repo.plugin.defaults.repositoryPath);
+
+    form_data.append('cmd', "SAVE_FILE");
+
+    //console.debug(form_data);
+    //console.debug(repo.plugin.defaults.uploadPage);
+
+    $.ajax({
+      url        : repo.plugin.defaults.serverPage,
+      dataType   : 'json',
+      cache      : false,
+      contentType: false,
+      processData: false,
+      data       : form_data,
+      type       : 'POST',
+      xhr        : function () {
+        var myXhr = $.ajaxSettings.xhr();
+        if (myXhr.upload) {
+          myXhr.upload.addEventListener('progress', progressHandler, false);
+        }
+        return myXhr;
+      },
+      success    : function (resp) {
+        //console.debug("file uploaded", resp);
+        refreshFileList();
+      },
+      error      : function (err) {
+        console.error("ERROR:: ", err);
+        refreshFileList();
+      }
+
+    });
+
+    function progressHandler(e) {
+      var perc = (e.loaded * 100) / e.total;
+      //console.debug(e.total, e.loaded, perc);
+      repo.loadProgress.css({width: perc + "%"});
+
+      if (perc == 100) {
+        setTimeout(function () {
+          repo.loadProgress.fadeOut(500, function () {
+            $(this).remove();
+          });
+
+        }, 1000)
+      }
+    }
+
+    repo.prompt.removeClass("drag-hover");
+
+  }
+
+  function refreshFileList() {
+    var form_data = new FormData();
+    form_data.append('cmd', "LIST_FILES");
+    form_data.append('fileRepo', repo.plugin.defaults.repositoryPath);
+
+    $.ajax({
+      url        : repo.plugin.defaults.serverPage,
+      dataType   : 'json',
+      cache      : false,
+      contentType: false,
+      processData: false,
+      type       : 'POST',
+      data       : form_data,
+      success    : function (resp) {
+        repo.fileList = resp;
+        //console.debug(resp);
+        drawFileList();
+      },
+      error      : function () {
+        repo.fileList = null;
+        drawFileList();
+      }
+    });
+  }
+
+  function drawFileList(fileList) {
+    fileList = fileList || repo.fileList;
+    //console.debug('fileList', fileList);
+
+    var listBox = $("#file-list");
+    var list = $("<ul/>").addClass("repoList");
+
+    if (fileList && fileList.length) {
+      for (var i = 0; i < fileList.length; i++) {
+        var file = fileList[i];
+        file.iconClass = "editIt-repo-" + repo.plugin.getFileIcon(file.name);
+
+        // var displayName = file.name.replace(file.name.split(".")[0]+".","");
+        var displayName = file.name;
+
+        var listEl = $("<li/>").addClass("repoListEl").attr({
+          "data-url"        : file.path,
+          "data-name"       : file.name,
+          "data-displayname": displayName,
+          "data-size"       : file.size,
+          "data-isowner"    : file.isOwner,
+          "data-date"       : file.date
+        });
+
+        var fileIcon = $("<span/>").addClass(file.iconClass + " repoIcon");
+        listEl.append(fileIcon);
+
+        var fileLink = $("<span/>").addClass("repoFileLink").html(displayName);
+        listEl.append(fileLink);
+
+        listEl.on("click", function () {
+          $(".selected", listBox).removeClass("selected");
+          var f = $(this);
+
+          if (f.is(".selected")) {
+            f.removeClass("selected");
+            $("#fileData [name=fileName]").val("");
+            $("#fileData [name=fileURL]").val("");
+            $("#fileData [name=fileSize]").val("");
+            $("#fileData [name=fileDate]").val("");
+
+          } else {
+            $(".selected", listBox).removeClass("selected");
+            f.addClass("selected");
+            //f = $(".repoFileLink", f);
+            $("#fileData [name=fileName]").val(f.data("displayname"));
+            $("#fileData [name=fileURL]").val(f.data("url"));
+            $("#fileData [name=fileSize]").val(f.data("size"));
+            $("#fileData [name=fileDate]").val(f.data("date"));
+          }
+        });
+
+        var deleteF = $("<div/>").addClass("repoFileDelete editIt-icon-trash-o");
+
+        deleteF.on("click", function (e) {
+
+          e.stopPropagation();
+          e.preventDefault();
+
+          var editor = $(this).parents(".editIt-wrapper").eq(0);
+
+          var fileToDelete = $(this).parent(".repoListEl");
+          var promptContent = "<h3>" + _("Do you really want to delete <br>%%?", [fileToDelete.data("name")]) + "</h3>";
+          $.editIt.ui.prompt.draw(editor, promptContent, null, function () {
+            deleteFile(fileToDelete);
+          }, "Delete", "delete", false, 10001);
+
+        });
+
+        list.append(listEl);
+      }
+
+    } else {
+
+      var listEl = $("<li/>").addClass("repoListEl noFiles");
+      var fileLink = $("<span/>").addClass("repoAlert").html(_("No files available"));
+      listEl.append(fileLink);
+      list.append(listEl);
+
+    }
+
+    if ($(".repoList", listBox).length)
+      $(".repoList", listBox).fadeOut(500, function () {
+        listBox.empty();
+        listBox.append(list);
+      });
+    else {
+      listBox.empty();
+      listBox.append(list);
+    }
+  }
+
+  function deleteFile(file) {
+
+    if (!file.data("isowner"))
+      return;
+
+    var form_data = new FormData();
+
+    form_data.fileName = file.data("name");
+    form_data.CM = "DELETE_FILE";
+    form_data.fileRepo = repo.plugin.defaults.repositoryPath;
+
+    $.ajax({
+      url     : repo.plugin.defaults.serverPage,
+      dataType: 'json',
+      cache   : false,
+      data    : form_data,
+      type    : 'POST',
+      success : function () {
+        refreshFileList();
+      },
+      error   : function () {}
+    });
+
+
+  }
+
+  $.editIt.ui.prompt.onLoad = function (editor, plugin) {
+    $.editIt.i18n.translate(repo.prompt);
+    repo.plugin = plugin;
+
+    refreshFileList();
+
+  };
+
+  repo.prompt
+      .on("dragover", function (e) {
+        e.preventDefault();
+        $(this).addClass("drag-hover");
+      })
+      .on("dragleave", function (e) {
+        e.preventDefault();
+        $(this).removeClass("drag-hover");
+      })
+      .on("drop", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var files = e.originalEvent.dataTransfer.files;
+        for (var i = 0; i < files.length; i++) {
+          uploadFile(files[i]);
+        }
+      });
+
+  $.editIt.ui.prompt.onApply = function () {
+
+  };
+
+
+</script>

@@ -1,0 +1,5 @@
+{
+	"text-module" :{"name":"simple text module", "icon":"", "path": "simple-text-box.html", "default": true},
+	"table-3-col" : {"name":"table 3 columns module", "icon":"", "path":"table-3-cols.html"},
+	"box-3-col" : {"name":"3 box line module", "icon":"", "content": "<div data-module=\"true\" data-editable=\"true\" data-removable=\"true\" data-enablesourcemode=\"true\"><div class=\"simple-text\">HTML defined in the module JSON object.</div></div>" }
+}
