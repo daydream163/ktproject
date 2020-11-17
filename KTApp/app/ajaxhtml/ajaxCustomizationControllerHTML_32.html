@@ -44,7 +44,7 @@
                 var custId = row.attr("customerId");
                 var issExpired = el.is(".issExpired");
                 var issToday = el.is(".issToday");
-                var link = "/app/issueList.html?V_ID=898822820&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
+                var link = "/app/issue/issueList.html?V_ID=898822820&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
 
                 if (issExpired) {
                     link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");

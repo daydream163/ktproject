@@ -12,7 +12,7 @@
 当前状态：open<br>&nbsp;
 该问题的严重性：中<br>&nbsp;
 该问题最后更新者： Zhang Fei<br>&nbsp;</span>
-  <span class="message_link"><a href="/app/issueList.html?V_ID=1687105035&CM=FN&ISSUE_ID=14477" >I#14477#</a></span>
+  <span class="message_link"><a href="/app/issue/issueList.html?V_ID=1687105035&CM=FN&ISSUE_ID=14477" >I#14477#</a></span>
 </div>
 
 <hr>
@@ -26,7 +26,7 @@
 它仍然处于打开，关闭或更新日期。<br>
 任务 T53596.01 - 第一个子任务<br>
 第三个问题<br></span>
-  <span class="message_link"><a href="/app/issueList.html?V_ID=1538846582&CM=FN&ISSUE_ID=14479" >I#14479#</a></span>
+  <span class="message_link"><a href="/app/issue/issueList.html?V_ID=1538846582&CM=FN&ISSUE_ID=14479" >I#14479#</a></span>
 </div>
 
 <hr>
@@ -58,7 +58,7 @@
         任务 T53596.01 - 第一个子任务<br>
         第三个问题<br>
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issueList.html?V_ID=114850823&CM=FN&ISSUE_ID=14479">I#14479#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=114850823&CM=FN&ISSUE_ID=14479">I#14479#</a></span>
 </div>
 
 <div id="message_1744311" class="message read" messageId="1744311" style="cursor:pointer;" onclick="followMessageLink($(this));">
@@ -73,7 +73,7 @@
         任务 T53596 - 第二个项目<br>
         第四个问题<br>
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issueList.html?V_ID=2137453684&CM=FN&ISSUE_ID=14515">I#14515#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=2137453684&CM=FN&ISSUE_ID=14515">I#14515#</a></span>
 </div>
 
 <div id="message_1744313" class="message read" messageId="1744313" style="cursor:pointer;" onclick="followMessageLink($(this));">
@@ -88,7 +88,7 @@
         任务 T53596.01 - 第一个子任务<br>
         第五个问题<br>
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issueList.html?V_ID=393903897&CM=FN&ISSUE_ID=14516">I#14516#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=393903897&CM=FN&ISSUE_ID=14516">I#14516#</a></span>
 </div>
 
 <div id="message_1744211" class="message read" messageId="1744211" style="cursor:pointer;" onclick="followMessageLink($(this));">
@@ -103,8 +103,13 @@
         该问题的严重性：中<br>&nbsp;
         该问题最后更新者： Zhang Fei<br>&nbsp;
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issueList.html?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
 </div>
+]]>
+  </node>
+  <node id="READALL">
+    <![CDATA[
+{"ok":true,"messagesRead":13}
 ]]>
   </node>
 </nodes>

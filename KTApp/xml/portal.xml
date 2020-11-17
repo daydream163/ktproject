@@ -236,7 +236,7 @@
                 <div class="bannerText">
                     <p>Create your collegues and start collaborating. You can even add your clients.</p>
                 </div>
-                <a class="button     light" id="domId_1061356689" style="" href="/resource/resourceEditor.html?V_ID=318572699&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
+                <a class="button     light" id="domId_1061356689" style="" href="/app/resource/resourceEditor.html?V_ID=318572699&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
 
 
             </div>
@@ -251,7 +251,7 @@
                 <div class="bannerText">
                     <p>Upload your photo, update your info, set location and language.</p>
                 </div>
-                <a class="button     light" id="domId_909586672" style="" href="/resource/resourceOptions.html?V_ID=185726077&CM=EDIT_OPT&OBJID=15089">Update info</a>
+                <a class="button     light" id="domId_909586672" style="" href="/app/resource/resourceOptions.html?V_ID=185726077&CM=EDIT_OPT&OBJID=15089">Update info</a>
 
 
             </div>
@@ -396,7 +396,7 @@
                         <td align="center" title="Worker&nbsp;(梦想飞扬)">WK</td>
                         <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                         <td align="right">
-                            2/3&nbsp;<a class="button  textual   " id="domId_1204899462" style="" href="/app/issueList.html?V_ID=357278968&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                            2/3&nbsp;<a class="button  textual   " id="domId_1204899462" style="" href="/app/issue/issueList.html?V_ID=357278968&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                         </td>
@@ -450,7 +450,7 @@
                     <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
                     <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                     <td align="right">
-                        4/4&nbsp;<a class="button  textual   " id="domId_519037518" style="" href="/app/issueList.html?V_ID=174029573&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                        4/4&nbsp;<a class="button  textual   " id="domId_519037518" style="" href="/app/issue/issueList.html?V_ID=174029573&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                     </td>
@@ -502,7 +502,7 @@
                     <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
                     <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                     <td align="right">
-                        3/4&nbsp;<a class="button  textual   " id="domId_1427623085" style="" href="/app/issueList.html?V_ID=1939228011&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                        3/4&nbsp;<a class="button  textual   " id="domId_1427623085" style="" href="/app/issue/issueList.html?V_ID=1939228011&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                     </td>
@@ -576,7 +576,7 @@
 
     </div>
     <h1>
-        <a class="button  textual   " id="domId_583694627" style="" href="/app/issueList.html?V_ID=1973787779&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
+        <a class="button  textual   " id="domId_583694627" style="" href="/app/issue/issueList.html?V_ID=1973787779&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
 
     </h1>
 
@@ -1072,12 +1072,12 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         </tr>
         <tr>
             <td width="40" valign="top" style="padding-top: 2px">
-                <span class="button buttonImg  " id="domId_320383426" style=" " onClick="stopBubble(event);try{ window.open('/resource/resourceEditor.html?V_ID=459067105&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d2065344562" title="Dream Wing" alt="Dream Wing" id="d2065344562" class='face small'></span>
+                <span class="button buttonImg  " id="domId_320383426" style=" " onClick="stopBubble(event);try{ window.open('/app/resource/resourceEditor.html?V_ID=459067105&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d2065344562" title="Dream Wing" alt="Dream Wing" id="d2065344562" class='face small'></span>
             </td>
             <td valign="top">
-                <a class="button  textual   " id="domId_1779573711" style="" href="/resource/resourceEditor.html?V_ID=1680762756&CM=ED&OBJID=15089">Dream Wing</a>
+                <a class="button  textual   " id="domId_1779573711" style="" href="/app/resource/resourceEditor.html?V_ID=1680762756&CM=ED&OBJID=15089">Dream Wing</a>
 
-                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_682152939" style="" title="发送消息" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=579747454&CM=AD&POP=yes&receiver=15089','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_682152939" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=579747454&CM=AD&POP=yes&receiver=15089','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
 
 
             <td>
@@ -1089,9 +1089,9 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         <tr>
             <td width="40" valign="top" style="padding-top: 2px"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1656612275" title="Zhang Fei" alt="Zhang Fei" id="d1656612275" class='face small'></td>
             <td valign="top">
-                <a class="button  textual   " id="domId_557022570" style="" href="/resource/resourceEditor.html?V_ID=1725765078&CM=ED&OBJID=15189">Zhang Fei</a>
+                <a class="button  textual   " id="domId_557022570" style="" href="/app/resource/resourceEditor.html?V_ID=1725765078&CM=ED&OBJID=15189">Zhang Fei</a>
 
-                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_461362735" style="" title="发送消息" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1019529564&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_461362735" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1019529564&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
 
 
             <td>
@@ -1684,7 +1684,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
 
         </div>
         <h1>
-            <a class="button  textual   " id="domId_1417090502" style="" href="/app/issueList.html?V_ID=1481263301">创建问题</a>
+            <a class="button  textual   " id="domId_1417090502" style="" href="/app/issue/issueList.html?V_ID=1481263301">创建问题</a>
 
 
         </h1>
@@ -2182,7 +2182,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
 
                 <tr customerId="15164" class="alternate">
                     <td class="columnCustomerName" style="position: relative;" width="80%">
-                        <a class="button  textual   bolder" id="domId_133892981" style="" href="/resource/resourceEditor.html?V_ID=103419510&CM=ED&OBJID=15164">第二个员工 </a>
+                        <a class="button  textual   bolder" id="domId_133892981" style="" href="/app/resource/resourceEditor.html?V_ID=103419510&CM=ED&OBJID=15164">第二个员工 </a>
 
 
                     </td>
@@ -2214,7 +2214,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                 var custId = row.attr("customerId");
                 var issExpired = el.is(".issExpired");
                 var issToday = el.is(".issToday");
-                var link = "/app/issueList.html?V_ID=857434147&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
+                var link = "/app/issue/issueList.html?V_ID=857434147&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
 
                 if (issExpired) {
                     link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");

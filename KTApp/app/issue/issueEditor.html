@@ -416,7 +416,7 @@
 
                                 showSavingMessage();
                                 var request = { CM: "DELSCRSHT", issueId: editor.attr("issueId"), fileUID: fb.data("pf").uid, ck: box.data("pf").ck };
-                                $.getJSON("issueAjaxControllerJson", request, function (response) {
+                                $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                                     jsonResponseHandling(response);
                                     if (response.ok) {
                                         el.closest(".repoFileBox").fadeOut(200, function () {
@@ -483,7 +483,7 @@
                         var resName = $("#ASSIGNEE_txt").val();
                         var resId = $("#ASSIGNEE").val();
                         var request = { CM: "TASKCHANGED", TASKID: taskId, ISSUEID: issueId, SIZE: 30 };
-                        $.getJSON("issueAjaxControllerJson", request, function (response) {
+                        $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                             jsonResponseHandling(response);
                             if (response.ok) {
                                 //si mettono i nuovi limiti sulle date
@@ -543,7 +543,7 @@
                     var histId = theDiv.attr("histId");
                     showSavingMessage();
                     var request = { CM: "SVHISTNOTES", histId: histId, notes: theDiv.find("textarea").val(), issueId: issueId };
-                    $.getJSON("issueAjaxControllerJson", request, function (response) {
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok) {
                             theDiv.fadeOut();
@@ -563,7 +563,7 @@
                     var histId = theDiv.attr("histId");
                     showSavingMessage();
                     var request = { CM: "SVHISTNOTES", histId: histId, notes: theDiv.find("textarea").val(), issueId: issueId };
-                    $.getJSON("issueAjaxControllerJson", request, function (response) {
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok) {
                             theDiv.find("textarea").val("");
@@ -597,7 +597,7 @@
                 function deleteNotes(el) {
                     var row = el.closest("[histId]");
                     var request = { CM: "DLHISTNOTES", histId: row.attr("histId") };
-                    $.getJSON("issueAjaxControllerJson", request, function (response) {
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok) {
                             row.remove();
@@ -612,7 +612,7 @@
                     view.find(".uploadizeDrop").each(function () {
 
                         $(this).uploadize({
-                            url: "issueAjaxControllerJson",
+                            url: "/issue/issueAjaxControllerJson",
                             maxSize: 20971520,
                             multi: true,
                             useSingleCall: true, // deve essere usata una sola chiamata altrimenti con N chiamata in sequenza vince solo l'ultima

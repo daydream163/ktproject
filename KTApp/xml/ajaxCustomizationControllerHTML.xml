@@ -231,7 +231,7 @@
                 <div class="bannerText">
                     <p>Create your collegues and start collaborating. You can even add your clients.</p>
                 </div>
-                <a class="button     light" id="domId_1193858554" style="" href="/resource/resourceEditor.html?V_ID=1891877744&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
+                <a class="button     light" id="domId_1193858554" style="" href="/app/resource/resourceEditor.html?V_ID=1891877744&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
 
 
             </div>
@@ -246,7 +246,7 @@
                 <div class="bannerText">
                     <p>Upload your photo, update your info, set location and language.</p>
                 </div>
-                <a class="button     light" id="domId_1146365926" style="" href="/resource/resourceOptions.html?V_ID=413277007&CM=EDIT_OPT&OBJID=15089">Update info</a>
+                <a class="button     light" id="domId_1146365926" style="" href="/app/resource/resourceOptions.html?V_ID=413277007&CM=EDIT_OPT&OBJID=15089">Update info</a>
 
 
             </div>
@@ -391,7 +391,7 @@
                         <td align="center" title="Worker&nbsp;(梦想飞扬)">WK</td>
                         <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                         <td align="right">
-                            2/3&nbsp;<a class="button  textual   " id="domId_935685055" style="" href="/app/issueList.html?V_ID=1804323523&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                            2/3&nbsp;<a class="button  textual   " id="domId_935685055" style="" href="/app/issue/issueList.html?V_ID=1804323523&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                         </td>
@@ -445,7 +445,7 @@
                     <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
                     <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                     <td align="right">
-                        4/4&nbsp;<a class="button  textual   " id="domId_2076994311" style="" href="/app/issueList.html?V_ID=1877167420&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                        4/4&nbsp;<a class="button  textual   " id="domId_2076994311" style="" href="/app/issue/issueList.html?V_ID=1877167420&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                     </td>
@@ -500,7 +500,7 @@
                     <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
                     <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                     <td align="right">
-                        3/4&nbsp;<a class="button  textual   " id="domId_362047455" style="" href="/app/issueList.html?V_ID=885743916&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                        3/4&nbsp;<a class="button  textual   " id="domId_362047455" style="" href="/app/issue/issueList.html?V_ID=885743916&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                     </td>
@@ -578,7 +578,7 @@
 
     </div>
     <h1>
-        <a class="button  textual   " id="domId_1865344717" style="" href="/app/issueList.html?V_ID=497408972&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
+        <a class="button  textual   " id="domId_1865344717" style="" href="/app/issue/issueList.html?V_ID=497408972&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
 
     </h1>
 
@@ -1081,12 +1081,12 @@
         </tr>
         <tr>
             <td width="40" valign="top" style="padding-top: 2px">
-                <span class="button buttonImg  " id="domId_1449063240" style=" " onClick="stopBubble(event);try{ window.open('/resource/resourceEditor.html?V_ID=1007535029&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d698366585" title="Dream Wing" alt="Dream Wing" id="d698366585" class='face small'></span>
+                <span class="button buttonImg  " id="domId_1449063240" style=" " onClick="stopBubble(event);try{ window.open('/app/resource/resourceEditor.html?V_ID=1007535029&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d698366585" title="Dream Wing" alt="Dream Wing" id="d698366585" class='face small'></span>
             </td>
             <td valign="top">
-                <a class="button  textual   " id="domId_732675808" style="" href="/resource/resourceEditor.html?V_ID=451674107&CM=ED&OBJID=15089">Dream Wing</a>
+                <a class="button  textual   " id="domId_732675808" style="" href="/app/resource/resourceEditor.html?V_ID=451674107&CM=ED&OBJID=15089">Dream Wing</a>
 
-                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_2139580479" style="" title="发送消息" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=2079507851&CM=AD&POP=yes&receiver=15089','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_2139580479" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=2079507851&CM=AD&POP=yes&receiver=15089','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
 
 
             <td>
@@ -1098,9 +1098,9 @@
         <tr>
             <td width="40" valign="top" style="padding-top: 2px"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1636288370" title="Zhang Fei" alt="Zhang Fei" id="d1636288370" class='face small'></td>
             <td valign="top">
-                <a class="button  textual   " id="domId_423051108" style="" href="/resource/resourceEditor.html?V_ID=38301963&CM=ED&OBJID=15189">Zhang Fei</a>
+                <a class="button  textual   " id="domId_423051108" style="" href="/app/resource/resourceEditor.html?V_ID=38301963&CM=ED&OBJID=15189">Zhang Fei</a>
 
-                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_1062062502" style="" title="发送消息" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1643481688&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+                &nbsp;<button type="button" class="button noprint textual icon  " id="domId_1062062502" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1643481688&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
 
 
             <td>
@@ -1681,7 +1681,7 @@
 
         </div>
         <h1>
-            <a class="button  textual   " id="domId_1248344296" style="" href="/app/issueList.html?V_ID=1153151495">创建问题</a>
+            <a class="button  textual   " id="domId_1248344296" style="" href="/app/issue/issueList.html?V_ID=1153151495">创建问题</a>
 
 
         </h1>
@@ -2176,7 +2176,7 @@
 
                 <tr customerId="15164" class="alternate">
                     <td class="columnCustomerName" style="position: relative;" width="80%">
-                        <a class="button  textual   bolder" id="domId_840223448" style="" href="/resource/resourceEditor.html?V_ID=1090626482&CM=ED&OBJID=15164">第二个员工 </a>
+                        <a class="button  textual   bolder" id="domId_840223448" style="" href="/app/resource/resourceEditor.html?V_ID=1090626482&CM=ED&OBJID=15164">第二个员工 </a>
 
 
                     </td>
@@ -2208,7 +2208,7 @@
                 var custId = row.attr("customerId");
                 var issExpired = el.is(".issExpired");
                 var issToday = el.is(".issToday");
-                var link = "/app/issueList.html?V_ID=284848053&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
+                var link = "/app/issue/issueList.html?V_ID=284848053&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
 
                 if (issExpired) {
                     link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");

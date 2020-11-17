@@ -297,11 +297,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Base\ApplicationIdentity.cs" />
     <Compile Include="Base\BaseApiController.cs" />
     <Compile Include="Base\ImageResult.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImgController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filters\BusinessAthorizationFilter.cs" />
+    <Compile Include="Filters\RoleAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -346,6 +349,7 @@
     <Content Include="applications\teamwork\socket\twCom.js" />
     <Content Include="applications\teamwork\socket\userStatusManagement.js" />
     <Content Include="app\avatars\000001_ZxW14.jpeg" />
+    <Content Include="app\board\boardList.html" />
     <Content Include="app\task\taskEditorNew.html" />
     <Content Include="commons\js\circles.min.js" />
     <Content Include="commons\js\filterEngine.js" />
@@ -466,7 +470,7 @@
     <Content Include="img\twprojectHand.svg" />
     <Content Include="img\uploader\unlink.png" />
     <Content Include="img\user-active-bottom.png" />
-    <Content Include="app\issueList.html" />
+    <Content Include="app\issue\issueList.html" />
     <Content Include="app\issue\issueEditor.html" />
     <Content Include="app\issue\issueImpact.html" />
     <Content Include="app\issue\issueOrganizer.html" />
@@ -686,6 +690,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\KTProject.Model\KTProject.Model.csproj">
+      <Project>{4dd2da6a-fe79-4cdf-827d-74d1be650777}</Project>
+      <Name>KTProject.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KTProject.Common\KTProject.Common.csproj">
       <Project>{9a625fb3-9a09-45a4-955f-400b021a5366}</Project>
       <Name>KTProject.Common</Name>

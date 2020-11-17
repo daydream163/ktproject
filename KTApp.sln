@@ -13,6 +13,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.IService", "KTPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.Common", "KTProject.Common\KTProject.Common.csproj", "{9A625FB3-9A09-45A4-955F-400B021A5366}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.Model", "..\KTProject.Model\KTProject.Model.csproj", "{4DD2DA6A-FE79-4CDF-827D-74D1BE650777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.IRepository", "..\KTProject.IRepository\KTProject.IRepository.csproj", "{4D3B2DF8-B634-49D7-A208-10982E531014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.Repository", "..\KTProject.Repository\KTProject.Repository.csproj", "{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{877B3439-A2C9-4166-94BF-C2AF14B91099}"
+	ProjectSection(SolutionItems) = preProject
+		DLL\KNet.Core.dll = DLL\KNet.Core.dll
+		DLL\KNet.Data.dll = DLL\KNet.Data.dll
+		DLL\KNet.Foundation.Cache.dll = DLL\KNet.Foundation.Cache.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +52,18 @@ Global
 		{9A625FB3-9A09-45A4-955F-400B021A5366}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A625FB3-9A09-45A4-955F-400B021A5366}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A625FB3-9A09-45A4-955F-400B021A5366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD2DA6A-FE79-4CDF-827D-74D1BE650777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD2DA6A-FE79-4CDF-827D-74D1BE650777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD2DA6A-FE79-4CDF-827D-74D1BE650777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD2DA6A-FE79-4CDF-827D-74D1BE650777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3B2DF8-B634-49D7-A208-10982E531014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3B2DF8-B634-49D7-A208-10982E531014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3B2DF8-B634-49D7-A208-10982E531014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3B2DF8-B634-49D7-A208-10982E531014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

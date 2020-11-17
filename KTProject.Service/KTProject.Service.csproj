@@ -41,10 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SubSystemContractService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\KTProject.IRepository\KTProject.IRepository.csproj">
+      <Project>{4d3b2df8-b634-49d7-a208-10982e531014}</Project>
+      <Name>KTProject.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KTProject.Model\KTProject.Model.csproj">
+      <Project>{4dd2da6a-fe79-4cdf-827d-74d1be650777}</Project>
+      <Name>KTProject.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTProject.Common\KTProject.Common.csproj">
+      <Project>{9a625fb3-9a09-45a4-955f-400b021a5366}</Project>
+      <Name>KTProject.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KTProject.IService\KTProject.IService.csproj">
       <Project>{8775fef1-b424-4dba-a24a-7b8a18e2601d}</Project>
       <Name>KTProject.IService</Name>

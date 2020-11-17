@@ -244,7 +244,7 @@
                             <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
 To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
                                 <span>
-                                    <a class="button     hasDivomo" id="domId_1605982595" style="" href="/app/issueList.html?V_ID=1330700197">问题</a>
+                                    <a class="button     hasDivomo" id="domId_1605982595" style="" href="/app/issue/issueList.html?V_ID=1330700197">问题</a>
 
                                     <span id="arrowOpener_divdomo_domId_27515022" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_27515022', 'arrowOpener_divdomo_domId_27515022'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
 
@@ -256,7 +256,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div class="divomoArrow"></div>
 
                                     <div>
-                                        <a class="button  textual   hasDivomo" id="domId_1605982595" style="" href="/app/issueList.html?V_ID=1277872133">问题</a>
+                                        <a class="button  textual   hasDivomo" id="domId_1605982595" style="" href="/app/issue/issueList.html?V_ID=1277872133">问题</a>
 
                                         <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_735990649" style="" href="/applications/teamwork/issue/issueOrganizer.jsp?V_ID=1674005061">组织（看板）</a>
 
@@ -290,7 +290,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div>
                                         <a class="button  textual   hasDivomo" id="domId_2046812889" style="" href="/app/toolsIntro.html?V_ID=606858277">工具</a>
 
-                                        <a class="button  textual   " id="domId_347858081" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=1015658608&CM=FN">讨论板</a>
+                                        <a class="button  textual   " id="domId_347858081" style="" href="/app/board/boardList.html?V_ID=1015658608&CM=FN">讨论板</a>
 
                                         <button type="button" class="button noprint textual   " id="domId_1207887315" style="" onclick="openBlackPopup('/applications/teamwork/tools/counters.jsp?V_ID=1000280233','600px','600px');return false; ">计数器</button>
 
@@ -349,7 +349,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                     <div id="loggedOp" class="loggedOp">
                         <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1454575943', 'domId_281601038');  ">
-                            <span class="button buttonImg  operatorButton" id="domId_281601038" style=" " onclick=";return false; "><img src="/avatars/000001_ZxW14.jpeg?" border="0" name="d196148569" title="System Manager" alt="System Manager" id="d196148569" " resId="1" class="face active"></span>
+                            <span class="button buttonImg  operatorButton" id="domId_281601038" style=" " onclick=";return false; "><img src="/app/avatars/000001_ZxW14.jpeg?" border="0" name="d196148569" title="System Manager" alt="System Manager" id="d196148569" " resId="1" class="face active"></span>
 
                         </span>
 
@@ -418,7 +418,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
         <script>
             // unread messages managament
             $("#messageListBox").on("hideDivOnMouseover", function () {
-                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "READALL" }, function (response) {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "READALL" }, function (response) {
                     jsonResponseHandling(response);
                     if (response.ok) {
                         $("#messageListOpener .notificationNumber").fadeOut().html("0");
@@ -528,7 +528,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                     通告列表
                 </h1>
                 <form enctype="application/x-www-form-urlencoded" method="POST"
-                      action="/applications/website/admin/news/newsList.jsp" name="d1956122094" id="d1956122094"
+                      action="/app/admin/news/newsList.html" name="d1956122094" id="d1956122094"
                       savedAction="" savedTarget="">
                     <input type="hidden" id="d1956122094V_ID" name="V_ID" value="1956122094" savedValue="">
                     <input type="hidden" id="d1956122094CM" name="CM" value="FN" savedValue="">
@@ -561,7 +561,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                         </div>
                     </div><div class="noprint buttonArea" id="domId_1835445318" style="text-align:left;">
                         <div class="bbButtons">
-                            <a class="button     first" id="domId_1874354118" style="" href="newsEditor.jsp?V_ID=282075502&CM=AD">添加</a>
+                            <a class="button     first" id="domId_1874354118" style="" href="newsEditor.html?V_ID=282075502&CM=AD">添加</a>
 
                             <button type="button" class="button noprint    " id="domId_513199905" style="" onclick="dataTableSearchClick('NEWSMGR');return false; " data-dtid="NEWSMGR">搜索</button>
 
@@ -637,7 +637,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                             <tr class="alternate" valign="top" newsid="1">
                                 <td>
-                                    <a class="button  textual   bolder" id="domId_1800327269" style="" href="newsEditor.jsp?V_ID=1928627279&CM=ED&OBJID=1">Twproject is up and running!</a>
+                                    <a class="button  textual   bolder" id="domId_1800327269" style="" href="newsEditor.html?V_ID=1928627279&CM=ED&OBJID=1">Twproject is up and running!</a>
 
                                 </td>
                                 <td align="center">2020-6-4</td>
@@ -654,7 +654,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                             <tr class="alternate" valign="top" newsid="2">
                                 <td>
-                                    <a class="button  textual   bolder" id="domId_928213669" style="" href="newsEditor.jsp?V_ID=2028326297&CM=ED&OBJID=2">项目管理工具上线了</a>
+                                    <a class="button  textual   bolder" id="domId_928213669" style="" href="newsEditor.html?V_ID=2028326297&CM=ED&OBJID=2">项目管理工具上线了</a>
 
                                 </td>
                                 <td align="center">2020-11-9</td>
@@ -809,7 +809,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
 
             function closeAllSticky() {
-                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "REMOVEEALLSTK" }, function (response) {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "REMOVEEALLSTK" }, function (response) {
                     twSrc_drawAllSticky(__sns);//disegna i rimanenti
                 });
             }

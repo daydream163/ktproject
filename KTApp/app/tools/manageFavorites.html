@@ -243,7 +243,7 @@
                             <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
 To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
                                 <span>
-                                    <a class="button     hasDivomo" id="domId_1283143585" style="" href="/app/issueList.html?V_ID=2112258336">问题</a>
+                                    <a class="button     hasDivomo" id="domId_1283143585" style="" href="/app/issue/issueList.html?V_ID=2112258336">问题</a>
 
                                     <span id="arrowOpener_divdomo_domId_763449921" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_763449921', 'arrowOpener_divdomo_domId_763449921'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
 
@@ -255,11 +255,11 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div class="divomoArrow"></div>
 
                                     <div>
-                                        <a class="button  textual   hasDivomo" id="domId_1283143585" style="" href="/app/issueList.html?V_ID=1083201181">问题</a>
+                                        <a class="button  textual   hasDivomo" id="domId_1283143585" style="" href="/app/issue/issueList.html?V_ID=1083201181">问题</a>
 
-                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_88031422" style="" href="/issue/issueOrganizer.html?V_ID=993867180">组织（看板）</a>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_88031422" style="" href="/app/issue/issueOrganizer.html?V_ID=993867180">组织（看板）</a>
 
-                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_2075360418" style="" href="/issue/issuePlanner.html?V_ID=1213942590">计划者</a>
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_2075360418" style="" href="/app/issue/issuePlanner.html?V_ID=1213942590">计划者</a>
 
                                     </div>
                                 </div>
@@ -289,7 +289,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div>
                                         <a class="button  textual   hasDivomo" id="domId_475423929" style="" href="/app/toolsIntro.html?V_ID=266143164">工具</a>
 
-                                        <a class="button  textual   " id="domId_109508157" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=261958535&CM=FN">讨论板</a>
+                                        <a class="button  textual   " id="domId_109508157" style="" href="/app/board/boardList.html?V_ID=261958535&CM=FN">讨论板</a>
 
                                         <hr><span class='menuTitle'>书签</span><a class="button  textual   " id="domId_469054865" style="" href="https://www.baidu.com" target="_blank">- baidu</a>
 
@@ -297,7 +297,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                                         <a class="button  textual   " id="domId_987609352" style="" href="https://www.cnki.net" target="_blank">- cnki</a>
 
-                                        <hr><a class="button  textual   " id="domId_849271401" style="" href="/tools/manageFavorites.html?V_ID=599414653"><span class='teamworkIcon withLabel'>g</span>管理书签&nbsp;</a>
+                                        <hr><a class="button  textual   " id="domId_849271401" style="" href="/app/tools/manageFavorites.html?V_ID=599414653"><span class='teamworkIcon withLabel'>g</span>管理书签&nbsp;</a>
 
                                         <hr><button type="button" class="button noprint textual   " id="domId_1528118645" style="" onclick="saveThisPageAsPreferred();return false; "><span class='teamworkIcon withLabel'>P</span>增加当前视图到书签</button>
 
@@ -368,9 +368,9 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                                 <a class="button  textual   " id="domId_175289006" style="" href="/applications/teamwork/resource/resourceDocumentList.jsp?V_ID=1910575082&CM=LIST_DOCS&RES_ID=15089">文档</a>
 
-                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_290026678" style="" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1882243805&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
+                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_290026678" style="" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1882243805&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
 
-                                <button type="button" class="button noprint textual   " id="domId_1560426673" style="" onclick="openBlackPopup('/sticky/stickyEditor.html?V_ID=1837982103&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
+                                <button type="button" class="button noprint textual   " id="domId_1560426673" style="" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1837982103&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
 
                                 <hr><a class="button  textual   " id="domId_1020795947" style="" href="http://twproject.com/support" target="_blank">支持</a>
 
@@ -419,7 +419,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
         <script>
             // unread messages managament
             $("#messageListBox").on("hideDivOnMouseover", function () {
-                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "READALL" }, function (response) {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "READALL" }, function (response) {
                     jsonResponseHandling(response);
                     if (response.ok) {
                         $("#messageListOpener .notificationNumber").fadeOut().html("0");
@@ -435,7 +435,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
             }
 
             function saveThisPageAsPreferred() {
-                location.href = contextPath + "/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+                location.href = contextPath + "/app/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
             }
 
             (function tmStartup() {
@@ -643,10 +643,10 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                 <div class="bookmarkletDiv">
                     <h1>Bookmarklet</h1>
                     单击下面的链接,将Teamwork站点增加到您的浏览器工具栏书签.:
-                    <a class="drag" href="javascript:location.href='https://demo.twproject.com/tools/manageFavorites.html?CM=POSTLINK&USR=7780&URL='+encodeURIComponent(location.href)+'&TITLE='+encodeURIComponent(document.title)+'&CK=318cda8bb76f5c51074c86f3983351a9'">post to Twproject</a>
+                    <a class="drag" href="javascript:location.href='https://demo.twproject.com/app/tools/manageFavorites.html?CM=POSTLINK&USR=7780&URL='+encodeURIComponent(location.href)+'&TITLE='+encodeURIComponent(document.title)+'&CK=318cda8bb76f5c51074c86f3983351a9'">post to Twproject</a>
                     <br><br>
                     将Teamwork站点增加到您跌浏览器收藏夹里:
-                    <a class="drag" href="javascript:location.href='https://demo.twproject.com/tools/manageFavorites.html?CM=VIEWLINK&USR=7780&CK=318cda8bb76f5c51074c86f3983351a9'">teamwork 链接</a><br>
+                    <a class="drag" href="javascript:location.href='https://demo.twproject.com/app/tools/manageFavorites.html?CM=VIEWLINK&USR=7780&CK=318cda8bb76f5c51074c86f3983351a9'">teamwork 链接</a><br>
                 </div>
             </div>
         </div>
@@ -753,7 +753,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
 
             function closeAllSticky() {
-                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "REMOVEEALLSTK" }, function (response) {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "REMOVEEALLSTK" }, function (response) {
                     twSrc_drawAllSticky(__sns);//disegna i rimanenti
                 });
             }

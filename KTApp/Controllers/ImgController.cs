@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using KTApp.Base;
 using KTProject.IService;
+using KTProject.Model;
 //using Microsoft.AspNetCore.Cors;
 //using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,8 +21,7 @@ namespace KTApp.Controllers
         //private IUserService _userService { get; set; }
 
 
-        public ImgController()
-        {
+        public ImgController() {
         }
 
         /*[System.Web.Mvc.HttpGet]
@@ -39,9 +39,10 @@ namespace KTApp.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
+        [RoleAuthorizationFilter(RoleEnum.KTCustomer | RoleEnum.KTProjectManager)]
+        [BusinessAthorizationFilter]
         [HttpGet]
-        public HttpResponseMessage SvgAvatar(string code, string rectFill = "03a9f4", string textFill = "ffffff")
-        {
+        public HttpResponseMessage SvgAvatar(string code, string rectFill = "03a9f4", string textFill = "ffffff") {
             return _userService.GetUserLogo(code, rectFill, textFill);
         }
 

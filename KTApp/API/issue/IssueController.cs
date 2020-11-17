@@ -46,6 +46,27 @@ namespace KTApp.Controllers
         }
 
         [HttpGet]
+        public HttpResponseMessage IssueAjax(string CM) {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/xml/issueAjax.xml");
+            XmlNode node = null;
+            string xmlPath = "/nodes/node[@id=\"{0}\"]";
+
+            string returnstr = "";
+            node = doc.SelectSingleNode(string.Format(xmlPath, CM));
+            if (node != null) {
+                returnstr = node.InnerText;
+            }
+            else {
+                returnstr = "{\"ok\":true,\"events\":[]}";
+            }
+
+            return new HttpResponseMessage() {
+                Content = new StringContent(returnstr, Encoding.UTF8, "text/html"),
+            };
+        }
+
+        [HttpGet]
         public HttpResponseMessage IssueAjaxControllerJson(string cm) {
             XmlDocument doc = new XmlDocument();
             doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/xml/issueAjax.xml");

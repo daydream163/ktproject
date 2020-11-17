@@ -15,30 +15,43 @@ namespace KTApp.API.issue
     public class MessagingController : BaseApiController
     {
         [HttpGet]
-        public HttpResponseMessage MessageList(bool isInPage = false)
-        {
+        public HttpResponseMessage MessageList(bool isInPage = false) {
             string returnstr = "{\"ok\":true,\"events\":[]}";
             XmlDocument doc = new XmlDocument();
             doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/xml/message.xml");
             XmlNode node = null;
             string xmlPath = "/nodes/node[@id=\"{0}\"]";
 
-            if (isInPage)
-            {
+            if (isInPage) {
                 node = doc.SelectSingleNode(string.Format(xmlPath, "messagelist_page"));
             }
-            else
-            {
+            else {
                 node = doc.SelectSingleNode(string.Format(xmlPath, "messagelist"));
             }
-            
-            if (node != null)
-            {
+
+            if (node != null) {
                 returnstr = node.InnerText;
             }
 
-            return new HttpResponseMessage()
-            {
+            return new HttpResponseMessage() {
+                Content = new StringContent(returnstr, Encoding.UTF8, "application/json"),
+            };
+        }
+        [HttpGet]
+        public HttpResponseMessage messageAjax(string cm) {
+            string returnstr = "{\"ok\":true,\"messagesRead\":0}";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/xml/message.xml");
+            XmlNode node = null;
+            string xmlPath = "/nodes/node[@id=\"{0}\"]";
+
+            node = doc.SelectSingleNode(string.Format(xmlPath, "READALL"));
+
+            if (node != null) {
+                returnstr = node.InnerText;
+            }
+
+            return new HttpResponseMessage() {
                 Content = new StringContent(returnstr, Encoding.UTF8, "application/json"),
             };
         }

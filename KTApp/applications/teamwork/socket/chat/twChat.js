@@ -1099,7 +1099,7 @@ TWChat.prototype.openTaskEditor = function (el) {
 TWChat.prototype.openCompanyEditor = function (el) {
   //console.debug("openCompanyEditor",el);
   var self = this;
-  getTop().location.href = contextPath + "/resource/resourceEditor.html?CM=ED&OBJID=" + el.attr("referredId");
+  getTop().location.href = contextPath + "/app/resource/resourceEditor.html?CM=ED&OBJID=" + el.attr("referredId");
   self.reduce(true);
 };
 

@@ -243,7 +243,7 @@
                             <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
 To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
                                 <span>
-                                    <button type="button" class="button noprint    hasDivomo" id="domId_2129800978" style="" onclick="window.location.href='/taskList.html'; ">问题</button>
+                                    <button type="button" class="button noprint    hasDivomo" id="domId_2129800978" style="" onclick="window.location.href='app/issue/issueList.html'; ">问题</button>
 
                                     <span id="arrowOpener_divdomo_domId_1307609050" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1307609050', 'arrowOpener_divdomo_domId_1307609050'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
 
@@ -255,11 +255,11 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div class="divomoArrow"></div>
 
                                     <div>
-                                        <button type="button" class="button noprint textual   hasDivomo" id="domId_2129800978" style="" onclick="window.location.href='/taskList.html'; ">问题</button>
+                                        <button type="button" class="button noprint textual   hasDivomo" id="domId_2129800978" style="" onclick="window.location.href='app/issue/issueList.html'; ">问题</button>
 
-                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1785143599" style="" href="/issue/issueOrganizer.html?V_ID=615890139">组织（看板）</a>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1785143599" style="" href="/app/issue/issueOrganizer.html?V_ID=615890139">组织（看板）</a>
 
-                                        <button type="button" class="button noprint textual   lreq20 lreqLabel lreqActive" id="domId_414436156" style="" onclick="window.location.href='/issue/issuePlanner.html';">计划者</button>
+                                        <button type="button" class="button noprint textual   lreq20 lreqLabel lreqActive" id="domId_414436156" style="" onclick="window.location.href='/app/issue/issuePlanner.html';">计划者</button>
 
                                     </div>
                                 </div>
@@ -289,7 +289,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div>
                                         <a class="button  textual   hasDivomo" id="domId_1338413189" style="" href="/app/toolsIntro.html?V_ID=941043814">工具</a>
 
-                                        <a class="button  textual   " id="domId_1079543291" style="" href="/applications/teamwork/board/boardList.jsp?V_ID=1802531499&CM=FN">讨论板</a>
+                                        <a class="button  textual   " id="domId_1079543291" style="" href="/app/board/boardList.html?V_ID=1802531499&CM=FN">讨论板</a>
 
                                         <hr><span class='menuTitle'>书签</span><a class="button  textual   " id="domId_1743796051" style="" href="https://www.baidu.com" target="_blank">- baidu</a>
 
@@ -419,7 +419,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
         <script>
             // unread messages managament
             $("#messageListBox").on("hideDivOnMouseover", function () {
-                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "READALL" }, function (response) {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "READALL" }, function (response) {
                     jsonResponseHandling(response);
                     if (response.ok) {
                         $("#messageListOpener .notificationNumber").fadeOut().html("0");
@@ -520,7 +520,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
         <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
         <div id="twInnerContainer" class="lreq10 lreqPage">
             <form enctype="application/x-www-form-urlencoded" method="POST"
-                  action="/issue/issueOrganizer.html" name="issueMultiEditor" alertOnChange="true" id="issueMultiEditor"
+                  action="/app/issue/issueOrganizer.html" name="issueMultiEditor" alertOnChange="true" id="issueMultiEditor"
                   savedAction="" savedTarget="">
                 <input type="hidden" id="issueMultiEditorV_ID" name="V_ID" value="36182645" savedValue="">
                 <input type="hidden" id="issueMultiEditorCM" name="CM" value="FN" savedValue="">
@@ -1034,25 +1034,25 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
 
 
-                            <div class="separator"></div><a class="button  textual   " id="domId_349971973" style="" href="/issue/issueOrganizer.html?V_ID=516512544&CM=FN&FLNM=PF_MY_TODAY_OPEN_ISSUES">我今天要做的事情</a>
+                            <div class="separator"></div><a class="button  textual   " id="domId_349971973" style="" href="/app/issue/issueOrganizer.html?V_ID=516512544&CM=FN&FLNM=PF_MY_TODAY_OPEN_ISSUES">我今天要做的事情</a>
 
-                            <a class="button  textual  focused " id="domId_897425834" style="" href="/issue/issueOrganizer.html?V_ID=957168690&CM=FN&FLNM=PF_MY_OPEN_ISSUES">待解决的问题</a>
+                            <a class="button  textual  focused " id="domId_897425834" style="" href="/app/issue/issueOrganizer.html?V_ID=957168690&CM=FN&FLNM=PF_MY_OPEN_ISSUES">待解决的问题</a>
 
-                            <a class="button  textual   " id="domId_334173153" style="" href="/issue/issueOrganizer.html?V_ID=864250238&CM=FN&FLNM=PF_MY_EXPIRED_ISSUES">我的问题过期</a>
+                            <a class="button  textual   " id="domId_334173153" style="" href="/app/issue/issueOrganizer.html?V_ID=864250238&CM=FN&FLNM=PF_MY_EXPIRED_ISSUES">我的问题过期</a>
 
-                            <a class="button  textual   " id="domId_2021845405" style="" href="/issue/issueOrganizer.html?V_ID=1162055261&CM=FN&FLNM=PF_MY_OPEN_SEVERE_ISSUES">我已发现的严重问题</a>
+                            <a class="button  textual   " id="domId_2021845405" style="" href="/app/issue/issueOrganizer.html?V_ID=1162055261&CM=FN&FLNM=PF_MY_OPEN_SEVERE_ISSUES">我已发现的严重问题</a>
 
-                            <a class="button  textual   " id="domId_1446485809" style="" href="/issue/issueOrganizer.html?V_ID=1924872120&CM=FN&FLNM=PF_MY_INSERTED_ISSUES">我感兴趣的问题</a>
+                            <a class="button  textual   " id="domId_1446485809" style="" href="/app/issue/issueOrganizer.html?V_ID=1924872120&CM=FN&FLNM=PF_MY_INSERTED_ISSUES">我感兴趣的问题</a>
 
-                            <a class="button  textual   " id="domId_1632062432" style="" href="/issue/issueOrganizer.html?V_ID=895149914&CM=FN&FLNM=PF_ISSUES_OPENED_RECENTLY">最近出现的问题</a>
+                            <a class="button  textual   " id="domId_1632062432" style="" href="/app/issue/issueOrganizer.html?V_ID=895149914&CM=FN&FLNM=PF_ISSUES_OPENED_RECENTLY">最近出现的问题</a>
 
-                            <a class="button  textual   " id="domId_1661657363" style="" href="/issue/issueOrganizer.html?V_ID=388321489&CM=FN&FLNM=PF_ISSUES_CLOSED_RECENTLY">最近关闭的问题</a>
+                            <a class="button  textual   " id="domId_1661657363" style="" href="/app/issue/issueOrganizer.html?V_ID=388321489&CM=FN&FLNM=PF_ISSUES_CLOSED_RECENTLY">最近关闭的问题</a>
 
-                            <a class="button  textual   " id="domId_316462390" style="" href="/issue/issueOrganizer.html?V_ID=1741824096&CM=FN&FLNM=PF_LONG_STANDING_ISSUES">长期问题</a>
+                            <a class="button  textual   " id="domId_316462390" style="" href="/app/issue/issueOrganizer.html?V_ID=1741824096&CM=FN&FLNM=PF_LONG_STANDING_ISSUES">长期问题</a>
 
-                            <a class="button  textual   " id="domId_340505568" style="" href="/issue/issueOrganizer.html?V_ID=569410629&CM=FN&FLNM=PF_OPEN_SEVERE_ISSUES">开放的严重问题</a>
+                            <a class="button  textual   " id="domId_340505568" style="" href="/app/issue/issueOrganizer.html?V_ID=569410629&CM=FN&FLNM=PF_OPEN_SEVERE_ISSUES">开放的严重问题</a>
 
-                            <a class="button  textual   " id="domId_897310571" style="" href="/issue/issueOrganizer.html?V_ID=1689686370&CM=FN&FLNM=PF_RECENTLY_USED">最近浏览过的</a>
+                            <a class="button  textual   " id="domId_897310571" style="" href="/app/issue/issueOrganizer.html?V_ID=1689686370&CM=FN&FLNM=PF_RECENTLY_USED">最近浏览过的</a>
 
                         </div>
                     </div>
@@ -1412,7 +1412,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                     }
 
 
-                    $.getJSON("issueAjaxControllerJson", request, function (response) {
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok) {
                             //refresh the object
@@ -1452,7 +1452,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                     var histId = theDiv.attr("histId");
                     showSavingMessage();
                     var request = { CM: "SVHISTNOTES", histId: histId, notes: theDiv.find("textarea").val() };
-                    $.getJSON("issueAjaxControllerJson", request, function (response) {
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok) {
                             $("#insertStatusNotes").fadeOut();
@@ -1627,7 +1627,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
 
             function closeAllSticky() {
-                $.getJSON(contextPath + "/applications/teamwork/messaging/messageAjaxController.jsp", { CM: "REMOVEEALLSTK" }, function (response) {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "REMOVEEALLSTK" }, function (response) {
                     twSrc_drawAllSticky(__sns);//disegna i rimanenti
                 });
             }
