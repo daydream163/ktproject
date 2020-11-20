@@ -19,12 +19,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.IRepository", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.Repository", "..\KTProject.Repository\KTProject.Repository.csproj", "{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{877B3439-A2C9-4166-94BF-C2AF14B91099}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_dll", "_dll", "{877B3439-A2C9-4166-94BF-C2AF14B91099}"
 	ProjectSection(SolutionItems) = preProject
 		DLL\KNet.Core.dll = DLL\KNet.Core.dll
 		DLL\KNet.Data.dll = DLL\KNet.Data.dll
 		DLL\KNet.Foundation.Cache.dll = DLL\KNet.Foundation.Cache.dll
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common Layer", "Common Layer", "{412FF3DF-C3AE-4D1D-AA79-335CA4B1F039}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Access Layer", "Access Layer", "{2FFE6B14-308B-4E7F-9B2B-CB82E162406C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bussiness Layer", "Bussiness Layer", "{47ED1C88-A78B-4681-90EF-A5256F105793}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model Layer", "Model Layer", "{798CF78B-549F-4E87-A5BD-EDB56D38F519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +75,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{158A2668-271E-4AE6-AD8E-D522758EAC44} = {47ED1C88-A78B-4681-90EF-A5256F105793}
+		{8775FEF1-B424-4DBA-A24A-7B8A18E2601D} = {47ED1C88-A78B-4681-90EF-A5256F105793}
+		{9A625FB3-9A09-45A4-955F-400B021A5366} = {412FF3DF-C3AE-4D1D-AA79-335CA4B1F039}
+		{4DD2DA6A-FE79-4CDF-827D-74D1BE650777} = {798CF78B-549F-4E87-A5BD-EDB56D38F519}
+		{4D3B2DF8-B634-49D7-A208-10982E531014} = {2FFE6B14-308B-4E7F-9B2B-CB82E162406C}
+		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D} = {2FFE6B14-308B-4E7F-9B2B-CB82E162406C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF033C0E-5F8B-46E0-964E-862E6E89DDC1}

@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KNet.Core">
+      <HintPath>..\DLL\KNet.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ServiceCommon.cs" />
+    <Compile Include="LoginService.cs" />
     <Compile Include="SubSystemContractService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +60,10 @@
       <Project>{4dd2da6a-fe79-4cdf-827d-74d1be650777}</Project>
       <Name>KTProject.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\KTProject.Repository\KTProject.Repository.csproj">
+      <Project>{dd517db8-3c0a-4fc0-ba9e-a8c420d80e4d}</Project>
+      <Name>KTProject.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KTProject.Common\KTProject.Common.csproj">
       <Project>{9a625fb3-9a09-45a4-955f-400b021a5366}</Project>
       <Name>KTProject.Common</Name>
@@ -63,5 +73,9 @@
       <Name>KTProject.IService</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

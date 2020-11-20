@@ -20,7 +20,7 @@ namespace KTProject.Common
 		/// <summary>
 		/// 课题库连接地址
 		/// </summary>
-		public static string SubjectConnectionString { get; set; }
+		public static string SubjectConnectionString = ConfigurationManager.ConnectionStrings["SubjectConnectionString"].ConnectionString;
 
 		/*
 
@@ -87,11 +87,12 @@ namespace KTProject.Common
 		/// <summary>
 		/// 全局设置数据库连接
 		/// </summary>
-		public static string ConfigConnectionString { get; set; }
+		public static string ConfigConnectionString = ConfigurationManager.ConnectionStrings["ConfigConnectionString"].ConnectionString;
+
 		/// <summary>
 		/// KTProject数据库连接
 		/// </summary>
-		public static string KTProjectConnectionString { get; set; }
+		public static string KTProjectConnectionString = ConfigurationManager.ConnectionStrings["KTProjectConnectionString"].ConnectionString;
 
 		/*/// <summary>
 		/// 默认加载模块
