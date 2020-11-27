@@ -34,6 +34,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bussiness Layer", "Bussines
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model Layer", "Model Layer", "{798CF78B-549F-4E87-A5BD-EDB56D38F519}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builder", "Builder", "{5CB04BD8-7DBE-431A-B802-67F99412B205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTProject.ModelClassBuilder", "KTProject.ModelClassBuilder\KTProject.ModelClassBuilder.csproj", "{396758AE-E466-4A2C-AC5E-A2D5FC969FE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +76,10 @@ Global
 		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396758AE-E466-4A2C-AC5E-A2D5FC969FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396758AE-E466-4A2C-AC5E-A2D5FC969FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396758AE-E466-4A2C-AC5E-A2D5FC969FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396758AE-E466-4A2C-AC5E-A2D5FC969FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +91,7 @@ Global
 		{4DD2DA6A-FE79-4CDF-827D-74D1BE650777} = {798CF78B-549F-4E87-A5BD-EDB56D38F519}
 		{4D3B2DF8-B634-49D7-A208-10982E531014} = {2FFE6B14-308B-4E7F-9B2B-CB82E162406C}
 		{DD517DB8-3C0A-4FC0-BA9E-A8C420D80E4D} = {2FFE6B14-308B-4E7F-9B2B-CB82E162406C}
+		{396758AE-E466-4A2C-AC5E-A2D5FC969FE4} = {5CB04BD8-7DBE-431A-B802-67F99412B205}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF033C0E-5F8B-46E0-964E-862E6E89DDC1}

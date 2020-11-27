@@ -3,7 +3,7 @@
   <node id="wphMilesOver">
     <data>
       <![CDATA[
-<a href="/app/task/taskList.html?V_ID=1291894961&CM=FN&MILES_OVER=yes">
+<a href="/app/task/taskList?V_ID=1291894961&CM=FN&MILES_OVER=yes">
   <h2>逾期里程碑</h2>
   <span class="wphlNumber">1</span>
   <p>项目还没有开始，也没有结束还。</p>
@@ -13,7 +13,7 @@
   </node>
   <node id="wphTasksOver">
     <![CDATA[
-<a href="/app/task/taskList.html?V_ID=1409472349&CM=FN&END=%3Ct&STATUS=STATUS_ACTIVE">
+<a href="/app/task/taskList?V_ID=1409472349&CM=FN&END=%3Ct&STATUS=STATUS_ACTIVE">
   <h2>已超时的项目</h2>
   <span class="wphlNumber">3</span>
   <p>应该已经关闭的项目</p>
@@ -23,7 +23,7 @@
   </node>
   <node id="wphIssuesOver">
     <![CDATA[
-<a href="/app/issue/issueList.html?V_ID=201002508&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&FLT_ISSUE_DATE_CLOSE_BY=%3C2020-11-12&FLT_ISSUE_TASK_STATUS=STATUS_ACTIVE">
+<a href="/app/issue/issuelist?V_ID=201002508&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&FLT_ISSUE_DATE_CLOSE_BY=%3C2020-11-12&FLT_ISSUE_TASK_STATUS=STATUS_ACTIVE">
   <h2>我的问题过期</h2>
   <span class="wphlNumber">5</span>
   <p>Issues that should be already closed</p>
@@ -35,7 +35,7 @@
   </node>
   <node id="wphIssuesToday">
     <![CDATA[
-<a href="/app/issue/issueList.html?V_ID=1585650943&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&FLT_ISSUE_DATE_CLOSE_BY=t&FLT_ISSUE_TASK_STATUS=STATUS_ACTIVE">
+<a href="/app/issue/issuelist?V_ID=1585650943&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&FLT_ISSUE_DATE_CLOSE_BY=t&FLT_ISSUE_TASK_STATUS=STATUS_ACTIVE">
   <h2>今天的问题</h2>
   <span class="wphlNumber">1</span>
   <p>今天应该完成的问题</p>
@@ -50,7 +50,7 @@
   </node>
   <node id="wphIssuesForthcoming">
     <![CDATA[
- <a href="/app/issue/issueList.html?V_ID=137995256&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&FLT_ISSUE_DATE_CLOSE_BY=t%3A1w&FLT_ISSUE_TASK_STATUS=STATUS_ACTIVE">
+ <a href="/app/issue/issuelist?V_ID=137995256&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&FLT_ISSUE_DATE_CLOSE_BY=t%3A1w&FLT_ISSUE_TASK_STATUS=STATUS_ACTIVE">
   <h2>即将到来的问题</h2>
   <span class="wphlNumber">1</span>
   <p>有问题在一个星期内被关闭</p>
@@ -59,7 +59,7 @@
   </node>
   <node id="wphOpenProjects">
     <![CDATA[
-<a href="/app/task/taskList.html?V_ID=2073198953&CM=FN&STATUS=STATUS_ACTIVE&ROOT_OR_STANDALONE=yes">
+<a href="/app/task/taskList?V_ID=2073198953&CM=FN&STATUS=STATUS_ACTIVE&ROOT_OR_STANDALONE=yes">
   <h2>进行中的项目</h2>
   <span class="wphlNumber">2</span>
   <p>项目当前处于活动状态。</p>
@@ -77,7 +77,7 @@
   </node>
   <node id="wphTaskDiscussions">
     <![CDATA[
-<a href="/app/task/taskList.html?V_ID=1808356736&CM=FN&LAST_POST=%3E-2w">
+<a href="/app/task/taskList?V_ID=1808356736&CM=FN&LAST_POST=%3E-2w">
   <h2>积极的讨论</h2>
   <span class="wphlNumber">1</span>
   <p>项目在过去两个星期的讨论。</p>
@@ -86,7 +86,7 @@
   </node>
   <node id="wphProjectCreated">
     <![CDATA[
-<a href="/app/task/taskList.html?V_ID=644192911&CM=FN&CREATED_ON=%3E-1w&ROOT_OR_STANDALONE=yes">
+<a href="/app/task/taskList?V_ID=644192911&CM=FN&CREATED_ON=%3E-1w&ROOT_OR_STANDALONE=yes">
   <h2>最近创建的项目</h2>
   <span class="wphlNumber">3</span>
   <p>在过去七天内创建项目</p>
@@ -98,7 +98,7 @@
   </node>
   <node id="wphAssigCreated">
     <![CDATA[
-<a href="/app/task/taskList.html?V_ID=1254320169&CM=FN&ASSIG_CREATED_ON=%3E-1w">
+<a href="/app/task/taskList?V_ID=1254320169&CM=FN&ASSIG_CREATED_ON=%3E-1w">
   <h2>最近创建任务</h2>
   <span class="wphlNumber">4</span>
   <p>创造了最近七天</p>

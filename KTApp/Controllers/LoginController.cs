@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace KTApp.Controllers
 {
+    [System.Web.Mvc.AllowAnonymous]
     public class LoginController : Controller
     {
         private ILoginService _LoginService { get { return new LoginService(); } }
@@ -23,6 +24,7 @@ namespace KTApp.Controllers
         [System.Web.Mvc.HttpGet]
         public ActionResult Index()
         {
+            
             ViewBag.Title = "登录";
 
             return View();
@@ -38,7 +40,13 @@ namespace KTApp.Controllers
             bool result = _LoginService.Login(FLD_LOGIN_NAME, FLD_PWD, string.Empty, ref msg);
 
             if (result) {
-                Response.Redirect("/app/getsThingsDone.html");
+                try {
+                    Response.Redirect("/app/getsThingsDone");
+                }
+                catch (Exception) {
+
+                    throw;
+                }
             }
             else {
                 ViewBag.ErrorMsg = "用户名或者密码不正确";

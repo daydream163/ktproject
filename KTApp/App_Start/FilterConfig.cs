@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using KTApp.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace KTApp
@@ -8,6 +9,8 @@ namespace KTApp
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            filters.Add(new AuthorizeRedirectAttribute());
         }
     }
 }

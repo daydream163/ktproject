@@ -213,7 +213,7 @@
 
             <div id="projectsdone" class="banner done">
                 <div class="task-number">
-                    <a class="button  textual   " id="domId_650817355" style="" href="/app/task/taskList.html?V_ID=2050911183&CM=FN&FLNM=PF_MY_OPEN_TASK">3</a>
+                    <a class="button  textual   " id="domId_650817355" style="" href="/app/task/taskList?V_ID=2050911183&CM=FN&FLNM=PF_MY_OPEN_TASK">3</a>
 
                 </div>
                 <img src="/img/step-1b.png" class="step-img">
@@ -358,7 +358,7 @@
 
             </div>
             <h1>
-                <a class="button  textual   " id="domId_380911577" style="" title="我的分工" href="/app/task/taskList.html?V_ID=1238245034">我的分工</a>
+                <a class="button  textual   " id="domId_380911577" style="" title="我的分工" href="/app/task/taskList?V_ID=1238245034">我的分工</a>
 
             </h1>
 
@@ -396,7 +396,7 @@
                         <td align="center" title="Worker&nbsp;(梦想飞扬)">WK</td>
                         <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                         <td align="right">
-                            2/3&nbsp;<a class="button  textual   " id="domId_1204899462" style="" href="/app/issue/issueList.html?V_ID=357278968&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                            2/3&nbsp;<a class="button  textual   " id="domId_1204899462" style="" href="/app/issue/issuelist?V_ID=357278968&CM=FN&FLT_ISSUE_TASK=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                         </td>
@@ -450,7 +450,7 @@
                     <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
                     <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                     <td align="right">
-                        4/4&nbsp;<a class="button  textual   " id="domId_519037518" style="" href="/app/issue/issueList.html?V_ID=174029573&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                        4/4&nbsp;<a class="button  textual   " id="domId_519037518" style="" href="/app/issue/issuelist?V_ID=174029573&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                     </td>
@@ -502,7 +502,7 @@
                     <td align="center" title="Project manager&nbsp;(梦想飞扬)">PM</td>
                     <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
                     <td align="right">
-                        3/4&nbsp;<a class="button  textual   " id="domId_1427623085" style="" href="/app/issue/issueList.html?V_ID=1939228011&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+                        3/4&nbsp;<a class="button  textual   " id="domId_1427623085" style="" href="/app/issue/issuelist?V_ID=1939228011&CM=FN&FLT_ISSUE_TASK=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
 
 
                     </td>
@@ -576,7 +576,7 @@
 
     </div>
     <h1>
-        <a class="button  textual   " id="domId_583694627" style="" href="/app/issue/issueList.html?V_ID=1973787779&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
+        <a class="button  textual   " id="domId_583694627" style="" href="/app/issue/issuelist?V_ID=1973787779&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
 
     </h1>
 
@@ -1317,7 +1317,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                                                                                                                                                                               onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d1533449435CM').value='';ajaxSubmit('d1533449435','wp_projSumm');">
                         &nbsp;<label for="ck_TASK_SHOW_COSTS">显示费用</label>&nbsp;
                     </td>
-                    <td><a class="button  textual   " id="domId_674244939" style="" href="/app/task/taskList.html?V_ID=2024613322&CM=FN&STATUS=STATUS_ACTIVE&ROOT_OR_STANDALONE=yes">&gt;&gt; 进一步过滤</a>
+                    <td><a class="button  textual   " id="domId_674244939" style="" href="/app/task/taskList?V_ID=2024613322&CM=FN&STATUS=STATUS_ACTIVE&ROOT_OR_STANDALONE=yes">&gt;&gt; 进一步过滤</a>
 
                     <td>
                 </tr>
@@ -1684,7 +1684,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
 
         </div>
         <h1>
-            <a class="button  textual   " id="domId_1417090502" style="" href="/app/issue/issueList.html?V_ID=1481263301">创建问题</a>
+            <a class="button  textual   " id="domId_1417090502" style="" href="/app/issue/issuelist?V_ID=1481263301">创建问题</a>
 
 
         </h1>
@@ -2214,7 +2214,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                 var custId = row.attr("customerId");
                 var issExpired = el.is(".issExpired");
                 var issToday = el.is(".issToday");
-                var link = "/app/issue/issueList.html?V_ID=857434147&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
+                var link = "/app/issue/issuelist?V_ID=857434147&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
 
                 if (issExpired) {
                     link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");

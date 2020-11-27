@@ -5,14 +5,83 @@
     <title></title>
 </head>
 <body>
-<table width="100%" border="0" class="comboTable " style="cursor:pointer">
-    <tr class="trNormal trHl trSel scTr" id="ROW_1" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"> </td></tr>
-    <tr class="trNormal   scTr" id="ROW_2" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
-    <tr class="trNormal   scTr" id="ROW_3" selectText="梦工厂" selectValue="15162"><td class="">梦工厂</td><td class="textSmall"></td></tr>
-    <tr class="trNormal   scTr" id="ROW_4" selectText="梦想飞扬部门" selectValue="15090"><td class="">梦想飞扬部门</td><td class="textSmall"></td></tr>
-    <tr class="trNormal   scTr" id="ROW_5" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
-    <tr class="trNormal   scTr" id="ROW_6" selectText="第二个员工" selectValue="15164"><td class="">第二个员工 </td><td class="textSmall"></td></tr>
-</table>
+
+
+    <tbody class="dataTableBody" totalNumberOfElements="3" pageNumber="0" pageSize="20" orderby="task1.name">
+
+<tr issueId="{id}" class="alternate issueRow inView " assId="28252" resId="15089" gravity="02_GRAVITY_MEDIUM">
+
+    <td width="1%" align="center">
+        <input type="checkbox" class="selector" onclick="refreshBulk($(this));">
+    </td>
+
+    <td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
+        <div class="prioWrapper">
+            <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
+            <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
+        </div>
+    </td>
+
+    <td valign="top" align="center">
+        <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819">
+            <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                <div class="cvcStatuses noValue">
+                    <div class="cvcSelBox " title="open" code="13720"
+                            style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div>
+                </div>
+            </div>
+        </div>
+    </td>
+
+    <td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
+
+        <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">{descriptionx}</div>
+        <span class="twLink textSmall issueCode" style="">I#{id}#</span><div fieldName="ISSUE_TAGS" class="issueTags">
+            <button type="button" class="button noprint textual   tag" id="domId_716335472" style="" onclick="location.href='/app/issue/issuelist?V_ID=86928376&CM=FN&FLT_ISSUE_TAGS=%E7%AC%AC%E4%B8%80%E4%B8%AA';event.stopPropagation();return false; ">第一个</button>
+
+            <button type="button" class="button noprint textual   tag" id="domId_1192650127" style="" onclick="location.href='/app/issue/issuelist?V_ID=656952822&CM=FN&FLT_ISSUE_TAGS=%E9%97%AE%E9%A2%98';event.stopPropagation();return false; ">问题</button>
+
+        </div><span class="textSmall">
+            <button type="button" class="button noprint textual   small" id="domId_1859579045" style="" title="评论: 0" onclick="showComments($(this));return false; "><span class='teamworkIcon withLabel'>Q</span>0</button>
+
+        </span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
+
+        <script>$(function () { drawFiles("{id}", [{ "id": 1012, "uid": "FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx", "type": "FR", "name": "K-SQL 10.0 参考大全（20160620）.docx", "img": "application_vnd.openxmlformats-officedocument.wordprocessingml.document.png", "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=258323391&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khd11npb.fa94094d70ddf779e59ac592ae644343", "ext": ".docx", "ck": "khd11npb.fa94094d70ddf779e59ac592ae644343" }]) });</script>
+
+        <div class="uploadizeDrop" style="display: none;"></div>
+        <span class="issueCreationDate">创建: {creationdate}</span>
+    </td>
+
+    <td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
+        <div class="pathSmall"><span class="pathEl"></span></div>
+        <span class="textSmall" style="display: block;line-height: 130%"><span>{taskname}</span><br>T#T53595#</span>
+    </td>
+
+
+    <td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;">
+        <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1485369453" title="Dream Wing" alt="Dream Wing" id="d1485369453" " resId="15089" class="face small active">
+    </td>
+
+    <td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
+        <span class="textSmall "> 2020-11-12</span>
+    </td>
+
+    <td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME">
+        <span class="textSmall" title="预估工期">0:00</span>
+    </td>
+
+    <td nowrap align="right" class="issueButtonTd" width="1%">
+        <button type="button" class="button noprint textual icon  " id="domId_107000196" style="" title="Database id: &nbsp;{id}&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:43&nbsp;" onclick="openIssueEditorInBlack('{id}','ED','');return false; "><span class='teamworkIcon '>e</span></button>
+        <button type="button" class="button noprint textual icon  " id="domId_908481633" style="" title="新增的工作日志" onclick="btnShowWorklog($(this));return false; "><span class='teamworkIcon '>w</span></button>
+        <button type="button" class="button noprint textual icon  " id="domId_242075661" style="" title="复制" onclick="clone($(this));return false; "><span class='teamworkIcon '>D</span></button>
+        <button type="button" class="button noprint textual icon  delete" id="domId_1231607009" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    </td>
+</tr>
+
+
+    </tbody>
+
+
 
 </body>
 </html>

@@ -272,6 +272,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\app\appAreaRegistration.cs" />
+    <Compile Include="Areas\app\Controllers\IssueListController.cs" />
+    <Compile Include="Areas\app\Controllers\TaskListController.cs" />
+    <Compile Include="Areas\app\Controllers\GetsThingsDoneController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -302,14 +306,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Base\ApplicationIdentity.cs" />
     <Compile Include="Base\BaseApiController.cs" />
+    <Compile Include="Base\BaseController.cs" />
     <Compile Include="Base\ImageResult.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImgController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Filters\BusinessAthorizationFilter.cs" />
-    <Compile Include="Filters\RoleAuthorizationFilter.cs" />
+    <Compile Include="Filters\AuthorizeRedirectAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -650,6 +654,11 @@
     <Content Include="xml\portal.xml" />
     <Content Include="xml\taskAjax.json.xml" />
     <Content Include="xml\worklogAjax.xml" />
+    <Content Include="Areas\app\Views\web.config" />
+    <Content Include="Areas\app\Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Areas\app\Views\GetsThingsDone\Index.cshtml" />
+    <Content Include="Areas\app\Views\TaskList\Index.cshtml" />
+    <Content Include="Areas\app\Views\IssueList\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -676,6 +685,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\app\Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

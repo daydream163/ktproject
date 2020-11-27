@@ -1,61 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Cors;
+﻿using KTApp.Base;
+using KTProject.Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Web.Http;
+using System.Xml;
 
 namespace KTApp.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class V1Controller : ControllerBase
+    public class V1Controller : BaseApiController
     {
-        private static readonly string[] Summaries = new[]
+        public V1Controller()
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public V1Controller(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
         }
 
-        /*[HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public class SmartComboParams
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }*/
+            public string command { get; set; }
+        }
 
-        /*[HttpGet]
-        public IEnumerable<WeatherForecast> Get(int count)
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, count).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }*/
-
-        [HttpGet]
-        public IActionResult Get(string command)
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage GetData(string command)
         {
             //string command = "";
             string returnstr = "";
@@ -72,14 +39,17 @@ namespace KTApp.Controllers
                     break;
             }
 
-            return Content(returnstr, "application/json", Encoding.UTF8);
+            //return Content(returnstr, "application/json", Encoding.UTF8);
+            return new HttpResponseMessage() {
+                Content = new StringContent(returnstr, Encoding.UTF8, "application/json"),
+            };
         }
-        [HttpPost]
-        public IActionResult Post(string command)
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage GetData(SmartComboParams prms)
         {
             //string command = "";
             string returnstr = "";
-            switch (command)
+            switch (prms.command)
             {
                 case "get":
                     returnstr = "{\"ok\":true,\"object\":{\"id\":\"12771\",\"lastModifier\":\"史玉平 shi\",\"lastModified\":1589869011000,\"creationDate\":1589793479000,\"area\":\"同方知网\",\"areaId\":4957,\"displayName\":\"史 玉平\",\"loadComplete\":false,\"ads_id\":10791,\"location\":\"office\",\"address\":\"北京市海淀区西小口路\",\"city\":\"北京市\",\"province\":\"昌平区\",\"country\":\"汉\",\"zip\":\"\",\"url\":\"\",\"email\":\"215396052@qq.com\",\"mobile\":\"18500851205\",\"fax\":\"\",\"telephone\":\"\",\"avatarUrl\":\"/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29\",\"resConnectionStatus\":\"active\",\"hourlyCost\":0,\"name\":\"史\",\"surname\":\"玉平\",\"courtesyTitle\":\"\"}}";
@@ -92,7 +62,9 @@ namespace KTApp.Controllers
                     break;
             }
 
-            return Content(returnstr, "application/json", Encoding.UTF8);
+            return new HttpResponseMessage() {
+                Content = new StringContent(returnstr, Encoding.UTF8, "application/json"),
+            };
         }
     }
 }

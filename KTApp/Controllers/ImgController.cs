@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace KTApp.Controllers
 {
-    /*[System.Web.Http.Route("[controller]")]*/
+    [AllowAnonymous]
     public class ImgController : BaseApiController
     {
         //private IUserService _userService { get; set; }
@@ -39,8 +39,6 @@ namespace KTApp.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        [RoleAuthorizationFilter(RoleEnum.KTCustomer | RoleEnum.KTProjectManager)]
-        [BusinessAthorizationFilter]
         [HttpGet]
         public HttpResponseMessage SvgAvatar(string code, string rectFill = "03a9f4", string textFill = "ffffff") {
             return _userService.GetUserLogo(code, rectFill, textFill);

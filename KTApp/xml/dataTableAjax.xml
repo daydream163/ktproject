@@ -1,674 +1,156 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <nodes>
   <node id="TSKLST">
-    <data>
+    <before>
       <![CDATA[
-<tbody class="dataTableBody" totalNumberOfElements="3" pageNumber="0" pageSize="20" orderby="task1.name">
-
-
-
-
-
-  <tr class="alternate taskRow " taskid="53597" taskstatus="STATUS_ACTIVE">
-    <td class="tlTaskStatus" align="center" width="1%"><button type="button" class="button noprint textual   openable"  id="domId_1977113077" style=""   onclick="openChangeStatusDialog($(this));return false; " ><span class="teamworkIcon" style="color:#3BBF67;font-size:20px;" title="进行中">&copy;</span></button>
-
-</td>
-    <td class="tlTaskName " style="position: relative;">
-      
-      <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
-
-      <a href="/app/taskOverview.html?V_ID=123500766&CM=ED&OBJID=53597" class="button textual bolder taskName" >第一个子任务</a>
-      <br>
-      
-    </td>
-
-    <td class="textSmall tlTaskCode" style="position: relative;">
-      T53596.01
-      
-    </td>
-    <td class="textSmall tlTaskType"><div class="ellipsis"></div></td>
-
-    <td class="textSmall" nowrap>2020-11-9</td>
-    <td class="textSmall " nowrap>2020-11-11</td>
-    
-    <td class="textSmall" align="right" nowrap>
-
-
-
-<div style="width:45px;height:15px;position: relative" title="" >
-        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
-          <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
-          <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
-        </div>
-  </div>
-
-
-</td>
-
-    <td align="right" nowrap><a  class="button  textual   "  id="domId_1325015108" style=""  href="/app/task/taskIssueList.html?V_ID=182028026&OBJID=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL">2/2</a>
-
-</td>
-    <td align="right">3:00<button type="button" class="button noprint textual icon  "  id="domId_913609856" style=""   onclick="openWorklogEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; " ><span class='teamworkIcon '>w</span></button>
-
-
-
-    </td>
-    <td>
-      <button type="button" class="button noprint textual icon  lreq20 lreqHide"  id="domId_532773742" style="" title="增加费用"  onclick="openExpenseEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; " ><span class='teamworkIcon '>4</span></button>
-
-
-    </td>
-
-    <td nowrap><div class="facesBox" onclick="location.href='taskAssignmentList.jsp?TASK_ID=53597&CM=LIST_ASSIGS';" style="cursor: pointer;">
-    <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1111762611" title="Dream Wing WK" alt="Dream Wing WK" id="d1111762611"  " resId="15089" class="face small active"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d2073246095" title=" 第一个员工 WK" alt=" 第一个员工 WK" id="d2073246095"  " resId="15163" class="face small ">
-    </div>
-    </td>
-    <td nowrap align="center"></td>
-    <td nowrap align="center"></td>
-  </tr>
-
-
-
-
-
-
-
-  <tr class="alternate taskRow " taskid="53595" taskstatus="STATUS_ACTIVE">
-    <td class="tlTaskStatus" align="center" width="1%"><button type="button" class="button noprint textual   openable"  id="domId_189788243" style=""   onclick="openChangeStatusDialog($(this));return false; " ><span class="teamworkIcon" style="color:#3BBF67;font-size:20px;" title="进行中">&copy;</span></button>
-
-</td>
-    <td class="tlTaskName " style="position: relative;">
-      
-      <div class="pathSmall"><span class="pathEl"></span></div>
-
-      <a href="/app/taskOverview.html?V_ID=1502804232&CM=ED&OBJID=53595" class="button textual bolder taskName" >第一个项目</a>
-      <br>
-      
-    </td>
-
-    <td class="textSmall tlTaskCode" style="position: relative;">
-      T53595
-      
-    </td>
-    <td class="textSmall tlTaskType"><div class="ellipsis"></div></td>
-
-    <td class="textSmall" nowrap>2020-11-9</td>
-    <td class="textSmall " nowrap>2020-11-30</td>
-    
-    <td class="textSmall" align="right" nowrap>
-
-
-
-<div style="width:45px;height:15px;position: relative" title="" >
-        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
-          <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
-          <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
-        </div>
-  </div>
-
-
-</td>
-
-    <td align="right" nowrap><a  class="button  textual   "  id="domId_757784306" style=""  href="/app/task/taskIssueList.html?V_ID=1967995811&OBJID=53595&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL">1/1</a>
-
-</td>
-    <td align="right">8:00<button type="button" class="button noprint textual icon  "  id="domId_562464383" style=""   onclick="openWorklogEditorPopup($(this),{assId:'28252',title:'T53595 - 第一个项目'});return false; " ><span class='teamworkIcon '>w</span></button>
-
-
-
-    </td>
-    <td>
-      <button type="button" class="button noprint textual icon  lreq20 lreqHide"  id="domId_115870987" style="" title="增加费用"  onclick="openExpenseEditorPopup($(this),{assId:'28252',title:'T53595 - 第一个项目'});return false; " ><span class='teamworkIcon '>4</span></button>
-
-
-    </td>
-
-    <td nowrap><div class="facesBox" onclick="location.href='taskAssignmentList.jsp?TASK_ID=53595&CM=LIST_ASSIGS';" style="cursor: pointer;">
-    <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1681496158" title="Dream Wing PM" alt="Dream Wing PM" id="d1681496158"  " resId="15089" class="face small active">
-    </div>
-    </td>
-    <td nowrap align="center"></td>
-    <td nowrap align="center"></td>
-  </tr>
-
-
-
-
-
-
-
-  <tr class="alternate taskRow " taskid="53596" taskstatus="STATUS_ACTIVE">
-    <td class="tlTaskStatus" align="center" width="1%"><button type="button" class="button noprint textual   openable"  id="domId_1992365095" style=""   onclick="openChangeStatusDialog($(this));return false; " ><span class="teamworkIcon" style="color:#3BBF67;font-size:20px;" title="进行中">&copy;</span></button>
-
-</td>
-    <td class="tlTaskName " style="position: relative;">
-      
-      <div class="pathSmall"><span class="pathEl"></span></div>
-
-      <a href="/app/taskOverview.html?V_ID=1653453496&CM=ED&OBJID=53596" class="button textual bolder taskName" >第二个项目</a>
-      <br>
-      
-    </td>
-
-    <td class="textSmall tlTaskCode" style="position: relative;">
-      T53596
-      
-    </td>
-    <td class="textSmall tlTaskType"><div class="ellipsis"></div></td>
-
-    <td class="textSmall" nowrap>2020-11-9</td>
-    <td class="textSmall " nowrap>2020-11-20</td>
-    
-    <td class="textSmall" align="right" nowrap>
-
-
-
-<div style="width:45px;height:15px;position: relative" title="" >
-        <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
-          <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
-          <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
-        </div>
-  </div>
-
-
-</td>
-
-    <td align="right" nowrap><a  class="button  textual   "  id="domId_2115127641" style=""  href="/app/task/taskIssueList.html?V_ID=1244647341&OBJID=53596&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL">2/2</a>
-
-</td>
-    <td align="right">5:00<button type="button" class="button noprint textual icon  "  id="domId_149654760" style=""   onclick="openWorklogEditorPopup($(this),{assId:'28253',title:'T53596 - 第二个项目'});return false; " ><span class='teamworkIcon '>w</span></button>
-
-
-
-    </td>
-    <td>
-      <button type="button" class="button noprint textual icon  lreq20 lreqHide"  id="domId_544200683" style="" title="增加费用"  onclick="openExpenseEditorPopup($(this),{assId:'28253',title:'T53596 - 第二个项目'});return false; " ><span class='teamworkIcon '>4</span></button>
-
-
-    </td>
-
-    <td nowrap><div class="facesBox" onclick="location.href='taskAssignmentList.jsp?TASK_ID=53596&CM=LIST_ASSIGS';" style="cursor: pointer;">
-    <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1254862300" title="Dream Wing PM" alt="Dream Wing PM" id="d1254862300"  " resId="15089" class="face small active">
-    </div>
-    </td>
-    <td nowrap align="center"></td>
-    <td nowrap align="center"></td>
-  </tr>
-
-</tbody>
+      <tbody class="dataTableBody" totalNumberOfElements="3" pageNumber="0" pageSize="20" orderby="task1.name">
+      ]]>
+    </before>
+    <row>
+      <![CDATA[
+        <tr class="alternate taskRow " taskid="53597" taskstatus="STATUS_ACTIVE">
+            <td class="tlTaskStatus" align="center" width="1%">
+                <button type="button" class="button noprint textual   openable" id="domId_1977113077" style="" onclick="openChangeStatusDialog($(this));return false; ">
+                    <span class="teamworkIcon" style="color:#3BBF67;font-size:20px;" title="进行中">&copy;</span>
+                </button>
+            </td>
+            <td class="tlTaskName " style="position: relative;">
+                <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
+                <a href="/app/taskOverview.html?V_ID=123500766&CM=ED&OBJID=53597" class="button textual bolder taskName">第一个子任务</a>
+                <br>
+            </td>
+
+            <td class="textSmall tlTaskCode" style="position: relative;">
+                {taskcode}
+            </td>
+            <td class="textSmall tlTaskType"><div class="ellipsis"></div></td>
+
+            <td class="textSmall" nowrap>2020-11-9</td>
+            <td class="textSmall " nowrap>2020-11-11</td>
+
+            <td class="textSmall" align="right" nowrap>
+                <div style="width:45px;height:15px;position: relative" title="">
+                    <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                        <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                        <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                    </div>
+                </div>
+            </td>
+
+            <td align="right" nowrap>
+                <a class="button  textual   " id="domId_1325015108" style="" href="/app/task/taskIssueList.html?V_ID=182028026&OBJID=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL">2/2</a>
+            </td>
+            <td align="right">
+                3:00<button type="button" class="button noprint textual icon  " id="domId_913609856" style="" onclick="openWorklogEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; ">
+                    <span class='teamworkIcon '>w</span>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="button noprint textual icon  lreq20 lreqHide" id="domId_532773742" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; "><span class='teamworkIcon '>4</span></button>
+            </td>
+
+            <td nowrap>
+                <div class="facesBox" onclick="location.href='taskAssignmentList.jsp?TASK_ID=53597&CM=LIST_ASSIGS';" style="cursor: pointer;">
+                    <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1111762611" title="Dream Wing WK" alt="Dream Wing WK" id="d1111762611" " resId=" 15089" class="face small active"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d2073246095" title=" 第一个员工 WK" alt=" 第一个员工 WK" id="d2073246095" " resId="15163" class="face small ">
+                </div>
+            </td>
+            <td nowrap align="center"></td>
+            <td nowrap align="center"></td>
+        </tr>
 
       ]]>
-    </data>
+    </row>
+    <after>
+      <![CDATA[
+      </tbody>
+      ]]>
+    </after>
   </node>
   <node id="ISSUEFILTER">
-    <![CDATA[
- <tbody class="dataTableBody" totalNumberOfElements="5" pageNumber="0" pageSize="20" orderby="issue.gravity desc">
+    <before>
+      <![CDATA[
+      <tbody class="dataTableBody" totalNumberOfElements="{totalcount}" pageNumber="{pageindex}" pageSize="{pagesize}" orderby="issue.gravity desc">
+      ]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr issueId="{id}" class="alternate issueRow inView " assId="28252" resId="15089" gravity="02_GRAVITY_MEDIUM">
+
+    <td width="1%" align="center">
+        <input type="checkbox" class="selector" onclick="refreshBulk($(this));">
+    </td>
+
+    <td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
+        <div class="prioWrapper">
+            <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
+            <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
+        </div>
+    </td>
+
+    <td valign="top" align="center">
+        <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819">
+            <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                <div class="cvcStatuses noValue">
+                    <div class="cvcSelBox " title="open" code="13720"
+                            style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div>
+                </div>
+            </div>
+        </div>
+    </td>
+
+    <td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
+
+        <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">{descriptionx}</div>
+        <span class="twLink textSmall issueCode" style="">I#{id}#</span><div fieldName="ISSUE_TAGS" class="issueTags">
+            <button type="button" class="button noprint textual   tag" id="domId_716335472" style="" onclick="location.href='/app/issue/issuelist?V_ID=86928376&CM=FN&FLT_ISSUE_TAGS=%E7%AC%AC%E4%B8%80%E4%B8%AA';event.stopPropagation();return false; ">第一个</button>
+
+            <button type="button" class="button noprint textual   tag" id="domId_1192650127" style="" onclick="location.href='/app/issue/issuelist?V_ID=656952822&CM=FN&FLT_ISSUE_TAGS=%E9%97%AE%E9%A2%98';event.stopPropagation();return false; ">问题</button>
+
+        </div><span class="textSmall">
+            <button type="button" class="button noprint textual   small" id="domId_1859579045" style="" title="评论: 0" onclick="showComments($(this));return false; "><span class='teamworkIcon withLabel'>Q</span>0</button>
+
+        </span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
+
+        <script>$(function () { drawFiles("{id}", [{ "id": 1012, "uid": "FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx", "type": "FR", "name": "K-SQL 10.0 参考大全（20160620）.docx", "img": "application_vnd.openxmlformats-officedocument.wordprocessingml.document.png", "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=258323391&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khd11npb.fa94094d70ddf779e59ac592ae644343", "ext": ".docx", "ck": "khd11npb.fa94094d70ddf779e59ac592ae644343" }]) });</script>
+
+        <div class="uploadizeDrop" style="display: none;"></div>
+        <span class="issueCreationDate">创建: {creationdate}</span>
+    </td>
+
+    <td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
+        <div class="pathSmall"><span class="pathEl"></span></div>
+        <span class="textSmall" style="display: block;line-height: 130%"><span>{taskname}</span><br>T#T53595#</span>
+    </td>
 
 
-<tr issueId="14477" class="alternate issueRow inView " assId="28252" resId="15089" gravity="02_GRAVITY_MEDIUM">
+    <td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;">
+        <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1485369453" title="Dream Wing" alt="Dream Wing" id="d1485369453" " resId="15089" class="face small active">
+    </td>
 
+    <td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
+        <span class="textSmall "> 2020-11-12</span>
+    </td>
 
-<td width="1%" align="center">
-  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
-</td>
+    <td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME">
+        <span class="textSmall" title="预估工期">0:00</span>
+    </td>
 
-
-<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
-  
-  <div class= "prioWrapper">
-    <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
-    <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
-  </div>
-  
-</td>
-
-
-<td valign="top" align="center">
-
- <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
-         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
-  </div>
-
-</div>
-</td>
-
-
-<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
-  
-  <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">第一个问题的描述</div>
-  <span class="twLink textSmall issueCode" style="">I#14477#</span><div fieldName="ISSUE_TAGS" class="issueTags"><button type="button" class="button noprint textual   tag"  id="domId_716335472" style=""   onclick="location.href='/app/issue/issueList.html?V_ID=86928376&CM=FN&FLT_ISSUE_TAGS=%E7%AC%AC%E4%B8%80%E4%B8%AA';event.stopPropagation();return false; " >第一个</button>
-
-<button type="button" class="button noprint textual   tag"  id="domId_1192650127" style=""   onclick="location.href='/app/issue/issueList.html?V_ID=656952822&CM=FN&FLT_ISSUE_TAGS=%E9%97%AE%E9%A2%98';event.stopPropagation();return false; " >问题</button>
-
-</div><span class="textSmall"><button type="button" class="button noprint textual   small"  id="domId_1859579045" style="" title="评论: 0"  onclick="showComments($(this));return false; " ><span class='teamworkIcon withLabel'>Q</span>0</button>
-
-</span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
-
-  <script>$(function(){drawFiles("14477",[{"id":1012,"uid":"FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx","type":"FR","name":"K-SQL 10.0 参考大全（20160620）.docx","img":"application_vnd.openxmlformats-officedocument.wordprocessingml.document.png","mime":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","url":"https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=258323391&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khd11npb.fa94094d70ddf779e59ac592ae644343","ext":".docx","ck":"khd11npb.fa94094d70ddf779e59ac592ae644343"}])});</script>
-
-  <div class="uploadizeDrop" style="display: none;"  ></div>
-
-  
-
-  <span class="issueCreationDate">创建: 2020-11-9</span>
-</td>
-
-
-<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
-  <div class="pathSmall"><span class="pathEl"></span></div>
-<span class="textSmall" style="display: block;line-height: 130%"><span >第一个项目</span><br>T#T53595#</span>
-</td>
-
-
-<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1485369453" title="Dream Wing" alt="Dream Wing" id="d1485369453"  " resId="15089" class="face small active">
-</td>
-
-
-
-
-
-
-
-
-
-<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
-  
-  <span class="textSmall "> 2020-11-12</span>
-  
-</td>
-
-
-<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
-  
-  <span class="textSmall" title="预估工期">0:00</span>
-  
-</td>
-
-
-<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_107000196" style="" title="Database id: &nbsp;14477&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:43&nbsp;"  onclick="openIssueEditorInBlack('14477','ED','');return false; " ><span class='teamworkIcon '>e</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_908481633" style="" title="新增的工作日志"  onclick="btnShowWorklog($(this));return false; " ><span class='teamworkIcon '>w</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_242075661" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
-
-<button type="button" class="button noprint textual icon  delete"  id="domId_1231607009" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-
-</td>
-
+    <td nowrap align="right" class="issueButtonTd" width="1%">
+        <button type="button" class="button noprint textual icon  " id="domId_107000196" style="" title="Database id: &nbsp;{id}&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:43&nbsp;" onclick="openIssueEditorInBlack('{id}','ED','');return false; "><span class='teamworkIcon '>e</span></button>
+        <button type="button" class="button noprint textual icon  " id="domId_908481633" style="" title="新增的工作日志" onclick="btnShowWorklog($(this));return false; "><span class='teamworkIcon '>w</span></button>
+        <button type="button" class="button noprint textual icon  " id="domId_242075661" style="" title="复制" onclick="clone($(this));return false; "><span class='teamworkIcon '>D</span></button>
+        <button type="button" class="button noprint textual icon  delete" id="domId_1231607009" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    </td>
 </tr>
 
+      ]]>
+    </row>
+    <after>
+      <![CDATA[
+      </tbody>
+      ]]>
+    </after>
 
-
-<tr issueId="14479" class="alternate issueRow inView expired" assId="28254" resId="15089" gravity="02_GRAVITY_MEDIUM">
-
-
-<td width="1%" align="center">
-  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
-</td>
-
-
-<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
-  
-  <div class= "prioWrapper">
-    <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
-    <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
-  </div>
-  
-</td>
-
-
-<td valign="top" align="center">
-
- <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
-         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
-  </div>
-
-</div>
-</td>
-
-
-<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
-  
-  <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">第三个问题</div>
-  <span class="twLink textSmall issueCode" style="">I#14479#</span><span class="textSmall"><button type="button" class="button noprint textual   small"  id="domId_2197222" style="" title="评论: 0"  onclick="showComments($(this));return false; " ><span class='teamworkIcon withLabel'>Q</span>0</button>
-
-</span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
-
-  <script>$(function(){drawFiles("14479",[])});</script>
-
-  <div class="uploadizeDrop" style="display: none;"  ></div>
-
-  
-
-  <span class="issueCreationDate">创建: 2020-11-9</span>
-</td>
-
-
-<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
-  <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
-<span class="textSmall" style="display: block;line-height: 130%"><span >第一个子任务</span><br>T#T53596.01#</span>
-</td>
-
-
-<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1354764877" title="Dream Wing" alt="Dream Wing" id="d1354764877"  " resId="15089" class="face small active">
-</td>
-
-
-
-
-
-
-
-
-
-<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
-  
-  <span class="textSmall warning alertIcon"> 2020-11-9</span>
-  
-</td>
-
-
-<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
-  
-  <span class="textSmall" title="预估工期">2:00</span>
-  <br><button type="button" class="button noprint textual   "  id="domId_804508948" style=""   onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=1911662245&CM=FN&ISSUE_ID=14479','1180px','768px');event.stopPropagation();return false; " ><span class="textSmall">3:00</span></button>
-
-
-</td>
-
-
-<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_824847524" style="" title="Database id: &nbsp;14479&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:57&nbsp;"  onclick="openIssueEditorInBlack('14479','ED','');return false; " ><span class='teamworkIcon '>e</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_1205394483" style="" title="新增的工作日志"  onclick="btnShowWorklog($(this));return false; " ><span class='teamworkIcon '>w</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_1851833630" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
-
-<button type="button" class="button noprint textual icon  delete"  id="domId_287323439" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-
-</td>
-
-</tr>
-
-
-
-<tr issueId="14516" class="alternate issueRow inView expired" assId="28254" resId="15163" gravity="02_GRAVITY_MEDIUM">
-
-
-<td width="1%" align="center">
-  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
-</td>
-
-
-<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
-  
-  <div class= "prioWrapper">
-    <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
-    <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
-  </div>
-  
-</td>
-
-
-<td valign="top" align="center">
-
- <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
-         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
-  </div>
-
-</div>
-</td>
-
-
-<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
-  
-  <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">第五个问题</div>
-  <span class="twLink textSmall issueCode" style="">I#14516#</span><span class="textSmall"><button type="button" class="button noprint textual   small"  id="domId_997863624" style="" title="评论: 0"  onclick="showComments($(this));return false; " ><span class='teamworkIcon withLabel'>Q</span>0</button>
-
-</span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
-
-  <script>$(function(){drawFiles("14516",[])});</script>
-
-  <div class="uploadizeDrop" style="display: none;"  ></div>
-
-  
-
-  <span class="issueCreationDate">创建: 2020-11-11</span>
-</td>
-
-
-<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
-  <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
-<span class="textSmall" style="display: block;line-height: 130%"><span >第一个子任务</span><br>T#T53596.01#</span>
-</td>
-
-
-<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1475769251" title="Dream Wing" alt="Dream Wing" id="d1475769251"  " resId="15089" class="face small active"><span class="teamworkIcon fromTo">:</span><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d185192818" title=" 第一个员工" alt=" 第一个员工" id="d185192818"  " resId="15163" class="face small ">
-</td>
-
-
-
-
-
-
-
-
-
-<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
-  
-  <span class="textSmall warning alertIcon"> 2020-11-10</span>
-  
-</td>
-
-
-<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
-  
-  <span class="textSmall" title="预估工期">2:00</span>
-  
-</td>
-
-
-<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_831887623" style="" title="Database id: &nbsp;14516&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:16<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午6:16&nbsp;"  onclick="openIssueEditorInBlack('14516','ED','');return false; " ><span class='teamworkIcon '>e</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_1416737791" style="" title="新增的工作日志"  onclick="btnShowWorklog($(this));return false; " ><span class='teamworkIcon '>w</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_1960859048" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
-
-<button type="button" class="button noprint textual icon  delete"  id="domId_873972874" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-
-</td>
-
-</tr>
-
-
-
-<tr issueId="14478" class="alternate issueRow inView toBeDoneToday" assId="28254" resId="15163" gravity="02_GRAVITY_MEDIUM">
-
-
-<td width="1%" align="center">
-  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
-</td>
-
-
-<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
-  
-  <div class= "prioWrapper">
-    <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
-    <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
-  </div>
-  
-</td>
-
-
-<td valign="top" align="center">
-
- <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
-         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
-  </div>
-
-</div>
-</td>
-
-
-<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
-  
-  <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">第二个问题</div>
-  <span class="twLink textSmall issueCode" style="">I#14478#</span><span class="textSmall"><button type="button" class="button noprint textual   small"  id="domId_1811247174" style="" title="评论: 0"  onclick="showComments($(this));return false; " ><span class='teamworkIcon withLabel'>Q</span>0</button>
-
-</span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
-
-  <script>$(function(){drawFiles("14478",[])});</script>
-
-  <div class="uploadizeDrop" style="display: none;"  ></div>
-
-  
-
-  <span class="issueCreationDate">创建: 2020-11-9</span>
-</td>
-
-
-<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
-  <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
-<span class="textSmall" style="display: block;line-height: 130%"><span >第一个子任务</span><br>T#T53596.01#</span>
-</td>
-
-
-<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1338252436" title="Dream Wing" alt="Dream Wing" id="d1338252436"  " resId="15089" class="face small active"><span class="teamworkIcon fromTo">:</span><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d877556609" title=" 第一个员工" alt=" 第一个员工" id="d877556609"  " resId="15163" class="face small ">
-</td>
-
-
-
-
-
-
-
-
-
-<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
-  
-  <span class="textSmall info alertIcon"> </span>
-  
-</td>
-
-
-<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
-  
-  <span class="textSmall" title="预估工期">0:00</span>
-  
-</td>
-
-
-<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_176239867" style="" title="Database id: &nbsp;14478&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 下午3:44&nbsp;"  onclick="openIssueEditorInBlack('14478','ED','');return false; " ><span class='teamworkIcon '>e</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_683495456" style="" title="新增的工作日志"  onclick="btnShowWorklog($(this));return false; " ><span class='teamworkIcon '>w</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_618101189" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
-
-<button type="button" class="button noprint textual icon  delete"  id="domId_1048282984" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-
-</td>
-
-</tr>
-
-
-
-<tr issueId="14515" class="alternate issueRow inView expired" assId="28253" resId="15189" gravity="02_GRAVITY_MEDIUM">
-
-
-<td width="1%" align="center">
-  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
-</td>
-
-
-<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
-  
-  <div class= "prioWrapper">
-    <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
-    <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
-  </div>
-  
-</td>
-
-
-<td valign="top" align="center">
-
- <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
-         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
-  </div>
-
-</div>
-</td>
-
-
-<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
-  
-  <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">第四个问题</div>
-  <span class="twLink textSmall issueCode" style="">I#14515#</span><span class="textSmall"><button type="button" class="button noprint textual   small"  id="domId_199344265" style="" title="评论: 0"  onclick="showComments($(this));return false; " ><span class='teamworkIcon withLabel'>Q</span>0</button>
-
-</span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
-
-  <script>$(function(){drawFiles("14515",[])});</script>
-
-  <div class="uploadizeDrop" style="display: none;"  ></div>
-
-  
-
-  <span class="issueCreationDate">创建: 2020-11-11</span>
-</td>
-
-
-<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
-  <div class="pathSmall"><span class="pathEl"></span></div>
-<span class="textSmall" style="display: block;line-height: 130%"><span >第二个项目</span><br>T#T53596#</span>
-</td>
-
-
-<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d271219710" title="Dream Wing" alt="Dream Wing" id="d271219710"  " resId="15089" class="face small active"><span class="teamworkIcon fromTo">:</span><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1619698710" title="Zhang Fei" alt="Zhang Fei" id="d1619698710"  " resId="15189" class="face small ">
-</td>
-
-
-
-
-
-
-
-
-
-<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
-  
-  <span class="textSmall warning alertIcon"> 2020-11-9</span>
-  
-</td>
-
-
-<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
-  
-  <span class="textSmall" title="预估工期">0:00</span>
-  
-</td>
-
-
-<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_773509598" style="" title="Database id: &nbsp;14515&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:16<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:22&nbsp;"  onclick="openIssueEditorInBlack('14515','ED','');return false; " ><span class='teamworkIcon '>e</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_1657298295" style="" title="新增的工作日志"  onclick="btnShowWorklog($(this));return false; " ><span class='teamworkIcon '>w</span></button>
-
-<button type="button" class="button noprint textual icon  "  id="domId_1349542475" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
-
-<button type="button" class="button noprint textual icon  delete"  id="domId_38097711" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-
-</td>
-
-</tr>
-</tbody><tfoot>
-<tr><td id="bulkPlace" colspan="99"></td></tr>
-</tfoot>
-
-
-]]>
   </node>
   <node id="RESLST">
     <![CDATA[

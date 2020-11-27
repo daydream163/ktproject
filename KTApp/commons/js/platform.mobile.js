@@ -711,7 +711,7 @@ if (typeof ($.fn.size) != "funcion")
 
 
 function callAPI(request,successFunction,errorFunction){
-  var API = contextPath + "/API/V1/";
+    var API = contextPath + "/V1/GetData/";
   $.ajax({
     url:      API,
     method:   "POST",

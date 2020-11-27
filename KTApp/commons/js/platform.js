@@ -757,7 +757,7 @@ if (typeof ($.fn.size) != "funcion")
 function callAPI(request, successFunction, errorFunction) {
     console.log(JSON.stringify(request));
     //var API = contextPath + "/API/V1/";
-    var API = "" + "/API/V1/?command=" + request.command;
+    var API = "" + "/V1/GetData/?command=" + request.command;
     $.ajax({
         url: API,
         method: "GET",
@@ -6193,12 +6193,12 @@ function fastSearch(el) {
     } else {
         var searchEncoded = encodeURIComponent(searchText.substr(2));
         if (searchText.toUpperCase().startsWith("T:")) {
-            window.location.href = url + "/app/task/taskList.html?CM=FN&NAME_DESCRIPTION_NOTE_CODE=" + searchEncoded + "&search=" + searchEncoded;
+            window.location.href = url + "/app/task/taskList?CM=FN&NAME_DESCRIPTION_NOTE_CODE=" + searchEncoded + "&search=" + searchEncoded;
         } else if (searchText.toUpperCase().startsWith("R:")) {
             window.location.href = url + "/app/resourceList.html?CM=FN&NAME_SURNAME=" + searchEncoded + "&search=" + searchEncoded;
 
         } else if (searchText.toUpperCase().startsWith("I:")) {
-            window.location.href = url + "/app/issue/issueList.html?CM=FN&FLT_ISSUE_DESCRIPTION=" + searchEncoded + "&search=" + searchEncoded;
+            window.location.href = url + "/app/issue/issuelist?CM=FN&FLT_ISSUE_DESCRIPTION=" + searchEncoded + "&search=" + searchEncoded;
 
         } else if (searchText.toUpperCase().startsWith("D:")) {
             window.location.href = url + "/app/documentList.html?CM=FN&NAME_DESCRIPTION=" + searchEncoded + "&search=" + searchEncoded;

@@ -11,7 +11,9 @@ namespace KTProject.Common.Security
     {
         public KTApplicationIdentity() { }
 
+        public string Token { get; set; }
         public IList<string> Roles { get; set; }
+
         public string FromToken { get; set; }
         public string FromName { get; set; }
         public string FromCode { get; set; }
@@ -23,14 +25,13 @@ namespace KTProject.Common.Security
         public string IdNo { get; set; }
         public string IdType { get; set; }
         public string Email { get; set; }
-        public bool IsAuthenticated { get; }
+        public bool IsAuthenticated { get; set; }
         public string WeChat { get; set; }
         public string Mobile { get; set; }
         public string Tel { get; set; }
         public string Position { get; set; }
         public string RealName { get; set; }
         public string NickName { get; set; }
-        public string Token { get; set; }
         public string OrgName { get; set; }
         public string OrgCode { get; set; }
         public string OrgId { get; set; }

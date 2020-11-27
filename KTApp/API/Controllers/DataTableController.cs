@@ -1,4 +1,8 @@
 ﻿using KTApp.Base;
+using KTProject.Common.HTML;
+using KTProject.IService;
+using KTProject.Model;
+using KTProject.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +16,8 @@ namespace KTApp.API.issue
 {
     public class DataTableController : BaseApiController
     {
+        IIssueService issueService = new IssueService();
+
         [HttpGet]
         public HttpResponseMessage DataTableAjax(string cm, string DATA_TBL_ID)
         {
@@ -27,9 +33,13 @@ namespace KTApp.API.issue
             {
                 case "FN":
                     node = doc.SelectSingleNode(string.Format(xmlPath, nodeid));
-                    if (node != null)
-                    {
-                        returnstr = node.InnerText;
+                    if (node != null) {
+                        int totalCount = 0;
+                        int pageindex = 0;
+                        int pagesize = 10;
+
+                        IEnumerable<IssueExt> list = issueService.GetList(this.UserID, pageindex, pagesize, ref totalCount);
+                        returnstr = KTList.GetDataList<IssueExt>(node, pageindex, pagesize, list);
                     }
                     break;
                 case "GETTASKISS":

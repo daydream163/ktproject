@@ -1,38 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <nodes>
   <node id="messagelist">
-    <data>
+    <before><![CDATA[]]></before>
+    <row>
       <![CDATA[
-<div id="message_1744211" class="message read" messageId="1744211" style="cursor:pointer;" onclick="followMessageLink($(this));">
-  <span class="message_operator">
-    <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1882602216" title="Zhang Fei" alt="Zhang Fei" id="d1882602216"  " resId="15189" class="face "></span>
-  <span class="message_date">几分钟前，</span>
-  <span class="message_subject " >issue updated: T53595 - 第一个项目</span>
-  <span class="message_body">&nbsp;问题描述：“第一个问题”<br>&nbsp;
-当前状态：open<br>&nbsp;
-该问题的严重性：中<br>&nbsp;
-该问题最后更新者： Zhang Fei<br>&nbsp;</span>
-  <span class="message_link"><a href="/app/issue/issueList.html?V_ID=1687105035&CM=FN&ISSUE_ID=14477" >I#14477#</a></span>
+<div id="message_{id}" class="message read" messageId="{id}" style="cursor:pointer;" onclick="followMessageLink($(this));">
+    <span class="message_operator">
+        <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1882602216" title="Zhang Fei" alt="Zhang Fei" id="d1882602216" resId="15189" class="face ">
+    </span>
+    <span class="message_date">{received}</span>
+    <span class="message_subject ">{subject}</span>
+    <span class="message_body">
+        {messagebodx}
+    </span>
+    <span class="message_link"><a href="/app/issue/issuelist?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
 </div>
-
 <hr>
-
-<div id="message_1742719" class="message read" messageId="1742719" style="cursor:pointer;" onclick="followMessageLink($(this));">
-  <span class="message_operator">
-    <img src="/img/favicon.png" width="30px"  border="0" name="d2018873061" title="Twproject" alt="Twproject" id="d2018873061" ></span>
-  <span class="message_date">8之前的时间</span>
-  <span class="message_subject " >Issue delayed: I#14479#</span>
-  <span class="message_body">发行的 I#14479# 应在 09/11/2020 已被关闭。<br>
-它仍然处于打开，关闭或更新日期。<br>
-任务 T53596.01 - 第一个子任务<br>
-第三个问题<br></span>
-  <span class="message_link"><a href="/app/issue/issueList.html?V_ID=1538846582&CM=FN&ISSUE_ID=14479" >I#14479#</a></span>
-</div>
-
-<hr>
-
-      ]]>
-    </data>
+]]>
+    </row>
+    <after><![CDATA[]]></after>
   </node>
   <node id="messagelist_page">
     <![CDATA[
@@ -58,7 +44,7 @@
         任务 T53596.01 - 第一个子任务<br>
         第三个问题<br>
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=114850823&CM=FN&ISSUE_ID=14479">I#14479#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=114850823&CM=FN&ISSUE_ID=14479">I#14479#</a></span>
 </div>
 
 <div id="message_1744311" class="message read" messageId="1744311" style="cursor:pointer;" onclick="followMessageLink($(this));">
@@ -73,7 +59,7 @@
         任务 T53596 - 第二个项目<br>
         第四个问题<br>
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=2137453684&CM=FN&ISSUE_ID=14515">I#14515#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=2137453684&CM=FN&ISSUE_ID=14515">I#14515#</a></span>
 </div>
 
 <div id="message_1744313" class="message read" messageId="1744313" style="cursor:pointer;" onclick="followMessageLink($(this));">
@@ -88,7 +74,7 @@
         任务 T53596.01 - 第一个子任务<br>
         第五个问题<br>
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=393903897&CM=FN&ISSUE_ID=14516">I#14516#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=393903897&CM=FN&ISSUE_ID=14516">I#14516#</a></span>
 </div>
 
 <div id="message_1744211" class="message read" messageId="1744211" style="cursor:pointer;" onclick="followMessageLink($(this));">
@@ -103,7 +89,7 @@
         该问题的严重性：中<br>&nbsp;
         该问题最后更新者： Zhang Fei<br>&nbsp;
     </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issueList.html?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
 </div>
 ]]>
   </node>
