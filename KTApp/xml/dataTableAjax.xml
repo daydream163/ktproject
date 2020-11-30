@@ -16,12 +16,12 @@
             </td>
             <td class="tlTaskName " style="position: relative;">
                 <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
-                <a href="/app/taskOverview.html?V_ID=123500766&CM=ED&OBJID=53597" class="button textual bolder taskName">第一个子任务</a>
+                <a href="/app/task/taskOverview?V_ID=123500766&CM=ED&OBJID=53597" class="button textual bolder taskName">{name}</a>
                 <br>
             </td>
 
             <td class="textSmall tlTaskCode" style="position: relative;">
-                {taskcode}
+                {code}
             </td>
             <td class="textSmall tlTaskType"><div class="ellipsis"></div></td>
 
@@ -38,7 +38,7 @@
             </td>
 
             <td align="right" nowrap>
-                <a class="button  textual   " id="domId_1325015108" style="" href="/app/task/taskIssueList.html?V_ID=182028026&OBJID=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL">2/2</a>
+                <a class="button  textual   " id="domId_1325015108" style="" href="/app/task/taskIssueList?V_ID=182028026&OBJID=53597&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL">2/2</a>
             </td>
             <td align="right">
                 3:00<button type="button" class="button noprint textual icon  " id="domId_913609856" style="" onclick="openWorklogEditorPopup($(this),{assId:'28254',title:'T53596.01 - 第一个子任务'});return false; ">
@@ -153,201 +153,72 @@
 
   </node>
   <node id="RESLST">
-    <![CDATA[
- <tbody class="dataTableBody" totalNumberOfElements="6" pageNumber="0" pageSize="20" orderby="resource.name"><tr class="alternate first resourceList last" resId="15189" >
-
-  <td  width="1%" valign="top" nowrap rowspan="1">
-    
-    <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d791216581" title="Zhang Fei" alt="Zhang Fei" id="d791216581"  " resId="15189" class="face ">
-    
-  </td>
-  <td  valign="top" rowspan="1">
-    <div class="pathSmall"><span class="pathEl"></span></div>
-
-    <a href="resourceEditor.jsp?V_ID=758334643&CM=ED&OBJID=15189" class="button textual bolder"  style="white-space:normal;">Fei Zhang</a>
-  
-
-  </td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1"><button type="button" class="button noprint textual icon  "  id="domId_1315457440" style="" title="发送消息"  onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=14899956&CM=AD&POP=yes&receiver=15189','600px','600px');return false; " ><span class='teamworkIcon '>&igrave;</span></button>
-
-</td>
-  <td  valign="top" rowspan="1">
-    
-      <span class="score" title="积分"><span class="teamworkIcon">1</span> 2</span>
-    
-  </td>
-
-  
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ><a class="button textual" href="mailto:"></a></td>
-        <td align="center" rowspan="1"><button type="button" class="button noprint textual icon  delete"  id="domId_123833386" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-</td>
-      </tr>
-      
-<tr class="alternate first resourceList last" resId="15089" >
-
-  <td  width="1%" valign="top" nowrap rowspan="1">
-    
-    <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1131792423" title="Dream Wing" alt="Dream Wing" id="d1131792423"  " resId="15089" class="face active">
-    
-  </td>
-  <td  valign="top" rowspan="1">
-    <div class="pathSmall"><span class="pathEl">梦想飞扬部门</span></div>
-
-    <a href="resourceEditor.jsp?V_ID=1772591882&CM=ED&OBJID=15089" class="button textual bolder"  style="white-space:normal;">Wing Dream</a>
-  
-
-  </td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1"><button type="button" class="button noprint textual icon  "  id="domId_942342313" style="" title="发送消息"  onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=2058609590&CM=AD&POP=yes&receiver=15089','600px','600px');return false; " ><span class='teamworkIcon '>&igrave;</span></button>
-
-</td>
-  <td  valign="top" rowspan="1">
-    
-      <span class="score" title="积分"><span class="teamworkIcon">1</span> 36</span>
-    
-  </td>
-
-  
-        <td >office</td>
-        <td ></td>
-        <td ></td>
-        <td ><a class="button textual" href="mailto:dreamtowing@163.com">dreamtowing@163.com</a></td>
-        <td align="center" rowspan="1"><button type="button" class="button noprint textual icon  delete"  id="domId_983023868" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-</td>
-      </tr>
-      
-<tr class="alternate first resourceList last" resId="15162" >
-
-  <td  width="1%" valign="top" nowrap rowspan="1">
-    
-     <div style="height: 35px; width: 35px"></div>
-    
-  </td>
-  <td  valign="top" rowspan="1">
-    <div class="pathSmall"><span class="pathEl"></span></div>
-
-    <a href="resourceEditor.jsp?V_ID=619892237&CM=ED&OBJID=15162" class="button textual bolder"  style="white-space:normal;">梦工厂</a>
-  
-
-  </td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1">
-    
-  </td>
-
-  
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ><a class="button textual" href="mailto:"></a></td>
-        <td align="center" rowspan="1"><button type="button" class="button noprint textual icon  delete"  id="domId_1085655662" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-</td>
-      </tr>
-      
-<tr class="alternate first resourceList last" resId="15090" >
-
-  <td  width="1%" valign="top" nowrap rowspan="1">
-    
-     <div style="height: 35px; width: 35px"></div>
-    
-  </td>
-  <td  valign="top" rowspan="1">
-    <div class="pathSmall"><span class="pathEl"></span></div>
-
-    <a href="resourceEditor.jsp?V_ID=997688470&CM=ED&OBJID=15090" class="button textual bolder"  style="white-space:normal;">梦想飞扬部门</a>
-  
-
-  </td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1">
-    
-  </td>
-
-  
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ><a class="button textual" href="mailto:"></a></td>
-        <td align="center" rowspan="1"><button type="button" class="button noprint textual icon  delete"  id="domId_597799514" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-</td>
-      </tr>
-      
-<tr class="alternate first resourceList last" resId="15163" >
-
-  <td  width="1%" valign="top" nowrap rowspan="1">
-    
-    <img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d824642904" title=" 第一个员工" alt=" 第一个员工" id="d824642904"  " resId="15163" class="face ">
-    
-  </td>
-  <td  valign="top" rowspan="1">
-    <div class="pathSmall"><span class="pathEl"></span></div>
-
-    <a href="resourceEditor.jsp?V_ID=2061313437&CM=ED&OBJID=15163" class="button textual bolder"  style="white-space:normal;">第一个员工 </a>
-  
-
-  </td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1"><button type="button" class="button noprint textual icon  "  id="domId_371016143" style="" title="发送消息"  onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1288742255&CM=AD&POP=yes&receiver=15163','600px','600px');return false; " ><span class='teamworkIcon '>&igrave;</span></button>
-
-</td>
-  <td  valign="top" rowspan="1">
-    
-      <span class="score" title="积分"><span class="teamworkIcon">1</span> 0</span>
-    
-  </td>
-
-  
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ><a class="button textual" href="mailto:"></a></td>
-        <td align="center" rowspan="1"><button type="button" class="button noprint textual icon  delete"  id="domId_1903236046" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-</td>
-      </tr>
-      
-<tr class="alternate first resourceList last" resId="15164" >
-
-  <td  width="1%" valign="top" nowrap rowspan="1">
-    
-     <div style="height: 35px; width: 35px"></div>
-    
-  </td>
-  <td  valign="top" rowspan="1">
-    <div class="pathSmall"><span class="pathEl"></span></div>
-
-    <a href="resourceEditor.jsp?V_ID=1729122481&CM=ED&OBJID=15164" class="button textual bolder"  style="white-space:normal;">第二个员工 </a>
-  
-
-  </td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1"></td>
-  <td  valign="top" rowspan="1">
-    
-  </td>
-
-  
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ><a class="button textual" href="mailto:"></a></td>
-        <td align="center" rowspan="1"><button type="button" class="button noprint textual icon  delete"  id="domId_1612826963" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
-
-</td>
-      </tr>
-      
-</tbody>
-
-]]>
+    <before>
+      <![CDATA[<tbody class="dataTableBody" totalNumberOfElements="{totalcount}" pageNumber="{pageindex}" pageSize="{pagesize}" orderby="resource.name">]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate first resourceList last" resId="{id}">
+    <td width="1%" valign="top" nowrap rowspan="1">
+        <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d791216581" title="{name}" alt="{name}" id="d791216581" " resId="{id}" class="face ">
+    </td>
+    <td valign="top" rowspan="1">
+        <div class="pathSmall"><span class="pathEl"></span></div>
+        <a href="resourceEditor.jsp?V_ID=758334643&CM=ED&OBJID={id}" class="button textual bolder" style="white-space:normal;">{name}</a>
+    </td>
+    <td valign="top" rowspan="1"></td>
+    <td valign="top" rowspan="1">
+        <button type="button" class="button noprint textual icon  " id="domId_1315457440" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=14899956&CM=AD&POP=yes&receiver={id}','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+    </td>
+    <td valign="top" rowspan="1">
+        <span class="score" title="积分"><span class="teamworkIcon">1</span> 2</span>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><a class="button textual" href="mailto:"></a></td>
+    <td align="center" rowspan="1">
+        <button type="button" class="button noprint textual icon  delete" id="domId_123833386" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    </td>
+</tr>
+    ]]>
+    </row>
+    <after>
+      <![CDATA[</tbody>]]>
+    </after>
+  </node>
+  <node id="DOCLST">
+    <before>
+      <![CDATA[<tbody class="dataTableBody" totalNumberOfElements="{totalcount}" pageNumber="{pageindex}" pageSize="{pagesize}" orderby="document.lastModified desc">]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" docId="{id}">
+    <td>&nbsp;</td>
+    <td style="width: 25px; text-align: center">
+      <div class="docLabelWrapper"><a href="https://www.baidu.com/" target="_blank">
+        <img src="/img/mime/url.png" width="30" border="0" name="d1566100430" id="d1566100430"></a>
+      </div>
+    </td>
+    <td>
+        <a href="https://www.baidu.com/">{name}</a>
+    </td>
+    <td></td>
+    <td>
+    </td>
+    <td>{creationDate}</td>
+    <td>
+        <a class="button  textual   " id="domId_1890349378" style="" href="/app/task/taskDocumentList?V_ID=2147333497&CM=LIST_DOCS&TASK_ID=53596">T53596 - 第二个项目</a>
+    </td>
+    <td>
+        <button type="button" class="button noprint  icon  textual" id="domId_1081545497" style="" onclick="openBlackPopup('/applications/teamwork/task/taskDocumentEditor.jsp?V_ID=684672989&CM=ED&OBJID=2347&TASK_ID=53596','1000px','700px');return false; "><span class='teamworkIcon '>e</span></button>
+        <button type="button" class="button noprint textual icon  delete" id="domId_1771396244" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    </td>
+</tr>
+    ]]>
+    </row>
+    <after>
+      <![CDATA[</tbody>]]>
+    </after>
   </node>
 </nodes>

@@ -12,15 +12,15 @@ namespace KTProject.Service
 {
     public class IssueService : IIssueService
     {
-        private IIssueRepository roleRepository = new IssueRepository();
+        private IIssueRepository issueRepository = new IssueRepository();
 
         public IssueExt GetDetail(int id) {
-            return roleRepository.GetDetail(id);
+            return issueRepository.GetDetail(id);
         }
 
         public IEnumerable<IssueExt> GetList(int userid, int pageIndex, int pageSize, ref int totalCount) {
 
-            var list = roleRepository.GetList(userid, pageIndex, pageSize, ref totalCount);
+            var list = issueRepository.GetList(userid, pageIndex, pageSize, ref totalCount);
             return list;
         }
     }

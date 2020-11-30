@@ -49,8 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ServiceCommon.cs" />
-    <Compile Include="LoginService.cs" />
     <Compile Include="IssueService.cs" />
+    <Compile Include="TaskService.cs" />
+    <Compile Include="ResourceService.cs" />
+    <Compile Include="LoginService.cs" />
+    <Compile Include="DocumentService.cs" />
     <Compile Include="MessageService.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="SubSystemContractService.cs" />

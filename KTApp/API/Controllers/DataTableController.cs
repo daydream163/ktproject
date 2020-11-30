@@ -17,6 +17,8 @@ namespace KTApp.API.issue
     public class DataTableController : BaseApiController
     {
         IIssueService issueService = new IssueService();
+        IResourceService resourceService = new ResourceService();
+        ITaskService taskService = new TaskService();
 
         [HttpGet]
         public HttpResponseMessage DataTableAjax(string cm, string DATA_TBL_ID)
@@ -28,26 +30,40 @@ namespace KTApp.API.issue
             string xmlPath = "/nodes/node[@id=\"{0}\"]";
 
             string nodeid = DATA_TBL_ID;
+            int totalCount = 0;
+            int pageindex = 0;
+            int pagesize = 10;
 
-            switch (cm)
-            {
-                case "FN":
-                    node = doc.SelectSingleNode(string.Format(xmlPath, nodeid));
-                    if (node != null) {
-                        int totalCount = 0;
-                        int pageindex = 0;
-                        int pagesize = 10;
+            if (cm.ToLower() == "fn") {
+                node = doc.SelectSingleNode(string.Format(xmlPath, nodeid));
 
-                        IEnumerable<IssueExt> list = issueService.GetList(this.UserID, pageindex, pagesize, ref totalCount);
-                        returnstr = KTList.GetDataList<IssueExt>(node, pageindex, pagesize, list);
-                    }
-                    break;
-                case "GETTASKISS":
-                    returnstr = "";
-                    break;
-                default:
-                    returnstr = "{\"ok\":true,\"events\":[]}";
-                    break;
+                switch (nodeid) {
+                    case "ISSUEFILTER":
+                        if (node != null) {
+                            IEnumerable<IssueExt> list = issueService.GetList(this.UserID, pageindex, pagesize, ref totalCount);
+                            returnstr = KTList.GetDataList<IssueExt>(node, pageindex, pagesize, list);
+                        }
+                        break;
+                    case "RESLST":
+                        if (node != null) {
+                            IEnumerable<KTResource> list = resourceService.GetList(0, pageindex, pagesize, ref totalCount);
+                            returnstr = KTList.GetDataList<KTResource>(node, pageindex, pagesize, list);
+                        }
+                        break;
+                    case "TSKLST":
+                        if (node != null) {
+                            IEnumerable<KTTask> list = taskService.GetList(this.UserID, pageindex, pagesize, ref totalCount);
+                            returnstr = KTList.GetDataList<KTTask>(node, pageindex, pagesize, list);
+                        }
+                        break;
+                    case "GETTASKISS":
+                        returnstr = "";
+                        break;
+                    default:
+                        returnstr = "{\"ok\":true,\"events\":[]}";
+                        break;
+                }
+
             }
             return new HttpResponseMessage()
             {

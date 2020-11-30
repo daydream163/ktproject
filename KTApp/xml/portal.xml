@@ -266,7 +266,7 @@
                 <div class="bannerText">
                     <p>Define your task's activities, to-dos, ideas, issues and assign them to your team.</p>
                 </div>
-                <a class="button     light" id="domId_792609114" style="" href="/app/task/taskIssueList.html?V_ID=244283950&OBJID=53595">Manage activities</a>
+                <a class="button     light" id="domId_792609114" style="" href="/app/task/taskIssueList?V_ID=244283950&OBJID=53595">Manage activities</a>
 
 
             </div>
@@ -388,7 +388,7 @@
                             <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
 
 
-                            <a class="button  textual   bolder" id="domId_460330889" style="" title="T53596.01 - 第一个子任务 [&#39;Worker&#39;]" href="/app/taskOverview.html?V_ID=1804312213&CM=ED&OBJID=53597">第一个子任务</a>
+                            <a class="button  textual   bolder" id="domId_460330889" style="" title="T53596.01 - 第一个子任务 [&#39;Worker&#39;]" href="/app/task/taskOverview?V_ID=1804312213&CM=ED&OBJID=53597">第一个子任务</a>
 
 
                         </td>
@@ -412,8 +412,8 @@
 
                         <td>
                             <div class="facesBox">
-                                <span class="button buttonImg  " id="domId_1399857934" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=557988083&CM=LIST_ASSIGS&TASK_ID=53597','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d758109814" title="Dream Wing (WK)" alt="Dream Wing (WK)" id="d758109814" " resId="15089" class="face small active"></span>
-                                <span class="button buttonImg  " id="domId_44624532" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=1408148326&CM=LIST_ASSIGS&TASK_ID=53597','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d1562156950" title=" 第一个员工 (WK)" alt=" 第一个员工 (WK)" id="d1562156950" " resId="15163" class="face small "></span>
+                                <span class="button buttonImg  " id="domId_1399857934" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=557988083&CM=LIST_ASSIGS&TASK_ID=53597','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d758109814" title="Dream Wing (WK)" alt="Dream Wing (WK)" id="d758109814" " resId="15089" class="face small active"></span>
+                                <span class="button buttonImg  " id="domId_44624532" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1408148326&CM=LIST_ASSIGS&TASK_ID=53597','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d1562156950" title=" 第一个员工 (WK)" alt=" 第一个员工 (WK)" id="d1562156950" " resId="15163" class="face small "></span>
 
                             </div>
                         </td>
@@ -442,7 +442,7 @@
                         <div class="pathSmall"><span class="pathEl"></span></div>
 
 
-                        <a class="button  textual   bolder" id="domId_1743045223" style="" title="T53595 - 第一个项目 [&#39;Project manager&#39;]" href="/app/taskOverview.html?V_ID=417849144&CM=ED&OBJID=53595">第一个项目</a>
+                        <a class="button  textual   bolder" id="domId_1743045223" style="" title="T53595 - 第一个项目 [&#39;Project manager&#39;]" href="/app/task/taskOverview?V_ID=417849144&CM=ED&OBJID=53595">第一个项目</a>
 
 
                     </td>
@@ -466,10 +466,10 @@
 
                     <td>
                         <div class="facesBox">
-                            <span class="button buttonImg  " id="domId_621921048" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=303003658&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d115104959" title=" 第一个员工 (SH)" alt=" 第一个员工 (SH)" id="d115104959" " resId="15163" class="face small "></span>
-                            <span class="button buttonImg  " id="domId_898752969" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=1249712716&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d480738862" title=" 第二个员工 (SH)" alt=" 第二个员工 (SH)" id="d480738862" " resId="15164" class="face small "></span>
-                            <span class="button buttonImg  " id="domId_1531550152" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=427101264&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1463103880" title="Zhang Fei (PM)" alt="Zhang Fei (PM)" id="d1463103880" " resId="15189" class="face small "></span>
-                            <a href="/app/task/taskAssignmentList.html?V_ID=1400595774&CM=LIST_ASSIGS&TASK_ID=53595" class="faceMore" title="更多..."><span class="teamworkIcon" style="line-height:25px; font-size:15px">&hellip;</span></a>
+                            <span class="button buttonImg  " id="domId_621921048" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=303003658&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d115104959" title=" 第一个员工 (SH)" alt=" 第一个员工 (SH)" id="d115104959" " resId="15163" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_898752969" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1249712716&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d480738862" title=" 第二个员工 (SH)" alt=" 第二个员工 (SH)" id="d480738862" " resId="15164" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_1531550152" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=427101264&CM=LIST_ASSIGS&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1463103880" title="Zhang Fei (PM)" alt="Zhang Fei (PM)" id="d1463103880" " resId="15189" class="face small "></span>
+                            <a href="/app/task/taskAssignmentList?V_ID=1400595774&CM=LIST_ASSIGS&TASK_ID=53595" class="faceMore" title="更多..."><span class="teamworkIcon" style="line-height:25px; font-size:15px">&hellip;</span></a>
                         </div>
                     </td>
 
@@ -494,7 +494,7 @@
                         <div class="pathSmall"><span class="pathEl"></span></div>
 
 
-                        <a class="button  textual   bolder" id="domId_417956036" style="" title="T53596 - 第二个项目 [&#39;Project manager&#39;]" href="/app/taskOverview.html?V_ID=112780877&CM=ED&OBJID=53596">第二个项目</a>
+                        <a class="button  textual   bolder" id="domId_417956036" style="" title="T53596 - 第二个项目 [&#39;Project manager&#39;]" href="/app/task/taskOverview?V_ID=112780877&CM=ED&OBJID=53596">第二个项目</a>
 
 
                     </td>
@@ -518,8 +518,8 @@
 
                     <td>
                         <div class="facesBox">
-                            <span class="button buttonImg  " id="domId_1212866428" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=446081115&CM=LIST_ASSIGS&TASK_ID=53596','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d541644323" title="Dream Wing (PM)" alt="Dream Wing (PM)" id="d541644323" " resId="15089" class="face small active"></span>
-                            <span class="button buttonImg  " id="domId_419888128" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList.html?V_ID=644868209&CM=LIST_ASSIGS&TASK_ID=53596','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1341521587" title="Zhang Fei (WK)" alt="Zhang Fei (WK)" id="d1341521587" " resId="15189" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_1212866428" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=446081115&CM=LIST_ASSIGS&TASK_ID=53596','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d541644323" title="Dream Wing (PM)" alt="Dream Wing (PM)" id="d541644323" " resId="15089" class="face small active"></span>
+                            <span class="button buttonImg  " id="domId_419888128" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=644868209&CM=LIST_ASSIGS&TASK_ID=53596','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1341521587" title="Zhang Fei (WK)" alt="Zhang Fei (WK)" id="d1341521587" " resId="15189" class="face small "></span>
 
                         </div>
                     </td>
@@ -1341,7 +1341,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
             <tr class="alternate " taskId="53595">
                 <td class="columnTaskName" style="position: relative">
                     <div class="taskColored" style="background-color: #bc4cff;"></div>
-                    <a class="button  textual   bolder" id="domId_5975346" style="" href="/app/taskOverview.html?V_ID=1709891153&CM=ED&OBJID=53595">第一个项目</a>
+                    <a class="button  textual   bolder" id="domId_5975346" style="" href="/app/task/taskOverview?V_ID=1709891153&CM=ED&OBJID=53595">第一个项目</a>
 
                 </td>
                 <td class="textSmall columnTaskCode" title="T53595"><span>T53595</span></td>
@@ -1374,7 +1374,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
             <tr class="alternate " taskId="53596">
                 <td class="columnTaskName" style="position: relative">
 
-                    <a class="button  textual   bolder" id="domId_1298627861" style="" href="/app/taskOverview.html?V_ID=981466897&CM=ED&OBJID=53596">第二个项目</a>
+                    <a class="button  textual   bolder" id="domId_1298627861" style="" href="/app/task/taskOverview?V_ID=981466897&CM=ED&OBJID=53596">第二个项目</a>
 
                 </td>
                 <td class="textSmall columnTaskCode" title="T53596"><span>T53596</span></td>
@@ -1460,7 +1460,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                         <div class="pathSmall"><span class="pathEl">第二个项目</span></div>
 
 
-                        <a class="button  textual   bolder" id="domId_1493141990" style="" href="/app/taskOverview.html?V_ID=938199272&CM=ED&OBJID=53597">第一个子任务</a>
+                        <a class="button  textual   bolder" id="domId_1493141990" style="" href="/app/task/taskOverview?V_ID=938199272&CM=ED&OBJID=53597">第一个子任务</a>
 
 
                     </td>
@@ -1482,7 +1482,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                         <div class="pathSmall"><span class="pathEl"></span></div>
 
 
-                        <a class="button  textual   bolder" id="domId_1490228230" style="" href="/app/taskOverview.html?V_ID=1875363283&CM=ED&OBJID=53595">第一个项目</a>
+                        <a class="button  textual   bolder" id="domId_1490228230" style="" href="/app/task/taskOverview?V_ID=1875363283&CM=ED&OBJID=53595">第一个项目</a>
 
 
                     </td>
@@ -1504,7 +1504,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                         <div class="pathSmall"><span class="pathEl"></span></div>
 
 
-                        <a class="button  textual   bolder" id="domId_613210362" style="" href="/app/taskOverview.html?V_ID=327154015&CM=ED&OBJID=53596">第二个项目</a>
+                        <a class="button  textual   bolder" id="domId_613210362" style="" href="/app/task/taskOverview?V_ID=327154015&CM=ED&OBJID=53596">第二个项目</a>
 
 
                     </td>
@@ -1539,7 +1539,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
                 var issExpired = el.is(".issExpired");
                 var issToday = el.is(".issToday");
                 var taskId = row.attr("taskId");
-                var link = contextPath + "/app/task/taskIssueList.html?OBJID=" + taskId;
+                var link = contextPath + "/app/task/taskIssueList?OBJID=" + taskId;
 
                 if (taskExpired && (issExpired || issToday)) {
                     link += ""; // si devono vedere tutte quelle aperte

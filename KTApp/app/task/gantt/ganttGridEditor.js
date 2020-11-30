@@ -581,7 +581,7 @@ GridEditor.prototype.openFullEditor = function (task, editOnlyAssig) {
     taskEditor.find("#taskFullEditor").remove();
   } else {
     taskEditor.bind("openFullEditor.gantt",function () {
-      window.location.href=contextPath+"/app/taskOverview.html?CM=ED&OBJID="+task.id;
+      window.location.href=contextPath+"/app/task/taskOverview?CM=ED&OBJID="+task.id;
     });
   }
 

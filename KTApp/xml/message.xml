@@ -29,7 +29,7 @@
     <span class="message_date">不多时前</span>
     <span class="message_subject ">Task overdue: T53595.02 - 第二个子任务</span>
     <span class="message_body">任务 T53595.02 - 第二个子任务"</span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/taskOverview.html??V_ID=1079600312&CM=ED&OBJID=53683">T53595.02 - 第二个子任务</a></span>
+    <span class="message_link"><a href="https://demo.twproject.com/app/task/taskOverview??V_ID=1079600312&CM=ED&OBJID=53683">T53595.02 - 第二个子任务</a></span>
 </div>
 
 <div id="message_1744309" class="message read" messageId="1744309" style="cursor:pointer;" onclick="followMessageLink($(this));">

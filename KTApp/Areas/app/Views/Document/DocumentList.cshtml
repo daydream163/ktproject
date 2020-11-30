@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "document list";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/app/document/documentList" name="DOCS" id="DOCS"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="DOCSV_ID" name="V_ID" value="1745365261" savedValue="">
+        <input type="hidden" id="DOCSCM" name="CM" value="FN" savedValue="">
+
+
+
+        <h1 class="filterTitle" defaultTitle="文档列表">
+            文件最近更改
+        </h1>
+
+
+        <div class="filterBar withButtons clearfix">
+            <div class="filterActiveElements"></div>
+
+            <div class="filterInactiveElements">
+                <div class="filterElement filterDefault"><label for="NAME_DESCRIPTION" class=" ">任务名称/描述/注释</label><br><input type=TEXT name="NAME_DESCRIPTION" id="NAME_DESCRIPTION" size=40 class="formElements qbe" autocomplete='off' maxlength=255 value="" oldValue='1'></div>
+                <div class="filterElement filterDefault">
+                    <label for="ck_SHOW_VERSIONS">显示修订版</label><br><input type=hidden name="SHOW_VERSIONS" id="SHOW_VERSIONS" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_SHOW_VERSIONS" name="ck_SHOW_VERSIONS" value="yes"
+                                                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                </div>
+                <div class="filterElement"><label for="ID_CODE" class=" ">文件: id/编码</label><br><input type=TEXT name="ID_CODE" id="ID_CODE" size=8 class="formElements qbe" autocomplete='off' maxlength=255 value="" oldValue='1'></div>
+                <div class="filterElement">
+                    <label for="TYPE" class=" ">文件: 类型</label><br><SELECT NAME="TYPE" id="TYPE" CLASS="formElements" oldValue='1'>
+                        <option value="">- 选择 -</option>
+                        <option value="1">上传</option>
+                        <option value="2">内容</option>
+                        <option value="3">连接</option>
+                        <option value="4">文件存储</option>
+                    </SELECT>
+                </div>
+                <div class="filterElement">
+                    <label for="DOCUMENT_AUTHORED" class=" ">原始日期</label><br><input type=text name="DOCUMENT_AUTHORED" id="DOCUMENT_AUTHORED" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-19" minValue="1020-10-29"><span title="日历" id="DOCUMENT_AUTHOREDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                       onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                </div>
+                <div class="filterElement">
+                    <label for="DOCUMENT_LAST_MODIFIED" class=" ">文件: 最后编辑</label><br><input type=text name="DOCUMENT_LAST_MODIFIED" id="DOCUMENT_LAST_MODIFIED" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="&gt;-2w" entryType="DATE" maxValue="3020-11-19" minValue="1020-10-29"><span title="日历" id="DOCUMENT_LAST_MODIFIEDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                 onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                </div>
+                <div class="filterElement"><label for="DOCUMENT_TAGS" class=" ">文件: 标签</label><br><input type=text name="DOCUMENT_TAGS" id="DOCUMENT_TAGS" size=30 class="formElements tagBox" autocomplete='off' maxlength=255 autocomplete='off' taggableClass="com.twproject.document.TeamworkDocument" maxResult="30" tagPropertyName="tags" areaId="5819" value=""></div>
+
+                <div class="filterElement">
+                    <label for="domId_1007847526_txt">任务</label> &nbsp;&nbsp;&nbsp;&nbsp;<input type=hidden name="TASK_DOCUMENT_SHOW_CHILDREN" id="TASK_DOCUMENT_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_TASK_DOCUMENT_SHOW_CHILDREN" name="ck_TASK_DOCUMENT_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                    <label>显示子任务的文档</label><br><input type=text name="task_txt" id="task_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="task" id="task" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+
+                </div>
+                <div class="filterElement">
+                    <label for="resource_txt" class=" ">资源</label><br><input type=text name="resource_txt" id="resource_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="resource" id="resource" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                </div>
+                <div class="filterElement"><label for="DOCUMENT_AUTHOR" class=" ">创建者</label><br><input type=TEXT name="DOCUMENT_AUTHOR" id="DOCUMENT_AUTHOR" size=20 class="formElements qbe" autocomplete='off' maxlength=255 value="" oldValue='1'></div>
+                <div class="filterElement"><label for="TASK_CODE" class=" ">任务: 代码</label><br><input type=TEXT name="TASK_CODE" id="TASK_CODE" size=8 class="formElements qbe" autocomplete='off' maxlength=255 value="" oldValue='1'></div>
+                <div class="filterElement">
+                    <label for="TASK_TYPE_txt" class=" ">任务: 类型</label><br><input type=text name="TASK_TYPE_txt" id="TASK_TYPE_txt" size=15 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="TASK_TYPE" id="TASK_TYPE" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                </div>
+                <div class="filterElement"><label for="TASK_TAGS" class=" ">任务: 标签</label><br><input type=text name="TASK_TAGS" id="TASK_TAGS" size=20 class="formElements tagBox" autocomplete='off' maxlength=255 autocomplete='off' taggableClass="com.twproject.task.Task" maxResult="30" tagPropertyName="tags" areaId="5819" value=""></div>
+            </div>
+            <div class="filterButtons">
+                <div class="filterButtonsElement filterAdd">
+                    <span class="button" id="filterSelectorOpener" title="更多的过滤器" onclick="bjs_showMenuDiv('filterSelectorBox', 'filterSelectorOpener');"><span class="teamworkIcon">f</span></span>
+                </div>
+                <div class="filterButtonsElement filterSearch">
+                    <button type="button" class="button noprint    " id="domId_1456375379" style="" onclick="dataTableSearchClick('DOCLST');return false; " data-dtid="DOCLST">搜索</button>
+
+                </div>
+
+                <div class="filterActions">
+                    <div class="filterButtonsElement filterSave">
+                        <span onclick="lsfOpenEditor($(this))" lsfId="domId_1858572575" title="保存这个搜索" class="button textual">保存这个搜索</span>
+                    </div>
+                    <div class="filterButtonsElement filterHelp">
+                        <button type="button" class="button noprint textual   " id="domId_128474159" style="" title="如何使用示例查询（QBE）组成强大的搜索.<br>您可以保存您的搜索条件以便将来使用." onclick="openBlackPopup('/commons/help/qbe.jsp?V_ID=282386347','800px','700px');return false; ">Help</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="bulkOp" style="display:none;">
+                <div id="bulkRowSel"></div>
+
+                <div>
+                    <button type="button" class="button noprint textual   bulk lreqHide" id="domId_1044125078" style="" onclick="downloadAttachments();return false; "><span class='teamworkIcon withLabel'>Z</span>下载</button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script src="/commons/js/filterEngine.js"></script>
+
+        <div class="paginator unselectable" dataTableId="DOCLST">
+
+
+            <span class="paginatorPages"></span>
+
+
+            <div class="datatableInfo">
+
+
+
+                <div class="paginatorSearching">搜索...</div>
+                <div class="paginatorNotFound">没有找到结果。</div>
+                <span class="paginatorFoundN"><span class="totalNumberOfElements"></span>&nbsp;个结果</span>
+                <span class="paginatorFound1">1 &nbsp;我打。.</span>
+
+
+                &nbsp;&nbsp;
+                <div class="pagSize">
+                    <span class="ruzzol teamworkIcon" style="cursor:pointer;" onclick="$(this).toggle();$(this).next().toggle().find(':input').focus();" title="改变页面大小">g</span>
+                    <span class="pagSizeInp">
+                        <label for="_FP_PG_S" class=" ">每页的结果</label>&nbsp;<input type=text name="_FP_PG_S" id="_FP_PG_S" size=3 class="formElements formElementsSmall validated integer" autocomplete='off' maxlength=255 value="20" onkeyup="if (event.keyCode==13) { event.stopPropagation(); dataTableChangePageSize($('#DOCLST'));event.preventDefault();return false;}" entryType="INTEGER">
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+        <input type=hidden name="_FP_PG_N" id="DOCLST_PGtf" size=20 class="formElements" autocomplete='off' maxlength=255 value="">
+        <table class="table dataTable fixHead fixFoot" id="DOCLST" formId="DOCS" bindReturnKey data-table="1">
+
+
+            <thead class="dataTableHead">
+                <tr>
+                    <th class="tableHead" nowrap>
+                        <input type=hidden name="chall" id="chall" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_chall" name="ck_chall" value="yes" onclick="selUnselAll($(this));" title="选择/取消选择"
+                                                                                                                                                          onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                    </th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl" orderState="0" orderingHql="type" onclick="dataTableChangeOrder($(this),'DOCLST')">类型</span></th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl" orderState="0" orderingHql="name" onclick="dataTableChangeOrder($(this),'DOCLST')">名称</span></th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl">标签</span></th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl">调整</span></th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl" orderState="0" orderingHql="creationDate" onclick="dataTableChangeOrder($(this),'DOCLST')">创建</span></th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl">Referral</span></th>
+                    <th class="tableHead" nowrap style=""><span class="tableHeadEl"></span></th>
+                </tr>
+                <tr style="display: none;"><td colspan="99"><input type=hidden name="OB_DOCLST" id="OB_DOCLST" size=0 class="formElements" autocomplete='off' maxlength=255 value="document.lastModified desc"></td></tr>
+            </thead>
+
+            @Html.Raw(ViewBag.ListHTML)
+
+            <tfoot><tr><td id="bulkPlace" colspan="99"></td></tr></tfoot>
+
+
+        </table>
+
+        <div class="paginator unselectable" dataTableId="DOCLST">
+
+
+            <span class="paginatorPages"></span>
+
+
+            <div class="datatableInfo">
+
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rightColumn noprint">
+
+            <div class="tools">
+
+                <div class="toolsElement"></div>
+
+            </div>
+
+            <div class="rightColumnInner">
+
+                <div class="noprint filters">
+                    <h2>我的过滤器...</h2>
+                    <div class="customSavedFilters" formId="DOCS" category="DOCUMENTFILTER" id="domId_1858572575">
+                        <input type="hidden" name="FLNMSEL" id="FLNMSEL">
+                        <input type="hidden" name="FLCAT" id="FLCAT" value="DOCUMENTFILTER">
+                        <input type="hidden" name="FLNM" id="FLNM" value="">
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#DOCS").append($("#domId_1858572575 input")); //sposta gli input dentro il form
+                            var bts = [];
+                            var div = $("#domId_1858572575");
+                            for (var i = 0; i < bts.length; i++) {
+                                div.append(lsfCreateButton(bts[i]));
+                            }
+                        });
+                    </script>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            $("#TOOLS_MENU").addClass('selected');
+
+            function delRow(el) {
+                var docRow = $(el).closest("[docId]");
+                var docId = docRow.attr("docId");
+                deletePreview("DOC_DEL", docId, function (response) {  // callback function
+                    if (response && response.ok) {
+                        docRow.fadeOut(500, function () { $(this).remove(); });
+                    }
+                });
+
+            }
+
+
+            function downloadAttachments(el) {
+                var form = $("#DOCS");
+                var ids = getCheckedIds();
+                if (ids.length > 0) {
+                    window.open("zipDocuments.jsp?CM=ZIPDOCS&docIds=" + encodeURIComponent(ids));
+                }
+            }
+
+
+            function getCheckedIds() {
+                var ret = [];
+                $("[docId] .selector:checked").each(function () {
+                    ret.push($(this).closestAttr("docId"));
+                });
+                return ret;
+            }
+
+
+        </script>
+
+
+
+    </form>
+
+</div>

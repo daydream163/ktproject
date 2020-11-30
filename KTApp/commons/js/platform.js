@@ -5997,9 +5997,9 @@ function openTeamworkLink(type, objCodeId, event) {
         //Task
     } else if (type == "T") {
         if (openNewWindow)
-            window.open(contextPath + "/app/taskOverview.html??CM=GUESS&OBJID=" + objCodeId);
+            window.open(contextPath + "/app/task/taskOverview??CM=GUESS&OBJID=" + objCodeId);
         else
-            getTop().location = contextPath + "/app/taskOverview.html??CM=GUESS&OBJID=" + objCodeId;
+            getTop().location = contextPath + "/app/task/taskOverview??CM=GUESS&OBJID=" + objCodeId;
 
         //Resource
     } else if (type == "R") {
@@ -6052,7 +6052,7 @@ jQuery.fn.activateTeamworkLinks_old = function (showImages) {
         var html = el.html();
 
         html = html.replace(issueRE, "<a href='#' onclick=\"openIssueEditorInBlack('$1','GUESS');return stopBubble(event);\">I#$1#</a>", "g");
-        html = html.replace(taskRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/app/taskOverview.html??CM=GUESS&OBJID=$1';return stopBubble(event);\">T#$1#</a>", "g");
+        html = html.replace(taskRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/app/task/taskOverview??CM=GUESS&OBJID=$1';return stopBubble(event);\">T#$1#</a>", "g");
         html = html.replace(resourceRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/app/resource/resourceEditor.html?CM=GUESS&OBJID=$1';return stopBubble(event);\">R#$1#</a>", "g");
         html = html.replace(eventRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/applications/teamwork/agenda/agendaEditor.jsp?CM=GUESS&OBJID=$1';return stopBubble(event);\">E#$1#</a>", "g");
         html = html.replace(boardRE, "<a href='#'onclick=\"openBoardInBlack('$1','GUESS');return stopBubble(event);\">B#$1#</a>", "g");
@@ -6195,13 +6195,13 @@ function fastSearch(el) {
         if (searchText.toUpperCase().startsWith("T:")) {
             window.location.href = url + "/app/task/taskList?CM=FN&NAME_DESCRIPTION_NOTE_CODE=" + searchEncoded + "&search=" + searchEncoded;
         } else if (searchText.toUpperCase().startsWith("R:")) {
-            window.location.href = url + "/app/resourceList.html?CM=FN&NAME_SURNAME=" + searchEncoded + "&search=" + searchEncoded;
+            window.location.href = url + "/app/resource/resourceList?CM=FN&NAME_SURNAME=" + searchEncoded + "&search=" + searchEncoded;
 
         } else if (searchText.toUpperCase().startsWith("I:")) {
             window.location.href = url + "/app/issue/issuelist?CM=FN&FLT_ISSUE_DESCRIPTION=" + searchEncoded + "&search=" + searchEncoded;
 
         } else if (searchText.toUpperCase().startsWith("D:")) {
-            window.location.href = url + "/app/documentList.html?CM=FN&NAME_DESCRIPTION=" + searchEncoded + "&search=" + searchEncoded;
+            window.location.href = url + "/app/document/documentList?CM=FN&NAME_DESCRIPTION=" + searchEncoded + "&search=" + searchEncoded;
 
         } else if (searchText.toUpperCase().startsWith("B:")) {
             window.location.href = url + "/app/board/boardList.html?CM=FN&SEARCH=" + searchEncoded + "&search=" + searchEncoded;

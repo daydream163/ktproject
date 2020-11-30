@@ -273,8 +273,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\app\appAreaRegistration.cs" />
+    <Compile Include="Areas\app\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\app\Controllers\ToolsController.cs" />
     <Compile Include="Areas\app\Controllers\IssueListController.cs" />
-    <Compile Include="Areas\app\Controllers\TaskListController.cs" />
+    <Compile Include="Areas\app\Controllers\GanttController.cs" />
+    <Compile Include="Areas\app\Controllers\TaskController.cs" />
+    <Compile Include="Areas\app\Controllers\ResourceController.cs" />
     <Compile Include="Areas\app\Controllers\GetsThingsDoneController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -308,6 +312,7 @@
     <Compile Include="Base\BaseApiController.cs" />
     <Compile Include="Base\BaseController.cs" />
     <Compile Include="Base\ImageResult.cs" />
+    <Compile Include="Base\MyViewEngine.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -318,6 +323,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\admin\customizePage.html" />
@@ -542,7 +548,7 @@
     <Content Include="app\task\taskList.html" />
     <Content Include="app\taskList_kt.html" />
     <Content Include="app\task\taskNew.html" />
-    <Content Include="app\taskOverview.html" />
+    <Content Include="app\task\taskOverview.html" />
     <Content Include="app\task\costCenter.html" />
     <Content Include="app\task\costClassification.html" />
     <Content Include="app\task\eventType.html" />
@@ -657,8 +663,18 @@
     <Content Include="Areas\app\Views\web.config" />
     <Content Include="Areas\app\Views\Shared\_LayoutMain.cshtml" />
     <Content Include="Areas\app\Views\GetsThingsDone\Index.cshtml" />
-    <Content Include="Areas\app\Views\TaskList\Index.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskList.cshtml" />
     <Content Include="Areas\app\Views\IssueList\Index.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskOverview.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskIssueList.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskDocumentList.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskForumList.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskAssignmentList.cshtml" />
+    <Content Include="Areas\app\Views\Task\Gantt\Gantt.cshtml" />
+    <Content Include="Areas\app\Views\Task\TaskCostList.cshtml" />
+    <Content Include="Areas\app\Views\Resource\ResourceList.cshtml" />
+    <Content Include="Areas\app\Views\Tools\ToolsIntro.cshtml" />
+    <Content Include="Areas\app\Views\Document\DocumentList.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -686,6 +702,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\app\Data\" />
+    <Folder Include="Areas\app\Views\Admin\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

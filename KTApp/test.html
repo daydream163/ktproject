@@ -1,83 +1,128 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js.jsp?_=65022"></script>
+    <script src="/commons/js/i18nJs.jsp?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
+        }
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=707493965&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
 </head>
-<body>
+<body id="twBody" class="level30 " level="30">
 
 
-    <tbody class="dataTableBody" totalNumberOfElements="3" pageNumber="0" pageSize="20" orderby="task1.name">
-
-<tr issueId="{id}" class="alternate issueRow inView " assId="28252" resId="15089" gravity="02_GRAVITY_MEDIUM">
-
-    <td width="1%" align="center">
-        <input type="checkbox" class="selector" onclick="refreshBulk($(this));">
-    </td>
-
-    <td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
-        <div class="prioWrapper">
-            <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
-            <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
-        </div>
-    </td>
-
-    <td valign="top" align="center">
-        <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819">
-            <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
-                <div class="cvcStatuses noValue">
-                    <div class="cvcSelBox " title="open" code="13720"
-                            style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div>
-                </div>
-            </div>
-        </div>
-    </td>
-
-    <td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
-
-        <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">{descriptionx}</div>
-        <span class="twLink textSmall issueCode" style="">I#{id}#</span><div fieldName="ISSUE_TAGS" class="issueTags">
-            <button type="button" class="button noprint textual   tag" id="domId_716335472" style="" onclick="location.href='/app/issue/issuelist?V_ID=86928376&CM=FN&FLT_ISSUE_TAGS=%E7%AC%AC%E4%B8%80%E4%B8%AA';event.stopPropagation();return false; ">第一个</button>
-
-            <button type="button" class="button noprint textual   tag" id="domId_1192650127" style="" onclick="location.href='/app/issue/issuelist?V_ID=656952822&CM=FN&FLT_ISSUE_TAGS=%E9%97%AE%E9%A2%98';event.stopPropagation();return false; ">问题</button>
-
-        </div><span class="textSmall">
-            <button type="button" class="button noprint textual   small" id="domId_1859579045" style="" title="评论: 0" onclick="showComments($(this));return false; "><span class='teamworkIcon withLabel'>Q</span>0</button>
-
-        </span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
-
-        <script>$(function () { drawFiles("{id}", [{ "id": 1012, "uid": "FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx", "type": "FR", "name": "K-SQL 10.0 参考大全（20160620）.docx", "img": "application_vnd.openxmlformats-officedocument.wordprocessingml.document.png", "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=258323391&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khd11npb.fa94094d70ddf779e59ac592ae644343", "ext": ".docx", "ck": "khd11npb.fa94094d70ddf779e59ac592ae644343" }]) });</script>
-
-        <div class="uploadizeDrop" style="display: none;"></div>
-        <span class="issueCreationDate">创建: {creationdate}</span>
-    </td>
-
-    <td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
-        <div class="pathSmall"><span class="pathEl"></span></div>
-        <span class="textSmall" style="display: block;line-height: 130%"><span>{taskname}</span><br>T#T53595#</span>
-    </td>
-
-
-    <td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;">
-        <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1485369453" title="Dream Wing" alt="Dream Wing" id="d1485369453" " resId="15089" class="face small active">
-    </td>
-
-    <td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
-        <span class="textSmall "> 2020-11-12</span>
-    </td>
-
-    <td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME">
-        <span class="textSmall" title="预估工期">0:00</span>
-    </td>
-
-    <td nowrap align="right" class="issueButtonTd" width="1%">
-        <button type="button" class="button noprint textual icon  " id="domId_107000196" style="" title="Database id: &nbsp;{id}&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:43&nbsp;" onclick="openIssueEditorInBlack('{id}','ED','');return false; "><span class='teamworkIcon '>e</span></button>
-        <button type="button" class="button noprint textual icon  " id="domId_908481633" style="" title="新增的工作日志" onclick="btnShowWorklog($(this));return false; "><span class='teamworkIcon '>w</span></button>
-        <button type="button" class="button noprint textual icon  " id="domId_242075661" style="" title="复制" onclick="clone($(this));return false; "><span class='teamworkIcon '>D</span></button>
-        <button type="button" class="button noprint textual icon  delete" id="domId_1231607009" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
-    </td>
-</tr>
-
+    <tbody class="dataTableBody" totalNumberOfElements="{totalcount}" pageNumber="{pageindex}" pageSize="{pagesize}" orderby="resource.name">
+        <tr class="alternate first resourceList last" resId="15189">
+            <td width="1%" valign="top" nowrap rowspan="1">
+                <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d791216581" title="Zhang Fei" alt="Zhang Fei" id="d791216581" " resId="15189" class="face ">
+            </td>
+            <td valign="top" rowspan="1">
+                <div class="pathSmall"><span class="pathEl"></span></div>
+                <a href="resourceEditor.jsp?V_ID=758334643&CM=ED&OBJID=15189" class="button textual bolder" style="white-space:normal;">Fei Zhang</a>
+            </td>
+            <td valign="top" rowspan="1"></td>
+            <td valign="top" rowspan="1">
+                <button type="button" class="button noprint textual icon  " id="domId_1315457440" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=14899956&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+            </td>
+            <td valign="top" rowspan="1">
+                <span class="score" title="积分"><span class="teamworkIcon">1</span> 2</span>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a class="button textual" href="mailto:"></a></td>
+            <td align="center" rowspan="1">
+                <button type="button" class="button noprint textual icon  delete" id="domId_123833386" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+            </td>
+        </tr>
 
     </tbody>
 
@@ -85,3 +130,5 @@
 
 </body>
 </html>
+
+

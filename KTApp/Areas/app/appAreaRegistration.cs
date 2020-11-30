@@ -15,10 +15,15 @@ namespace KTApp.Areas.app
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
+                "app_task_Gantt",
+                "app/task/{controller}/{action}/{id}",
+                new {id = UrlParameter.Optional }
+            );
+            /*context.MapRoute(
                 "app_task",
                 "app/task/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-            );
+            );*/
             context.MapRoute(
                 "app_issue",
                 "app/issue/{controller}/{action}/{id}",

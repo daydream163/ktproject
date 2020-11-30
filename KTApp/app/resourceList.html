@@ -32,67 +32,67 @@
     <script src="/commons/js/i18nJs.js?_=65022"></script>
 
     <script>
-    /**
-     * Check if is Mobile
-     */
-    if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
-      top.location.href = contextPath + "/mobile";
-    }
-
-    // keep as top
-
-    if ( getTop() == top) {
-      // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
-      //// top.location.href = contextPath + "/tw" + location.pathname + location.search;
-    } else {
-      if (window.location !=  getTop().location) {
-        getTop().location=window.location;
-      } else {
-        // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
-        top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
-      }
-    }
-
-
-
-    var bodyScroll;
-    var minutesToLock = 0;
-    var localActivity=new Date().getTime();
-    $(function() {
-
-      //bodyScroll = new PerfectScrollbar('#twBody');
-
-      $("body").on("mousemove keyup",function(){
-        if (top.twComm) {
-          top.twComm.lastActivity = new Date().getTime();
-          localActivity = new Date().getTime();
-          if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
-            top.twComm.checkAlive();
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
         }
 
-      }).everyTime(10000, "alive", function() { //controlla lo stato ogni 10 sec.
+        // keep as top
 
-        //websocket keep-alive
-        if (top.twComm)
-          top.twComm.checkAlive();
-
-        //test autoLogoff
-        if (minutesToLock>0 && (new Date().getTime()-localActivity)>minutesToLock*60000){ //60 seconds
-          $(this).stopTime("alive");
-          muteAlertOnChange = true;
-          top.location = "/app/security/login.html?V_ID=459867563&CM=LO";
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            //// top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
         }
-      });
 
-      // http session keep alive
-      $("body").everyTime(10*60*1000, "pingServer", function() { //10 min.
-        $.get('/command.jsp');
-      });
 
-      if (typeof (top.manageFocusBlur)=="function")
-        $(window).on("focus blur",top.manageFocusBlur)
 
-    });
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/app/security/login.html?V_ID=459867563&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
 
     </script>
 
@@ -167,7 +167,7 @@
 
                                         <a class="button  textual   lreq10 lreqLabel" id="domId_362825565" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=152937319">Portfolio</a>
 
-                                        <a class="button  textual   " id="domId_1303197122" style="" href="/app/documentList.html?V_ID=1429807139">文档</a>
+                                        <a class="button  textual   " id="domId_1303197122" style="" href="/app/document/documentList?V_ID=1429807139">文档</a>
 
                                         <a class="button  textual   lreq20 lreqLabel" id="domId_648313701" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=1149695415">额外费用</a>
 
@@ -267,7 +267,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                             </td>
 
                             <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
-                                <a href="/app/resourceList.html?V_ID=732193102" class="button">
+                                <a href="/app/resource/resourceList?V_ID=732193102" class="button">
                                     资源
                                 </a>
                             </td>
@@ -275,7 +275,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                             <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
 
                                 <span>
-                                    <a class="button     hasDivomo" id="domId_888168004" style="" href="/app/toolsIntro.html?V_ID=1490400482">工具</a>
+                                    <a class="button     hasDivomo" id="domId_888168004" style="" href="/app/tools/toolsIntro?V_ID=1490400482">工具</a>
 
                                     <span id="arrowOpener_divdomo_domId_280812931" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_280812931', 'arrowOpener_divdomo_domId_280812931'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
 
@@ -287,7 +287,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                     <div class="divomoArrow"></div>
 
                                     <div>
-                                        <a class="button  textual   hasDivomo" id="domId_888168004" style="" href="/app/toolsIntro.html?V_ID=1824907664">工具</a>
+                                        <a class="button  textual   hasDivomo" id="domId_888168004" style="" href="/app/tools/toolsIntro?V_ID=1824907664">工具</a>
 
                                         <a class="button  textual   " id="domId_1601358858" style="" href="/app/board/boardList.html?V_ID=1477624237&CM=FN">讨论板</a>
 
@@ -409,110 +409,110 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
         </div>
 
         <script>
-	// unread messages managament
-	$("#messageListBox").on("hideDivOnMouseover", function () {
-		$.getJSON(contextPath + "/messaging/messageAjax", {CM: "READALL"}, function (response) {
-			jsonResponseHandling(response);
-			if (response.ok) {
-				$("#messageListOpener .notificationNumber").fadeOut().html("0");
-				$("#twChatOpener").data("totalUnreadChats", false);
-			}
-		});
-	});
+            // unread messages managament
+            $("#messageListBox").on("hideDivOnMouseover", function () {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "READALL" }, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        $("#messageListOpener .notificationNumber").fadeOut().html("0");
+                        $("#twChatOpener").data("totalUnreadChats", false);
+                    }
+                });
+            });
 
-	function followMessageLink(el) {
-		var href = el.find(".message_link a:first").attr("href");
-		if (href)
-			self.location.href = href;
-	}
+            function followMessageLink(el) {
+                var href = el.find(".message_link a:first").attr("href");
+                if (href)
+                    self.location.href = href;
+            }
 
-	function saveThisPageAsPreferred() {
-		location.href = contextPath + "/app/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
-	}
+            function saveThisPageAsPreferred() {
+                location.href = contextPath + "/app/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+            }
 
-	(function tmStartup() {
-		var counted =undefined;
-    var format = '%0h:%0m:%0s';
-		if (counted) {
-			var ndo = $("#tcMenuCounter");
-			ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
-			ndo.parent().show();
-		}
+            (function tmStartup() {
+                var counted = undefined;
+                var format = '%0h:%0m:%0s';
+                if (counted) {
+                    var ndo = $("#tcMenuCounter");
+                    ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+                    ndo.parent().show();
+                }
 
-    registerEvent("timeCounterEvent", function (e, data) {
+                registerEvent("timeCounterEvent", function (e, data) {
 
-      if (data.type == "start") {
+                    if (data.type == "start") {
 
-        if (data.response.assignment) {
+                        if (data.response.assignment) {
 
-          //faccio partire il widget se c'Ã¨
-          var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
-          if (ndoWidget) {
-            ndoWidget.addClass("highlight");
-            ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
-            ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
-          }
-
-
-          //faccio partire il counter sul menu
-          var ndoMenu = $("#tcMenuCounter");
-          ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
-          ndoMenu.parent().show();
-        }
-
-      } else if (data.type == "stop") {
-
-        //fermo il widget
-        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
-        if (ndoWidget) {
-          ndoWidget.removeClass("highlight");
-          ndoWidget.find(".timeCounter").stopTimeCounter().hide();
-          ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
-        }
-
-        //faccio fermare il counter sul menu
-        var ndoMenu = $("#tcMenuCounter");
-        ndoMenu.stopTimeCounter();
-        ndoMenu.parent().hide();
-      }
-    })
-  })();
-
-	function twChatToggle() {
-		//console.debug(top.twChat.chatWindow.is(".closed"))
-
-		if (top.twChat.chatWindow.is(".closed")) {
-			top.twChat.open();
-		} else if ($("#twChatOpener .notificationNumber").is(":visible")) {
-			top.twChat.chatWindow.addClass('showChats');
-		} else {
-			top.twChat.close();
-		}
-	}
+                            //faccio partire il widget se c'Ã¨
+                            var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+                            if (ndoWidget) {
+                                ndoWidget.addClass("highlight");
+                                ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                                ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+                            }
 
 
-	$(function () {
-		//lo stato del socket lo sa solo il client lato js -> twComm
-		if (!top.twComm || !top.twComm.isOpen)
-			getTop().$("#twChatOpener").addClass("disabled");
+                            //faccio partire il counter sul menu
+                            var ndoMenu = $("#tcMenuCounter");
+                            ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+                            ndoMenu.parent().show();
+                        }
 
-		/**
-		 * Manage chat opener state at start (chat could be open)
-		 */
-		if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
-			$("#twChatOpener").removeClass("open");
-		} else {
-			$("#twChatOpener").addClass("open");
-		}
+                    } else if (data.type == "stop") {
 
-	})
+                        //fermo il widget
+                        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+                        if (ndoWidget) {
+                            ndoWidget.removeClass("highlight");
+                            ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+                            ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+                        }
+
+                        //faccio fermare il counter sul menu
+                        var ndoMenu = $("#tcMenuCounter");
+                        ndoMenu.stopTimeCounter();
+                        ndoMenu.parent().hide();
+                    }
+                })
+            })();
+
+            function twChatToggle() {
+                //console.debug(top.twChat.chatWindow.is(".closed"))
+
+                if (top.twChat.chatWindow.is(".closed")) {
+                    top.twChat.open();
+                } else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+                    top.twChat.chatWindow.addClass('showChats');
+                } else {
+                    top.twChat.close();
+                }
+            }
+
+
+            $(function () {
+                //lo stato del socket lo sa solo il client lato js -> twComm
+                if (!top.twComm || !top.twComm.isOpen)
+                    getTop().$("#twChatOpener").addClass("disabled");
+
+                /**
+                 * Manage chat opener state at start (chat could be open)
+                 */
+                if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+                    $("#twChatOpener").removeClass("open");
+                } else {
+                    $("#twChatOpener").addClass("open");
+                }
+
+            })
         </script>
 
 
         <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
         <div id="twInnerContainer" class="null">
             <form enctype="application/x-www-form-urlencoded" method="POST"
-                  action="/app/resourceList.html" name="d523156627" id="d523156627"
+                  action="/app/resource/resourceList" name="d523156627" id="d523156627"
                   savedAction="" savedTarget=""
                   onkeyup="if (event.keyCode==13&& event.ctrlKey==false ) { dataTableRefresh('RESLST');;return false; event.preventDefault()}">
                 <input type="hidden" id="d523156627V_ID" name="V_ID" value="523156627" savedValue="">
@@ -521,22 +521,22 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
 
                 <script>
-  $("#RESOURCE_MENU").addClass('selected');
+                    $("#RESOURCE_MENU").addClass('selected');
 
-  //chiamata ogni volta che si rinfresca la tabella
-  function dataTableCallback(totalNumberOfElements){
-    if (totalNumberOfElements>0) {
-      $("#btn_print_2,#btn_print,#btn_excel").removeAttr("disabled").show();
-    }else {
-      $("#btn_print_2,#btn_print,#btn_excel").attr("disabled", true).hide();
-    }
-  }
+                    //chiamata ogni volta che si rinfresca la tabella
+                    function dataTableCallback(totalNumberOfElements) {
+                        if (totalNumberOfElements > 0) {
+                            $("#btn_print_2,#btn_print,#btn_excel").removeAttr("disabled").show();
+                        } else {
+                            $("#btn_print_2,#btn_print,#btn_excel").attr("disabled", true).hide();
+                        }
+                    }
 
 
-  //per spengere i recently viewed la prima volta se sono selezionati
-  $(function(){
-    $(".filterActiveElements #RECENTLY_USED").nextAll(".close").oneTime(2500,"hideRecently",function(){$(this).click()})
-  });
+                    //per spengere i recently viewed la prima volta se sono selezionati
+                    $(function () {
+                        $(".filterActiveElements #RECENTLY_USED").nextAll(".close").oneTime(2500, "hideRecently", function () { $(this).click() })
+                    });
 
                 </script>
                 <div class="mainColumn">
@@ -785,29 +785,29 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                                 <input type="hidden" name="FLNM" id="FLNM" value="">
                             </div>
                             <script type="text/javascript">
-  $(function(){
-    $("#d523156627").append($("#domId_1829079879 input")); //sposta gli input dentro il form
-    var bts=[];
-    var div=$("#domId_1829079879");
-    for (var i=0;i<bts.length;i++){
-      div.append(lsfCreateButton(bts[i]));
-    }
-  });
+                                $(function () {
+                                    $("#d523156627").append($("#domId_1829079879 input")); //sposta gli input dentro il form
+                                    var bts = [];
+                                    var div = $("#domId_1829079879");
+                                    for (var i = 0; i < bts.length; i++) {
+                                        div.append(lsfCreateButton(bts[i]));
+                                    }
+                                });
                             </script>
 
 
 
-                            <div class="separator"></div><a class="button  textual   " id="domId_466198914" style="" href="/app/resourceList.html?V_ID=2109486455&CM=FN&FLNM=PF_RES_MY_DEPARTMENT">我的同事</a>
+                            <div class="separator"></div><a class="button  textual   " id="domId_466198914" style="" href="/app/resource/resourceList?V_ID=2109486455&CM=FN&FLNM=PF_RES_MY_DEPARTMENT">我的同事</a>
 
-                            <a class="button  textual   " id="domId_1331320862" style="" href="/app/resourceList.html?V_ID=1065867991&CM=FN&FLNM=PF_RES_TEAMWORK_USERS">所有人员</a>
+                            <a class="button  textual   " id="domId_1331320862" style="" href="/app/resource/resourceList?V_ID=1065867991&CM=FN&FLNM=PF_RES_TEAMWORK_USERS">所有人员</a>
 
-                            <a class="button  textual   " id="domId_1882225110" style="" href="/app/resourceList.html?V_ID=1625490021&CM=FN&FLNM=PF_RES_COMPANIES">组织</a>
+                            <a class="button  textual   " id="domId_1882225110" style="" href="/app/resource/resourceList?V_ID=1625490021&CM=FN&FLNM=PF_RES_COMPANIES">组织</a>
 
-                            <a class="button  textual   " id="domId_1471309460" style="" href="/app/resourceList.html?V_ID=91303116&CM=FN&FLNM=PF_RES_PEOPLE">人员</a>
+                            <a class="button  textual   " id="domId_1471309460" style="" href="/app/resource/resourceList?V_ID=91303116&CM=FN&FLNM=PF_RES_PEOPLE">人员</a>
 
-                            <a class="button  textual   " id="domId_1228146654" style="" href="/app/resourceList.html?V_ID=821606828&CM=FN&FLNM=PF_LAST_MODIFIED">最近修改过的</a>
+                            <a class="button  textual   " id="domId_1228146654" style="" href="/app/resource/resourceList?V_ID=821606828&CM=FN&FLNM=PF_LAST_MODIFIED">最近修改过的</a>
 
-                            <a class="button  textual  focused " id="domId_426107986" style="" href="/app/resourceList.html?V_ID=2122957767&CM=FN&FLNM=PF_RECENTLY_USED">最近浏览过的</a>
+                            <a class="button  textual  focused " id="domId_426107986" style="" href="/app/resource/resourceList?V_ID=2122957767&CM=FN&FLNM=PF_RECENTLY_USED">最近浏览过的</a>
 
                         </div>
 
@@ -842,16 +842,16 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                 <script>
 
-  function delRow(el) {
-    var resRow = $(el).closest("[resId]");
-    var resId = resRow.attr("resId");
-    deletePreview("RES_DEL", resId, function (response) {  // callback function
-      if (response && response.ok) {
-        resRow.fadeOut(500, function () {$(this).remove();});
-      }
-    });
+                    function delRow(el) {
+                        var resRow = $(el).closest("[resId]");
+                        var resId = resRow.attr("resId");
+                        deletePreview("RES_DEL", resId, function (response) {  // callback function
+                            if (response && response.ok) {
+                                resRow.fadeOut(500, function () { $(this).remove(); });
+                            }
+                        });
 
-  }
+                    }
 
                 </script>
 
@@ -870,108 +870,108 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
 
         <script>
-    var __sns =[];
-    $(function () {
-      $("body").oneTime(500, function () {
-        manageStickyNotes(__sns);
-      });
+            var __sns = [];
+            $(function () {
+                $("body").oneTime(500, function () {
+                    manageStickyNotes(__sns);
+                });
 
-      //event da webSocket
-      $("body").on("ws-stickySaved.twScreen", function (e, data) {
-        //console.debug("ws-stickySaved.twScreen",data);
-        if (data && data.stickyId)
-          twSrc_drawSticky(data.stickyId);
-      }).on("ws-logSaved.twScreen", function (e, data) {
-        //console.debug("ws-logSaved twScreen",data);
-        if (data && data.messageId) {
-          $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
-        }
-      }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
-        //console.debug("ws-updateGlobalCounter.twScreen", data);
-        if (data) {
-          $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
-          $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
-
-
-          if (data.totalUnreadChats) {
-            //top.twChat.chatWindow.addClass("hasUnreadChats");
-            $("#twChatOpener .notificationNumber").show();
-          } else {
-            //top.twChat.chatWindow.removeClass("hasUnreadChats");
-            $("#twChatOpener .notificationNumber").hide();
-          }
-          // add total unread chats to the top page title
-          top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
-          top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
-        }
-      }).on("ws-socketClosed.twScreen", function (e, data) {
-          //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
-        }
-      );
+                //event da webSocket
+                $("body").on("ws-stickySaved.twScreen", function (e, data) {
+                    //console.debug("ws-stickySaved.twScreen",data);
+                    if (data && data.stickyId)
+                        twSrc_drawSticky(data.stickyId);
+                }).on("ws-logSaved.twScreen", function (e, data) {
+                    //console.debug("ws-logSaved twScreen",data);
+                    if (data && data.messageId) {
+                        $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+                    }
+                }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+                    //console.debug("ws-updateGlobalCounter.twScreen", data);
+                    if (data) {
+                        $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+                        $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
 
 
-      //gestione chiusura tutti dopo 2
-      var firstClosed = false;
-      var doNotAskAgain = false;
-      $("body").on("containerHidden", ".container.sticky", function (e) {
-        if (firstClosed && !doNotAskAgain) {
-          var firstStick = $(this);
-          var sticks = $(".container.sticky");
-          if (sticks.size() > 2) {
-            doNotAskAgain = true;
-            if (confirm("全部关闭？")) {
-              sticks.each(function () {
-                var stick = $(this);
-                if (stick.attr("status") != "ICONIZED")
-                  if (stick.prop("id") != firstStick.prop("id"))
-                    $(this).trigger("hide");
-              });
+                        if (data.totalUnreadChats) {
+                            //top.twChat.chatWindow.addClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").show();
+                        } else {
+                            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").hide();
+                        }
+                        // add total unread chats to the top page title
+                        top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+                        top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+                    }
+                }).on("ws-socketClosed.twScreen", function (e, data) {
+                    //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+                }
+                );
+
+
+                //gestione chiusura tutti dopo 2
+                var firstClosed = false;
+                var doNotAskAgain = false;
+                $("body").on("containerHidden", ".container.sticky", function (e) {
+                    if (firstClosed && !doNotAskAgain) {
+                        var firstStick = $(this);
+                        var sticks = $(".container.sticky");
+                        if (sticks.size() > 2) {
+                            doNotAskAgain = true;
+                            if (confirm("全部关闭？")) {
+                                sticks.each(function () {
+                                    var stick = $(this);
+                                    if (stick.attr("status") != "ICONIZED")
+                                        if (stick.prop("id") != firstStick.prop("id"))
+                                            $(this).trigger("hide");
+                                });
+                            }
+                        }
+                        firstClosed = false;
+
+                    } else {
+                        firstClosed = true;
+                    }
+
+                });
+
+            });
+
+
+            function manageStickyNotes(sns) {
+                //console.debug("manageStickyNotes",sns);
+                if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+                    var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+                    var d = $("<div>").append(message + "<br>");
+                    var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+                    var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+                    d.append(closeAll).append(drawAll);
+                    showFeedbackMessage("INFO", d.html(), "");
+                } else {
+                    twSrc_drawAllSticky(sns)
+                }
             }
-          }
-          firstClosed = false;
-
-        } else {
-          firstClosed = true;
-        }
-
-      });
-
-    });
 
 
-    function manageStickyNotes(sns) {
-      //console.debug("manageStickyNotes",sns);
-      if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
-        var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
-        var d = $("<div>").append(message + "<br>");
-        var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
-        var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
-        d.append(closeAll).append(drawAll);
-        showFeedbackMessage("INFO", d.html(), "");
-      } else {
-        twSrc_drawAllSticky(sns)
-      }
-    }
+            function twSrc_drawAllSticky(sns) {
+                for (var i = 0; i < sns.length; i++) {
+                    twSrc_drawSticky(sns[i]);
+                }
+            }
+            function twSrc_drawSticky(stickyId) {
+                $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", { CM: "DRW", sid: stickyId }, function (response) {
+                    $("#STKN_" + stickyId).remove();
+                    $("body").append(response);
+                })
+            }
 
 
-    function twSrc_drawAllSticky(sns) {
-      for (var i = 0; i < sns.length; i++) {
-        twSrc_drawSticky(sns[i]);
-      }
-    }
-    function twSrc_drawSticky(stickyId) {
-      $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", {CM: "DRW", sid: stickyId}, function (response) {
-        $("#STKN_" + stickyId).remove();
-        $("body").append(response);
-      })
-    }
-
-
-    function closeAllSticky() {
-      $.getJSON(contextPath + "/messaging/messageAjax", {CM: "REMOVEEALLSTK"}, function (response) {
-        twSrc_drawAllSticky(__sns);//disegna i rimanenti
-      });
-    }
+            function closeAllSticky() {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "REMOVEEALLSTK" }, function (response) {
+                    twSrc_drawAllSticky(__sns);//disegna i rimanenti
+                });
+            }
         </script>
     </div>
     <div id="_errorTemplates" style="display:none;">
@@ -993,55 +993,55 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
     </div>
 
     <script>
-  $(function() {
-    if (false) {
-      window.focus();
-    }
+        $(function () {
+            if (false) {
+                window.focus();
+            }
 
 
-    $("#_errorTemplates").loadTemplates().remove();
-    var _messagesFromController =[];
-    if (_messagesFromController.length > 0) {
-      for (var i=0;i<_messagesFromController.length;i++) {
-        showFeedbackMessage(_messagesFromController[i]);
-      }
-    }
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
 
 
-    if (1)
-      $("#NAME_SURNAME").focus();
+            if (1)
+                $("#NAME_SURNAME").focus();
 
 
-    showUpgradeMessage();
+            showUpgradeMessage();
 
 
-    // EX liveQuery:  si inizializzano i fields
-    $("body").initFields()
-  });
-
-
-  function showUpgradeMessage() {
-    var levpg = $(".lreqPage:first");
-    if (levpg.size() > 0) {
-
-      var lv =30;
-      var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
-      if (lv > 0 && reqLev > lv) {
-        var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
-
-        var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
-        var inn = $("<div>").addClass("bwinPopupd").css({"max-width": "360px", "min-height": "200px", top: "20%"}).click(function () {
-          location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
         });
-        inn.append($("<h2>").html('Do you need more?'));
-        inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
-        //inn.append("<br><br>");
-        inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
-        wrp.append(inn)
-        levpg.after(wrp)
-      }
-    }
-  }
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
 
 
 

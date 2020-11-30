@@ -1,0 +1,1014 @@
+﻿
+@{
+    ViewBag.Title = "TaskAssignmentList";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/app/task/taskAssignmentList" name="d464476821" id="d464476821"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d464476821V_ID" name="V_ID" value="464476821" savedValue="">
+        <input type="hidden" id="d464476821CM" name="CM" value="FN" savedValue="">
+        <input type="hidden" id="d464476821TASK_ID" name="TASK_ID" value="53595" savedValue="">
+
+
+
+        <div class="mainColumn">
+
+
+
+            <div class="pathToObject">
+                <a class="button  textual   " id="domId_487552533" style="" href="/app/task/taskList?V_ID=1684635573">任务列表 /</a>
+
+
+                <div class="currentNode">
+                    <span class="teamworkIcon" style="color:#3BBF67;font-size:22px;" title="进行中">&copy;</span>
+
+                    <a class="button  textual   objectName" id="domId_1245673363" style="" href="/app/task/taskOverview??V_ID=1971131041&CM=ED&TASK_ID=53595">第一个项目</a>
+
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_13625801', 'domId_1887210513');  ">
+                        <button type="button" class="button noprint textual icon  " id="domId_1887210513" style="" onclick=";return false; "><span class='teamworkIcon '>&ugrave;</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_13625801" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <a class="button  textual   " id="domId_1375570825" style="" href="/app/task/taskAssignmentList?V_ID=644306254&TASK_ID=53682">第一个子任务</a>
+
+                            <a class="button  textual   " id="domId_1557395820" style="" href="/app/task/taskAssignmentList?V_ID=1155279753&TASK_ID=53683">第二个子任务</a>
+
+                            <a class="button  textual   " id="domId_1620857104" style="" href="/app/task/taskAssignmentList?V_ID=850840376&TASK_ID=53684">第三个子任务</a>
+
+                            <a class="button  textual   " id="domId_915284733" style="" href="/app/task/taskAssignmentList?V_ID=261863957&TASK_ID=53685">第四个子任务</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="pathCodeWrapper">
+
+                <span class='pathCode' title='参考代码'>T#T53595#</span>
+                &nbsp;
+                <span class='pathCode'>
+                    开始日期 <b class="" title="">2020-11-9</b>&nbsp;&nbsp;&nbsp;
+                    结束日期 <b class="" title="">2020-11-30</b>&nbsp;&nbsp;&nbsp;
+                    (天: <b>16</b>)
+                </span>
+
+            </div>
+            <script>
+                $(function () {
+                    $("#TASK_MENU").addClass('selected');
+                });
+            </script>
+            <style>
+                .tabTaskColoured { position: relative; padding-left: 7px; }
+
+                    .tabTaskColoured:after { background-color: #bc4cff !important; position: absolute; width: 12px; left: 3px; content: ""; bottom: 3px; top: 3px; padding: 0; border-radius: 4px 0 0 0; }
+            </style>
+
+            <div class="tabSetBox" style="">
+                <input type=hidden name="TASK_TABSET" id="TASK_TABSET" size=20 class="formElements" autocomplete='off' maxlength=255 value="TASK_ASSIGNMENT_TAB">
+                <div class="tabSetHeader noprint">
+                    <div class="tabSetPre"></div>
+                    <div class="tabSetTabs" id="TABSETTABS_TASK_TABSET">
+                        <div id="TASK_GENERAL_TAB" tabset="TASK_TABSET" class=" tabTaskColoured tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="btn_taskGeneralData" style="" href="/app/task/taskOverview?V_ID=832643494&CM=ED&OBJID=53595">项目数据</a>
+
+
+                        </div>
+
+                        <div id="TASK_GANTT_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="btnGantt" style="" href="/app/task/gantt/gantt?V_ID=1100709305&CM=GANTT&OBJID=53595">甘特图</a>
+
+
+                        </div>
+
+                        <div id="TASK_ASSIGNMENT_TAB" tabset="TASK_TABSET" class="tabSelected tab" style="cursor:pointer;">
+                            <a class="button  textual  focused " id="domId_829068452" style="" href="/app/task/taskAssignmentList?V_ID=790921996&CM=FN&TASK_ID=53595">责任人 (5)</a>
+
+
+                        </div>
+
+                        <div id="TASK_COST_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="btnCosts" style="" href="/app/task/TaskCostList?V_ID=2034994541&OBJID=53595">费用</a>
+
+
+                        </div>
+
+                        <div id="TASK_ISSUES_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_1897022378" style="" href="/app/task/taskIssueList?V_ID=1732069749&OBJID=53595">问题  (1/1)</a>
+
+
+                        </div>
+
+                        <div id="TASK_DOCS_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_337961022" style="" href="/app/task/taskDocumentList?V_ID=1488526420&CM=LIST_DOCS&TASK_ID=53595">文档 (1)</a>
+
+
+                        </div>
+
+                        <div id="TASK_TLOG_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_671054163" style="" href="/app/task/taskForumList??V_ID=1888638196&TASK_ID=53595">讨论(0)</a>
+
+
+                        </div>
+
+                    </div>
+                    <div class="tabSetPost"></div>
+                </div>
+                <div class="tabContainer clearfix" id="TABSETPART_TASK_TABSET">
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="" style="min-height: 360px">
+                <div>
+                    <div class="listPagedisplayOptions">
+                        <input type=hidden name="ASS_SHOW_CHILDREN" id="ASS_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_ASS_SHOW_CHILDREN" name="ck_ASS_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d464476821CM').value='FN';try {obj('d464476821').submit();} catch(e){};">
+                        &nbsp;<label for="ck_ASS_SHOW_CHILDREN">显示子任务</label>&nbsp;<input type=hidden name="ASS_SHOW_DISABLED" id="ASS_SHOW_DISABLED" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_ASS_SHOW_DISABLED" name="ck_ASS_SHOW_DISABLED" value="yes"
+                                                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d464476821CM').value='FN';try {obj('d464476821').submit();} catch(e){};">
+                        &nbsp;<label for="ck_ASS_SHOW_DISABLED">显示隐藏的任务</label>&nbsp;<span class="lreq20 lreqLabel">
+                            <input type=hidden name="ASS_SHOW_WORKLOAD" id="ASS_SHOW_WORKLOAD" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_ASS_SHOW_WORKLOAD" name="ck_ASS_SHOW_WORKLOAD" value="yes"
+                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d464476821CM').value='FN';try {obj('d464476821').submit();} catch(e){};">
+                            &nbsp;<label for="ck_ASS_SHOW_WORKLOAD">显示工作量</label>&nbsp;
+                        </span>
+                        <script>
+                            $(document).ready(function () {
+                                $("#multi tr[assId] :text").bind("blur", function () { updateValue($(this)) });
+                                refreshTotals();
+
+                                //bind for worklogSaved event
+                                $("body").on("worklogSaved", function (ev, data) {
+                                    worklogSaved(data);
+                                });
+
+                            });
+
+                            function deletePreviewAssig(assId) {
+                                deletePreview("ASS_DEL", assId, function (response) {  // callback function
+                                    if (response && response.ok) {
+                                        $("tr[assId=" + assId + "]").fadeOut(500, function () { $(this).remove(); });
+                                        refreshTotals();
+                                    }
+                                });
+                            }
+
+                            function updateValue(theField) {
+                                //save only if something is changed
+                                //console.debug("updateValue",theField.validateField())
+                                if (theField.isValueChanged() && theField.validateField()) {
+                                    showSavingMessage();
+                                    var assId = theField.parents("tr[assId]:first").attr("assId");
+                                    var data = {
+                                        CM: "UPDATEASSIGROW",
+                                        assId: assId,
+                                        fld: theField.prop("name"),
+                                        val: theField.val()
+                                    };
+                                    $.getJSON(contextPath + "/applications/teamwork/task/taskAjaxController.jsp", data, function (response) {
+                                        jsonResponseHandling(response);
+                                        if (response.ok) {
+                                            theField.updateOldValue();
+                                            refreshTotals();
+                                        }
+                                        hideSavingMessage();
+                                    });
+                                }
+                            }
+
+                            function refreshTotals() {
+                                var estWlg = computeFieldTotal("#multi .estWlg");
+                                $("#tot_estWlg").text(getMillisInHoursMinutes(estWlg));
+                                $("#tot_estWlgD").text(getMillisInDaysHoursMinutes(estWlg));
+
+                                var estIss = computeTdTotal("#multi .estIss");
+                                $("#tot_estIss").text(getMillisInHoursMinutes(estIss));
+                                $("#tot_estIssD").text(getMillisInDaysHoursMinutes(estIss));
+
+                                var wlg = computeTdTotal("#multi .wlg");
+                                $("#tot_wlg").text(getMillisInHoursMinutes(wlg));
+                                $("#tot_wlgD").text(getMillisInDaysHoursMinutes(wlg));
+
+
+                                var pl = computeTdTotal("#multi .futPlan");
+                                $("#tot_plan").text(getMillisInHoursMinutes(pl));
+                                $("#tot_planD").text(getMillisInDaysHoursMinutes(pl));
+
+                            }
+
+
+                            function computeFieldTotal(filter) {
+                                var tot = 0;
+                                $(filter).each(function () {
+                                    var el = $(this);
+                                    tot += millisFromString(el.val(), true);
+                                });
+                                return tot;
+                            }
+
+                            function computeTdTotal(filter) {
+                                var tot = 0;
+                                $(filter).each(function (id, el) {
+                                    var txt = $(el).text().trim();
+                                    tot += millisFromString(txt, true);
+                                });
+                                return tot;
+                            }
+
+                            function worklogSaved(response) {
+                                //update wl in the cell
+                                $("#multi tr[assId=" + response.worklog.assId + "] .wlg").text(getMillisInHoursMinutes(response.worklog.totalWl));
+
+                                // update totals
+                                var wlgc = computeTdTotal("#multi .wlg");
+                                $("#tot_wlg").text(getMillisInHoursMinutes(wlgc));
+                                $("#tot_wlgD").text(getMillisInDaysHoursMinutes(wlgc));
+                            }
+
+
+                            function enabDisabAssig(assId) {
+                                showSavingMessage();
+                                var row = $("#multi tr[assid=" + assId + "]");
+                                var data = {
+                                    CM: "ENABDISABASS",
+                                    assId: assId,
+                                    enable: row.is(".assDisabled") ? "yes" : "no"
+                                };
+                                $.getJSON(contextPath + "/applications/teamwork/task/taskAjaxController.jsp", data, function (response) {
+                                    jsonResponseHandling(response);
+                                    if (response.ok) {
+                                        row.toggleClass("assDisabled")
+                                    }
+                                    hideSavingMessage();
+                                });
+                            }
+
+
+                            function updateResourceLoad(el) {
+                                var row = el.closest("tr");
+                                computeResourceLoad(el, { startMillis: parseInt(row.attr("startMillis")), endMillis: parseInt(row.attr("endMillis")) }, row.attr("resId")); // 20/9/16 R&S eliminati i parametri currentWorkload,assId dato che qui tutto Ã¨ giÃ  salvato su db , millisFromString(row.find("[data-workload]").val()),row.attr("assId"));
+                            }
+
+                        </script>
+
+
+
+
+                        <script type="text/javascript">
+                            function manageSplitBox(assId) {
+
+                                if (getBlackPopup().size() > 0) {
+                                    closeBlackPopup();
+                                } else {
+
+                                    var ndo = createModalPopup(600, 400);
+                                    var icche = $(".splitBox").clone();
+
+                                    //get assig data
+                                    var theTr = $("tr[assId=" + assId + "]");
+                                    var estim = millisFromString(theTr.find(".estWlg").val(), true);
+                                    var done = millisFromString(theTr.find(".wlg").text(), true);
+                                    var newEstim = estim - done;
+
+                                    icche.find(".splitAssigName").append(theTr.find("h2 span:first").clone());
+
+                                    //set proposed value
+                                    icche.find("#hoursSplitted").val(newEstim > 0 ? getMillisInHoursMinutes(newEstim) : "");
+
+                                    ndo.append(icche);
+                                    icche.show();
+                                    icche.data("assId", theTr.attr("assId"));
+
+                                }
+                            }
+
+                            function splitAssignment(el) {
+
+                                var icche = el.closest(".splitBox");
+                                var assId = icche.data("assId");
+
+                                var splitResource = icche.find("[name=splitResource]");
+                                var hours = icche.find("[name=hoursSplitted]");
+                                if (splitResource.isFullfilled() && hours.isFullfilled()) {
+
+                                    var req = {
+                                        CM: "SPLITASS",
+                                        fromAss: assId,
+                                        toRes: splitResource.val(),
+                                        hours: hours.val()
+                                    };
+
+                                    showSavingMessage();
+                                    $.getJSON(contextPath + '/applications/teamwork/task/taskAjaxController.jsp', req, function (response) {
+                                        jsonResponseHandling(response);
+                                        if (response.ok) {
+                                            window.location.reload(); // this works fine because AssignmentController call response.sendRedirect instead of pagestate.redirect so the url is complete
+                                            var taskField = $("[name=TASK_ID]");
+                                            if (taskField.size() > 0) {
+                                                window.location.href = "taskAssignmentList.jsp?TASK_ID=" + taskField.val();
+                                            } else {
+                                                window.location.href = "resourceAssignments.jsp?CM=ED&OBJ_ID=" + $("[name=OBJID]").val();
+                                            }
+                                        }
+                                        hideSavingMessage();
+                                    });
+
+                                }
+
+                            }
+
+                        </script>
+
+                        <div class="splitBox" style="display:none;padding:15px;">
+
+                            <h2>除分配 <span class="splitAssigName"></span> </h2>
+                            <label for="splitResource_txt" class="required">责任人*</label><br><input type=text name="splitResource_txt" id="splitResource_txt" size=40 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="splitResource" id="splitResource" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" required="true" oldValue='1'>
+                            <label for="hoursSplitted" class="required">小时，要分配的资源*</label><br><input type=text name="hoursSplitted" id="hoursSplitted" size=7 class="formElements validated durationmillis" autocomplete='off' maxlength=255 value="" required="true" oldValue='1' entryType="DURATIONMILLIS"><div class="noprint buttonArea" id="domId_946045123" style="text-align:left;">
+                                <div class="bbButtons">
+                                    <button type="button" class="button noprint    first" id="domId_211459873" style="" onclick="splitAssignment($(this));return false; ">执行</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table dataTable fixHead fixFoot" id="multi" border="0" cellpadding="0" cellspacing="2">
+
+                    <thead class="dataTableHead" style="">
+                        <tr>
+                            <th width="40" class="tableHead"></th>
+                            <th colspan="2" class="tableHead" id="assResNameHead"><span class="tableHeadEl">名称</span> </th>
+                            <th class="tableHead"><span class="tableHeadEl">角色</span></th>
+                            <th width="40" class="tableHead lreq20 lreqLabel"><span class="tableHeadEl">优先</span></th>
+                            <th class="tableHead fixedWidthAlignRight" colspan="1"><span class="tableHeadEl">预估计划工期</span></th>
+                            <th class="tableHead fixedWidthAlignRight"><span class="tableHeadEl">预估问题工期</span></th>
+                            <th class="tableHead fixedWidthAlignRight"><span class="tableHeadEl">已完成工时</span></th>
+                            <th class="tableHead fixedWidthAlignRight" width="1%"></th>
+                            <th class="tableHead fixedWidthAlignRight lreq30 lreqLabel" nowrap><span class="tableHeadEl">计划</span></th>
+                            <th class="tableHead fixedWidthAlignRight"><span class="tableHeadEl">工时费</span></th>
+                        </tr>
+                    </thead>
+                    <tr class="alternate " assId="28286" resId="15163" startMillis="1604880000000" endMillis="1606780799000">
+                        <td style="width:40px;overflow: hidden" nowrap>
+                            <span class="button buttonImg  " id="domId_107483377" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1224346717&CM=ED&OBJID=28286&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d1444693998" title=" 第一个员工 (SH)" alt=" 第一个员工 (SH)" id="d1444693998" " resId="15163" class="face "></span>
+
+
+                        </td>
+                        <td class="columnAssigName" title="T53595 - 第一个项目:  第一个员工 [SH]">
+                            <a class="button  textual   bolder" id="domId_406967065" style="" href="/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1239562276&CM=ED&OBJID=28286&TASK_ID=53595">第一个员工 </a>
+
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_108982564', 'domId_584313185');  ">
+                                <button type="button" class="button noprint textual icon  arrowSmall" id="domId_584313185" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_108982564" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_890628161" style="" onclick="openBlackPopup('/applications/teamwork/task/financial/taskAssignmentCosts.jsp?V_ID=2013885904&OBJID=28286','1180px','768px');return false; ">成本</button>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_826482337" style="" onclick="manageSplitBox('28286');return false; ">除分配</button>
+
+                                    <hr><a class="button  textual   " id="domId_764409163" style="" title="编辑" href="/app/resource/resourceEditor.html?V_ID=24789844&CM=ED&OBJID=15163">编辑 &quot; 第一个员工&quot;</a>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_1154034157" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1177626187&CM=AD&POP=yes&receiver=15163','600px','600px');return false; ">发送消息</button>
+
+                                    <a class="button  textual   " id="domId_1927260642" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=532949909&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15163">工作负荷</a>
+
+                                    <a class="button  textual   lreq30 lreqLabel" id="domId_973762393" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=474511697&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15163">计划</a>
+
+                                    <button type="button" class="button noprint textual   " id="domId_51665364" style="" onclick="enabDisabAssig(28286);return false; ">显示 / 隐藏</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_756379360" style="" onclick="deletePreviewAssig(28286);return false; ">删除分工</button>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class='textSmall columnTaskCode'>
+                        </td>
+                        <td class="textSmall assRole">Customer&nbsp;(梦想飞扬)</td>
+                        <td align="left" class="lreq20" nowrap>
+                            <div class="status">
+
+
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "30", "color": "#a0a0a0", "value": "低", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "50", "color": "#FFAE00", "value": "中", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "70", "color": "#e50000", "value": "高", "enabled": true, "textColor": "#FFFFFF", "index": 3 }] };
+
+
+                                        var callback = function (hidden, data) {
+                                            updateValue(hidden);
+                                        };
+                                        cvd.callback = callback;
+
+                                        _colorValueData["ASSSIGPRIO"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ASSSIGPRIO" displayValue='true'>
+                                    <input type=hidden name="ASSPRIO_28286" id="ASSPRIO_28286" size=2 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="低" code="30"
+                                                 style=" color:#FFFFFF;background-color:#a0a0a0"><span class="cvcDescription">低</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="ESTIMATE_WORKLOG28286" id="ESTIMATE_WORKLOG28286" size=7 class="formElements estWlg validated durationmillis" autocomplete='off' maxlength=255 style="text-align:right;" value="0:00" oldValue='1' entryType="DURATIONMILLIS"></td>
+                        <td class="fixedWidthAlignRight estIss">
+                            <a class="button  textual   " id="domId_1375884352" style="" href="/app/issue/issuelist?V_ID=865164400&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_ASSIGNED_TO=15163&FLT_ISSUE_ESTIMATED=%3E0">0:00</a>
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight">
+                            <button type="button" class="button noprint textual   " id="domId_1194450883" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=206296963&CM=FN&ASS_ID=28286','1180px','768px');return false; "><span class="wlg"></span></button>
+
+
+
+                        </td>
+                        <td>
+                        </td>
+
+                        <td class="fixedWidthAlignRight futPlan lreq30">
+                            <a class="button  textual   " id="domId_458858425" style="" title="工作人员的任命" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1654137432&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15163">0:00</a>
+
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="HOURLY_COST28286" id="HOURLY_COST28286" size=7 class="formElements validated currency" autocomplete='off' maxlength=255 style="text-align:right;" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    </tr>
+                    <tr class="alternate " assId="28287" resId="15164" startMillis="1604880000000" endMillis="1606780799000">
+                        <td style="width:40px;overflow: hidden" nowrap>
+                            <span class="button buttonImg  " id="domId_1509835907" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1993532067&CM=ED&OBJID=28287&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d1430033518" title=" 第二个员工 (SH)" alt=" 第二个员工 (SH)" id="d1430033518" " resId="15164" class="face "></span>
+
+
+                        </td>
+                        <td class="columnAssigName" title="T53595 - 第一个项目:  第二个员工 [SH]">
+                            <a class="button  textual   bolder" id="domId_253589575" style="" href="/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1700088858&CM=ED&OBJID=28287&TASK_ID=53595">第二个员工 </a>
+
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_60476226', 'domId_1123513071');  ">
+                                <button type="button" class="button noprint textual icon  arrowSmall" id="domId_1123513071" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_60476226" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_7057151" style="" onclick="openBlackPopup('/applications/teamwork/task/financial/taskAssignmentCosts.jsp?V_ID=664165351&OBJID=28287','1180px','768px');return false; ">成本</button>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_497936272" style="" onclick="manageSplitBox('28287');return false; ">除分配</button>
+
+                                    <hr><a class="button  textual   " id="domId_71151145" style="" title="编辑" href="/app/resource/resourceEditor.html?V_ID=1751298628&CM=ED&OBJID=15164">编辑 &quot; 第二个员工&quot;</a>
+
+                                    <hr><a class="button  textual   " id="domId_1836386283" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=1944077663&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15164">工作负荷</a>
+
+                                    <a class="button  textual   lreq30 lreqLabel" id="domId_509283697" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1652608362&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15164">计划</a>
+
+                                    <button type="button" class="button noprint textual   " id="domId_1808762184" style="" onclick="enabDisabAssig(28287);return false; ">显示 / 隐藏</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_87519556" style="" onclick="deletePreviewAssig(28287);return false; ">删除分工</button>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class='textSmall columnTaskCode'>
+                        </td>
+                        <td class="textSmall assRole">Customer&nbsp;(梦想飞扬)</td>
+                        <td align="left" class="lreq20" nowrap>
+                            <div class="status">
+
+
+
+                                <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ASSSIGPRIO" displayValue='true'>
+                                    <input type=hidden name="ASSPRIO_28287" id="ASSPRIO_28287" size=2 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="低" code="30"
+                                                 style=" color:#FFFFFF;background-color:#a0a0a0"><span class="cvcDescription">低</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="ESTIMATE_WORKLOG28287" id="ESTIMATE_WORKLOG28287" size=7 class="formElements estWlg validated durationmillis" autocomplete='off' maxlength=255 style="text-align:right;" value="0:00" oldValue='1' entryType="DURATIONMILLIS"></td>
+                        <td class="fixedWidthAlignRight estIss">
+                            <a class="button  textual   " id="domId_1844057790" style="" href="/app/issue/issuelist?V_ID=1942990256&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_ASSIGNED_TO=15164&FLT_ISSUE_ESTIMATED=%3E0">0:00</a>
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight">
+                            <button type="button" class="button noprint textual   " id="domId_1412967664" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=1200896310&CM=FN&ASS_ID=28287','1180px','768px');return false; "><span class="wlg"></span></button>
+
+
+
+                        </td>
+                        <td>
+                        </td>
+
+                        <td class="fixedWidthAlignRight futPlan lreq30">
+                            <a class="button  textual   " id="domId_873360322" style="" title="工作人员的任命" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1543082687&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15164">0:00</a>
+
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="HOURLY_COST28287" id="HOURLY_COST28287" size=7 class="formElements validated currency" autocomplete='off' maxlength=255 style="text-align:right;" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    </tr>
+                    <tr class="alternate " assId="28285" resId="15189" startMillis="1604880000000" endMillis="1606780799000">
+                        <td style="width:40px;overflow: hidden" nowrap>
+                            <span class="button buttonImg  " id="domId_979079288" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=911324223&CM=ED&OBJID=28285&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d2062241531" title="Zhang Fei (PM)" alt="Zhang Fei (PM)" id="d2062241531" " resId="15189" class="face "></span>
+
+
+                        </td>
+                        <td class="columnAssigName" title="T53595 - 第一个项目: Zhang Fei [PM]">
+                            <a class="button  textual   bolder" id="domId_772845557" style="" href="/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=309352128&CM=ED&OBJID=28285&TASK_ID=53595">Fei Zhang</a>
+
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1448481254', 'domId_223305909');  ">
+                                <button type="button" class="button noprint textual icon  arrowSmall" id="domId_223305909" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_1448481254" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_682899306" style="" onclick="openBlackPopup('/applications/teamwork/task/financial/taskAssignmentCosts.jsp?V_ID=749813586&OBJID=28285','1180px','768px');return false; ">成本</button>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_1336026374" style="" onclick="manageSplitBox('28285');return false; ">除分配</button>
+
+                                    <hr><a class="button  textual   " id="domId_506254786" style="" title="编辑" href="/app/resource/resourceEditor.html?V_ID=2063992491&CM=ED&OBJID=15189">编辑 &quot;Zhang Fei&quot;</a>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_1690782516" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=293978888&CM=AD&POP=yes&receiver=15189','600px','600px');return false; ">发送消息</button>
+
+                                    <a class="button  textual   " id="domId_1478129308" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=21998730&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15189">工作负荷</a>
+
+                                    <a class="button  textual   lreq30 lreqLabel" id="domId_828451060" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=614521162&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15189">计划</a>
+
+                                    <button type="button" class="button noprint textual   " id="domId_1640481919" style="" onclick="enabDisabAssig(28285);return false; ">显示 / 隐藏</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_37068800" style="" onclick="deletePreviewAssig(28285);return false; ">删除分工</button>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class='textSmall columnTaskCode'>
+                        </td>
+                        <td class="textSmall assRole">Project manager&nbsp;(梦想飞扬)</td>
+                        <td align="left" class="lreq20" nowrap>
+                            <div class="status">
+
+
+
+                                <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ASSSIGPRIO" displayValue='true'>
+                                    <input type=hidden name="ASSPRIO_28285" id="ASSPRIO_28285" size=2 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="低" code="30"
+                                                 style=" color:#FFFFFF;background-color:#a0a0a0"><span class="cvcDescription">低</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="ESTIMATE_WORKLOG28285" id="ESTIMATE_WORKLOG28285" size=7 class="formElements estWlg validated durationmillis" autocomplete='off' maxlength=255 style="text-align:right;" value="0:00" oldValue='1' entryType="DURATIONMILLIS"></td>
+                        <td class="fixedWidthAlignRight estIss">
+                            <a class="button  textual   " id="domId_687084720" style="" href="/app/issue/issuelist?V_ID=721053492&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_ASSIGNED_TO=15189&FLT_ISSUE_ESTIMATED=%3E0">0:00</a>
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight">
+                            <button type="button" class="button noprint textual   " id="domId_1010576201" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=495820023&CM=FN&ASS_ID=28285','1180px','768px');return false; "><span class="wlg"></span></button>
+
+
+
+                        </td>
+                        <td>
+                        </td>
+
+                        <td class="fixedWidthAlignRight futPlan lreq30">
+                            <a class="button  textual   " id="domId_306046084" style="" title="工作人员的任命" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=350722216&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15189">0:00</a>
+
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="HOURLY_COST28285" id="HOURLY_COST28285" size=7 class="formElements validated currency" autocomplete='off' maxlength=255 style="text-align:right;" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    </tr>
+                    <tr class="alternate " assId="28252" resId="15089" startMillis="1604880000000" endMillis="1606780799000">
+                        <td style="width:40px;overflow: hidden" nowrap>
+                            <span class="button buttonImg  " id="domId_1171043856" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=91364155&CM=ED&OBJID=28252&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1367698998" title="Dream Wing (PM)" alt="Dream Wing (PM)" id="d1367698998" " resId="15089" class="face active"></span>
+
+
+                        </td>
+                        <td class="columnAssigName" title="T53595 - 第一个项目: Dream Wing [PM]">
+                            <a class="button  textual   bolder" id="domId_106545480" style="" href="/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1666129388&CM=ED&OBJID=28252&TASK_ID=53595">Wing Dream</a>
+
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_983219434', 'domId_1597350883');  ">
+                                <button type="button" class="button noprint textual icon  arrowSmall" id="domId_1597350883" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_983219434" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_1305102743" style="" onclick="openBlackPopup('/applications/teamwork/task/financial/taskAssignmentCosts.jsp?V_ID=82363573&OBJID=28252','1180px','768px');return false; ">成本</button>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_463831143" style="" onclick="manageSplitBox('28252');return false; ">除分配</button>
+
+                                    <hr><a class="button  textual   " id="domId_244381791" style="" title="编辑" href="/app/resource/resourceEditor.html?V_ID=762330273&CM=ED&OBJID=15089">编辑 &quot;Dream Wing&quot;</a>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_538171279" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1336028273&CM=AD&POP=yes&receiver=15089','600px','600px');return false; ">发送消息</button>
+
+                                    <a class="button  textual   " id="domId_1991048636" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=2029363638&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15089">工作负荷</a>
+
+                                    <a class="button  textual   lreq30 lreqLabel" id="domId_1464237698" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=602775274&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15089">计划</a>
+
+                                    <button type="button" class="button noprint textual   " id="domId_1427879313" style="" onclick="enabDisabAssig(28252);return false; ">显示 / 隐藏</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_237858366" style="" onclick="deletePreviewAssig(28252);return false; ">删除分工</button>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class='textSmall columnTaskCode'>
+                        </td>
+                        <td class="textSmall assRole">Project manager&nbsp;(梦想飞扬)</td>
+                        <td align="left" class="lreq20" nowrap>
+                            <div class="status">
+
+
+
+                                <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ASSSIGPRIO" displayValue='true'>
+                                    <input type=hidden name="ASSPRIO_28252" id="ASSPRIO_28252" size=2 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="低" code="30"
+                                                 style=" color:#FFFFFF;background-color:#a0a0a0"><span class="cvcDescription">低</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="ESTIMATE_WORKLOG28252" id="ESTIMATE_WORKLOG28252" size=7 class="formElements estWlg validated durationmillis" autocomplete='off' maxlength=255 style="text-align:right;" value="100:00" oldValue='1' entryType="DURATIONMILLIS"></td>
+                        <td class="fixedWidthAlignRight estIss">
+                            <a class="button  textual   " id="domId_376788009" style="" href="/app/issue/issuelist?V_ID=650102174&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_ASSIGNED_TO=15089&FLT_ISSUE_ESTIMATED=%3E0">0:00</a>
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight">
+                            <button type="button" class="button noprint textual   " id="domId_75213032" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=2017926129&CM=FN&ASS_ID=28252','1180px','768px');return false; "><span class="wlg">8:00</span></button>
+
+                            <button type="button" class="button noprint textual icon  " id="domId_1385044388" style="" onclick="openWorklogEditorPopup($(this),{assId:'28252',title:'T53595 - 第一个项目'});return false; "><span class='teamworkIcon '>w</span></button>
+
+
+
+                        </td>
+                        <td>
+                            <button type="button" class="button noprint textual icon  lreq20 lreqHide" id="domId_1865779283" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'28252',title:'T53595 - 第一个项目'});return false; "><span class='teamworkIcon '>4</span></button>
+
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight futPlan lreq30">
+                            <a class="button  textual   " id="domId_596195887" style="" title="工作人员的任命" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=56503042&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15089">0:00</a>
+
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="HOURLY_COST28252" id="HOURLY_COST28252" size=7 class="formElements validated currency" autocomplete='off' maxlength=255 style="text-align:right;" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    </tr>
+                    <tr class="alternate " assId="28280" resId="15189" startMillis="1604880000000" endMillis="1606780799000">
+                        <td style="width:40px;overflow: hidden" nowrap>
+                            <span class="button buttonImg  " id="domId_360864063" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=22139439&CM=ED&OBJID=28280&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1433179467" title="Zhang Fei (WK)" alt="Zhang Fei (WK)" id="d1433179467" " resId="15189" class="face "></span>
+
+
+                        </td>
+                        <td class="columnAssigName" title="T53595 - 第一个项目: Zhang Fei [WK]">
+                            <a class="button  textual   bolder" id="domId_582880342" style="" href="/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=2016084028&CM=ED&OBJID=28280&TASK_ID=53595">Fei Zhang</a>
+
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1618956221', 'domId_1327276230');  ">
+                                <button type="button" class="button noprint textual icon  arrowSmall" id="domId_1327276230" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_1618956221" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_882527789" style="" onclick="openBlackPopup('/applications/teamwork/task/financial/taskAssignmentCosts.jsp?V_ID=1179398857&OBJID=28280','1180px','768px');return false; ">成本</button>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_2122483541" style="" onclick="manageSplitBox('28280');return false; ">除分配</button>
+
+                                    <hr><a class="button  textual   " id="domId_730013270" style="" title="编辑" href="/app/resource/resourceEditor.html?V_ID=1822495663&CM=ED&OBJID=15189">编辑 &quot;Zhang Fei&quot;</a>
+
+                                    <hr><button type="button" class="button noprint textual   " id="domId_1827422720" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=758953579&CM=AD&POP=yes&receiver=15189','600px','600px');return false; ">发送消息</button>
+
+                                    <a class="button  textual   " id="domId_182535646" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=883761031&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15189">工作负荷</a>
+
+                                    <a class="button  textual   lreq30 lreqLabel" id="domId_1269954406" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=568791482&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15189">计划</a>
+
+                                    <button type="button" class="button noprint textual   " id="domId_283734109" style="" onclick="enabDisabAssig(28280);return false; ">显示 / 隐藏</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_1305473623" style="" onclick="deletePreviewAssig(28280);return false; ">删除分工</button>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class='textSmall columnTaskCode'>
+                        </td>
+                        <td class="textSmall assRole">Worker&nbsp;(梦想飞扬)</td>
+                        <td align="left" class="lreq20" nowrap>
+                            <div class="status">
+
+
+
+                                <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ASSSIGPRIO" displayValue='true'>
+                                    <input type=hidden name="ASSPRIO_28280" id="ASSPRIO_28280" size=2 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="低" code="30"
+                                                 style=" color:#FFFFFF;background-color:#a0a0a0"><span class="cvcDescription">低</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="ESTIMATE_WORKLOG28280" id="ESTIMATE_WORKLOG28280" size=7 class="formElements estWlg validated durationmillis" autocomplete='off' maxlength=255 style="text-align:right;" value="0:00" oldValue='1' entryType="DURATIONMILLIS"></td>
+                        <td class="fixedWidthAlignRight estIss">
+                            <a class="button  textual   " id="domId_2110533267" style="" href="/app/issue/issuelist?V_ID=1597192064&CM=FN&FLT_ISSUE_TASK=53595&FLT_ISSUE_ASSIGNED_TO=15189&FLT_ISSUE_ESTIMATED=%3E0">0:00</a>
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight">
+                            <button type="button" class="button noprint textual   " id="domId_726662119" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=461432148&CM=FN&ASS_ID=28280','1180px','768px');return false; "><span class="wlg"></span></button>
+
+
+
+                        </td>
+                        <td>
+                        </td>
+
+                        <td class="fixedWidthAlignRight futPlan lreq30">
+                            <a class="button  textual   " id="domId_270733544" style="" title="工作人员的任命" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1491033482&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.resource.Resource&REFERRAL_ID=15189">0:00</a>
+
+
+                        </td>
+
+                        <td class="fixedWidthAlignRight"><input type=text name="HOURLY_COST28280" id="HOURLY_COST28280" size=7 class="formElements validated currency" autocomplete='off' maxlength=255 style="text-align:right;" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    </tr>
+
+                    <tfoot>
+                        <tr valign="top" class="totals">
+                            <td align="right" colspan="5">总计 (hh:mm)</td>
+                            <td align="right" id="tot_estWlg">&nbsp;</td>
+                            <td align="right" id="tot_estIss">&nbsp;</td>
+                            <td align="right" id="tot_wlg">&nbsp;</td>
+                            <td align="right"></td>
+                            <td align="right" id="tot_plan">&nbsp;</td>
+                            <td class="totals">&nbsp;</td>
+                        </tr>
+
+                        <tr valign="top" class="totals">
+                            <td align="right" colspan="5">总计 (dd hh:mm)</td>
+                            <td align="right" id="tot_estWlgD">&nbsp;</td>
+                            <td align="right" id="tot_estIssD">&nbsp;</td>
+                            <td align="right" id="tot_wlgD">&nbsp;</td>
+                            <td align="right"></td>
+                            <td align="right" id="tot_planD">&nbsp;</td>
+                            <td class="totals">&nbsp;</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="rightColumn noprint">
+            <div class="tools">
+                <div class="toolsElement">
+                    <button type="button" class="button noprint    first" id="domId_505336997" style="" onclick="openBlackPopup('/applications/teamwork/task/taskAssignmentNew.jsp?V_ID=654228691&CM=AD&TASK_ID=53595','800px','600px');return false; "><span class='teamworkIcon withLabel'>P</span>添加任务</button>
+
+                </div><div class="toolsElement">
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1830278483', 'domId_2048568341');  ">
+                        <button type="button" class="button noprint  icon  " id="domId_2048568341" style="" title="打印" onclick=";return false; "><span class='teamworkIcon '>p</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_1830278483" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <button type="button" class="button noprint textual   " id="domId_729821666" style="" onclick="openBlackPopup('/applications/teamwork/task/taskEditorPrint.jsp?V_ID=934704153&CM=ED&OBJID=53595',$(window).width()-100,$(window).height()-50);return false; ">打印/导出 报告</button>
+
+                            <a class="button  textual   " id="domId_1470168665" style="" href="/commons/tools/freezePDF.jsp?V_ID=1714479796&CM=ED&OBJID=53595&PRINTING_PDF=yes&PAGE_TO_PRINT=%2Fapplications%2Fteamwork%2Ftask%2FtaskEditorPrint.jsp&PRINT_TASK_ASSIGS_SUBTASKS=yes&PRINT_TASK_DESCENDANTS=yes&PRINT_TASK_DIARY_DETAIL=yes&REDIR_URL=%2Fapplications%2Fteamwork%2Ftask%2FtaskOverview.jsp%3FV_ID%3D1833632445%26CM%3DCREATE_SNAPSHOT%26OBJID%3D53595&FREEZE_PREFIX=task_53595">快照</a>
+
+                            <hr><button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_177910273" style="" onClick="stopBubble(event);saveFormValues('d464476821');  obj('d464476821CM').value='ED';obj('d464476821reportName').value='projectProgress';obj('d464476821').target='_blank'; obj('d464476821').action='/applications/teamwork/task/taskIReportHelper.jsp'; try {obj('d464476821').submit();} catch(e){};restoreFormValues('d464476821');  ">project  progress</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div><div class="rightColumnInner">
+                <div class="" style="display:block">
+                    <br><button type="button" class="button noprint textual   bolder lreq20 lreqLabel lreqActive" id="domId_1321751320" style="" onclick="openBlackPopup('/applications/teamwork/task/taskClone.jsp?V_ID=1403283582&CM=ED&OBJID=53595&POP=yes','800px','650px');return false; "><span class='teamworkIcon withLabel'>D</span>复制</button>
+
+                    <button type="button" class="button noprint textual   bolder" id="domId_232165165" style="" onclick="openBlackPopup('/applications/teamwork/task/taskMove.jsp?V_ID=1103590672&CM=ED&OBJID=53595&POP=yes','700px','450px');return false; "><span class='teamworkIcon withLabel'>y</span>移动</button>
+
+                </div>
+
+
+
+
+                <div class="" style="display:block" id="tskSidBarMoreDiv">
+
+                    <div class="separator"></div><a class="button  textual   " id="domId_22141556" style="" href="/applications/teamwork/task/scrum/sprintWizard.jsp?V_ID=649158647&CM=NEW_SPRINT&PARENT_ID=53595"><span class="teamworkIcon withLabel" style="">P</span> 启动一个新的“冲刺”</a>
+
+                    <a class="button  textual   lreq30 lreqLabel lreqHide" id="domId_1192453369" style="" href="/applications/teamwork/processes/createProcess.jsp?V_ID=1336007215&CM=AD&PARENT_ID=53595"><span class="teamworkIcon withLabel" style="">P</span> 添加一个子进程</a>
+
+                    <button type="button" class="button noprint textual   " id="domId_9473737" style="" onclick="openBlackPopup('/applications/teamwork/task/taskAddFromTemplate.jsp?V_ID=184249473&CM=ED&OBJID=53595','800px','650px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 从添加模板</button>
+
+                    <div class="separator"></div><a class="button  textual   " id="domId_311307881" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=211046119&CM=FN&TASK=53595&TASK_WORKLOG_SHOW_CHILDREN=yes">工作记录分析</a>
+
+                    <button type="button" class="button noprint textual   " id="domId_1480602898" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogInPeriodForTask.jsp?V_ID=1556620836&CM=ED&OBJID=53595','800px','800px');return false; ">当前工作记录</button>
+
+                    <div class="separator"></div><button type="button" class="button noprint textual   lreq20 lreqLabel lreqActive" id="domId_689947792" style="" onclick="openBlackPopup('/applications/teamwork/task/taskPublicPageEditor.jsp?V_ID=1599888897&CM=TASK_EDIT_SECURITY&OBJID=53595','800px','600px');return false; ">项目的公共页面</button>
+
+                    <button type="button" class="button noprint textual   " id="domId_1688329991" style="" onclick="openTaskImageEditor('53595');return false; ">选择一个项目形象</button>
+
+
+
+                    <script type="text/javascript">
+                        function openTaskImageEditor(resId) {
+                            $(".uploadizeDrop").attr("disabled", "true");
+                            openBlackPopup(contextPath + "/applications/teamwork/task/taskImageUploader.jsp?TASK_ID=" + 53595, '500px', '550px', function (response) {
+
+                            });
+                        }
+
+                    </script>
+                    <button type="button" class="button noprint textual   " id="domId_1442919535" style="" onclick="openBlackPopup('/applications/teamwork/task/recodeTaskTree.jsp?V_ID=1060730926&CM=ED&OBJID=53595','500px','400px');return false; ">分配新码</button>
+
+                    <div class="separator"></div><button type="button" class="button noprint textual   " id="domId_220043947" style="" onclick="openBlackPopup('/applications/teamwork/task/taskArea.jsp?V_ID=1763282821&CM=TASK_EDIT_SECURITY&OBJID=53595','600px','600px');return false; ">安全</button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <script>
+
+
+            function computeResourceLoad(el, period, resId, currentWorkload, assId) {
+                //console.debug("computeResourceLoad",period, resId, currentWorkload,assId);
+
+                if (!period || false)
+                    return;
+
+                var row = el.closest("tr");
+                //si chiama con delay sulla riga in modo da
+                row.stopTime("loadOpLoad");
+                var workloadInfo = row.find(".workloadInfo");
+                workloadInfo.removeClass("loading").empty();
+
+                if (resId) {
+                    workloadInfo.addClass("loading");
+                    row.oneTime(1000, "loadOpLoad", function () {
+                        getOperatorLoad(resId, period.startMillis, period.endMillis, currentWorkload, assId, function (response) {
+                            if (response.ok && response.stats) {
+                                var bl = $("<div>").attr({ "data-timer": 0, "data-forceposition": "left" });
+                                bl.attr("data-balloon", "<b>工作量期</b><br><span class='textSmall'>" +
+                                    (new Date().format()) + " : " + (new Date(period.endMillis).format()) + "<br>" +
+                                    "工作量 - min: " + getMillisInHoursMinutes(response.stats.minLoad) + "  max: <b>" + getMillisInHoursMinutes(response.stats.maxLoad) + "</b><br>" +
+                                    "平均工作能力: " + getMillisInHoursMinutes(response.stats.meanCapacity) + "<br>"
+                                );
+                                bl.css("cursor", "pointer");
+                                bl.addClass("");
+                                if (response.stats.meanLoadPerc > 100)
+                                    bl.addClass("warning alertIcon");
+                                else if (response.stats.meanLoadPerc > 90)
+                                    bl.addClass("attention");
+                                bl.append(parseInt(response.stats.meanLoadPerc) + "%");
+                                workloadInfo.empty().append(bl);
+                            } else {
+                                workloadInfo.empty();
+                            }
+                            workloadInfo.removeClass("loading");
+                        });
+                    })
+                }
+            }
+
+
+
+            function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId, callback) {
+                //console.debug("getOperatorLoad",resId, startMillis, endMillis, currentWL, assId);
+                //se il progetto doveva giÃ  essere chiuso non si calcola niente
+                if (endMillis < new Date().getTime()) {
+                    if (typeof (callback) == "function") {
+                        callback({ ok: false });
+                    }
+                    return;
+                }
+
+                var request = {
+                    CM: "GETOPLOAD",
+                    resId: resId,
+                    startMillis: startMillis,
+                    endMillis: endMillis,
+                    simulatedLoad: currentWL,
+                    assId: assId
+                };
+                $.getJSON(contextPath + "/applications/teamwork/task/plan/planAjaxController.jsp", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (typeof (callback) == "function") {
+                        callback(response);
+                    }
+                })
+            }
+        </script>
+        <script>
+
+            //inject the table search
+            createTableFilterElement($("#assResNameHead"), ".dataTable [assId][resid]", ".columnAssigName,.assRole");
+
+            $(function () {
+                if (false)
+                    $("[data-workload]").each(function () { updateResourceLoad($(this)) });
+            });
+        </script>
+        <input type="hidden" id="d464476821outType" name="outType" value="" savedValue="">
+        <input type="hidden" id="d464476821reportName" name="reportName" value="" savedValue="">
+
+    </form>
+
+
+
+</div>
+

@@ -1,3 +1,4 @@
+using KTApp.Base;
 using KTProject.Common;
 using KTProject.Common.Security;
 using KTProject.Model;
@@ -27,6 +28,8 @@ namespace KTApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            MyViewEngine.RegisterView(ViewEngines.Engines);
         }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e) {

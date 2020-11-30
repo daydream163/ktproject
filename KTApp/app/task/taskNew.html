@@ -502,7 +502,7 @@
                             jsonResponseHandling(response);
                             if (response.ok) {
                                 form.find(":input").updateOldValue(); // per non avere il messagio di leave
-                                getTop().location.href = contextPath + "/app/taskOverview.html??CM=ED&OBJID=" + response.taskId;
+                                getTop().location.href = contextPath + "/app/task/taskOverview??CM=ED&OBJID=" + response.taskId;
 
                             } else {
                                 showFeedbackMessage("ERROR", "错误保存");

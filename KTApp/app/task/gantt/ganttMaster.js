@@ -1381,7 +1381,7 @@ GanttMaster.prototype.openExternalEditor = function () {
     return;
   }
 
-  window.location.href=contextPath+"/app/taskOverview.html?CM=ED&OBJID="+self.currentTask.id;
+  window.location.href=contextPath+"/app/task/taskOverview?CM=ED&OBJID="+self.currentTask.id;
 };
 
 GanttMaster.prototype.openTaskLogs = function () {

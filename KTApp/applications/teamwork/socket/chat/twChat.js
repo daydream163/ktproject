@@ -1092,7 +1092,7 @@ TWChat.prototype.createIssue = function (el) {
 TWChat.prototype.openTaskEditor = function (el) {
   //console.debug("openTaskEditor",el);
   var self = this;
-  getTop().location.href = contextPath + "/app/taskOverview.html??CM=ED&OBJID=" + el.attr("referredId");
+  getTop().location.href = contextPath + "/app/task/taskOverview??CM=ED&OBJID=" + el.attr("referredId");
   self.reduce(true);
 };
 

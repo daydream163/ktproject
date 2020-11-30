@@ -36,7 +36,7 @@
                         <div class="pathSmall"><span class="pathEl">Production Project</span></div>
 
 
-                        <a class="button  textual   bolder" id="domId_1950173099" style="" href="/app/taskOverview.html??V_ID=1730831943&CM=ED&OBJID=45675">Collect Customer Requirements</a>
+                        <a class="button  textual   bolder" id="domId_1950173099" style="" href="/app/task/taskOverview??V_ID=1730831943&CM=ED&OBJID=45675">Collect Customer Requirements</a>
 
 
                     </td>
@@ -71,7 +71,7 @@
                 var issExpired = el.is(".issExpired");
                 var issToday = el.is(".issToday");
                 var taskId = row.attr("taskId");
-                var link = contextPath + "/app/task/taskIssueList.html?OBJID=" + taskId;
+                var link = contextPath + "/app/task/taskIssueList?OBJID=" + taskId;
 
                 if (taskExpired && (issExpired || issToday)) {
                     link += ""; // si devono vedere tutte quelle aperte
