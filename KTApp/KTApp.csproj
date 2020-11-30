@@ -723,10 +723,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\KTProject.Model\KTProject.Model.csproj">
-      <Project>{4dd2da6a-fe79-4cdf-827d-74d1be650777}</Project>
-      <Name>KTProject.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\KTProject.Common\KTProject.Common.csproj">
       <Project>{9a625fb3-9a09-45a4-955f-400b021a5366}</Project>
       <Name>KTProject.Common</Name>
@@ -734,6 +730,10 @@
     <ProjectReference Include="..\KTProject.IService\KTProject.IService.csproj">
       <Project>{8775fef1-b424-4dba-a24a-7b8a18e2601d}</Project>
       <Name>KTProject.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTProject.Model\KTProject.Model.csproj">
+      <Project>{4dd2da6a-fe79-4cdf-827d-74d1be650777}</Project>
+      <Name>KTProject.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTProject.Service\KTProject.Service.csproj">
       <Project>{158a2668-271e-4ae6-ad8e-d522758eac44}</Project>
