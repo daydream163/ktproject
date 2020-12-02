@@ -49,7 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ServiceCommon.cs" />
+    <Compile Include="IssueStatusService.cs" />
     <Compile Include="IssueService.cs" />
+    <Compile Include="DepartmentTypeService.cs" />
+    <Compile Include="MetadataService.cs" />
     <Compile Include="TaskService.cs" />
     <Compile Include="ResourceService.cs" />
     <Compile Include="LoginService.cs" />

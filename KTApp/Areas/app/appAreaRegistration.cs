@@ -24,11 +24,11 @@ namespace KTApp.Areas.app
                 "app/task/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );*/
-            context.MapRoute(
+            /*context.MapRoute(
                 "app_issue",
                 "app/issue/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
-            );
+            );*/
             context.MapRoute(
                 "app_default",
                 "app/{controller}/{action}/{id}",

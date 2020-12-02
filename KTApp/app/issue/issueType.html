@@ -97,39 +97,40 @@
         <div id="twInnerContainerPopup" class="null">
             <script>$("#ISSUES_MENU").addClass('selected');</script>
             <div class="headBar noprint">
-                <a class="button  textual   " id="domId_1193360035" style="" href="/app/issue/issueStatus.html?V_ID=1041362191">问题的状态</a>
+                <a class="button  textual   " id="domId_1193360035" style="" href="/app/issue/issueStatus?V_ID=1041362191">问题的状态</a>
 
-                <span class="separator" style="width:30px">&nbsp;</span><a class="button  textual   " id="domId_992892182" style="" href="/app/issue/issueImpact.html?V_ID=558477646">问题的影响</a>
+                <span class="separator" style="width:30px">&nbsp;</span><a class="button  textual   " id="domId_992892182" style="" href="/app/issue/issueimpact?V_ID=558477646">问题的影响</a>
 
             </div>
             <form enctype="application/x-www-form-urlencoded" method="POST"
-                  action="/app/issue/issueType.html" name="d993724287" id="d993724287"
+                  action="/app/issue/issuetype" name="d993724287" id="d993724287"
                   savedAction="" savedTarget="">
                 <input type="hidden" id="d993724287V_ID" name="V_ID" value="993724287" savedValue="">
                 <input type="hidden" id="d993724287CM" name="CM" value="" savedValue="">
 
                 <h1>问题类型</h1>
 
-                <table class="table">
-                    <tr>
-                        <th class="tableHead">id</th>
-                        <th class="tableHead">代码</th>
-                        <th class="tableHead">描述</th>
-                        <th class="tableHead displayNone">域</th>
-                        <th class="tableHead">删除</th>
-                    </tr>
-                    <tr class="alternate highlight">
-                        <td><span class="sectionTitle">新类型:</span></td>
-                        <td><input type=text name="CODE" id="CODE" size=15 class="formElements validated integer" autocomplete='off' maxlength=255 value="" oldValue='1' entryType="INTEGER"></td>
-                        <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-                        <td class="displayNone">
-                            <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
-                                <option value="5819">梦想飞扬</option>
-                            </SELECT>
-                        </td>
-                        <td></td>
-                    </tr>
-                </table><div class="noprint buttonArea" id="domId_349281228" style="text-align:left;">
+<table class="table">
+    <tr>
+        <th class="tableHead">id</th>
+        <th class="tableHead">代码</th>
+        <th class="tableHead">描述</th>
+        <th class="tableHead displayNone">域</th>
+        <th class="tableHead">删除</th>
+    </tr>
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新类型:</span></td>
+    <td><input type=text name="CODE" id="CODE" size=15 class="formElements validated integer" autocomplete='off' maxlength=255 value="" oldValue='1' entryType="INTEGER"></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="5819">梦想飞扬</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+                <div class="noprint buttonArea" id="domId_349281228" style="text-align:left;">
                     <div class="bbButtons">
                         <button type="button" class="button noprint    first" id="domId_1296791745" style="" onClick="stopBubble(event);obj('d993724287CM').value='SV';if (canSubmitForm('d993724287'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d993724287').submit();} catch(e){};} ">保存</button>
 

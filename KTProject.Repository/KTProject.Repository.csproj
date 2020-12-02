@@ -48,7 +48,10 @@
     <Compile Include="Base\BaseRepository.cs" />
     <Compile Include="Base\DbConnection.cs" />
     <Compile Include="CredentialsRepository.cs" />
+    <Compile Include="IssueStatusRepository.cs" />
     <Compile Include="DocumentRepository.cs" />
+    <Compile Include="DepartmentTypeRepository.cs" />
+    <Compile Include="MetadataRepository.cs" />
     <Compile Include="KTResourceRepository.cs" />
     <Compile Include="IssueRepository.cs" />
     <Compile Include="MessageRepository.cs" />

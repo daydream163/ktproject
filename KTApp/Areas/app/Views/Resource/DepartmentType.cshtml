@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "组织类型";
+    Layout = "~/Areas/app/Views/Shared/_LayoutWin.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainerPopup" class="null">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="~/app/resource/departmenttype" name="d78469920" id="d78469920"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d78469920V_ID" name="V_ID" value="78469920" savedValue="">
+        <input type="hidden" id="d78469920CM" name="CM" value="" savedValue="">
+        <input type="hidden" id="d78469920once" name="once" value="yes" savedValue="">
+        <h1>@ViewBag.Title</h1>
+        @Html.Raw(ViewBag.ListHTML)
+        <div class="noprint buttonArea" id="domId_1741716921" style="text-align:left;">
+            <div class="bbButtons">
+                <button type="button" class="button noprint    first" id="domId_686698990" style=""
+                        onClick="stopBubble(event);obj('d78469920CM').value='SV';if (canSubmitForm('d78469920'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d78469920').submit();} catch(e){};} ">
+                    保存
+                </button>
+            </div>
+        </div>
+    </form>
+    <script>
+        function delRow(el) {
+            var issueRow = $(el).closest("[objid]");
+            var issueId = issueRow.attr("objid");
+            deletePreview("OBJ_DEL", issueId, function (response) {  // callback function
+                if (response && response.ok) {
+                    issueRow.fadeOut(500, function () { $(this).remove(); });
+                }
+            });
+        }
+    </script>
+</div>

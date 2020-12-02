@@ -97,43 +97,43 @@
         <div id="twInnerContainerPopup" class="null">
             <script>$("#ISSUES_MENU").addClass('selected');</script>
             <div class="headBar noprint">
-                <a class="button  textual   " id="domId_612745864" style="" href="/app/issue/issueStatus.html?V_ID=771264275">问题的状态</a>
+                <a class="button  textual   " id="domId_612745864" style="" href="/app/issue/issueStatus?V_ID=771264275">问题的状态</a>
 
-                <span class="separator" style="width:30px">&nbsp;</span><a class="button  textual   " id="domId_1383910091" style="" href="/app/issue/issueType.html?V_ID=1733755263">问题类型</a>
+                <span class="separator" style="width:30px">&nbsp;</span><a class="button  textual   " id="domId_1383910091" style="" href="/app/issue/issuetype?V_ID=1733755263">问题类型</a>
 
             </div>
             <form enctype="application/x-www-form-urlencoded" method="POST"
-                  action="/app/issue/issueImpact.html" name="d1978325776" id="d1978325776"
+                  action="/app/issue/issueimpact" name="d1978325776" id="d1978325776"
                   savedAction="" savedTarget="">
                 <input type="hidden" id="d1978325776V_ID" name="V_ID" value="1978325776" savedValue="">
                 <input type="hidden" id="d1978325776CM" name="CM" value="" savedValue="">
 
                 <h1>问题的影响</h1>
 
-                <table class="table">
-                    <tr>
-                        <th class="tableHead">id</th>
-                        <th class="tableHead">代码</th>
-                        <th class="tableHead">描述</th>
-                        <th class="tableHead displayNone">域</th>
-                        <th class="tableHead">删除</th>
-                    </tr>
-                    <tr class="alternate" objid="45885">
-                        <td>45885</td>
-                        <td><input type=TEXT name="CODE_45885" id="CODE_45885" size=15 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'></td>
-                        <td><input type=TEXT name="DESC_45885" id="DESC_45885" size=30 class="formElements" autocomplete='off' maxlength=255 value="Light" oldValue='1'></td>
-                        <td class="displayNone">
-                            <SELECT NAME="AREA_45885" id="AREA_45885" CLASS="formElements" oldValue='1'>
-                                <option value="">- 选择 -</option>
-                                <option selected value="5819">梦想飞扬</option>
-                            </SELECT>
-                        </td>
+<table class="table">
+<tr>
+    <th class="tableHead">id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead displayNone">域</th>
+    <th class="tableHead">删除</th>
+</tr>
+<tr class="alternate" objid="45885">
+    <td>45885</td>
+    <td><input type=TEXT name="CODE_45885" id="CODE_45885" size=15 class="formElements" autocomplete='off' maxlength=255 value="30" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_45885" id="DESC_45885" size=30 class="formElements" autocomplete='off' maxlength=255 value="Light" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA_45885" id="AREA_45885" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option selected value="5819">梦想飞扬</option>
+        </SELECT>
+    </td>
 
-                        <td align="center">
-                            <button type="button" class="button noprint textual icon  delete" id="domId_450887264" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_450887264" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
 
-                        </td>
-                    </tr>
+    </td>
+</tr>
                     <tr class="alternate" objid="45886">
                         <td>45886</td>
                         <td><input type=TEXT name="CODE_45886" id="CODE_45886" size=15 class="formElements" autocomplete='off' maxlength=255 value="60" oldValue='1'></td>
@@ -166,18 +166,19 @@
 
                         </td>
                     </tr>
-                    <tr class="alternate highlight">
-                        <td><span class="sectionTitle">新：</span></td>
-                        <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-                        <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-                        <td class="displayNone">
-                            <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
-                                <option value="5819">梦想飞扬</option>
-                            </SELECT>
-                        </td>
-                        <td></td>
-                    </tr>
-                </table><div class="noprint buttonArea" id="domId_123739827" style="text-align:left;">
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新：</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="5819">梦想飞扬</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+                <div class="noprint buttonArea" id="domId_123739827" style="text-align:left;">
                     <div class="bbButtons">
                         <button type="button" class="button noprint    first" id="domId_931102093" style="" onClick="stopBubble(event);obj('d1978325776CM').value='SV';if (canSubmitForm('d1978325776'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d1978325776').submit();} catch(e){};} ">保存</button>
 

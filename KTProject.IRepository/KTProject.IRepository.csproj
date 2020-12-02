@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBase\IRepository.cs" />
+    <Compile Include="IIssueStatusRepository.cs" />
+    <Compile Include="IDepartmentTypeRepository.cs" />
+    <Compile Include="IMetadataRepository.cs" />
     <Compile Include="IResourceRepository.cs" />
     <Compile Include="IIssueRepository.cs" />
     <Compile Include="IRoleRepository.cs" />

@@ -103,35 +103,35 @@
 
                 <script>$("#AGENDA_MENU").addClass('selected');</script>
                 <h1>事件类型</h1>
-                <table class="table dataTable">
-                    <tr>
-                        <th class="tableHead">Id</th>
-                        <th class="tableHead">代码</th>
-                        <th class="tableHead">描述</th>
-                        <th class="tableHead">不可用</th>
-                        <th class="tableHead ">域</th>
-                        <th class="tableHead">删除</th>
-                    </tr>
-                    <tr class="alternate" objid="45890">
-                        <td>45890</td>
-                        <td><input type=TEXT name="CODE_45890" id="CODE_45890" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-                        <td><input type=TEXT name="DESC_45890" id="DESC_45890" size=30 class="formElements" autocomplete='off' maxlength=255 value="Holidays" oldValue='1'></td>
-                        <td align="center">
-                            <input type=hidden name="UNAV_45890" id="UNAV_45890" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_UNAV_45890" name="ck_UNAV_45890" checked value="yes"
-                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
-                        </td>
-                        <td class="">
-                            <SELECT NAME="AREA_45890" id="AREA_45890" CLASS="formElements" oldValue='1'>
-                                <option value="">- 选择 -</option>
-                                <option selected value="5819">梦想飞扬</option>
-                            </SELECT>
-                        </td>
+<table class="table dataTable">
+<tr>
+    <th class="tableHead">Id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead">不可用</th>
+    <th class="tableHead ">域</th>
+    <th class="tableHead">删除</th>
+</tr>
+<tr class="alternate" objid="45890">
+    <td>45890</td>
+    <td><input type=TEXT name="CODE_45890" id="CODE_45890" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_45890" id="DESC_45890" size=30 class="formElements" autocomplete='off' maxlength=255 value="Holidays" oldValue='1'></td>
+    <td align="center">
+        <input type=hidden name="UNAV_45890" id="UNAV_45890" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_UNAV_45890" name="ck_UNAV_45890" checked value="yes"
+                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td class="">
+        <SELECT NAME="AREA_45890" id="AREA_45890" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option selected value="5819">梦想飞扬</option>
+        </SELECT>
+    </td>
 
-                        <td align="center">
-                            <button type="button" class="button noprint textual icon  delete" id="domId_1308087284" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_1308087284" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
 
-                        </td>
-                    </tr>
+    </td>
+</tr>
                     <tr class="alternate" objid="45891">
                         <td>45891</td>
                         <td><input type=TEXT name="CODE_45891" id="CODE_45891" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
@@ -152,23 +152,24 @@
 
                         </td>
                     </tr>
-                    <tr class="alternate highlight">
-                        <td><span class="sectionTitle">新类型:</span></td>
-                        <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-                        <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-                        <td align="center">
-                            <input type=hidden name="UNAV" id="UNAV" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_UNAV" name="ck_UNAV" value="yes"
-                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
-                        </td>
-                        <td class="">
-                            <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
-                                <option value="">- 选择 -</option>
-                                <option value="5819">梦想飞扬</option>
-                            </SELECT>
-                        </td>
-                        <td></td>
-                    </tr>
-                </table><div class="noprint buttonArea" id="domId_2095670690" style="text-align:left;">
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新类型:</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td align="center">
+        <input type=hidden name="UNAV" id="UNAV" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_UNAV" name="ck_UNAV" value="yes"
+                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td class="">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option value="5819">梦想飞扬</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+                <div class="noprint buttonArea" id="domId_2095670690" style="text-align:left;">
                     <div class="bbButtons">
                         <button type="button" class="button noprint    first" id="domId_1057992383" style="" onClick="stopBubble(event);obj('d1219962919CM').value='SV';if (canSubmitForm('d1219962919'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d1219962919').submit();} catch(e){};} ">保存</button>
 

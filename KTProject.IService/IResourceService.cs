@@ -12,5 +12,11 @@ namespace KTProject.IService
     {
         IEnumerable<KTResource> GetList(int orgid, int pageIndex, int pageSize, ref int totalCount);
         KTResource GetDetail(int id);
+        /*/// <summary>
+        /// 获取部门类型列表
+        /// </summary>
+        /// <param name="orgid">机构id，暂时没用上</param>
+        /// <returns></returns>
+        IEnumerable<DepartmentType> GetDepartmentTypeList(string orgid);*/
     }
 }

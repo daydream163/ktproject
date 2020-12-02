@@ -14,6 +14,44 @@ namespace KTProject.Common.HTML
     public class KTList
     {
         /// <summary>
+        /// 获取配置节点
+        /// </summary>
+        /// <param name="fileName">xml配置文件名</param>
+        /// <param name="id">node的id属性</param>
+        /// <returns></returns>
+        public static XmlNode GetConfigNode(string fileName, string id) {
+            if (string.IsNullOrWhiteSpace(fileName) || string.IsNullOrWhiteSpace(id)) {
+                return null;
+            }
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "/xml/" + fileName);
+            XmlNode node = null;
+            string xmlPath = string.Format("/nodes/node[@id=\"{0}\"]", id);
+            node = doc.SelectSingleNode(xmlPath);
+            return node;
+        }
+
+        /// <summary>
+        /// 将对象obj的所有属性值，替换掉模板中的字符串，根据属性匹配
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="templateHTML"></param>
+        /// <param name="obj">对象，支持匿名对象</param>
+        /// <returns></returns>
+        public static string GetContentByReplace<T>(string templateHTML, T obj) {
+            PropertyInfo[] arrs = obj.GetType().GetProperties();
+            string html = templateHTML;
+            for (int j = 0; j < arrs.Length; j++) {
+                string pro = arrs[j].Name;
+                object value = obj.GetType().GetProperties().Where(x => x.Name == pro).First().GetValue(obj, null);
+                html = html.Replace("{" + pro.ToLower() + "}", value != null ? value.ToString() : "");
+            }
+
+            return html;
+        }
+
+        /// <summary>
         /// 根据配置节点、数据，页数页码信息，获取html
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
@@ -33,7 +71,7 @@ namespace KTProject.Common.HTML
             }
             XmlNode afterNode = node.SelectSingleNode("after");
             if (afterNode != null) {
-                afterHTML = beforeNode.InnerText;
+                afterHTML = afterNode.InnerText;
             }
 
             XmlNode rowNode = node.SelectSingleNode("row");
@@ -42,7 +80,8 @@ namespace KTProject.Common.HTML
                 rowTemplate = rowNode.InnerText;
             }
 
-            beforeHTML = beforeHTML.Replace("{totalcount}", list.Count().ToString())
+            string count = list == null ? "0" : list.Count().ToString();
+            beforeHTML = beforeHTML.Replace("{totalcount}", count.ToString())
                 .Replace("{pageindex}", pageindex.ToString())
                 .Replace("{pagesize}", pagesize.ToString());
 

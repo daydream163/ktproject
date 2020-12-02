@@ -44,14 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\TypeEnum.cs" />
     <Compile Include="Enums\RoleEnum.cs" />
     <Compile Include="Model\CredentialsExt.cs" />
     <Compile Include="Model\Credentials.cs" />
     <Compile Include="Model\DocumentExt.cs" />
     <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\DepartmentType.cs" />
+    <Compile Include="Model\IssueStatusExt.cs" />
+    <Compile Include="Model\IssueStatus.cs" />
     <Compile Include="Model\IssueExt.cs" />
     <Compile Include="Model\Issue.cs" />
     <Compile Include="Model\KTTask.cs" />
+    <Compile Include="Model\MetadataExt.cs" />
+    <Compile Include="Model\Metadata.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\KTResource.cs" />
     <Compile Include="Model\Role.cs" />

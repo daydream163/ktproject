@@ -30,5 +30,14 @@ namespace KTProject.Repository
             // TODO 获取机构下信息
             return db.Queryable<KTResource>().ToPageList(pageIndex, pageSize, ref totalCount);
         }
+
+        public IEnumerable<DepartmentType> GetDepartmentTypeList(string orgid) {
+            // TODO 获取机构下信息
+            return db.Queryable<DepartmentType>().ToList();
+        }
+        public DepartmentType InsertDepartmentType(DepartmentType obj) {
+            return db.Insertable<DepartmentType>(obj).ExecuteReturnEntity();
+        }
+
     }
 }

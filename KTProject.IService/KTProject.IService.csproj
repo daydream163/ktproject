@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBase\IService.cs" />
     <Compile Include="IDocumentService.cs" />
+    <Compile Include="IIssueStatusService.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="IIssueService.cs" />
     <Compile Include="IMessageService.cs" />
+    <Compile Include="IDepartmentTypeService.cs" />
+    <Compile Include="IMetadataService.cs" />
     <Compile Include="ITaskService.cs" />
     <Compile Include="IRoleService.cs" />
     <Compile Include="ISubSystemContractService.cs" />

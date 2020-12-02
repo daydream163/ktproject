@@ -95,14 +95,20 @@
 
         <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
         <div id="twInnerContainerPopup" class="null">
-            <script>$("#RESOURCE_MENU").addClass('selected');</script><h1>组织类型</h1><form enctype="application/x-www-form-urlencoded" method="POST"
-                                                                                         action="/applications/teamwork/resource/departmentType.jsp" name="d264934188" id="d264934188"
-                                                                                         savedAction="" savedTarget="">
+            <script>$("#RESOURCE_MENU").addClass('selected');</script><h1>组织类型</h1>
+            <form enctype="application/x-www-form-urlencoded" method="POST"
+                  action="/applications/teamwork/resource/departmentType.jsp" name="d264934188" id="d264934188"
+                  savedAction="" savedTarget="">
                 <input type="hidden" id="d264934188V_ID" name="V_ID" value="264934188" savedValue="">
                 <input type="hidden" id="d264934188CM" name="CM" value="" savedValue="">
 
                 <table class="table">
-                    <tr><th class="tableHead">Id</th><th class="tableHead">代码</th><th class="tableHead">描述</th><th class="tableHead">删除</th></tr>
+                    <tr>
+                        <th class="tableHead">Id</th>
+                        <th class="tableHead">代码</th>
+                        <th class="tableHead">描述</th>
+                        <th class="tableHead">删除</th>
+                    </tr>
                     <tr class="alternate" objid="1">
                         <td>1</td>
                         <td><input type=TEXT name="CODE_1" id="CODE_1" size=15 class="formElements" autocomplete='off' maxlength=255 value="COMPANY" oldValue='1'></td>
@@ -123,8 +129,13 @@
 
                         </td>
                     </tr>
-                    <tr class="alternate highlight"><td><span class="sectionTitle">新类型:</span></td><td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td><td colspan="2"><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td></tr>
-                </table><div class="noprint buttonArea" id="domId_892175651" style="text-align:left;">
+    <tr class="alternate highlight">
+        <td><span class="sectionTitle">新类型:</span></td>
+        <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+        <td colspan="2"><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    </tr>
+</table>
+                <div class="noprint buttonArea" id="domId_892175651" style="text-align:left;">
                     <div class="bbButtons">
                         <button type="button" class="button noprint    first" id="domId_1065343003" style="" onClick="stopBubble(event);obj('d264934188CM').value='SV';if (canSubmitForm('d264934188'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d264934188').submit();} catch(e){};} ">保存</button>
 

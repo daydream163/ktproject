@@ -1,134 +1,36 @@
-﻿
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-
-
-    <title>Twproject</title>
-
-
-    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
-    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
-
-
-
-    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
-
-
-
-    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
-
-
-    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
-    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
-
-
-    <script src="/commons/js/platform.js.jsp?_=65022"></script>
-    <script src="/commons/js/i18nJs.jsp?_=65022"></script>
-
-    <script>
-        /**
-         * Check if is Mobile
-         */
-        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
-            top.location.href = contextPath + "/mobile";
-        }
-
-        // keep as top
-
-        if (getTop() == top) {
-            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
-            top.location.href = contextPath + "/tw" + location.pathname + location.search;
-        } else {
-            if (window.location != getTop().location) {
-                getTop().location = window.location;
-            } else {
-                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
-                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
-            }
-        }
-
-
-
-        var bodyScroll;
-        var minutesToLock = 0;
-        var localActivity = new Date().getTime();
-        $(function () {
-
-            //bodyScroll = new PerfectScrollbar('#twBody');
-
-            $("body").on("mousemove keyup", function () {
-                if (top.twComm) {
-                    top.twComm.lastActivity = new Date().getTime();
-                    localActivity = new Date().getTime();
-                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
-                        top.twComm.checkAlive();
-                }
-
-            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
-
-                //websocket keep-alive
-                if (top.twComm)
-                    top.twComm.checkAlive();
-
-                //test autoLogoff
-                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
-                    $(this).stopTime("alive");
-                    muteAlertOnChange = true;
-                    top.location = "/applications/teamwork/security/login.jsp?V_ID=707493965&CM=LO";
-                }
-            });
-
-            // http session keep alive
-            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
-                $.get('/command.jsp');
-            });
-
-            if (typeof (top.manageFocusBlur) == "function")
-                $(window).on("focus blur", top.manageFocusBlur)
-
-        });
-
-    </script>
-
-</head>
-<body id="twBody" class="level30 " level="30">
-
-
-    <tbody class="dataTableBody" totalNumberOfElements="{totalcount}" pageNumber="{pageindex}" pageSize="{pagesize}" orderby="resource.name">
-        <tr class="alternate first resourceList last" resId="15189">
-            <td width="1%" valign="top" nowrap rowspan="1">
-                <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d791216581" title="Zhang Fei" alt="Zhang Fei" id="d791216581" " resId="15189" class="face ">
-            </td>
-            <td valign="top" rowspan="1">
-                <div class="pathSmall"><span class="pathEl"></span></div>
-                <a href="resourceEditor.jsp?V_ID=758334643&CM=ED&OBJID=15189" class="button textual bolder" style="white-space:normal;">Fei Zhang</a>
-            </td>
-            <td valign="top" rowspan="1"></td>
-            <td valign="top" rowspan="1">
-                <button type="button" class="button noprint textual icon  " id="domId_1315457440" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=14899956&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
-            </td>
-            <td valign="top" rowspan="1">
-                <span class="score" title="积分"><span class="teamworkIcon">1</span> 2</span>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a class="button textual" href="mailto:"></a></td>
-            <td align="center" rowspan="1">
-                <button type="button" class="button noprint textual icon  delete" id="domId_123833386" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
-            </td>
-        </tr>
-
+﻿请确认删除 "<small>(id:{id})</small> test (Ts)": 注意以下问题
+<table class="table" id="collections">
+</table>
+<br>
+<table class="table" id="referrers">
+    <tbody style="color: #444">
+<tr class="alternate" objid="47109">
+    <td>47109</td>
+    <td><input type="text" name="CODE_47109" id="CODE_47109" size="15" class="formElements validated integer" autocomplete="off" maxlength="255" value="1" oldvalue="1" entrytype="INTEGER"></td>
+    <td><input type="TEXT" name="DESC_47109" id="DESC_47109" size="30" class="formElements" autocomplete="off" maxlength="255" value="问题类型1" oldvalue="1"></td>
+    <td class="displayNone">
+        <select name="AREA_47109" id="AREA_47109" class="formElements" oldvalue="1">
+            <option value="">- 选择 -</option>
+            <option selected="" value="5944">Love Kitty Company</option>
+        </select>
+    </td>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_1908728639" style="" onclick="delRow($(this));return false; "><span class="teamworkIcon ">d</span></button>
+    </td>
+</tr>
     </tbody>
+</table>
+<div class="noprint buttonArea" id="domId_2115336402" style="text-align:left;">
+    <div class="bbButtons">
+        <button type="button" class="button noprint    delete" id="domId_867132329" style="" onclick="performDelete('OBJ_DEL',{id},true);return false; ">确认删除</button>
+    </div>
+</div>
 
+<div id="deleteErrorFeedback" style="display: none;">
+    <b style="color:#ff0000;">无法删除  因为有一个不可移动的待定引用.</b><br>
+    <span style="float: right;font-size: 70%">
+        <button type="button" class="button noprint textual   " id="domId_1069024961" style="" onclick="showFullError($(this));return false; ">见错误详细信息</button>
 
-
-</body>
-</html>
-
-
+    </span>
+    <code style="font-size: 70%;display:none;"></code>
+</div>

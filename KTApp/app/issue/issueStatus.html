@@ -98,16 +98,16 @@
 
             <script>$("#ISSUES_MENU").addClass('selected');</script>
             <form enctype="application/x-www-form-urlencoded" method="POST"
-                  action="/app/issue/issueStatus.html" name="d1534481800" id="d1534481800"
+                  action="/app/issue/issueStatus" name="d1534481800" id="d1534481800"
                   savedAction="" savedTarget="">
                 <input type="hidden" id="d1534481800V_ID" name="V_ID" value="1534481800" savedValue="">
                 <input type="hidden" id="d1534481800CM" name="CM" value="" savedValue="">
 
 
                 <div class="headBar noprint">
-                    <a class="button  textual   " id="domId_1203245057" style="" href="/app/issue/issueImpact.html?V_ID=734615666">问题的影响</a>
+                    <a class="button  textual   " id="domId_1203245057" style="" href="/app/issue/issueimpact?V_ID=734615666">问题的影响</a>
 
-                    <span class="separator" style="width:30px">&nbsp;</span><a class="button  textual   " id="domId_841766322" style="" href="/app/issue/issueType.html?V_ID=1805945641">问题类型</a>
+                    <span class="separator" style="width:30px">&nbsp;</span><a class="button  textual   " id="domId_841766322" style="" href="/app/issue/issuetype?V_ID=1805945641">问题类型</a>
 
                 </div>
                 <h1>问题的状态</h1>
@@ -127,11 +127,8 @@
 
                     <tr class="alternate" objid="13720">
                         <td>13720</td>
-
                         <td><input type=TEXT name="ORDE_13720" id="ORDE_13720" size=3 class="formElements" autocomplete='off' maxlength=255 value="1" oldValue='1'></td>
-
                         <td><input type=TEXT name="DESC_13720" id="DESC_13720" size=30 class="formElements" autocomplete='off' maxlength=255 value="open" oldValue='1'></td>
-
                         <td><input type=TEXT name="COLOR_13720" id="COLOR_13720" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="#3BBF67" oldValue='1'></td>
                         <td class="displayNone">
                             <SELECT NAME="AREA_13720" id="AREA_13720" CLASS="formElements" oldValue='1'>
@@ -139,32 +136,55 @@
                                 <option selected value="5819">梦想飞扬</option>
                             </SELECT>
                         </td>
-
-
                         <td align="center">
                             <input type=hidden name="ASOP_13720" id="ASOP_13720" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_ASOP_13720" name="ck_ASOP_13720" checked value="yes"
-                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
                         </td>
-
                         <td align="center">
                             <input type=hidden name="ASCL_13720" id="ASCL_13720" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASCL_13720" name="ck_ASCL_13720" value="yes"
-                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
                         </td>
-
                         <td align="center">
                             <input type=hidden name="ASKC_13720" id="ASKC_13720" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASKC_13720" name="ck_ASKC_13720" value="yes"
-                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
                         </td>
-
                         <td align="center">
                             <input type=hidden name="ASKW_13720" id="ASKW_13720" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASKW_13720" name="ck_ASKW_13720" value="yes"
-                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
                         </td>
-
-
                         <td align="center">
                             <button type="button" class="button noprint textual icon  delete" id="domId_1014646631" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+                        </td>
+                    </tr>
 
+
+                    <tr class="alternate" objid="14095">
+                        <td>14095</td>
+                        <td><input type="TEXT" name="ORDE_14095" id="ORDE_14095" size="3" class="formElements" autocomplete="off" maxlength="255" value="1" oldvalue="1"></td>
+                        <td><input type="TEXT" name="DESC_14095" id="DESC_14095" size="30" class="formElements" autocomplete="off" maxlength="255" value="open" oldvalue="1"></td>
+                        <td><div class="minicolors minicolors-theme-default minicolors-position-bottom minicolors-position-left"><input type="TEXT" name="COLOR_14095" id="COLOR_14095" size="7" class="formElements minicolors-input" autocomplete="off" maxlength="255" colorfield="1" value="#3bbf67" oldvalue="1"><span class="minicolors-swatch minicolors-sprite"><span class="minicolors-swatch-color" style="background-color: rgb(59, 191, 103);"></span></span><div class="minicolors-panel minicolors-slider-hue"><div class="minicolors-slider minicolors-sprite"><div class="minicolors-picker" style="top: 91.6667px;"></div></div><div class="minicolors-opacity-slider minicolors-sprite"><div class="minicolors-picker"></div></div><div class="minicolors-grid minicolors-sprite" style="background-color: rgb(0, 255, 85);"><div class="minicolors-grid-inner"></div><div class="minicolors-picker" style="top: 37px; left: 104px;"><div></div></div></div></div></div></td>
+                        <td class="displayNone">
+                            <select name="AREA_14095" id="AREA_14095" class="formElements" oldvalue="1">
+                                <option value="">- 选择 -</option>
+                                <option selected="" value="5944">Love Kitty Company</option>
+                            </select>
+                        </td>
+                        <td align="center">
+                            <input type="hidden" name="ASOP_14095" id="ASOP_14095" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="yes" oldvalue="1">
+                            <input type="checkbox" id="ck_ASOP_14095" name="ck_ASOP_14095" checked="" value="yes" onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td align="center">
+                            <input type="hidden" name="ASCL_14095" id="ASCL_14095" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="no" oldvalue="1">
+                            <input type="checkbox" id="ck_ASCL_14095" name="ck_ASCL_14095" value="yes" onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td align="center">
+                            <input type="hidden" name="ASKC_14095" id="ASKC_14095" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="no" oldvalue="1">
+                            <input type="checkbox" id="ck_ASKC_14095" name="ck_ASKC_14095" value="yes" onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td align="center">
+                            <input type="hidden" name="ASKW_14095" id="ASKW_14095" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="no" oldvalue="1">
+                            <input type="checkbox" id="ck_ASKW_14095" name="ck_ASKW_14095" value="yes" onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        </td>
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  delete" id="domId_1730030848" style="" onclick="delRow($(this));return false; ">
+                                <span class="teamworkIcon ">d</span>
+                            </button>
                         </td>
                     </tr>
 
@@ -254,38 +274,39 @@
                         </td>
                     </tr>
 
-                    <tr class="alternate highlight">
-                        <td><span class="sectionTitle">新：</span></td>
-
-                        <td><input type=TEXT name="ORDE" id="ORDE" size=3 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-
-                        <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
-
-                        <td nowrap><input type=TEXT name="COLOR" id="COLOR" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="" oldValue='1'></td>
-                        <td class="displayNone">
-                            <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
-                                <option value="5819">梦想飞扬</option>
-                            </SELECT>
-                        </td>
-                        <td align="center">
-                            <input type=hidden name="ASOP" id="ASOP" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASOP" name="ck_ASOP" value="yes"
-                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
-                        </td>
-
-                        <td align="center">
-                            <input type=hidden name="ASCL" id="ASCL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASCL" name="ck_ASCL" value="yes"
-                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
-                        </td>
-                        <td align="center">
-                            <input type=hidden name="ASKC" id="ASKC" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASKC" name="ck_ASKC" value="yes"
-                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
-                        </td>
-                        <td align="center">
-                            <input type=hidden name="ASKW" id="ASKW" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASKW" name="ck_ASKW" value="yes"
-                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
-                        </td>
-                        <td></td>
-                </table>
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新：</span></td>
+    <td><input type=TEXT name="ORDE" id="ORDE" size=3 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td nowrap><input type=TEXT name="COLOR" id="COLOR" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="5819">梦想飞扬</option>
+        </SELECT>
+    </td>
+    <td align="center">
+        <input type=hidden name="ASOP" id="ASOP" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASOP" name="ck_ASOP" value="yes"
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type=hidden name="ASCL" id="ASCL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASCL" name="ck_ASCL" value="yes"
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type=hidden name="ASKC" id="ASKC" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASKC" name="ck_ASKC" value="yes"
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type=hidden name="ASKW" id="ASKW" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASKW" name="ck_ASKW" value="yes" 
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td></td>
+</tr>
+</table>
                 <div class="noprint buttonArea" id="domId_1017592053" style="text-align:left;">
                     <div class="bbButtons">
                         <button type="button" class="button noprint    first" id="domId_109870063" style="" onClick="stopBubble(event);obj('d1534481800CM').value='SV';if (canSubmitForm('d1534481800'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d1534481800').submit();} catch(e){};} ">保存</button>

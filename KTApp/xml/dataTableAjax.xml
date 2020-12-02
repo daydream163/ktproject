@@ -221,4 +221,440 @@
       <![CDATA[</tbody>]]>
     </after>
   </node>
+  <node id="TASKTYPE">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th class="tableHead">Id</th>
+    <th class="tableHead">代码*</th>
+    <th class="tableHead">描述*</th>
+    <th class="tableHead displayNone">域*</th>
+    <th class="tableHead">删除</th>
+</tr>
+      ]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type="TEXT" name="CODE_{id}" id="CODE_{id}" size="15" class="formElements" autocomplete="off" maxlength="255" value="{stringvalue}" required="true" oldvalue="1"></td>
+    <td><input type="TEXT" name="DESC_{id}" id="DESC_{id}" size="30" class="formElements" autocomplete="off" maxlength="255" value="{description}" required="true" oldvalue="1"></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA_{id}" id="AREA_{id}" CLASS="formElements" required="true" oldValue='1'>
+            <option selected value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_657930221" style="" onclick="delRow($(this));return false; "><span class="teamworkIcon ">d</span></button>
+    </td>
+</tr>]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新类型:</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+      ]]>
+    </after>
+  </node>
+  <node id="CostClassification">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th class="tableHead">id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead displayNone">域</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type=TEXT name="CODE_{id}" id="CODE_{id}" size=15 class="formElements" autocomplete='off' maxlength=255 value="{stringvalue}" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_{id}" id="DESC_{id}" size=30 class="formElements" autocomplete='off' maxlength=255 value="{description}" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA_{id}" id="AREA_{id}" CLASS="formElements" oldValue='1'>
+            <option selected value="1">美丽之网</option>
+        </SELECT>
+    </td>
+
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_533480241" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+    </td>
+</tr>
+
+]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新：</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+]]>
+    </after>
+  </node>
+  <node id="WorklogStatus">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th width="5%" class="tableHead">id</th>
+    <th width="5%" nowrap="" class="tableHead">代码</th>
+    <th class="tableHead">描述*</th>
+    <th width="12%" class="tableHead">颜色*</th>
+    <th class="tableHead displayNone">域*</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type=text name="CODE_{id}" id="CODE_{id}" size=3 class="formElements validated integer" autocomplete='off' maxlength=255 value="{intvalue}" oldValue='1' entryType="INTEGER"></td>
+    <td><input type=TEXT name="DESC_{id}" id="DESC_{id}" size=30 class="formElements" autocomplete='off' maxlength=255 value="{description}" oldValue='1'></td>
+    <td><input type=TEXT name="COLOR_{id}" id="COLOR_{id}" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="{color}" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA_{id}" id="AREA_{id}" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option selected value="1">美丽之网</option>
+        </SELECT>
+    </td>
+
+
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_1356490381" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+    </td>
+</tr>
+]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新：</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=3 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="COLOR" id="COLOR" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="" oldValue='1'></td>
+
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>]]>
+    </after>
+  </node>
+  <node id="ISSUETYPE">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th class="tableHead">id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead displayNone">域</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type="text" name="CODE_{id}" id="CODE_{id}" size="15" class="formElements validated integer" autocomplete="off" maxlength="255" value="{intvalue}" oldvalue="1" entrytype="INTEGER"></td>
+    <td><input type="TEXT" name="DESC_{id}" id="DESC_{id}" size="30" class="formElements" autocomplete="off" maxlength="255" value="{description}" oldvalue="1"></td>
+    <td class="displayNone">
+        <select name="AREA_{id}" id="AREA_{id}" class="formElements" oldvalue="1">
+            <option value="1">- 选择 -</option>
+            <option selected="" value="1">美丽之网</option>
+        </select>
+    </td>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_1908728639" style="" onclick="delRow($(this));return false; "><span class="teamworkIcon ">d</span></button>
+    </td>
+</tr>]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新类型:</span></td>
+    <td><input type=text name="CODE" id="CODE" size=15 class="formElements validated integer" autocomplete='off' maxlength=255 value="" oldValue='1' entryType="INTEGER"></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+]]>
+    </after>
+  </node>
+  <node id="ISSUEIMPACT">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th class="tableHead">id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead displayNone">域</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type=TEXT name="CODE_{id}" id="CODE_{id}" size=15 class="formElements" autocomplete='off' maxlength=255 value="{intvalue}" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_{id}" id="DESC_{id}" size=30 class="formElements" autocomplete='off' maxlength=255 value="{description}" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA_{id}" id="AREA_{id}" CLASS="formElements" oldValue='1'>
+            <option value="1">- 选择 -</option>
+            <option selected value="1">美丽之网</option>
+        </SELECT>
+    </td>
+
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_450887264" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+
+    </td>
+</tr>
+]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新：</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>]]>
+    </after>
+  </node>
+  <node id="DepartmentType">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th class="tableHead">Id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type=TEXT name="CODE_{id}" id="CODE_{id}" size=15 class="formElements" autocomplete='off' maxlength=255 value="{stringvalue}" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_{id}" id="DESC_{id}" size=30 class="formElements" autocomplete='off' maxlength=255 value="{description}" oldValue='1'></td>
+
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_595351004" style="" onclick="delRow($(this));return false; ">
+          <span class='teamworkIcon '>d</span>
+        </button>
+    </td>
+</tr>
+]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新类型:</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td colspan="2"><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+</tr>
+</table>
+]]>
+    </after>
+  </node>
+  <node id="IssueStatus">
+    <before>
+      <![CDATA[
+<table class="table">
+<tr>
+    <th class="tableHead" width="5%">id</th>
+    <th class="tableHead" width="5%">order</th>
+    <th class="tableHead">描述*</th>
+    <th class="tableHead" width="8%">color*</th>
+    <th class="tableHead displayNone">域*</th>
+    <th class="tableHead">as 'open'</th>
+    <th class="tableHead">as 'close'</th>
+    <th class="tableHead">ask comment</th>
+    <th class="tableHead">ask wl</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type=TEXT name="ORDE_{id}" id="ORDE_{id}" size=3 class="formElements" autocomplete='off' maxlength=255 value="{orderby}" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_{id}" id="DESC_{id}" size=30 class="formElements" autocomplete='off' maxlength=255 value="{description}" oldValue='1'></td>
+    <td><input type=TEXT name="COLOR_{id}" id="COLOR_{id}" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="{color}" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA_{id}" id="AREA_{id}" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option selected value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td align="center">
+        <input type="hidden" name="ASOP_{id}" id="ASOP_{id}" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="{behavesasopen_str}" oldvalue="1">
+        <input type="checkbox" id="ck_ASOP_{id}" name="ck_ASOP_{id}" value="yes" {behavesasopen_checked} onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type="hidden" name="ASCL_{id}" id="ASCL_{id}" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="{behavesasclosed_str}" oldvalue="1">
+        <input type="checkbox" id="ck_ASCL_{id}" name="ck_ASCL_{id}" value="yes" {behavesasclosed_checked} onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type="hidden" name="ASKC_{id}" id="ASKC_{id}" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="{askforcomment_str}" oldvalue="1">
+        <input type="checkbox" id="ck_ASKC_{id}" name="ck_ASKC_{id}" value="yes" {askforcomment_checked} onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type="hidden" name="ASKW_{id}" id="ASKW_{id}" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="{askforworklog_str}" oldvalue="1">
+        <input type="checkbox" id="ck_ASKW_{id}" name="ck_ASKW_{id}" value="yes" {askforworklog_checked} onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_1730030848" style="" onclick="delRow($(this));return false; ">
+            <span class="teamworkIcon ">d</span>
+        </button>
+    </td>
+</tr>
+]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新：</span></td>
+    <td><input type=TEXT name="ORDE" id="ORDE" size=3 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td nowrap><input type=TEXT name="COLOR" id="COLOR" size=7 class="formElements" autocomplete='off' maxlength=255 colorField='1' value="" oldValue='1'></td>
+    <td class="displayNone">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td align="center">
+        <input type=hidden name="ASOP" id="ASOP" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASOP" name="ck_ASOP" value="yes"
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type=hidden name="ASCL" id="ASCL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASCL" name="ck_ASCL" value="yes"
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type=hidden name="ASKC" id="ASKC" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASKC" name="ck_ASKC" value="yes"
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td align="center">
+        <input type=hidden name="ASKW" id="ASKW" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'>
+        <input type="checkbox" id="ck_ASKW" name="ck_ASKW" value="yes" 
+                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td></td>
+</tr>
+</table>
+]]>
+    </after>
+  </node>
+  <node id="EventType">
+    <before>
+      <![CDATA[
+<table class="table dataTable">
+<tr>
+    <th class="tableHead">Id</th>
+    <th class="tableHead">代码</th>
+    <th class="tableHead">描述</th>
+    <th class="tableHead">不可用</th>
+    <th class="tableHead ">域</th>
+    <th class="tableHead">删除</th>
+</tr>
+]]>
+    </before>
+    <row>
+      <![CDATA[
+<tr class="alternate" objid="{id}">
+    <td>{id}</td>
+    <td><input type=TEXT name="CODE_{id}" id="CODE_{id}" size=15 class="formElements" autocomplete='off' maxlength=255 value="{intvalue}" oldValue='1'></td>
+    <td><input type=TEXT name="DESC_{id}" id="DESC_{id}" size=30 class="formElements" autocomplete='off' maxlength=255 value="{description}" oldValue='1'></td>
+    <td align="center">
+        <input type=hidden name="UNAV_{id}" id="UNAV_{id}" size=1 autocomplete='off' maxlength=255 data-checkfield value="{unavailable_str}" oldValue='1'>
+        <input type="checkbox" id="ck_UNAV_{id}" name="ck_UNAV_{id}" {unavailable_checked} value="{unavailable_str}" onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td class="">
+        <SELECT NAME="AREA_{id}" id="AREA_{id}" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option selected value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td align="center">
+        <button type="button" class="button noprint textual icon  delete" id="domId_1308087284" style="" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    </td>
+</tr>
+]]>
+    </row>
+    <after>
+      <![CDATA[
+<tr class="alternate highlight">
+    <td><span class="sectionTitle">新类型:</span></td>
+    <td><input type=TEXT name="CODE" id="CODE" size=15 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td><input type=TEXT name="DESC" id="DESC" size=30 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+    <td align="center">
+        <input type=hidden name="UNAV" id="UNAV" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_UNAV" name="ck_UNAV" value="yes"
+                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+    </td>
+    <td class="">
+        <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+            <option value="">- 选择 -</option>
+            <option value="1">美丽之网</option>
+        </SELECT>
+    </td>
+    <td></td>
+</tr>
+</table>
+]]>
+    </after>
+  </node>
+
 </nodes>

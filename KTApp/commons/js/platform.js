@@ -4232,7 +4232,7 @@ function deletePreview(deletePreviewerId, delendoId, callback) {
     //console.debug("deletePreview", deletePreviewerId, delendoId);
     var request = { "DEL_PREV_ID": deletePreviewerId, OBJID: delendoId, CM: "DELETEPREVIEW", ISCALLBACK: callback == null ? "no" : "yes" };  //se c'Ã¨ la callback non dovrÃ  fare redirect dopo il delete
     var diag = createModalPopup(550, 300, callback);
-    $.get(contextPath + "/commons/layout/deletePreviewer/deletePreviewAjaxControllerHTML.jsp", request, function (response) {
+    $.get(contextPath + "/app/deletecheck/checkhtml", request, function (response) {
         diag.append(response);
         $(window).resize();
     });
@@ -4249,7 +4249,7 @@ function performDelete(deletePreviewerId, delendoId, useCallback) {
         request[el.prop("name")] = el.val();
     });
 
-    $.getJSON(contextPath + "/commons/layout/deletePreviewer/deletePreviewAjaxController.jsp", request, function (response) {
+    $.getJSON(contextPath + "/app/deletecheck/deleteajax", request, function (response) {
         jsonResponseHandling(response);
         if (response.ok) {
             if (!useCallback && response.REDIRECT_TO) {

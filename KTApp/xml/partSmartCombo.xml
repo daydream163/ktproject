@@ -95,7 +95,7 @@
     <tr class="trNormal   scTr" id="ROW_2" selectText="省级项目" selectValue="46222"><td class="">省级项目</td><td class="textSmall">SJ</td></tr>
     <tr class="unselectable" class="addEntityLine">
         <td colspan="90">
-            <button type="button" class="button noprint textual   small" id="domId_1044679172" style="" onclick="openBlackPopup('/app/task/taskType.html?V_ID=120168936&once=yes&DESC='+encodeURIComponent($('#TASK_TYPE_txt').val()),$(window).width()-100,$(window).height()-50,taskTypeAddedCallback);return false; ">添加类型</button>
+            <button type="button" class="button noprint textual   small" id="domId_1044679172" style="" onclick="openBlackPopup('/app/task/taskType?V_ID=120168936&once=yes&DESC='+encodeURIComponent($('#TASK_TYPE_txt').val()),$(window).width()-100,$(window).height()-50,taskTypeAddedCallback);return false; ">添加类型</button>
         </td>
     </tr>
 </table>
