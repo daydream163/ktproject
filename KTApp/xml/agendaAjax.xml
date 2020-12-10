@@ -249,6 +249,22 @@
 ]]>
     </data>
   </node>
+  <node id="messagelist_page">
+    <before><![CDATA[]]></before>
+    <row>
+      <![CDATA[
+<div id="message_{id}" class="message read" messageId="{id}" style="cursor:pointer;" onclick="followMessageLink($(this));">
+  <span class="message_operator">
+    <img src="/img/favicon.png" width="30px"  border="0"></span>
+  <span class="message_date">{received}</span>
+  <span class="message_subject " >{subject}</span>
+  <span class="message_body">{messagebodx}</span>
+  <span class="message_link"><a href="https://demo.twproject.com/applications/teamwork/task/taskOverview.jsp?V_ID=191011299&CM=ED&OBJID=54200" >点击查看/处理</a></span>
+</div>
+]]>
+    </row>
+    <after><![CDATA[]]></after>
+  </node>
   <node id="GETTASKISS.WEEK">
     <data>
       <![CDATA[

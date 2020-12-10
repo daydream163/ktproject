@@ -15,6 +15,7 @@ namespace KTApp.Base
     public class BaseApiController : ApiController
     {
         public IUserService _userService { get; set; }
+        public IResourceService _resourceService { get; set; }
 
         private int _userid = 0;
         public int UserID
@@ -30,6 +31,22 @@ namespace KTApp.Base
                 }
             }
         }
+
+        private KTResource _resourceinfo = null;
+        public KTResource ResourceInfo
+        {
+            get
+            {
+                if (_resourceinfo == null) {
+                    _resourceinfo = _resourceService.GetDetailByUserid(this.UserID);
+                    return _resourceinfo;
+                }
+                else {
+                    return _resourceinfo;
+                }
+            }
+        }
+
 
         /// <summary>
         /// 角色列表
@@ -52,7 +69,7 @@ namespace KTApp.Base
             }
         }
 
-        CredentialsExt UserInfo
+        public CredentialsExt UserInfo
         {
             get
             {

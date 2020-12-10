@@ -60,7 +60,7 @@ namespace KTProject.Common.HTML
         /// <param name="pagesize"></param>
         /// <param name="list">数据列表</param>
         /// <returns></returns>
-        public static string GetDataList<T>(XmlNode node, int pageindex, int pagesize, IEnumerable<T> list) {
+        public static string GetDataList<T>(XmlNode node, int pageindex, int pagesize, IEnumerable<T> list, int totalcount = 0) {
             string returnstr;
             string rowTotalHMTL = string.Empty;
             string beforeHTML = string.Empty;
@@ -80,17 +80,110 @@ namespace KTProject.Common.HTML
                 rowTemplate = rowNode.InnerText;
             }
 
-            string count = list == null ? "0" : list.Count().ToString();
-            beforeHTML = beforeHTML.Replace("{totalcount}", count.ToString())
+            totalcount = totalcount == 0 ? list.Count() : totalcount;
+            beforeHTML = beforeHTML.Replace("{totalcount}", totalcount.ToString())
                 .Replace("{pageindex}", pageindex.ToString())
                 .Replace("{pagesize}", pagesize.ToString());
 
+
+            //myself♂equal♂0*<img src="" class="face ">♀1*<div>test</div>♀2*&nbsp
+            //status♂equal♂1*<img src="" class="face ">♀2*&nbsp♀3*&nbsp
+            XmlNodeList expressList = node.SelectNodes("fieldsexpress/express");
+            List<MyExpress> listExpress = GetExpressList(expressList);
+
             if (rowNode != null) {
-                rowTotalHMTL = KTList.GetListFromTemplate<T>(list, rowTemplate);
+                rowTotalHMTL = KTList.GetListFromTemplate<T>(list, rowTemplate, listExpress);
             }
 
             returnstr = beforeHTML + rowTotalHMTL + afterHTML;
             return returnstr;
+        }
+
+        private static List<MyExpress> GetExpressList(XmlNodeList expressList) {
+            List<MyExpress> listExpress = new List<MyExpress>();
+            if (expressList != null && expressList.Count > 0) {
+                for (int j = 0; j < expressList.Count; j++) {
+                    string express = expressList[j].InnerText;
+                    string[] conditions = express.Split('♂');
+                    if (conditions.Length < 3) {
+                        continue;
+                    }
+                    MyExpress myexpress = new MyExpress();
+                    string field = conditions[0];
+                    string sign = conditions[1];
+                    string values = conditions[2];
+                    myexpress.field = field;
+                    myexpress.sign = sign;
+
+                    if (!string.IsNullOrWhiteSpace(values)) {
+                        string[] arrValues = values.Split('♀');
+                        List<Dictionary<string, string>> listValues = new List<Dictionary<string, string>>();
+                        Dictionary<string, string> kv = new Dictionary<string, string>();
+                        for (int m = 0; m < arrValues.Length; m++) {
+                            string[] value = arrValues[m].Split('*');
+                            kv[value[0]] = value[1];
+                        }
+                        myexpress.dicConditions = kv;
+                    }
+                    listExpress.Add(myexpress);
+                }
+            }
+
+            return listExpress;
+        }
+
+        /// <summary>
+        /// 根据模板组装返回数据List的HTML内容
+        /// </summary>
+        /// <typeparam name="T">行数据类型</typeparam>
+        /// <param name="list">数据列表</param>
+        /// <param name="rowTemplate">行模板</param>
+        /// <param name="listExpress"></param>
+        /// <returns></returns>
+        public static string GetListFromTemplate<T>(IEnumerable<T> list, string rowTemplate, List<MyExpress> listExpress) {
+            string htmlTotal = null;
+            PropertyInfo[] arrs = KTUtils.GetPropertyArray<T>();
+            for (int i = 0; i < list.Count(); i++) {
+                T item = list.ElementAt(i);
+                string rowhtml = rowTemplate;
+                // {字段}替换为值
+                for (int j = 0; j < arrs.Length; j++) {
+                    string pro = arrs[j].Name;
+
+                    string value = KTUtils.GetObjectPropertyValue<T>(item, pro);
+                    rowhtml = rowhtml.Replace("{" + pro.ToLower() + "}", value);
+
+                    // 处理expressfield配置
+                    if (listExpress != null && listExpress.Count > 0) {
+                        for (int m = 0; m < listExpress.Count; m++) {
+                            MyExpress obj = listExpress[m];
+                            if (obj.sign == "equal") {
+                                // 目前只处理 等于情况 TODO：更多情况，如大小比较类
+                                if (obj.field == pro) {
+                                    // 获取值对应的html
+                                    if (obj.dicConditions.ContainsKey(value)) {
+                                        string v = obj.dicConditions[value];
+                                        rowhtml = rowhtml.Replace("#" + pro.ToLower() + "#", v);
+                                    }
+                                }
+                            }
+
+                            if (j == arrs.Length - 1 && m == listExpress.Count - 1) {
+                                // 最后一个，替换掉默认的
+                                rowhtml = rowhtml.Replace("#" + pro.ToLower() + "#", obj.dicConditions["else"]);
+                            }
+                        }
+                    }
+                }
+
+
+                // 更新行号
+                rowhtml = rowhtml.Replace("#rowid#", i.ToString());
+                htmlTotal += rowhtml;
+            }
+
+
+            return htmlTotal;
         }
 
         /// <summary>
@@ -102,51 +195,29 @@ namespace KTProject.Common.HTML
         /// <returns></returns>
         public static string GetListFromTemplate<T>(IEnumerable<T> list, string rowTemplate) {
             string htmlTotal = null;
-            PropertyInfo[] arrs = GetPropertyArray<T>();
+            PropertyInfo[] arrs = KTUtils.GetPropertyArray<T>();
             for (int i = 0; i < list.Count(); i++) {
                 T item = list.ElementAt(i);
                 string rowhtml = rowTemplate;
                 for (int j = 0; j < arrs.Length; j++) {
                     string pro = arrs[j].Name;
 
-                    string value = GetObjectPropertyValue<T>(item, pro);
+                    string value = KTUtils.GetObjectPropertyValue<T>(item, pro);
                     rowhtml = rowhtml.Replace("{" + pro.ToLower() + "}", value);
                 }
+                // 更新行号
+                rowhtml = rowhtml.Replace("#rowid#", i.ToString());
                 htmlTotal += rowhtml;
             }
 
             return htmlTotal;
         }
+    }
 
-        /// <summary>
-        /// 获取某个对象的属性值
-        /// </summary>
-        /// <typeparam name="T">行数据类型</typeparam>
-        /// <param name="t"></param>
-        /// <param name="propertyname"></param>
-        /// <returns></returns>
-        private static string GetObjectPropertyValue<T>(T rowData, string pname) {
-            Type type = typeof(T);
-            PropertyInfo property = type.GetProperty(pname);
-
-            if (property == null) {
-                return string.Empty;
-            }
-
-            object value = property.GetValue(rowData, null);
-
-            return value == null ? string.Empty : value.ToString();
-        }
-
-        private static PropertyInfo[] GetPropertyArray<T>() {
-            PropertyInfo[] props = null;
-            try {
-                Type type = typeof(T);
-                object obj = Activator.CreateInstance(type);
-                props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            }
-            catch (Exception) { }
-            return props;
-        }
+    public class MyExpress
+    {
+        public string field { get; set; }
+        public string sign { get; set; }
+        public Dictionary<string, string> dicConditions { get; set; }
     }
 }

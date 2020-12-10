@@ -17,6 +17,7 @@ namespace KTProject.IRepository
         /// <param name="areaids">域id列表</param>
         /// <returns></returns>
         IEnumerable<Metadata> GetList(string orgcode, string type, int[] areaids);
+        IEnumerable<Metadata> GetList(string orgid, string type, string filter, int[] areaids);
         Metadata GetDetail(int id);
         Metadata Insert(Metadata metadata);
         int Update(Metadata metadata);

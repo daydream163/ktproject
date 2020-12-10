@@ -14,9 +14,6 @@ namespace KTProject.Service
     {
         private IMetadataRepository repository = new MetadataRepository();
 
-        public int Delete(int areaid, int id) {
-            return repository.Delete(areaid, id);
-        }
 
         public Metadata GetDetail(int id) {
             throw new NotImplementedException();
@@ -24,6 +21,9 @@ namespace KTProject.Service
 
         public IEnumerable<Metadata> GetList(string orgcode, string type, int[] areaids) {
             return repository.GetList(orgcode, type, areaids);
+        }
+        public IEnumerable<Metadata> GetList(string orgid, string type, string filter, int[] areaids) {
+            return repository.GetList(orgid, type, filter, areaids);
         }
 
         public Metadata Insert(Metadata metadata) {
@@ -33,5 +33,8 @@ namespace KTProject.Service
         public int Update(Metadata metadata) {
             return repository.Update(metadata);
         }
-    }
+          public int Delete(int areaid, int id) {
+            return repository.Delete(areaid, id);
+        }
+  }
 }

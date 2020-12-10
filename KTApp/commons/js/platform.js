@@ -6004,9 +6004,9 @@ function openTeamworkLink(type, objCodeId, event) {
         //Resource
     } else if (type == "R") {
         if (openNewWindow)
-            window.open(contextPath + "/app/resource/resourceEditor.html?CM=GUESS&OBJID=" + objCodeId);
+            window.open(contextPath + "/app/resource/resourceEditor?CM=GUESS&OBJID=" + objCodeId);
         else
-            getTop().location = contextPath + "/app/resource/resourceEditor.html?CM=GUESS&OBJID=" + objCodeId;
+            getTop().location = contextPath + "/app/resource/resourceEditor?CM=GUESS&OBJID=" + objCodeId;
 
         //Event Meeting
     } else if (type == "E" || type == "M") {
@@ -6053,7 +6053,7 @@ jQuery.fn.activateTeamworkLinks_old = function (showImages) {
 
         html = html.replace(issueRE, "<a href='#' onclick=\"openIssueEditorInBlack('$1','GUESS');return stopBubble(event);\">I#$1#</a>", "g");
         html = html.replace(taskRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/app/task/taskOverview??CM=GUESS&OBJID=$1';return stopBubble(event);\">T#$1#</a>", "g");
-        html = html.replace(resourceRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/app/resource/resourceEditor.html?CM=GUESS&OBJID=$1';return stopBubble(event);\">R#$1#</a>", "g");
+        html = html.replace(resourceRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/app/resource/resourceEditor?CM=GUESS&OBJID=$1';return stopBubble(event);\">R#$1#</a>", "g");
         html = html.replace(eventRE, "<a href='#' onclick=\"getTop().location='" + contextPath + "/applications/teamwork/agenda/agendaEditor.jsp?CM=GUESS&OBJID=$1';return stopBubble(event);\">E#$1#</a>", "g");
         html = html.replace(boardRE, "<a href='#'onclick=\"openBoardInBlack('$1','GUESS');return stopBubble(event);\">B#$1#</a>", "g");
         html = html.replace(attachmentRE, "<a href='#' onclick='$(\".repoFileBox[pf=$1]\").click();return stopBubble(event);'>F#$1#</a>", "g");

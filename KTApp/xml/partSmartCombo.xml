@@ -22,7 +22,7 @@
     </table>    
 ]]>
   </node>
- <node id="ASSIGNEE">
+  <node id="ASSIGNEE">
     <![CDATA[
 <table width="100%" border="0" class="comboTable " style="cursor:pointer">
         <tr class="trNormal trHl trSel scTr" id="ROW_1" selectText="Wing Dream" selectValue="15089">
@@ -66,7 +66,6 @@
 </table>
 ]]>
   </node>
-
   <node id="roleId">
     <![CDATA[
 <table width="100%" border="0" class="comboTable " style="cursor:pointer">
@@ -122,15 +121,6 @@
 </table>
 ]]>
   </node>
-  <node id="typeId">
-    <![CDATA[
-<table width="100%" border="0" class="comboTable " style="cursor:pointer">
-    <tr class="trNormal   scTr" id="ROW_1" selectText="Fei Zhang" selectValue="15189"><td class="">Fei Zhang</td><td class="textSmall"></td></tr>
-    <tr class="trNormal   scTr" id="ROW_2" selectText="Wing Dream" selectValue="15089"><td class="">Wing Dream</td><td class="textSmall"> </td></tr>
-    <tr class="trNormal   scTr" id="ROW_3" selectText="第一个员工" selectValue="15163"><td class="">第一个员工 </td><td class="textSmall"></td></tr>
-</table>
-]]>
-  </node>
   <node id="TASK_ADD">
     <![CDATA[
 <table width="100%" border="0" class="comboTable " style="cursor:pointer">
@@ -172,4 +162,32 @@
 </table>
 ]]>
   </node>
+  <node id="PARENT_ID">
+    <before><![CDATA[<table width="100%" border="0" class="comboTable " style="cursor:pointer">]]></before>
+    <row>
+      <![CDATA[
+    <tr class="trNormal   scTr" id="ROW_#rowid#" selectText="{name}" selectValue="{id}"><td class="">{name}</td><td class="textSmall"> </td></tr>
+]]>
+    </row>
+    <after><![CDATA[</table>]]></after>
+  </node>
+  <node id="MANAGER">
+    <before><![CDATA[<table width="100%" border="0" class="comboTable " style="cursor:pointer">]]></before>
+    <row>
+      <![CDATA[
+    <tr class="trNormal   scTr" id="ROW_#rowid#" selectText="{name}" selectValue="{id}"><td class="">{name}</td><td class="textSmall"> </td></tr>
+]]>
+    </row>
+    <after><![CDATA[</table>]]></after>
+  </node>
+  <node id="typeId">
+    <before><![CDATA[<table width="100%" border="0" class="comboTable " style="cursor:pointer">]]></before>
+    <row>
+      <![CDATA[
+    <tr class="trNormal   scTr" id="ROW_#id#" selectText="{description}" selectValue="{id}"><td class="">{description}</td></tr>
+]]>
+    </row>
+    <after><![CDATA[</table>]]></after>
+  </node>
+
 </nodes>

@@ -97,11 +97,14 @@
     <Compile Include="Cache\CacheHelper.cs" />
     <Compile Include="Cache\CacheHelper2.cs" />
     <Compile Include="Cache\RedisConnectionHelp.cs" />
+    <Compile Include="Common\KTDateTime.cs" />
+    <Compile Include="Common\KTUtils.cs" />
     <Compile Include="Constants\ConfigSettings.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Constants\RedisCacheKey.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="DapperExtensions\MySqlMapperExtensions.cs" />
+    <Compile Include="JsonResult.cs" />
     <Compile Include="HtmlResult.cs" />
     <Compile Include="HandlerResult.cs" />
     <Compile Include="HTML\KTList.cs" />
@@ -113,6 +116,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KTProject.Model\KTProject.Model.csproj">
+      <Project>{4DD2DA6A-FE79-4CDF-827D-74D1BE650777}</Project>
+      <Name>KTProject.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

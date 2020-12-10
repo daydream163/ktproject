@@ -1,0 +1,1753 @@
+﻿
+@{
+    ViewBag.Title = "日程";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+
+    <div class="mainColumn">
+        <form enctype="application/x-www-form-urlencoded" method="POST"
+              action="/app/agenda/agendaWeekDay" name="AGWEDA" id="AGWEDA"
+              savedAction="" savedTarget="">
+            <input type="hidden" id="AGWEDAV_ID" name="V_ID" value="113546667" savedValue="">
+            <input type="hidden" id="AGWEDACM" name="CM" value="" savedValue="">
+            <input type="hidden" id="AGWEDAFOCUS_MILLIS" name="FOCUS_MILLIS" value="1607417163284" savedValue="">
+            <input type="hidden" id="AGWEDAAGENDA_TYPE" name="AGENDA_TYPE" value="WEEK" savedValue="">
+            <input type="hidden" id="AGWEDAWG_IDS" name="WG_IDS" value="1" savedValue="">
+
+            <script src="../../../commons/js/jstz.min.js"></script>
+            <script>
+                $("#AGENDA_MENU").addClass('selected');
+                initialize(contextPath + "/commons/js/jstz.min.js", "script");
+            </script>
+
+            <div class="tools">
+                <div class="toolsElement">
+                    <button type="button" class="button noprint    first" id="domId_919571064" style="" onClick="stopBubble(event);obj('AGWEDACM').value='AD';obj('AGWEDA').action='agendaEditor.jsp'; try {obj('AGWEDA').submit();} catch(e){};"><span class='teamworkIcon withLabel'>P</span>添加事件</button>
+
+                </div><div class="toolsElement">
+                    <button type="button" class="button noprint  icon  " id="domId_1753606429" style="" title="其它日程" onclick="$('#domId_203902542').trigger('toggle');$('#domId_203902542').centerOnScreen();return false; "><span class='teamworkIcon '>I</span></button>
+
+                </div><div class="toolsElement">
+                    <button type="button" class="button noprint  icon  " id="domId_797680775" style="" title="搜索" onClick="stopBubble(event);obj('AGWEDACM').value='FN';obj('AGWEDA').action='agendaList.jsp'; try {obj('AGWEDA').submit();} catch(e){};"><span class='teamworkIcon '>L</span></button>
+
+                </div>
+            </div>
+            <h1>日程</h1>
+
+            <div class="optionsBar clearfix">
+                <div class="filterElement centered">
+                    <input type=hidden name="FILTER" id="AGWEDAFILTER" size=1 autocomplete='off' maxlength=255 value="NONE">
+                    <input type=hidden name="SHOW_LIST" id="SHOW_LIST" size=1 autocomplete='off' maxlength=255 value="">包含&nbsp;
+                    <input type=hidden name="PERM_REQUIRED" id="PERM_REQUIRED" size=1 autocomplete='off' maxlength=255 value="TW_res_r">
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_952538949', 'domId_1790030996');  ">
+                        <button type="button" class="button noprint textual icon  arrowSmall" id="domId_1790030996" style="" title="我的过滤器..." onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+                    </span>
+
+                    <div id="divdomo_domId_952538949" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <button type="button" class="button noprint textual  focused " id="domId_1979011105" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='NONE';try {obj('AGWEDA').submit();} catch(e){};">包含</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_1012916999" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='WORK';try {obj('AGWEDA').submit();} catch(e){};">工作事件</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_993132424" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='PERSONAL';try {obj('AGWEDA').submit();} catch(e){};">私人事件</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_1333745684" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='ONLY_ME_IN_IT';try {obj('AGWEDA').submit();} catch(e){};">我参与的</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_829403602" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='AUTHOR';try {obj('AGWEDA').submit();} catch(e){};">创建...</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_469986137" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='UNAVAIL';try {obj('AGWEDA').submit();} catch(e){};">不可用时段</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="filterElement centered">
+                    <div style="float:left;" class="legendaBox">
+
+                        <div id="workgroupLegenda" style="display: inline"></div>
+                        <div class="workgroupElement">
+                            <button type="button" class="button noprint  icon  " id="domId_1448990190" style="" title="更改工作组" onclick="submitInBlack('AGWEDA','/app/workgroup/workgroupPopup','700','580');return false; "><span class='teamworkIcon '>r</span></button>
+                        </div>
+
+
+                    </div>
+
+                    <div class="agendaTemplates" style="display:none;">
+                        <div class="__template__" type="WORKGROUPELEMENT">
+                            <!--
+                            <div class="workgroupElement">
+                              <img src="(#=obj.resAvatarUrl#)" title="(#!obj.resName#)" class='face (#=obj.resConnectionStatus#)' align='absmiddle'>
+                            </div>
+                            -->
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="filterElement centered">
+                    <input type=hidden name="SHOW_TASK_ISSUES" id="SHOW_TASK_ISSUES" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_SHOW_TASK_ISSUES" name="ck_SHOW_TASK_ISSUES" value="yes"
+                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');$('#AGWEDA').submit()">
+                    &nbsp;<label for="ck_SHOW_TASK_ISSUES">显示任务/问题</label>&nbsp;
+                </div>
+            </div>
+
+
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td class="calHeader left">
+                        <span class="button textual noprint" onclick="goToMillis(new Date().getTime());">今天</span>
+                        <div style="float:right">
+                            <span class="button textual icon noprint" onclick="goToMillis(new Date(focusMillis).add(agendaType=='DAY'?'d':(agendaType=='WEEK'?'w':'M'),-1).getTime());"><span class="teamworkIcon" style="font-size:18px">{</span></span>
+                            <span class="button textual icon noprint" onclick="goToMillis(new Date(focusMillis).add(agendaType=='DAY'?'d':(agendaType=='WEEK'?'w':'M'),1).getTime());"><span class="teamworkIcon" style="font-size:18px">}</span></span>
+                        </div>
+                    </td>
+                    <td class="calHeader">
+                        <h2 style="margin:0">
+                            <div style="position:relative;height:30px;">
+                                <div id="topHeaderCentral"></div>
+                                <div class="headerCalendarOpener" title="日历" id="openCal" onclick="$(this).dateField({inputField:$('#dummy'),callback:function(date){goToMillis(date.getTime());}}); "><input type="hidden" id="dummy"><span class="teamworkIcon">m</span></div>
+                            </div>
+                        </h2>
+                    </td>
+                    <td class="calHeader right">
+                        <button type="button" class="button noprint textual   " id="domId_799706617" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAAGENDA_TYPE').value='DAY';obj('AGWEDA').action='agendaWeekDay.jsp'; try {obj('AGWEDA').submit();} catch(e){};">天</button>
+
+                        &nbsp;&nbsp;&nbsp;<button type="button" class="button noprint textual  focused " id="domId_2147022016" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAAGENDA_TYPE').value='WEEK';obj('AGWEDA').action='agendaWeekDay.jsp'; try {obj('AGWEDA').submit();} catch(e){};">工作周数</button>
+
+                        &nbsp;&nbsp;&nbsp;<button type="button" class="button noprint textual   " id="domId_342544654" style="" onClick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAAGENDA_TYPE').value='MONTH';obj('AGWEDA').action='agendaMonth.jsp'; try {obj('AGWEDA').submit();} catch(e){};">月</button>
+
+
+                    </td>
+                </tr>
+            </table>
+
+
+
+            <div id="domId_203902542" class="container   draggable closeable absolutePosition centeredOnScreen " status="HIDDEN" style="width:600px; left:0px;top:0px;" cmdSuffix="">
+
+                <div id="cttitid_domId_203902542" class="containerTitle noTitle  ">
+                    <div class="titleIcon" style="padding-right:3px"></div>
+                    <div class="title" style=""></div>
+                </div>
+                <div class="stsButtons" align="right">
+
+                    <span class="stsButton stsIconize teamworkIcon" onclick="$(this).closest('.container').trigger('iconize');" style="float:left;cursor:pointer;">&egrave;</span>
+                    <span class="stsButton stsRestore teamworkIcon" onclick="$(this).closest('.container').trigger('restore');" style="float:left;cursor:pointer;">E</span>
+                    <span class="stsButton stsCollapse teamworkIcon" onclick="$(this).closest('.container').trigger('collapse');" style="float:left;cursor:pointer;">Q</span>
+                    <span title="关闭" class="stsButton stsHide teamworkIcon" onclick="$(this).closest('.container').trigger('hide');" style="float:left;cursor:pointer;">x</span>
+                </div>
+
+                <div id="ctdivbdid_domId_203902542" class="containerBody" style="">
+                    @*复制 <a href=https://demo.twproject.com/agendaInIcal.ics?CM =EXTERNAL&USR =7780&CK =318cda8bb76f5c51074c86f3983351a9"
+<textarea class="formElements" rows="2" cols="60" style="width:90%; font-size:12pt;" readonly>https://demo.twproject.com/agendaInIcal.ics?CM=EXTERNAL&amp;USR=7780&amp;CK=318cda8bb76f5c51074c86f3983351a9</textarea>
+<hr>
+<br><img src="/img/ical.gif" border="0" name="d1399850481" title="ICAL format" alt="ICAL format" id="d1399850481" > 在下面的输入框中输入一个或多个外部日程链接到ICAL .ics (逗号分隔)
+ <br><span class="descrEl">例如, 在Google Calendar?, 转到 Settings -> 在一个日程表上单击, 然后选择ICAL.</span>
+<input type=text name="EXTERNAL_CAL_LINKS" id="EXTERNAL_CAL_LINKS" size=55 class="formElements" autocomplete='off' maxlength=255 value="" oldValue='1' >&nbsp;<button type="button" class="button noprint    first small"  id="domId_4053077" style=""   onClick="stopBubble(event);obj('AGWEDACM').value='ADDEXTERNALCAL';try {obj('AGWEDA').submit();} catch(e){};" >添加</button>
+<button type="button" class="button noprint textual   "  id="domId_1186412299" style=""   onClick="stopBubble(event);obj('AGWEDACM').value='REMOVEEXTERNALCAL';try {obj('AGWEDA').submit();} catch(e){};" >隐藏外部日程</button>
+&nbsp;&nbsp;&nbsp;<a  class="button  textual   "  id="domId_949284618" style=""  href="/applications/teamwork/agenda/importIcal.jsp?V_ID=2083167576">从Ical 文件</a>
+<br> <br>*@
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                //$(function() {  bicch 7/7/17 non credo serva
+                $("#domId_203902542").containerBuilder();
+                $("#domId_203902542").bringContainerToFront(".container");
+                setCustomScroll("#domId_203902542 .containerBody");
+                //});
+            </script>
+
+        </form>
+
+        <div style="position:relative;" id="offScreenAlertBox">
+
+            <div style="width:100%;" id="calendarContainer">
+
+                <div style="width:100%;height:28px; z-index: 2" id="calendarHeader"></div>
+
+                <div id="spanEvents" style="position: relative; min-height: 30px;"></div>
+            </div>
+            <div style="" class="offTop offAlert">scroll up <span class="teamworkIcon" style="font-size: 100%; color:#fff">k</span></div>
+            <div style="bottom:0;" class="offBottom offAlert">scroll down <span class="teamworkIcon" style="font-size: 100%; color:#fff">j</span></div>
+        </div>
+
+        <div class="agendaTemplates" style="display:none">
+            <div class="__template__" type="AGENDAEVENT">
+                <!--
+                <div class='agendaEvent (#=!obj.icalId.startsWith("TW_")?"external":""#)(#=obj.isReminder?" isReminder":""#)(#=obj.isMeeting?" isMeeting":""#)(#=obj.isPersonal?" isPersonal":""#)(#=obj.isUnavailability?" isUnavailability":""#)' evId="(#=obj.id#)">
+                  <div class="eventBody">
+                    <span class="eventAttendees"></span>
+                    <span class="summary">(#=obj.isReminder?"<span class='teamworkIcon'>b </span>":""#)(#=obj.isPersonal?"<span class='teamworkIcon'>o </span>":""#)(#=obj.schedule.type!="period"?"<span class='teamworkIcon'>h </span>":""#)(#=obj.summary#)</span>
+                    <span class="hours">(#=printPeriod(obj.startMillis,obj.endMillis)#)</span>
+                    <div class="location" style='(#=!obj.location?"display:none":""#)'>(#!obj.location#)</div>
+                    <div class="description linkEnabled">(#!obj.description#)</div>
+                  </div>
+                </div>
+                -->
+            </div>
+
+            <div class="__template__" type="AGENDAEVENTCOMPACT">
+                <!--
+                <div
+                    class='agendaEvent (#=!obj.icalId.startsWith("TW_")?"external":""#)(#=obj.isReminder?" isReminder":""#)(#=obj.isMeeting?" isMeeting":""#)(#=obj.isPersonal?" isPersonal":""#)(#=obj.isUnavailability?" isUnavailability":""#) compact'
+                    evId="(#=obj.id#)" title="(#=new Date(obj.startMillis).format('HH:mm')#) - (#!obj.summary#)">
+                  <div class="eventBody">
+                    <div class="eventAttendees"></div>
+                    <span class="hours">(#=new Date(obj.startMillis).format("HH:mm")#)</span>&nbsp;
+                    (#!obj.summary#)
+
+                  </div>
+                </div>
+                -->
+            </div>
+
+            <div class="__template__" type="AGENDAEVENTSPAN">
+                <!--
+                <div class='agendaEventSpan (#=!obj.icalId.startsWith("TW_")?"external":""#)(#=obj.isReminder?" isReminder":""#)(#=obj.isMeeting?" isMeeting":""#)(#=obj.isPersonal?" isPersonal":""#)(#=obj.isUnavailability?" isUnavailability":""#)' evId="(#=obj.id#)">
+                  <div class="eventBody">
+                    <span title="(#=obj.summary#)" class="hours">(#=new Date(obj.startMillis).format("HH:mm")=="00:00"?"":"("+(new Date(obj.startMillis).format("HH:mm"))+")"#)</span>
+                    <span class="summary"><span class="eventAttendees"></span>(#!obj.summary#)</span>
+                  </div>
+                </div>
+                -->
+            </div>
+
+            <div class="__template__" type="MICROEDIT">
+                <!--
+                <div class='microEdit' evId="(#=obj.id#)" startMillis="(#=obj.startMillis#)" endMillis="(#=obj.endMillis#)">
+                  <div style="float:right"><span class="teamworkIcon meClose" title="关闭" onclick="closeMicroEditor($(this));" style="cursor: pointer; font-size: 15px">x</span></div>
+                  <span class="hours">(#=printEditorPeriod(obj)#)</span><br>
+                  <span class="eventAttendees"></span>
+                  <span class="workgroupElement" style="float: none;"><button type="button" class="button noprint icon" title="" onclick="openWorkGroup($(this));return false;"><span class="teamworkIcon ">r</span></button></span>
+
+                  <input class="formElements formElementsMedium" name="summary" required="true" type="text" style="width:100%;" value="(#!obj.summary#)" placeholder="议题">
+                  <input class="formElements formElementsMedium" name="location" type="text" style="width:100%;" value="(#!obj.location#)" placeholder="位置">
+                  <textarea class="formElements formElementsMedium" name="description" rows="5" cols="5" style="width:100%;min-height:100px;" placeholder="描述">(#!obj.description#)</textarea>
+
+                  <div style="text-align:left;padding: 2px 0" class="textSmall">
+                    </td><td><input type=text name="typeId_txt" id="typeId_txt" placeholder="类型" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="(#=obj.type#)" ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="typeId" id="typeId" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="(#=obj.typeId#)" oldValue='1' >
+
+                    <input type="checkbox" (#=obj.isPersonal?"checked='yes'":""#)" name="isPersonal">个人&nbsp;
+
+                    <input type="checkbox" (#=obj.isReminder?"checked='yes'":""#)" name="isReminder">提醒&nbsp;
+                  </div>
+                  <div style="text-align:left;padding: 10px 4px 0">
+                    <span class="button first" onclick="ajaxMicroSaveEvent($(this));"
+                          style="cursor: pointer;">保存</span>
+                    <span class="button" onclick="fullEditEvent($(this));" style="cursor: pointer">编辑</span>
+                    (#if(obj.id!="-1"){#)
+                    <span class="button delete" onclick="ajaxDeleteEvent($(this));"
+                          style="cursor: pointer">删除</span>
+                    &nbsp;&nbsp;
+                    (#}#)
+
+                  </div>
+                </div>
+                -->
+            </div>
+
+            <div class="__template__" type="TASKBOX">
+                <!--
+                <div class="tskIssBox linkEnabled" taskId="(#=obj.id#)" title="(#!obj.name#)">
+                  (#for (var g=0;g< obj.resources.length;g++){#)
+                  <img src="(#=getResourceById(obj.resources[g]).resAvatarUrl#)" class="face (#=getResourceById(obj.resources[g]).resConnectionStatus#)"
+                       title="(#=getResourceById(obj.resources[g]).resName#)" align='absmiddle' resId="(#=getResourceById(obj.resources[g]).resId#)">
+                  (#}#)
+                  <span class="teamworkIcon">t</span> T#(#!obj.mnemo#)# <span class="wl">(#!obj.msg#)</span>
+                </div>
+                -->
+            </div>
+            <div class="__template__" type="ISSUEBOX">
+                <!--
+                <div class="tskIssBox" resId="(#=obj[1]#)"
+                     title="当天的问题: (#=obj[2]#) (#=obj[3]>0?'- 预估工期(h)'+getMillisInHoursMinutes(obj[3]):''#)">
+                  <img src="(#=getResourceById(obj[1]).resAvatarUrl#)" title="(#!getResourceById(obj[1]).resName#)" class="face (#=getResourceById(obj[1]).resConnectionStatus#)" resId="(#=getResourceById(obj[1]).resId#)"
+                       align='absmiddle'>
+                  (#=obj[2]#)<span class="teamworkIcon">i</span> <span
+                    class="wl">(#=obj[3]>0?getMillisInHoursMinutes(obj[3]):''#)</span>
+                </div>
+                -->
+            </div>
+
+        </div>
+
+
+        <div class="bottomBar noprint" id="moveBar" onclick="moveBarClick($(this),event);"></div>
+
+    </div>
+
+    <script type="text/javascript">
+        var focusMillis = @ViewBag.focusMillis;
+        var showTaskIssues = false;
+        var minStep = 15 * 60000; //grid step
+        var firstMillisOfPeriod = 0;
+        var attendees = [{ "resId": "@ViewBag.defaultid", "resName": "Dream Wing", "resAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "resConnectionStatus": "active", "workingHoursPlan": { "2": [30600000, 43200000, 46800000, 63000000], "3": [30600000, 43200000, 46800000, 63000000], "4": [30600000, 43200000, 46800000, 63000000], "5": [30600000, 43200000, 46800000, 63000000], "6": [30600000, 43200000, 46800000, 63000000], "7": [0, 0, 0, 0], "1": [0, 0, 0, 0], "useFlatCapacity": false, "dailyCapacity": 0 } }]; // list of attendees involved in this period, used for legenda
+        var agendaType = "WEEK";
+        var oneDayWidth = agendaType == "DAY" ? 700 : 100;
+
+
+        $(function () {
+            //console.debug("startUp");
+            startUp();
+        });
+
+        var folio;
+        var spanfolio;
+        var headFolio;
+
+        function startUp() {
+            $(".agendaTemplates").loadTemplates().remove();
+            //some decorators
+            function eveDec(domEv, ev) {
+                if (!ev.targets || ev.targets.length == 0)
+                    return;
+                var attendeesBox = domEv.find(".eventAttendees");
+                if (ev.targets.length > 1 || ev.targets[0].resId != @ViewBag.defaultid) {
+                    fillAttendees(attendeesBox, ev.targets, "smaller", 5);
+                } else {
+                    attendeesBox.remove();
+                }
+
+                domEv.find(".linkEnabled").activateTeamworkLinks(true).emoticonize();
+                if (!ev.icalId.startsWith("TW_"))
+                    domEv.prop("title", "事件外部管理")
+
+            };
+            $.JST.loadDecorator("AGENDAEVENT", eveDec);
+            $.JST.loadDecorator("AGENDAEVENTCOMPACT", eveDec);
+            $.JST.loadDecorator("AGENDAEVENTSPAN", eveDec);
+
+            $.JST.loadDecorator("MICROEDIT", function (domEv, ev) {
+                if (!ev.targets || ev.targets.length == 0)
+                    return;
+                fillAttendees(domEv.find(".eventAttendees"), ev.targets, "", 200)
+            });
+
+
+            folio = createFolio();
+
+            var spanEvents = $("#spanEvents").height(15);
+            spanFolio = new Folio(spanEvents);
+
+            $(window).resize(winResize).resize();
+
+            //scroll to the working day start
+            folio.scrollTop(new Date().getTime() - new Date().clearTime().getTime() - folio.height / 4);
+
+            bindEventCreation(folio);
+            bindSpanEventCreation(spanFolio);
+            goToMillis(focusMillis);
+        }
+
+
+        function fillAttendees(ndo, attendees, addClass, maxToDisplay) {
+            //console.debug("fillAttendees",attendees);
+            for (var i = 0; i < Math.min(attendees.length, maxToDisplay); i++) {
+                var targ = attendees[i];
+                var el = $("<img>").prop("src", targ.resAvatarUrl).addClass("face " + addClass).prop("title", targ.resName).attr("resId", targ.resId);
+                el.on("dragstart", function (e) { return false });
+                ndo.append(el);
+            }
+            if (attendees.length > maxToDisplay) {
+                ndo.append("<span class='teamworkIcon' title='更多...'>&hellip;</span>")
+            }
+
+        }
+
+        function winResize() {
+            //Set the height of the calendar area on window resize
+            var calendarContainer = folio.element.parent();
+            var fh = $(window).height() - calendarContainer.offset().top - 70 - $("#spanEvents").height();
+            fh = fh < 200 ? 200 : fh;
+            folio.resize({ height: fh });
+            spanFolio.resize();
+            if (headFolio) headFolio.resize();
+
+            $(".offAlert.offTop, .taskIssueBox").css({ top: $("#spanEvents").height() + 27 })
+        }
+
+        function createFolio() {
+            //create folio div
+            var divFolio = $("<div>").prop("id", "calendar").addClass("calendar").css({ width: "100%", height: 800, "z-index": 1 });
+
+            var container = $("#calendarContainer");
+            container.append(divFolio);
+            var folio = new Folio(divFolio);
+            folio.inPercent = true;
+
+            folio.createScrollbar(container);
+
+            //set virtual dimensions
+            folio.width = 720;
+            folio.height = 14 * 3600000; // altezza in ore
+
+            //draw day separators
+            if (agendaType == "WEEK") {
+                var date = new Date(focusMillis);
+                date.clearTime();
+                date.setFirstDayOfThisWeek();
+
+                for (var i = 0; i < 7; i++) {
+                    var daySep = $("<div>").addClass("day").attr("day", date.getDay());
+                    folio.addElement(daySep, 0, 20 + i * 100, 100, 24 * 3600000);
+                    date.add("d", 1);
+                }
+            }
+
+            //draw hours
+            for (var i = 0; i < 24 * 3600000; i += 3600000) {
+                var hSep = $("<div>").addClass("hourSep").html(getMillisInHoursMinutes(i));
+                folio.addElement(hSep, i, 0, folio.width, 3600000);
+            }
+
+            folio.redraw();
+
+            //bind check offScreen elements when scroll and
+            divFolio.scroll(function () {
+                $(this).stopTime("ckoffscrelmnt").oneTime(500, "ckoffscrelmnt", checkOffScreenElements);
+            });
+
+            return folio;
+        }
+
+        function drawWorkingHoursPlan(attendees) {
+
+            $("#calendar .workPlan").remove();
+
+            for (var i = 0; i < attendees.length; i++) {
+                var attendee = attendees[i];
+                var workPlan = attendee.workingHoursPlan;
+                if (agendaType == "WEEK") {
+                    var col = 0;
+                    for (var day = Date.firstDayOfWeek; day < Date.firstDayOfWeek + 7; day++) {
+                        var plan = workPlan[(day % 7 + 1) + ""];
+                        drawOneDayWorkPlan(plan, col);
+                        col++;
+                    }
+
+                } else {
+                    var plan = workPlan[(new Date(focusMillis).getDay() + 1) + ""];
+                    drawOneDayWorkPlan(plan, 0);
+                }
+            }
+
+            function drawOneDayWorkPlan(plan, col, w) {
+                wp = $("<div>").addClass("workPlan");//.attr({title: "现在"});
+                folio.addElement(wp, 0, 20 + col * oneDayWidth, oneDayWidth, plan[0]);
+
+                wp = $("<div>").addClass("workPlan");//.attr({title: "现在"});
+                folio.addElement(wp, plan[1], 20 + col * oneDayWidth, oneDayWidth, plan[2] - plan[1]);
+
+                wp = $("<div>").addClass("workPlan");//.attr({title: "现在"});
+                folio.addElement(wp, plan[3], 20 + col * oneDayWidth, oneDayWidth, 24 * 3600000 - plan[3]);
+
+            }
+        }
+
+
+        function deskRefill() {
+            var date = new Date(focusMillis);
+            date.clearTime();
+
+            drawWorkingHoursPlan(attendees);
+
+            var now = new Date();
+            $("#nowBar").remove();
+            var nowBar = $("<div>").addClass("now").attr({ id: "nowBar", title: "现在" });
+
+            if (agendaType == "WEEK") {
+                date.setFirstDayOfThisWeek();
+                drawWeekCalendaHeader(date.getTime());
+                if (headFolio.element.find(".dayTHeader").size() > 0) { // solo se Ã¨ la stessa settimana ovvero ho un dayTHeader
+                    folio.addElement(nowBar, now.getTime() - new Date().clearTime().getTime(), 20 + (now.getDay() - Date.firstDayOfWeek) * 100, 100, folio.getPixelHeight());
+                }
+            } else {
+                if (date.isToday()) { // solo se Ã¨ lo stesso giorno
+                    folio.addElement(nowBar, new Date().getTime() - new Date().clearTime().getTime(), 0, folio.width, folio.getPixelHeight());
+                }
+            }
+
+            firstMillisOfPeriod = date.getTime();
+            ajaxGetEvents();
+
+            if (showTaskIssues)
+                ajaxGetTaskIssues();
+            drawMoveBar();
+        }
+
+
+        function drawWeekCalendaHeader(firstMillisOfWeek) {
+            var calHead = $("#calendarHeader");
+            calHead.empty();
+            headFolio = new Folio(calHead);
+            headFolio.inPercent = true;
+            headFolio.width = 720;
+            headFolio.height = 50;
+            var date = new Date(firstMillisOfWeek);
+            var headLbl = $("<div>").addClass("dayHeader").html("&nbsp;");
+            headFolio.addElement(headLbl, 0, 0, 20, 50);
+
+            //clear holiday & today class
+            var calendar = $("#calendar");
+            calendar.find(".dayH,.dayT").removeClass("dayH dayT");
+            for (var i = 0; i < 7; i++) {
+                var headDay = $("<div>").addClass("dayHeader").css("cursor", "pointer").html(date.format("EE d MMM")).attr({ "day": date.getDay(), "millis": date.getTime() });
+                headFolio.addElement(headDay, 0, 20 + i * 100, 100, 50);
+                if (date.isHoliday()) {
+                    headDay.addClass("dayHHeader");
+                    calendar.find("[day=" + date.getDay() + "]").addClass("dayH");
+                }
+                if (date.isToday()) {
+                    headDay.addClass("dayTHeader");
+                    calendar.find("[day=" + date.getDay() + "]").addClass("dayT");
+                }
+                headDay.click(goToDayView);
+                headDay.append("<div class='taskIssueBox'></div>");
+                date.add("d", 1);
+            }
+            headFolio.redraw();
+        }
+
+
+        function goToDayView() {
+            var headDay = $(this);
+            var form = $("#AGWEDA");
+            form.find("[name=AGENDA_TYPE]").val("DAY");
+            form.find("[name=FOCUS_MILLIS]").val(headDay.attr("millis"));
+            form.submit();
+        }
+
+        function bindEventsOnEvent(evDom, ev, folio) {
+            //bring in front when over
+            evDom.mouseenter(function () {
+                if (!$("body").is(".unselectable"))
+                    $(this).oneTime(400, "toFront", function () { $(this).css("z-index", 100) }).stopTime("toBack");
+            }).mouseleave(function () {
+                if (!$("body").is(".unselectable"))
+                    $(this).oneTime(100, "toBack", function () { $(this).css("z-index", 0) }).stopTime("toFront");
+            });
+
+            //move and resize
+            if (ev.canManage) {
+                var focusedElement;
+                var dragStarted = false;
+                var dragHappened = false; //horrible hack to discriminate click on event from a click as consequence of drag
+
+                var containment = folio.element;
+                evDom.on("mousemove", function (e) {
+
+                    if (!focusedElement) {
+                        var element = $(this);
+                        var mousePos = e.pageY - element.offset().top;
+                        if (element.height() - mousePos < 15) {
+                            $("body").addClass("EVResize");
+                        } else {
+                            $("body").removeClass("EVResize");
+                        }
+                    }
+
+                }).on("mouseout", function (e) {
+                    if (!focusedElement) {
+                        $("body").removeClass("EVResize");
+                    }
+
+                }).on("mousedown", function (e) {
+                    if (e.which == 1) {
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+
+                        folio.folioCanScroll = false;
+
+                        focusedElement = $(this);
+                        var mousePos = e.pageY - focusedElement.offset().top;
+                        var offsetTop = containment.offset().top;
+                        var vGrid = folio.getScaleHeight() * minStep;
+
+                        $("body").unselectable();
+
+                        //delayed resize -> in order to discriminate click from drag-resize
+                        focusedElement.oneTime(300, "manageResize", function () {
+                            if (focusedElement.height() - mousePos < 15) {
+                                dragHappened = false;
+                                //bind event for start resizing
+                                $(document).on("mousemove", function (e) {
+                                    //manage resizing
+                                    if (e.pageY - offsetTop < containment.height()) {
+                                        var h = (e.pageY - focusedElement.offset().top);
+                                        //grid
+                                        h = (parseInt(h / vGrid)) * vGrid;
+                                        h = h <= 0 ? vGrid : h;
+
+                                        focusedElement.height(h);
+
+                                        //upgrade hours during resize
+                                        focusedElement.find(".hours").html(getMillisInHoursMinutes(Math.round(folio.getPixelHeight() * h)));
+                                    }
+
+                                    //bind mouse up on body to stop resizing
+                                }).on("mouseup", function (e) {
+                                    $(this).off("mousemove").off("mouseup");
+                                    $("body").removeClass("EVResize").clearUnselectable();
+
+                                    folio.folioCanScroll = true;
+
+                                    //upgrade hours when resize stops
+                                    ajaxMoveResizeEvent(focusedElement, folio);
+                                    focusedElement = undefined;
+                                });
+
+                                // drag
+                            } else {
+                                var elTop = parseInt(focusedElement.css("top"));
+                                var elLeft = parseInt(focusedElement.css("left"));
+                                var startY = e.pageY;
+                                var startX = e.pageX;
+                                $("body").addClass("EVDrag").unselectable();
+                                var $calendar = $("#calendar");
+                                $calendar.on("mousemove", function (e) {
+
+                                    //remove current editor if any
+                                    $(".microEdit .meClose").click();
+
+                                    if (dragStarted || Math.abs(e.pageY - startY) > 10 || Math.abs(e.pageX - startX) > 50) {
+
+                                        folio.folioCanScroll = false;
+
+                                        dragStarted = true;
+                                        var t = elTop + (e.pageY - startY);
+                                        var l = elLeft + (e.pageX - startX);
+
+                                        if (isSafari) {
+                                            t = elTop + (e.pageY + $calendar.scrollTop() - startY);
+                                            l = elLeft + (e.pageX + $calendar.scrollLeft() - startX);
+                                        }
+
+                                        if (t > 0 && (t + focusedElement.height() < containment.height() + containment.scrollTop())) {
+                                            //grid
+                                            t = (parseInt(t / vGrid)) * vGrid;
+                                            focusedElement.css("top", t).addClass("dragging");
+
+
+                                            //upgrade label
+                                            var newEv = getNewHours(focusedElement, folio);
+                                            focusedElement.find(".hours").html(printPeriod(newEv.start, newEv.end));
+
+                                        }
+
+                                        var originalEvent = focusedElement.data("originalEvent");
+                                        //change day
+                                        if (originalEvent.schedule.type == "period" && l > 0 && (l + focusedElement.width() < containment.width() + containment.scrollLeft())) {
+                                            //grid
+                                            l = folio.getScaleWidth() * 20 + Math.round((l - folio.getScaleWidth() * 20) / (folio.getScaleWidth() * 100)) * (folio.getScaleWidth() * 100);
+                                            focusedElement.css("left", l);
+                                        }
+
+                                    }
+
+                                    focusedElement.css("z-index", 4000);
+
+
+                                    //bind mouse up on body to stop resizing
+                                }).on("mouseup", function (e) {
+                                    $(this).off("mousemove").off("mouseup");
+                                    $("body").removeClass("EVDrag").clearUnselectable();
+                                    dragStarted = false;
+                                    ajaxMoveResizeEvent(focusedElement, folio);
+                                    focusedElement.removeClass("dragging");
+                                    focusedElement = undefined;
+                                    dragHappened = true;
+                                    folio.folioCanScroll = true;
+
+                                });
+                            }
+
+                        });
+                    }
+                    //quick edit event
+                }).on("click", function (e) {
+                    folio.folioCanScroll = true;
+                    if (e.which == 1) {
+                        //remove delayed manage resize -> if you click you are not dragging
+                        var domEv = $(this);
+                        domEv.stopTime("manageResize");
+                        if (!dragHappened) {
+                            domEv.oneTime(300, "shmeaaw", function () {
+                                var ev = $(this).data("originalEvent");
+                                microEdit(ev, folio, $(this), e);
+                            });
+                        }
+                    }
+                    $("body").clearUnselectable();
+
+                }).on("mouseup", function () {
+
+                    folio.folioCanScroll = true;
+
+                    $("body").unselectable();
+                }).dblclick(function () {
+                    window.location.href = "agendaEditor.jsp?CM=ED&OBJID=" + $(this).attr("evid");
+                });
+            } else if (ev.isInvolved && !ev.isExternal) { // in this case you can remove yourself -> go stright to the full edit
+                evDom.mousedown(function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    fullEditEvent($(this));
+                    return false;
+                });
+            }
+        }
+
+        function bindEventsOnSpanEvent(evDom, ev, folio) {
+            //console.debug("bindEventsOnSpanEvent",ev);
+            //move and resize
+            if (ev.canManage) {
+                evDom.click(function (e) {
+                    if (e.which == 1) {
+                        //remove delayed manage resize -> if you click you are not dragging
+                        var domEv = $(this);
+                        domEv.oneTime(300, "shmeaaw", function () {
+                            microEdit(ev, folio, $(this), e);
+                        });
+                    }
+                }).dblclick(function () {
+                    window.location.href = "agendaEditor.jsp?CM=ED&OBJID=" + $(this).attr("evid");
+                }).mousedown(function () {
+                    $("body").unselectable();
+                }).mouseup(function () {
+                    $("body").clearUnselectable();
+                });
+            } else if (ev.isInvolved && !ev.isExternal) { // in this case you can remove yourself -> go stright to the full edit
+                evDom.mousedown(function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    fullEditEvent($(this));
+                    return false;
+                });
+            }
+        }
+
+        function bindEventCreation(folio) {
+            //console.debug("bindEventCreation");
+            // Todo: Add touch events to make it works on tablets
+            folio.element.on("mousedown.creat", function (e) {
+
+                if (e.which != 1)
+                    return;
+
+                $(".microEdit .meClose").click();
+
+                //if not a creation is still pending and is not ctrl/left etc
+                //    if ($(".microEdit .meClose").size() <= 0) {
+                $("body").unselectable();
+
+                var startX, startY;
+                startX = e.pageX;
+                startY = e.pageY;
+
+                //start creating event after few millis
+                folio.element.oneTime(200, "createCreator", function (e) {
+
+                    //create a placeholder div
+                    var creator = $("<div>").addClass("eventCreator agendaEvent");
+                    folio.element.append(creator);
+                    var offsX = folio.element.offset().left;
+                    var offsY = folio.element.offset().top - folio.element.scrollTop();
+
+                    var moveCreator = function (creator, e) {
+                        //set coordinates
+                        if (!startX)
+                            startX = e.pageX;
+                        if (!startY)
+                            startY = e.pageY;
+
+                        var vGrid = folio.getScaleHeight() * minStep;
+
+                        var newDim = {
+                            left: Math.min(startX, e.pageX) - offsX,
+                            top: Math.min(startY, e.pageY) - offsY,
+                            width: (folio.getScaleWidth() * oneDayWidth),
+                            height: Math.abs(startY - e.pageY)
+                        };
+
+                        //set in grid
+                        newDim.left = folio.getScaleWidth() * 20 + Math.floor((newDim.left - folio.getScaleWidth() * 20) / (folio.getScaleWidth() * oneDayWidth)) * (folio.getScaleWidth() * oneDayWidth);
+                        newDim.top = (parseInt(newDim.top / vGrid)) * vGrid;
+                        newDim.height = (parseInt(newDim.height / vGrid)) * vGrid;
+                        newDim.height = newDim.height < vGrid ? vGrid : newDim.height;
+
+                        var creatorHtml = $("<div/>").html((Math.round(folio.getPixelHeight() * newDim.height / 60000) + " 分钟"));
+                        creatorHtml.addClass("creatorHtml");
+
+                        creator.css(newDim).html(creatorHtml);
+
+                    };
+
+                    //bind move
+                    folio.element.on("mousemove.creat", function (e) {
+                        //remove current editor if any
+                        moveCreator(creator, e);
+                    });
+
+                    //bind mouseUp on document
+
+                    $("body").one("mouseup.creat", function (e) {
+
+                        //stop timer
+                        folio.element.stopTime("createCreator");
+
+                        //unbind move
+                        folio.element.off("mousemove.creat");
+
+                        var creator = folio.element.find(".eventCreator:first");
+                        moveCreator(creator, e);
+
+                        //create a micro editor
+                        if (creator.size() > 0) {
+                            //get real millis
+                            var start = Math.round((folio.getPixelHeight() * parseInt(creator.css("top"))) / minStep) * minStep;
+                            var dur = Math.round(creator.outerHeight() * folio.getPixelHeight() / minStep) * minStep;
+                            var day = 0;
+                            if (agendaType == "WEEK")
+                                day = Math.round((parseInt(creator.css("left")) - folio.getScaleWidth() * 20) / (folio.getScaleWidth() * 100));
+
+                            var newEvent = {
+                                id: "-1",
+                                icalId: "TW_xxx",
+                                startMillis: firstMillisOfPeriod + start + day * 24 * 3600000,
+                                endMillis: firstMillisOfPeriod + start + day * 24 * 3600000 + dur,
+                                targets: attendees
+                            };
+                            microEdit(newEvent, folio, creator, e, false);
+                        }
+                    });
+                });
+                //    }
+
+            }).on("click.creat", function (e) {
+                $("body").clearUnselectable();
+                //stop timer
+                folio.element.stopTime("createCreator");
+            });
+        }
+
+
+        function bindSpanEventCreation(spanFolio) {
+            //console.debug("bindSpanEventCreation");
+            spanFolio.element.on("mousedown.creat", function (e) {
+
+                if (e.which != 1)
+                    return;
+
+                //remove current editor if any
+                $(".microEdit .meClose").click();
+
+                //if not a creation is still pending and is not ctrl/left etc
+                if ($(".microEdit").size() <= 0) {
+                    $("body").unselectable();
+
+                    var startX, startY;
+                    startX = e.pageX;
+                    startY = e.pageY;
+
+                    //start creating event after few millis
+                    spanFolio.element.oneTime(200, "createCreator", function (e) {
+
+                        //create a placeholder div
+                        var creator = $("<div>").addClass("eventCreator agendaEvent");
+                        spanFolio.element.append(creator);
+
+                        var offsX = spanFolio.element.offset().left;
+                        var offsY = spanFolio.element.offset().top - spanFolio.element.scrollTop();
+
+                        var moveCreator = function (creator, e) {
+                            //set coordinates
+                            if (!startX)
+                                startX = e.pageX;
+                            if (!startY)
+                                startY = e.pageY;
+
+                            var vGrid = spanFolio.getScaleHeight() * minStep;
+
+                            var newDim = {
+                                left: 0,
+                                top: 0,
+                                width: 0,
+                                height: $(".agendaSpanEvents").height()
+                                //            height: spanFolio.height * spanFolio.getScaleHeight()
+                            };
+
+                            //$("h1:first").html(newDim.width+ " "+folio.getScaleWidth() * oneDayWidth);
+
+
+                            //set in grid
+                            var start = startX - offsX;
+                            var end = e.pageX - offsX;
+
+                            if (e.pageX < startX) {
+                                var oldStart = start;
+                                start = end;
+                                end = oldStart;
+                            }
+                            var startCol = (Math.floor((start - spanFolio.getScaleWidth() * 20) / (spanFolio.getScaleWidth() * oneDayWidth)));
+                            var numCols = (Math.floor((end - spanFolio.getScaleWidth() * 20) / (spanFolio.getScaleWidth() * oneDayWidth)) + 1);
+                            newDim.left = spanFolio.getScaleWidth() * 20 + startCol * (spanFolio.getScaleWidth() * oneDayWidth);
+                            newDim.width = spanFolio.getScaleWidth() * 20 + numCols * (spanFolio.getScaleWidth() * oneDayWidth) - newDim.left;
+
+                            var stDate = new Date(firstMillisOfPeriod);
+                            stDate.setDate(stDate.getDate() + startCol);
+                            var enDate = new Date(firstMillisOfPeriod);
+                            enDate.setDate(enDate.getDate() + numCols - 1);
+
+                            var creatorHtml = $("<div/>").html(stDate.format("EEEE") + (startCol != numCols - 1 ? " - " + enDate.format("EEEE") : ""));
+                            creatorHtml.addClass("creatorHtml");
+                            creator.css(newDim).html(creatorHtml);
+                        };
+
+
+                        //bind move
+                        spanFolio.element.on("mousemove.creat", function (e) {
+                            moveCreator(creator, e);
+                        });
+
+                        //bind mouseUp on document
+                        $("body").one("mouseup.creat", function (e) {
+                            //stop timer
+                            spanFolio.element.stopTime("createCreator");
+
+                            //unbind move\
+                            spanFolio.element.off("mousemove.creat");
+
+                            var creator = spanFolio.element.find(".eventCreator:first");
+                            moveCreator(creator, e);
+
+                            //create a micro editor
+                            if (creator.size() > 0) {
+                                //get real millis
+                                var start = Math.round((parseInt(creator.css("left")) * spanFolio.getPixelWidth() - spanFolio.getPixelWidth() * 20) / oneDayWidth);
+                                var dur = Math.round(creator.outerWidth() * spanFolio.getPixelWidth() / oneDayWidth);
+                                var stDate = new Date(firstMillisOfPeriod);
+                                var enDate = new Date(firstMillisOfPeriod);
+                                stDate.setDate(stDate.getDate() + start);
+                                enDate.setDate(enDate.getDate() + start + dur);
+
+
+                                var newEv = { id: "-1", startMillis: stDate.getTime(), endMillis: enDate.getTime() - 1000, targets: attendees };
+                                microEdit(newEv, spanFolio, creator, e);
+                                $(".microEdit :input[name=isFullDay]").hide();
+                            }
+                        });
+                    });
+                }
+
+            }).on("mouseup.creat", function (e) {
+                $("body").clearUnselectable();
+                //stop timer
+                spanFolio.element.stopTime("createCreator");
+            });
+        }
+
+
+        function createBarFolio() {
+            var moveBar = $("#moveBar");
+            moveBar.empty();
+
+            var date = new Date(focusMillis);
+            date.clearTime();
+            date.setDate(1);
+            date.setMonth(date.getMonth() - 12);
+
+            var startMillis = date.getTime();
+            date.setMonth(date.getMonth() + 24);
+            var endMillis = date.getTime();
+
+
+            var barFolio = new Folio(moveBar);
+            barFolio.width = endMillis - startMillis;
+            barFolio.height = 50;
+            barFolio.left = startMillis;
+            barFolio.inPercent = true;
+
+
+            var d = new Date(startMillis);
+            while (d.getTime() < endMillis) {
+                var headLbl = $("<span>").html(d.format("MM yyyy")).addClass("moveBarEl");
+                barFolio.addElement(headLbl, 0, d.getTime(), 30 * 24 * 3600000, 50);
+                d.setMonth(d.getMonth() + 1);
+            }
+
+            //today
+            var today = $("<span>").prop("title", "今天").addClass("moveBarToday");
+            barFolio.addElement(today, 0, new Date().getTime(), barFolio.getPixelWidth() * 2, 50);
+
+            return barFolio;
+        }
+
+
+        function checkOffScreenElements() {
+            var divFolio = $(this);
+            var offTop = false;
+            var offBottom = false;
+            var h = divFolio.height();
+            divFolio.find(".agendaEvent").each(function () {
+                var el = $(this);
+                if (el.position().top < 0) {
+                    offTop = true;
+                    return false;
+                }
+            }).each(function () {
+                var el = $(this);
+                if (el.position().top > h) {
+                    offBottom = true;
+                    return false;
+                }
+            });
+            var offScreenAlertBox = $("#offScreenAlertBox");
+            if (offTop)
+                offScreenAlertBox.addClass("offTop");
+            else
+                offScreenAlertBox.removeClass("offTop");
+
+            if (offBottom)
+                offScreenAlertBox.addClass("offBottom");
+            else
+                offScreenAlertBox.removeClass("offBottom");
+        }
+
+
+        function goToMillis(newMillis) {
+            //console.debug("goToMillis"+ (new Date(newMillis)).format());
+            focusMillis = newMillis;
+            $("[name=FOCUS_MILLIS]").val(focusMillis); // in order to add in the right time
+            $("#topHeaderCentral").html(getTopCentralHeader(focusMillis));
+            deskRefill();
+        }
+
+
+        function printEditorPeriod(ev) {
+            var st = new Date(ev.startMillis);
+            var en = new Date(ev.endMillis);
+            if (ev.schedule && ev.schedule.type == "period") {
+                st = new Date(ev.schedule.startMillis);
+                en = new Date(ev.schedule.endMillis);
+            }
+
+            if (en.getTime() - st.getTime() < 3600000 * 23.8) {
+                return st.format("EEEE") + "<span> " + st.format("HH:mm") + " - " + en.format("HH:mm") + "</span>"
+            } else if (st.getDay() == en.getDay()) {
+                return st.format("EEEE dd");
+            } else if (st.getMonth() == en.getMonth()) {
+                return st.format("EEE dd") + " - " + en.format("EEE dd")
+            } else {
+                return st.format("EEE dd MMMM") + " - " + en.format("EEE dd MMMM")
+            }
+        }
+
+
+        function printPeriod(startMillis, endMillis) {
+            return new Date(startMillis).format("HH:mm") + " - " + new Date(endMillis).format("HH:mm");
+        }
+
+        function clickIsFullDay(el) {
+            if (el.is(":checked"))
+                el.closest(".microEdit").find(".hours span").hide();
+            else
+                el.closest(".microEdit").find(".hours span").show();
+        }
+
+        function getNewHours(focusedElement, folio) {
+            var day = Math.round((parseInt(focusedElement.css("left")) * folio.getPixelWidth() - 20) / 100);
+            var startDay = new Date(firstMillisOfPeriod);
+            startDay.setDate(startDay.getDate() + day);
+            var newStart = parseInt(focusedElement.css("top")) * folio.getPixelHeight() + folio.top;
+            newStart = Math.round(newStart / minStep) * minStep + startDay.getTime();
+            var newDur = Math.round((focusedElement.height() * folio.getPixelHeight()) / minStep) * minStep;
+            return { start: newStart, duration: newDur, end: newStart + newDur };
+        }
+
+
+        function moveBarClick(el, event) {
+            var pos = event.clientX - el.offset().left;
+            var folio = el.data("folio");
+            var millis = parseInt(folio.getVirtualLeft(pos));
+            goToMillis(millis);
+        }
+
+        function microEdit(jsonData, folio, creator, event, oncursor) {
+            //console.debug("microEdit",jsonData)
+
+            if (typeof oncursor == "undefined")
+                oncursor = true;
+
+            //remove current editor if any
+            $(".microEdit .meClose").click();
+
+            folio.folioCanScroll = true;
+
+            var miced = $.JST.createFromTemplate(jsonData, "MICROEDIT");
+
+            var balloonOpener = creator.showBalloon(event, { balloon: miced, oncursor: oncursor }, true);
+
+            var balloon = balloonOpener.getBalloon();
+            if (balloon.length)
+                balloon.on("closeBalloon", function () {
+                    $(".eventCreator").remove();
+                });
+
+            var ed = balloon.find(".microEdit");
+            ed.data("balloonOpener", balloonOpener);
+
+            if (creator.hasClass("eventCreator"))
+                ed.data("creator", creator);
+
+            ed.find("input:first").focus().select();
+
+            //bind one click on folio to close editor
+            folio.element.oneTime(100, "bctcaup", function () {
+                folio.element.one("click.closeMicEd", function () {
+                    $(".microEdit .meClose").click();
+                });
+            }).off("click.closeMicEd");
+        }
+
+        function closeMicroEditor(el) {
+            var miced = el.closest(".microEdit");
+            var opener = miced.data("creator");
+
+            var balloon = el.closest(".mbBalloon");
+            var target = balloon.get(0).opener;
+
+            $(target).hideBalloon();
+        }
+
+        function fullEditEvent(el) {
+            var editor = el.closest("[evId]");
+            var evId = editor.attr("evId");
+
+            var request = getDefaultRequest();
+            if (evId != "-1") {
+                $.extend(request, {
+                    CM: "ED",
+                    OBJID: evId
+                });
+            } else {
+                $.extend(request, {
+                    CM: "AD",
+                    OBJID: evId,
+                    SCHEDULE: JSON.stringify({ type: "period", startMillis: editor.attr("startMillis"), endMillis: editor.attr("endMillis") }),
+                    summary: editor.find("[name=summary]").val(),
+                    description: editor.find("[name=description]").val(),
+                    location: editor.find("[name=location]").val(),
+                    type: editor.find("[name=typeId]").val(),
+                    IS_PERSONAL: editor.find("[name=isPersonal]").is(":checked") ? "yes" : "no",
+                    IS_UNAVAILABLE: editor.find("[name=isUnavailable]").is(":checked") ? "yes" : "no",
+                    IS_REMINDER: editor.find("[name=isReminder]").is(":checked") ? "yes" : "no"
+
+                });
+            }
+            window.location.href = "agendaEditor.jsp?" + $.param(request);
+        }
+
+
+        function refillWorkgroup() {
+            var legenda = $("#workgroupLegenda").empty();
+            for (var i = 0; i < attendees.length; i++) {
+                legenda.append($.JST.createFromTemplate(attendees[i], "WORKGROUPELEMENT"));
+            }
+        }
+
+
+        function getDefaultRequest() {
+            return {
+                type: agendaType,
+                focusMillis: focusMillis,
+                FILTER: "NONE",
+                WG_IDS: "@ViewBag.defaultid",
+                PERM_REQUIRED: "TW_res_r"
+            };
+        }
+
+
+        function ajaxMicroSaveEvent(el) {
+            var editor = el.closest(".microEdit");
+            if (editor.find(":input").isFullfilled()) {
+
+                var request = getDefaultRequest();
+
+                //si recuperano gli attendees dall'evento
+                var resids = "";
+                editor.find(".eventAttendees .face[resId]").each(function () {
+                    resids += "," + $(this).attr("resId");
+                });
+                if (resids != "") {
+                    request.WG_IDS = resids.substr(1);
+                }
+
+
+                $.extend(request, {
+                    CM: "MICSAVE",
+                    id: editor.attr("evid"),
+                    summary: editor.find("[name=summary]").val(),
+                    location: editor.find("[name=location]").val(),
+                    description: editor.find("[name=description]").val(),
+                    type: editor.find("[name=typeId]").val(),
+                    isPersonal: editor.find("[name=isPersonal]").is(":checked") ? "yes" : "no",
+                    isUnavailable: editor.find("[name=isUnavailable]").is(":checked") ? "yes" : "no",
+                    isReminder: editor.find("[name=isReminder]").is(":checked") ? "yes" : "no",
+                    isFullDay: editor.find("[name=isFullDay]").is(":checked") ? "yes" : "no",
+                    startMillis: editor.attr("startMillis"),
+                    endMillis: editor.attr("endMillis")
+                });
+                showSavingMessage();
+
+                $.getJSON("/api/agenda/agendaAjax", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok == true) {
+                        //remove editor
+                        closeMicroEditor(el);
+
+                        //clear all old events;
+                        drawEvents(response.events);
+                    }
+                    hideSavingMessage();
+                });
+            }
+        }
+
+        function ajaxMoveResizeEvent(focusedElement, folio) {
+            var newEv = getNewHours(focusedElement, folio);
+            var oldEv = focusedElement.data("originalEvent");
+
+            //check if something changed
+            if (oldEv.startMillis != newEv.start || oldEv.endMillis != newEv.end) {
+                showSavingMessage();
+                var request = getDefaultRequest();
+                $.extend(request, {
+                    CM: "MOVRESEV",
+                    id: oldEv.id,
+                    startMillis: newEv.start,
+                    duration: newEv.duration
+                });
+
+                $.getJSON("/api/agenda/agendaAjax", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok == true) {
+                        //clear all old events;
+                        drawEvents(response.events);
+                    }
+                    hideSavingMessage();
+                });
+            } else {
+            }
+        }
+
+
+        function ajaxGetEvents() {
+            //console.debug("ajaxGetEvents")
+            var request = getDefaultRequest();
+            $.extend(request, {
+                CM: "GETEVENTS",
+                timeZone: jstz.determine().name
+            });
+
+            showSavingMessage();
+            $.getJSON("/api/agenda/agendaAjax", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok == true) {
+                    refillWorkgroup();
+                    drawEvents(response.events);
+                }
+                hideSavingMessage();
+            });
+        }
+
+
+        function ajaxGetTaskIssues() {
+            var request = getDefaultRequest();
+            $.extend(request, {
+                CM: "GETTASKISS"
+            });
+
+            showSavingMessage();
+            $.getJSON("/api/agenda/agendaAjax", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok == true) {
+                    drawTaskIssues(response);
+                }
+                hideSavingMessage();
+            });
+        }
+
+        function ajaxDeleteEvent(el) {
+            el.confirm(function () {
+                var editor = el.closest(".microEdit");
+                showSavingMessage();
+                var request = getDefaultRequest();
+                $.extend(request, {
+                    CM: "DELEV",
+                    id: editor.attr("evId"),
+                    startMillis: editor.attr("startMillis")
+                });
+                $.getJSON("/api/agenda/agendaAjax", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+
+                        closeMicroEditor(el);
+
+                        refillWorkgroup();
+                        drawEvents(response.events);
+                    }
+                    hideSavingMessage();
+                });
+            }, "确认删除?");
+        }
+
+
+        function drawMoveBar() {
+            var barFolio = createBarFolio();
+            //displayed period
+            d = new Date(focusMillis);
+            d.clearTime();
+            if (agendaType == "DAY") {
+                var st = new Date(d.getTime());
+                d.add("d", 1);
+            } else {
+                d.setFirstDayOfThisWeek();
+                var st = new Date(d.getTime());
+                d.add("d", 6);
+            }
+            var highlight = $("<span>").addClass("moveBarHL");
+            barFolio.addElement(highlight, 0, st.getTime(), d.getTime() - st.getTime(), 50);
+            barFolio.redraw();
+        }
+
+
+        function getTopCentralHeader(millis) {
+            var header;
+            if (agendaType == "DAY") {
+                header = new Date(millis).format("EEEE d MMMM yyyy") + "<sup>(" + new Date(millis).format("ww") + ")</sup>";
+            } else {
+                var date = new Date(millis);
+                date.clearTime();
+                date.setFirstDayOfThisWeek();
+                var st = new Date(date.getTime());
+                date.add("d", 6);
+                header = st.format("dd" + (st.getMonth() != date.getMonth() ? " MMMM" : "")) + " - " + date.format("dd MMMM yyyy") + "<sup>(" + date.format("ww") + ")</sup>";
+            }
+            return header;
+        }
+
+
+        function drawTaskIssues(response) {
+            var tasks = response.tasks;
+            var issues = response.issues; //[[dayInt,resourceId,numOfIssues,totEstimated]]
+            //clear
+            $(".taskIssueBox").empty();
+
+            //tasks
+            if (tasks) {
+                for (var i = 0; i < tasks.length; i++) {
+                    var data = tasks[i];
+
+                    var date = new Date(data.millis);
+                    var day = date.getDay();
+                    var taskIssueBox;
+                    if (agendaType == "WEEK") {
+                        taskIssueBox = $("[day=" + day + "] .taskIssueBox");
+                    } else {
+                        taskIssueBox = $(".taskIssueBox");
+                    }
+                    var ib = $.JST.createFromTemplate(data, "TASKBOX");
+                    ib.activateTeamworkLinks(false);
+                    taskIssueBox.append(ib);
+
+                }
+            }
+
+
+            if (issues) {
+                for (var i = 0; i < issues.length; i++) {
+                    var data = issues[i];
+                    var date = Date.fromInt(data[0]);
+                    var day = date.getDay();
+                    var taskIssueBox;
+                    if (agendaType == "WEEK") {
+                        taskIssueBox = $("[day=" + day + "] .taskIssueBox");
+                    } else {
+                        taskIssueBox = $(".taskIssueBox");
+                    }
+                    var ib = $.JST.createFromTemplate(data, "ISSUEBOX");
+                    ib.attr("day", date.format())
+                    ib.click(function (ev) {
+                        ev.stopPropagation();
+                        ev.cancelBubble;
+                        var el = $(this);
+                        location.href = "../issue/issueList.jsp?CM=FN&FLT_ISSUE_ASSIGNED_TO=" + el.attr("resId") + "&FLT_ISSUE_DATE_CLOSE_BY=" + el.attr("day");
+
+                    });
+                    taskIssueBox.append(ib);
+                }
+            }
+        }
+
+
+        function drawEvents(events) {
+            //console.debug("drawEvents",events)
+
+            $("body").removeClass("EVResize");
+
+            var spannedEvents = [];
+            if (events) {
+                // remove events spanning on more days
+                var simpleEvents = [];
+                for (var i = 0; i < events.length; i++) {
+                    var ev = events[i];
+                    if (!ev.trimmed && (new Date(ev.endMillis).format("yyyMMdd") == new Date(ev.startMillis).format("yyyMMdd"))) {
+                        simpleEvents.push(ev);  // same day
+                    } else {
+                        spannedEvents.push(ev); //span day
+                    }
+                }
+                events = simpleEvents;
+
+
+                events.sort(function (a, b) {
+                    if (a.startMillis < b.startMillis) {
+                        return -1;
+                    } else if (a.startMillis > b.startMillis) {
+                        return 1;
+                    } else {
+                        if (a.endMillis < b.endMillis) {
+                            return 1;
+                        } else if (a.endMillis > b.endMillis) {
+                            return -1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                });
+            }
+
+            //clear all old events;
+            var calendar = $("#calendar");
+            calendar.find(".agendaEvent").remove();
+            var folio = calendar.data("folio");
+            //remove current editor if any
+            $(".microEdit .meClose").click();
+
+
+
+            drawSpannedEvents(spannedEvents, agendaType);
+
+            if (agendaType == "DAY") {
+                drawOneColumnEventsOptimized(folio, oneDayWidth - 60, 40, events);
+
+            } else { // WEEK
+                // split event in days
+                var ev4Days = {};
+                for (var i = 0; i < events.length; i++) {
+                    var ev = events[i];
+                    var startDate = new Date(ev.startMillis);
+                    var day = (7 - Date.firstDayOfWeek + startDate.getDay()) % 7;  //column
+
+                    var evD = ev4Days[day];
+                    if (!evD)
+                        evD = [];
+
+                    evD.push(ev);
+                    ev4Days[day] = evD;
+                }
+
+                for (var day in ev4Days) {
+                    var evd = ev4Days[day];
+                    drawOneColumnEvents(folio, 100, 20 + day * 100, evd);
+                }
+            }
+            winResize();
+            folio.redraw();
+            calendar.oneTime(500, "ckoffscrelmnt", checkOffScreenElements);
+        }
+
+
+        function drawSpannedEvents(spannedEvents, agendaType) {
+
+            var rowSize = 0;
+            if (agendaType == "DAY") {
+                for (var i = 0; i < spannedEvents.length; i++) {
+                    var ev = spannedEvents[i];
+                    ev.startDay = (7 - Date.firstDayOfWeek + new Date(ev.startMillis).getDay()) % 7;  //column
+                    ev.endDay = (7 - Date.firstDayOfWeek + new Date(ev.endMillis).getDay()) % 7;  //column
+                    ev.row = i;
+                }
+
+                rowSize = spannedEvents.length;
+
+            } else {
+                var rows = [];
+
+                for (var i = 0; i < spannedEvents.length; i++) {
+                    var ev = spannedEvents[i];
+                    ev.startDay = (7 - Date.firstDayOfWeek + new Date(ev.startMillis).getDay()) % 7;  //column
+                    ev.endDay = (7 - Date.firstDayOfWeek + new Date(ev.endMillis).getDay()) % 7;  //column
+
+                    var found = false;
+                    for (var r = 0; r < rows.length; r++) {
+                        var row = rows[r];
+                        var allFree = true;
+                        for (var c = ev.startDay; c <= ev.endDay; c++) {
+                            if (row[c] > 0) {
+                                allFree = false;
+                                break;
+                            }
+                        }
+                        if (allFree) {
+                            for (var c = ev.startDay; c <= ev.endDay; c++) {
+                                row[c] = 1;
+                            }
+                            found = true;
+                        }
+
+                        if (found) {
+                            ev.row = r;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        var row = [0, 0, 0, 0, 0, 0, 0];
+                        for (var c = ev.startDay; c <= ev.endDay; c++) {
+                            row[c] = 1;
+                        }
+                        rows.push(row);
+                        ev.row = rows.length - 1;
+
+                    }
+                }
+                rowSize = rows.length;
+            }
+            var rowH = 25;
+            var spanEvents = spanFolio.element;
+            spanEvents.height(rowH * rowSize);
+            spanEvents.empty();
+            spanFolio.width = 720;
+            spanFolio.height = rowH * rowSize + 15;
+            spanFolio.inPercent = true;
+
+
+            var bg = $("<div>").addClass("agendaSpanEvents");
+            spanFolio.addElement(bg, 0, 20, 700, spanFolio.height - 5);
+
+            for (var i = 0; i < spannedEvents.length; i++) {
+                var ev = spannedEvents[i];
+                var evDom = $.JST.createFromTemplate(ev, "AGENDAEVENTSPAN");
+
+                evDom.data("originalEvent", ev);
+
+                if (Math.abs(ev.schedule.startMillis - ev.startMillis) > 5)
+                    evDom.addClass("leftArrow");
+
+                if (Math.abs(ev.schedule.endMillis - ev.endMillis) > 5) {
+                    evDom.addClass("rightArrow");
+                }
+
+
+                if (ev.isExternal)
+                    evDom.addClass("external");
+                bindEventsOnSpanEvent(evDom, ev, folio);
+                if (agendaType == "DAY") {
+                    spanFolio.addElement(evDom, ev.row * rowH, 20, 700, rowH);
+                } else {
+                    spanFolio.addElement(evDom, ev.row * rowH, ev.startDay * 100 + 20, (ev.endDay - ev.startDay + 1) * 100, rowH);
+                }
+            }
+            spanFolio.redraw();
+
+        }
+
+
+        function getOverlaps(ev, levels) {
+            var over = 0;
+            if (ev.level < levels.length - 1) {
+                var levEv = levels[ev.level + 1];
+                for (var i = 0; i < levEv.length; i++) {
+                    var ev2 = levEv[i];
+                    if (!((ev2.endMillis <= ev.startMillis) || (ev2.startMillis >= ev.endMillis))) {
+                        over = Math.max(getOverlaps(ev2, levels), over) + 1;
+                    }
+                }
+            }
+            return over;
+        }
+
+
+        function drawOneColumnEventsOptimized(folio, colWidth, colOffset, events) {
+            if (events) {
+
+                //compute levels
+                var levels = [];//Ã¨ un array di eventi messi a strati come nel tetris
+                for (var i = 0; i < events.length; i++) {
+                    var ev = events[i];
+                    //controllo
+                    var lastGoodLevel = -1;
+                    var collisionDetected = false;
+                    for (var lev = levels.length - 1; lev >= 0 && !collisionDetected; lev--) {
+                        for (var j = 0; j < levels[lev].length; j++) {
+                            var ev2 = levels[lev][j];
+                            if (!((ev2.endMillis <= ev.startMillis) || (ev2.startMillis >= ev.endMillis))) {
+                                //non entra su questo livello devo usare quello precedente
+                                collisionDetected = true;
+                                break;
+                            }
+                        }
+                        if (!collisionDetected)
+                            lastGoodLevel = lev;
+                    }
+                    if (lastGoodLevel == -1) {
+                        lastGoodLevel = levels.length;
+                    }
+                    if (!levels[lastGoodLevel])
+                        levels.push([]);
+                    ev.level = lastGoodLevel;
+                    levels[lastGoodLevel].push(ev);
+                }
+
+                //compute overlaps
+                for (var lev = 0; lev < levels.length; lev++) {
+                    var levEv = levels[lev];
+                    for (var i = 0; i < levEv.length; i++) {
+                        var ev = levEv[i];
+                        ev.overlaps = getOverlaps(ev, levels) + ev.level + 1;
+                    }
+                }
+
+                for (var i = 0; i < events.length; i++) {
+                    var ev = events[i];
+
+                    var startDate = new Date(ev.startMillis);
+                    ev.offset = 0;
+                    for (var j = i - 1; j >= 0; j--) {
+                        var ev2 = events[j];
+                        if (!((ev2.endMillis <= ev.startMillis) || (ev.endMillis <= ev2.startMillis))) {
+                            ev.offset = ev2.offset + (colWidth / ev2.overlaps) * 0.9;
+                            break;
+                        }
+                    }
+                    var extSize = (ev.endMillis - ev.startMillis) * folio.getScaleHeight();
+                    var evDom = $.JST.createFromTemplate(ev, extSize < 32 ? "AGENDAEVENTCOMPACT" : "AGENDAEVENT");
+                    evDom.data("originalEvent", ev);
+
+                    if (ev.isExternal)
+                        evDom.addClass("external");
+                    bindEventsOnEvent(evDom, ev, folio);
+
+                    var w = colWidth / ev.overlaps;
+                    folio.addElement(evDom, ev.startMillis - startDate.clearTime().getTime(), colOffset + ev.offset, w, ev.endMillis - ev.startMillis);
+                }
+            }
+        }
+
+        function drawOneColumnEvents(folio, colWidth, colOffset, events) {
+            if (events) {
+
+                //compute levels
+                var levels = [];//Ã¨ un array di eventi messi a strati come nel tetris
+                for (var i = 0; i < events.length; i++) {
+                    var ev = events[i];
+                    //controllo
+                    var lastGoodLevel = -1;
+                    var collisionDetected = false;
+                    for (var lev = levels.length - 1; lev >= 0 && !collisionDetected; lev--) {
+                        for (var j = 0; j < levels[lev].length; j++) {
+                            var ev2 = levels[lev][j];
+                            if (!((ev2.endMillis <= ev.startMillis) || (ev2.startMillis >= ev.endMillis))) {
+                                //non entra su questo livello devo usare quello precedente
+                                collisionDetected = true;
+                                break;
+                            }
+                        }
+                        if (!collisionDetected)
+                            lastGoodLevel = lev;
+                    }
+                    if (lastGoodLevel == -1) {
+                        lastGoodLevel = levels.length;
+                    }
+                    if (!levels[lastGoodLevel])
+                        levels.push([]);
+                    ev.level = lastGoodLevel;
+                    levels[lastGoodLevel].push(ev);
+                }
+                var levelIndent = 7;
+
+                //draw events
+                for (var lev = 0; lev < levels.length; lev++) {
+                    var levEv = levels[lev];
+                    for (var i = 0; i < levEv.length; i++) {
+                        var ev = levEv[i];
+                        var startDate = new Date(ev.startMillis);
+
+                        ev.offset = lev * levelIndent;
+                        var w = colWidth - ev.offset - 5;
+                        w = w < 30 ? 30 : w;
+
+                        var extSize = (ev.endMillis - ev.startMillis) * folio.getScaleHeight();
+                        var evDom = $.JST.createFromTemplate(ev, extSize < 32 ? "AGENDAEVENTCOMPACT" : "AGENDAEVENT");
+                        evDom.data("originalEvent", ev);
+                        if (ev.isExternal)
+                            evDom.addClass("external");
+                        bindEventsOnEvent(evDom, ev, folio);
+
+                        folio.addElement(evDom, ev.startMillis - startDate.clearTime().getTime(), colOffset + ev.offset, w, ev.endMillis - ev.startMillis);
+                    }
+                }
+            }
+        }
+
+        function getResourceById(resId) {
+            for (var i = 0; i < attendees.length; i++) {
+                if (resId == attendees[i].resId)
+                    return attendees[i];
+            }
+        }
+
+        function openWorkGroup(el) {
+            var resids = "";
+            $(".microEdit").find(".eventAttendees .face[resId]").each(function () {
+                resids += "," + $(this).attr("resId");
+            });
+            if (resids != "") {
+                resids = resids.substr(1);
+            }
+            //console.debug("openWorkGroup WG_IDS="+resids);
+
+            var url = contextPath + "/app/workgroup/workgroupPopup?" +
+                "canBeEmpty=no&" +
+                "useCallbackFunction=yes&" +
+                "title=" + encodeURIComponent("选择您的团队") + "&" +
+                "WG_IDS=" + encodeURIComponent(resids) + "&" +
+                "PERM_REQUIRED=TW_res_r";
+            openBlackPopup(url, 700, 580, wgCallback);
+        }
+
+
+        function wgCallback(selectedResources) {
+            //console.debug("wgCallback", selectedResources);
+            if (selectedResources) {
+                var attendees = [];
+                for (var i = 0; i < selectedResources.length; i++) {
+                    var res = selectedResources[i];
+                    attendees.push({ resId: res.id, resName: res.displayName, resConnectionStatus: res.resConnectionStatus, resAvatarUrl: res.avatarUrl })
+                }
+                fillAttendees($(".microEdit").find(".eventAttendees").empty(), attendees, "", 200);
+            }
+        }
+
+
+    </script>
+
+
+</div>

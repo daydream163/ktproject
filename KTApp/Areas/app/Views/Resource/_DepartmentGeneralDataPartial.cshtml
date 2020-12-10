@@ -1,0 +1,22 @@
+﻿
+<table border="0" cellspacing="0" cellpadding="3" id="" class="table">
+    <tbody>
+        <tr>
+            <td colspan="2" style="width: 40%">
+                <label for="NAME" class="required">名称*</label><br>
+                <input type="text" name="NAME" id="NAME" size="50" class="formElements bold" autocomplete="off" maxlength="255" value="A部门" required="true" oldvalue="1">
+            </td>
+            <td nowrap="" style="width: 10%">
+                <label for="TYPE_txt" class=" ">类型</label><br>
+                <input type="text" name="TYPE_txt" id="TYPE_txt" size="25" class="formElements smartCombo" autocomplete="off" maxlength="255" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onkeydown="manageKeyEvent ($(this),event,false,false);" onkeypress="stopKeyEvent(event);" value="">
+                <span class="teamworkIcon menuArrow" style="cursor:pointer; margin-left: -15px" onclick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} ">ù</span>
+                <input type="hidden" name="TYPE" id="TYPE" size="10" class="formElements" autocomplete="off" maxlength="255" jsppart="partSmartCombo" value="" oldvalue="1">
+            </td>
+            <td nowrap="" style="width: 10%">
+                <label for="CODE" class=" ">代码</label><br>
+                <input type="text" name="CODE" id="CODE" size="14" class="formElements" autocomplete="off" maxlength="255" value="" oldvalue="1">
+            </td>
+        </tr>
+
+    </tbody>
+</table>

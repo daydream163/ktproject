@@ -236,7 +236,7 @@
                 <div class="bannerText">
                     <p>Create your collegues and start collaborating. You can even add your clients.</p>
                 </div>
-                <a class="button     light" id="domId_1061356689" style="" href="/app/resource/resourceEditor.html?V_ID=318572699&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
+                <a class="button     light" id="domId_1061356689" style="" href="/app/resource/resourceEditor?V_ID=318572699&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">Create colleague</a>
 
 
             </div>
@@ -1036,7 +1036,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
 
 
   function wptl_openWorkGroup() {
-    var url = contextPath+"/app/workgroup/workgroupPopup.html?" +
+    var url = contextPath+"/app/workgroup/workgroupPopup?" +
       "canBeEmpty=yes&" +
       "useCallbackFunction=yes&" +
       "title="+encodeURIComponent("选择您的团队")+"&" +
@@ -1072,10 +1072,10 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         </tr>
         <tr>
             <td width="40" valign="top" style="padding-top: 2px">
-                <span class="button buttonImg  " id="domId_320383426" style=" " onClick="stopBubble(event);try{ window.open('/app/resource/resourceEditor.html?V_ID=459067105&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d2065344562" title="Dream Wing" alt="Dream Wing" id="d2065344562" class='face small'></span>
+                <span class="button buttonImg  " id="domId_320383426" style=" " onClick="stopBubble(event);try{ window.open('/app/resource/resourceEditor?V_ID=459067105&CM=ED&OBJID=15089','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d2065344562" title="Dream Wing" alt="Dream Wing" id="d2065344562" class='face small'></span>
             </td>
             <td valign="top">
-                <a class="button  textual   " id="domId_1779573711" style="" href="/app/resource/resourceEditor.html?V_ID=1680762756&CM=ED&OBJID=15089">Dream Wing</a>
+                <a class="button  textual   " id="domId_1779573711" style="" href="/app/resource/resourceEditor?V_ID=1680762756&CM=ED&OBJID=15089">Dream Wing</a>
 
                 &nbsp;<button type="button" class="button noprint textual icon  " id="domId_682152939" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=579747454&CM=AD&POP=yes&receiver=15089','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
 
@@ -1089,7 +1089,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         <tr>
             <td width="40" valign="top" style="padding-top: 2px"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1656612275" title="Zhang Fei" alt="Zhang Fei" id="d1656612275" class='face small'></td>
             <td valign="top">
-                <a class="button  textual   " id="domId_557022570" style="" href="/app/resource/resourceEditor.html?V_ID=1725765078&CM=ED&OBJID=15189">Zhang Fei</a>
+                <a class="button  textual   " id="domId_557022570" style="" href="/app/resource/resourceEditor?V_ID=1725765078&CM=ED&OBJID=15189">Zhang Fei</a>
 
                 &nbsp;<button type="button" class="button noprint textual icon  " id="domId_461362735" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1019529564&CM=AD&POP=yes&receiver=15189','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
 
@@ -2182,7 +2182,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
 
                 <tr customerId="15164" class="alternate">
                     <td class="columnCustomerName" style="position: relative;" width="80%">
-                        <a class="button  textual   bolder" id="domId_133892981" style="" href="/app/resource/resourceEditor.html?V_ID=103419510&CM=ED&OBJID=15164">第二个员工 </a>
+                        <a class="button  textual   bolder" id="domId_133892981" style="" href="/app/resource/resourceEditor?V_ID=103419510&CM=ED&OBJID=15164">第二个员工 </a>
 
 
                     </td>
@@ -2288,7 +2288,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
     <div style="float:right;"></div>
 
     <h1>
-        <a class="button  textual   " id="domId_534478608" style="" title="日程" href="/app/agendaWeekDay.html?V_ID=945025363">我的约会</a>
+        <a class="button  textual   " id="domId_534478608" style="" title="日程" href="/app/agenda/agendaWeekDay?V_ID=945025363">我的约会</a>
 
     </h1>
 
@@ -2560,7 +2560,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         };
 
         showSavingMessage();
-        $.getJSON(contextPath + "/agenda/agendaAjax", request, function (response) {
+        $.getJSON(contextPath + "/api/agenda/agendaAjax", request, function (response) {
             jsonResponseHandling(response);
             if (response.ok == true) {
                 for (var i = 0; response.events && i < response.events.length; i++) {
@@ -2623,7 +2623,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         };
 
         showSavingMessage();
-        $.getJSON(contextPath + "/agenda/agendaAjax", request, function (response) {
+        $.getJSON(contextPath + "/api/agenda/agendaAjax", request, function (response) {
             jsonResponseHandling(response);
             if (response.ok == true) {
                 for (var i = 0; response.issues && i < response.issues.length; i++) {

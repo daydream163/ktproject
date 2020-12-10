@@ -344,7 +344,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                             <div class="divomoArrow"></div>
 
                             <div>
-                                <span class="menuTitle">ktmanage kt <em>(28)</em></span><a class="button  textual   " id="domId_1448411859" style="" href="/app/resource/resourceEditor.html?V_ID=2120531428&amp;CM=ED&amp;OBJID=14252">我的联系方式</a>
+                                <span class="menuTitle">ktmanage kt <em>(28)</em></span><a class="button  textual   " id="domId_1448411859" style="" href="/app/resource/resourceEditor?V_ID=2120531428&amp;CM=ED&amp;OBJID=14252">我的联系方式</a>
 
                                 <a class="button  textual   " id="domId_1730975468" style="" href="/app/resource/resourceSecurity.html?V_ID=1561628161&amp;CM=ED&amp;OBJID=14252">登录信息</a>
 
@@ -389,7 +389,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                         <span class="menuTitle">通知</span>
                         <div id="messageListPlace" class="messageListPlace"></div>
                         <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
-                            <a class="button  textual   " id="domId_1260540221" style="" href="/app/messageListFull.html?V_ID=1150703245">全部显示</a>
+                            <a class="button  textual   " id="domId_1260540221" style="" href="/app/messaging/messageListFull?V_ID=1150703245">全部显示</a>
 
                         </div>
                     </div>
@@ -505,7 +505,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
         <div id="twInnerContainer" class="null">
 
             <div class="mainColumn">
-                <form enctype="application/x-www-form-urlencoded" method="POST" action="/app/agendaWeekDay.html" name="AGWEDA" id="AGWEDA" savedaction="" savedtarget="">
+                <form enctype="application/x-www-form-urlencoded" method="POST" action="/app/agenda/agendaWeekDay" name="AGWEDA" id="AGWEDA" savedaction="" savedtarget="">
                     <input type="hidden" id="AGWEDAV_ID" name="V_ID" value="1581250505" savedvalue="">
                     <input type="hidden" id="AGWEDACM" name="CM" value="" savedvalue="">
                     <input type="hidden" id="AGWEDAFOCUS_MILLIS" name="FOCUS_MILLIS" value="1599840000000" savedvalue="">
@@ -571,7 +571,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                                 <div id="workgroupLegenda" style="display: inline"><div class="workgroupElement" __template="WORKGROUPELEMENT">         <img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" title="ktmanage kt" class="face active" align="absmiddle">       </div></div>
                                 <div class="workgroupElement">
-                                    <button type="button" class="button noprint  icon  " id="domId_1654058144" style="" title="更改工作组" onclick="submitInBlack('AGWEDA','/app/workgroup/workgroupPopup.html','700','580');return false; "><span class="teamworkIcon ">r</span></button>
+                                    <button type="button" class="button noprint  icon  " id="domId_1654058144" style="" title="更改工作组" onclick="submitInBlack('AGWEDA','/app/workgroup/workgroupPopup','700','580');return false; "><span class="teamworkIcon ">r</span></button>
 
                                 </div>
 
@@ -1662,7 +1662,7 @@ function ajaxGetEvents() {
   });
 
   showSavingMessage();
-  $.getJSON("agenda/agendaAjax", request, function (response) {
+  $.getJSON("api/agenda/agendaAjax", request, function (response) {
     jsonResponseHandling(response);
     if (response.ok == true) {
       refillWorkgroup();
@@ -1680,7 +1680,7 @@ function ajaxGetTaskIssues() {
   });
 
   showSavingMessage();
-  $.getJSON("agenda/agendaAjax", request, function (response) {
+  $.getJSON("api/agenda/agendaAjax", request, function (response) {
     jsonResponseHandling(response);
     if (response.ok == true) {
       drawTaskIssues(response);
@@ -2129,7 +2129,7 @@ function openWorkGroup(el) {
   }
   //console.debug("openWorkGroup WG_IDS="+resids);
 
-  var url = contextPath+"/app/workgroup/workgroupPopup.html?" +
+  var url = contextPath+"/app/workgroup/workgroupPopup?" +
     "canBeEmpty=no&" +
     "useCallbackFunction=yes&" +
     "title="+encodeURIComponent("选择您的团队")+"&" +

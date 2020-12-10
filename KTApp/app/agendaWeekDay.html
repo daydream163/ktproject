@@ -236,7 +236,7 @@
                             </td>
 
                             <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议">
-                                <a href="/app/agendaWeekDay.html?V_ID=1801354923&AGENDA_TYPE=WEEK&FOCUS_MILLIS=1605188340623" class="button">
+                                <a href="/app/agenda/agendaWeekDay?V_ID=1801354923&AGENDA_TYPE=WEEK&FOCUS_MILLIS=1605188340623" class="button">
                                     日程
                                 </a>
 
@@ -361,7 +361,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                             <div class="divomoArrow"></div>
 
                             <div>
-                                <span class="menuTitle">Dream Wing <em>(54)</em></span><a class="button  textual   " id="domId_1991930807" style="" href="/app/resource/resourceEditor.html?V_ID=1504424586&CM=ED&OBJID=15089">我的联系方式</a>
+                                <span class="menuTitle">Dream Wing <em>(54)</em></span><a class="button  textual   " id="domId_1991930807" style="" href="/app/resource/resourceEditor?V_ID=1504424586&CM=ED&OBJID=15089">我的联系方式</a>
 
                                 <a class="button  textual   " id="domId_1258500166" style="" href="/app/resource/resourceSecurity.html?V_ID=1010688660&CM=ED&OBJID=15089">登录信息</a>
 
@@ -406,7 +406,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                         <span class="menuTitle">通知</span>
                         <div id="messageListPlace" class="messageListPlace"></div>
                         <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
-                            <a class="button  textual   " id="domId_610943450" style="" href="/app/messageListFull.html?V_ID=200908000">全部显示</a>
+                            <a class="button  textual   " id="domId_610943450" style="" href="/app/messaging/messageListFull?V_ID=200908000">全部显示</a>
 
                         </div>
                     </div>
@@ -523,7 +523,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
             <div class="mainColumn">
                 <form enctype="application/x-www-form-urlencoded" method="POST"
-                      action="/app/agendaWeekDay.html" name="AGWEDA" id="AGWEDA"
+                      action="/app/agenda/agendaWeekDay" name="AGWEDA" id="AGWEDA"
                       savedAction="" savedTarget="">
                     <input type="hidden" id="AGWEDAV_ID" name="V_ID" value="113546667" savedValue="">
                     <input type="hidden" id="AGWEDACM" name="CM" value="" savedValue="">
@@ -591,7 +591,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
 
                                 <div id="workgroupLegenda" style="display: inline"></div>
                                 <div class="workgroupElement">
-                                    <button type="button" class="button noprint  icon  " id="domId_1448990190" style="" title="更改工作组" onclick="submitInBlack('AGWEDA','/app/workgroup/workgroupPopup.html','700','580');return false; "><span class='teamworkIcon '>r</span></button>
+                                    <button type="button" class="button noprint  icon  " id="domId_1448990190" style="" title="更改工作组" onclick="submitInBlack('AGWEDA','/app/workgroup/workgroupPopup','700','580');return false; "><span class='teamworkIcon '>r</span></button>
 
                                 </div>
 
@@ -1738,7 +1738,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                         });
                         showSavingMessage();
 
-                        $.getJSON("/agenda/agendaAjax", request, function (response) {
+                        $.getJSON("/api/agenda/agendaAjax", request, function (response) {
                             jsonResponseHandling(response);
                             if (response.ok == true) {
                                 //remove editor
@@ -1767,7 +1767,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                             duration: newEv.duration
                         });
 
-                        $.getJSON("/agenda/agendaAjax", request, function (response) {
+                        $.getJSON("/api/agenda/agendaAjax", request, function (response) {
                             jsonResponseHandling(response);
                             if (response.ok == true) {
                                 //clear all old events;
@@ -1789,7 +1789,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                     });
 
                     showSavingMessage();
-                    $.getJSON("/agenda/agendaAjax", request, function (response) {
+                    $.getJSON("/api/agenda/agendaAjax", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok == true) {
                             refillWorkgroup();
@@ -1807,7 +1807,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                     });
 
                     showSavingMessage();
-                    $.getJSON("/agenda/agendaAjax", request, function (response) {
+                    $.getJSON("/api/agenda/agendaAjax", request, function (response) {
                         jsonResponseHandling(response);
                         if (response.ok == true) {
                             drawTaskIssues(response);
@@ -1826,7 +1826,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                             id: editor.attr("evId"),
                             startMillis: editor.attr("startMillis")
                         });
-                        $.getJSON("/agenda/agendaAjax", request, function (response) {
+                        $.getJSON("/api/agenda/agendaAjax", request, function (response) {
                             jsonResponseHandling(response);
                             if (response.ok) {
 
@@ -2256,7 +2256,7 @@ To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一�
                     }
                     //console.debug("openWorkGroup WG_IDS="+resids);
 
-                    var url = contextPath + "/app/workgroup/workgroupPopup.html?" +
+                    var url = contextPath + "/app/workgroup/workgroupPopup?" +
                         "canBeEmpty=no&" +
                         "useCallbackFunction=yes&" +
                         "title=" + encodeURIComponent("选择您的团队") + "&" +

@@ -341,7 +341,7 @@ function getOperatorLoad(resId, startMillis, endMillis, currentWL, assId,callbac
         wgIds.push(inp.val());
       }
     });
-    var url = "/app/workgroup/workgroupPopup.html?" +
+    var url = "/app/workgroup/workgroupPopup?" +
       "useCallbackFunction=yes&" +
       "title="+encodeURIComponent("批量分配")+"&" +
       "WG_IDS="+encodeURIComponent(wgIds.join())+"&" +

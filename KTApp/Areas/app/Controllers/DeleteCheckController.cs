@@ -51,6 +51,11 @@ namespace KTApp.Areas.app.Controllers
                     IDepartmentTypeService departmentTypeService = new DepartmentTypeService();
                     count = departmentTypeService.Delete(new DepartmentType { id = objid });
                 }
+                else if (urlrefer.EndsWith("resourcelist", StringComparison.OrdinalIgnoreCase)) {
+                    // 组织类型，单独的表，单独处理
+                    IResourceService resourceService = new ResourceService();
+                    count = resourceService.Delete(new KTResource { id = objid.ToString() });
+                }
                 else {
                     count = service.Delete(0, objid);
                 }

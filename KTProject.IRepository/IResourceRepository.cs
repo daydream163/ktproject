@@ -17,7 +17,15 @@ namespace KTProject.IRepository
         /// <param name="pageSize"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        IEnumerable<KTResource> GetList(int orgid, int pageIndex, int pageSize, ref int totalCount);
+        IEnumerable<KTResource> GetList(int orgid, string filter, int pageIndex, int pageSize, ref int totalCount);
         KTResource GetDetail(int id);
+        KTResource Insert(KTResource obj);
+        int Update(KTResource obj);
+        int Delete(KTResource obj);
+
+        IntID Maxid();
+        KTResource GetDetailByUserid(int userid);
+        IEnumerable<KTResourceSimpleView> GetList(WorkgroupParams workgroupParams);
+        IEnumerable<KTResource> GetList2(WorkgroupParams workgroupParams);
     }
 }

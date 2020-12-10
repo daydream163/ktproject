@@ -108,5 +108,20 @@ namespace KTProject.Model
         /// Nullable:True
         /// </summary>           
         public DateTime? expires { get; set; }
+
+        private string _operatorAvatar = string.Empty;
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>   
+        [SugarColumn(IsIgnore = true)]
+        public string operatorAvatar
+        {
+            get { return _operatorAvatar.IndexOf("+++") > 0 ? _operatorAvatar.Substring(_operatorAvatar.IndexOf("+++") + 3) : _operatorAvatar; }
+            set { this._operatorAvatar = value; }
+        }
+
     }
 }

@@ -27,7 +27,9 @@ namespace KTProject.Repository
         }
 
         public IEnumerable<Message> GetList(int userid, int pageIndex, int pageSize, ref int totalCount) {
-            return db.Queryable<Message>()
+            return db.Queryable<Message, KTResource>((m, r)=>new object []{ 
+                JoinType.Left, m.fromOperator == r.myself
+            }).Select("m.*, COALESCE (r.myPhoto, r.name, '') as operatorAvatar")
             .Where((m) => m.toOperator == userid)
             .ToPageList(pageIndex, pageSize, ref totalCount);
         }

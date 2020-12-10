@@ -162,6 +162,14 @@ namespace KTProject.Model
         /// Default:
         /// Nullable:True
         /// </summary>           
+        [SugarColumn(IsIgnore = true, ColumnName = "name")]
+        public string displayName { get { return this.name; } }
+
+        /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
         public string myManager { get; set; }
 
         /// <summary>
@@ -312,5 +320,12 @@ namespace KTProject.Model
         /// Nullable:True
         /// </summary>           
         public int? myself { get; set; }
+
+        /// <summary>
+        /// url表示
+        /// </summary>
+        [SugarColumn(IsIgnore = true)]
+        public string avatarUrl { get; set; }
+
     }
 }

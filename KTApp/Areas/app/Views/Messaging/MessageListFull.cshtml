@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "消息列表";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+
+
+    <h1>消息列表</h1>
+
+    <div id="messageListPlaceFull" class="messageListPlace">
+    </div>
+
+    <script>
+
+        $(function () {
+            $("#messageListPlaceFull").load(contextPath + "/api/messaging/messagelist?isinpage=true");
+        })
+
+
+    </script>
+
+
+
+</div>

@@ -160,15 +160,15 @@
       <![CDATA[
 <tr class="alternate first resourceList last" resId="{id}">
     <td width="1%" valign="top" nowrap rowspan="1">
-        <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d791216581" title="{name}" alt="{name}" id="d791216581" " resId="{id}" class="face ">
+        #myself#
     </td>
     <td valign="top" rowspan="1">
         <div class="pathSmall"><span class="pathEl"></span></div>
-        <a href="resourceEditor.jsp?V_ID=758334643&CM=ED&OBJID={id}" class="button textual bolder" style="white-space:normal;">{name}</a>
+        <a href="resourceEditor?V_ID=758334643&CM=ED&OBJID={id}" class="button textual bolder" style="white-space:normal;">{name}</a>
     </td>
-    <td valign="top" rowspan="1"></td>
+    <td valign="top" rowspan="1">{code}</td>
     <td valign="top" rowspan="1">
-        <button type="button" class="button noprint textual icon  " id="domId_1315457440" style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=14899956&CM=AD&POP=yes&receiver={id}','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
+        <button type="button" class="button noprint textual icon  " style="" title="发送消息" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=14899956&CM=AD&POP=yes&receiver={id}','600px','600px');return false; "><span class='teamworkIcon '>&igrave;</span></button>
     </td>
     <td valign="top" rowspan="1">
         <span class="score" title="积分"><span class="teamworkIcon">1</span> 2</span>
@@ -178,7 +178,7 @@
     <td></td>
     <td><a class="button textual" href="mailto:"></a></td>
     <td align="center" rowspan="1">
-        <button type="button" class="button noprint textual icon  delete" id="domId_123833386" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+        <button type="button" class="button noprint textual icon  delete" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
     </td>
 </tr>
     ]]>
@@ -186,6 +186,10 @@
     <after>
       <![CDATA[</tbody>]]>
     </after>
+    <fields>ExpressionField1</fields>
+    <fieldsexpress>
+      <express><![CDATA[myself♂equal♂1*<img src="/avatars/000001_ZxW14.jpeg" border="0" name="d791216581" id="{getrandomid}" resid="1" class="face ">♀3*<img src="/avatars/000001_ZxW14.jpeg" border="0" name="d791216581" id="d791216581" resid="1" class="face ">♀else*<div style="height: 35px; width: 35px"></div>]]></express>
+    </fieldsexpress>
   </node>
   <node id="DOCLST">
     <before>

@@ -1,0 +1,25 @@
+﻿@{
+    string path = Request.Url.AbsolutePath;
+    var info = TempData["resource"] as KTProject.Model.KTResource;
+}
+<div id="RESOURCE_GENERAL_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceEditor") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceEditor") ? "focused" : "") " id="domId_1442606852" style="" href="/resource/resourceEditor?V_ID=882680740&amp;CM=ED&amp;OBJID=@info.id">资源信息</a>
+</div>
+<div id="RESOURCE_JOB_SETTINGS_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceJobSettings") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceJobSettings") ? "focused" : "") " id="domId_1014161990" style="" href="/resource/resourceJobSettings?V_ID=378329076&amp;CM=ED&amp;OBJID=@info.id">工作设置</a>
+</div>
+<div id="RESOURCE_SECURITY_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceSecurity") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceSecurity") ? "focused" : "") " id="hintFirstSecurity" style="" href="/resource/resourceSecurity?V_ID=1819536781&amp;CM=ED&amp;OBJID=@info.id">安全性/登录</a>
+</div>
+<div id="GENERAL_OPTIONS_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceOptions") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceOptions") ? "focused" : "") " id="hintFirstOption" style="" href="/resource/resourceOptions?V_ID=1326880048&amp;CM=EDIT_OPT&amp;OBJID=@info.id">选项</a>
+</div>
+<div id="RESOURCE_ASSIG_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceAssignments") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceAssignments") ? "focused" : "") " id="domId_290504932" style="" href="/resource/resourceAssignments?V_ID=1385595650&amp;CM=ED&amp;OBJID=@info.id">分工</a>
+</div>
+<div id="DOCUMENTS_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceDocumentList") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceDocumentList") ? "focused" : "") " id="domId_429412796" style="" href="/resource/resourceDocumentList?V_ID=132698861&amp;CM=LIST_DOCS&amp;RES_ID=@info.id">文档</a>
+</div>
+<div id="TASK_SUBSCRIPTIONS_TAB" tabset="RESOURCE_TABSET" class="@(path.EndsWith("resourceSubscriptions") ? "tabSelected" : "") tab" style="cursor:pointer;">
+    <a class="button  textual  @(path.EndsWith("resourceSubscriptions") ? "focused" : "") " id="domId_829385381" style="" href="/resource/resourceSubscriptions?V_ID=1428200031&amp;CM=ED&amp;OBJID=@info.id">订阅</a>
+</div>

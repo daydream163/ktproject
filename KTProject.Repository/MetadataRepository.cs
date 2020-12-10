@@ -20,9 +20,6 @@ namespace KTProject.Repository
             }
         }
 
-        public int Delete(int areaid, int id) {
-            return db.Deleteable<Metadata>(m => m.id == id).ExecuteCommand();
-        }
 
         public Metadata GetDetail(int id) {
             return db.Queryable<Metadata>()
@@ -38,6 +35,14 @@ namespace KTProject.Repository
             .WhereIF(areaids != null && areaids.Length > 0, m => areaids.Contains((int)m.areai))
             .ToList();
         }
+        public IEnumerable<Metadata> GetList(string orgid, string type, string  filter, int[] areaids) {
+            int[] array = new int[] { 1, 2 };
+            return db.Queryable<Metadata>()
+            .Where((m) => (m.discriminator == type))
+            .WhereIF(!string.IsNullOrEmpty(filter), m => m.description.Contains(filter))
+            .WhereIF(areaids != null && areaids.Length > 0, m => areaids.Contains((int)m.areai))
+            .ToList();
+        }
 
         public Metadata Insert(Metadata metadata) {
             return db.Insertable<Metadata>(metadata).ExecuteReturnEntity();
@@ -47,6 +52,9 @@ namespace KTProject.Repository
             return db.Updateable<Metadata>(metadata)
                 .Where(m=>m.id == metadata.id)
                 .ExecuteCommand();
+        }
+        public int Delete(int areaid, int id) {
+            return db.Deleteable<Metadata>(m => m.id == id).ExecuteCommand();
         }
     }
 }

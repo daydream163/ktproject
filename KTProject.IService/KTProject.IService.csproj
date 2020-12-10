@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAgendaTargetService.cs" />
+    <Compile Include="IScheduleService.cs" />
     <Compile Include="IBase\IService.cs" />
+    <Compile Include="IComboService.cs" />
     <Compile Include="IDocumentService.cs" />
     <Compile Include="IIssueStatusService.cs" />
     <Compile Include="ILoginService.cs" />
@@ -49,6 +52,7 @@
     <Compile Include="IMessageService.cs" />
     <Compile Include="IDepartmentTypeService.cs" />
     <Compile Include="IMetadataService.cs" />
+    <Compile Include="IAgendaService.cs" />
     <Compile Include="ITaskService.cs" />
     <Compile Include="IRoleService.cs" />
     <Compile Include="ISubSystemContractService.cs" />

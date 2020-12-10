@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="WGSRCPEOPLE">
+    <before></before>
+    <row>
+      <![CDATA[
+<div resid="{id}" class="wgResEl ui-draggable" __template="WG_RESOURCE">
+  <img resid="{id}" class="face " src="{avatarurl}" align="middle">{name}
+</div>
+      ]]>
+    </row>
+    <after></after>
+  </node>
+  <node id="ISSUE_TASK">
+    <![CDATA[
+ 
+]]>
+  </node>
+</nodes>

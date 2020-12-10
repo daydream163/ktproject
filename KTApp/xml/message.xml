@@ -21,77 +21,20 @@
     <after><![CDATA[]]></after>
   </node>
   <node id="messagelist_page">
-    <![CDATA[
-<div id="message_1745421" class="message read" messageId="1745421" style="cursor:pointer;" onclick="followMessageLink($(this));">
-    <span class="message_operator">
-        <img src="/img/favicon.png" width="30px" border="0" name="d1663455578" title="Twproject" alt="Twproject" id="d1663455578">
-    </span>
-    <span class="message_date">不多时前</span>
-    <span class="message_subject ">Task overdue: T53595.02 - 第二个子任务</span>
-    <span class="message_body">任务 T53595.02 - 第二个子任务"</span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/task/taskOverview??V_ID=1079600312&CM=ED&OBJID=53683">T53595.02 - 第二个子任务</a></span>
-</div>
-
-<div id="message_1744309" class="message read" messageId="1744309" style="cursor:pointer;" onclick="followMessageLink($(this));">
-    <span class="message_operator">
-        <img src="/img/favicon.png" width="30px" border="0" name="d1755782800" title="Twproject" alt="Twproject" id="d1755782800">
-    </span>
-    <span class="message_date">不多时前</span>
-    <span class="message_subject ">Issue delayed: I#14479#</span>
-    <span class="message_body">
-        发行的 I#14479# 应在 09/11/2020 已被关闭。<br>
-        它仍然处于打开，关闭或更新日期。<br>
-        任务 T53596.01 - 第一个子任务<br>
-        第三个问题<br>
-    </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=114850823&CM=FN&ISSUE_ID=14479">I#14479#</a></span>
-</div>
-
-<div id="message_1744311" class="message read" messageId="1744311" style="cursor:pointer;" onclick="followMessageLink($(this));">
-    <span class="message_operator">
-        <img src="/img/favicon.png" width="30px" border="0" name="d868726173" title="Twproject" alt="Twproject" id="d868726173">
-    </span>
-    <span class="message_date">不多时前</span>
-    <span class="message_subject ">Issue delayed: I#14515#</span>
-    <span class="message_body">
-        发行的 I#14515# 应在 09/11/2020 已被关闭。<br>
-        它仍然处于打开，关闭或更新日期。<br>
-        任务 T53596 - 第二个项目<br>
-        第四个问题<br>
-    </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=2137453684&CM=FN&ISSUE_ID=14515">I#14515#</a></span>
-</div>
-
-<div id="message_1744313" class="message read" messageId="1744313" style="cursor:pointer;" onclick="followMessageLink($(this));">
-    <span class="message_operator">
-        <img src="/img/favicon.png" width="30px" border="0" name="d2086957305" title="Twproject" alt="Twproject" id="d2086957305">
-    </span>
-    <span class="message_date">不多时前</span>
-    <span class="message_subject ">Issue delayed: I#14516#</span>
-    <span class="message_body">
-        发行的 I#14516# 应在 10/11/2020 已被关闭。<br>
-        它仍然处于打开，关闭或更新日期。<br>
-        任务 T53596.01 - 第一个子任务<br>
-        第五个问题<br>
-    </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=393903897&CM=FN&ISSUE_ID=14516">I#14516#</a></span>
-</div>
-
-<div id="message_1744211" class="message read" messageId="1744211" style="cursor:pointer;" onclick="followMessageLink($(this));">
-    <span class="message_operator">
-        <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d531747905" title="Zhang Fei" alt="Zhang Fei" id="d531747905" " resId="15189" class="face ">
-    </span>
-    <span class="message_date">几个小时前</span>
-    <span class="message_subject ">issue updated: T53595 - 第一个项目</span>
-    <span class="message_body">
-        &nbsp;问题描述：“第一个问题”<br>&nbsp;
-        当前状态：open<br>&nbsp;
-        该问题的严重性：中<br>&nbsp;
-        该问题最后更新者： Zhang Fei<br>&nbsp;
-    </span>
-    <span class="message_link"><a href="https://demo.twproject.com/app/issue/issuelist?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
+    <before><![CDATA[]]></before>
+    <row>
+      <![CDATA[
+<div id="message_{id}" class="message read" messageId="{id}" style="cursor:pointer;" onclick="followMessageLink($(this));">
+  <span class="message_operator">
+    <img src="/img/favicon.png" width="30px"  border="0"></span>
+  <span class="message_date">{received}</span>
+  <span class="message_subject " >{subject}</span>
+  <span class="message_body">{messagebodx}</span>
+  <span class="message_link"><a href="https://demo.twproject.com/applications/teamwork/task/taskOverview.jsp?V_ID=191011299&CM=ED&OBJID=54200" >点击查看/处理</a></span>
 </div>
 ]]>
+    </row>
+    <after><![CDATA[]]></after>
   </node>
   <node id="READALL">
     <![CDATA[

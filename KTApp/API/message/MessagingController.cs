@@ -42,6 +42,7 @@ namespace KTApp.API.issue
             }
 
             returnstr = KTList.GetDataList<Message>(node, pageindex, pagesize, list);
+
             if (string.IsNullOrWhiteSpace(returnstr)) {
                 returnstr = "{\"ok\":true,\"events\":[]}";
             }

@@ -73,7 +73,7 @@
     };
 
     showSavingMessage();
-    $.getJSON(contextPath+"/agenda/agendaAjax", request, function (response) {
+    $.getJSON(contextPath+"/api/agenda/agendaAjax", request, function (response) {
       jsonResponseHandling(response);
       if (response.ok == true) {
         for (var i=0;response.events && i<response.events.length;i++){
@@ -136,7 +136,7 @@
     };
 
     showSavingMessage();
-    $.getJSON(contextPath+"/agenda/agendaAjax", request, function (response) {
+    $.getJSON(contextPath+"/api/agenda/agendaAjax", request, function (response) {
       jsonResponseHandling(response);
       if (response.ok == true) {
         for (var i=0;response.issues && i<response.issues.length;i++){

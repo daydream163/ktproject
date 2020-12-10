@@ -317,7 +317,7 @@ TWChat.prototype.newGroupChat = function () {
     "noSaveSearch": "yes",
     "loginOnly": "yes"
   };
-  var ndo = openChooserPopup(contextPath + '/app/workgroup/workgroupPopup.html?' + $.param(request), 700, 580, function () {
+  var ndo = openChooserPopup(contextPath + '/app/workgroup/workgroupPopup?' + $.param(request), 700, 580, function () {
 
     var iframe = $("iframe", ndo);
     var btn = iframe.get(0).contentWindow.$(".button.noprint.first");
@@ -1099,7 +1099,7 @@ TWChat.prototype.openTaskEditor = function (el) {
 TWChat.prototype.openCompanyEditor = function (el) {
   //console.debug("openCompanyEditor",el);
   var self = this;
-  getTop().location.href = contextPath + "/app/resource/resourceEditor.html?CM=ED&OBJID=" + el.attr("referredId");
+  getTop().location.href = contextPath + "/app/resource/resourceEditor?CM=ED&OBJID=" + el.attr("referredId");
   self.reduce(true);
 };
 
@@ -1218,7 +1218,7 @@ TWChat.prototype.addMemebers = function () {
     "noSaveSearch": "yes",
     "loginOnly": "yes"
   };
-  var ndo = openChooserPopup(contextPath + '/app/workgroup/workgroupPopup.html?' + $.param(request), 760, 580, function () {
+  var ndo = openChooserPopup(contextPath + '/app/workgroup/workgroupPopup?' + $.param(request), 760, 580, function () {
     var iframe = $("iframe", ndo);
     var btn = iframe.get(0).contentWindow.$(".button.noprint.first");
     btn.removeAttr("onclick");

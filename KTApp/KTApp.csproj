@@ -142,6 +142,10 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
+    <Reference Include="SqlSugar, Version=5.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\KTProject.Repository\bin\Debug\SqlSugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -266,6 +270,7 @@
     <Compile Include="API\smartCombo\SmartComboController.cs" />
     <Compile Include="API\task\TaskController.cs" />
     <Compile Include="API\user\UserController.cs" />
+    <Compile Include="API\workgroup\WorkgroupController.cs" />
     <Compile Include="API\worklog\WorklogController.cs" />
     <Compile Include="App_Start\AutofacApiConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -273,7 +278,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\app\appAreaRegistration.cs" />
+    <Compile Include="Areas\app\Controllers\WorkgroupController.cs" />
     <Compile Include="Areas\app\Controllers\DeleteCheckController.cs" />
+    <Compile Include="Areas\app\Controllers\MessagingController.cs" />
     <Compile Include="Areas\app\Controllers\DocumentController.cs" />
     <Compile Include="Areas\app\Controllers\AgendaController.cs" />
     <Compile Include="Areas\app\Controllers\IssueController.cs" />
@@ -368,6 +375,7 @@
     <Content Include="app\avatars\000001_ZxW14.jpeg" />
     <Content Include="app\board\boardList.html" />
     <Content Include="app\task\taskEditorNew.html" />
+    <Content Include="avatars\000001_ZxW14.jpeg" />
     <Content Include="commons\js\circles.min.js" />
     <Content Include="commons\js\filterEngine.js" />
     <Content Include="commons\js\i18nJs.js" />
@@ -665,6 +673,7 @@
     <Content Include="xml\planAjax.json.xml" />
     <Content Include="xml\portal.xml" />
     <Content Include="xml\taskAjax.json.xml" />
+    <Content Include="xml\workgroupgAjax.xml" />
     <Content Include="xml\worklogAjax.xml" />
     <Content Include="Areas\app\Views\web.config" />
     <Content Include="Areas\app\Views\Shared\_LayoutMain.cshtml" />
@@ -690,6 +699,17 @@
     <Content Include="Areas\app\Views\Issue\IssueStatus.cshtml" />
     <Content Include="Areas\app\Views\Resource\DepartmentType.cshtml" />
     <Content Include="Areas\app\Views\Agenda\EventType.cshtml" />
+    <Content Include="Areas\app\Views\Resource\ResourceEditor.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_AddPersonPartial.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_AddDepartmentPartial.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_EditDepartmentPartial.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_EditPersonPartial.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_PersonGeneralDataPartial.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_DepartmentGeneralDataPartial.cshtml" />
+    <Content Include="Areas\app\Views\Resource\_GeneralDataPartialView.cshtml" />
+    <Content Include="Areas\app\Views\Messaging\MessageListFull.cshtml" />
+    <Content Include="Areas\app\Views\Agenda\AgendaWeekDay.cshtml" />
+    <Content Include="Areas\app\Views\Workgroup\WorkgroupPopup.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
