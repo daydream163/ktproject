@@ -1,0 +1,19 @@
+{
+	"it_IT": {
+		"Go full screen" : "Vai a pieno schermo",
+		"Edit source"    : "Edita il sorgente",
+		"Preview"        : "Anteprima"
+	},
+
+	"fr_FR": {
+		"Go full screen" : "Ouvrir en plein écran",
+		"Edit source"    : "Modifier la source",
+		"Preview"        : "Aperçu"
+	},
+
+	"es_ES": {
+		"Go full screen" : "Ir a pantalla completa",
+		"Edit source"    : "Editar la Fuente",
+		"Preview"        : "Avance"
+	}
+}

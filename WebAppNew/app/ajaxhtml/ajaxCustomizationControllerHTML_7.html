@@ -1,0 +1,115 @@
+﻿
+
+<div id="wp_tc_slim" class="portletBox tcSlim lreq10 lreqLabel">
+    <h1>计时器</h1><table class="table" cellpadding="4">
+
+        <tr>
+            <td>
+                <input type=text name="wpTCSAssignment_txt" id="wpTCSAssignment_txt" placeholder="选择你的任务" size=45 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" style=width:100% onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="wpTCSAssignment" id="wpTCSAssignment" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" required="true" oldValue='1'>
+            </td>
+            <td style="position: relative" width="1%">
+                <div class="timeCounter" style="white-space: nowrap">00<span class="counterLabel">h</span> 00<span class="counterLabel">m</span><span class="sec"> 00<span class="counterLabel">s</span></span></div>
+            </td>
+            <td align="center" width="1%">
+                <button type="button" class="button noprint textual icon  controls play" id="domId_21972402" style="" onclick="wpTCSStartStop($(this));return false; "><span class='teamworkIcon '>a</span></button>
+
+            </td>
+        </tr>
+    </table>
+
+    <script>
+  $(function () {
+    var assig = undefined;
+
+    if (assig)
+      $("#wp_tc_slim").find(".timeCounter").data("time", assig.countingStartedMillis).activateTimeCounter();
+
+
+    if (!window.removeWorklog){
+      window.removeWorklog=  function (el,wlId,event,alreadyConfirmed) {
+        if(event)
+          event.stopPropagation();
+        function del() {
+          showSavingMessage();
+          var req = {"CM": "REMOVEWL", wlId: wlId};
+
+          $.getJSON(contextPath+"/worklog/worklogAjax", req, function (response) {
+            jsonResponseHandling(response);
+            hideSavingMessage();
+          });
+        };
+
+        if (alreadyConfirmed){
+          del()
+        } else {
+          el.confirm(del,"确认删除?");
+        }
+      }
+
+    }
+  });
+
+  function wpTCSStartStop(el) {
+    //console.debug("wpTCSStartStop",el)
+    var assCombo = $("#wpTCSAssignment");
+    var wp = $("#wp_tc_slim");
+    if (assCombo.isFullfilled()) {
+      var assId = assCombo.val();
+      showSavingMessage();
+
+      if (el.is(".stop")) {
+        var request = {CM: "STOPCOUNTER", assId: assId};
+        $.getJSON(contextPath + "/worklog/worklogAjax", request, function (response) {
+          jsonResponseHandling(response);
+          if (response.ok) {
+            $("#wp_tc_slim .timeCounter").stopTimeCounter();
+            el.removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+            wp.find("input").prop("disabled", false);
+            getTop().$("body").trigger("timeCounterEvent", [
+              {type: "stop", response: response}
+            ]);
+            wpTCSAskForAction(el,response);
+          }
+          hideSavingMessage();
+        });
+
+
+      } else {   //START
+        var request = {CM: "STARTCOUNTER", assId: assId};
+        $.getJSON(contextPath + "/worklog/worklogAjax", request, function (response) {
+          jsonResponseHandling(response);
+          if (response.ok) {
+            $("#wp_tc_slim .timeCounter").data("time", new Date().getTime()).activateTimeCounter();
+            el.removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+            wp.find("input").prop("disabled", true);
+            wpTCSAskForAction(el,response);
+            getTop().$("body").trigger("timeCounterEvent", [
+              {type: "start", response: response}
+            ]);
+
+          }
+          hideSavingMessage();
+        });
+
+      }
+
+    }
+  }
+
+
+  function wpTCSAskForAction(el,response) {
+    //console.debug("wpTCSAskForAction",el,response)
+    if (!response.worklog)
+      return;
+    openWorklogEditorCloseToElement(el, {wlId:response.worklog.id,assId:response.worklog.assId, title: response.worklog.taskCode+" - "+ response.worklog.taskName , millis:new Date().getTime()},function(wlBox){
+      wlBox.find("#WORKLOG_DURATION").val(getMillisInHoursMinutes(response.worklog.duration));
+      wlBox.find("#WORKLOG_ACTION").focus();
+    });
+  }
+
+
+
+    </script>
+
+
+</div>

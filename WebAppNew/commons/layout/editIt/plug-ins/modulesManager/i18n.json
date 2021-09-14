@@ -1,0 +1,40 @@
+{
+	"it_IT": {
+		"Add a module"                                       : "Aggiungi un modulo",
+		"Do you really want to delete this content?"         : "Vuoi veramente rimuovere questo contenuto?",
+		"There's been an error loading the module: <br> %%": "C'è stato un errore caricando il modulo:<br> %%",
+
+		"Module manager"                                   : "Gestione Moduli",
+		"Choose a module:"                                 : "Scegli un modulo:",
+		"After the current block"                            : "Dopo il modulo corrente",
+		"Before the current bloclk"                          : "Prima del modulo corrente",
+		"Where?"                                             : "Dove?"
+
+	},
+
+	"fr_FR": {
+		"Add a module"                                       : "Ajouter un modèle",
+		"Do you really want to delete this content?"         : "Voulez-vous vraiment supprimer ce contenu?",
+		"There's been an error loading the module: <br> %%": "Il ya eu une erreur lors du chargement du modèle: <br> %%",
+
+		"Module manager"                                   : "Template Manager",
+		"Choose a module:"                                 : "Choisir un modèle:",
+		"After the current block"                            : "Après le bloc actuel",
+		"Before the current bloclk"                          : "Avant la bloclk actuelle",
+		"Where?"                                             : "Où?"
+
+	},
+
+	"es_ES": {
+		"Add a module"                                       : "Añadir bloque",
+		"Do you really want to delete this content?"         : "¿Realmente quieres borrar este contenido?",
+		"There's been an error loading the module: <br> %%": "Ha habido un error al cargar la plantilla: <br> %%",
+
+		"Module manager"                                   : "Gestor de plantilla",
+		"Choose a module:"                                 : "Elija una plantilla:",
+		"After the current block"                            : "Después de que el bloque actual",
+		"Before the current bloclk"                          : "Antes de que el bloque actual",
+		"Where?"                                             : "¿Dónde?"
+
+	}
+}

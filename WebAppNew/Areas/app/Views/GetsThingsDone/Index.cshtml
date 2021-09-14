@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "GetsThingsDone";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+
+<!-- 中部模块区域 -->
+<div id="twInnerContainer" class="null">
+
+    <style type="text/css">
+
+        #twInnerContainer { border-bottom: 1px solid #f6f6f6; }
+
+        h1 .teamworkIcon { font-size: 100%; }
+
+        .dashboardChooserArrow .button.textual.icon { width: 40px !important; text-align: center; height: 25px; }
+    </style>
+
+    <script>
+        $("#HOME_MENU").addClass('selected');
+        $("body").addClass("home");
+    </script>
+
+    <div class="topHome">
+        <div class="dashboardHeader">
+            <h1 style="display: inline-block">Get things done</h1>
+            <div class="dashboardLinksBox">
+                <h2 style="display: inline-block; padding-right: 30px;font-weight:400">2020年11月12日 星期四</h2>
+                <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1547249085', 'domId_1944033049');  ">
+                    <button type="button" class="button noprint    first" id="domId_1944033049" style="" onclick=";return false; "><span class='teamworkIcon withLabel'>P</span>添加...</button>
+                </span>
+                <div id="divdomo_domId_1547249085" class="divomo " style=" position: absolute;left:-10000px; top:-10000px;">
+                    <div class="divomoArrow"></div>
+                    <div>
+                        <button type="button" class="button noprint textual   " id="domId_746117031" style="" onclick="openBlackPopup('/app/task/taskNew.html?V_ID=735890072&CM=AD','800px','720px');return false; ">+ 新建项目</button>
+                        <button type="button" class="button noprint textual   " id="domId_831925184" style="" onclick="openIssueEditorInBlack('0','AD','');return false; ">+ 创建问题</button>
+                        <a class="button  textual   " id="domId_2048025518" style="" href="/app/resource/resourceEditor?V_ID=841899107&CM=AD&RESOURCE_TYPE=com.twproject.resource.Person">+ 添加新员工</a>
+                        <a class="button  textual   " id="domId_1296986910" style="" href="/app/resource/resourceEditor?V_ID=804204381&CM=AD&RESOURCE_TYPE=com.twproject.resource.Company">+ 新公司/部门</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .portletPlaceHolder { min-height: 200px; background-color: #f8f8f8; }
+    </style>
+    <div class="wsPage" pageId="2">
+        <div class="headerHome" areaname="HEADER" custom="no"></div>
+        <div class="mainColumnHome">
+            <div areaname="LEFT_TOP" custom="no"></div>
+            <div areaname="LEFT" custom="yes"></div>
+            <div areaname="LEFT_BOTTOM" custom="no"></div>
+        </div>
+        <div class="rightColumnHome">
+            <div areaname="RIGHT_TOP" custom="no"></div>
+            <div areaname="RIGHT" custom="yes"></div>
+            <div areaname="RIGHT_BOTTOM" custom="no"></div>
+        </div>
+        <div class="bottomHome" areaname="BOTTOM" custom="no"></div>
+    </div>
+    <script>
+        var customChoices = {
+            "RIGHT": [
+                { "id": "9", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My agenda", "file": "portal/wp_myAppointments" },
+                { "id": "25", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My planned work", "file": "portal/wp_myPlan" },
+                { "id": "24", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Todo", "file": "portal/wp_todo" },
+                { "id": "3", "lastModified": 1441701718000, "creationDate": 1441701718000, "name": "Activity", "file": "portal/wp_activity" }
+            ],
+            "LEFT": [
+                { "id": "29", "lastModifier": "Gerardo Véliz", "lastModified": 1564344856000, "creationDate": 1547618833000, "name": "Welcome", "file": "portal/wp_welcome" },
+                { "id": "12", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My Assignments", "file": "portal/wp_myAssignments" },
+                { "id": "13", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My Issues", "file": "portal/wp_myIssues" },
+                { "id": "18", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "WorklogDay", "file": "portal/wp_worklogDay" },
+                { "id": "31", "lastModified": 1564383547000, "creationDate": 1564383547000, "name": "Team work load", "file": "portal/wp_teamLoad" },
+                { "id": "16", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Twproject Activity", "file": "portal/wp_teamworkActivity" },
+                { "id": "22", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Panic board", "file": "portal/wp_panicBoard" },
+                { "id": "14", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Projects Summary", "file": "portal/wp_projectsSummary" },
+                { "id": "20", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Iframe", "file": "portal/wp_iframe" },
+                { "id": "30", "lastModified": 1564383547000, "creationDate": 1564383547000, "name": "Issues Summary", "file": "portal/wp_issueSummary" },
+                { "id": "2", "lastModified": 1441701718000, "creationDate": 1441701718000, "name": "Issues created by me", "file": "portal/wp_issuesCreatedByMe" },
+                { "id": "1", "lastModified": 1441701718000, "creationDate": 1441701718000, "name": "Create an issue", "file": "portal/wp_create_issues" },
+                { "id": "17", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "links", "file": "portal/wp_links" },
+                { "id": "19", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My responsibilities", "file": "portal/wp_myResponsabilities" },
+                { "id": "23", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Burndown graph", "file": "portal/wp_scrumBurnDown" },
+                { "id": "32", "lastModified": 1584951807000, "creationDate": 1584951807000, "name": "Issues Summary by customer", "file": "portal/wp_issueSummaryByCustomer" }
+            ]
+        };
+        var defaultChoices = {
+            "BOTTOM": [
+                { "id": "15", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Summary Bar", "file": "portal/wp_summaryBar" }
+            ],
+            "RIGHT_TOP": [
+                { "id": "27", "lastModifier": "System Manager", "lastModified": 1542270212000, "creator": "System Manager", "creationDate": 1542270212000, "name": "Demo info", "file": "portal/wp_demoInfo" }
+            ],
+            "RIGHT_BOTTOM": [
+                { "id": "11", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Company News", "file": "portal/wp_companyNews" }
+            ],
+            "RIGHT": [
+                { "id": "9", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My agenda", "file": "portal/wp_myAppointments" },
+                { "id": "25", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My planned work", "file": "portal/wp_myPlan" },
+                { "id": "24", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "Todo", "file": "portal/wp_todo" },
+                { "id": "3", "lastModified": 1441701718000, "creationDate": 1441701718000, "name": "Activity", "file": "portal/wp_activity" }
+            ],
+            "HEADER": [
+                { "id": "4", "lastModified": 1441701718000, "creationDate": 1441701718000, "name": "Headline", "file": "portal/wp_headline" }
+            ],
+            "LEFT": [
+                { "id": "12", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My Assignments", "file": "portal/wp_myAssignments" },
+                { "id": "13", "lastModified": 1441701719000, "creationDate": 1441701719000, "name": "My Issues", "file": "portal/wp_myIssues" }
+            ]
+        };
+
+        var portletOut = {};
+
+        $("[areaname]").each(function () {
+            var area = $(this);
+            var areaName = area.attr("areaName");
+            var portlets = customChoices[areaName];
+            if (area.attr("custom") == "yes") {
+                if (!portlets || portlets.length == 0)
+                    portlets = defaultChoices[areaName];
+
+            } else {
+                var portlets = defaultChoices[areaName];
+            }
+
+            for (var i = 0; portlets && i < portlets.length; i++) {
+                if (portletOut[portlets[i].id])
+                    return;
+
+                portletOut[portlets[i].id] = portlets[i].id;
+                drawPortlet(portlets[i], areaName, area);
+            }
+
+        });
+
+        function drawPortlet(portlet, areaName, area) {
+            var div = $("<div>").attr("portletId", portlet.id).prop("id", areaName + portlet.id).addClass("portletBoxPlaceholder portletBox").html("<h2>LOADING " + portlet.name + "...</h2>");
+            area.append(div);
+            $.get(contextPath + "/" + portlet.file, portlet.parameters, function (ret) {
+                var c = $(ret).hide();
+                //div.replaceWith(c);
+                div.html(c).removeClass("portletBoxPlaceholder portletBox").addClass("portletContainer").data("portlet", portlet);
+                c.find(".linkEnabled").activateTeamworkLinks(true);
+                c.fadeIn(200);
+            });
+        }
+
+
+        function refreshPortlet(aRandomElementInThePortlet, addParams) {
+            //console.debug("refreshPortlet",addParams);
+            var portletDiv = aRandomElementInThePortlet.closest(".portletContainer");
+            if (portletDiv.data("portlet")) {
+                var portlet = portletDiv.data("portlet");
+                portlet.parameters = portlet.parameters || {};
+                if (addParams)
+                    $.extend(portlet.parameters, addParams);
+
+                $.get(contextPath + "/" + portlet.file, portlet.parameters, function (ret) {
+                    portletDiv.html($(ret));
+                    portletDiv.find(".linkEnabled").activateTeamworkLinks(true);
+                });
+            }
+        }
+
+    </script>
+</div>
+
+

@@ -1,0 +1,257 @@
+﻿
+
+
+<script type="text/javascript">
+
+  (function() {
+    var cvd={values:[{"code":"11122","color":"#3BBF67","value":"open","enabled":true,"textColor":"#FFFFFF","index":1},{"code":"11123","color":"#6EBEF4","value":"closed","enabled":true,"textColor":"#000000","index":2},{"code":"11124","color":"#763A96","value":"aborted","enabled":true,"textColor":"#FFFFFF","index":3}]};
+
+    
+    var callback=function(hidden,data){
+      myIssChangeStatus(hidden);
+    };
+    cvd.callback=callback;
+    
+    _colorValueData["WP_MYISS_STS"]=cvd;
+
+  })();
+</script>
+
+
+<style type="text/css">
+
+    
+
+    .issueRow[gravity="05_GRAVITY_BLOCK"] td.status{
+      background-color: #DB2727;
+      opacity: .9;
+    }
+
+    
+
+    .issueRow[gravity="04_GRAVITY_CRITICAL"] td.status{
+      background-color: #8C6044;
+      opacity: .9;
+    }
+
+    
+
+    .issueRow[gravity="03_GRAVITY_HIGH"] td.status{
+      background-color: #F9791C;
+      opacity: .9;
+    }
+
+    
+
+    .issueRow[gravity="02_GRAVITY_MEDIUM"] td.status{
+      background-color: #F9C154;
+      opacity: .9;
+    }
+
+    
+
+    .issueRow[gravity="01_GRAVITY_LOW"] td.status{
+      background-color: #EEEEEE;
+      opacity: .9;
+    }
+
+    
+
+</style>
+
+
+<div id="wp_myInsIssueTemplates" style="display: none;">
+    
+    <div class="__template__" type="MYINSISSLINE"><!--
+      (#
+      var st=new Date();
+      st.setHours(0,0,0,0);
+      var en=new Date();
+      en.setHours(23,59,59,999);
+      #)
+
+      <tr class="issueRow alternate (#=obj.shouldCloseBy<new Date().getTime()?'expired':''#)" gravity="(#=obj.gravityId#)" issueId="(#=id#)">
+      <td class="status" ></td>
+      <td style="width: 30px; padding-top: 5px;" valign="top" align="center">
+
+<label for="domId_262430756"></label> <div class="cvcComponent " style="cursor:pointer;" cvcType="WP_MYISS_STS" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="(#=obj.statusId#)" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="11122"
+         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
+  </div>
+
+</div>
+</td>
+      <td valign="top" style="max-width: 300px;">
+        <div title="(id:(#=id#)) (#!obj.taskName#)" onclick="openIssueEditorInBlack((#=id#));" class="issueDesc" style="overflow: hidden;word-wrap: normal;cursor: pointer">(#!obj.description#)</div>
+      </td>
+      <td valign="top">
+        <div class="pathSmall">(#!obj.taskPath#)</div>
+        <span class="textSmall" title="任务"><a  class="button  textual   "  id="domId_1903594790" style=""  href="/app/task/taskOverview??CM=ED&OBJID=(#=obj.taskId#)">(#=obj.taskName#)</a>
+
+</span>
+      </td>
+      <td valign="top" nowrap>
+        (#if (obj.assignedById!=null && obj.assignedById!=obj.assigneeId){#)
+        <img src="(#=obj.assignedByAvatarUrl#)"  resid="(#=obj.assignedById#)" align="absmiddle" class="face small (#=obj.assignedByConnectionStatus#)" title="(#=obj.assignedByName#)"><span class="teamworkIcon fromTo">:</span>
+        (#}#)
+
+        (#if (obj.assigneeId!="-1"){#)
+        <img src="(#=obj.assigneeAvatarUrl#)"  resid="(#=obj.assigneeId#)" align="absmiddle" class="face small (#=obj.assigneeConnectionStatus#)" title="(#!obj.assigneeName#)" resid="(#=obj.assigneeId#)"/> <span class="textSmall"></span>
+        (#}#)
+      </td>
+      <td valign="top" nowrap>
+        (#if (obj.shouldCloseBy){#)
+        <span class="textSmall (#=obj.shouldCloseBy<st.getTime()?'warning alertIcon': (obj.shouldCloseBy<=en.getTime()?'info alertIcon':'') #)" title="截止日期"> (#=new Date(obj.shouldCloseBy).format()#)</span>
+        (#}#)
+      </td>
+      <td valign="top">
+        <span class="button noprint textual small" title="评论 (#=obj.commentSize#)" onclick="showComments($(this));return false; "><span class="teamworkIcon withLabel">Q</span><span commentSize>(#=obj.commentSize==0?'':obj.commentSize#)</span></span>
+      </td>
+      <td valign="top">
+        <span class="button noprint textual icon"  title="新增的工作日志" onclick="btnShowWorklog($(this));return false; "><span class="teamworkIcon">w</span></span>
+      </td>
+      </tr>
+    --></div>
+</div>
+
+<div id="wp_myIssueTemplates"  style="display: none;">
+  
+  <div class="__template__" type="MYISSLINE"><!--
+  (#
+    var st=new Date();
+    st.setHours(0,0,0,0);
+    var en=new Date();
+    en.setHours(23,59,59,999);
+  #)
+  <tr class="alternate issueRow (#=obj.shouldCloseBy<st.getTime()?'expired': (obj.shouldCloseBy<=en.getTime()?'toBeDoneToday':'') #)" gravity="(#=obj.gravityId#)" issueId="(#=id#)" assId="(#=obj.assignmentId#)">
+    <td class="status"></td>
+    <td style="width: 30px; padding-top: 5px;" valign="top" align="center">
+
+<label for="domId_262430756"></label> <div class="cvcComponent " style="cursor:pointer;" cvcType="WP_MYISS_STS" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="(#=obj.statusId#)" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="11122"
+         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
+  </div>
+
+</div>
+</td>
+    <td style="max-width: 300px;">
+      <div class="issueDesc linkEnabled" style="overflow: hidden;word-wrap: normal;cursor: pointer" title="(id:(#=id#)) (#!obj.taskName#)" onclick="openIssueEditorInBlack((#=id#));">(#!obj.description#)</div>
+    </td>
+    <td valign="top" class="textSmall columnTaskName">
+      <div class="pathSmall">(#!obj.taskPath#)</div>
+      <span  title="任务"><a  class="button  textual   "  id="domId_1903594790" style=""  href="/app/task/taskOverview??CM=ED&OBJID=(#=obj.taskId#)">(#=obj.taskName#)</a>
+
+</span>
+    </td>
+    <td valign="top" class="textSmall columnTaskCode"><span title="任务">(#!obj.taskCode#)</span></td>
+
+    <td valign="top" nowrap>
+      (#if (obj.assignedById!=null && obj.assignedById!=obj.assigneeId){#)
+        <img src="(#=obj.assignedByAvatarUrl#)" align="absmiddle" class="face small" title="(#!obj.assignedByName#)"><span class="teamworkIcon fromTo">:</span>
+      (#}#)
+
+      (#if (obj.assigneeId!="-1"){#)
+      <img src="(#=obj.assigneeAvatarUrl#)" align="absmiddle" class="face small (#=obj.assigneeConnectionStatus#)" title="(#!obj.assigneeName#)"  resid="(#=obj.assigneeId#)"/> <span class="textSmall"></span>
+      (#}#)
+    </td>
+    <td nowrap>
+      (#if (obj.shouldCloseBy){#)
+      <span class="textSmall (#=obj.shouldCloseBy<st.getTime()?'warning alertIcon': (obj.shouldCloseBy<=en.getTime()?'info alertIcon':'') #)" title="截止日期"> (#=new Date(obj.shouldCloseBy).format()#)</span>
+      (#}#)
+    </td>
+    <td valign="top" style="padding-top: 5px">
+      <span class="button noprint textual small" title="评论 (#=obj.commentSize#)" onclick="showComments($(this));return false; "><span class="teamworkIcon withLabel">Q</span><span commentSize style="padding-bottom: 3px">(#=obj.commentSize==0?'':obj.commentSize#)</span></span>
+    </td>
+    <td valign="top" style="padding-top: 5px">
+      <span class="button noprint textual icon"  title="新增的工作日志" onclick="btnShowWorklog($(this));return false; "><span class="teamworkIcon">w</span></span>
+    </td>
+  </tr>
+  --></div>
+</div>
+
+
+<script type="text/javascript">
+
+  function myIsslineDecorator (issRow, iss) {
+    issRow.find(".linkEnabled").activateTeamworkLinks(true);
+  }
+  $.JST.loadDecorator("MYINSISSLINE", myIsslineDecorator );
+  $.JST.loadDecorator("MYISSLINE", myIsslineDecorator );
+
+
+  function myIssChangeStatus(el) {
+    var issueRow = el.closest("[issueId]");
+    var issueId = issueRow.attr("issueId");
+    if (el.isValueChanged()) {
+      showSavingMessage();
+
+      var request = {CM: "CHISSSTS", OBJID: issueId};
+      request[el.prop("name")] = el.val();
+
+      $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+        jsonResponseHandling(response);
+        if (response.ok) {
+          el.updateOldValue();
+          // eventually shows wl insertion
+          if (response.assId) {
+            var issueText = "已关闭问题:" + (issueRow.find("div.issueDesc").text());
+            openWorklogEditorPopup(issueRow, {assId:response.assId, text:issueText, issueId:response.issue.id,title:"问题: I#"+ response.issue.id+"#"});
+          } else {
+            hideWorklogEditorIfYouCan();
+          }
+          //eventually show notes
+          if (response.histId) {
+            showNotes(response.histId);
+          } else {
+            $("#insertStatusNotes").fadeOut();
+          }
+
+          $("body").trigger("issueEvent",[{type:"save",response:response}])
+        }
+        hideSavingMessage();
+      });
+    }
+  }
+
+
+  function showNotes(histId) {
+    $("#floatWindow").append($("#insertStatusNotes"));
+    $("#insertStatusNotes").attr("histId", histId).fadeIn();
+  }
+
+
+  function saveStatusNotes() {
+    var theDiv = $("#insertStatusNotes");
+    var histId = theDiv.attr("histId");
+    showSavingMessage();
+    var request = {CM: "SVHISTNOTES", histId: histId, notes: theDiv.find("textarea").val()};
+    $.getJSON(contextPath + "/issue/issueAjaxControllerJson", request, function (response) {
+      jsonResponseHandling(response);
+      if (response.ok) {
+        $("#insertStatusNotes").fadeOut();
+        theDiv.find("textarea").updateOldValue();
+      }
+      hideSavingMessage();
+    });
+  }
+
+  function btnShowWorklog(el) {
+    var issueRow = el.closest("[issueId]");
+    var issueText;
+    openWorklogEditorPopup(el,{assId:issueRow.attr("assId"), issueId:issueRow.attr("issueId"),title:"问题: I#"+issueRow.attr("issueId")+"#"});
+  }
+
+  function showComments(el,add){
+    var row=el.closest("[issueId]");
+    var issueId = row.attr("issueId");
+    var commentsN = row.find("[commentSize]").html();
+    var popupHeight = commentsN && commentsN > 0 ? function(){return $(window).height() * ( Math.min( 1, ( parseFloat(commentsN)+3)/10 ) ) } : 300;
+    openBlackPopup(contextPath+"/applications/teamwork/issue/issueComments.jsp?issueId="+ issueId+  (add?"&CM=ADD":"")   +"&_="+(new Date().getTime()),500,popupHeight,function(response){
+      if (response && response.issue){
+        row.find("[commentSize]").html(response.issue.commentSize -1)
+      } else {
+				row.find("[commentSize]").html()
+      }
+    });
+
+  }
+
+</script>

@@ -1,0 +1,52 @@
+{
+	"it_IT": {
+		"<h2>Are you sure you want to delete this image?</h2>"      : "<h2>Vuoi davvero eliminare questa immagine?</h2>",
+		"Upload an image:"      : "Carica un'immagine",
+		"Or write here the url:": "O inserisci qui una url:",
+		"Or click here"         : "Oppure clicca qui",
+		"Drop an image here"    : "Trascina qui un'immagine",
+		"Crop the image:"       : "Ritaglia l'immagine:",
+		"Crop"                  : "Ritaglia",
+
+		"Edit image data"      : "Modifica i dati dell'immagine",
+		"Image size"            : "Dimensione dell'immagine",
+		"Width"                 : "Larghezza",
+		"Height"                : "Altezza",
+		"Image position"        : "Posizione dell'immagine",
+		"Image link"            : "Link dell'immagine"
+	},
+
+	"fr_FR": {
+    "<h2>Are you sure you want to delete this image?</h2>"      : "<h2>Êtes-vous sûr de vouloir supprimer cette image?</h2>",
+    "Upload an image:"      : "Ajouter une image",
+		"Or write here the url:": "Ou écrivez ici l'URL:",
+		"Or click here"         : "Ou cliquez ici",
+		"Drop an image here"    : "Déposer une image ici",
+		"Crop the image:"       : "Recadrer l'image:",
+		"Crop"                  : "couper",
+
+		"Edit image data"      : "Modifier les données d'image",
+		"Image size"            : "Taille de l'image",
+		"Width"                 : "Largeur",
+		"Height"                : "Hauteur",
+		"Image position"        : "Position de l'image",
+		"Image link"            : "Lien image"
+	},
+
+	"es_ES": {
+    "<h2>Are you sure you want to delete this image?</h2>"      : "<h2>¿Estás seguro de que quieres borrar esta imagen?</h2>",
+		"Upload an image:"      : "Cargar una imagen",
+		"Or write here the url:": "O escribir aquí la url:",
+		"Or click here"         : "O haga clic aquí",
+		"Drop an image here"    : "Caída de una imagen aquí",
+		"Crop the image:"       : "Recortar la imagen:",
+		"Crop"                  : "Cortar",
+
+		"Edit image data"      : "Editar datos de imagen",
+		"Image size"            : "Tamaño de la imagen",
+		"Width"                 : "Anchura",
+		"Height"                : "Altura",
+		"Image position"        : "posición de la imagen",
+		"Image link"            : "enlace de imagen"
+	}
+}

@@ -1,0 +1,339 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=1425147648&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 isPopup" level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainerPopup">
+        <div id="savingMessage" class="noprint">请稍候...</div>
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainerPopup" class="null">
+            <form enctype="multipart/form-data" method="POST"
+                  action="/app/sticky/stickyEditor.html" name="d1571404945" id="d1571404945"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="d1571404945V_ID" name="V_ID" value="1571404945" savedValue="">
+                <input type="hidden" id="d1571404945CM" name="CM" value="SV" savedValue="">
+                <input type="hidden" id="d1571404945OBJID" name="OBJID" value="newEmptyId" savedValue="">
+                <input type="hidden" id="d1571404945POP" name="POP" value="yes" savedValue="">
+                <input type="hidden" id="d1571404945board" name="board" value="" savedValue="">
+
+                <h1>发送短消息</h1>
+                <table class="table">
+
+                    <tr>
+                        <td>
+                            <label for="receiver_txt" class="required">至*</label><br><input type=text name="receiver_txt" id="receiver_txt" size=29 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="receiver" id="receiver" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" required="true" oldValue='1'>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><label for="subject" class=" ">主题</label><br><input type=TEXT name="subject" id="subject" size=50 class="formElements wide" autocomplete='off' maxlength=255 value="" oldValue='1'></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 15px">
+
+
+
+                            <script type="text/javascript" src="/commons/layout/editIt/inc/jquery.mb.editIt.js"></script>
+                            <script>
+                                //$(function () {
+                                $.editIt.defaults.lang = "zh_CN";
+                                $.editIt.defaults.toolbarAnimationTime = 250;
+
+                                $.editIt.plugins.defaults = [];
+
+                                $.editIt.plugins.defaults.push({ name: 'tableManager', options: {} });
+
+
+                                $.editIt.plugins.defaults.push({ name: 'imageManager', useMin: false, options: { toolbarPosition: 28, sendImageAsBlob: true, uploadFile: contextPath + "/commons/layout/editIt/editItAjaxController.jsp", repositoryPath: "", additionalData: { CM: "UPLIMG" } } });
+
+
+                                $.editIt.plugins.defaults.push({
+                                    name: 'editorView', options: {
+                                        viewSource: false,
+                                        fullScreen: true,
+                                        preview: false
+                                    }
+                                });
+
+                                // })
+                            </script>
+
+
+
+
+                            <div style="background: #fff" id="div_messageBody" class="editIt-content  " data-textarea-name="messageBody">
+                                <div data-editable="true" style="min-height:210px; width:100%;"></div>
+                            </div>
+                            <script language="javascript" type="text/javascript">
+                                $(function () {
+                                    //console.debug($.editIt.plugins.defaults);
+                                    $('#div_messageBody').editIt({ "toolbarIsOnTop": true, "toolbarIsAlwaysVisible": true, "blockImagesOnPaste": true, "toolBar": "small", "placeHolderText": "在这里写一些文字", "readOnly": false, "required": false, "preserveOldValue": true });
+                                });
+                            </script>
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="STYCKY_COLOR"></label>
+                            <span class="colorChooserGroup">
+                                <input type=text name="STYCKY_COLOR" id="STYCKY_COLOR" size=2 class="formElements colorChooserField" autocomplete='off' maxlength=255 value="#ffff80" oldValue='1'>
+                            </span>
+                            <script type="text/javascript">
+
+                                var defs = [
+                                    initialize(contextPath + "/commons/js/jquery/spectrum/spectrum.css?_=65022", "css"),
+                                    initialize(contextPath + "/commons/js/jquery/spectrum/tw_spectrum.css?_=65022", "css"),
+                                    initialize(contextPath + "/commons/js/jquery/spectrum/spectrum.js?_=65022", "script")
+                                ];
+
+                                $.when.apply(null, defs).done(function () {
+                                    /*
+                                     SPECTRUM color chooser
+                                     https://bgrins.github.io/spectrum/#why-customizable
+
+                                     color: tinycolor,
+                                     flat: bool,
+                                     showInput: bool,
+                                     showInitial: bool,
+                                     allowEmpty: bool,
+                                     showAlpha: bool,
+                                     disabled: bool,
+                                     localStorageKey: string,
+                                     showPalette: bool,
+                                     showPaletteOnly: bool,
+                                     togglePaletteOnly: bool,
+                                     showSelectionPalette: bool,
+                                     clickoutFiresChange: bool,
+                                     cancelText: string,
+                                     chooseText: string,
+                                     togglePaletteMoreText: string,
+                                     togglePaletteLessText: string,
+                                     containerClassName: string,
+                                     replacerClassName: string,
+                                     preferredFormat: string,
+                                     maxSelectionSize: int,
+                                     palette: [[string]],
+                                     selectionPalette: [string]
+                                     */
+
+
+                                    $("#STYCKY_COLOR").spectrum({
+                                        color: $("#STYCKY_COLOR").val(),
+                                        allowEmpty: true,
+                                        palette: [["#464646", "#696969", "#8C8C8C", "#AFAFAF", "#D2D2D2", "#F5F5F5"], ["#CF0B0B", "#F22E2E", "#FF5151", "#FF7474", "#FF9797", "#FFBABA"], ["#FD9812", "#FFBB35", "#FFDE58", "#FFFF7B", "#FFFF9E", "#FFFFC1"], ["#18A106", "#3BC429", "#5EE74C", "#81FF6F", "#A4FF92", "#C7FFB5"], ["#0C40A3", "#2F63C6", "#5286E9", "#75A9FF", "#98CCFF", "#BBEFFF"], ["#9929ED", "#BC4CFF", "#DF6FFF", "#FF92FF", "#FFB5FF", "#FFD8FF"]],
+                                        showInput: false,
+                                        showPaletteOnly: true,
+                                        showPalette: false,
+                                        hideAfterPaletteSelect: false,
+                                        preferredFormat: "hex",
+
+                                        show: function (color) {
+                                            $("#STYCKY_COLOR").spectrum("option", "hideAfterPaletteSelect", true);
+
+                                            if (true) {
+
+                                                var clearButton = $("<div class='clear-palette' title='Clear color'>删除</div>");
+                                                clearButton.on("click.spectrum", function (e) {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    $(".sp-clear").click();
+                                                    $("#STYCKY_COLOR").val("").spectrum("hide");
+                                                });
+                                                $('.sp-palette').append(clearButton);
+
+                                            }
+                                        }
+
+                                    });
+
+                                });
+                            </script>
+
+
+                            <label>颜色</label>&nbsp;&nbsp;&nbsp;<input type=hidden name="SEND_MAIL" id="SEND_MAIL" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_SEND_MAIL" name="ck_SEND_MAIL" value="yes"
+                                                                                                                                                                                                         onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                            &nbsp;<label for="ck_SEND_MAIL">发送e-mail</label>&nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <div class="noprint buttonArea" id="domId_1958363706" style="text-align:left;">
+                    <div class="bbButtons">
+                        <button type="button" class="button noprint    first" id="domId_1884432820" style="" onClick="stopBubble(event);obj('d1571404945CM').value='SV';if (canSubmitForm('d1571404945'))  {$(':focus').blur();muteAlertOnChange=true;try {obj('d1571404945').submit();} catch(e){};} ">发送</button>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (true) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+

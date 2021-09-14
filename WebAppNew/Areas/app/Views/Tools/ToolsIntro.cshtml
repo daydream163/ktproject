@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "toolsIntro";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+
+    <script>$("#TOOLS_MENU").addClass('selected');</script>
+
+
+    <div class="mainColumn toolsIntro">
+        <style type="text/css">
+            .teamworkIcon { font-size: 160%; }
+        </style>
+        <div class="inlineContainerWrapper">
+
+            <div style="width: 30%" class="container ">
+
+
+                <table width="100%" border="0" cellpadding="2" class="panel">
+                    <tr>
+                        <td valign="top">
+                            <h2>讨论板及短消息</h2>
+                            <ul>
+                                <li>
+                                    <a class="button  textual   " id="domId_1173873365" style="" href="/app/board/boardList.html?V_ID=2130895750&CM=FN">论坛列表</a>
+
+                                    - <button type="button" class="button noprint textual   edit" id="domId_1543339239" style="" onclick="openBlackPopup('/applications/teamwork/board/boardEditor.jsp?V_ID=380089231&CM=AD','600px','600px');return false; ">创建新的讨论板</button>
+
+                                    <br><label>公告板用于自由讨论, 例如讨论会议筹备过程.</label>
+                                </li>
+                                <li>
+                                    <button type="button" class="button noprint    " id="domId_1830981948" style="" onclick="openBlackPopup('/applications/teamwork/messaging/composeMessage.jsp?V_ID=1595101407','800px','600px');return false; ">信息</button>
+
+                                    <br><label>您能够从Teamwork发送包含任务链接消息给工作组.</label>
+                                </li>
+                            </ul>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+
+                            <h2>我的主板</h2>
+
+                            <ul>当前没有活动的讨论板</ul>
+
+                            <hr>
+
+                            <table width="100%" border="0" cellpadding="2" class="panel">
+                                <tbody>
+                                    <tr>
+                                        <td valign="top">
+
+                                            <h2>通告&amp;公告</h2><a class="button  textual   " id="domId_1628716799" style="" href="/app/admin/news/newsList.html?V_ID=541333116">新闻管理</a>
+
+                                            - <a class="button  textual   edit" id="domId_1444951920" style="" href="/app/admin/news/newsEditor.html?V_ID=1138212067&amp;CM=AD">创建通告</a>
+
+                                            <br><label>添加并管理组织通告</label><br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
+            </div>
+            <div style="width: 30%" class="container">
+
+                <table width="100%" border="0" cellpadding="2" class="panel">
+                    <tr>
+                        <td valign="top">
+                            <h2>文档</h2><a class="button  textual   " id="domId_627372369" style="" href="/app/document/documentList">文档</a>
+
+
+                            <label>在Teamwork中,文档总是被关联到任务或资源. 为便于搜索他们将被全文索引.</label>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
+                <hr>
+
+                <table width="100%" border="0" cellpadding="2" class="panel">
+                    <tr>
+                        <td valign="top">
+                            <h2>编码</h2>
+
+                            <ul>
+                                <li>
+                                    <button type="button" class="button noprint textual   " id="domId_1732969709" style="" onclick="openBlackPopup('/app/task/taskType?V_ID=31151990',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>t</span>任务类型</button>
+
+                                </li>
+                                <li>
+                                    <!--<button type="button" class="button noprint textual   " disabled id="domId_946968247" style=""><span class='teamworkIcon withLabel'>M</span>组织类型</button>-->
+                                    <button type="button" class="button noprint textual   " id="domId_1764444630" style="" onclick="openBlackPopup('/app/resource/departmentType?V_ID=572017686',$(window).width()-100,$(window).height()-50);return false; "><span class="teamworkIcon withLabel">M</span>组织类型</button>
+
+                                </li>
+                                <li>
+                                    <button type="button" class="button noprint textual   " id="domId_1400570627" style="" onclick="openBlackPopup('/app/issue/issueStatus?V_ID=694019412',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>i</span>问题的状态</button>
+
+                                    &nbsp;-&nbsp;<button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_888773709" style="" onclick="openBlackPopup('/app/issue/issueimpact?V_ID=822273222',$(window).width()-100,$(window).height()-50);return false; ">问题的影响</button>
+
+                                    &nbsp;-&nbsp;<button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_1807446972" style="" onclick="openBlackPopup('/app/issue/issuetype?V_ID=1870962278',$(window).width()-100,$(window).height()-50);return false; ">问题类型</button>
+
+                                </li>
+                                <li>
+                                    <button type="button" class="button noprint textual   " id="domId_1896106356" style="" onclick="openBlackPopup('/app/task/costClassification?V_ID=1605071589',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>$</span>费用分类</button>
+
+                                    &nbsp;-&nbsp;<button type="button" class="button noprint textual   " id="domId_327360152" style="" onclick="openBlackPopup('/app/task/costCenter.html?V_ID=1349687459&CM=FN',$(window).width()-100,$(window).height()-50);return false; ">费用中心</button>
+
+                                </li>
+                                <li>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_687819038" style="" onclick="openBlackPopup('/app/task/worklogstatus?V_ID=88971050',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>A</span>工作记录状态</button>
+
+                                </li>
+                                <li>
+                                    <button type="button" class="button noprint textual   " id="domId_1935484944" style="" onclick="openBlackPopup('/app/agenda/eventType?V_ID=270099865',$(window).width()-100,$(window).height()-50);return false; "><span class='teamworkIcon withLabel'>m</span>事件类型</button>
+
+                                    &nbsp;
+                                </li>
+                            </ul>
+                            <label>编码值允许您将数据标准化和便于搜索</label>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+            <div style="width: 30%" class="container">
+
+
+
+                <table class="panel">
+                    <tr>
+                        <td valign="top">
+                            <h2>安全设置</h2><ul class="lreq30 lreqLabel lreqActive">
+                                <li>
+                                    <a class="button  textual   " id="domId_829427796" style="" href="/app/security/roleList.html?V_ID=1525360445">角色</a>
+
+                                </li>
+                            </ul>
+                            <label>管理地区和角色。</label>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

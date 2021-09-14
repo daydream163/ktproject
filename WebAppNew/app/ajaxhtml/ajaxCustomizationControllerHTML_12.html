@@ -1,0 +1,449 @@
+﻿
+
+<div id="myAssigsExDiv">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/portlethtml/wp_myAssignments.html" name="MYASSIGS_FORM" id="MYASSIGS_FORM"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="MYASSIGS_FORMV_ID" name="V_ID" value="608899830" savedValue="">
+        <input type="hidden" id="MYASSIGS_FORMCM" name="CM" value="" savedValue="">
+
+        <div class="portletBox wp_myAssignemnt">
+            <style type="text/css">
+
+                .wp_myAssignemnt #wp_myAssig_table .facesBox { white-space: nowrap; }
+            </style>
+
+            <div style="float:right" class="portletParamIcons">
+
+                &nbsp;<button type="button" class="button noprint textual icon  ruzzol" id="domId_497466646" style="" title="过滤" onclick="$('#myAssigs').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+
+            </div>
+            <h1>
+                <a class="button  textual   " id="domId_1801631278" style="" title="我的分工" href="/app/task/taskList?V_ID=1751092194">我的分工</a>
+
+            </h1>
+
+            <div class="portletParams" id="myAssigs" style="display:none;">
+                <input type=hidden name="ASSIG_SHOW_NOTACTIVE" id="ASSIG_SHOW_NOTACTIVE" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_ASSIG_SHOW_NOTACTIVE" name="ck_ASSIG_SHOW_NOTACTIVE" value="yes"
+                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('MYASSIGS_FORMCM').value='';ajaxSubmit('MYASSIGS_FORM','myAssigsExDiv');">
+                <label for="ck_ASSIG_SHOW_NOTACTIVE">显示非活动分工</label>&nbsp;&nbsp;&nbsp;&nbsp;<label for="ASSIG_SHOW_HORIZON" class=" ">显示分工:</label>&nbsp;<input type=text name="ASSIG_SHOW_HORIZON" id="ASSIG_SHOW_HORIZON" size=4 class="formElements" autocomplete='off' maxlength=255 onBlur="obj('MYASSIGS_FORMCM').value='';ajaxSubmit('MYASSIGS_FORM','myAssigsExDiv');" value="6" oldValue='1'><input type="text" style="display:none;">
+            </div><table class="table" id="wp_myAssig_table">
+                <thead class="dataTableHead" style="">
+                    <tr>
+                        <th class="tableHead" colspan="2" id="wpMAputFilerHere"><span class="tableHeadEl">任务</span></th>
+                        <th class="tableHead"><span class="tableHeadEl">角色</span></th>
+                        <th class="tableHead"><span class="tableHeadEl lreq20 lreqLabel">优先</span></th>
+                        <th class="tableHead"><span class="tableHeadEl">问题</span></th>
+                        <th class="tableHead"><span class="tableHeadEl">已完成工时</span></th>
+                        <th class="tableHead lreq20 lreqHide">&nbsp;</th>
+                        <th class="tableHead">&nbsp;</th>
+                        <th class="tableHead"><span class="tableHeadEl">项目小组</span></th>
+                        <th class="tableHead" style="width: 5px;"><span class="tableHeadEl">%</span></th>
+                    </tr>
+                </thead>
+                <tbody class="myAssigsEvidence">
+
+                    <tr assId="25261" class="assigRow alternate expired">
+                        <td class="columnTaskName" style="position: relative;">
+
+                            <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                            <a class="button  textual   bolder" id="domId_2073909569" style="" title="HK - 海口入境旅游及客源市场的季节性特征研究 [&#39;Project manager&#39;]" href="/app/task/taskOverview??V_ID=837201626&CM=ED&OBJID=45748">海口入境旅游及客源市场的季节性特征研究</a>
+
+
+                        </td>
+                        <td class="textSmall columnTaskCode" title="HK"><span>HK</span></td>
+                        <td align="center" title="Project manager&nbsp;(同方知网)">PM</td>
+                        <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                        <td align="right">
+                            0/0&nbsp;<a class="button  textual   " id="domId_571901833" style="" href="/app/issue/issuelist?V_ID=317489223&CM=FN&FLT_ISSUE_TASK=45748&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                        </td>
+                        <td align="right">
+                            <span class="wlg">3:00</span> <button type="button" class="button noprint textual icon  " id="domId_28397056" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25261',title:'HK - 海口入境旅游及客源市场的季节性特征研究'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                        </td>
+                        <td class="lreq20 lreqHide">
+                            <button type="button" class="button noprint textual icon  " id="domId_527950558" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25261',title:'HK - 海口入境旅游及客源市场的季节性特征研究'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                        </td>
+                        <td nowrap align="center"></td>
+
+                        <td>
+                            <div class="facesBox">
+                                <span class="button buttonImg  " id="domId_1085399517" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1420985929&CM=LIST_ASSIGS&TASK_ID=45748','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1541551736" title="史 玉平 (PM)" alt="史 玉平 (PM)" id="d1541551736" " resId="12771" class="face small "></span>
+
+                            </div>
+                        </td>
+
+                        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                            <div style="width:45px;height:15px;position: relative" title="">
+                                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+
+
+
+                    <tr assId="25267" class="assigRow alternate expired">
+                        <td class="columnTaskName" style="position: relative;">
+                            <div class="taskColored" style="background-color: #cf0b0b;"></div>
+                            <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                            <a class="button  textual   bolder" id="domId_178718459" style="" title="T45758 - 后“双创”时期海口夜间经济发展质量满意度评价及机制构建 [&#39;Customer&#39;]" href="/app/task/taskOverview??V_ID=2143974372&CM=ED&OBJID=45758">后“双创”时期海口夜间经济发展质量满意度评价及机制构建</a>
+
+
+                        </td>
+                        <td class="textSmall columnTaskCode" title="T45758"><span>T45758</span></td>
+                        <td align="center" title="Customer&nbsp;(同方知网)">SH</td>
+                        <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                        <td align="right">
+                            0/0&nbsp;<a class="button  textual   " id="domId_1149157191" style="" href="/app/issue/issuelist?V_ID=285516594&CM=FN&FLT_ISSUE_TASK=45758&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                        </td>
+                        <td align="right">
+                            <span class="wlg">0:00</span> <button type="button" class="button noprint textual icon  " id="domId_1198927960" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25267',title:'T45758 - 后“双创”时期海口夜间经济发展质量满...'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                        </td>
+                        <td class="lreq20 lreqHide">
+                            <button type="button" class="button noprint textual icon  " id="domId_44478531" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25267',title:'T45758 - 后“双创”时期海口夜间经济发展质量满...'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                        </td>
+                        <td nowrap align="center"></td>
+
+                        <td>
+                            <div class="facesBox">
+                                <span class="button buttonImg  " id="domId_292679103" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=160277560&CM=LIST_ASSIGS&TASK_ID=45758','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1813219080" title="史 玉平 (SH)" alt="史 玉平 (SH)" id="d1813219080" " resId="12771" class="face small "></span>
+                                <span class="button buttonImg  " id="domId_840457582" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=266828452&CM=LIST_ASSIGS&TASK_ID=45758','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d782615561" title="史 玉平 (PM)" alt="史 玉平 (PM)" id="d782615561" " resId="12771" class="face small "></span>
+                                <span class="button buttonImg  " id="domId_639937828" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1210109692&CM=LIST_ASSIGS&TASK_ID=45758','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1526280528" title="史 玉平 (WK)" alt="史 玉平 (WK)" id="d1526280528" " resId="12771" class="face small "></span>
+
+                            </div>
+                        </td>
+
+                        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                            <div style="width:45px;height:15px;position: relative" title="">
+                                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+
+
+
+                    <tr assId="25239" class="assigRow alternate expired">
+                        <td class="columnTaskName" style="position: relative;">
+
+                            <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                            <a class="button  textual   bolder" id="domId_636273964" style="" title="Project001 - 我的一个项目 [&#39;Worker&#39;]" href="/app/task/taskOverview??V_ID=1884727393&CM=ED&OBJID=45684">我的一个项目</a>
+
+
+                        </td>
+                        <td class="textSmall columnTaskCode" title="Project001"><span>Project001</span></td>
+                        <td align="center" title="Worker&nbsp;(同方知网)">WK</td>
+                        <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                        <td align="right">
+                            0/1&nbsp;<a class="button  textual   " id="domId_1229500901" style="" href="/app/issue/issuelist?V_ID=943150445&CM=FN&FLT_ISSUE_TASK=45684&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                        </td>
+                        <td align="right">
+                            <span class="wlg">0:00</span> <button type="button" class="button noprint textual icon  " id="domId_952730608" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25239',title:'Project001 - 我的一个项目'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                        </td>
+                        <td class="lreq20 lreqHide">
+                            <button type="button" class="button noprint textual icon  " id="domId_905256624" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25239',title:'Project001 - 我的一个项目'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                        </td>
+                        <td nowrap align="center"></td>
+
+                        <td>
+                            <div class="facesBox">
+                                <span class="button buttonImg  " id="domId_1895522707" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1351720073&CM=LIST_ASSIGS&TASK_ID=45684','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d545304035" title="史 玉平 (SH)" alt="史 玉平 (SH)" id="d545304035" " resId="12771" class="face small "></span>
+                                <span class="button buttonImg  " id="domId_1269461781" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=703143887&CM=LIST_ASSIGS&TASK_ID=45684','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1728776951" title="史 玉平 (PM)" alt="史 玉平 (PM)" id="d1728776951" " resId="12771" class="face small "></span>
+                                <span class="button buttonImg  " id="domId_136799368" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=387072088&CM=LIST_ASSIGS&TASK_ID=45684','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d614401590" title="史 玉平 (WK)" alt="史 玉平 (WK)" id="d614401590" " resId="12771" class="face small "></span>
+
+                            </div>
+                        </td>
+
+                        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                            <div style="width:45px;height:15px;position: relative" title="">
+                                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+
+
+
+                    <tr assId="25244" class="assigRow alternate expired">
+                        <td class="columnTaskName" style="position: relative;">
+                            <div class="taskColored" style="background-color: #75a9ff;"></div>
+                            <div class="pathSmall"><span class="pathEl">Production Project</span></div>
+
+
+                            <a class="button  textual   bolder" id="domId_6700271" style="" title="T1791.01 - Collect Customer Requirements [&#39;Worker&#39;]" href="/app/task/taskOverview??V_ID=26591338&CM=ED&OBJID=45675">Collect Customer Requirements</a>
+
+
+                        </td>
+                        <td class="textSmall columnTaskCode" title="T1791.01"><span>T1791.01</span></td>
+                        <td align="center" title="Worker&nbsp;(同方知网)">WK</td>
+                        <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                        <td align="right">
+                            2/3&nbsp;<a class="button  textual   " id="domId_1463984764" style="" href="/app/issue/issuelist?V_ID=1571647137&CM=FN&FLT_ISSUE_TASK=45675&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                        </td>
+                        <td align="right">
+                            <span class="wlg">2:00</span> <button type="button" class="button noprint textual icon  " id="domId_624573459" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25244',title:'T1791.01 - Collect Customer...'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                        </td>
+                        <td class="lreq20 lreqHide">
+                            <button type="button" class="button noprint textual icon  " id="domId_306058877" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25244',title:'T1791.01 - Collect Customer...'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                        </td>
+                        <td nowrap align="center"></td>
+
+                        <td>
+                            <div class="facesBox">
+                                <span class="button buttonImg  " id="domId_527597717" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=113825995&CM=LIST_ASSIGS&TASK_ID=45675','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E6%96%B9%E6%96%B9&fill=hsl%28300%2C70%25%2C80%25%29&stroke=hsl%28300%2C90%25%2C20%25%29" border="0" name="d1787335483" title="方方之网 (WK)" alt="方方之网 (WK)" id="d1787335483" " resId="12772" class="face small "></span>
+                                <span class="button buttonImg  " id="domId_1344636666" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1932512299&CM=LIST_ASSIGS&TASK_ID=45675','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d532973831" title="史 玉平 (WK)" alt="史 玉平 (WK)" id="d532973831" " resId="12771" class="face small "></span>
+
+                            </div>
+                        </td>
+
+                        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                            <div style="width:45px;height:15px;position: relative" title="">
+                                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+
+                <tr assId="25258" class="assigRow alternate ">
+                    <td class="columnTaskName" style="position: relative;">
+                        <div class="taskColored" style="background-color: #0c40a3;"></div>
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_1431221467" style="" title="SH001 - 2020年度上海市人民政府决策咨询研究教育政策专项 [&#39;Project manager&#39;]" href="/app/task/taskOverview??V_ID=1050771135&CM=ED&OBJID=45747">2020年度上海市人民政府决策咨询研究教育政策专项</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="SH001"><span>SH001</span></td>
+                    <td align="center" title="Project manager&nbsp;(同方知网)">PM</td>
+                    <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                    <td align="right">
+                        0/1&nbsp;<a class="button  textual   " id="domId_1552436664" style="" href="/app/issue/issuelist?V_ID=32031341&CM=FN&FLT_ISSUE_TASK=45747&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                    </td>
+                    <td align="right">
+                        <span class="wlg">1:00</span> <button type="button" class="button noprint textual icon  " id="domId_1479836437" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25258',title:'SH001 - 2020年度上海市人民政府决策咨询研究...'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                    </td>
+                    <td class="lreq20 lreqHide">
+                        <button type="button" class="button noprint textual icon  " id="domId_1602880752" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25258',title:'SH001 - 2020年度上海市人民政府决策咨询研究...'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                    </td>
+                    <td nowrap align="center"></td>
+
+                    <td>
+                        <div class="facesBox">
+                            <span class="button buttonImg  " id="domId_1852266358" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=975101341&CM=LIST_ASSIGS&TASK_ID=45747','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1682162849" title="史 玉平 (SH)" alt="史 玉平 (SH)" id="d1682162849" " resId="12771" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_1080527930" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1377549721&CM=LIST_ASSIGS&TASK_ID=45747','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d2016731879" title="史 玉平 (PM)" alt="史 玉平 (PM)" id="d2016731879" " resId="12771" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_456962540" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=547768257&CM=LIST_ASSIGS&TASK_ID=45747','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1666196333" title="史 玉平 (WK)" alt="史 玉平 (WK)" id="d1666196333" " resId="12771" class="face small "></span>
+
+                        </div>
+                    </td>
+
+                    <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                        <div style="width:45px;height:15px;position: relative" title="">
+                            <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                            </div>
+                        </div>
+
+
+                    </td>
+                </tr>
+
+
+
+
+                <tr assId="25236" class="assigRow alternate ">
+                    <td class="columnTaskName" style="position: relative;">
+                        <div class="taskColored" style="background-color: #75a9ff;"></div>
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_2020390065" style="" title="T1791 - Production Project [&#39;Project manager&#39;]" href="/app/task/taskOverview??V_ID=1165008272&CM=ED&OBJID=45674">Production Project</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T1791"><span>T1791</span></td>
+                    <td align="center" title="Project manager&nbsp;(同方知网)">PM</td>
+                    <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                    <td align="right">
+                        8/9&nbsp;<a class="button  textual   " id="domId_1685617805" style="" href="/app/issue/issuelist?V_ID=1555720706&CM=FN&FLT_ISSUE_TASK=45674&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                    </td>
+                    <td align="right">
+                        <span class="wlg">0:00</span> <button type="button" class="button noprint textual icon  " id="domId_1384503517" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25236',title:'T1791 - Production Project'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                    </td>
+                    <td class="lreq20 lreqHide">
+                        <button type="button" class="button noprint textual icon  " id="domId_1365294974" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25236',title:'T1791 - Production Project'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                    </td>
+                    <td nowrap align="center"></td>
+
+                    <td>
+                        <div class="facesBox">
+                            <span class="button buttonImg  " id="domId_1321525138" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1898063138&CM=LIST_ASSIGS&TASK_ID=45674','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1348861391" title="史 玉平 (PM)" alt="史 玉平 (PM)" id="d1348861391" " resId="12771" class="face small "></span>
+
+                        </div>
+                    </td>
+
+                    <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                        <div style="width:45px;height:15px;position: relative" title="">
+                            <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                            </div>
+                        </div>
+
+
+                    </td>
+                </tr>
+
+
+
+
+                <tr assId="25255" class="assigRow alternate ">
+                    <td class="columnTaskName" style="position: relative;">
+
+                        <div class="pathSmall"><span class="pathEl"></span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_1994147540" style="" title="HN001 - 河南省教育厅2021年度河南省高等学校重点科研项目 [&#39;Project manager&#39;]" href="/app/task/taskOverview??V_ID=1352746788&CM=ED&OBJID=45746">河南省教育厅2021年度河南省高等学校重点科研项目</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="HN001"><span>HN001</span></td>
+                    <td align="center" title="Project manager&nbsp;(同方知网)">PM</td>
+                    <td align="center" class="lreq20"><div class="cvcColorSquare priorityLabel" style="background-color: #a0a0a0;" title="低">低</div></td>
+                    <td align="right">
+                        0/0&nbsp;<a class="button  textual   " id="domId_205895127" style="" href="/app/issue/issuelist?V_ID=1277830740&CM=FN&FLT_ISSUE_TASK=45746&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL"></a>
+
+
+                    </td>
+                    <td align="right">
+                        <span class="wlg">1:30</span> <button type="button" class="button noprint textual icon  " id="domId_1664777180" style="" title="新增的工作日志" onclick="openWorklogEditorPopup($(this),{assId:'25255',title:'HN001 - 河南省教育厅2021年度河南省高等学校...'});return false; "><span class='teamworkIcon '>w</span></button>
+
+                    </td>
+                    <td class="lreq20 lreqHide">
+                        <button type="button" class="button noprint textual icon  " id="domId_345627497" style="" title="增加费用" onclick="openExpenseEditorPopup($(this),{assId:'25255',title:'HN001 - 河南省教育厅2021年度河南省高等学校...'});return false; "><span class='teamworkIcon '>4</span></button>
+
+                    </td>
+                    <td nowrap align="center"></td>
+
+                    <td>
+                        <div class="facesBox">
+                            <span class="button buttonImg  " id="domId_9478238" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1279551315&CM=LIST_ASSIGS&TASK_ID=45746','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E5%B0%8F%E5%B0%8F&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d216511772" title="小A 小AA (SH)" alt="小A 小AA (SH)" id="d216511772" " resId="12773" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_517710147" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=471712657&CM=LIST_ASSIGS&TASK_ID=45746','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%8E%89%E5%8F%B2&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1365055394" title="史 玉平 (PM)" alt="史 玉平 (PM)" id="d1365055394" " resId="12771" class="face small "></span>
+                            <span class="button buttonImg  " id="domId_1712485122" style=" " onClick="stopBubble(event);try{ window.open('/app/task/taskAssignmentList?V_ID=1872049796&CM=LIST_ASSIGS&TASK_ID=45746','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E5%B0%8F%E5%B0%8F&fill=hsl%2860%2C70%25%2C80%25%29&stroke=hsl%2860%2C90%25%2C20%25%29" border="0" name="d1313279076" title="小B 小BB (WK)" alt="小B 小BB (WK)" id="d1313279076" " resId="12774" class="face small "></span>
+
+                        </div>
+                    </td>
+
+                    <td class="textSmall" nowrap style="text-align: right">
+
+
+
+                        <div style="width:45px;height:15px;position: relative" title="">
+                            <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                                <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                            </div>
+                        </div>
+
+
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+    </form>
+
+
+
+    <script type="text/javascript">
+
+        //bind for worklogSaved event
+        registerEvent("worklogEvent.wpMyAssignment", function (ev, data) {
+            //console.debug("worklogEvent.wpMyAssignment",data);
+            if (data.type == "save" && data.response && data.response.worklog)
+                $(".wp_myAssignemnt tr[assId=" + data.response.worklog.assId + "] .wlg").html(getMillisInHoursMinutes(data.response.worklog.totalWl));
+            else if (data.type == "delete")
+                refreshPortlet($(".wp_myAssignemnt"));
+        });
+
+
+        //inject the table search
+        createTableFilterElement($("#wpMAputFilerHere"), '#wp_myAssig_table .assigRow', '.columnTaskName,.columnTaskCode');
+
+    </script>
+
+
+</div>

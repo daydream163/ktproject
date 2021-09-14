@@ -1,0 +1,190 @@
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+
+  file: add-image-prompt.html
+  last modified: 12/24/18 5:59 PM
+  Version:  0.1.28
+  Build:  4009
+
+  Open Lab s.r.l., Florence - Italy
+  email:  matbicoc@gmail.com
+  blog: 	http://pupunzi.open-lab.com
+  site: 	http://pupunzi.com
+  	      http://open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+<div id="add-image-prompt">
+    <h2><span class='editIt-icon-image'></span> [[Upload an image:]]</h2>
+
+    <div id="image-uploader">
+        <div id="drop-here">
+            <span id="drop-here-label">[[Drop an image here]]</span>
+            <button onclick="$('input#file-upload').click()">[[Or click here]]</button>
+            <input id="file-upload" style="visibility: collapse; width: 0px;" type="file" onchange="upload(this.files[0])">
+        </div>
+    </div>
+
+    <div id="image-data"></div>
+
+    <div id="image-cropper">
+        <div id="image-tools" style="display: none"></div>
+    </div>
+
+    <div id="image-cropped">
+
+    </div>
+    <div id="imageURL-box">
+        <label for="imageURL">[[Or write here the url:]]</label>
+        <input id="imageURL" type="text" name="imageURL">
+        <input type="hidden" name="imageName">
+    </div>
+</div>
+
+<script>
+
+    var cropImg = {};
+
+    $.editIt.ui.prompt.onLoad = function (editor, plugin) {
+
+        cropImg.prompt = $("#add-image-prompt");
+        $.editIt.i18n.translate(cropImg.prompt);
+
+        cropImg.plugin = plugin;
+
+//        cropImg.prompt.children("h2").html("<span class='editIt-icon-image'></span> " + _("Upload an image:"));
+       // $("#drop-here-label",cropImg.prompt).html(_("Drop an image here"));
+
+        cropImg.prompt
+                .on("dragover", function(e) {
+                    e.preventDefault();
+                    $(this).addClass("drag-hover");
+                })
+                .on("dragleave", function(e){
+                    e.preventDefault();
+                    $(this).removeClass("drag-hover");
+                })
+                .on("drop", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    upload(e.originalEvent.dataTransfer.files[0]);
+                });
+
+    };
+
+    $.editIt.ui.prompt.onApply = function(){};
+
+    function upload(file) {
+        if (!file || !file.type.match(/image.*/))
+            return;
+
+        cropImg.prompt.children("h2").html(_("Crop the image:"));
+
+        $("#image-uploader").hide();
+        $("#image-tools").show();
+
+        cropImg.name = file.name;
+        cropImg.type = file.type;
+        cropImg.image =  $("<img/>").addClass("cropper-image");
+
+        $("input[name=imageName]").val(cropImg.name);
+
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            cropImg.b64Data = event.target.result;
+            cropImg.image.attr('src', cropImg.b64Data);
+
+            $("#image-cropper").prepend(cropImg.image);
+            $("#image-data").prepend(cropImg.name);
+
+            $("input[name=imageURL]").val(cropImg.b64Data);
+            $("#imageURL-box").hide();
+
+            cropImg.opt = {
+                movable:true,
+                mouseWheelZoom: true,
+                built: function () {
+
+                    $("#image-tools").empty();
+
+                    var $clearBtn = $.editIt.util.drawButton( _("Clear"),  "text-modality", null, function( e ) {
+                        e.preventDefault();
+                        cropImg.image.cropper('clear');
+                    } );
+
+                    var aspect_16_9_Btn = $.editIt.util.drawButton( _("16:9"),  "text-modality", null, function( e ) {
+                        e.preventDefault();
+                        var aspectRatio = {aspectRatio: 16/9};
+                        cropImg.image.cropper('destroy').cropper(aspectRatio);
+                    } );
+
+                    var aspect_2_3_Btn = $.editIt.util.drawButton( _("2:3"),  "text-modality", null, function( e ) {
+                        e.preventDefault();
+                        var aspectRatio = {aspectRatio: 2/3};
+                        cropImg.image.cropper('destroy').cropper(aspectRatio);
+                    } );
+                    var aspect_3_2_Btn = $.editIt.util.drawButton( _("3:2"),  "text-modality", null, function( e ) {
+                        e.preventDefault();
+                        var aspectRatio = {aspectRatio: 3/2};
+                        cropImg.image.cropper('destroy').cropper(aspectRatio);
+                    } );
+
+                    var aspect_1_1_Btn = $.editIt.util.drawButton( _("1:1"),  "text-modality", null, function( e ) {
+                        e.preventDefault();
+                        var aspectRatio = {aspectRatio: 1/1};
+                        cropImg.image.cropper('destroy').cropper(aspectRatio);
+                    } );
+
+                    var aspect_free_Btn = $.editIt.util.drawButton( _("Free"),  "text-modality", null, function( e ) {
+                        e.preventDefault();
+                        var aspectRatio = {aspectRatio: null};
+                        cropImg.image.cropper('destroy').cropper(aspectRatio);
+                    } );
+
+                    var $cropBtn = $.editIt.util.drawButton( _("Crop"),  "small main-color cropBtn", null, function( e ) {
+                        e.preventDefault();
+                        var naturalWidth = cropImg.image.get(0).naturalWidth;
+                        var naturalHeight = cropImg.image.get(0).naturalHeight;
+
+                        canvasOpt = {
+                            width: Math.min(naturalWidth, cropImg.plugin.defaults.resultWidth) || null,
+                            height: Math.min(naturalHeight, cropImg.plugin.defaults.resultHeight) || null
+                        };
+
+                        cropImg.b64Data = cropImg.image.cropper("getCroppedCanvas", canvasOpt).toDataURL(cropImg.type);
+
+                        $("input[name=imageURL]").val(cropImg.b64Data);
+                        $("#image-cropped").css({width: $("#image-cropper").width(), height: $("#image-cropper").height() });
+                        $("#image-cropped").css({backgroundImage:"url(" + cropImg.b64Data +")", backgroundRepeat:"no-repeat", backgroundPosition:"center center", backgroundSize:"contain"});
+
+                        var $closeCroppedBtn = $.editIt.util.drawButton( _("Close"),  "text-modality close-cropped", "editIt-icon-close", function( e ) {
+                            e.preventDefault();
+                            $("#image-cropped").hide().empty();
+                            $("#image-cropper").show();
+                        }, null, true );
+
+
+                        $("#image-cropped").prepend($closeCroppedBtn);
+                        $("#image-cropped").show();
+                        $("#image-cropper").hide();
+                    } );
+
+                    $("#image-tools").append(aspect_16_9_Btn).append(aspect_2_3_Btn).append(aspect_3_2_Btn).append(aspect_1_1_Btn).append(aspect_free_Btn);
+                    $("#image-tools").append($clearBtn);
+                    $("#image-tools").append($cropBtn);
+                }};
+
+            cropImg.image.cropper(cropImg.opt);
+
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+</script>

@@ -1,0 +1,18 @@
+﻿
+
+<div id="insertStatusNotes" class="notesEditor">
+    <label for="HIS_NOTES" class=" ">新增评论</label><br><textarea name="HIS_NOTES" id="HIS_NOTES" COLS="50" ROWS="5" class="formElements" style='height:125px;width:100%' oldValue='1' maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);"></textarea><button type="button" class="button noprint    button noprint first small" id="domId_1633935656" style="" onclick="saveStatusNotes($(this));return false; ">保存</button>
+
+
+    <span class="teamworkIcon issueNotesClose" title="hide" onclick="$(this).closest('.notesEditor').fadeOut();" style="cursor: pointer">x</span>
+
+</div>
+
+
+
+<div id="insertComment" style="display:none" class="notesEditor">
+    <textarea name="HIS_COMMENT" id="HIS_COMMENT" COLS="50" ROWS="2" class="formElements autosize" placeHolder='新增评论' oldValue='1' maxHeight=400 minHeight=125 lineHeight=15></textarea><div style="margin-top: 10px">
+        <button type="button" class="button noprint    first" id="domId_340361890" style="" onclick="saveComment($(this));return false; ">保存</button>
+
+    </div>
+</div>

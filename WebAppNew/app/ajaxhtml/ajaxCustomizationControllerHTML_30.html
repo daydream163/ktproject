@@ -1,0 +1,100 @@
+﻿
+
+<div id="issueSummaryExDiv" class="issueSummary">
+    <div class="portletBox">
+        <div style="float:right" class="portletParamIcons">
+            <button type="button" class="button noprint textual icon  ruzzol" id="domId_1429188707" style="" title="过滤" onclick="$('#issueSummaryParam').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+        </div>
+        <h1>问题摘要</h1>
+
+        <div class="portletParams" id="issueSummaryParam" style="display:none;">
+            <label for="ck_SHOW_WHERE_IM_INVOLVED_ONLY">仅显示我参与的任务</label><input type=hidden name="SHOW_WHERE_IM_INVOLVED_ONLY" id="SHOW_WHERE_IM_INVOLVED_ONLY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_SHOW_WHERE_IM_INVOLVED_ONLY" name="ck_SHOW_WHERE_IM_INVOLVED_ONLY" checked value="yes"
+                                                                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'SHOW_WHERE_IM_INVOLVED_ONLY':$('#SHOW_WHERE_IM_INVOLVED_ONLY').val()});">
+
+        </div>
+
+
+
+
+        <table class="table" id="wp_issueSummary_table">
+            <thead class="dataTableHead" style="">
+                <tr>
+                    <th class="tableHead" colspan="2" id="wpMICputFilerHere"><span class="tableHeadEl">任务</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">已发现的问题</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">过期</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">今天</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">中断</span></th>
+                    <th class="tableHead"><span class="tableHeadEl">未分工</span></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr taskId="45675" class="alternate expired ">
+                    <td class="columnTaskName" style="position: relative;">
+                        <div class="taskColored" style="background-color: #75a9ff;"></div>
+                        <div class="pathSmall"><span class="pathEl">Production Project</span></div>
+
+
+                        <a class="button  textual   bolder" id="domId_1950173099" style="" href="/app/task/taskOverview??V_ID=1730831943&CM=ED&OBJID=45675">Collect Customer Requirements</a>
+
+
+                    </td>
+                    <td class="textSmall columnTaskCode" title="T1791.01"><span>T1791.01</span></td>
+                    <td align="center"><a class="issBtn issOpen">2</a></td>
+                    <td align="center"><a class="issBtn issExpired">2</a></td>
+                    <td align="center"><a class="issBtn issToday"></a></td>
+                    <td align="center"><a class="issBtn issBlock"></a></td>
+                    <td align="center"><a class="issBtn issUnassigned">2</a></td>
+
+
+                </tr>
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        //inject the table search
+        //createTableFilterElement($("#wpMAputFilerHere"),'#wp_myAssig_table .assigRow','.columnTaskName,.columnTaskCode');
+
+        $("#wp_issueSummary_table [taskId] a.issBtn").each(function () {
+            var el = $(this);
+            if (el.text() == "") {
+                el.remove();
+            } else {
+                var row = el.closest("[taskId]");
+                var taskExpired = row.is(".expired");
+                var toBeDoneToday = row.is(".toBeDoneToday");
+                var issExpired = el.is(".issExpired");
+                var issToday = el.is(".issToday");
+                var taskId = row.attr("taskId");
+                var link = contextPath + "/app/task/taskIssueList?OBJID=" + taskId;
+
+                if (taskExpired && (issExpired || issToday)) {
+                    link += ""; // si devono vedere tutte quelle aperte
+                } else if (toBeDoneToday && issToday) {
+                    link += ""; // si devono vedere tutte quelle aperte
+
+                } else if (!taskExpired && issExpired) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");
+                } else if (issToday) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=t";
+                } else if (el.is(".issBlock")) {
+                    link += "&FLT_ISSUE_GRAVITY=" + encodeURIComponent("05_GRAVITY_BLOCK");
+                } else if (el.is(".issUnassigned")) {
+                    link += "&FLT_ISSUE_UNASSIGNED=yes";
+                } else {
+                    // do nothing
+                }
+
+                el.prop("href", link);
+            }
+        });
+
+
+    </script>
+</div>
+

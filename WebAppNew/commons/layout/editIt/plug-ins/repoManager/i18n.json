@@ -1,0 +1,32 @@
+{
+	"it_IT": {
+		"Insert a file:"        : "Inserisci il link ad un file",
+		"Or click here"         : "Oppure clicca qui",
+		"Drop a file"           : "Trascina qui un file",
+		"Upload a new file:"    : "Carica un nuovo file:",
+		"Insert"                : "Inserisci",
+		"<b>Attention!</b><br><br>\"%%\" is too big (<b>%%</b> Kb).<br>The file should be max %% Kb." : "<b>Attenzione!</b><br><br>\"%%\" pesa troppo (<b>%%</b> Kb).<br>dovrebbe pesare massimo %% Kb.",
+		"<b>Attention!</b><br><br>You can't upload a \"%%\" file.<br>Convert it to one of the allowed formats: <br><br> %% " :  "<b>Attenzione!</b><br><br>Non puoi caricare un file \"%%\".<br>Convertilo prima in uno dei formati permessi: <br><br> %% "
+	},
+
+	"fr_FR": {
+		"Insert a file:"        : "Insérer un fichier:",
+		"Or click here"         : "Ou cliquez ici",
+		"Drop a file"           : "Déposer un fichier",
+		"Upload a new file:"    : "Ajouter un nouveau fichier:",
+    "Insert"                : "Insérer",
+    "<b>Attention!</b><br><br>\"%%\" is too big (<b>%%</b> Kb).<br>The file should be max %% Kb." : "<b> Attention! </b> <br> \"%%\" est trop grand (<b> %% </b> Kb). <br> Le fichier doit être max %% Kb.",
+		"<b>Attention!</b><br><br>You can't upload a \"%%\" file.<br>Convert it to one of the allowed formats: <br><br> %% " :  "<b> Attention </b> <br> Vous ne pouvez pas télécharger un \"%%\" fichier <br> le convertir en l'un des formats autorisés:. <br> %%"
+
+	},
+
+	"es_ES": {
+		"Insert a file:"        : "Insertar un archivo:",
+		"Or click here"         : "O haga clic aquí",
+		"Drop a file"           : "Soltar un archivo",
+		"Upload a new file:"    : "Subir un nuevo archivo:",
+    "Insert"                : "Inserte",
+    "<b>Attention!</b><br><br>\"%%\" is too big (<b>%%</b> Kb).<br>The file should be max %% Kb." : "<b> ¡Atención! </b> <br> \"%%\" es demasiado grande (<b> %% </b> Kb). México La archivo debe ser como máximo de %% Kb.",
+		"<b>Attention!</b><br><br>You can't upload a \"%%\" file.<br>Convert it to one of the allowed formats: <br><br> %% " :  "<b> Atención </b> <br> No se puede cargar un \"%%\" archivo <br> convertirlo en uno de los formatos permitidos:!. <br> %%"
+	}
+}

@@ -1,0 +1,71 @@
+﻿
+
+<div class="portletBox">
+    <div style="float:right;padding-top: 5px">
+        <button type="button" class="button noprint textual icon  ruzzol" id="domId_1696250759" style="" onclick="$('#myCreatedIssues').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+    </div>
+
+    <h1>我感兴趣的问题</h1>
+
+
+    <div id="myCreatedIssues" class="portletParams" style="display:none"><label for="MAX_ISSUES_DISPLAY" class=" ">问题最大显示数</label>&nbsp;<input type=text name="MAX_ISSUES_DISPLAY" id="MAX_ISSUES_DISPLAY" size=2 class="formElements" autocomplete='off' maxlength=255 onBlur="refreshPortlet($(this),{'MAX_ISSUES_DISPLAY':$(this).val()});" value="8" oldValue='1'></div>
+    <table class="table dataTable">
+        <thead>
+            <tr>
+                <th class="tableHead" width="1%">级别</th>
+                <th class="tableHead" width="1%">问题状态</th>
+                <th class="tableHead">描述</th>
+                <th class="tableHead">任务</th>
+                <th class="tableHead" nowrap>分工给</th>
+                <th class="tableHead">做</th>
+                <th class="tableHead"></th>
+                <th class="tableHead"></th>
+            </tr>
+        </thead>
+
+        <tbody id="wp_myInsIssuesExpired" style="display:none;"></tbody>
+
+        <tbody id="wp_myInsIssues"></tbody>
+    </table>
+
+
+    <script type="text/javascript">
+
+        var defs = [initialize(contextPath + "/parts/partIssuePortletSupport.html", "html"),
+        initialize(contextPath + "/parts/partIssueNotes.html", "html")];
+
+
+        $.when.apply(null, defs) // per chiamare la when con un array [a,b,c,d] invece che parametri sep.  (a,b,c,d)
+            .done(function () {
+                $("#wp_myInsIssueTemplates").loadTemplates().remove();
+
+                var expired = [];
+                var issues = [{ "id": "11358", "lastModifier": "史 玉平", "lastModified": 1590763251000, "creator": "史玉平 shi", "creationDate": 1589793535000, "areaId": 4957, "area": "同方知网", "description": "Write specification documents", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "11358", "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "45675", "taskName": "Collect Customer Requirements", "taskCode": "T1791.01", "tcodid": "45675", "taskPath": "Production Project", "assigneeId": "-1", "assigneeName": "取消分工", "assigneeAvatarUrl": "/img/noPhoto_TW.jpg", "rcodid": "-", "statusId": 11122, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "03_GRAVITY_HIGH", "gravityName": "高", "gravityColor": "#F9791C", "gravityOrder": 3, "documents": [{ "id": 871, "uid": "FR_871_1.jpg+++\\000871.1.jpg", "type": "FR", "name": "1.jpg", "img": "image_jpeg.png", "mime": "image/jpeg", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=908619505&FILE_TO_UPLOAD=FR_871_1.jpg%2B%2B%2B%5C000871.1.jpg&CK=kaw79v23.084625ec4c13bcfb2e6c50f2da319627", "ext": ".jpg", "ck": "kaw79v23.084625ec4c13bcfb2e6c50f2da319627", "issueId": "11358" }, { "id": 872, "uid": "FR_872_2.jpg+++\\000872.2.jpg", "type": "FR", "name": "2.jpg", "img": "image_jpeg.png", "mime": "image/jpeg", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=411806718&FILE_TO_UPLOAD=FR_872_2.jpg%2B%2B%2B%5C000872.2.jpg&CK=kaw79v23.d57ea7e9cff7767ca025b152b08858ef", "ext": ".jpg", "ck": "kaw79v23.d57ea7e9cff7767ca025b152b08858ef", "issueId": "11358" }, { "id": 873, "uid": "FR_873_03.jpg+++\\000873.03.jpg", "type": "FR", "name": "03.jpg", "img": "image_jpeg.png", "mime": "image/jpeg", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=2043198792&FILE_TO_UPLOAD=FR_873_03.jpg%2B%2B%2B%5C000873.03.jpg&CK=kaw79v23.e2146383f5faa2d50f9aadbe784df716", "ext": ".jpg", "ck": "kaw79v23.e2146383f5faa2d50f9aadbe784df716", "issueId": "11358" }, { "id": 874, "uid": "FR_874_2.jpg+++\\000874.2.jpg", "type": "FR", "name": "2.jpg", "img": "image_jpeg.png", "mime": "image/jpeg", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=1778581614&FILE_TO_UPLOAD=FR_874_2.jpg%2B%2B%2B%5C000874.2.jpg&CK=kaw79v23.abd213f859e7e892dbc558c9d14e346d", "ext": ".jpg", "ck": "kaw79v23.abd213f859e7e892dbc558c9d14e346d", "issueId": "11358" }, { "id": 875, "uid": "FR_875_1.jpg+++\\000875.1.jpg", "type": "FR", "name": "1.jpg", "img": "image_jpeg.png", "mime": "image/jpeg", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=1796303905&FILE_TO_UPLOAD=FR_875_1.jpg%2B%2B%2B%5C000875.1.jpg&CK=kaw79v23.1283b8a36d89a2f91f557b81bc7653ab", "ext": ".jpg", "ck": "kaw79v23.1283b8a36d89a2f91f557b81bc7653ab", "issueId": "11358" }] }, { "id": "11359", "lastModifier": "史 玉平", "lastModified": 1590762994000, "creator": "史玉平 shi", "creationDate": 1589793535000, "areaId": 4957, "area": "同方知网", "description": "Call customer and schedule meeting to analyse requirements", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "11359", "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "45675", "taskName": "Collect Customer Requirements", "taskCode": "T1791.01", "tcodid": "45675", "taskPath": "Production Project", "assigneeId": "-1", "assigneeName": "取消分工", "assigneeAvatarUrl": "/img/noPhoto_TW.jpg", "rcodid": "-", "statusId": 11122, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "03_GRAVITY_HIGH", "gravityName": "高", "gravityColor": "#F9791C", "gravityOrder": 3, "documents": [{ "id": 870, "uid": "FR_870_readme_first.html+++\\000870.readme_first.html", "type": "FR", "name": "readme_first.html", "img": "text_html.png", "mime": "text/html", "url": "https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=1714047314&FILE_TO_UPLOAD=FR_870_readme_first.html%2B%2B%2B%5C000870.readme_first.html&CK=kaw79v23.6f1de6349d268c0e9dc69dac1f9ddc90", "ext": ".html", "ck": "kaw79v23.6f1de6349d268c0e9dc69dac1f9ddc90", "issueId": "11359" }] }];
+
+                var ndo = $("#wp_myInsIssuesExpired");
+                for (var i = 0; i < expired.length; i++) {
+                    var iss = $.JST.createFromTemplate(expired[i], "MYINSISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+                if (expired.length > 0)
+                    ndo.show();
+
+                ndo = $("#wp_myInsIssues");
+                for (var i = 0; i < issues.length; i++) {
+                    var iss = $.JST.createFromTemplate(issues[i], "MYINSISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+
+                //bind  issueEvent
+                registerEvent("issueEvent.myCreatedIssues", function (e, data) {
+                    refreshPortlet($("#myCreatedIssues"));
+                });
+            });
+    </script>
+</div>
+
+
+

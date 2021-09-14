@@ -1,0 +1,1711 @@
+﻿
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            //top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
+        }
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=1135001173&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 " level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainer" style="">
+        <div id="savingMessage">请稍候...</div>
+
+
+
+
+        <div class="twHeader noprint">
+            <div id="headerWrapper ">
+                <a href="/app/getsThingsDone?V_ID=1567061095" class="twLogo withArrowRight" title="Home" id="twLogoMainMenu"></a>
+                <div id="mainNav" class="noprint mainNav">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td id="DASHBOARD_MENU" ttitle="返回到主页.您可以通过自定义页面设置自己的个性化主页" class="withArrowRight">
+                                <div style="position: relative">
+                                    <span>
+                                        <a class="button     hasDivomo noLabel" id="domId_856376857" style="" href="/app/getsThingsDone?V_ID=1238174043"></a>
+
+                                        <span id="arrowOpener_divdomo_domId_690433405" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_690433405', 'arrowOpener_divdomo_domId_690433405'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_690433405" class="divomo divDark"
+                                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   " id="domId_146021202" style="" href="/helpDesk.page?V_ID=2045481629">Help Desk</a>
+
+                                            <a class="button  textual  focused " id="domId_1752017140" style="" href="/getsThingsDone.page?V_ID=356784158">Get things done</a>
+
+                                            <a class="button  textual   " id="domId_2003787963" style="" href="/pm.page?V_ID=2121374436">Project Manager</a>
+
+                                            <a class="button  textual   " id="domId_825741887" style="" href="/supervisor.page?V_ID=289688617">Supervisor</a>
+
+                                            <a class="button  textual   " id="domId_1204567895" style="" href="/applications/teamwork/documentation/documentation.jsp?V_ID=1998089280">关于</a>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </td>
+
+                            <td id="TASK_MENU" ttitle="这是Twproject的入口点.一旦创建和分配,Twproject就将开始为团队工作.">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_1684740821" style="" href="/app/task/taskList?V_ID=954909138">项目</a>
+
+                                    <span id="arrowOpener_divdomo_domId_867092852" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_867092852', 'arrowOpener_divdomo_domId_867092852'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_867092852" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_1684740821" style="" href="/app/task/taskList?V_ID=1911727517">项目</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_405535022" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=254707110">Portfolio</a>
+
+                                        <a class="button  textual   " id="domId_1861502823" style="" href="/applications/teamwork/document/documentList.jsp?V_ID=1876338367">文档</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_1736176665" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=1295663877">额外费用</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_729884399" style="" onclick="openBlackPopup('/applications/teamwork/task/taskNew.jsp?V_ID=2060896866&CM=AD','800px','720px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 新建项目</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="TIMESHEET_MENU" ttitle="工时计划,工作记录,记录的有效性检查和分析.">
+                                <span>
+                                    <a class="button     lreq10 lreqActive hasDivomo" id="domId_738600159" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=882273295">工时表</a>
+
+                                    <span id="arrowOpener_divdomo_WKLOGSM" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_WKLOGSM', 'arrowOpener_divdomo_WKLOGSM'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_WKLOGSM" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_509062934" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=1636561236">工时表</a>
+
+                                        <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_781749802" style="" onclick="openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=245882090&FOCUS_MILLIS=1605248928446',$(window).width()-100,$(window).height()-50);return false; ">计时器</button>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_563969868" style="" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=309852449">时间表概述</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1796237265" style="" href="/applications/teamwork/task/worklog/attendanceOverview.jsp?V_ID=1701243466">出勤概述</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_34603329" style="" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=1311369140&RES_ID=15089">工作记录审核</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1757565813" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=246544248">工作记录分析</a>
+
+                                        <a class="button  textual   lreq30 lreqLabel lreqActive" id="domId_771054606" style="" href="/applications/teamwork/task/financial/expenseList.jsp?V_ID=131727157">费用控制</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="PLAN_MENU" ttitle="PLAN_MENU_HELP" valign="bottom">
+                                <span>
+                                    <a class="button     lreq20 lreqActive hasDivomo" id="domId_2030171289" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=244883167&CM=FIND_BY_ENTITY">计划</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1868670687" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1868670687', 'arrowOpener_divdomo_domId_1868670687'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1868670687" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq30 lreqActive lreqLabel" id="domId_1947382681" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=302094253&CM=FIND_BY_ENTITY">计划</a>
+
+                                        <a class="button  textual   lreq20 lreqActive lreqLabel" id="domId_2009939287" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=1826181574">工作负荷</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议">
+                                <a href="/app/agenda/agendaWeekDay?V_ID=797431294&AGENDA_TYPE=WEEK&FOCUS_MILLIS=0" class="button">
+                                    日程
+                                </a>
+
+                            </td>
+                            <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
+To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
+                                <span>
+                                    <button type="button" class="button noprint    hasDivomo" id="domId_2129800978" style="" onclick="window.location.href='app/issue/issuelist'; ">问题</button>
+
+                                    <span id="arrowOpener_divdomo_domId_1307609050" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1307609050', 'arrowOpener_divdomo_domId_1307609050'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1307609050" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <button type="button" class="button noprint textual   hasDivomo" id="domId_2129800978" style="" onclick="window.location.href='app/issue/issuelist'; ">问题</button>
+
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1785143599" style="" href="/app/issue/issueOrganizer.html?V_ID=615890139">组织（看板）</a>
+
+                                        <button type="button" class="button noprint textual   lreq20 lreqLabel lreqActive" id="domId_414436156" style="" onclick="window.location.href='/app/issue/issuePlanner.html';">计划者</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
+                                <a href="/app/resource/resourceList?V_ID=394387633" class="button">
+                                    资源
+                                </a>
+                            </td>
+
+                            <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
+
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_1338413189" style="" href="/app/tools/toolsIntro?V_ID=964428764">工具</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1966748845" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1966748845', 'arrowOpener_divdomo_domId_1966748845'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1966748845" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_1338413189" style="" href="/app/tools/toolsIntro?V_ID=941043814">工具</a>
+
+                                        <a class="button  textual   " id="domId_1079543291" style="" href="/app/board/boardList.html?V_ID=1802531499&CM=FN">讨论板</a>
+
+                                        <hr><span class='menuTitle'>书签</span><a class="button  textual   " id="domId_1743796051" style="" href="https://www.baidu.com" target="_blank">- baidu</a>
+
+                                        <a class="button  textual   " id="domId_1270898548" style="" href="https://oa.cnki.net" target="_blank">- OA</a>
+
+                                        <a class="button  textual   " id="domId_1119543174" style="" href="https://www.cnki.net" target="_blank">- cnki</a>
+
+                                        <hr><a class="button  textual   " id="domId_2057894051" style="" href="/applications/teamwork/tools/manageFavorites.jsp?V_ID=938119369"><span class='teamworkIcon withLabel'>g</span>管理书签&nbsp;</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1801180222" style="" onclick="saveThisPageAsPreferred();return false; "><span class='teamworkIcon withLabel'>P</span>增加当前视图到书签</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="menuTools">
+
+                    <div id="HINT_SEARCH_span" class="menuSearch">
+                        <input type=text name="search" id="search" size=15 class="searchInput" autocomplete='off' maxlength=255 value="" onkeyup="if (event.keyCode==13) { fastSearch($(this));event.preventDefault();return false;}" oldValue='1'><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_keyDiv', 'domId_1744879419');  ">
+                            <button type="button" class="button noprint textual icon  fastSearchkeysButton" id="domId_1744879419" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                        </span>
+
+                        <div id="divdomo_keyDiv" class="divomo fSKeys"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class='menuTitle'>Search in:</span><button type="button" class="button noprint textual   ALL" id="domId_755469718" style="" onclick="changeFastSearchKey('ALL');return false; ">全部</button>
+
+                                <button type="button" class="button noprint textual   W" id="domId_1256229362" style="" onclick="changeFastSearchKey('W');return false; ">工作记录</button>
+
+                                <button type="button" class="button noprint textual   T" id="domId_1535153477" style="" onclick="changeFastSearchKey('T');return false; ">项目</button>
+
+                                <button type="button" class="button noprint textual   R" id="domId_1455952881" style="" onclick="changeFastSearchKey('R');return false; ">资源</button>
+
+                                <button type="button" class="button noprint textual   I" id="domId_1771397049" style="" onclick="changeFastSearchKey('I');return false; ">问题</button>
+
+                                <button type="button" class="button noprint textual   A" id="domId_1304404182" style="" onclick="changeFastSearchKey('A');return false; ">日程</button>
+
+                                <button type="button" class="button noprint textual   B" id="domId_1608018298" style="" onclick="changeFastSearchKey('B');return false; ">讨论板</button>
+
+                                <button type="button" class="button noprint textual   D" id="domId_2029320638" style="" onclick="changeFastSearchKey('D');return false; ">文档</button>
+
+                            </div>
+                        </div><button type="button" class="button noprint textual icon  searchButton" id="domId_456681212" style="" onclick="fastSearch($('#search'));return false; "><span class='teamworkIcon '>L</span></button>
+
+                    </div>
+
+
+
+                    <div id="loggedOp" class="loggedOp">
+                        <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1493104971', 'domId_716568638');  ">
+                            <span class="button buttonImg  operatorButton" id="domId_716568638" style=" " onclick=";return false; "><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1101702896" title="Dream Wing" alt="Dream Wing" id="d1101702896" " resId="15089" class="face active"></span>
+
+                        </span>
+
+                        <div id="divdomo_domId_1493104971" class="divomo divDark"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">Dream Wing <em>(92)</em></span><a class="button  textual   " id="domId_705741374" style="" href="/resource/resourceEditor?V_ID=213777459&CM=ED&OBJID=15089">我的联系方式</a>
+
+                                <a class="button  textual   " id="domId_843090437" style="" href="/resource/resourceSecurity?V_ID=239930633&CM=ED&OBJID=15089">登录信息</a>
+
+                                <a class="button  textual   " id="domId_723871753" style="" href="/resource/resourceOptions?V_ID=1659166849&CM=EDIT_OPT&OBJID=15089">选项</a>
+
+                                <a class="button  textual   " id="domId_617692416" style="" href="/resource/resourceDocumentList?V_ID=1026339762&CM=LIST_DOCS&RES_ID=15089">文档</a>
+
+                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_329528166" style="" onclick="openBlackPopup('/applications/teamwork/sticky/stickyEditor.jsp?V_ID=620486114&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
+
+                                <button type="button" class="button noprint textual   " id="domId_185787652" style="" onclick="openBlackPopup('/applications/teamwork/sticky/stickyEditor.jsp?V_ID=19560349&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
+
+                                <hr><a class="button  textual   " id="domId_91844426" style="" href="http://twproject.com/support" target="_blank">支持</a>
+
+                                <hr><a class="button  textual   " id="domId_1736009236" style="" href="/applications/teamwork/security/login.jsp?V_ID=379811824&CM=LO" target="_top">注销</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="twChatNotifications">
+                        <div id="twChatOpener" class="messages button textual icon" onclick="twChatToggle();">
+
+                            <span class="teamworkIcon"></span>
+
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+
+                    <div id="notifications">
+                        <div id="messageListOpener" class="messages button textual icon" onclick="loadMessageList($(this));">
+                            <span class="teamworkIcon">b</span>
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+
+                    <div id="messageListBox" class="divomo divDark" style="position: absolute;left:-1000px; top:-1000px;">
+                        <div class="divomoArrow"></div>
+                        <span class="menuTitle">通知</span>
+                        <div id="messageListPlace" class="messageListPlace"></div>
+                        <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
+                            <a class="button  textual   " id="domId_1691634847" style="" href="/applications/teamwork/messaging/messageListFull.jsp?V_ID=258306721">全部显示</a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="menuTimeCounter" style="display:none;"><a href="javascript:openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=1191998044')" id="tcMenuCounter"></a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // unread messages managament
+            $("#messageListBox").on("hideDivOnMouseover", function () {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "READALL" }, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        $("#messageListOpener .notificationNumber").fadeOut().html("0");
+                        $("#twChatOpener").data("totalUnreadChats", false);
+                    }
+                });
+            });
+
+            function followMessageLink(el) {
+                var href = el.find(".message_link a:first").attr("href");
+                if (href)
+                    self.location.href = href;
+            }
+
+            function saveThisPageAsPreferred() {
+                location.href = contextPath + "/applications/teamwork/tools/manageFavorites.jsp?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+            }
+
+            (function tmStartup() {
+                var counted = undefined;
+                var format = '%0h:%0m:%0s';
+                if (counted) {
+                    var ndo = $("#tcMenuCounter");
+                    ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+                    ndo.parent().show();
+                }
+
+                registerEvent("timeCounterEvent", function (e, data) {
+
+                    if (data.type == "start") {
+
+                        if (data.response.assignment) {
+
+                            //faccio partire il widget se c'Ã¨
+                            var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+                            if (ndoWidget) {
+                                ndoWidget.addClass("highlight");
+                                ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                                ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+                            }
+
+
+                            //faccio partire il counter sul menu
+                            var ndoMenu = $("#tcMenuCounter");
+                            ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+                            ndoMenu.parent().show();
+                        }
+
+                    } else if (data.type == "stop") {
+
+                        //fermo il widget
+                        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+                        if (ndoWidget) {
+                            ndoWidget.removeClass("highlight");
+                            ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+                            ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+                        }
+
+                        //faccio fermare il counter sul menu
+                        var ndoMenu = $("#tcMenuCounter");
+                        ndoMenu.stopTimeCounter();
+                        ndoMenu.parent().hide();
+                    }
+                })
+            })();
+
+            function twChatToggle() {
+                //console.debug(top.twChat.chatWindow.is(".closed"))
+
+                if (top.twChat.chatWindow.is(".closed")) {
+                    top.twChat.open();
+                } else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+                    top.twChat.chatWindow.addClass('showChats');
+                } else {
+                    top.twChat.close();
+                }
+            }
+
+
+            $(function () {
+                //lo stato del socket lo sa solo il client lato js -> twComm
+                if (!top.twComm || !top.twComm.isOpen)
+                    getTop().$("#twChatOpener").addClass("disabled");
+
+                /**
+                 * Manage chat opener state at start (chat could be open)
+                 */
+                if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+                    $("#twChatOpener").removeClass("open");
+                } else {
+                    $("#twChatOpener").addClass("open");
+                }
+
+            })
+        </script>
+
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainer" class="lreq10 lreqPage">
+            <form enctype="application/x-www-form-urlencoded" method="POST"
+                  action="/app/issue/issueOrganizer.html" name="issueMultiEditor" alertOnChange="true" id="issueMultiEditor"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="issueMultiEditorV_ID" name="V_ID" value="36182645" savedValue="">
+                <input type="hidden" id="issueMultiEditorCM" name="CM" value="FN" savedValue="">
+
+
+
+                <div class="mainColumn">
+                    <script>$("#ISSUES_MENU").addClass('selected');</script>
+
+
+                    <h1 class="filterTitle" defaultTitle="组织（看板）">
+                        组织（看板）: 待解决的问题
+                    </h1>
+
+
+
+                    <div class="filterBar withButtons clearfix">
+
+
+                        <div class="filterActiveElements"></div>
+
+                        <div class="filterInactiveElements">
+                            <div class="filterElement  ">
+                                <label for="domId_1797085329_txt">任务</label> &nbsp;&nbsp;&nbsp;&nbsp;<input type=hidden name="FLT_TASK_ISSUE_SHOW_CHILDREN" id="FLT_TASK_ISSUE_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_TASK_ISSUE_SHOW_CHILDREN" name="ck_FLT_TASK_ISSUE_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label>包含子任务的问题</label><br><input type=text name="FLT_ISSUE_TASK_txt" id="FLT_ISSUE_TASK_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_TASK" id="FLT_ISSUE_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+
+                            </div>
+
+
+
+                            <div class="filterElement filterDefault"><label for="ISSUE_DESCRIPTION" class=" ">描述</label><br><input type=TEXT name="FLT_ISSUE_DESCRIPTION" id="ISSUE_DESCRIPTION" size=30 class="formElements qbe" autocomplete='off' maxlength=255 value=""></div>
+                            <div class="filterElement  ">
+                                <label for="domId_66598384_txt">分工给</label> &nbsp;&nbsp;&nbsp;&nbsp; <input type=hidden name="FLT_ISSUE_UNASSIGNED" id="FLT_ISSUE_UNASSIGNED" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_ISSUE_UNASSIGNED" name="ck_FLT_ISSUE_UNASSIGNED" value="yes"
+                                                                                                                                                                                                                                                        onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');if ($(this).prop('checked')){removeSmartComboEntry('FLT_ISSUE_ASSIGNED_TO')}">
+                                <label>未分工</label><br>
+                                <script>
+                                    function letSubmitFLT_ISSUE_ASSIGNED_TO() {
+                                        $('#ck_FLT_ISSUE_UNASSIGNED').prop('checked', false); $('#FLT_ISSUE_UNASSIGNED').val('no');
+                                    }
+                                </script><input type=text name="FLT_ISSUE_ASSIGNED_TO_txt" id="FLT_ISSUE_ASSIGNED_TO_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value="Wing Dream"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_ASSIGNED_TO" id="FLT_ISSUE_ASSIGNED_TO" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="15089">
+
+                            </div>
+
+                            <div class="filterElement  ">
+                                <label for="domId_151041837_txt">分工给 公司/部门</label> &nbsp;&nbsp;&nbsp;&nbsp; <input type=hidden name="FLT_COMPANY_ISSUE_SHOW_CHILDREN" id="FLT_COMPANY_ISSUE_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_COMPANY_ISSUE_SHOW_CHILDREN" name="ck_FLT_COMPANY_ISSUE_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label>整支球队</label><br><input type=text name="FLT_ISSUE_ASSIGNED_COMPANY_txt" id="FLT_ISSUE_ASSIGNED_COMPANY_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,true );" onKeyDown="manageKeyEvent ($(this),event,false,true);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_ASSIGNED_COMPANY" id="FLT_ISSUE_ASSIGNED_COMPANY" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+
+                            </div>
+
+
+
+                            <div class="filterElement centered">
+                                <input type=hidden name="FLT_ISSUE_INHISTORY" id="FLT_ISSUE_INHISTORY" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_ISSUE_INHISTORY" name="ck_FLT_ISSUE_INHISTORY" value="yes" title="搜索联系人和记事的历史"
+                                                                                                                                                                                 onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label title="搜索联系人和记事的历史" for="ck_FLT_ISSUE_INHISTORY" title="搜索联系人和记事的历史">历史</label>
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_ASSIGNED_BY_txt" class=" ">分工创建者</label><br><input type=text name="FLT_ISSUE_ASSIGNED_BY_txt" id="FLT_ISSUE_ASSIGNED_BY_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="FLT_ISSUE_ASSIGNED_BY" id="FLT_ISSUE_ASSIGNED_BY" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                            </div>
+                            <div class="filterElement"><label for="ISSUE_ESTIMATED" class=" ">预估工期</label><br><input type=TEXT name="FLT_ISSUE_ESTIMATED" id="ISSUE_ESTIMATED" size=10 class="formElements qbe" autocomplete='off' maxlength=255 value=""></div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "BEHAVES_AS_OPEN_ALL", "color": "#00ff00", "value": "- 所有打开状态 -", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "BEHAVES_AS_CLOSED_ALL", "color": "#0000ff", "value": "- 所有关闭状态 -", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "13720", "color": "#3BBF67", "value": "open", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "13721", "color": "#6EBEF4", "value": "closed", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "13722", "color": "#763A96", "value": "aborted", "enabled": true, "textColor": "#FFFFFF", "index": 5 }, { "code": "", "color": "gray", "value": "- 选择 -", "enabled": true, "textColor": "#FFFFFF", "index": 6 }] };
+
+
+                                        _colorValueData["FLT_ISSUE_STATUS"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_196537450">问题状态</label><br> <div class="cvcComponent cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="FLT_ISSUE_STATUS" displayValue='true'>
+                                    <input type=hidden name="FLT_ISSUE_STATUS" id="FLT_ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="BEHAVES_AS_OPEN_ALL"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="- 所有打开状态 -" code="BEHAVES_AS_OPEN_ALL"
+                                                 style=" "><span class="teamworkIcon" style="color:#00ff00">&#169;</span><span class="cvcDescription">- 所有打开状态 -</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_STATUS_LAST_CHANGE" class=" ">状态最后变更</label><br><input type=text name="FLT_ISSUE_STATUS_LAST_CHANGE" id="FLT_ISSUE_STATUS_LAST_CHANGE" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_STATUS_LAST_CHANGEs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                                      onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_DATE_SIGNALLED" class=" ">被告知日期</label><br><input type=text name="FLT_ISSUE_DATE_SIGNALLED" id="FLT_ISSUE_DATE_SIGNALLED" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_DATE_SIGNALLEDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                         onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_DATE_CLOSE_BY" class=" ">截止日期</label><br><input type=text name="FLT_ISSUE_DATE_CLOSE_BY" id="FLT_ISSUE_DATE_CLOSE_BY" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_DATE_CLOSE_BYs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                     onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+                                <label for="FLT_ISSUE_LAST_MODIFIED" class=" ">最后编辑</label><br><input type=text name="FLT_ISSUE_LAST_MODIFIED" id="FLT_ISSUE_LAST_MODIFIED" size=8 class="formElements dateField qbe" autocomplete='off' maxlength=255 format="yyyy-M-d" value="" entryType="DATE" maxValue="3020-11-21" minValue="1020-10-31"><span title="日历" id="FLT_ISSUE_LAST_MODIFIEDs_inputDate" class="teamworkIcon openCalendar"
+                                                                                                                                                                                                                                                                                                                                                     onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:true,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:false});">m</span>
+
+                            </div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "", "color": "gray", "value": "- 选择 -", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "05_GRAVITY_BLOCK", "color": "#DB2727", "value": "中断", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "04_GRAVITY_CRITICAL", "color": "#8C6044", "value": "关键的", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "03_GRAVITY_HIGH", "color": "#F9791C", "value": "高", "enabled": true, "textColor": "#FFFFFF", "index": 4 }, { "code": "02_GRAVITY_MEDIUM", "color": "#F9C154", "value": "中", "enabled": true, "textColor": "#000000", "index": 5 }, { "code": "01_GRAVITY_LOW", "color": "#EEEEEE", "value": "低", "enabled": true, "textColor": "#000000", "index": 6 }] };
+
+
+                                        _colorValueData["ISSUEGRAVITYFILTER"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_621605502">级别</label><br> <div class="cvcComponent cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ISSUEGRAVITYFILTER" displayValue='true'>
+                                    <input type=hidden name="FLT_ISSUE_GRAVITY" id="FLT_ISSUE_GRAVITY" size=2 class="formElements" autocomplete='off' maxlength=255 value=""><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="- 选择 -" code=""
+                                                 style=" "><span class="teamworkIcon" style="color:gray">&#169;</span><span class="cvcDescription">- 选择 -</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement centered">
+                                <input type=hidden name="RECENTLY_USED" id="RECENTLY_USED" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_RECENTLY_USED" name="ck_RECENTLY_USED" value="yes"
+                                                                                                                                                                     onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                &nbsp;<label for="ck_RECENTLY_USED">最近浏览过的</label>&nbsp;
+                            </div>
+                            <div class="filterElement"><label for="FLT_ISSUE_EXTERNAL_REQUESTER" class=" ">外部请求者的电子邮件</label><br><input type=email name="FLT_ISSUE_EXTERNAL_REQUESTER" id="FLT_ISSUE_EXTERNAL_REQUESTER" size=20 class="formElements qbe" autocomplete='off' maxlength=255 value="" entryType="EMAIL"></div>
+
+                            <div class="filterElement">
+                                <label for="CUST_ID_txt" class=" ">顾客</label><br><input type=text name="CUST_ID_txt" id="CUST_ID_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="CUST_ID" id="CUST_ID" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                            </div>
+                            <div class="filterElement">
+                                <label for="PROJECTMANAGER_ID_txt" class=" ">Project manager</label><br><input type=text name="PROJECTMANAGER_ID_txt" id="PROJECTMANAGER_ID_txt" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="PROJECTMANAGER_ID" id="PROJECTMANAGER_ID" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                            </div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "46221", "color": "#ffffff", "value": "国家级项目", "enabled": true, "textColor": "#000000", "index": 1 }, { "code": "46283", "color": "#ffffff", "value": "区级项目", "enabled": true, "textColor": "#000000", "index": 2 }, { "code": "46222", "color": "#ffffff", "value": "省级项目", "enabled": true, "textColor": "#000000", "index": 3 }, { "code": "", "color": "gray", "value": "- 选择 -", "enabled": true, "textColor": "#FFFFFF", "index": 4 }] };
+
+
+                                        _colorValueData["TTMS"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_1711827756">任务类型</label><br> <div class="cvcComponent noBall cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="TTMS" displayValue='true'>
+                                    <input type=hidden name="ISSUE_TASK_TYPE" id="ISSUE_TASK_TYPE" size=2 class="formElements" autocomplete='off' maxlength=255 value=""><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="- 选择 -" code=""
+                                                 style=" "><span class="teamworkIcon" style="color:gray">&#169;</span><span class="cvcDescription">- 选择 -</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement">
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "STATUS_ACTIVE", "color": "#3BBF67", "value": "进行中", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "STATUS_WAITING", "color": "#F79136", "value": "等候", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "STATUS_SUSPENDED", "color": "#F9C154", "value": "暂停", "enabled": true, "textColor": "#000000", "index": 3 }, { "code": "STATUS_DONE", "color": "#6EBEF4", "value": "完成", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "STATUS_FAILED", "color": "#763A96", "value": "失败", "enabled": true, "textColor": "#FFFFFF", "index": 5 }, { "code": "STATUS_UNDEFINED", "color": "#dededf", "value": "未定义", "enabled": true, "textColor": "#000000", "index": 6 }, { "code": "", "color": "gray", "value": "全部", "enabled": true, "textColor": "#FFFFFF", "index": 7 }] };
+
+
+                                        _colorValueData["ISSUETASKSTATUSFILTER"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <label for="domId_665070297">任务状态</label><br> <div class="cvcComponent cvcMultiSelect cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="ISSUETASKSTATUSFILTER" displayValue='true'>
+                                    <input type=hidden name="FLT_ISSUE_TASK_STATUS" id="FLT_ISSUE_TASK_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="STATUS_ACTIVE"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="进行中" code="STATUS_ACTIVE"
+                                                 style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span><span class="cvcDescription">进行中</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="filterElement"><label for="ISSUE_ID" class=" ">Id (db)</label><br><input type=TEXT name="ISSUE_ID" id="ISSUE_ID" size=8 class="formElements qbe" autocomplete='off' maxlength=255 value=""></div>
+                            <div class="filterElement"><label for="FLT_ISSUE_TAGS" class=" ">标签</label><br><input type=text name="FLT_ISSUE_TAGS" id="FLT_ISSUE_TAGS" size=20 class="formElements tagBox" autocomplete='off' maxlength=255 autocomplete='off' taggableClass="com.twproject.task.Issue" maxResult="30" tagPropertyName="tags" areaId="5819" value=""></div>
+                            <div class="filterElement centered">
+                                <input type=hidden name="FLT_ISSUE_HAVING_WRKLG" id="FLT_ISSUE_HAVING_WRKLG" size=1 autocomplete='off' maxlength=255 data-checkfield value="no"><input type="checkbox" id="ck_FLT_ISSUE_HAVING_WRKLG" name="ck_FLT_ISSUE_HAVING_WRKLG" value="yes"
+                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                &nbsp;<label for="ck_FLT_ISSUE_HAVING_WRKLG">已有工作记录的问题</label>&nbsp;
+                            </div>
+
+
+
+
+
+                            <div class="filterElement ">
+                                <label for="FLT_AREA" class=" ">域</label><br><SELECT NAME="FLT_AREA" id="FLT_AREA" CLASS="formElements">
+                                    <option value="">- 选择 -</option>
+                                    <option value="5819">梦想飞扬</option>
+                                </SELECT>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+                        <div class="filterButtons">
+                            <div class="filterButtonsElement filterAdd">
+                                <span class="button" id="filterSelectorOpener" title="更多的过滤器" onclick="bjs_showMenuDiv('filterSelectorBox', 'filterSelectorOpener');"><span class="teamworkIcon">f</span></span>
+                            </div>
+                            <div class="filterButtonsElement filterSearch">
+                                <button type="button" class="button noprint    " id="domId_1253045729" style="" onClick="stopBubble(event);obj('issueMultiEditorCM').value='FN';try {obj('issueMultiEditor').submit();} catch(e){};">搜索</button>
+
+                            </div>
+
+                            <div class="filterActions">
+                                <div class="filterButtonsElement filterSave">
+                                    <span onclick="lsfOpenEditor($(this))" lsfId="issueLSF" title="保存这个搜索" class="button textual">保存这个搜索</span>
+                                </div>
+                                <div class="filterButtonsElement filterHelp">
+                                    <button type="button" class="button noprint textual   " id="domId_1958429246" style="" title="如何使用示例查询（QBE）组成强大的搜索.<br>您可以保存您的搜索条件以便将来使用." onclick="openBlackPopup('/commons/help/qbe.jsp?V_ID=1688255630','800px','700px');return false; ">Help</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <script src="/commons/js/filterEngine.js"></script>
+
+
+                    <div class="optionsBar clearfix">
+                        <div class="filterElement">
+                            <label>如何排序的问题：</label><br>
+                            <input type="radio" name="orgType" id="d838479953" value="TASK" onClick="changeCriteria($(this));">
+
+                            <label for="d838479953" class=" ">任务</label><input type="radio" name="orgType" id="d544878457" value="ASSIGNEE" onClick="changeCriteria($(this));">
+
+                            <label for="d544878457" class=" ">责任人</label><input type="radio" name="orgType" id="d901955991" value="STATUS" checked onClick="changeCriteria($(this));">
+
+                            <label for="d901955991" class=" ">问题状态</label><input type="radio" name="orgType" id="d87276564" value="GRAVITY" onClick="changeCriteria($(this));">
+
+                            <label for="d87276564" class=" ">级别</label>
+                        </div>
+                        <div id="adders">
+                            <div id="TASK_ADDER" class="adder filterElement">
+                                <script>
+                                    function letSubmitTASK_ADD() {
+                                        wantNewElem($('#TASK_ADD').val(), $('#TASK_ADD_txt').val(), '', $('#TASK_ADD_txt').val())
+                                    }
+                                </script><label for="TASK_ADD_txt" class=" ">+ 组织每个任务的一个问题: </label><br><input type=text name="TASK_ADD_txt" id="TASK_ADD_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="TASK_ADD" id="TASK_ADD" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                            </div>
+
+                            <div id="STATUS_ADDER" class="adder filterElement">
+                                <label>+ 组织的每一个问题状态: </label><br>
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "13720", "color": "#3BBF67", "value": "open", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "13721", "color": "#6EBEF4", "value": "closed", "enabled": true, "textColor": "#000000", "index": 2 }, { "code": "13722", "color": "#763A96", "value": "aborted", "enabled": true, "textColor": "#FFFFFF", "index": 3 }] };
+
+
+                                        var callback = function (hidden, data) {
+                                            wantNewElem(data.code, data.value, data.color, data.index)
+                                        };
+                                        cvd.callback = callback;
+
+                                        _colorValueData["STATUS"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="STATUS" displayValue='true'>
+                                    <input type=hidden name="STATUS_ADD" id="STATUS_ADD" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="open" code="13720"
+                                                 style=" color:#FFFFFF;background-color:#3BBF67"><span class="cvcDescription">open</span></div>
+                                        </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div id="ASSIGNEE_ADDER" class="adder filterElement">
+                                <script>
+                                    function letSubmitASS_ADD() {
+                                        wantNewElem($('#ASS_ADD').val(), $('#ASS_ADD_txt').val(), '', $('#ASS_ADD_txt').val())
+                                    }
+                                </script><label for="ASS_ADD_txt" class=" ">+ 组织每个人的问题: </label><br><input type=text name="ASS_ADD_txt" id="ASS_ADD_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASS_ADD" id="ASS_ADD" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                            </div>
+
+                            <div id="GRAVITY_ADDER" class="adder filterElement">
+                                <label>+ 每次组织重要的问题: </label><br>
+
+                                <script type="text/javascript">
+
+                                    (function () {
+                                        var cvd = { values: [{ "code": "05_GRAVITY_BLOCK", "color": "#DB2727", "value": "中断", "enabled": true, "textColor": "#FFFFFF", "index": 1 }, { "code": "04_GRAVITY_CRITICAL", "color": "#8C6044", "value": "关键的", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "03_GRAVITY_HIGH", "color": "#F9791C", "value": "高", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "02_GRAVITY_MEDIUM", "color": "#F9C154", "value": "中", "enabled": true, "textColor": "#000000", "index": 4 }, { "code": "01_GRAVITY_LOW", "color": "#EEEEEE", "value": "低", "enabled": true, "textColor": "#000000", "index": 5 }] };
+
+
+                                        var callback = function (hidden, data) {
+                                            wantNewElem(data.code, data.value, data.color, data.index)
+                                        };
+                                        cvd.callback = callback;
+
+                                        _colorValueData["GRAVITY"] = cvd;
+
+                                    })();
+                                </script>
+
+
+
+                                <div class="cvcComponent cvcDisplayValue " style="cursor:pointer;" cvcType="GRAVITY" displayValue='true'>
+                                    <input type=hidden name="GRAVITY_ADD" id="GRAVITY_ADD" size=2 class="formElements" autocomplete='off' maxlength=255 value="05_GRAVITY_BLOCK"><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                                        <div class="cvcStatuses ellipsis">
+                                            <div class="cvcSelBox " title="中断" code="05_GRAVITY_BLOCK"
+                                                 style=" color:#FFFFFF;background-color:#DB2727"><span class="cvcDescription">中断</span></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="insertStatusNotes" class="notesEditor">
+                        <label for="HIS_NOTES" class=" ">新增评论</label><br><textarea name="HIS_NOTES" id="HIS_NOTES" COLS="50" ROWS="5" class="formElements" style='height:125px;width:100%' oldValue='1' maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);"></textarea><button type="button" class="button noprint    button noprint first small" id="domId_1097534797" style="" onclick="saveStatusNotes($(this));return false; ">保存</button>
+
+
+                        <span class="teamworkIcon issueNotesClose" title="hide" onclick="$(this).closest('.notesEditor').fadeOut();" style="cursor: pointer">x</span>
+
+                    </div>
+
+
+
+                    <div id="insertComment" style="display:none" class="notesEditor">
+                        <textarea name="HIS_COMMENT" id="HIS_COMMENT" COLS="50" ROWS="2" class="formElements autosize" placeHolder='新增评论' oldValue='1' maxHeight=400 minHeight=125 lineHeight=15></textarea><div style="margin-top: 10px">
+                            <button type="button" class="button noprint    first" id="domId_1304680000" style="" onclick="saveComment($(this));return false; ">保存</button>
+
+                        </div>
+                    </div>
+
+
+                    <div id="templates" style="display:none;background-color:#e5e5ff; width:800px; padding:3px;">
+                        <div class="__template__" type="ISSUE">
+                            <!--
+                            <div id="##id##" issueId="##id##" task="##taskId##" assignee="##assigneeId##" gravity="##gravityId##" status="##statusId##" class="issue">
+                                <div class="title dragHandler"></div>
+                                <div class="rightCol">
+                                    <div class="status"><span style="color:##statusColor##;" class="teamworkIcon">&#xa9;</span>&nbsp;##statusName##&nbsp;&nbsp;</div>
+                                    <span class="code">I###icodid###</span>
+                                    <div class="body">##description##</div>
+
+                                    <span class="task" title="##taskName##">T###tcodid###</span>
+                                    <span class="assignee" title="##assigneeName##">R###rcodid###</span>
+                                </div>
+
+                            </div>-->
+                        </div>
+
+                        <div class="__template__" type="ISSUE_ZOOM">
+                            <!--
+                            <div id="ZOOM_(#=id#)" issueId="(#=id#)" task="(#=taskId#)" assignee="(#=assigneeId#)" gravity="(#=gravityId#)" status="(#=statusId#)" class="issueZoom">
+                                <div ><h2>I#(#=icodid#)#</h2></div>
+                                <div >(#!description#)</div>
+                                <hr>
+
+                                <div  class="pathSmall">(#!taskPath#)</div>
+
+
+                              <div>T#(#=tcodid#)# - (#!taskName#)</div>
+
+                                <div class="assignee" >R#(#=obj.rcodid#)# - (#=assigneeName#)</div>
+                                <div class="gravity" style="background-color:(#=gravityColor#)"><span>(#=gravityName#)</span></div>
+                                <div class="status" style="background-color:(#=statusColor#);"><span>(#=statusName#)</span></div>
+
+                            </div>-->
+                        </div>
+                    </div>
+
+
+                    <div id="issuesBarrel" style="display:none; border:3px red dashed; padding:10px; margin:10px; height:50px; overflow:auto;"></div>
+                    <div class="hScrollingBox">
+                        <table id="board" class="table board fixHead" width="100%" align="center" border="0" cellspacing="0" organizeBy="STATUS"></table>
+                    </div>
+
+                    <div id="issueZoom" style="display:none;"></div>
+
+
+                    <style type="text/css">
+
+                        .colScrollDiv { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; min-height: calc(100vh - 300px); }
+
+                        #board { height: calc(100vh - 280px) !important; }
+
+                        .hScrollingBox { width: 100%; overflow-x: auto; overflow-y: scroll; height: calc(100vh - 250px); }
+
+                        [gravity="05_GRAVITY_BLOCK"] .title,
+                        [gravity="05_GRAVITY_BLOCK"] .title a { background-color: #DB2727; color: #FFFFFF }
+
+                        [gravity="04_GRAVITY_CRITICAL"] .title,
+                        [gravity="04_GRAVITY_CRITICAL"] .title a { background-color: #8C6044; color: #FFFFFF }
+
+                        [gravity="03_GRAVITY_HIGH"] .title,
+                        [gravity="03_GRAVITY_HIGH"] .title a { background-color: #F9791C; color: #FFFFFF }
+
+                        [gravity="02_GRAVITY_MEDIUM"] .title,
+                        [gravity="02_GRAVITY_MEDIUM"] .title a { background-color: #F9C154; color: #000000 }
+
+                        [gravity="01_GRAVITY_LOW"] .title,
+                        [gravity="01_GRAVITY_LOW"] .title a { background-color: #EEEEEE; color: #000000 }
+                    </style>
+
+                </div>
+
+
+
+
+
+                <div class="rightColumn noprint">
+
+
+                    <div class="tools">
+                        <div class="toolsElement">
+                            <button type="button" class="button noprint    first" id="domId_1948724130" style="" onclick="addIssue();return false; "><span class='teamworkIcon withLabel'>P</span>创建问题</button>
+
+                        </div><div class="toolsElement">
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1635128303', 'domId_933352513');  ">
+                                <button type="button" class="button noprint  icon  " id="domId_933352513" style="" title="导入/导出的问题" onclick=";return false; "><span class='teamworkIcon '>I</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_1635128303" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   lreq20 lreqLabel" id="domId_253157862" style="" onClick="stopBubble(event);saveFormValues('issueMultiEditor');  obj('issueMultiEditorCM').value='EXPORT';obj('issueMultiEditorBUTTON_ID').value='domId_253157862';obj('issueMultiEditor').action='/commons/tools/exportXLS.jsp'; try {obj('issueMultiEditor').submit();} catch(e){};restoreFormValues('issueMultiEditor');  ">导出到Excel</button>
+
+                                </div>
+                            </div>
+                        </div><div class="toolsElement">
+                            <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1726057954', 'domId_1895617657');  ">
+                                <button type="button" class="button noprint  icon  " id="domId_1895617657" style="" title="打印" onclick=";return false; "><span class='teamworkIcon '>p</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_1726057954" class="divomo "
+                                 style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual   " id="domId_1646929202" style="" onclick="submitInBlack('issueMultiEditor','/applications/teamwork/issue/issueListPrint.jsp');return false; ">打印</button>
+
+                                    <hr><button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_1022371831" style="" onClick="stopBubble(event);saveFormValues('issueMultiEditor');  obj('issueMultiEditorCM').value='FN';obj('issueMultiEditorreportName').value='issueListCompact';obj('issueMultiEditor').target='_blank'; obj('issueMultiEditor').action='/applications/teamwork/issue/issueIReportHelper.jsp'; try {obj('issueMultiEditor').submit();} catch(e){};restoreFormValues('issueMultiEditor');  ">issue  list  compact</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="rightColumnInner">
+
+
+
+                        <div class="noprint filters">
+                            <h2>我的过滤器...</h2>
+                            <div class="customSavedFilters" formId="issueMultiEditor" category="ISSUEFILTER" id="issueLSF">
+                                <input type="hidden" name="FLNMSEL" id="FLNMSEL">
+                                <input type="hidden" name="FLCAT" id="FLCAT" value="ISSUEFILTER">
+                                <input type="hidden" name="FLNM" id="FLNM" value="">
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("#issueMultiEditor").append($("#issueLSF input")); //sposta gli input dentro il form
+                                    var bts = [];
+                                    var div = $("#issueLSF");
+                                    for (var i = 0; i < bts.length; i++) {
+                                        div.append(lsfCreateButton(bts[i]));
+                                    }
+                                });
+                            </script>
+
+
+
+                            <div class="separator"></div><a class="button  textual   " id="domId_349971973" style="" href="/app/issue/issueOrganizer.html?V_ID=516512544&CM=FN&FLNM=PF_MY_TODAY_OPEN_ISSUES">我今天要做的事情</a>
+
+                            <a class="button  textual  focused " id="domId_897425834" style="" href="/app/issue/issueOrganizer.html?V_ID=957168690&CM=FN&FLNM=PF_MY_OPEN_ISSUES">待解决的问题</a>
+
+                            <a class="button  textual   " id="domId_334173153" style="" href="/app/issue/issueOrganizer.html?V_ID=864250238&CM=FN&FLNM=PF_MY_EXPIRED_ISSUES">我的问题过期</a>
+
+                            <a class="button  textual   " id="domId_2021845405" style="" href="/app/issue/issueOrganizer.html?V_ID=1162055261&CM=FN&FLNM=PF_MY_OPEN_SEVERE_ISSUES">我已发现的严重问题</a>
+
+                            <a class="button  textual   " id="domId_1446485809" style="" href="/app/issue/issueOrganizer.html?V_ID=1924872120&CM=FN&FLNM=PF_MY_INSERTED_ISSUES">我感兴趣的问题</a>
+
+                            <a class="button  textual   " id="domId_1632062432" style="" href="/app/issue/issueOrganizer.html?V_ID=895149914&CM=FN&FLNM=PF_ISSUES_OPENED_RECENTLY">最近出现的问题</a>
+
+                            <a class="button  textual   " id="domId_1661657363" style="" href="/app/issue/issueOrganizer.html?V_ID=388321489&CM=FN&FLNM=PF_ISSUES_CLOSED_RECENTLY">最近关闭的问题</a>
+
+                            <a class="button  textual   " id="domId_316462390" style="" href="/app/issue/issueOrganizer.html?V_ID=1741824096&CM=FN&FLNM=PF_LONG_STANDING_ISSUES">长期问题</a>
+
+                            <a class="button  textual   " id="domId_340505568" style="" href="/app/issue/issueOrganizer.html?V_ID=569410629&CM=FN&FLNM=PF_OPEN_SEVERE_ISSUES">开放的严重问题</a>
+
+                            <a class="button  textual   " id="domId_897310571" style="" href="/app/issue/issueOrganizer.html?V_ID=1689686370&CM=FN&FLNM=PF_RECENTLY_USED">最近浏览过的</a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <input type="hidden" id="issueMultiEditorBUTTON_ID" name="BUTTON_ID" value="" savedValue="">
+                <input type="hidden" id="issueMultiEditoroutType" name="outType" value="" savedValue="">
+                <input type="hidden" id="issueMultiEditorreportName" name="reportName" value="" savedValue="">
+
+            </form>
+
+
+
+
+            <style>
+                /* * dragtable * * @Version 1.0.3 * * default css * */
+                .dragtable-drag-handle { cursor: move; }
+                .dragtable-drag-wrapper { position: absolute; z-index: 1000; }
+                    .dragtable-drag-wrapper .dragtable-drag-col { opacity: 0.7; filter: alpha(opacity=70); cursor: move; }
+                .dragtable-col-placeholder { border-left: 1px dotted black; border-right: 1px dotted black; color: #EFEFEF; background: #EFEFEF !important; visibility: visible !important; }
+                table .dragtable-col-placeholder:first { border-top: 1px dotted black; }
+                .dragtable-col-placeholder * { opacity: 0.0; visibility: hidden; }
+            </style>
+            <script>
+                /*
+             dragtable - jquery ui widget to re-order table columns
+             version 3.0
+
+             Copyright (c) 2010, Jesse Baird <jebaird@gmail.com>
+             12/2/2010
+             https://github.com/jebaird/dragtable
+
+             Dual licensed under the MIT (MIT-LICENSE.txt)
+             and GPL (GPL-LICENSE.txt) licenses.
+
+             Forked from https://github.com/akottr/dragtable - Andres Koetter akottr@gmail.com
+
+             quick down and and dirty on how this works
+             ###########################################
+             so when a column is selected we grab all of the cells in that row and clone append them to a semi copy of the parent table and the
+             "real" cells get a place holder class witch is removed when the dragstop event is triggered
+
+             make it easy to have a button swap columns
+
+             Events - in order of trigger
+             dragtablestart - when the user mouses down on handle or th, use in favor of display helper
+             dragtablebeforeChange - called when a col will be moved
+             dragtablechange - called after the col has been moved
+             dragtablestop - the user mouses up and stops dragging and the drag display is removed from the dom
+
+
+             IE notes
+              ie8 in quirks mode will only drag once after that the events are lost
+
+*/
+                (function (e) {
+                    e.widget("jb.dragtable", {
+                        eventWidgetPrefix: "dragtable", options: { dataHeader: "data-header", handle: "dragtable-drag-handle", items: "th:not( :has( .dragtable-drag-handle ) ), .dragtable-drag-handle", boundary: "dragtable-drag-boundary", placeholder: "dragtable-col-placeholder", appendTarget: ":parent", scroll: !1 }, tableElemIndex: { head: "0", body: "1", foot: "2" }, tbodyRegex: /(tbody|TBODY)/, theadRegex: /(thead|THEAD)/, tfootRegex: /(tfoot|TFOOT)/, _create: function () {
+                        this.endIndex = this.startIndex = null; this.currentColumnCollection =
+                            []; this.currentColumnCollectionOffset = {}; this.dragDisplay = e([]); var a = this, b = a.options, c = a.element; b.appendTarget = ":parent" === b.appendTarget ? this.element.parent() : e(b.appendTarget); c.delegate(b.items, "mousedown." + a.widgetEventPrefix, function (c) {
+                                var d = e(this), k = a.element.position().top; d.hasClass(b.handle) && (d = d.closest("th"), c.currentTarget = d.closest("th")[0]); a.getCol(d.index()).attr("tabindex", -1).focus().disableSelection().css({ top: k, left: a.currentColumnCollectionOffset.left + b.appendTarget[0].scrollLeft }).appendTo(b.appendTarget);
+                                a._mousemoveHandler(c)
+                            })
+                        }, _mousemoveHandler: function (a) {
+                            this._start(a); var b = this, c = b.options, d = a.pageX, f = b.dragDisplay.outerWidth(), k = f / 2; c.appendTarget.offsetParent(); var l = c.scroll, g = b.element[0].getElementsByTagName("thead")[0].getElementsByTagName("tr")[0].getElementsByTagName("th").length - 1; e(document).bind("mousemove." + b.widgetEventPrefix, function (a) {
+                                var e = b._setCurrentColumnCollectionOffset(), m = a.pageX - d, h = c.appendTarget[0], n = parseInt(b.dragDisplay[0].style.left) + m; b.dragDisplay.css("left",
+                                    n); a.pageX < d ? (e = e.left - k, n < h.clientWidth - f && 1 == l && (m = h.scrollLeft + m, "BODY" == h.tagName ? window.scroll(window.scrollX + m, window.scrollY) : h.scrollLeft = m), n < e && b._swapCol(b.startIndex - 1)) : (e = e.left + k, n > h.clientWidth - f && 1 == l && (m = h.scrollLeft + m, "BODY" == h.tagName ? window.scroll(window.scrollX + m, window.scrollY) : h.scrollLeft = m), n > e && g != b.startIndex && b._swapCol(b.startIndex + 1)); d = a.pageX
+                            }).one("mouseup." + b.widgetEventPrefix, function (a) { b._stop(a) })
+                        }, _start: function (a) {
+                            e(document).disableSelection().css("cursor",
+                                "move"); this.dragDisplay.width(this.currentColumnCollection[0].clientWidth); return this._eventHelper("start", a)
+                        }, _stop: function (a) { e(document).unbind("mousemove." + this.widgetEventPrefix).enableSelection().css("cursor", ""); this.dropCol().dragDisplay.remove(); this._eventHelper("stop", a, {}) }, _setOption: function (a, b) { e.Widget.prototype._setOption.apply(this, arguments) }, _getCells: function (a, b) {
+                            var c = this.tableElemIndex; var d = { semantic: { 0: [], 1: [], 2: [] }, array: [] }, e = this.theadRegex, k = this.tbodyRegex, l = d.semantic[c.head],
+                                g = d.semantic[c.body], n = d.semantic[c.foot]; if (-1 >= b) return d; for (var p = 0, m = a.rows.length; p < m; p++)if (c = a.rows[p].cells[b], void 0 != c) { var h = c.parentNode.parentNode.nodeName; d.array.push(c); k.test(h) ? g.push(c) : e.test(h) ? l.push(c) : this.tfootRegex.test(h) && n.push(c) } return d
+                        }, _getElementAttributes: function (a) { var b = []; a = a.attributes; for (var c = 0, d = a.length; c < d; c++)b.push(a[c].nodeName + '="' + a[c].value + '"'); return b.join(" ") }, _swapCells: function (a, b) { a.parentNode.insertBefore(b, a) }, _eventHelper: function (a,
+                            b, c) { return this._trigger(a, b, e.extend({ column: this.currentColumnCollection, order: this.order(), startIndex: this.startIndex, endIndex: this.endIndex, dragDisplay: this.dragDisplay, columnOffset: this.currentColumnCollectionOffset }, c)) }, getCol: function (a) {
+                                var b, c, d, f, k, l = this.element, g = this, n = " " + this.options.placeholder; g.dragDisplay = e("<table " + g._getElementAttributes(l[0]) + "></table>").addClass("dragtable-drag-col"); g.startIndex = g.endIndex = a; a = g._getCells(l[0], a); g.currentColumnCollection = a.array; e.each(a.semantic,
+                                    function (a, e) { if (0 != e.length) for (b = "0" == a ? document.createElement("thead") : 1 == a ? document.createElement("tbody") : document.createElement("tfoot"), g.dragDisplay[0].appendChild(b), f = 0, k = e.length; f < k; f++)c = e[f].cloneNode(!0), e[f].className += n, d = document.createElement("tr"), d.appendChild(c), b.appendChild(d) }); this._setCurrentColumnCollectionOffset(); g.dragDisplay = e('<div class="dragtable-drag-wrapper"></div>').append(g.dragDisplay); return g.dragDisplay
+                            }, _setCurrentColumnCollectionOffset: function () {
+                                return this.currentColumnCollectionOffset =
+                                    e(this.currentColumnCollection[0]).position()
+                            }, _swapCol: function (a) { if (a == this.startIndex) return !1; var b = this.startIndex; this.endIndex = a; var c = this.element.find("th").eq(a); if (1 == c.hasClass(this.options.boundary) || 1 == c.find("." + this.options.handle).hasClass(this.options.boundary) || !1 === this._eventHelper("beforeChange", {})) return !1; if (b < a) for (; b < a; b++) { c = this._getCells(this.element[0], b + 1); for (var d = 0, e = c.array.length; d < e; d++)this._swapCells(this.currentColumnCollection[d], c.array[d]) } else for (; b > a; b--)for (c = this._getCells(this.element[0], b - 1), d = 0, e = c.array.length; d < e; d++)this._swapCells(c.array[d], this.currentColumnCollection[d]); this._eventHelper("change", {}); this.startIndex = this.endIndex }, dropCol: function () { for (var a = new RegExp("(?:^|\\s)" + this.options.placeholder + "(?!\\S)", "g"), b = 0, c = this.currentColumnCollection.length; b < c; b++) { var d = this.currentColumnCollection[b]; d.className = d.className.replace(a, "") } return this }, order: function (a) {
+                                var b = this.options, c = this.element.find("thead tr:first").children("th");
+                                if (void 0 == a) { var d = []; c.each(function () { var a = this.getAttribute(b.dataHeader); null == a && (a = e(this).text()); d.push(a) }); return d } if (a.length != c.length) return this; for (var f = 0, k = a.length; f < k; f++) { var l = c.filter("[" + b.dataHeader + "=" + a[f] + "]").index(); -1 != l && (this.startIndex = l, this.currentColumnCollection = this._getCells(this.element[0], l).array, this._swapCol(f)) } return this
+                            }, destroy: function () { this.element.undelegate(this.options.items, "mousedown." + this.widgetEventPrefix); e(document).unbind("." + this.widgetEventPrefix) }
+                    })
+                })(jQuery);
+            </script>
+            <script>
+
+                var issues = { "14545": { "id": "14545", "lastModifier": "Dream Wing", "lastModified": 1605248511000, "creator": "Dream Wing", "creationDate": 1605248511000, "areaId": 5819, "area": "梦想飞扬", "description": "无法登录了，急", "estimatedDuration": 7200000, "worklogDone": 0, "tags": "登录", "icodid": "14545", "signalledOn": 1605225600000, "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "53596", "taskName": "第二个项目", "taskCode": "T53596", "tcodid": "T53596", "taskPath": "", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28253", "shouldCloseBy": 1605225600000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, "14546": { "id": "14546", "lastModifier": "Dream Wing", "lastModified": 1605248540000, "creator": "Dream Wing", "creationDate": 1605248540000, "areaId": 5819, "area": "梦想飞扬", "description": "首页也是有点错乱", "estimatedDuration": 3600000, "worklogDone": 0, "tags": "", "icodid": "14546", "signalledOn": 1605225600000, "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "53683", "taskName": "第二个子任务", "taskCode": "T53595.02", "tcodid": "T53595.02", "taskPath": "第一个项目", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28310", "shouldCloseBy": 1604880000000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, "14479": { "id": "14479", "lastModifier": "Dream Wing", "lastModified": 1605077682000, "creator": "Dream Wing", "creationDate": 1604915613000, "areaId": 5819, "area": "梦想飞扬", "description": "第三个问题", "estimatedDuration": 7200000, "worklogDone": 10800000, "tags": "", "icodid": "14479", "signalledOn": 1604880000000, "orderByTask": 0, "orderByRes": 2, "commentSize": 0, "taskId": "53597", "taskName": "第一个子任务", "taskCode": "T53596.01", "tcodid": "T53596.01", "taskPath": "第二个项目", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28254", "shouldCloseBy": 1604880000000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "02_GRAVITY_MEDIUM", "gravityName": "中", "gravityColor": "#F9C154", "gravityOrder": 4, "documents": [] }, "14547": { "id": "14547", "lastModifier": "Dream Wing", "lastModified": 1605248568000, "creator": "Dream Wing", "creationDate": 1605248568000, "areaId": 5819, "area": "梦想飞扬", "description": "字体调整", "estimatedDuration": 0, "worklogDone": 0, "tags": "", "icodid": "14547", "signalledOn": 1605225600000, "orderByTask": 0, "orderByRes": 0, "commentSize": 0, "taskId": "53597", "taskName": "第一个子任务", "taskCode": "T53596.01", "tcodid": "T53596.01", "taskPath": "第二个项目", "assigneeId": "15089", "assigneeName": "Dream Wing", "rcodid": "15089", "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assigneeConnectionStatus": "active", "assignedById": "15089", "assignedByName": "Dream Wing", "assigendByCodid": "15089", "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "assignedByConnectionStatus": "active", "assignmentId": "28254", "shouldCloseBy": 1604966400000, "statusId": 13720, "statusName": "open", "statusColor": "#3BBF67", "statusOrder": 1, "isOpen": true, "gravityId": "01_GRAVITY_LOW", "gravityName": "低", "gravityColor": "#EEEEEE", "gravityOrder": 99, "documents": [] } };
+                var columnsByHand = new Object();
+
+                var sortByRes = true;
+
+                $(function () {
+                    $("#ISSUES_MENU").addClass('selected');
+
+                    $(window).resize(function () {
+                        $(".hScrollingBox").width($(window).width() - 25)
+                    }).resize();
+
+                    //load templates and remove container
+                    $("#templates").loadTemplates().remove();
+
+                    var barrel = $("#issuesBarrel");
+                    $.each(issues, function (issueId, issue) {
+                        issue.dom = $.JST.createFromTemplate(issue, "ISSUE").appendTo(barrel).activateTeamworkLinks(true).emoticonize()
+                    });
+
+                    $("div.issue").click(function () {
+                        zoomIssue($(this));
+                    });
+
+                    changeCriteria($("[name=orgType][value=STATUS]"));
+
+                    //issue update events from black popup editor
+                    registerEvent("issueEvent", function (e, data) {
+                        //console.debug("issueEvent",data)
+                        if (data.type == "delete") {
+                            issues[data.response.deletedId].dom.fadeOut(1000, function () {
+                                delete issues[data.response.deletedId];
+                                $(this).remove();
+                            });
+                        } else if (data.type == "save" && data.response.issue) {
+                            //remove the boxino
+                            var issue = data.response.issue;
+                            $("#" + issue.id).remove();
+                            //re-create the box
+                            issue.dom = $.JST.createFromTemplate(issue, "ISSUE").appendTo($("#issuesBarrel")).draggable({ revert: 'invalid', scroll: true }).activateTeamworkLinks(true).emoticonize();
+                            //update the issue in memory
+                            issues[issue.id] = issue;
+                            //re-arrange the issue
+                            spreadIssues();
+                        }
+                    });
+                });
+
+                function changeCriteria(el) {
+                    $("#board").attr("organizeBy", el.val());
+                    $("#adders .adder").hide();
+                    $("#" + el.val() + "_ADDER").show();
+                    spreadIssues();
+                }
+
+
+                function spreadIssues() {
+                    var board = $("#board");
+                    var organizeBy = board.attr("organizeBy");
+                    if (!organizeBy)
+                        organizeBy = "STATUS";
+
+                    var orderedIssues = [];
+                    $.each(issues, function (issueId, issue) {
+                        //first move all issues from board to barrel
+                        issue.dom.appendTo("#issuesBarrel");
+                        orderedIssues.push(issue);
+                    });
+
+                    //sort issues
+                    orderedIssues.sort(function (a, b) {
+                        var ret = a.gravityOrder - b.gravityOrder;
+                        if (ret == 0) {
+                            ret = sortByRes ? a.orderByRes - b.orderByRes : a.orderByTask - b.orderByTask;
+                        }
+                        return ret;
+                    });
+
+                    //remove all columns from board
+                    board.find("tr, thead").remove();
+
+                    // create an object for columns
+                    var cols = new Object();
+
+                    //add columns to table
+                    var trheader = $("<thead/>");
+                    var trh = $("<tr>").prop("id", "trHead").height(20);
+                    trheader.append(trh);
+                    var tr = $("<tr>").prop("id", "trBody");
+
+                    var prop = organizeBy.toLowerCase();
+
+                    //and now loop for every issue and move it
+                    $.each(orderedIssues, function (i, issue) {
+                        //find the column
+                        var col = cols[issue[prop + "Id"]];
+                        if (!col) {
+                            // data for building the column
+                            var value = { id: issue[prop + "Id"], name: issue[prop + "Name"], color: issue[prop + "Color"], order: issue[prop + "Order"] };
+                            col = appendColumn(trh, tr, value, organizeBy);
+                            cols[value.id] = col;
+                        }
+                        col.find(".colScrollDiv:first").append(issue.dom);
+                    });
+
+                    // then add byHand columns
+                    var addColsByType = columnsByHand[organizeBy];
+                    if (addColsByType) {
+                        $.each(addColsByType, function (orgBy, colValue) {
+                            //add if not already there
+                            if (!cols[colValue.id])
+                                appendColumn(trh, tr, colValue, organizeBy);
+                        });
+                    }
+
+                    //append rows
+                    board.append(trheader);
+                    board.append(tr);
+
+                    /*
+                 $(".colScrollDiv").each(function(){
+                 setCustomScroll("#" + this.id)
+                 })
+                 */
+
+                }
+
+                function appendColumn(trh, tr, value, organizeBy) {
+                    var th = $("<th>").html(value.name);
+                    th.css("border", "1px solid #CCC");
+                    if (value.color) {
+                        th.css("border-top", "10px solid " + value.color);
+                    } else {
+                        th.css("border-top", "10px solid #EEEEEE");
+                    }
+                    th.attr("order", value.order);
+
+
+                    //append the column in the right position
+                    var appended = false;
+                    trh.children().each(function () {
+                        if ($(this).attr("order") > value.order) {
+                            appended = true;
+                            $(this).before(th);
+                            return false;
+                        }
+                    });
+                    if (!appended)
+                        trh.append(th);
+
+                    var td = $("<td>").attr("colId", value.id).addClass("col").html("").attr("order", value.order ? value.order : 0);
+                    var div = $("<div>").addClass("colScrollDiv sortableCol").attr("id", "colScrollDiv_" + new Date().getTime());
+                    td.append(div);
+                    //td.sortable ({
+                    div.sortable({
+                        connectWith: ".sortableCol",
+                        stop: function (ev, ui) {
+                            updateIssue(ui.item);
+                        },
+                        over: function (event, ui) {
+                            if (ui.sender) {
+                                widget = ui.sender.data("ui-sortable");
+                                widget.scrollParent = $(this);
+                                widget.overflowOffset = $(this).offset();
+                                $(".sortableCol").height($(".col").height());
+                            }
+                        }
+
+                    }).disableSelection();
+
+                    td.css("border-left", "1px solid #CCC");
+
+                    //append the column in the right position
+                    var appended = false;
+                    tr.children().each(function () {
+                        if ($(this).attr("order") > value.order) {
+                            appended = true;
+                            $(this).before(td);
+                            return false;
+                        }
+                    });
+
+                    if (!appended)
+                        tr.append(td);
+
+                    $('table#board').dragtable(
+                        {
+                            placeholder: 'dragtable-col-placeholder',
+                            scroll: true
+                        }
+                    );
+
+                    return td;
+                }
+
+
+                function updateIssue(issue) {
+                    // console.debug("dropped issue:" + issue.prop("id") + " on col:" + column.attr("colId"));
+                    var column = issue.closest("td");
+                    var board = $("#board");
+                    var organizeBy = board.attr("organizeBy");
+
+                    if (false) return;
+
+                    //update the issue value on dom
+                    issue.attr(organizeBy, column.attr("colId"));
+
+                    showSavingMessage();
+
+
+                    // dato che se si ordina la nuova gravitÃ  Ã¨ data dalle issue vicine si calcola la nuova gravitÃ 
+                    //compute new gravity
+                    var prevIssue = issue.prev();
+                    var nextIssue = issue.next();
+                    var oldG = issue.attr("gravity");
+                    var newG = oldG;
+
+                    var prevG = prevIssue.attr("gravity");
+                    var nextG = nextIssue.attr("gravity");
+
+                    //move to bottom
+                    if (nextG == undefined) {
+                        newG = prevG > oldG ? oldG : prevG;
+
+                        //move to top
+                    } else if (prevG == undefined) {
+                        newG = nextG < oldG ? oldG : nextG;
+
+                        //move in the middle
+                    } else {
+                        //not compatible place
+                        if (!(nextG < oldG && prevG > oldG)) {
+                            newG = nextG;
+                        }
+                        // else do nothing
+                    }
+                    issue.attr("gravity", newG);
+
+                    var issueId = issue.prop("id");
+                    var request = {
+                        CM: ("STATUS" == organizeBy ? "CHISSSTS" : "SV"),
+                        OBJID: issueId,
+                        ISSUE_STATUS: issue.attr("status"),
+                        ISSUE_TASK: issue.attr("task"),
+                        ISSUE_GRAVITY: issue.attr("gravity"),
+                        ASSIGNEE: issue.attr("assignee")
+                    };
+
+                    //se possono essere sortabili
+                    var sortFlavour;
+                    if ($("#FLT_ISSUE_ASSIGNED_TO").val()) {
+                        sortFlavour = "BY_RESOURCE";
+                    } else if ($("#FLT_ISSUE_TASK").val()) {
+                        sortFlavour = "BY_TASK";
+                    }
+                    if (sortFlavour) {
+                        var sortedIds = [];
+                        column.find("[issueId][gravity=" + newG + "].issue").each(function (i) {
+                            sortedIds.push($(this).attr("issueId"));
+                        });
+                        request.SORT_FLAVOUR = sortFlavour;
+                        request.issues = sortedIds.join(",");
+                    }
+
+
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            //refresh the object
+                            var iss = response.issue;
+                            //inject the new html in the old issue
+                            issue.html($.JST.createFromTemplate(iss, "ISSUE").activateTeamworkLinks(true).emoticonize().html());
+                            //set dom object in the new json issue
+                            iss.dom = issue;
+                            //update issue collection in memory
+                            issues[issueId] = iss;
+
+                            // eventually shows wl insertion
+                            if (response.assId) {
+                                var issueText = issueText = issue.find("div.body").text().trim().substring(0, 50);
+                                openWorklogEditorPopup(issue, { assId: response.assId, text: issueText, issueId: issueId, title: "问题: I#" + issueId + "#" });
+                            } else {
+                                hideWorklogEditorIfYouCan();
+                            }
+
+
+                            //eventually show notes
+                            if (response.histId) {
+                                showNotes(response.histId);
+                            } else {
+                                $("#insertHistNotes").fadeOut();
+                            }
+                        }
+                        hideSavingMessage();
+
+                    });
+
+                }
+
+
+                function saveStatusNotes() {
+                    var theDiv = $("#insertStatusNotes");
+                    var histId = theDiv.attr("histId");
+                    showSavingMessage();
+                    var request = { CM: "SVHISTNOTES", histId: histId, notes: theDiv.find("textarea").val() };
+                    $.getJSON("/issue/issueAjaxControllerJson", request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            $("#insertStatusNotes").fadeOut();
+                            theDiv.find("textarea").updateOldValue();
+                        }
+                        hideSavingMessage();
+                    });
+                }
+
+
+                function showNotes(histId) {
+                    $("#insertStatusNotes").attr("histId", histId).fadeIn();
+                }
+
+
+                function wantNewElem(id, label, color, order) {
+                    var board = $("#board");
+                    var organizeBy = board.attr("organizeBy");
+                    if (label && id) {
+                        if (board.find("td[colId=" + id + "]").size() == 0) {
+                            // use the matching array
+                            var colValue = { id: id, name: label, color: color, order: order };
+                            var colsValues = columnsByHand[organizeBy];
+                            if (!colsValues) {
+                                colsValues = new Array();
+                                columnsByHand[organizeBy] = colsValues;
+                            }
+                            colsValues.push(colValue);
+                            spreadIssues();
+                            //changeCriteria($("[name=orgType][value=STATUS]"));
+                        }
+                    }
+                }
+
+                var oldOpenedIssueBox = null;
+
+                function zoomIssue(issueBox) {
+                    //console.debug("zoomIssue",issueBox,issueBox.attr("issueId"));
+                    var ndo = $("#issueZoom");
+                    var issueId = issueBox.attr("issueId");
+
+                    if (!ndo.is(":visible") || issueId != oldOpenedIssueBox) {
+                        removeZoom(issueBox);
+                        oldOpenedIssueBox = issueId;
+                        ndo.empty().append($.JST.createFromTemplate(issues[issueId], "ISSUE_ZOOM")).show();
+                        setTimeout(function () {
+                            $(document).on("click.issueBox", function (e) {
+                                if (!$(e.target).is("#issueZoom")) {
+                                    removeZoom(issueBox);
+                                }
+                            });
+                        }, 200)
+                    } else {
+                        oldOpenedIssueBox = null;
+                        removeZoom(issueBox);
+                    }
+                }
+
+                function removeZoom(issueBox) {
+                    $("#issueZoom").hide().empty();
+                    $(document).off("click.issueBox");
+                }
+
+                function addIssue() {
+                    var editUrl = contextPath + "/applications/teamwork/issue/issueEditor.jsp?CM=AD";
+                    openBlackPopup(editUrl, 1024, $(window).height() - 50);
+                }
+
+            </script>
+
+        </div>
+
+        <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+        <script>
+            var __sns = [];
+            $(function () {
+                $("body").oneTime(500, function () {
+                    manageStickyNotes(__sns);
+                });
+
+                //event da webSocket
+                $("body").on("ws-stickySaved.twScreen", function (e, data) {
+                    //console.debug("ws-stickySaved.twScreen",data);
+                    if (data && data.stickyId)
+                        twSrc_drawSticky(data.stickyId);
+                }).on("ws-logSaved.twScreen", function (e, data) {
+                    //console.debug("ws-logSaved twScreen",data);
+                    if (data && data.messageId) {
+                        $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+                    }
+                }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+                    //console.debug("ws-updateGlobalCounter.twScreen", data);
+                    if (data) {
+                        $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+                        $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
+
+
+                        if (data.totalUnreadChats) {
+                            //top.twChat.chatWindow.addClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").show();
+                        } else {
+                            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").hide();
+                        }
+                        // add total unread chats to the top page title
+                        top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+                        top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+                    }
+                }).on("ws-socketClosed.twScreen", function (e, data) {
+                    //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+                }
+                );
+
+
+                //gestione chiusura tutti dopo 2
+                var firstClosed = false;
+                var doNotAskAgain = false;
+                $("body").on("containerHidden", ".container.sticky", function (e) {
+                    if (firstClosed && !doNotAskAgain) {
+                        var firstStick = $(this);
+                        var sticks = $(".container.sticky");
+                        if (sticks.size() > 2) {
+                            doNotAskAgain = true;
+                            if (confirm("全部关闭？")) {
+                                sticks.each(function () {
+                                    var stick = $(this);
+                                    if (stick.attr("status") != "ICONIZED")
+                                        if (stick.prop("id") != firstStick.prop("id"))
+                                            $(this).trigger("hide");
+                                });
+                            }
+                        }
+                        firstClosed = false;
+
+                    } else {
+                        firstClosed = true;
+                    }
+
+                });
+
+            });
+
+
+            function manageStickyNotes(sns) {
+                //console.debug("manageStickyNotes",sns);
+                if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+                    var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+                    var d = $("<div>").append(message + "<br>");
+                    var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+                    var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+                    d.append(closeAll).append(drawAll);
+                    showFeedbackMessage("INFO", d.html(), "");
+                } else {
+                    twSrc_drawAllSticky(sns)
+                }
+            }
+
+
+            function twSrc_drawAllSticky(sns) {
+                for (var i = 0; i < sns.length; i++) {
+                    twSrc_drawSticky(sns[i]);
+                }
+            }
+            function twSrc_drawSticky(stickyId) {
+                $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", { CM: "DRW", sid: stickyId }, function (response) {
+                    $("#STKN_" + stickyId).remove();
+                    $("body").append(response);
+                })
+            }
+
+
+            function closeAllSticky() {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "REMOVEEALLSTK" }, function (response) {
+                    twSrc_drawAllSticky(__sns);//disegna i rimanenti
+                });
+            }
+        </script>
+    </div>
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (false) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+
+

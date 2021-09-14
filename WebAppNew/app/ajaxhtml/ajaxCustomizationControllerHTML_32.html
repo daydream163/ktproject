@@ -1,0 +1,68 @@
+﻿
+
+<div id="issueSBCExDiv">
+
+    <div class="portletBox">
+        <div style="float:right" class="portletParamIcons">
+            <button type="button" class="button noprint textual icon  ruzzol" id="domId_165659042" style="" title="过滤" onclick="$('#issueSBCParam').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+        </div>
+        <h1>我的客户问题</h1>
+
+        <div class="portletParams" id="issueSBCParam" style="display:none;">
+            <label for="ck_SHOW_WHERE_IM_INVOLVED_ONLY_CUST">仅显示我参与的任务</label><input type=hidden name="SHOW_WHERE_IM_INVOLVED_ONLY_CUST" id="SHOW_WHERE_IM_INVOLVED_ONLY_CUST" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_SHOW_WHERE_IM_INVOLVED_ONLY_CUST" name="ck_SHOW_WHERE_IM_INVOLVED_ONLY_CUST" checked value="yes"
+                                                                                                                                                                                                                                                                       onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'SHOW_WHERE_IM_INVOLVED_ONLY_CUST':$('#SHOW_WHERE_IM_INVOLVED_ONLY_CUST').val()});">
+
+        </div>
+
+        <table class="table issueSummary" id="wp_issueSBCtable">
+            <thead class="dataTableHead" style="">
+                <tr>
+                    <th class="tableHead" id="wpISBCputFilerHere"><span class="tableHeadEl">顾客</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">已发现的问题</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">过期</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">今天</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">中断</span></th>
+                    <th class="tableHead" nowrap><span class="tableHeadEl">未分工</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        //inject the table search
+        //createTableFilterElement($("#wpMAputFilerHere"),'#wp_myAssig_table .assigRow','.columnTaskName,.columnTaskCode');
+
+        $("#wp_issueSBCtable [customerId] a.issBtn").each(function () {
+            var el = $(this);
+            if (el.text() == "") {
+                el.remove();
+            } else {
+                var row = el.closest("[customerId]");
+                var custId = row.attr("customerId");
+                var issExpired = el.is(".issExpired");
+                var issToday = el.is(".issToday");
+                var link = "/app/issue/issuelist?V_ID=898822820&CM=FN&FLT_ISSUE_STATUS=BEHAVES_AS_OPEN_ALL&CUST_ID=" + custId;
+
+                if (issExpired) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("<t");
+                } else if (issToday) {
+                    link += "&FLT_ISSUE_DATE_CLOSE_BY=" + encodeURIComponent("=t");
+                } else if (el.is(".issBlock")) {
+                    link += "&FLT_ISSUE_GRAVITY=" + encodeURIComponent("05_GRAVITY_BLOCK");
+                } else if (el.is(".issUnassigned")) {
+                    link += "&FLT_ISSUE_UNASSIGNED=yes";
+                } else {
+                    // do nothing
+                }
+
+                el.prop("href", link);
+            }
+        });
+
+
+    </script>
+</div>
+

@@ -1,0 +1,239 @@
+﻿
+<form enctype="application/x-www-form-urlencoded" method="POST"
+      action="/portlethtml/wp_projectsSummary.html" name="d1623535250" id="d1623535250"
+      savedAction="" savedTarget="">
+    <input type="hidden" id="d1623535250V_ID" name="V_ID" value="1623535250" savedValue="">
+    <input type="hidden" id="d1623535250CM" name="CM" value="" savedValue="">
+
+    <div id="wp_projSumm" style="vertical-align:top;" class="portletBox">
+        <div style="float:right" class="portletParamIcons">
+            <button type="button" class="button noprint textual icon  " id="domId_1441485125" style="" title="打印To-do" onclick="openBlackPopup('/portlethtml/wp_projectsSummary.html?V_ID=1626638205&CM=PRINT','1000px','600px');return false; "><span class='teamworkIcon '>p</span></button>
+
+            &nbsp;<button type="button" class="button noprint textual icon  ruzzol" id="domId_1277474068" style="" title="过滤" onclick="$('#configProjSumm').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+        </div><h1>进行中的项目</h1>  <div id="configProjSumm" class="portletParams" style="display:none;">
+            <table class="table">
+                <tr>
+                    <td><label for="OVERDUE_WARN" class=" ">超时提醒（提前天数）</label><br><input type=text name="OVERDUE_WARN" id="OVERDUE_WARN" size=2 class="formElements validated integer" autocomplete='off' maxlength=255 onBlur="obj('d1623535250CM').value='';ajaxSubmit('d1623535250','wp_projSumm');" value="3" oldValue='1' entryType="INTEGER"></td>
+                    <td><label for="OVERDUE_ERR" class=" ">超时报错（超过天数）</label><br><input type=text name="OVERDUE_ERR" id="OVERDUE_ERR" size=2 class="formElements validated integer" autocomplete='off' maxlength=255 onBlur="obj('d1623535250CM').value='';ajaxSubmit('d1623535250','wp_projSumm');" value="1" oldValue='1' entryType="INTEGER"></td>
+                    <td>
+                        <label for="TASK_TYPE_SUMM_txt" class=" ">根据类型过滤</label><br><input type=text name="TASK_TYPE_SUMM_txt" id="TASK_TYPE_SUMM_txt" size=15 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );obj('d1623535250CM').value='';ajaxSubmit('d1623535250','wp_projSumm');" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="TASK_TYPE_SUMM" id="TASK_TYPE_SUMM" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                    </td>
+                    <td>
+                        <input type=hidden name="TASK_SHOW_CHILDREN" id="TASK_SHOW_CHILDREN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_SHOW_CHILDREN" name="ck_TASK_SHOW_CHILDREN" value="yes"
+                                                                                                                                                                                    onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d1623535250CM').value='';ajaxSubmit('d1623535250','wp_projSumm');">
+                        &nbsp;<label for="ck_TASK_SHOW_CHILDREN">显示子任务</label>&nbsp;
+                    </td>
+                    <td>
+                        <input type=hidden name="TASK_SHOW_COSTS" id="TASK_SHOW_COSTS" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_TASK_SHOW_COSTS" name="ck_TASK_SHOW_COSTS" value="yes"
+                                                                                                                                                                              onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d1623535250CM').value='';ajaxSubmit('d1623535250','wp_projSumm');">
+                        &nbsp;<label for="ck_TASK_SHOW_COSTS">显示费用</label>&nbsp;
+                    </td>
+                    <td><a class="button  textual   " id="domId_1122795901" style="" href="/app/task/taskList?V_ID=759679766&CM=FN&STATUS=STATUS_ACTIVE&ROOT_OR_STANDALONE=yes">&gt;&gt; 进一步过滤</a>
+
+                    <td>
+                </tr>
+            </table>
+        </div><table class="table projectSummary" id="wp_ps_default" cellpadding="2" style="vertical-align:top;">
+            <thead class="dataTableHead">
+                <tr>
+                    <th class="tableHead" id="wpPSputFilerHere">任务</th>
+                    <th class="tableHead">代码</th>
+                    <th class="tableHead">重要性</th>
+                    <th class="tableHead">结束日期</th>
+                    <th class="tableHead">剩余天数</th>
+                    <th class="tableHead">%</th>
+                </tr>
+            </thead>
+            <style type="text/css">
+                .expired .columnTaskName .button.textual { color: #D30202; }
+            </style>
+
+            <tr class="alternate expired" taskId="45748">
+                <td class="columnTaskName" style="position: relative">
+
+                    <a class="button  textual   bolder" id="domId_1310181629" style="" href="/app/task/taskOverview??V_ID=1169241350&CM=ED&OBJID=45748">海口入境旅游及客源市场的季节性特征研究</a>
+
+                </td>
+                <td class="textSmall columnTaskCode" title="HK"><span>HK</span></td>
+                <td align="center" class="textSmall">0%</td>
+                <td align="right" class="textSmall warning alertIcon">2020-5-29</td>
+                <td align="center" nowrap><span style="color:#D30202; ">-2</span>
+    </div></td>
+
+    <td class="textSmall" nowrap style="text-align: right">
+
+
+
+        <div style="width:70px;height:15px;position: relative" title="">
+            <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+            </div>
+        </div>
+
+
+    </td> </tr>
+
+    <style type="text/css">
+        .expired .columnTaskName .button.textual { color: #D30202; }
+    </style>
+
+    <tr class="alternate " taskId="45746">
+        <td class="columnTaskName" style="position: relative">
+
+            <a class="button  textual   bolder" id="domId_1311142488" style="" href="/app/task/taskOverview??V_ID=1743859558&CM=ED&OBJID=45746">河南省教育厅2021年度河南省高等学校重点科研项目</a>
+
+        </td>
+        <td class="textSmall columnTaskCode" title="HN001"><span>HN001</span></td>
+        <td align="center" class="textSmall">80%</td>
+        <td align="right" class="textSmall ">2020-6-26</td>
+        <td align="center" nowrap><span style="color:#38d056; ">20</span></div></td>
+
+        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+            <div style="width:70px;height:15px;position: relative" title="">
+                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                </div>
+            </div>
+
+
+        </td>
+    </tr>
+
+    <style type="text/css">
+        .expired .columnTaskName .button.textual { color: #D30202; }
+    </style>
+
+    <tr class="alternate expired" taskId="45684">
+        <td class="columnTaskName" style="position: relative">
+
+            <a class="button  textual   bolder" id="domId_71346124" style="" href="/app/task/taskOverview??V_ID=737763859&CM=ED&OBJID=45684">我的一个项目</a>
+
+        </td>
+        <td class="textSmall columnTaskCode" title="Project001"><span>Project001</span></td>
+        <td align="center" class="textSmall">30%</td>
+        <td align="right" class="textSmall warning alertIcon">2020-5-26</td>
+        <td align="center" nowrap><span style="color:#D30202; ">-5</span></div></td>
+
+        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+            <div style="width:70px;height:15px;position: relative" title="">
+                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                </div>
+            </div>
+
+
+        </td>
+    </tr>
+
+    <style type="text/css">
+        .expired .columnTaskName .button.textual { color: #D30202; }
+    </style>
+
+    <tr class="alternate " taskId="45747">
+        <td class="columnTaskName" style="position: relative">
+            <div class="taskColored" style="background-color: #0c40a3;"></div>
+            <a class="button  textual   bolder" id="domId_1663975818" style="" href="/app/task/taskOverview??V_ID=1338818076&CM=ED&OBJID=45747">2020年度上海市人民政府决策咨询研究教育政策专项</a>
+
+        </td>
+        <td class="textSmall columnTaskCode" title="SH001"><span>SH001</span></td>
+        <td align="center" class="textSmall">50%</td>
+        <td align="right" class="textSmall ">2021-1-27</td>
+        <td align="center" nowrap><span style="color:#38d056; ">173</span></div></td>
+
+        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+            <div style="width:70px;height:15px;position: relative" title="">
+                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                </div>
+            </div>
+
+
+        </td>
+    </tr>
+
+    <style type="text/css">
+        .expired .columnTaskName .button.textual { color: #D30202; }
+    </style>
+
+    <tr class="alternate " taskId="45674">
+        <td class="columnTaskName" style="position: relative">
+            <div class="taskColored" style="background-color: #75a9ff;"></div>
+            <a class="button  textual   bolder" id="domId_205918519" style="" href="/app/task/taskOverview??V_ID=1131673529&CM=ED&OBJID=45674">Production Project</a>
+
+        </td>
+        <td class="textSmall columnTaskCode" title="T1791"><span>T1791</span></td>
+        <td align="center" class="textSmall">0%</td>
+        <td align="right" class="textSmall ">2020-8-26</td>
+        <td align="center" nowrap><span style="color:#38d056; ">63</span></div></td>
+
+        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+            <div style="width:70px;height:15px;position: relative" title="">
+                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                </div>
+            </div>
+
+
+        </td>
+    </tr>
+
+    <style type="text/css">
+        .expired .columnTaskName .button.textual { color: #D30202; }
+    </style>
+
+    <tr class="alternate expired" taskId="45758">
+        <td class="columnTaskName" style="position: relative">
+            <div class="taskColored" style="background-color: #cf0b0b;"></div>
+            <a class="button  textual   bolder" id="domId_1782701547" style="" href="/app/task/taskOverview??V_ID=884292357&CM=ED&OBJID=45758">后“双创”时期海口夜间经济发展质量满意度评价及机制构建</a>
+
+        </td>
+        <td class="textSmall columnTaskCode" title="T45758"><span>T45758</span></td>
+        <td align="center" class="textSmall">0%</td>
+        <td align="right" class="textSmall warning alertIcon">2020-5-21</td>
+        <td align="center" nowrap><span style="color:#D30202; ">-8</span></div></td>
+
+        <td class="textSmall" nowrap style="text-align: right">
+
+
+
+            <div style="width:70px;height:15px;position: relative" title="">
+                <div class="perc" style="width:100%;height:15px;background-color:#E5E5E5;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                    <div style="background-color:#9bcee6;width:0%;height:15px;"></div>
+                    <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:11px;color:#000000">0%</div>
+                </div>
+            </div>
+
+
+        </td>
+    </tr>
+    </table>
+    </div>
+
+    <script>
+        //inject the table search
+        createTableFilterElement($("#wpPSputFilerHere"), '#wp_ps_default [taskId]', '.columnTaskName,.columnTaskCode');
+
+    </script>
+
+
+
+</form>
+

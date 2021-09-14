@@ -57,11 +57,14 @@ namespace KTProject.Service
             // 1、清除session
             IPrincipal principal = HttpContext.Current.User;
             FormsIdentity formsIdentity = principal.Identity as FormsIdentity;
-            FormsAuthenticationTicket ticket = formsIdentity.Ticket;
-            Credentials userInfo = JsonConvert.DeserializeObject<Credentials>(ticket.UserData);
-
-            if (userInfo != null) {
-                _credentialsRepository.DisableCredentials(userInfo.accesstoken);
+            if (formsIdentity != null)
+            {
+                FormsAuthenticationTicket ticket = formsIdentity.Ticket;
+                Credentials userInfo = JsonConvert.DeserializeObject<Credentials>(ticket.UserData);
+                if (userInfo != null)
+                {
+                    _credentialsRepository.DisableCredentials(userInfo.accesstoken);
+                }
             }
 
             // 2、清除cookie
@@ -101,6 +104,11 @@ namespace KTProject.Service
                 DateTime expiration = DateTime.Now.Add(FormsAuthentication.Timeout);
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, credentials.UserName, DateTime.Now, expiration, true,
                     userData, FormsAuthentication.FormsCookiePath);
+
+                //IPrincipal principal = HttpContext.Current.User;
+                //principal.Identity = 
+                //FormsIdentity formsIdentity = new FormsIdentity(ticket);
+                //HttpContext.Current.User.Identity = formsIdentity;
 
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket)) {
                     HttpOnly = true,

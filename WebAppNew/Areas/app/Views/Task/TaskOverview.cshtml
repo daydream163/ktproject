@@ -1,0 +1,1196 @@
+﻿
+@{
+    ViewBag.Title = "taskOverview";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+    <form enctype="multipart/form-data" method="POST"
+          action="/app/task/taskOverview?" name="d160719703" alertOnChange="true" id="d160719703"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d160719703V_ID" name="V_ID" value="160719703" savedValue="">
+        <input type="hidden" id="d160719703CM" name="CM" value="ED" savedValue="">
+        <input type="hidden" id="d160719703OBJID" name="OBJID" value="53595" savedValue="">
+        <input type="hidden" id="d160719703PARENT_ID" name="PARENT_ID" value="" savedValue="">
+
+
+        <div class="mainColumn clearfix" style="position: relative">
+
+
+            <div class="pathToObject">
+                <a class="button  textual   " id="domId_2112367110" style="" href="/app/task/taskList?V_ID=1601467020">任务列表 /</a>
+
+
+                <div class="currentNode">
+                    <span class="teamworkIcon" style="color:#3BBF67;font-size:22px;" title="进行中">&copy;</span>
+
+                    <a class="button  textual   objectName" id="domId_1443657289" style="" href="/app/task/taskOverview??V_ID=1356822519&CM=ED&OBJID=53595">第一个项目</a>
+
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_997852836', 'domId_1648333248');  ">
+                        <button type="button" class="button noprint textual icon  " id="domId_1648333248" style="" onclick=";return false; "><span class='teamworkIcon '>&ugrave;</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_997852836" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <a class="button  textual   " id="domId_1212815229" style="" href="/app/task/taskOverview??V_ID=98220277&CM=ED&OBJID=53682">第一个子任务</a>
+
+                            <a class="button  textual   " id="domId_2018260126" style="" href="/app/task/taskOverview??V_ID=2120401954&CM=ED&OBJID=53683">第二个子任务</a>
+
+                            <a class="button  textual   " id="domId_1393733317" style="" href="/app/task/taskOverview??V_ID=7747545&CM=ED&OBJID=53684">第三个子任务</a>
+
+                            <a class="button  textual   " id="domId_1871720990" style="" href="/app/task/taskOverview??V_ID=2003257887&CM=ED&OBJID=53685">第四个子任务</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="pathCodeWrapper">
+
+                <span class='pathCode' title='参考代码'>T#T53595#</span>
+                &nbsp;
+                <span class='pathCode'>
+                    开始日期 <b class="" title="">2020-11-9</b>&nbsp;&nbsp;&nbsp;
+                    结束日期 <b class="" title="">2020-11-30</b>&nbsp;&nbsp;&nbsp;
+                    (天: <b>16</b>)
+                </span>
+
+            </div>
+            <script>
+                $(function () {
+                    $("#TASK_MENU").addClass('selected');
+                });
+            </script>
+            <style>
+                .tabTaskColoured { position: relative; padding-left: 7px; }
+
+                    .tabTaskColoured:after { background-color: #bc4cff !important; position: absolute; width: 12px; left: 3px; content: ""; bottom: 3px; top: 3px; padding: 0; border-radius: 4px 0 0 0; }
+            </style>
+
+            <div class="tabSetBox" style="">
+                <input type=hidden name="TASK_TABSET" id="TASK_TABSET" size=20 class="formElements" autocomplete='off' maxlength=255 value="TASK_GENERAL_TAB">
+                <div class="tabSetHeader noprint">
+                    <div class="tabSetPre"></div>
+                    <div class="tabSetTabs" id="TABSETTABS_TASK_TABSET">
+                        <div id="TASK_GENERAL_TAB" tabset="TASK_TABSET" class="tabSelected tabTaskColoured tab" style="cursor:pointer;">
+                            <a class="button  textual  focused " id="btn_taskGeneralData" style="" href="/app/task/taskOverview??V_ID=30970323&CM=ED&OBJID=53595">项目数据</a>
+
+
+                        </div>
+
+                        <div id="TASK_GANTT_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="btnGantt" style="" href="/app/task/gantt/gantt?V_ID=1686847178&CM=GANTT&OBJID=53595">甘特图</a>
+
+
+                        </div>
+
+                        <div id="TASK_ASSIGNMENT_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_1464261740" style="" href="/app/task/taskAssignmentList?V_ID=1566936860&CM=FN&TASK_ID=53595">责任人 (5)</a>
+
+
+                        </div>
+
+                        <div id="TASK_COST_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="btnCosts" style="" href="/app/task/TaskCostList?V_ID=1555633164&OBJID=53595">费用</a>
+
+
+                        </div>
+
+                        <div id="TASK_ISSUES_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_475580440" style="" href="/app/task/taskIssueList?V_ID=1191242221&OBJID=53595">问题  (1/1)</a>
+
+
+                        </div>
+
+                        <div id="TASK_DOCS_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_1538485234" style="" href="/app/task/taskDocumentList?V_ID=1917902227&CM=LIST_DOCS&TASK_ID=53595">文档 (1)</a>
+
+
+                        </div>
+
+                        <div id="TASK_TLOG_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1656314498" style="" href="/app/task/taskForumList??V_ID=1748980971&TASK_ID=53595">讨论(0)</a>
+
+
+                        </div>
+
+                    </div>
+                    <div class="tabSetPost"></div>
+                </div>
+                <div class="tabContainer clearfix" id="TABSETPART_TASK_TABSET">
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="inlineContainerWrapper">
+
+                <div style="width: 30%; max-width: 450px; padding: 10px 10px 10px 0" class="container ">
+
+
+
+                    <div class="task-overview-data">
+
+                        <table class="taskOverview table linkEnabled">
+                            <tr>
+                                <td><label>开始日期</label></td>
+                                <td><b class="" title="">2020-11-9</b> </td>
+                            </tr>
+                            <tr>
+                                <td><label>结束日期</label></td>
+                                <td> <b class="" title="">2020-11-30</b> </td>
+                            </tr>
+                            <tr>
+                                <td><label>天</label></td>
+                                <td><b>16</b></td>
+                            </tr>
+                            <tr><td><label>类型</label></td><td>国家级项目</td></tr>
+                            <tr><td><label>重要性</label></td><td>50%</td></tr>
+                            <tr>
+                                <td colspan="2" style="padding-top: 10px">
+                                    <label>描述</label>
+                                    <div class="textSmall linkEnabled" style="padding-bottom: 10px">为深入研究涉及教育改革与发展的重大法治和政策问题，现将2020年度上海市人民政府决策咨询研究教育政策专项面向社会发布并公开招标。现就相关招标工作通知如下：<br><br>一、招标项目目录<br><br>1.“十四五”时期上海教育改革发展的新形势、新任务和新战略研究<br><br>2.上海高等学校学科发展与优化布局规划研究<br><br>3.本市教育国际组织引进、创建对教育改革发展带来的机遇与挑战</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <a class="button  textual   tag" id="domId_965223370" style="" href="/app/task/taskList?V_ID=330482621&CM=FN&TASK_TAGS=%E6%95%99%E8%82%B2%E6%94%B9%E9%9D%A9">教育改革</a>
+
+                                    <a class="button  textual   tag" id="domId_1028700005" style="" href="/app/task/taskList?V_ID=688406064&CM=FN&TASK_TAGS=%E6%B3%95%E6%B2%BB%E5%92%8C%E6%94%BF%E7%AD%96">法治和政策</a>
+
+                                </td>
+                            </tr>
+                            <tr><td colspan="2"><label>交付的成果</label><br><span class="textSmall" style="padding-bottom: 10px">论文2篇</span></td></tr>
+                        </table><div class="separator dark"></div><table class="table linkEnabled">
+                            <tr>
+                                <td><h2>更新</h2><span id="NOLOGS"></span></td>
+                                <td valign="top" align="right" style="padding-top: 10px;">
+                                    <button type="button" class="button noprint textual icon  textSmall edit" id="btnAddUpdates" style="" onclick="openBlackPopup('/applications/teamwork/task/taskLogs.jsp?V_ID=863599981&CM=AD&OBJID=53595','1000px','1000px',refreshTaskLogs);return false; "><span class='teamworkIcon '>P</span></button>
+
+
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div id="taskUpdates" style="display:none;"></div>
+                        <div id="tlShowMore" style="margin: 0;text-align: right;display:none;">
+                            <button type="button" class="button noprint textual   textSmall small" id="domId_1913686186" style="" onclick="openBlackPopup('/applications/teamwork/task/taskLogs.jsp?V_ID=732765212&OBJID=53595','1000px','1000px',refreshTaskLogs);return false; ">全部显示</button>
+
+                        </div>
+                        <div class="separator dark"></div>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div style="width: 50%" class="container ">
+
+
+
+
+
+                    <div id="taskStatistics" style="opacity: 1; display: none; max-width: 780px">
+                        <h2>任务统计</h2>
+
+                        <div id="slideDivUp" style="display:none; text-align: right;margin-top: -35px ">
+                            <button type="button" class="button noprint textual   opener lreq10 lreqLabel" id="domId_553635032" style="" title="隐藏项目历史" onclick="toggleHistory($(this));return false; "><span class='teamworkIcon withLabel'>u</span>隐藏项目历史</button>
+
+
+                        </div>
+                        <div id="slideDivDown" style="display:none;text-align: right;margin-top: -35px">
+                            <button type="button" class="button noprint textual   opener lreq10 lreqLabel" id="domId_2044824020" style="" title="显示项目历史" onclick="toggleHistory($(this));return false; "><span class='teamworkIcon withLabel'>&ugrave;</span>显示项目历史</button>
+
+                        </div>
+
+                        <div id="statsHistory" style="display: none; padding: 10px;">
+                            <div id="statTaskDates" style="display: inline-block;"></div>
+                            <div id="slider" style="display: none" class="lreq10 lreqHide"></div>
+                        </div>
+
+
+                        <div class="taskStats clearfix" id="statBoxes"></div>
+
+                        <div id="tmpts">
+                            <div class="__template__" type="HISTDATES">
+                                <!--
+                                <span>
+                                  <i>开始日期:</i>&nbsp;<b>(#=start#)</b>
+                                  <i>结束日期:</i>&nbsp;<b>(#=end#)</b>
+                                  <i>持续时间:</i>&nbsp;<b>(#=duration#)</b>
+                                -->
+                            </div>
+                        </div>
+
+                        <link href="/commons/js/jquery/valueSlider/mb.slider.css?_=65022" media="all" rel="stylesheet" type="text/css">
+                        <script src="/commons/js/circles.min.js?_=65022"></script>
+                        <script src="/commons/js/jquery/valueSlider/jquery.mb.slider.js?_=65022"></script>
+
+
+                        <style>
+
+                            .taskStats { padding-top: 20px; }
+
+                            .statsBlockBar { padding: 8px; /*float: left;*/ width: 33%; position: relative; display: inline-block; }
+
+                            .statBarBG { position: relative; margin-right: 40px; width: calc(100% - 40px); height: 15px; border-radius: 5px; }
+
+                            .statBarFG { display: inline-block; height: 15px; border-radius: 5px 0 0 5px; }
+
+                                .statBarFG.rounded { border-radius: 5px; }
+
+                            .percBar { position: absolute; width: 40px; top: 0; right: -45px; background: none; text-align: left; font-weight: bold; height: 15px; line-height: 15px; vertical-align: middle; }
+
+                            .labelBar { font-size: 11px; }
+
+                            .statBarBG.health { background: linear-gradient(to right, hsla(0,100%,45%,.7) 0%,hsla(61,100%,50%,.7) 25%,hsla(122,100%,50%,.7) 50%,hsla(105,100%,25%,.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ /*background: linear-gradient(to right, #e80000 0%, #faff00 25%, #00ff08 50%, #1f7f00 100%); */ /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+
+                            .statHealtPos { position: absolute; border: none; background-color: #444; width: 2px; height: 17px; top: -1px; }
+                        </style>
+
+                        <script>
+
+                                    var _TaskStatusDecoder = { "STATUS_ACTIVE": { "label": "进行中", "color": "#3BBF67", "contrastColor": "#FFFFFF", "rgb": { "r": 59, "g": 191, "b": 103 } }, "STATUS_WAITING": { "label": "等候", "color": "#F79136", "contrastColor": "#FFFFFF", "rgb": { "r": 247, "g": 145, "b": 54 } }, "STATUS_SUSPENDED": { "label": "暂停", "color": "#F9C154", "contrastColor": "#000000", "rgb": { "r": 249, "g": 193, "b": 84 } }, "STATUS_DONE": { "label": "完成", "color": "#6EBEF4", "contrastColor": "#000000", "rgb": { "r": 110, "g": 190, "b": 244 } }, "STATUS_FAILED": { "label": "失败", "color": "#763A96", "contrastColor": "#FFFFFF", "rgb": { "r": 118, "g": 58, "b": 150 } }, "STATUS_UNDEFINED": { "label": "未定义", "color": "#dededf", "contrastColor": "#000000", "rgb": { "r": 222, "g": 222, "b": 223 } } };
+                                    var lastDataHist = { "taskId": "53595", "duration": 16, "status": "STATUS_ACTIVE", "progress": 0, "teamSize": 2, "totalDocuments": 1, "totalDescendant": 4, "totalDescendantClosed": 1, "totalWorklogDone": 28800000, "totalWorklogEstimated": 360000000, "totalEstimatedFromIssues": 0, "totalIssues": 1, "totalIssuesOpen": 1, "totalIssuesScoreOpen": 2, "totalIssuesScoreClosed": 0, "forecasted": 200000, "totalCostsDone": 1360, "totalCostsEstimated": 3000, "createdOn": 1605079740686, "start": 1604880000000, "end": 1606780799000, "lastStatusChangeDate": 1604910678000 };
+                                    var dataHistories;
+
+
+                                    $(function () {
+
+                                        $("#tmpts").loadTemplates().remove();
+
+                                        drawLastDataHistory();
+
+
+                                        $(".statsBlock").css({ width: "25%" });
+
+                                        $(".statsBlock").each(function (i) {
+                                            var circle = $(".circle", this).data("circle");
+                                            var sb = $(this);
+                                            sb.updateCircle(circle);
+                                        });
+                                        $(".statsBlock:last").after("<div class='clearfix'></div>"); // per andare a capo;
+
+                                        $("#taskStatistics").show().fadeTo(500, 1);
+                                        $(window).resize();
+
+                                        //si carica la history server side
+                                        if (false) return;
+                                        $.getJSON(contextPath + "/task/taskAjax", { CM: "GETHIST", OBJID: 53595 }, function (response) {
+                                            jsonResponseHandling(response);
+                                            if (response.ok == true) {
+                                                dataHistories = response.dataHistory;
+                                                if (dataHistories && dataHistories.length > 0) {
+
+                                                    $("#slideDivDown").show()
+
+                                                    // allora fa vedere la barra etc....
+                                                    //var minVal = dh[0].createdOn;
+                                                    //var maxVal = dh[dh.length - 1].createdOn;
+                                                    var minVal = 0;
+                                                    var maxVal = dataHistories.length - 1;
+
+                                                    $("#slider").show().mbSlider({
+                                                        rangeColor: '#2f97c6',
+                                                        minVal: minVal,
+                                                        maxVal: maxVal,
+                                                        startAt: maxVal,
+                                                        showVal: true,
+                                                        grid: 1,
+                                                        formatValue: function (val) {
+                                                            return new Date(dataHistories[val].createdOn).format();
+                                                        },
+                                                        onSlideLoad: function (obj) {
+                                                            var val = $(obj).mbgetVal();
+                                                        },
+                                                        onStart: function (obj) { },
+                                                        onStop: function (obj) { },
+                                                        onSlide: function (obj) {
+                                                            var val = $(obj).mbgetVal();
+                                                            refreshStatistics(dataHistories[val]);
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        })
+
+                                    });
+
+
+                                    $.fn.updateCircle = function (circle) {
+                                        this.each(function () {
+                                            if (circle) {
+                                                var wrapperW = $(this).outerWidth();
+                                                circle.updateRadius(wrapperW / 2.5);
+                                                circle.updateWidth(wrapperW * 0.035);
+                                            }
+                                        })
+                                    };
+
+                                    $(window).on("resize.circles", function () {
+                                        $(".statsBlock").each(function () {
+                                            var circle = $(".circle", this).data("circle");
+                                            $(this).updateCircle(circle);
+                                        });
+                                        resizeStatus();
+                                    });
+
+                                    function drawLastDataHistory() {
+                                        drawStatus(lastDataHist);
+                                        drawStatistics(lastDataHist);
+                                    }
+
+                                    function drawStatus(obj) {
+                                        var ndo = $("#statBoxes");
+                                        var stBox = drawstatBox("STATUS", "状态");
+
+                                        var circle = stBox.find(".circle");
+
+                                        var status = $("<div>").prop("id", "statusBall").css({ 'border-radius': '100%', 'margin': '0 auto', position: "relative", "display": "table" });
+                                        var label = $("<div>").css({ display: "table-cell", "vertical-align": "middle", "text-align": "center" }).append("<span class='_stsLabel'>" + _TaskStatusDecoder[obj.status].label.toLowerCase() + "<span>");
+                                        var subLabel = $("<span>").addClass("additionalLabelText");
+
+                                        label.append(subLabel);
+                                        status.append(label);
+                                        circle.append(status);
+                                        ndo.append(stBox);
+                                        refreshStatus(obj);
+                                    }
+
+                                    function refreshStatus(dataHistory) {
+                                        var ball = $("#statusBall");
+                                        ball.css("background-color", _TaskStatusDecoder[dataHistory.status].color);
+                                        ball.css("color", _TaskStatusDecoder[dataHistory.status].contrastColor);
+                                        ball.find("._stsLabel").html(_TaskStatusDecoder[dataHistory.status].label);
+                                        ball.find(".additionalLabelText").css("color", _TaskStatusDecoder[dataHistory.status].contrastColor).html(dataHistory.lastStatusChangeDate ? ("状态变更日期<br>" + new Date(dataHistory.lastStatusChangeDate).format()) : "");
+                                    }
+
+                                    function resizeStatus() {
+                                        var stBox = $("#STATUS");
+                                        var lato = stBox.outerWidth() / 1.25;
+                                        var pallaTonda = $("#statusBall").css({ "width": lato, "height": lato });
+                                        var lbl = pallaTonda.find("._stsLabel");
+                                        var h = lbl.height();
+                                        var w = lbl.width();
+                                        var fontSize = lato * .4 * h / w;
+                                        fontSize = Math.min(fontSize, 22);
+                                        lbl.css("font-size", fontSize + "px");
+                                    }
+
+
+                                    function drawStatistics(dataHistory) {
+                                        //console.debug("drawStatistics", obj);
+                                        var data = computeStats(dataHistory, true);
+                                        var ndo = $("#statBoxes");
+                                        for (var type in data) {
+                                            if (data[type].type == "circle")
+                                                drawStatCircle(ndo, type, data);
+                                            else if (data[type].type == "health")
+                                                drawHealthBar(ndo, type, data);
+                                            else
+                                                drawStatBar(ndo, type, data);
+                                        }
+                                        refreshDates(dataHistory);
+                                    }
+
+
+                                    function drawStatCircle(ndo, type, data) {
+                                        var label = data[type].title;
+                                        var statsBlock = $("<div>").addClass("statsBlock").prop("id", type);
+                                        var circleDiv = $("<div>").addClass("circle").prop("id", "circle_" + type);
+                                        var h3 = $("<h3>").html(label);
+                                        statsBlock.append(circleDiv).append(h3);
+                                        ndo.append(statsBlock);
+
+                                        var perc = data[type].perc;
+
+                                        var value = Math.round(perc);
+
+                                        var colors = ["#E5E5E5", "#9bcee6"];
+                                        if (perc > 100) {
+                                            colors = ["#9bcee6", "#D02D1F"];
+                                            value = value - 100;
+                                        }
+
+                                        var circle = Circles.create({
+                                            id: "circle_" + type,
+                                            radius: getWidth(),
+                                            width: 4,
+                                            value: value,
+                                            duration: 10,
+                                            text: function (val) { return refreshOneCircleLabel(this); },
+                                            colors: colors
+                                        });
+
+                                        circle._origRadius = circle._radius;
+                                        circle._data = data[type];
+                                        circleDiv.data("circle", circle);
+
+                                        return statsBlock;
+                                    }
+
+
+                                    function drawStatBar(ndo, type, data) {
+                                        //console.debug("drawStatBar",type,data[type])
+
+                                        var statsBlock = $("<div>").addClass("statsBlockBar").prop("id", type);
+                                        var title = $("<h3>").html(data[type].title);
+                                        statsBlock.append(title);
+                                        var value = Math.round(data[type].perc);
+
+                                        var w = value;
+                                        if (w > 100) {
+                                            w = Math.round(100 / value * 100);
+                                        }
+
+                                        var barcss = "";
+                                        if (w == 100) {
+                                            barcss = "rounded";
+                                        }
+
+                                        var bgColor = value > 100 ? "#D02D1F" : "#E5E5E5";
+                                        var barColor = "#9bcee6";
+
+                                        var bg = $("<div>").addClass("statBarBG").css({ "background-color": bgColor });
+                                        var fg = $("<div>").addClass("statBarFG " + barcss).css({ "background-color": barColor, width: w + "%" });
+                                        var perc = $("<div>").addClass("percBar").append(value + "<small>%</small>");
+                                        bg.append(fg);
+                                        fg.append(perc);
+                                        statsBlock.append(bg);
+
+                                        var labelDiv = $("<small>").addClass("labelBar").append(data[type].label);
+                                        statsBlock.append(labelDiv);
+
+                                        ndo.append(statsBlock);
+                                        return statsBlock;
+                                    }
+
+
+                                    function drawHealthBar(ndo, type, data) {
+                                        //console.debug("drawHealthBar",type,data[type])
+
+                                        var statsBlock = $("<div>").addClass("statsBlockBar").prop("id", type);
+
+                                        var title = $("<h3>").html(data[type].title);
+                                        statsBlock.append(title);
+
+                                        var bg = $("<div>").addClass("statBarBG health");
+                                        statsBlock.append(bg);
+                                        var line = $("<div>").addClass("statHealtPos").css({ "left": Math.round((data[type].perc * 50 + 50) * .98 + 1) + "%" }); // per avere un valore 1-99
+                                        bg.append(line);
+
+                                        bg.append($("<div>").css({ "display": "inline-block", "width": "40%", "height": "100%" }).attr("title", "迟到了"));
+                                        bg.append($("<div>").css({ "display": "inline-block", "width": "20%", "height": "100%" }).attr("title", "准时"));
+                                        bg.append($("<div>").css({ "display": "inline-block", "width": "40%", "height": "100%" }).attr("title", "提前"));
+                                        var labelDiv = $("<small>").addClass("labelBar").append(data[type].label);
+                                        statsBlock.append(labelDiv);
+
+                                        ndo.append(statsBlock);
+                                        return statsBlock;
+                                    }
+
+
+                                    function refreshOneCircleLabel(circle) {
+                                        //console.debug(circle);
+                                        var ret = "";
+                                        if (circle._data) {
+                                            ret = Math.round(circle._data.perc) + '<small>%</small>' + (circle._data.label ? '<br><span class="additionalLabelText">' + circle._data.label + '</span>' : '');
+                                            circle._value = circle._data.perc > 100 ? (circle._data.perc % 100) : circle._data.perc;
+                                        }
+                                        return ret;
+                                    }
+
+
+                                    function refreshStatistics(dataHistory) {
+                                        //console.debug("refreshStatistics", obj);
+                                        var data = computeStats(dataHistory);
+                                        var ndo = $("#statBoxes");
+                                        for (var type in data) {
+                                            if (data[type].type == "circle") {
+                                                var circleDom = $("#circle_" + type);
+                                                var circle = circleDom.data("circle");
+                                                if (circle) {
+                                                    circle._data = data[type];
+                                                    circle.updateColors(data[type].perc <= 100 ? ["#E5E5E5", "#9bcee6"] : ["#9bcee6", "#D02D1F"]);
+                                                    circle.update(data[type].perc > 100 ? data[type].perc % 100 : data[type].perc, 0);
+                                                }
+                                            } else if (data[type].type == "health") {
+                                                //range -1 1
+                                                $("#" + type + " .labelBar").html(data[type].label);
+                                                $("#" + type + " .statHealtPos").css({ "left": Math.round((data[type].perc * 50 + 50) * .98 + 1) + "%" }); // per avere un valore 1-99
+
+                                            } else {
+
+                                                var w = data[type].perc;
+                                                if (w > 100) {
+                                                    w = Math.round(100 / w * 100);
+                                                }
+
+                                                var bgColor = data[type].perc > 100 ? "#D02D1F" : "#E5E5E5";
+                                                $("#" + type + " .statBarBG").css("background-color", bgColor);
+                                                $("#" + type + " .statBarFG").width(w + "%");
+                                                $("#" + type + " .percBar").html(Math.round(data[type].perc) + "%");
+                                                $("#" + type + " .labelBar").html(data[type].label);
+
+
+                                            }
+                                        }
+                                        refreshStatus(dataHistory);
+                                        refreshDates(dataHistory);
+                                    }
+
+
+                                    function refreshDates(dataHistory) {
+                                        //console.debug(dataHistory);
+                                        $("#statTaskDates").empty();
+                                        var datesObj = {
+                                            atDate: new Date(dataHistory.createdOn).format(),
+                                            start: new Date(dataHistory.start).format(),
+                                            end: new Date(dataHistory.end).format(),
+                                            duration: dataHistory.duration,
+                                            status: dataHistory.status
+                                        };
+
+                                        $("#atDate").html("&nbsp;&nbsp; " + datesObj.atDate);
+                                        $("#statTaskDates").append($.JST.createFromTemplate(datesObj, "HISTDATES"));
+                                    }
+
+                                    function computeStats(dataHistory) {
+                                        //console.debug("computeStats",dataHistory);
+
+                                        var computedData = {};
+
+
+                                        computedData["TASK_PROGRESS"] = { perc: dataHistory.progress, title: "进度", label: "", type: "circle" };
+
+
+
+                                        var perc = 0;
+                                        //se sto guardando la storia devo sempre calcolare i giorni passati fino al giorno di ispezione, altrimenti devo confrontare con today
+                                        var dateToBeCompared = dataHistory.createdOn;
+
+                                        if ("STATUS_ACTIVE" != dataHistory.status && "STATUS_WAITING" != dataHistory.status) {
+                                            //se la data di ispezione Ã¨ antecedenta lla data di ultimo cambio devo usare la data di ispezione
+                                            dateToBeCompared = dataHistory.createdOn < lastDataHist.lastStatusChangeDate ? dataHistory.createdOn : lastDataHist.lastStatusChangeDate;
+                                        }
+
+                                        var timeElapsed = new Date(dataHistory.start).distanceInWorkingDays(dateToBeCompared);
+                                        perc = timeElapsed <= 0 ? 0 : (timeElapsed / dataHistory.duration) * 100;
+                                        var label = timeElapsed < 0 ? ((-timeElapsed) + "<br>开始的日子") : timeElapsed + " / " + dataHistory.duration + "<br>天";
+                                        computedData["TIME_ELAPSED"] = { perc: perc, label: label, title: "时间已消耗", type: "circle" };
+
+
+                                        perc = dataHistory.totalWorklogEstimated <= 0 ? 0 : (dataHistory.totalWorklogDone / dataHistory.totalWorklogEstimated) * 100;
+                                        var label = getMillisInHours(dataHistory.totalWorklogDone) + " / " + getMillisInHours(dataHistory.totalWorklogEstimated) + "<br>小时";
+
+                                        computedData["WORK_DONE_OVER_ESTIMATED"] = { perc: perc, label: label, title: "<a href=\x22/app/task/taskAssignmentList?V_ID=1176501199&TASK_ID=53595\x22 id=\x22domId_1573713664\x22>已完成工期/预估量</a>", type: "circle" };
+
+
+
+                                        var elapsed = Math.round(Math.min(computedData["TIME_ELAPSED"].perc, 100));
+                                        perc = dataHistory.progress < elapsed ? (dataHistory.progress / elapsed - 1) : ((dataHistory.progress > elapsed) ? (1 - elapsed / dataHistory.progress) : 0);
+                                        var label = dataHistory.progress + "% / " + elapsed + "%";
+                                        computedData["PROJECT_HEALTH"] = { perc: perc, label: label, title: "进度/时间", type: "health" };
+
+
+
+                                        if (true) {
+                                            perc = dataHistory.totalCostsEstimated <= 0 ? 0 : (dataHistory.totalCostsDone / dataHistory.totalCostsEstimated) * 100;
+                                            var label = formatCurrency(dataHistory.totalCostsDone) + " / " + formatCurrency(dataHistory.totalCostsEstimated);
+
+                                            computedData["COST_DONE_OVER_ESTIMATED"] = { perc: perc, label: label, title: "<a href=\x22/app/task/TaskCostList?V_ID=996954396&OBJID=53595\x22 id=\x22domId_1145119678\x22>发生/估算成本</a>", type: "bar" };
+                                        }
+
+
+                                        if (true) {
+                                            perc = dataHistory.forecasted <= 0 ? 0 : (dataHistory.totalCostsDone / dataHistory.forecasted) * 100;
+                                            var label = formatCurrency(dataHistory.totalCostsDone) + " / " + formatCurrency(dataHistory.forecasted);
+
+                                            computedData["COST_DONE_OVER_BUDGET"] = { perc: perc, label: label, title: "<a href=\x22/app/task/TaskCostList?V_ID=277983732&OBJID=53595\x22 id=\x22domId_1295651499\x22>发生的费用/预算</a>", type: "bar" };
+                                        }
+
+
+                                        if (dataHistory.totalDescendant > 0) {
+                                            perc = (dataHistory.totalDescendantClosed / dataHistory.totalDescendant) * 100;
+                                            var label = dataHistory.totalDescendantClosed + " / " + dataHistory.totalDescendant + " 项目";
+                                            computedData["TASK_CLOSED_OVER_TOTAL"] = { perc: perc, label: label, title: "已经关闭的子任务/总数", type: "bar" };
+                                        }
+
+
+                                        var totScore = dataHistory.totalIssuesScoreOpen + dataHistory.totalIssuesScoreClosed;
+                                        //if (totScore > 0) {
+                                        perc = totScore <= 0 ? 0 : (dataHistory.totalIssuesScoreClosed / totScore) * 100;
+                                        var label = dataHistory.totalIssuesScoreClosed + " / " + totScore + " points";
+
+
+                                        computedData["ISSUE_BLOCK_OVER_OPEN"] = { perc: perc, label: label, title: "<a href=\x22/app/task/taskIssueList?V_ID=1106583694&CM=FN&OBJID=53595&FLT_ISSUE_STATUS=13721%2C13722&FLT_ISSUE_GRAVITY=05_GRAVITY_BLOCK\x22 id=\x22domId_1143762038\x22>已关闭的中断任务</a>", type: "bar" };
+
+                                        //}
+
+
+                                        //if (dataHistory.totalIssues > 0) {
+                                        perc = dataHistory.totalIssues <= 0 ? 0 : ((dataHistory.totalIssues - dataHistory.totalIssuesOpen) / dataHistory.totalIssues) * 100;
+                                        var label = (dataHistory.totalIssues - dataHistory.totalIssuesOpen) + " / " + dataHistory.totalIssues + " 问题";
+
+
+                                        computedData["ISSUE_CLOSED_OVER_OPEN"] = { perc: perc, label: label, title: "<a href=\x22/app/task/taskIssueList?V_ID=254280310&CM=FN&OBJID=53595&FLT_ISSUE_STATUS=13721%2C13722\x22 id=\x22domId_196712640\x22>已关闭的问题</a>", type: "bar" };
+                                        //}
+
+
+
+                                        /*/if (dataHistory.teamSize > 0) {
+                                         var totalLoggable =
+                                        197.0;
+                                         perc = dataHistory.teamSize<=0 ? 0: (dataHistory.teamSize / totalLoggable) * 100;
+                                         var label = dataHistory.teamSize + " / " + totalLoggable + "
+                                        operators";
+                                         computedData["TEAM_OVER_USERS"]={perc:perc,label:label,title:"
+                                        该小组/总人数",type:"bar"};
+                                         //}*/
+
+                                        return computedData;
+                                    }
+
+
+                                    function drawstatBox(id, label) {
+                                        var statsBlock = $("<div>").addClass("statsBlock");
+                                        var circle = $("<div>").addClass("circle").prop("id", id);
+                                        var h3 = $("<h3>").html(label);
+                                        statsBlock.append(circle).append(h3);
+                                        return statsBlock;
+                                    }
+
+
+                                    function getWidth() {
+                                        return ($(".statsBlock").width() / 2.5);
+                                    }
+
+                                    function toggleHistory(el) {
+
+                                        if ($('#statsHistory').is(":visible")) {
+                                            $('#statsHistory').slideUp('slow', function () {
+                                                refreshStatistics(lastDataHist);
+
+                                            });
+                                            $('#slideDivDown').css('display', '');
+                                            $('#slideDivUp').css('display', 'none')
+
+                                        } else {
+                                            $('#statsHistory').slideDown('slow',
+                                                function () {
+                                                    //refreshStatistics(dataHistories[dataHistories.length-1 || $("#slider").mbgetVal()]);
+                                                    refreshStatistics(dataHistories[$("#slider").mbgetVal()]);
+                                                    $(window).resize();
+                                                });
+                                            $('#slideDivUp').css('display', '');
+                                            $('#slideDivDown').css('display', 'none')
+                                        }
+
+
+                                    }
+
+                        </script>
+                    </div>
+
+                    <hr>
+
+
+
+                    <script type="text/javascript" src="/commons/js/jquery/sparkline/jquery.sparkline.js"></script>
+
+
+                    <style>
+                        .chartTitle { position: absolute; top: 0; left: 5px; font-size: .9em; font-weight: bold }
+
+                        .chartArea { position: relative; display: inline-block; width: 49%; padding-right: 10px; vertical-align: top }
+
+                        .lineLegenda { margin-top: 5px; margin-left: 5px; margin-right: 5px; display: inline-block; opacity: .8; font-size: .8em; }
+
+                            .lineLegenda b { display: inline-block; margin-right: 0; border: 1px solid silver; line-height: 8px; padding: 2px; }
+                    </style>
+
+                    <div style="position:relative;width:100%;display: inline-block;">
+                        <div style="border-right: 1px solid #cecfd2;" class="chartArea">
+                            <div style="position:absolute;top:0;left:0;">
+                                <div class="chartTitle">工作记录</div>
+                            </div>
+                            <div id="wlhb" style="margin-top: 20px"></div>
+                            <div style="display: block">
+                                <span class="lineLegenda"><b style="color:#2F97C6;" class="teamworkIcon">&#8212;</b>&nbsp;理想趋势</span>
+                                <span class="lineLegenda"><b style="color:#EE8D35;" class="teamworkIcon">&#8212;</b>&nbsp;工作日志汇总</span>
+                                <span class="lineLegenda"><b style="color:#8007bb;" class="teamworkIcon">&#8212;</b>&nbsp;完成工期</span>
+                            </div>
+                        </div>
+                        <div class="chartArea">
+                            <div class="chartTitle">问题</div>
+                            <div id="isshb" style="margin-top: 20px"></div>
+                            <div style="display: block">
+                                <span class="lineLegenda"><b style="color:#7aad24;" class="teamworkIcon">&#8212;</b>&nbsp;已发现的问题</span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+
+                            var sparklineHomeWlhb = function () {
+
+                                $('#wlhb')
+                                    .empty()
+                                    .sparkline([[1604793600000, 0], [1604880000000, 0], [1606780799000, 360000000]], {
+                                        type: "line", height: 100, width: "100%", composite: false, lineWidth: "2", highlightSpotColor: "#fa3e3e", lineColor: "#2F97C6", fillColor: "#D5EAF4", chartRangeMin: 0, chartRangeMax: 360000000, highlightLineColor: null, spotColor: false, maxSpotColor: false, minSpotColor: false, tooltipSkipNull: false, tooltipFormatter: function (sparkline, options, fields) {
+                                            return "";
+                                        }
+                                    })
+                                    .sparkline([[1604793600000, 0], [1604880000000, 28800000], [1604966400000, 28800000], [1605052800000, 28800000], [1605139200000, 28800000], [1605225600000, 28800000], [1605312000000, 28800000], [1605398400000, 28800000], [1605484800000, 28800000], [1605571200000, 28800000], [1605657600000, 28800000], [1605744000000, 28800000], [1605830400000, 28800000], [1605916800000, 28800000], [1606003200000, 28800000], [1606089600000, 28800000], [1606176000000, 28800000], [1606262400000, 28800000], [1606348800000, 28800000], [1606435200000, 28800000], [1606521600000, 28800000], [1606608000000, 28800000], [1606694400000, 28800000], [1606780799000, 28800000]], {
+                                        type: "line", height: 100, width: "100%", composite: true, lineWidth: "2", highlightSpotColor: "#fa3e3e", lineColor: "#EE8D35", fillColor: false, spotRadius: 4, chartRangeMin: 0, chartRangeMax: 360000000, spotColor: false, maxSpotColor: false, minSpotColor: false, tooltipSkipNull: false, tooltipFormatter: function (sparkline, options, fields) {
+                                            return "<div class='jptootipContent'>" + "&nbsp;星期 " + (new Date(fields.x).format()) + "&nbsp;<br>" + "&nbsp;工作日志汇总: " + getMillisInHoursMinutes(fields.y) + "&nbsp;<br>";
+                                        }
+                                    })
+                                    .sparkline([[1604793600000, 0], [1604880000000, 28800000], [1604966400000, 0], [1605052800000, 0], [1605139200000, 0], [1605225600000, 0], [1605312000000, 0], [1605398400000, 0], [1605484800000, 0], [1605571200000, 0], [1605657600000, 0], [1605744000000, 0], [1605830400000, 0], [1605916800000, 0], [1606003200000, 0], [1606089600000, 0], [1606176000000, 0], [1606262400000, 0], [1606348800000, 0], [1606435200000, 0], [1606521600000, 0], [1606608000000, 0], [1606694400000, 0], [1606780799000, 0]], {
+                                        type: "line", height: 100, width: "100%", composite: true, lineWidth: "2", lineColor: "#8007bb", highlightSpotColor: "#fa3e3e", fillColor: false, spotRadius: 4, chartRangeMin: 0, chartRangeMax: 360000000, spotColor: false, maxSpotColor: "#fa3e3e", minSpotColor: "#0b67d6", tooltipSkipNull: false, tooltipFormatter: function (sparkline, options, fields) {
+                                            return "&nbsp;完成工期: " + getMillisInHoursMinutes(fields.y) + "&nbsp;<br></div>";
+                                        }
+                                    })
+                                    .bind('sparklineClick', function (ev) {
+                                        var sparkline = ev.sparklines[1];
+                                        var region = sparkline.getCurrentRegionFields();
+                                        var wlAnali = "/applications/teamwork/task/worklog/worklogList.jsp?V_ID=1884016112&CM=FN&TASK=53595&TASK_WORKLOG_SHOW_CHILDREN=yes&WORKLOG_AT_DAY=" + (new Date(region.x).format()) + ":" + (new Date(region.x + (3600000 * 24 * 6)).format());
+                                        window.location.href = wlAnali;
+                                    });
+                            };
+
+                            sparklineHomeWlhb();
+                            var sparkResize;
+                            $(window).resize(function (e) {
+                                clearTimeout(sparkResize);
+                                $('#wlhb').empty();
+                                sparkResize = setTimeout(function () {
+                                    sparklineHomeWlhb();
+                                }, 500);
+                            });
+                        });
+                    </script>
+
+
+
+
+                    <div class="noprint buttonArea" id="domId_12419369" style="text-align:left;">
+                        <div class="bbLoggedInfo">
+                            <b>创建者</b>&nbsp;Dream Wing&nbsp;
+                            <b>日期</b>&nbsp;2020-11-9 上午8:31&nbsp;&nbsp;&nbsp;<b>ID</b>&nbsp;
+                            53595&nbsp;&nbsp;&nbsp;<b>域</b>&nbsp;
+                            梦想飞扬<br><b>最后更新：</b>&nbsp;Dream Wing&nbsp;
+                            <b>日期</b>&nbsp;2020-11-11 上午7:22
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div style="width: 20%" class="container">
+
+                    <div id="taskImage" style="display:none;" onclick="openTaskImageEditor('53595')"></div>
+
+
+
+                    <div class="workgroup">
+                        <h2>项目小组</h2>
+                        <div class="clearfix">
+                            <div class="workgroupElement">
+                                <span class="button buttonImg  " id="domId_1157238106" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1757129014&CM=ED&OBJID=28252&ASSIG_ROLE=35065&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d666022610" title="Dream Wing PM" alt="Dream Wing PM" id="d666022610" " resId="15089" class="face "></span>
+                            </div><div class="workgroupElement">
+                                <span class="button buttonImg  " id="domId_1635762024" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1214506830&CM=ED&OBJID=28286&ASSIG_ROLE=35065&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d2112571125" title=" 第一个员工 SH" alt=" 第一个员工 SH" id="d2112571125" " resId="15163" class="face "></span>
+                            </div><div class="workgroupElement">
+                                <span class="button buttonImg  " id="domId_1267484462" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=1368615044&CM=ED&OBJID=28287&ASSIG_ROLE=35065&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d221122996" title=" 第二个员工 SH" alt=" 第二个员工 SH" id="d221122996" " resId="15164" class="face "></span>
+                            </div><div class="workgroupElement">
+                                <span class="button buttonImg  " id="domId_606856495" style=" " onClick="stopBubble(event);try{ window.open('/applications/teamwork/task/taskAssignmentEditor.jsp?V_ID=155938288&CM=ED&OBJID=28280&ASSIG_ROLE=35065&TASK_ID=53595','_self','') } catch(e){};"><img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1518747991" title="Zhang Fei WK" alt="Zhang Fei WK" id="d1518747991" " resId="15189" class="face "></span>
+                            </div><div id="hintFirstAssig" class="workgroupElement">
+                                <button type="button" class="button noprint  icon  " id="domId_1053022993" style="" title="添加分工" onclick="openBlackPopup('/app/task/taskAssignmentNew.html?V_ID=924757076&CM=AD&TASK_ID=53595','800px','600px');return false; "><span class='teamworkIcon '>r</span></button>
+
+                            </div>
+                        </div><div class="separator"></div><div class="buttonBoxInline">
+                            <a class="button  textual   " id="btnAgenda" style="" title="会议议程/" href="/app/agenda/agendaWeekDay?V_ID=1942491770&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.task.Task&REFERRAL_ID=53595"><span class='teamworkIcon withLabel'>m</span>会议议程/</a>
+
+                            <button type="button" class="button noprint textual   " id="domId_1759750867" style="" onclick="top.twChat.createTaskChat(53595);return false; "><span class='teamworkIcon withLabel'>&#x2b2d;</span>Chat</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_648441837" style="" onclick="openBlackPopup('/applications/teamwork/messaging/composeMessage.jsp?V_ID=1809306651&CM=FIND_BY_ENTITY&POP=yes&REFERRAL_TYPE=com.twproject.task.Task&REFERRAL_ID=53595','800px','600px');return false; "><span class='teamworkIcon withLabel'>&#xec;</span>信息</button>
+
+                            <div class="separator"></div><a class="button  textual   small lreq30 lreqLabel lreqActive" id="domId_2029929581" style="" title="计划" href="/applications/teamwork/task/plan/planByTask.jsp?V_ID=367486460&CM=ED&OBJID=53595">计划</a>
+
+                            <a class="button  textual   small lreq20 lreqLabel lreqActive" id="domId_181964448" style="" title="工作负荷" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=22789505&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.task.Task&REFERRAL_ID=53595">工作负荷</a>
+
+                            <a class="button  textual   small" id="domId_771121369" style="" title="时间表概述" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=575934328&CM=FIND_BY_ENTITY&REFERRAL_TYPE=com.twproject.task.Task&REFERRAL_ID=53595">时间表概述</a>
+
+                            <a class="button  textual   small lreq20 lreqLabel lreqActive" id="domId_1019453667" style="" title="工作记录审核" href="/applications/teamwork/task/worklog/approval/worklogApprovalByTask.jsp?V_ID=1012796123&CM=dummy&TASK_ID=53595">工作记录审核</a>
+
+                        </div>
+                    </div>
+                    <div class="separator dark"></div>
+                    <div class="documents">
+                        <h2>
+                            <span onClick="stopBubble(event);try{ window.open('/app/task/taskDocumentList?V_ID=1845534860&CM=LIST_DOCS&TASK_ID=53595','_self','') } catch(e){};" style="cursor:pointer;display: inline">文档</span>
+                            <span style="float:right;font-size: 14px;padding-top: 7px;">
+                                <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_913771409', 'btnAddDoc');  ">
+                                    <button type="button" class="button noprint textual icon  edit" id="btnAddDoc" style="" title="添加" onclick=";return false; "><span class='teamworkIcon '>P</span></button>
+
+
+                                </span>
+
+                                <div id="divdomo_domId_913771409" class="divomo " style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <button type="button" class="button noprint textual   " id="domId_17876751" style="" onclick="openBlackPopup('/applications/teamwork/task/taskDocumentEditor.jsp?V_ID=1100511366&CM=AD&TASK_ID=53595&DOCUMENT_TYPE=1','1000px','700px');return false; ">+ 上传文件</button>
+
+                                        <button type="button" class="button noprint textual   " id="domId_613592203" style="" onclick="openBlackPopup('/applications/teamwork/task/taskDocumentEditor.jsp?V_ID=1954327124&CM=AD&TASK_ID=53595&DOCUMENT_TYPE=4','1000px','700px');return false; ">+ 创建一个文件存储的链接</button>
+
+                                        <button type="button" class="button noprint textual   " id="domId_439187580" style="" onclick="openBlackPopup('/applications/teamwork/task/taskDocumentEditor.jsp?V_ID=427682927&CM=AD&TASK_ID=53595&DOCUMENT_TYPE=3','1000px','700px');return false; ">+ 添加一个链接（URL）</button>
+
+                                        <button type="button" class="button noprint textual   " id="domId_1832125406" style="" onclick="openBlackPopup('/applications/teamwork/task/taskDocumentEditor.jsp?V_ID=524362321&CM=AD&TASK_ID=53595&DOCUMENT_TYPE=2','1000px','700px');return false; ">+ 写一个文件</button>
+
+                                    </div>
+                                </div>
+                            </span>
+                        </h2>
+
+
+
+                        <div class="customFormsList"></div>
+                        <div id="holder" class="uploadizeDrop" style="display: none"></div>
+                        <script>
+                            $(function () {
+                                $("#holder").uploadize({
+                                    url: "taskAjaxController.jsp",
+                                    maxSize: 20971520,
+                                    additionalRequestParameters: { CM: "DROPDOC", OBJID: 53595 },
+                                    onLoadCallback: function (response) {
+                                        if (response.ok) {
+
+                                            var fileWrapper = $("<div/>").addClass("docLabelWrapper");
+                                            var dr = $(response.docHRef);
+                                            var image = $("<img>"); //response.docMime;
+                                            image.attr({ src: contextPath + "/img/mime/" + response.docMime }).css({ width: 20 });
+                                            fileWrapper.append(image).append(dr);
+                                            $("#documentList").append(fileWrapper);
+                                            dr.effect("highlight", { color: "#F9EFC5" }, 2500);
+                                            //            self.location.reload();
+                                        }
+                                    },
+                                    fileAreaSelector: "#documentList"
+                                });
+                            });
+                        </script>
+                        <div id="documentList" class="textSmall">
+                            <div class="docLabelWrapper">
+                                <img src="/img/mime/application_vnd.openxmlformats-officedocument.wordprocessingml.document.png" width="30" border="0" name="d316257603" id="d316257603"><a href="https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=1508255209&FILE_TO_UPLOAD=FR_1013_%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8APM001.docx%2B%2B%2B%5C001013.%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8APM001.docx&TREATASATTACH=yes&CK=khd31ag7.4f6d9532e6b2a425c8ab708fb223ca9a" id="cl_2342">开题报告</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        function warnOnClosing() {
+                            if ("STATUS_DONE" == $("#STATUS").val()) {
+                                var endSt = $("#END").val();
+                                if (endSt) {
+                                    var end = Date.parseString(endSt);
+                                    if (!end.equalsIgnoreTime(new Date())) {
+                                        showFeedbackMessage("WARNING", "警告: 您正在关闭一个关闭日期不在今天的任务.");
+                                        var span = $("<span>").addClass("warning textSmall").append("警告: 您正在关闭一个关闭日期不在今天的任务.");
+                                        $("#LOG_STATUS_CHANGE_CONTAINER textarea").after(span);
+                                    }
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+
+            </div>
+
+            <div style="display:none;" id="tsktoktpl">
+                <div class="__template__" type="TASKLOG">
+                    <!--
+                    <div logId="(#=obj.id#)" style="padding-top:10px;">
+                      <div class="commentHeader">
+                        <img class="face" src="(#=obj.ownerAvatarUrl#)" resid="(#=obj.ownerResourceId#)" title="(#!obj.ownerDisplayName#)">
+                        <b>(#!obj.ownerDisplayName#)</b> <span title="(#=(new Date(obj.creationDate)).format()#)">(#=dateToRelative(new Date(obj.creationDate))#)</span></div>
+
+                      <div style="width: 100%; max-width: 100%; overflow-x: hidden" class="commentBody">
+                        (#if(obj.newStatus){#)
+                        状态: <span class="teamworkIcon" style="color:(#=obj.oldStatusColor#)">&copy;</span>&nbsp;(#=obj.oldStatusLabel#) <span class="teamworkIcon fromTo">:</span> <span class="teamworkIcon" style="color:(#=obj.newStatusColor#)">&copy;</span>&nbsp;<strong>(#=obj.newStatusLabel#)</strong><br>
+                        (#}#)
+                        (#if(obj.newStartDate && obj.newStartDate!=obj.oldStartDate){
+                        #)开始日期: (#=new Date(obj.oldStartDate).format()#) <span class="teamworkIcon fromTo">:</span> <strong>(#=new Date(obj.newStartDate).format()#)</strong> <br>(#
+                        }
+                        if(obj.newEndDate && obj.newEndDate!=obj.oldEndDate){
+                        #)结束日期: (#=new Date(obj.oldEndDate).format()#) <span class="teamworkIcon fromTo">:</span> <strong>(#=new Date(obj.newEndDate).format()#)</strong> <br> (#
+                        }
+
+                        #)
+                        (#!obj.comment#)
+                      </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <script>
+                //$(function(){
+                $("#tsktoktpl").loadTemplates().remove();
+                $.JST.loadDecorator("TASKLOG", function (histRow, taskLog) {
+                    histRow.activateTeamworkLinks(true);
+                    if (taskLog.newStartDate || taskLog.newEndDate || taskLog.newStatus) {
+                        histRow.addClass("issueHistory").find(".delete").remove();
+                    }
+                });
+                drawHistory(1);
+                //});
+
+                function drawHistory(pageNumber) {
+                    //si cancella eventuale more
+                    $("#tlShowMore").hide();
+                    var request = { "command": "list", "object": "taskLog", "filters": { "taskId": 53595 }, "page": pageNumber, "pageSize": 3 };
+                    callAPI(request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok && response.objects) {
+                            if (response.objects.length > 0) {
+                                $("#NOLOGS").hide();
+                            } else {
+                                $("#NOLOGS").show();
+                            }
+                            //console.debug("drawHistory",issHists);
+                            for (var i = 0; i < response.objects.length; i++) {
+                                $("#taskUpdates").append($.JST.createFromTemplate(response.objects[i], "TASKLOG"));
+                            }
+                            $("#taskUpdates").show();
+                            if (response.hasMore) {
+                                $("#tlShowMore").show();
+                            }
+                        }
+
+                    })
+                }
+
+                function refreshTaskLogs() {
+                    $("#taskUpdates").empty().hide();
+                    drawHistory(1);
+                }
+
+            </script>
+        </div>
+
+
+        <div class="rightColumn noprint">
+            <div class="tools">
+                <div class="toolsElement">
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_24575603', 'domId_1250006372');  ">
+                        <button type="button" class="button noprint    first" id="domId_1250006372" style="" title="添加" onclick=";return false; "><span class='teamworkIcon withLabel'>P</span>添加...</button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_24575603" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <button type="button" class="button noprint textual   " id="btnAddSubtask" style="" onclick="openBlackPopup('/app/task/taskNew.html?V_ID=725299397&CM=AD&PARENT_ID=53595&ADD_TYPE=ADD_CHILD_TASK','800px','720px');return false; ">+ 添加子任务</button>
+
+                            <button type="button" class="button noprint textual   " id="domId_1198399633" style="" onclick="openBlackPopup('/app/task/taskAssignmentNew.html?V_ID=908282987&CM=AD&TASK_ID=53595','800px','600px');return false; ">+ 添加任务</button>
+
+                            <a class="button  textual   " id="domId_253506618" style="" href="/app/task/taskIssueList?V_ID=1742413629&CM=ADDISSUE&OBJID=53595">+ 创建问题</a>
+
+                        </div>
+                    </div>
+                </div><div class="toolsElement">
+                    <button type="button" class="button noprint    first" id="btnEditTask" style="" onclick="openBlackPopup('/app/task/taskEditorNew.html?V_ID=1658852111&CM=ED&OBJID=53595','800px','720px');return false; "><span class='teamworkIcon withLabel'>e</span>编辑</button>
+
+                </div><div class="toolsElement">
+                    <button type="button" class="button noprint  icon  deleteOnHover" id="domId_1731013602" style="" title="删除" onclick="deletePreview('TASK_DEL','53595');return false; "><span class='teamworkIcon '>d</span></button>
+
+                </div><div class="toolsElement">
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_972412998', 'domId_1184642905');  ">
+                        <button type="button" class="button noprint  icon  " id="domId_1184642905" style="" title="进口/出口" onclick=";return false; "><span class='teamworkIcon '>I</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_972412998" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <a class="button  textual   lreq20 lreqLabel" id="domId_1418258762" style="" href="/applications/teamwork/task/taskExportMPX.jsp?V_ID=628971900&CM=ED&OBJID=53595" target="_blank">MPX 格式</a>
+
+                            <a class="button  textual   lreq20 lreqLabel" id="domId_1754014881" style="" href="/applications/teamwork/task/taskExportXML.jsp?V_ID=1138606016&CM=ED&OBJID=53595" target="_blank">XML 格式</a>
+
+                            <a class="button  textual   " id="domId_1220082598" style="" href="/applications/teamwork/task/taskExportJSON.jsp?V_ID=1956663732&CM=ED&OBJID=53595" target="_blank">导出到JSON</a>
+
+                        </div>
+                    </div>
+                </div><div class="toolsElement">
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_960425575', 'domId_1230257213');  ">
+                        <button type="button" class="button noprint  icon  " id="domId_1230257213" style="" title="打印" onclick=";return false; "><span class='teamworkIcon '>p</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_960425575" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <button type="button" class="button noprint textual   " id="domId_1742959190" style="" onclick="openBlackPopup('/applications/teamwork/task/taskEditorPrint.jsp?V_ID=1385548173&CM=ED&OBJID=53595',$(window).width()-100,$(window).height()-50);return false; ">打印/导出 报告</button>
+
+                            <a class="button  textual   " id="domId_1452567898" style="" href="/commons/tools/freezePDF.jsp?V_ID=1242216556&CM=ED&OBJID=53595&PRINTING_PDF=yes&PAGE_TO_PRINT=%2Fapplications%2Fteamwork%2Ftask%2FtaskEditorPrint.jsp&PRINT_TASK_ASSIGS_SUBTASKS=yes&PRINT_TASK_DESCENDANTS=yes&PRINT_TASK_DIARY_DETAIL=yes&REDIR_URL=%2Fapplications%2Fteamwork%2Ftask%2FtaskOverview.jsp%3FV_ID%3D90677603%26CM%3DCREATE_SNAPSHOT%26OBJID%3D53595&FREEZE_PREFIX=task_53595">快照</a>
+
+                            <hr><button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_714562590" style="" onClick="stopBubble(event);saveFormValues('d160719703');  obj('d160719703CM').value='ED';obj('d160719703reportName').value='projectProgress';obj('d160719703').target='_blank'; obj('d160719703').action='/applications/teamwork/task/taskIReportHelper.jsp'; try {obj('d160719703').submit();} catch(e){};restoreFormValues('d160719703');  ">project  progress</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div><div class="rightColumnInner">
+                <div class="" style="display:block">
+                    <br><button type="button" class="button noprint textual   bolder lreq20 lreqLabel lreqActive" id="domId_616097659" style="" onclick="openBlackPopup('/applications/teamwork/task/taskClone.jsp?V_ID=69545261&CM=ED&OBJID=53595&POP=yes','800px','650px');return false; "><span class='teamworkIcon withLabel'>D</span>复制</button>
+
+                    <button type="button" class="button noprint textual   bolder" id="domId_740973510" style="" onclick="openBlackPopup('/applications/teamwork/task/taskMove.jsp?V_ID=1734692626&CM=ED&OBJID=53595&POP=yes','700px','450px');return false; "><span class='teamworkIcon withLabel'>y</span>移动</button>
+
+                </div>
+
+
+
+
+                <div class="" style="display:block" id="tskSidBarMoreDiv">
+
+                    <div class="separator"></div><a class="button  textual   " id="domId_284113617" style="" href="/applications/teamwork/task/scrum/sprintWizard.jsp?V_ID=1635383261&CM=NEW_SPRINT&PARENT_ID=53595"><span class="teamworkIcon withLabel" style="">P</span> 启动一个新的“冲刺”</a>
+
+                    <a class="button  textual   lreq30 lreqLabel lreqHide" id="domId_243269674" style="" href="/applications/teamwork/processes/createProcess.jsp?V_ID=1804464188&CM=AD&PARENT_ID=53595"><span class="teamworkIcon withLabel" style="">P</span> 添加一个子进程</a>
+
+                    <button type="button" class="button noprint textual   " id="domId_156926296" style="" onclick="openBlackPopup('/applications/teamwork/task/taskAddFromTemplate.jsp?V_ID=865544782&CM=ED&OBJID=53595','800px','650px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 从添加模板</button>
+
+                    <div class="separator"></div><a class="button  textual   " id="domId_350338356" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=966267040&CM=FN&TASK=53595&TASK_WORKLOG_SHOW_CHILDREN=yes">工作记录分析</a>
+
+                    <button type="button" class="button noprint textual   " id="domId_423578997" style="" onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogInPeriodForTask.jsp?V_ID=778802666&CM=ED&OBJID=53595','800px','800px');return false; ">当前工作记录</button>
+
+                    <div class="separator"></div><button type="button" class="button noprint textual   lreq20 lreqLabel lreqActive" id="domId_793024585" style="" onclick="openBlackPopup('/applications/teamwork/task/taskPublicPageEditor.jsp?V_ID=183912774&CM=TASK_EDIT_SECURITY&OBJID=53595','800px','600px');return false; ">项目的公共页面</button>
+
+                    <button type="button" class="button noprint textual   " id="domId_1080686813" style="" onclick="openTaskImageEditor('53595');return false; ">选择一个项目形象</button>
+
+
+
+                    <script type="text/javascript">
+                        function openTaskImageEditor(resId) {
+                            $(".uploadizeDrop").attr("disabled", "true");
+                            openBlackPopup(contextPath + "/applications/teamwork/task/taskImageUploader.jsp?TASK_ID=" + 53595, '500px', '550px', function (response) {
+
+                            });
+                        }
+
+                    </script>
+                    <button type="button" class="button noprint textual   " id="domId_123496446" style="" onclick="openBlackPopup('/applications/teamwork/task/recodeTaskTree.jsp?V_ID=1834063412&CM=ED&OBJID=53595','500px','400px');return false; ">分配新码</button>
+
+                    <div class="separator"></div><button type="button" class="button noprint textual   " id="domId_752439551" style="" onclick="openBlackPopup('/applications/teamwork/task/taskArea.jsp?V_ID=1135564920&CM=TASK_EDIT_SECURITY&OBJID=53595','600px','600px');return false; ">安全</button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="bottomBar" id="moveBar"></div>
+
+        <script>
+            (function createBarFolio() {
+                var miles = [];
+
+                var moveBar = $("#moveBar");
+                moveBar.empty();
+
+                var startMillis = 1604188800000;
+                var endMillis = 1609459199998;
+
+                var barFolio = new Folio(moveBar);
+                barFolio.width = endMillis - startMillis;
+                barFolio.height = 50;
+                barFolio.left = startMillis;
+                barFolio.inPercent = true;
+
+                var incField = "d";
+                var incAmount = 1;
+                var d = new Date(startMillis);
+
+                while (d.getTime() <= endMillis) {
+                    var headLbl = $("<span>").html(d.format("dd")).addClass("moveBarEl");
+                    barFolio.addElement(headLbl, 0, d.getTime(), 30 * 24 * 3600000, 50);
+                    d.add(incField, incAmount);
+                }
+
+                //task schedule
+                var task = $("<div>").prop("title", "第一个项目").css({ opacity: 0.7, "background-color": "#ffff00" });
+                barFolio.addElement(task, 25, 1604880000000, 1900799000, 25);
+                var progress = 0.0;
+                if (progress > 0 && progress <= 100) {
+                    var perc = $("<div>").css({ width: progress + "%", height: "100%", "background-color": "#BCFF3A" });
+                    task.append(perc);
+                } else if (progress > 100) {
+                    task.css({ "background-color": "#ff0000" })
+                }
+
+
+                //milestones
+                for (var i = 0; i < miles.length; i++) {
+                    var mil = miles[i];
+                    var m = $("<span>").addClass("teamworkIcon").html("^").prop("title", mil.taskName).attr("taskId", mil.taskId).css({ overflow: "visible", width: 0, "margin-left": -8, cursor: "pointer" }).click(seeMiles);
+                    barFolio.addElement(m, 25, mil.when, 0, 25);
+                }
+
+                //today
+                var today = $("<span>").prop("title", "今天").addClass("moveBarToday");
+                barFolio.addElement(today, 0, new Date().getTime(), barFolio.getPixelWidth() * 2, 50);
+
+                barFolio.redraw();
+
+                function seeMiles() {
+                    self.location.href = "taskOverview.jsp?CM=ED&OBJID=" + $(this).attr("taskId");
+                }
+
+            })()
+
+
+
+        </script>
+
+
+
+
+
+
+        <input type="hidden" id="d160719703outType" name="outType" value="" savedValue="">
+        <input type="hidden" id="d160719703reportName" name="reportName" value="" savedValue="">
+
+    </form>
+
+</div>
+
+

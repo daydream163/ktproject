@@ -1,0 +1,234 @@
+﻿
+<div id="wp_worklogDay" class="portletBox">
+    <div style="float:right">
+        <button type="button" class="button noprint textual icon  " id="domId_1391695285" style="" title="过滤" onclick="$('#configWorklogDay').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+    </div><h1>今天的工作记录</h1>
+
+
+
+
+    <div id="configWorklogDay" class="portletParams" style="display:none;">
+        <table class="table">
+            <tr>
+                <td>
+                    <input type=hidden name="WORKLOG_SHOW_TODAY" id="WORKLOG_SHOW_TODAY" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_WORKLOG_SHOW_TODAY" name="ck_WORKLOG_SHOW_TODAY" checked value="yes"
+                                                                                                                                                                                 onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');refreshPortlet($(this),{'WORKLOG_SHOW_TODAY':$('#WORKLOG_SHOW_TODAY').val()});">
+                    &nbsp;<label for="ck_WORKLOG_SHOW_TODAY">显示今天的活动</label>&nbsp;
+                <td>
+            </tr>
+        </table>
+    </div>
+
+
+    <table class="table">
+        <tr>
+            <td class="calHeader left">
+                <span class="button textual today noprint" onclick="wpWLDGoToMillis(new Date().getTime())">今天</span>
+                <span class="button textual teamworkIcon" onclick="wpWLDGoToMillis(new Date(focusMillis).add('d',-1).getTime())" title="前一天">{</span>
+                <span class="button textual teamworkIcon" onclick="wpWLDGoToMillis(new Date(focusMillis).add('d',1).getTime())" title="后一天">}</span>
+            </td>
+            <td class="calHeader">
+                <h2 style="margin: 0" id="wpWLTIT"></h2>
+            </td>
+
+        </tr>
+    </table>
+
+
+
+    <table class="table" cellpadding="2" cellspacing="0" border="0">
+        <tbody id="wlDayRowPlace">
+
+
+
+            <div id="wp_WLDayTemplates">
+                <div class="__template__" type="WLDAYROW">
+                    <!--
+                          <tr wlid="(#=obj.id#)" assId="(#=obj.assId#)" class="alternate">
+                            <td><button type="button" class="button noprint textual icon  "  id="domId_437754753" style=""   onclick="openBlackPopup('/applications/teamwork/task/worklog/worklogAssignmentList.jsp?V_ID=258255620&CM=FN&ASS_ID=(#=obj.assId#)');return false; " ><span class='teamworkIcon '>A</span></button>
+
+                    <td class="columnTaskName"><span>(#!obj.taskName#)</span></td><td class="textSmall columnTaskCode"><span>(#!obj.taskCode#)</span></td><td width="55%" align="center"><input type=TEXT name="WLACT" id="WLACT" size=40 class="formElements" autocomplete='off' maxlength=255 style="width:100%;overflow:hidden;"  value="" onkeydown= "if (event.keyCode==13) { $(this).blur();event.preventDefault();return false;}" oldValue='1' ></td><td width="1%" align="center"><input type=text name="WLDUR" id="WLDUR" size=5 class="formElements validated durationmillis" autocomplete='off' maxlength=255 value="(#=getMillisInHoursMinutes(obj.duration)#)" onkeydown= "if (event.keyCode==13) { $(this).blur();event.preventDefault();return false;}" required="true"  oldValue='1' entryType="DURATIONMILLIS" ></td><td><button type="button" class="button noprint textual icon  delete"  id="domId_392929782" style=""   onclick="$(this).confirm(function(){wpWLDDeleteWL($(this))},'您确实想删除这个工作记录?');return false; " ><span class='teamworkIcon '>d</span></button>
+
+                    </td>
+                          </tr>
+                          -->
+                </div>
+            </div>
+
+        </tbody>
+
+
+
+        <tr class="alternate highlight" id="wlDayLineEdit">
+            <td width="95%" nowrap align="left" colspan="4">
+                <script>
+                    function letSubmitASSIG() {
+                        $(this).closest('tr').find('.button').click(); return false;
+                    }
+                </script>&nbsp;<input type=text name="ASSIG_txt" id="ASSIG_txt" placeholder="Which assignment" size=30 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,200); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" style="width:98%;" onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="" required="true"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASSIG" id="ASSIG" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" required="true" oldValue='1'>
+            </td>
+            <td width="5%" align="center" colspan="2">
+                <button type="button" class="button noprint textual icon  " id="domId_753664044" style="" onclick="wpWDAddWl($(this));return false; "><span class='teamworkIcon '>w</span></button>
+
+            </td>
+        </tr>
+
+
+
+        <tr class="totals">
+            <td colspan="4" align="right">每天工作记录总计</td>
+            <td id="wpWLDtotWorklog" colspan="2"></td>
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+    var focusMillis = 1590998240348;
+    var workable = 0;
+    var notBeyond = 1588406240348;
+    var notFutureBeyond = 1591603040348;
+
+    (function startup() {
+
+        //listen for worklogEvent
+        registerEvent("worklogEvent.wpWoklogDay", function (e, data) {
+            wpWLDGoToMillis(focusMillis);
+        });
+
+
+        $("#wp_WLDayTemplates").loadTemplates().remove();
+        $.JST.loadDecorator("WLDAYROW", function (row, wl) {
+            row.find("#WLACT").val(wl.action);
+
+            if (wl.insertedMillis && wl.insertedMillis >= notBeyond && wl.insertedMillis < notFutureBeyond) {
+                row.find(":input").blur(function () {
+                    wlDSaveWl($(this));
+                });
+            } else {
+                row.find(":input").prop("disabled", true); //disabilita le righe nel passato
+                //row.find("span.delete").remove();
+            }
+        });
+        wpWLDGoToMillis(focusMillis);
+
+    })();
+
+
+    function wpWLDDrawRows(response) {
+        //console.debug("wpWLDDrawRows",response);
+        var focusDate = new Date(focusMillis);
+
+        $("#wpWLTIT").html(focusDate.format(Date.masks.fullDate) + (focusDate.isToday() ? " (今天)" : ""));
+
+        var tbodyRows = $("#wlDayRowPlace").empty();
+
+        for (var i = 0; i < response.worklogs.length; i++) {
+            tbodyRows.append($.JST.createFromTemplate(response.worklogs[i], "WLDAYROW"));
+        }
+        workable = response.workable;
+        wpWLDUpdateTotals();
+    }
+
+    function wpWLDGoToMillis(millis) {
+        focusMillis = millis;
+        showSavingMessage();
+        $.getJSON(contextPath + "/worklog/worklogAjax", { CM: "LISTWL1DAY", "FOCUS_MILLIS": focusMillis }, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok) {
+                wpWLDDrawRows(response);
+            }
+            hideSavingMessage();
+        });
+
+        //si disabilita la riga di input se troppo nel passato
+        $("#wlDayLineEdit :input").attr("disabled", focusMillis < notBeyond)
+    }
+
+    function wpWLDUpdateTotals() {
+        var tot = 0;
+        $("#wlDayRowPlace [name=WLDUR]").each(function () {
+            var el = $(this);
+            tot += millisFromString(el.val(), true);
+        });
+        var diff = tot - workable;
+        var diffStr = getMillisInHoursMinutes(tot - workable);
+        $("#wpWLDtotWorklog").html(getMillisInHoursMinutes(tot) + ((Math.abs(diff) < 5 ? "" : " (" + (diff > 0 ? "+" : "") + diffStr + ")")));
+
+        $(window).resize();
+
+    }
+
+
+    function wlDSaveWl(el) {
+        //console.debug("wlDSaveWl")
+        var row = el.closest("[wlId]");
+        var durField = row.find("[name=WLDUR]");
+        if (el.isValueChanged() && durField.validateField()) {
+            showSavingMessage();
+            var request = {
+                CM: "SV",
+                wlId: row.attr("wlId"),
+                assId: row.attr("assId"),
+                WORKLOG_DURATION: durField.val(),
+                WORKLOG_ACTION: row.find("[name=WLACT]").val(),
+                WORKLOG_INSERTIONDATE: new Date(focusMillis).format()
+            };
+            $.getJSON(contextPath + "/worklog/worklogAjax", request, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    if (response.duration == 0) {
+                        row.fadeOut(200, function () {
+                            $(this).remove();
+                            wpWLDUpdateTotals(workable);
+                            $("body").trigger("worklogEvent", [{ type: "delete", response: response }])
+                        })
+                    } else {
+                        wpWLDUpdateTotals(workable);
+                        row.find(":input").updateOldValue();
+                        $("body").trigger("worklogEvent", [{ type: "save", response: response }])
+
+                    }
+
+                }
+                hideSavingMessage();
+            });
+        }
+    }
+
+    function wpWDAddWl(el) {
+        //console.debug("wpWDAddWl")
+        var row = el.closest("tr");
+        if (row.find(":input").isFullfilled()) {
+            openWorklogEditorPopup(el, { assId: row.find("#ASSIG").val(), title: row.find("#ASSIG_txt").val(), "WORKLOG_INSERTIONDATE": new Date(focusMillis).format() });
+        }
+    }
+
+
+
+    function wpWLDDeleteWL(el) {
+        var row = el.closest("[wlId]");
+        showSavingMessage();
+        var request = { CM: "REMOVEWL", wlId: row.attr("wlId") };
+        $.getJSON(contextPath + "/worklog/worklogAjax", request, function (response) {
+            jsonResponseHandling(response);
+            if (response.ok) {
+                row.fadeOut(200, function () {
+                    $(this).remove();
+                    wpWLDUpdateTotals(workable);
+                    $("body").trigger("worklogEvent", [{ type: "delete", response: response }])
+
+                })
+            }
+            hideSavingMessage();
+        });
+    }
+
+
+</script>

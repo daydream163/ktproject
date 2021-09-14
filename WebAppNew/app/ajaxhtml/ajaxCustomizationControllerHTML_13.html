@@ -1,0 +1,84 @@
+﻿
+
+<style>
+    .myIssue .columnTaskName { width: 10%; }
+</style>
+<div class="portletBox myIssue">
+    <div style="float:right;padding-top: 5px">
+        &nbsp;<button type="button" class="button noprint textual icon  ruzzol" id="domId_840311459" style="" title="过滤" onclick="$('#myIssues').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+    </div>
+    <h1>
+        <a class="button  textual   " id="domId_747650808" style="" href="/app/issue/issuelist?V_ID=1550211437&CM=FN&FLNM=PF_MY_OPEN_ISSUES">我报告的问题</a>
+
+    </h1>
+
+
+
+    <div id="myIssues" class="portletParams" style="display:none">
+        <label for="MAX_MY_ISSUES_DISPLAY" class=" ">问题最大显示数</label>&nbsp;<input type=text name="MAX_MY_ISSUES_DISPLAY" id="MAX_MY_ISSUES_DISPLAY" size=2 class="formElements" autocomplete='off' maxlength=255 onBlur="refreshPortlet($(this),{'MAX_MY_ISSUES_DISPLAY':$(this).val()});" value="8" oldValue='1'>&nbsp;&nbsp;<input type=hidden name="SHOW_ALSO_DEP" id="SHOW_ALSO_DEP" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'><input type="checkbox" id="ck_SHOW_ALSO_DEP" name="ck_SHOW_ALSO_DEP" checked value="yes"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+        <label for="ck_SHOW_ALSO_DEP">展会还发出从我的部门</label>
+    </div>
+
+
+    <table class="table dataTable">
+        <thead>
+            <tr>
+                <th class="tableHead" width="1%">级别</th>
+                <th class="tableHead">问题状态</th>
+                <th class="tableHead">描述</th>
+                <th class="tableHead" colspan="2">任务</th>
+                <th class="tableHead" nowrap>分工给</th>
+                <th class="tableHead" nowrap>做</th>
+                <th class="tableHead" nowrap></th>
+                <th class="tableHead" nowrap></th>
+            </tr>
+        </thead>
+        <tbody id="wp_myIssuesExpired" style="display:none;"></tbody>
+        <tbody id="wp_myIssues"></tbody>
+    </table>
+
+    <div class="hint">尚无未处理的问题.</div>
+
+
+    <script type="text/javascript">
+        var defs = [initialize(contextPath + "/parts/partIssuePortletSupport.html", "html"),
+        initialize(contextPath + "/parts/partIssueNotes.html", "html")];
+
+        $.when.apply(null, defs) // per chiamare la when con un array [a,b,c,d] invece che parametri sep.  (a,b,c,d)
+            .done(function () {
+                $("#wp_myIssueTemplates").loadTemplates().remove();
+
+                var expired = [];
+                var issues = [];
+
+                var ndo = $("#wp_myIssuesExpired");
+                for (var i = 0; i < expired.length; i++) {
+                    var iss = $.JST.createFromTemplate(expired[i], "MYISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+                if (expired.length > 0)
+                    ndo.show();
+
+                ndo = $("#wp_myIssues");
+                for (var i = 0; i < issues.length; i++) {
+                    var iss = $.JST.createFromTemplate(issues[i], "MYISSLINE");
+                    cvc_redraw(iss.find(".cvcComponent"));
+                    ndo.append(iss);
+                }
+
+
+                //bind  issueEvent
+                registerEvent("issueEvent.wpMyIssues", function (e, data) {
+                    //console.debug("wp_myIssues",data);
+                    refreshPortlet($("#myIssues"));
+                });
+
+            })
+
+    </script>
+</div>
+
+

@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="ISS_PLANNER">
+    <data>
+      <![CDATA[
+{
+    "ok": true,
+    "weekStart": 1604793600000,
+    "weekEnd": 1605398399998,
+    "dateHeaders": {
+        "1": {
+            "millis": 1604793600000,
+            "inUserFormat": "2020-11-8",
+            "label": "星期日 08 十一月"
+        },
+        "2": {
+            "millis": 1604880000000,
+            "inUserFormat": "2020-11-9",
+            "label": "星期一 09 十一月"
+        },
+        "3": {
+            "millis": 1604966400000,
+            "inUserFormat": "2020-11-10",
+            "label": "星期二 10 十一月"
+        },
+        "4": {
+            "millis": 1605052800000,
+            "inUserFormat": "2020-11-11",
+            "label": "星期三 11 十一月"
+        },
+        "5": {
+            "millis": 1605139200000,
+            "inUserFormat": "2020-11-12",
+            "label": "星期四 12 十一月"
+        },
+        "6": {
+            "millis": 1605225600000,
+            "inUserFormat": "2020-11-13",
+            "today": true,
+            "label": "星期五 13 十一月 <small>(今天)<small>"
+        },
+        "7": {
+            "millis": 1605312000000,
+            "inUserFormat": "2020-11-14",
+            "label": "星期六 14 十一月"
+        }
+    },
+    "centralHeader": "8 - 14 十一月 &nbsp;&nbsp;<small>(工作周数: 47)</small>",
+    "centralDay": 1605095999999,
+    "issues": [
+        {
+            "id": "14545",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605248511000,
+            "creator": "Dream Wing",
+            "creationDate": 1605248511000,
+            "areaId": 5819,
+            "area": "梦想飞扬",
+            "description": "无法登录了，急",
+            "estimatedDuration": 7200000,
+            "worklogDone": 0,
+            "tags": "登录",
+            "icodid": "14545",
+            "signalledOn": 1605225600000,
+            "orderByTask": 0,
+            "orderByRes": 0,
+            "commentSize": 0,
+            "taskId": "53596",
+            "taskName": "第二个项目",
+            "taskCode": "T53596",
+            "tcodid": "T53596",
+            "taskPath": "",
+            "assigneeId": "15089",
+            "assigneeName": "Dream Wing",
+            "rcodid": "15089",
+            "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assigneeConnectionStatus": "active",
+            "assignedById": "15089",
+            "assignedByName": "Dream Wing",
+            "assigendByCodid": "15089",
+            "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assignedByConnectionStatus": "active",
+            "assignmentId": "28253",
+            "shouldCloseBy": 1605225600000,
+            "statusId": 13720,
+            "statusName": "open",
+            "statusColor": "#3BBF67",
+            "statusOrder": 1,
+            "isOpen": true,
+            "gravityId": "02_GRAVITY_MEDIUM",
+            "gravityName": "中",
+            "gravityColor": "#F9C154",
+            "gravityOrder": 4,
+            "documents": []
+        },
+        {
+            "id": "14546",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605248540000,
+            "creator": "Dream Wing",
+            "creationDate": 1605248540000,
+            "areaId": 5819,
+            "area": "梦想飞扬",
+            "description": "首页也是有点错乱",
+            "estimatedDuration": 3600000,
+            "worklogDone": 0,
+            "tags": "",
+            "icodid": "14546",
+            "signalledOn": 1605225600000,
+            "orderByTask": 0,
+            "orderByRes": 0,
+            "commentSize": 0,
+            "taskId": "53683",
+            "taskName": "第二个子任务",
+            "taskCode": "T53595.02",
+            "tcodid": "T53595.02",
+            "taskPath": "第一个项目",
+            "assigneeId": "15089",
+            "assigneeName": "Dream Wing",
+            "rcodid": "15089",
+            "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assigneeConnectionStatus": "active",
+            "assignedById": "15089",
+            "assignedByName": "Dream Wing",
+            "assigendByCodid": "15089",
+            "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assignedByConnectionStatus": "active",
+            "assignmentId": "28310",
+            "shouldCloseBy": 1604880000000,
+            "statusId": 13720,
+            "statusName": "open",
+            "statusColor": "#3BBF67",
+            "statusOrder": 1,
+            "isOpen": true,
+            "gravityId": "02_GRAVITY_MEDIUM",
+            "gravityName": "中",
+            "gravityColor": "#F9C154",
+            "gravityOrder": 4,
+            "documents": []
+        },
+        {
+            "id": "14479",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605249055000,
+            "creator": "Dream Wing",
+            "creationDate": 1604915613000,
+            "areaId": 5819,
+            "area": "梦想飞扬",
+            "description": "第三个问题",
+            "estimatedDuration": 7200000,
+            "worklogDone": 10800000,
+            "tags": "",
+            "icodid": "14479",
+            "signalledOn": 1604880000000,
+            "orderByTask": 0,
+            "orderByRes": 2,
+            "commentSize": 0,
+            "taskId": "53597",
+            "taskName": "第一个子任务",
+            "taskCode": "T53596.01",
+            "tcodid": "T53596.01",
+            "taskPath": "第二个项目",
+            "assigneeId": "15089",
+            "assigneeName": "Dream Wing",
+            "rcodid": "15089",
+            "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assigneeConnectionStatus": "active",
+            "assignedById": "15089",
+            "assignedByName": "Dream Wing",
+            "assigendByCodid": "15089",
+            "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assignedByConnectionStatus": "active",
+            "assignmentId": "28254",
+            "shouldCloseBy": 1604880000000,
+            "statusId": 13720,
+            "statusName": "open",
+            "statusColor": "#3BBF67",
+            "statusOrder": 1,
+            "isOpen": true,
+            "gravityId": "02_GRAVITY_MEDIUM",
+            "gravityName": "中",
+            "gravityColor": "#F9C154",
+            "gravityOrder": 4,
+            "documents": []
+        },
+        {
+            "id": "14547",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1605248568000,
+            "creator": "Dream Wing",
+            "creationDate": 1605248568000,
+            "areaId": 5819,
+            "area": "梦想飞扬",
+            "description": "字体调整",
+            "estimatedDuration": 0,
+            "worklogDone": 0,
+            "tags": "",
+            "icodid": "14547",
+            "signalledOn": 1605225600000,
+            "orderByTask": 0,
+            "orderByRes": 0,
+            "commentSize": 0,
+            "taskId": "53597",
+            "taskName": "第一个子任务",
+            "taskCode": "T53596.01",
+            "tcodid": "T53596.01",
+            "taskPath": "第二个项目",
+            "assigneeId": "15089",
+            "assigneeName": "Dream Wing",
+            "rcodid": "15089",
+            "assigneeAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assigneeConnectionStatus": "active",
+            "assignedById": "15089",
+            "assignedByName": "Dream Wing",
+            "assigendByCodid": "15089",
+            "assignedByAvatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "assignedByConnectionStatus": "active",
+            "assignmentId": "28254",
+            "shouldCloseBy": 1604966400000,
+            "statusId": 13720,
+            "statusName": "open",
+            "statusColor": "#3BBF67",
+            "statusOrder": 1,
+            "isOpen": true,
+            "gravityId": "01_GRAVITY_LOW",
+            "gravityName": "低",
+            "gravityColor": "#EEEEEE",
+            "gravityOrder": 99,
+            "documents": []
+        }
+    ],
+    "savedFilter": {
+        "15089": {
+            "id": "15089",
+            "lastModifier": "Dream Wing",
+            "lastModified": 1604293688000,
+            "creationDate": 1604293688000,
+            "area": "梦想飞扬",
+            "areaId": 5819,
+            "displayName": "Dream Wing",
+            "loadComplete": false,
+            "ads_id": 12922,
+            "location": "office",
+            "address": "",
+            "city": "",
+            "province": "",
+            "country": "",
+            "zip": "",
+            "url": "",
+            "email": "dreamtowing@163.com",
+            "mobile": "",
+            "fax": "",
+            "telephone": "",
+            "avatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29",
+            "resConnectionStatus": "active",
+            "name": "Dream",
+            "surname": "Wing"
+        }
+    }
+}      ]]>
+    </data>
+  </node>
+  <node id="ISSUE_TASK">
+    <![CDATA[
+ 
+]]>
+  </node>
+  <node id="EDIT">
+    <data>
+      <![CDATA[
+
+
+
+
+<tr issueId="14477" class="alternate issueRow inEdit " assId="28252" resId="15089" gravity="02_GRAVITY_MEDIUM">
+
+
+<td width="1%" align="center">
+  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
+</td>
+
+
+<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
+  
+
+<script type="text/javascript">
+
+  (function() {
+    var cvd={values:[{"code":"05_GRAVITY_BLOCK","color":"#DB2727","value":"中断","enabled":true,"textColor":"#FFFFFF","index":1},{"code":"04_GRAVITY_CRITICAL","color":"#8C6044","value":"关键的","enabled":true,"textColor":"#FFFFFF","index":2},{"code":"03_GRAVITY_HIGH","color":"#F9791C","value":"高","enabled":true,"textColor":"#FFFFFF","index":3},{"code":"02_GRAVITY_MEDIUM","color":"#F9C154","value":"中","enabled":true,"textColor":"#000000","index":4},{"code":"01_GRAVITY_LOW","color":"#EEEEEE","value":"低","enabled":true,"textColor":"#000000","index":5}]};
+
+    
+    var callback=function(hidden,data){
+      hidden.each(changeGravity);
+    };
+    cvd.callback=callback;
+    
+    _colorValueData["ISSGRLIN"]=cvd;
+
+  })();
+</script>
+
+
+
+ <div class="cvcComponent cvcGravity " style="cursor:pointer;" cvcType="ISSGRLIN" > <input type=hidden name="ISSUE_GRAVITY" id="ISSUE_GRAVITY" size=2 class="formElements" autocomplete='off' maxlength=255 value="02_GRAVITY_MEDIUM" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="中" code="02_GRAVITY_MEDIUM"
+         style=" "><span class="teamworkIcon" style="color:#F9C154">&#169;</span></div></div>
+  </div>
+
+</div>
+
+</td>
+
+
+<td valign="top" align="center">
+
+ <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
+         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
+  </div>
+
+</div>
+</td>
+
+
+<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
+  <textarea  name="ISSUE_DESCRIPTION" id="ISSUE_DESCRIPTION" COLS="1" ROWS="1" class="formElements autosize" style='width:100%;margin-bottom:5px' required="true"  oldValue='1' maxHeight=800 minHeight=10 lineHeight=30>第一个问题的描述</textarea><span class="twLink textSmall issueCode" style="display:none;">I#14477#</span><input type=text name="ISSUE_TAGS" id="ISSUE_TAGS" placeholder="创建标签" size=20 class="formElements tagBox" title="标签应当用逗号分隔,如web,design" autocomplete='off' maxlength=255  style='width:65%;display:inline;margin:0 10px 0 0' autocomplete='off' taggableClass="com.twproject.task.Issue" maxResult="30" tagPropertyName="tags" areaId="5819" value="第一个, 问题" oldValue='1' ><span class="textSmall"><button type="button" class="button noprint textual   small"  id="domId_726792210" style="" title="评论: 0"  onclick="showComments($(this));return false; " ><span class='teamworkIcon withLabel'>Q</span>0</button>
+
+</span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
+
+  <script>$(function(){drawFiles("14477",[{"id":1012,"uid":"FR_1012_K-SQL 10.0 参考大全（20160620）.docx+++\\001012.K-SQL 10.0 参考大全（20160620）.docx","type":"FR","name":"K-SQL 10.0 参考大全（20160620）.docx","img":"application_vnd.openxmlformats-officedocument.wordprocessingml.document.png","mime":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","url":"https://demo.twproject.com/commons/layout/partUploaderView.jsp?V_ID=1851354941&FILE_TO_UPLOAD=FR_1012_K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx%2B%2B%2B%5C001012.K-SQL+10.0+%E5%8F%82%E8%80%83%E5%A4%A7%E5%85%A8%EF%BC%8820160620%EF%BC%89.docx&CK=khd1ht4t.b5969853c8f3bcf9f73b55fdaad8c1fd","ext":".docx","ck":"khd1ht4t.b5969853c8f3bcf9f73b55fdaad8c1fd"}])});</script>
+
+  <div class="uploadizeDrop" style="display: none;"  ></div>
+
+  
+
+  <span class="issueCreationDate">创建: 2020-11-9</span>
+</td>
+
+
+<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
+  <script>
+      function letSubmitISSUE_TASK() {
+        reloadAssignee($(this));
+      }
+    </script><input type=text name="ISSUE_TASK_txt" id="ISSUE_TASK_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" style='min-width:150px' onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="第一个项目" required="true"  ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ISSUE_TASK" id="ISSUE_TASK" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="53595" required="true"  oldValue='1' >
+
+</td>
+
+
+<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;">
+<input type=text name="ASSIGNEE_txt" id="ASSIGNEE_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="Wing Dream" ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASSIGNEE" id="ASSIGNEE" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="15089" oldValue='1' >
+
+</td>
+
+
+
+
+
+
+
+
+
+<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
+  
+<input type=text name="ISSUE_DATE_CLOSE_BY" id="ISSUE_DATE_CLOSE_BY" size=6 class="formElements dateField validated date" autocomplete='off' maxlength=255  onchange ="$(this).oneTime(100,'dfblur',function(){if ($(this).is('.formElementsError')) {$(this).focus();} });"  format="yyyy-M-d" value="2020-11-12" oldValue='1' entryType="DATE" maxValue="2020-11-30" minValue="2020-11-9" ><span title="日历" id="ISSUE_DATE_CLOSE_BYs_inputDate" class="teamworkIcon openCalendar"
+  onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:false,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:true});">m</span>
+
+
+</td>
+
+
+<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
+  <input type=text name="ISSUE_WORKLOG_ESTIMATED_TIME" id="ISSUE_WORKLOG_ESTIMATED_TIME" size=3 class="formElements validated durationmillis" autocomplete='off' maxlength=255 value="0:00" oldValue='1' entryType="DURATIONMILLIS" >
+</td>
+
+
+<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_237091665" style="" title="Database id: &nbsp;14477&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-9 上午9:53<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-11 上午5:43&nbsp;"  onclick="openIssueEditorInBlack('14477','ED','');return false; " ><span class='teamworkIcon '>e</span></button>
+
+<button type="button" class="button noprint textual icon  "  id="domId_1217448470" style="" title="新增的工作日志"  onclick="btnShowWorklog($(this));return false; " ><span class='teamworkIcon '>w</span></button>
+
+<button type="button" class="button noprint textual icon  "  id="domId_432246674" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
+
+<button type="button" class="button noprint textual icon  delete"  id="domId_1980155764" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
+
+<div class="issueRowButtons"><button type="button" class="button noprint    btnSave first small full"  id="domId_923847989" style=""   onclick="saveIssue($(this));return false; " >保存</button>
+
+<br><button type="button" class="button noprint    small full"  id="domId_806383313" style=""   onclick="closeEditor($(this));return false; " >关闭</button>
+
+</div>
+</td>
+
+</tr>
+
+
+      ]]>
+    </data>
+  </node>
+  <node id="ADD">
+    <![CDATA[
+ 
+
+
+
+<tr issueId="new_1605077264945" class="alternate issueRow inEdit "   gravity="02_GRAVITY_MEDIUM">
+
+
+<td width="1%" align="center">
+  <input type="checkbox" class="selector" onclick="refreshBulk($(this));" >
+</td>
+
+
+<td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
+  
+
+<script type="text/javascript">
+
+  (function() {
+    var cvd={values:[{"code":"05_GRAVITY_BLOCK","color":"#DB2727","value":"中断","enabled":true,"textColor":"#FFFFFF","index":1},{"code":"04_GRAVITY_CRITICAL","color":"#8C6044","value":"关键的","enabled":true,"textColor":"#FFFFFF","index":2},{"code":"03_GRAVITY_HIGH","color":"#F9791C","value":"高","enabled":true,"textColor":"#FFFFFF","index":3},{"code":"02_GRAVITY_MEDIUM","color":"#F9C154","value":"中","enabled":true,"textColor":"#000000","index":4},{"code":"01_GRAVITY_LOW","color":"#EEEEEE","value":"低","enabled":true,"textColor":"#000000","index":5}]};
+
+    
+    var callback=function(hidden,data){
+      hidden.each(changeGravity);
+    };
+    cvd.callback=callback;
+    
+    _colorValueData["ISSGRLIN"]=cvd;
+
+  })();
+</script>
+
+
+
+ <div class="cvcComponent cvcGravity " style="cursor:pointer;" cvcType="ISSGRLIN" > <input type=hidden name="ISSUE_GRAVITY" id="ISSUE_GRAVITY" size=2 class="formElements" autocomplete='off' maxlength=255 value="02_GRAVITY_MEDIUM" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="中" code="02_GRAVITY_MEDIUM"
+         style=" "><span class="teamworkIcon" style="color:#F9C154">&#169;</span></div></div>
+  </div>
+
+</div>
+
+</td>
+
+
+<td valign="top" align="center">
+
+ <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819" > <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1' ><div class="cvcColorSquare"   onClick="cvc_clickColValSel($(this),event);" ><div class="cvcStatuses noValue"><div class="cvcSelBox " title="open" code="13720"
+         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div></div>
+  </div>
+
+</div>
+</td>
+
+
+<td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
+  <textarea  name="ISSUE_DESCRIPTION" id="ISSUE_DESCRIPTION" COLS="1" ROWS="1" class="formElements autosize" style='width:100%;margin-bottom:5px' required="true"  oldValue='1' maxHeight=800 minHeight=10 lineHeight=30></textarea><span class="twLink textSmall issueCode" style="display:none;">I#new_1605077264945#</span><input type=text name="ISSUE_TAGS" id="ISSUE_TAGS" placeholder="创建标签" size=20 class="formElements tagBox" title="标签应当用逗号分隔,如web,design" autocomplete='off' maxlength=255  style='width:65%;display:inline;margin:0 10px 0 0' autocomplete='off' taggableClass="com.twproject.task.Issue" maxResult="30" tagPropertyName="tags" areaId="5819" value="" oldValue='1' ><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
+
+  <script>$(function(){drawFiles("new_1605077264945",[])});</script>
+
+  <div class="uploadizeDrop" style="display: none;"  ></div>
+
+  
+
+  
+</td>
+
+
+<td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
+  <script>
+      function letSubmitISSUE_TASK() {
+        reloadAssignee($(this));
+      }
+    </script><input type=text name="ISSUE_TASK_txt" id="ISSUE_TASK_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),true,false );" style='min-width:150px' onKeyDown="manageKeyEvent ($(this),event,true,false);" onKeyPress="stopKeyEvent(event);" value="" required="true"  ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ISSUE_TASK" id="ISSUE_TASK" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="" required="true"  oldValue='1' >
+
+</td>
+
+
+<td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;">
+<input type=text name="ASSIGNEE_txt" id="ASSIGNEE_txt" size=20 class="formElements smartCombo" autocomplete='off' maxlength=255  autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="Wing Dream" ><span class="teamworkIcon menuArrow"  style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="ASSIGNEE" id="ASSIGNEE" size=10 class="formElements" autocomplete='off' maxlength=255  jspPart='partSmartCombo' value="15089" oldValue='1' >
+
+</td>
+
+
+
+
+
+
+
+
+
+<td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
+  
+<input type=text name="ISSUE_DATE_CLOSE_BY" id="ISSUE_DATE_CLOSE_BY" size=6 class="formElements dateField validated date" autocomplete='off' maxlength=255  onchange ="$(this).oneTime(100,'dfblur',function(){if ($(this).is('.formElementsError')) {$(this).focus();} });"  format="yyyy-M-d" value="" oldValue='1' entryType="DATE" maxValue="3020-11-19" minValue="1020-10-29" ><span title="日历" id="ISSUE_DATE_CLOSE_BYs_inputDate" class="teamworkIcon openCalendar"
+  onclick="var inp=$(this).prevAll(':input:first');$(this).dateField({inputField:inp,dateFormat:inp.attr('format'),isSearchField:false,minDate:inp.attr('minValue'),maxDate:inp.attr('maxValue'),disableHolidays:true});">m</span>
+
+
+</td>
+
+
+<td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME" >
+  <input type=text name="ISSUE_WORKLOG_ESTIMATED_TIME" id="ISSUE_WORKLOG_ESTIMATED_TIME" size=3 class="formElements validated durationmillis" autocomplete='off' maxlength=255 value="0:00" oldValue='1' entryType="DURATIONMILLIS" >
+</td>
+
+
+<td nowrap align="right" class="issueButtonTd" width="1%"><button type="button" class="button noprint textual icon  "  id="domId_1962813116" style="" title="复制"  onclick="clone($(this));return false; " ><span class='teamworkIcon '>D</span></button>
+
+<button type="button" class="button noprint textual icon  delete"  id="domId_1503739045" style="" title="删除"  onclick="delRow($(this));return false; " ><span class='teamworkIcon '>d</span></button>
+
+<div class="issueRowButtons"><button type="button" class="button noprint    btnSave first small full"  id="domId_1754571419" style=""   onclick="saveIssue($(this));return false; " >保存</button>
+
+<br><button type="button" class="button noprint    small full"  id="domId_1983882176" style=""   onclick="closeEditor($(this));return false; " >关闭</button>
+
+</div>
+</td>
+
+</tr>
+
+]]>
+  </node>
+  <node id="REFRESHROW">
+    <![CDATA[
+    <td width="1%" align="center">
+        <input type="checkbox" class="selector" onclick="refreshBulk($(this));">
+    </td>
+
+    <td align="center" class="priority issueDrag dragHandler" fieldName="ISSUE_GRAVITY">
+
+        <div class="prioWrapper">
+            <div class="prio up teamworkIcon" title="top" onclick="moveIssueToTop($(this));event.stopPropagation();">k</div>
+            <div class="prio down teamworkIcon" title="bottom" onclick="moveIssueToBottom($(this));event.stopPropagation();">j</div>
+        </div>
+
+    </td>
+
+    <td valign="top" align="center">
+
+        <div class="cvcComponent cvcStatus " style="cursor:pointer;" cvcType="STATUSLINE5819">
+            <input type=hidden name="ISSUE_STATUS" id="ISSUE_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value="13720" oldValue='1'><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                <div class="cvcStatuses noValue">
+                    <div class="cvcSelBox " title="open" code="13720"
+                         style=" "><span class="teamworkIcon" style="color:#3BBF67">&#169;</span></div>
+                </div>
+            </div>
+
+        </div>
+    </td>
+
+    <td class="issueDescTd" valign="top" fieldName="ISSUE_DESCRIPTION">
+
+        <div class="issueDesc twLink" fieldName="ISSUE_DESCRIPTION" style="word-wrap:normal; overflow: hidden;">无法登录了，急</div>
+        <span class="twLink textSmall issueCode" style="">I#14545#</span><div fieldName="ISSUE_TAGS" class="issueTags">
+            <button type="button" class="button noprint textual   tag" id="domId_614151567" style="" onclick="location.href='/applications/teamwork/issue/issueList.jsp?V_ID=847811516&CM=FN&FLT_ISSUE_TAGS=%E7%99%BB%E5%BD%95';event.stopPropagation();return false; ">登录</button>
+
+        </div><span class="textSmall">
+            <button type="button" class="button noprint textual   small" id="domId_1764839057" style="" title="评论: 0" onclick="showComments($(this));return false; "><span class='teamworkIcon withLabel'>Q</span>0</button>
+
+        </span><div class="filesBox textSmall"><span class="teamworkIcon filesIcon" style="display:none;">n</span></div>
+
+        <script>$(function () { drawFiles("14545", []) });</script>
+
+        <div class="uploadizeDrop" style="display: none;"></div>
+
+        <span class="issueCreationDate">创建: 2020-11-13</span>
+    </td>
+
+
+    <td fieldName="ISSUE_TASK_txt" class="twLink issueTaskCell">
+        <div class="pathSmall"><span class="pathEl"></span></div>
+        <span class="textSmall" style="display: block;line-height: 130%"><span>第二个项目</span><br>T#T53596#</span>
+    </td>
+
+    <td fieldName="ASSIGNEE_txt" class="twLink resCombo " style="min-width: 120px;">
+        <img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1386607463" title="Dream Wing" alt="Dream Wing" id="d1386607463" " resId="15089" class="face small active">
+    </td>
+
+    <td fieldName="ISSUE_DATE_CLOSE_BY" nowrap style="position: relative;">
+
+        <span class="textSmall warning alertIcon"> 2020-11-13</span>
+
+    </td>
+
+    <td fieldName="ISSUE_WORKLOG_ESTIMATED_TIME">
+        <span class="textSmall" title="预估工期">2:00</span>
+    </td>
+
+    <td nowrap align="right" class="issueButtonTd" width="1%">
+        <button type="button" class="button noprint textual icon  " id="domId_219093397" style="" title="Database id: &nbsp;14545&nbsp;&nbsp;&nbsp;域&nbsp;梦想飞扬<br>创建者&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-13 上午6:21<br>最后更新：&nbsp;Dream Wing&nbsp;日期&nbsp;2020-11-13 上午6:21&nbsp;" onclick="openIssueEditorInBlack('14545','ED','');return false; "><span class='teamworkIcon '>e</span></button>
+        <button type="button" class="button noprint textual icon  " id="domId_1515752421" style="" title="新增的工作日志" onclick="btnShowWorklog($(this));return false; "><span class='teamworkIcon '>w</span></button>
+        <button type="button" class="button noprint textual icon  " id="domId_1799919033" style="" title="复制" onclick="clone($(this));return false; "><span class='teamworkIcon '>D</span></button>
+        <button type="button" class="button noprint textual icon  delete" id="domId_1784535989" style="" title="删除" onclick="delRow($(this));return false; "><span class='teamworkIcon '>d</span></button>
+    </td>
+</tr>
+
+]]>
+  </node>
+
+</nodes>

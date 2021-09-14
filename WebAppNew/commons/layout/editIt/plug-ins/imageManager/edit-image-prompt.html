@@ -1,0 +1,105 @@
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+
+  file: edit-image-prompt.html
+  last modified: 12/24/18 5:59 PM
+  Version:  0.1.28
+  Build:  4009
+
+  Open Lab s.r.l., Florence - Italy
+  email:  matbicoc@gmail.com
+  blog: 	http://pupunzi.open-lab.com
+  site: 	http://pupunzi.com
+  	      http://open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+<div id="edit-image-prompt">
+    <h2><span class='editIt-icon-image'></span> [[Edit image data]]:</h2>
+
+    <h3>[[Image size]]:</h3>
+    <hr>
+
+    <label for="image-width">[[Width]]:</label><br>
+    <input type="number" id="image-width" name="image-width" value=""> px <br>
+    <label for="image-height">[[Height]]:</label><br>
+    <input type="number" id="image-height" name="image-height" value=""> px
+
+    <h3>[[Image position]]:</h3>
+    <hr>
+
+    <input type="radio" id="image-align-block" name="image-align" value="none" checked><label
+        for="image-align-block"><span class="editIt-icon-image-block"></span></label>
+    <input type="radio" id="image-align-left" name="image-align" value="left"><label for="image-align-left"><span
+        class="editIt-icon-image-left"></span></label>
+    <input type="radio" id="image-align-right" name="image-align" value="right"><label for="image-align-right"><span
+        class="editIt-icon-image-right"></span></label>
+
+    <h3>[[Image link]]:</h3>
+    <hr>
+    <label for="image-link">[[Link]]:</label><br>
+    <input type="text" id="image-link" name="image-link" value="" placeholder="http://...">
+    <br>
+    <input type="checkbox" id="image-link-target" name="image-link-target" value="_blank">
+    <label for="image-link-target">[[Open the link in a new window]]</label>
+
+</div>
+
+<script>
+    var editImage = {};
+    var imageLink = null;
+    var imageLinkTarget = null;
+    var imageFloat = null;
+    $.editIt.ui.prompt.onLoad = function (editor, plugin) {
+
+      /**
+       * Translate content labels
+       * @type {jQuery.fn.init|jQuery|HTMLElement}
+       */
+        editImage.prompt = $("#edit-image-prompt");
+        $.editIt.i18n.translate(editImage.prompt);
+
+        var image = $(plugin.selectedImage);
+        imageFloat = image.css("float");
+        if(image.parent().is("a")){
+            imageLink = image.parent().attr("href");
+            imageLinkTarget = image.parent().attr("target");
+        }
+
+        var maxWidth = plugin.selectedImage.naturalWidth;
+        var maxHeight = plugin.selectedImage.naturalHeight;
+
+        var width = image.width();
+        var height = image.height();
+
+        $("#image-width").attr("max", maxWidth);
+        $("#image-height").attr("max", maxHeight);
+
+        $("#image-width").val(Math.min(width, maxWidth)).changeValueProportionally("#image-height");
+        $("#image-height").val(Math.min(height, maxHeight)).changeValueProportionally("#image-width");
+
+        $("#image-align-" + imageFloat).prop('checked', true);
+
+        $("#image-link").val(imageLink);
+        $("#image-link-target").prop('checked', imageLinkTarget == "_blank");
+
+    };
+
+    $.fn.changeValueProportionally = function (fieldId) {
+        var prop = null;
+        $(this).on("focus", function () {
+            prop = $(fieldId).val() / $(this).val();
+        }).on("keyup change", function () {
+            var fieldVal = Math.floor($(this).val() * prop);
+            $(fieldId).val(fieldVal);
+        });
+    };
+
+    $.editIt.ui.prompt.onApply = function () {};
+
+</script>

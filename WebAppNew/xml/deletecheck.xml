@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="deletepreview">
+    <data>
+      <![CDATA[
+请确认删除 "<small>(id:{id})</small> test (Ts)": 注意以下问题
+<table class="table" id="collections">
+{checkresult}
+</table>
+<br>
+<table class="table" id="referrers">
+    <tbody style="color: #444">
+        <tr align="center">
+            <td valign="middle">
+            </td>
+        </tr>
+        <tr align="right">
+            <td valign="middle"></td>
+        </tr>
+    </tbody>
+</table>
+<div class="noprint buttonArea" id="domId_2115336402" style="text-align:left;">
+    <div class="bbButtons">
+        <button type="button" class="button noprint    delete" id="domId_867132329" style="" onclick="performDelete('OBJ_DEL',{id},true);return false; ">确认删除</button>
+    </div>
+</div>
+
+<div id="deleteErrorFeedback" style="display: none;">
+    <b style="color:#ff0000;">无法删除  因为有一个不可移动的待定引用.</b><br>
+    <span style="float: right;font-size: 70%">
+        <button type="button" class="button noprint textual   " id="domId_1069024961" style="" onclick="showFullError($(this));return false; ">见错误详细信息</button>
+
+    </span>
+    <code style="font-size: 70%;display:none;"></code>
+</div>
+      ]]>
+    </data>
+  </node>
+</nodes>

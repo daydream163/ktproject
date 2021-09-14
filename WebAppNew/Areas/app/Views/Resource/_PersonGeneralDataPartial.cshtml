@@ -1,0 +1,50 @@
+﻿@if (Request.QueryString["cm"] == "AD" || Request.Form["cm"] == "AD") {
+    <table border="0" cellspacing="0" cellpadding="3" id="" class="table">
+        <tbody>
+            <tr>
+                <td nowrap="" style="width: 15%">
+                    <label for="COURTESY_TITLE" class=" ">尊称</label><br>
+                    <input type="text" name="COURTESY_TITLE" id="COURTESY_TITLE" size="14" class="formElements" autocomplete="off" maxlength="255" value="" oldvalue="1">
+                </td>
+                <td style="width: 20%">
+                    <label for="FLD_NAME" class=" ">姓</label><br>
+                    <input type="text" name="FLD_NAME" id="FLD_NAME" size="25" class="formElements bold" autocomplete="off" maxlength="255" value="" oldvalue="1">
+                </td>
+                <td style="width: 40%">
+                    <label for="FLD_SURNAME" class="required">名*</label><br>
+                    <input type="text" name="FLD_SURNAME" id="FLD_SURNAME" size="40" class="formElements bold" autocomplete="off" maxlength="255" value="" required="true" oldvalue="1">
+                </td>
+                <td nowrap="" style="width: 10%">
+                    <label for="CODE" class=" ">代码</label><br>
+                    <input type="text" name="CODE" id="CODE" size="14" class="formElements" autocomplete="off" maxlength="255" value="" oldvalue="1">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>}
+else {
+    KTProject.Model.KTResource obj = TempData["resource"] as KTProject.Model.KTResource;
+    <table border="0" cellspacing="0" cellpadding="3" id="" class="table">
+        <tbody>
+            <tr>
+                <td nowrap="" style="width: 15%">
+                    <label for="COURTESY_TITLE" class=" ">尊称</label><br>
+                    <input type="text" name="COURTESY_TITLE" id="COURTESY_TITLE" size="14" class="formElements" autocomplete="off" maxlength="255" value="@obj.courtesyTitle" oldvalue="1">
+                </td>
+                <td style="width: 20%">
+                    <label for="FLD_NAME" class=" ">姓</label><br>
+                    <input type="text" name="FLD_NAME" id="FLD_NAME" size="25" class="formElements bold" autocomplete="off" maxlength="255" value="@obj.personName" oldvalue="1">
+                </td>
+                <td style="width: 40%">
+                    <label for="FLD_SURNAME" class="required">名*</label><br>
+                    <input type="text" name="FLD_SURNAME" id="FLD_SURNAME" size="40" class="formElements bold" autocomplete="off" maxlength="255" value="@obj.personSurname" required="true" oldvalue="1">
+                </td>
+                <td nowrap="" style="width: 10%">
+                    <label for="CODE" class=" ">代码</label><br>
+                    <input type="text" name="CODE" id="CODE" size="14" class="formElements" autocomplete="off" maxlength="255" value="@obj.code" oldvalue="1">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+}

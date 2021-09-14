@@ -1,0 +1,84 @@
+﻿
+
+
+
+<div id="managFavDiv" class="bookmarksDiv portletBox small">
+    <style>
+
+        .bookmarksDiv h2, .customPagesDiv h2 { padding: 0; border: 0 }
+
+        .customPagesDiv .button.textual { color: #617777; display: block; font-size: 14px; line-height: 24px; text-align: left; }
+
+        .bookmarksDiv .linkLine, .customPagesDiv .linkLine { position: relative; border-bottom: 1px solid #CCCCCC; }
+
+        .linkLine .button.textual { line-height: 30px; }
+    </style>
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/portlethtml/wp_links.html" name="d608665187" id="d608665187"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d608665187V_ID" name="V_ID" value="608665187" savedValue="">
+        <input type="hidden" id="d608665187CM" name="CM" value="" savedValue="">
+        <input type="hidden" id="d608665187OBJID" name="OBJID" value="dummy" savedValue="">
+
+
+
+        <div>
+
+
+            <span style="float: right;">
+                <button type="button" class="button noprint textual icon  edit " id="domId_675943950" style="" title="添加链接" onclick="$('#addDiv').toggle();return false; "><span class='teamworkIcon '>P</span></button>
+
+
+            </span>
+            <h1>书签</h1>
+
+            <div id="addDiv" style="display:none">
+                <table class="table">
+                    <tr>
+                        <td><label for="TITLE" class="required">书签*</label><br><input type=text name="TITLE" id="TITLE" size=30 class="formElements" autocomplete='off' maxlength=255 style=width:100% value="" required="true" oldValue='1'></td>
+                    </tr>
+                    <tr><td><label for="URL" class="required">书签 URL*</label><br><input type=text name="URL" id="URL" size=30 class="formElements" autocomplete='off' maxlength=255 style=width:100% value="" required="true" oldValue='1'></td></tr>
+                    <tr>
+                        <td>
+                            <button type="button" class="button noprint    small" id="domId_269580988" style="" onClick="stopBubble(event);obj('d608665187CM').value='SV';ajaxSubmit('d608665187','managFavDiv');">添加</button>
+
+                        </td>
+                    </tr>
+                </table><div class="separator"></div>
+            </div>
+
+            <div class="linkLine">
+                <a class="button  textual   " id="domId_1643801654" style="" href="https://demo.twproject.com/app/getsThingsDone?V_ID=159073985">Twproject</a>
+
+                <div style="float:right">
+                    <button type="button" class="button noprint textual icon  delete" id="domId_2144763770" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+    function deleteBookmark(el){
+
+      var row=el.closest(".linkLine");
+      var link=row.find("a:first").text();
+      var request={CM:"DELBOOKMARK","LNKLBL":link};
+      showSavingMessage();
+      $.getJSON(contextPath+"/applications/teamwork/portal/portalAjaxController.jsp", request, function (response) {
+        jsonResponseHandling(response);
+        if (response.ok == true) {
+          row.remove();
+        }
+        hideSavingMessage();
+      });
+
+
+    }
+
+
+        </script>
+
+    </form>
+</div>
+
+

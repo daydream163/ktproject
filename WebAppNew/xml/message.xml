@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nodes>
+  <node id="messagelist">
+    <before><![CDATA[]]></before>
+    <row>
+      <![CDATA[
+<div id="message_{id}" class="message read" messageId="{id}" style="cursor:pointer;" onclick="followMessageLink($(this));">
+    <span class="message_operator">
+        <img src="/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29" border="0" name="d1882602216" title="Zhang Fei" alt="Zhang Fei" id="d1882602216" resId="15189" class="face ">
+    </span>
+    <span class="message_date">{received}</span>
+    <span class="message_subject ">{subject}</span>
+    <span class="message_body">
+        {messagebodx}
+    </span>
+    <span class="message_link"><a href="/app/issue/issuelist?V_ID=1687105035&CM=FN&ISSUE_ID=14477">I#14477#</a></span>
+</div>
+<hr>
+]]>
+    </row>
+    <after><![CDATA[]]></after>
+  </node>
+  <node id="messagelist_page">
+    <before><![CDATA[]]></before>
+    <row>
+      <![CDATA[
+<div id="message_{id}" class="message read" messageId="{id}" style="cursor:pointer;" onclick="followMessageLink($(this));">
+  <span class="message_operator">
+    <img src="/img/favicon.png" width="30px"  border="0"></span>
+  <span class="message_date">{received}</span>
+  <span class="message_subject " >{subject}</span>
+  <span class="message_body">{messagebodx}</span>
+  <span class="message_link"><a href="https://demo.twproject.com/applications/teamwork/task/taskOverview.jsp?V_ID=191011299&CM=ED&OBJID=54200" >点击查看/处理</a></span>
+</div>
+]]>
+    </row>
+    <after><![CDATA[]]></after>
+  </node>
+  <node id="READALL">
+    <![CDATA[
+{"ok":true,"messagesRead":13}
+]]>
+  </node>
+</nodes>

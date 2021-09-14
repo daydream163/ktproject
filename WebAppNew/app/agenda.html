@@ -1,0 +1,2327 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65018" type="text/css">
+
+
+
+    <link rel="stylesheet" href="/commons/skin/default/print.css?_=65018" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65018"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65018" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65018"></script>
+
+
+    <script src="/commons/js/platform.js"></script>
+    <script src="/commons/js/i18nJs.js"></script>
+
+    <script>
+    /**
+     * Check if is Mobile
+     */
+    if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+      top.location.href = contextPath + "/mobile";
+    }
+
+    // keep as top
+
+    /*if ( getTop() == top) {
+      // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+      // top.location.href = contextPath + "/tw" + location.pathname + location.search;
+    } else {
+      if (window.location !=  getTop().location) {
+        getTop().location=window.location;
+      } else {
+        // siamo giÃ&nbsp; nel wrapper si modifica solo la url senza cambiare pagina
+        top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+      }
+    }*/
+
+
+
+    var bodyScroll;
+    var minutesToLock = 0;
+    var localActivity=new Date().getTime();
+    $(function() {
+
+      //bodyScroll = new PerfectScrollbar('#twBody');
+
+      $("body").on("mousemove keyup",function(){
+        if (top.twComm) {
+          top.twComm.lastActivity = new Date().getTime();
+          localActivity = new Date().getTime();
+          if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+            top.twComm.checkAlive();
+        }
+
+      }).everyTime(10000, "alive", function() { //controlla lo stato ogni 10 sec.
+
+        //websocket keep-alive
+        if (top.twComm)
+          top.twComm.checkAlive();
+
+        //test autoLogoff
+        if (minutesToLock>0 && (new Date().getTime()-localActivity)>minutesToLock*60000){ //60 seconds
+          $(this).stopTime("alive");
+          muteAlertOnChange = true;
+          top.location = "/app/security/login.html?V_ID=1553891034&CM=LO";
+        }
+      });
+
+      // http session keep alive
+      $("body").everyTime(10*60*1000, "pingServer", function() { //10 min.
+        $.get('/command.jsp');
+      });
+
+      if (typeof (top.manageFocusBlur)=="function")
+        $(window).on("focus blur",top.manageFocusBlur)
+
+    });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30" level="30" style="padding-bottom: 28px; min-height: 969px;">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainer" style="">
+        <div id="savingMessage" style="display: none;">请稍候...</div>
+
+
+
+
+        <div class="twHeader noprint">
+            <div id="headerWrapper ">
+                <a href="/app/getsThingsDone?V_ID=1172412336" class="twLogo withArrowRight" title="Home" id="twLogoMainMenu"></a>
+                <div id="mainNav" class="noprint mainNav">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td id="DASHBOARD_MENU" ttitle="返回到主页.您可以通过自定义页面设置自己的个性化主页" class="withArrowRight">
+                                    <div style="position: relative">
+                                        <span>
+                                            <a class="button     hasDivomo noLabel" id="domId_1571669927" style="" href="/app/getsThingsDone?V_ID=2039297820"></a>
+
+                                            <span id="arrowOpener_divdomo_domId_1007604989" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1007604989', 'arrowOpener_divdomo_domId_1007604989'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                        </span>
+
+                                        <div id="divdomo_domId_1007604989" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                            <div class="divomoArrow"></div>
+
+                                            <div>
+                                                <a class="button  textual   " id="domId_1705108953" style="" href="/helpDesk.page?V_ID=1305628752">Help Desk</a>
+
+                                                <a class="button  textual  focused " id="domId_1744387503" style="" href="/app/getsThingsDone?V_ID=374097102">Get things done</a>
+
+                                                <a class="button  textual   " id="domId_474014077" style="" href="/pm.page?V_ID=746998863">Project Manager</a>
+
+                                                <a class="button  textual   " id="domId_1737745416" style="" href="/supervisor.page?V_ID=396167921">Supervisor</a>
+
+                                                <a class="button  textual   " id="domId_509607512" style="" href="/applications/teamwork/documentation/documentation.jsp?V_ID=132320685">关于</a>
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </td>
+
+                                <td id="TASK_MENU" ttitle="这是Twproject的入口点.一旦创建和分配,Twproject就将开始为团队工作.">
+                                    <span>
+                                        <a class="button     hasDivomo" id="domId_1268178150" style="" href="/app/task/taskList?V_ID=1237840446">项目</a>
+
+                                        <span id="arrowOpener_divdomo_domId_494970575" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_494970575', 'arrowOpener_divdomo_domId_494970575'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_494970575" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   hasDivomo" id="domId_1268178150" style="" href="/app/task/taskList?V_ID=732271336">项目</a>
+
+                                            <a class="button  textual   lreq10 lreqLabel" id="domId_1766289194" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=1842715567">Portfolio</a>
+
+                                            <a class="button  textual   " id="domId_1356031077" style="" href="/app/document/documentList?V_ID=1847180520">文档</a>
+
+                                            <a class="button  textual   lreq20 lreqLabel" id="domId_1717849175" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=1936909247">额外费用</a>
+
+                                            <hr><button type="button" class="button noprint textual   " id="domId_1786311241" style="" onclick="openBlackPopup('/app/task/taskNew.html?V_ID=1586665720&amp;CM=AD','800px','720px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 新建项目</button>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                                <td id="TIMESHEET_MENU" ttitle="工时计划,工作记录,记录的有效性检查和分析.">
+                                    <span>
+                                        <a class="button     lreq10 lreqActive hasDivomo" id="domId_2076593103" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=218213777&amp;FOCUS_MILLIS=1599840000000">工时表</a>
+
+                                        <span id="arrowOpener_divdomo_WKLOGSM" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_WKLOGSM', 'arrowOpener_divdomo_WKLOGSM'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_WKLOGSM" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1378629086" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=1221802494&amp;FOCUS_MILLIS=1599840000000">工时表</a>
+
+                                            <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_1379274874" style="" onclick="openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=1417980919&amp;FOCUS_MILLIS=1599611808667',$(window).width()-100,$(window).height()-50);return false; ">计时器</button>
+
+                                            <a class="button  textual   lreq20 lreqLabel" id="domId_1534321600" style="" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=1306881547&amp;FOCUS_MILLIS=1599840000000">时间表概述</a>
+
+                                            <a class="button  textual   lreq10 lreqLabel" id="domId_359498024" style="" href="/applications/teamwork/task/worklog/attendanceOverview.jsp?V_ID=123478927&amp;FOCUS_MILLIS=1599840000000">出勤概述</a>
+
+                                            <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_1211790357" style="" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=2018358655&amp;FOCUS_MILLIS=1599840000000&amp;RES_ID=14252">工作记录审核</a>
+
+                                            <a class="button  textual   lreq10 lreqLabel" id="domId_1973105598" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=339980944">工作记录分析</a>
+
+                                            <a class="button  textual   lreq30 lreqLabel lreqActive" id="domId_543308612" style="" href="/applications/teamwork/task/financial/expenseList.jsp?V_ID=825891429">费用控制</a>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                                <td id="PLAN_MENU" ttitle="PLAN_MENU_HELP" valign="bottom">
+                                    <span>
+                                        <a class="button     lreq20 lreqActive hasDivomo" id="domId_1570436642" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=621017483&amp;CM=FIND_BY_ENTITY&amp;FOCUS_MILLIS=1599840000000">计划</a>
+
+                                        <span id="arrowOpener_divdomo_domId_1754620464" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1754620464', 'arrowOpener_divdomo_domId_1754620464'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_1754620464" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   lreq30 lreqActive lreqLabel" id="domId_660697844" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=240639165&amp;CM=FIND_BY_ENTITY&amp;FOCUS_MILLIS=1599840000000">计划</a>
+
+                                            <a class="button  textual   lreq20 lreqActive lreqLabel" id="domId_1858209118" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=1083874564&amp;FOCUS_MILLIS=1599840000000">工作负荷</a>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                                <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议" class="selected">
+                                    <a href="/applications/teamwork/agenda/agendaMonth.jsp?V_ID=1723503294" class="button">
+                                        日程
+                                    </a>
+
+                                </td>
+                                <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
+To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
+                                    <span>
+                                        <a class="button     hasDivomo" id="domId_1660431522" style="" href="/app/issue/issuelist?V_ID=1907015902">问题</a>
+
+                                        <span id="arrowOpener_divdomo_domId_322597489" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_322597489', 'arrowOpener_divdomo_domId_322597489'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_322597489" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   hasDivomo" id="domId_1660431522" style="" href="/app/issue/issuelist?V_ID=1509520107">问题</a>
+
+                                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1647272595" style="" href="/app/issue/issueOrganizer.html?V_ID=69612051">组织（看板）</a>
+
+                                            <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_351327041" style="" href="/app/issue/issuePlanner.html?V_ID=465250794">计划者</a>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                                <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
+                                    <a href="/app/resource/resourceList?V_ID=482136031" class="button">
+                                        资源
+                                    </a>
+                                </td>
+
+                                <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
+
+                                    <span>
+                                        <a class="button     hasDivomo" id="domId_804472886" style="" href="/app/tools/toolsIntro?V_ID=140150959">工具</a>
+
+                                        <span id="arrowOpener_divdomo_domId_218753490" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_218753490', 'arrowOpener_divdomo_domId_218753490'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_218753490" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   hasDivomo" id="domId_804472886" style="" href="/app/tools/toolsIntro?V_ID=328572682">工具</a>
+
+                                            <a class="button  textual   " id="domId_97902766" style="" href="/app/board/boardList.html?V_ID=1792178037&amp;CM=FN">讨论板</a>
+
+                                            <hr><button type="button" class="button noprint textual   " id="domId_113401398" style="" onclick="saveThisPageAsPreferred();return false; "><span class="teamworkIcon withLabel">P</span>增加当前视图到书签</button>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="menuTools">
+
+                    <div id="HINT_SEARCH_span" class="menuSearch">
+                        <input type="text" name="search" id="search" size="15" class="searchInput" autocomplete="off" maxlength="255" value="" onkeyup="if (event.keyCode==13) { fastSearch($(this));event.preventDefault();return false;}" oldvalue="1"><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_keyDiv', 'domId_2030964515');  ">
+                            <button type="button" class="button noprint textual icon  fastSearchkeysButton" id="domId_2030964515" style="" onclick=";return false; "><span class="teamworkIcon ">[</span></button>
+
+
+                        </span>
+
+                        <div id="divdomo_keyDiv" class="divomo fSKeys" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">Search in:</span><button type="button" class="button noprint textual   ALL" id="domId_215517975" style="" onclick="changeFastSearchKey('ALL');return false; ">全部</button>
+
+                                <button type="button" class="button noprint textual   W" id="domId_1553176983" style="" onclick="changeFastSearchKey('W');return false; ">工作记录</button>
+
+                                <button type="button" class="button noprint textual   T" id="domId_1581823996" style="" onclick="changeFastSearchKey('T');return false; ">项目</button>
+
+                                <button type="button" class="button noprint textual   R" id="domId_2015834559" style="" onclick="changeFastSearchKey('R');return false; ">资源</button>
+
+                                <button type="button" class="button noprint textual   I" id="domId_1429418041" style="" onclick="changeFastSearchKey('I');return false; ">问题</button>
+
+                                <button type="button" class="button noprint textual   A" id="domId_329456098" style="" onclick="changeFastSearchKey('A');return false; ">日程</button>
+
+                                <button type="button" class="button noprint textual   B" id="domId_955797120" style="" onclick="changeFastSearchKey('B');return false; ">讨论板</button>
+
+                                <button type="button" class="button noprint textual   D" id="domId_904516280" style="" onclick="changeFastSearchKey('D');return false; ">文档</button>
+
+                            </div>
+                        </div><button type="button" class="button noprint textual icon  searchButton" id="domId_168380847" style="" onclick="fastSearch($('#search'));return false; "><span class="teamworkIcon ">L</span></button>
+
+                    </div>
+
+
+
+                    <div id="loggedOp" class="loggedOp">
+                        <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1480284404', 'domId_319776623');  ">
+                            <span class="button buttonImg  operatorButton" id="domId_319776623" style=" " onclick=";return false; "><img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d386660635" title="ktmanage kt" alt="ktmanage kt" id="d386660635" "=" " resid="14252" class="face active"></span>
+
+                        </span>
+
+                        <div id="divdomo_domId_1480284404" class="divomo divDark" style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">ktmanage kt <em>(28)</em></span><a class="button  textual   " id="domId_1448411859" style="" href="/app/resource/resourceEditor?V_ID=2120531428&amp;CM=ED&amp;OBJID=14252">我的联系方式</a>
+
+                                <a class="button  textual   " id="domId_1730975468" style="" href="/app/resource/resourceSecurity.html?V_ID=1561628161&amp;CM=ED&amp;OBJID=14252">登录信息</a>
+
+                                <a class="button  textual   " id="domId_543724767" style="" href="/app/resource/resourceOptions.html?V_ID=429540331&amp;CM=EDIT_OPT&amp;OBJID=14252">选项</a>
+
+                                <a class="button  textual   " id="domId_839240984" style="" href="/app/resource/resourcedocumentList.html?V_ID=124604524&amp;CM=LIST_DOCS&amp;RES_ID=14252">文档</a>
+
+                                <hr><span class="menuTitle">条消息</span><button type="button" class="button noprint textual   " id="domId_1620178422" style="" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=450624592&amp;CM=AD&amp;POP=yes','600px','600px');return false; ">发送短消息</button>
+
+                                <button type="button" class="button noprint textual   " id="domId_58337236" style="" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=246094594&amp;POP=yes&amp;receiver=14252','600px','600px');return false; ">给自己发消息</button>
+
+                                <hr><a class="button  textual   " id="domId_1221382420" style="" href="http://twproject.com/support" target="_blank">支持</a>
+
+                                <hr><a class="button  textual   " id="domId_2125634914" style="" href="/app/security/login.html?V_ID=1029916135&amp;CM=LO" target="_top">注销</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="twChatNotifications">
+                        <div id="twChatOpener" class="messages button textual icon disabled" onclick="twChatToggle();">
+
+                            <span class="teamworkIcon"></span>
+
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+
+                    <div id="notifications">
+                        <div id="messageListOpener" class="messages button textual icon" onclick="loadMessageList($(this));">
+                            <span class="teamworkIcon">b</span>
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+
+                    <div id="messageListBox" class="divomo divDark" style="position: absolute;left:-1000px; top:-1000px;">
+                        <div class="divomoArrow"></div>
+                        <span class="menuTitle">通知</span>
+                        <div id="messageListPlace" class="messageListPlace"></div>
+                        <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
+                            <a class="button  textual   " id="domId_1260540221" style="" href="/app/messaging/messageListFull?V_ID=1150703245">全部显示</a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="menuTimeCounter" style="display:none;"><a href="javascript:openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=1154892656')" id="tcMenuCounter"></a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+	// unread messages managament
+	$("#messageListBox").on("hideDivOnMouseover", function () {
+		$.getJSON(contextPath + "/messaging/messageAjax", {CM: "READALL"}, function (response) {
+			jsonResponseHandling(response);
+			if (response.ok) {
+				$("#messageListOpener .notificationNumber").fadeOut().html("0");
+				$("#twChatOpener").data("totalUnreadChats", false);
+			}
+		});
+	});
+
+	function followMessageLink(el) {
+		var href = el.find(".message_link a:first").attr("href");
+		if (href)
+			self.location.href = href;
+	}
+
+	function saveThisPageAsPreferred() {
+		location.href = contextPath + "/app/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+	}
+
+	(function tmStartup() {
+		var counted =undefined;
+    var format = '%0h:%0m:%0s';
+		if (counted) {
+			var ndo = $("#tcMenuCounter");
+			ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+			ndo.parent().show();
+		}
+
+    registerEvent("timeCounterEvent", function (e, data) {
+
+      if (data.type == "start") {
+
+        if (data.response.assignment) {
+
+          //faccio partire il widget se c'Ã¨
+          var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+          if (ndoWidget) {
+            ndoWidget.addClass("highlight");
+            ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+            ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+          }
+
+
+          //faccio partire il counter sul menu
+          var ndoMenu = $("#tcMenuCounter");
+          ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+          ndoMenu.parent().show();
+        }
+
+      } else if (data.type == "stop") {
+
+        //fermo il widget
+        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+        if (ndoWidget) {
+          ndoWidget.removeClass("highlight");
+          ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+          ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+        }
+
+        //faccio fermare il counter sul menu
+        var ndoMenu = $("#tcMenuCounter");
+        ndoMenu.stopTimeCounter();
+        ndoMenu.parent().hide();
+      }
+    })
+  })();
+
+	function twChatToggle() {
+		//console.debug(top.twChat.chatWindow.is(".closed"))
+
+		if (top.twChat.chatWindow.is(".closed")) {
+			top.twChat.open();
+		} else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+			top.twChat.chatWindow.addClass('showChats');
+		} else {
+			top.twChat.close();
+		}
+	}
+
+
+	$(function () {
+		//lo stato del socket lo sa solo il client lato js -> twComm
+		if (!top.twComm || !top.twComm.isOpen)
+			getTop().$("#twChatOpener").addClass("disabled");
+
+		/**
+		 * Manage chat opener state at start (chat could be open)
+		 */
+		if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+			$("#twChatOpener").removeClass("open");
+		} else {
+			$("#twChatOpener").addClass("open");
+		}
+
+	})
+        </script>
+
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainer" class="null">
+
+            <div class="mainColumn">
+                <form enctype="application/x-www-form-urlencoded" method="POST" action="/app/agenda/agendaWeekDay" name="AGWEDA" id="AGWEDA" savedaction="" savedtarget="">
+                    <input type="hidden" id="AGWEDAV_ID" name="V_ID" value="1581250505" savedvalue="">
+                    <input type="hidden" id="AGWEDACM" name="CM" value="" savedvalue="">
+                    <input type="hidden" id="AGWEDAFOCUS_MILLIS" name="FOCUS_MILLIS" value="1599840000000" savedvalue="">
+                    <input type="hidden" id="AGWEDAAGENDA_TYPE" name="AGENDA_TYPE" value="WEEK" savedvalue="">
+                    <input type="hidden" id="AGWEDAWG_IDS" name="WG_IDS" value="14252" savedvalue="">
+
+
+
+
+                    <script src="../../../commons/js/jstz.min.js"></script>
+                    <script>
+  $("#AGENDA_MENU").addClass('selected');
+  initialize(contextPath + "/commons/js/jstz.min.js", "script");
+                    </script>
+
+                    <div class="tools">
+                        <div class="toolsElement">
+                            <button type="button" class="button noprint    first" id="domId_1992788874" style="" onclick="stopBubble(event);obj('AGWEDACM').value='AD';obj('AGWEDA').action='agendaEditor.jsp'; try {obj('AGWEDA').submit();} catch(e){};"><span class="teamworkIcon withLabel">P</span>添加事件</button>
+
+                        </div><div class="toolsElement">
+                            <button type="button" class="button noprint  icon  " id="domId_2052311379" style="" title="其它日程" onclick="$('#domId_441195089').trigger('toggle');$('#domId_441195089').centerOnScreen();return false; "><span class="teamworkIcon ">I</span></button>
+
+                        </div><div class="toolsElement">
+                            <button type="button" class="button noprint  icon  " id="domId_315008739" style="" title="搜索" onclick="stopBubble(event);obj('AGWEDACM').value='FN';obj('AGWEDA').action='agendaList.jsp'; try {obj('AGWEDA').submit();} catch(e){};"><span class="teamworkIcon ">L</span></button>
+
+                        </div>
+                    </div>
+
+                    <h1>日程</h1>
+
+
+
+                    <div class="optionsBar clearfix">
+                        <div class="filterElement centered">
+                            <input type="hidden" name="FILTER" id="AGWEDAFILTER" size="1" autocomplete="off" maxlength="255" value="NONE"><input type="hidden" name="SHOW_LIST" id="SHOW_LIST" size="1" autocomplete="off" maxlength="255" value="">包含&nbsp;<input type="hidden" name="PERM_REQUIRED" id="PERM_REQUIRED" size="1" autocomplete="off" maxlength="255" value="TW_res_r"><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_381560129', 'domId_1369495525');  ">
+                                <button type="button" class="button noprint textual icon  arrowSmall" id="domId_1369495525" style="" title="我的过滤器..." onclick=";return false; "><span class="teamworkIcon ">[</span></button>
+
+
+                            </span>
+
+                            <div id="divdomo_domId_381560129" class="divomo " style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                <div class="divomoArrow"></div>
+
+                                <div>
+                                    <button type="button" class="button noprint textual  focused " id="domId_494918161" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='NONE';try {obj('AGWEDA').submit();} catch(e){};">包含</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_885367096" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='WORK';try {obj('AGWEDA').submit();} catch(e){};">工作事件</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_450592409" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='PERSONAL';try {obj('AGWEDA').submit();} catch(e){};">私人事件</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_1079278741" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='ONLY_ME_IN_IT';try {obj('AGWEDA').submit();} catch(e){};">我参与的</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_1790917425" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='AUTHOR';try {obj('AGWEDA').submit();} catch(e){};">创建...</button>
+
+                                    <button type="button" class="button noprint textual   " id="domId_818365623" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAFILTER').value='UNAVAIL';try {obj('AGWEDA').submit();} catch(e){};">不可用时段</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filterElement centered">
+                            <div style="float:left;" class="legendaBox">
+
+                                <div id="workgroupLegenda" style="display: inline"><div class="workgroupElement" __template="WORKGROUPELEMENT">         <img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" title="ktmanage kt" class="face active" align="absmiddle">       </div></div>
+                                <div class="workgroupElement">
+                                    <button type="button" class="button noprint  icon  " id="domId_1654058144" style="" title="更改工作组" onclick="submitInBlack('AGWEDA','/app/workgroup/workgroupPopup','700','580');return false; "><span class="teamworkIcon ">r</span></button>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="filterElement centered">
+                            <input type="hidden" name="SHOW_TASK_ISSUES" id="SHOW_TASK_ISSUES" size="1" autocomplete="off" maxlength="255" data-checkfield="" value="yes" oldvalue="1"><input type="checkbox" id="ck_SHOW_TASK_ISSUES" name="ck_SHOW_TASK_ISSUES" checked="" value="yes" onclick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');$('#AGWEDA').submit()">
+                            &nbsp;<label for="ck_SHOW_TASK_ISSUES">显示任务/问题</label>&nbsp;
+                        </div>
+                    </div>
+
+
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td class="calHeader left">
+                                    <span class="button textual noprint" onclick="goToMillis(new Date().getTime());">今天</span>
+                                    <div style="float:right">
+                                        <span class="button textual icon noprint" onclick="goToMillis(new Date(focusMillis).add(agendaType=='DAY'?'d':(agendaType=='WEEK'?'w':'M'),-1).getTime());"><span class="teamworkIcon" style="font-size:18px">{</span></span>
+                                        <span class="button textual icon noprint" onclick="goToMillis(new Date(focusMillis).add(agendaType=='DAY'?'d':(agendaType=='WEEK'?'w':'M'),1).getTime());"><span class="teamworkIcon" style="font-size:18px">}</span></span>
+                                    </div>
+                                </td>
+                                <td class="calHeader">
+                                    <h2 style="margin:0">
+                                        <div style="position:relative;height:30px;">
+                                            <div id="topHeaderCentral">06 - 12 九月 2020<sup>(37)</sup></div>
+                                            <div class="headerCalendarOpener" title="日历" id="openCal" onclick="$(this).dateField({inputField:$('#dummy'),callback:function(date){goToMillis(date.getTime());}}); "><input type="hidden" id="dummy"><span class="teamworkIcon">m</span></div>
+                                        </div>
+                                    </h2>
+                                </td>
+                                <td class="calHeader right">
+                                    <button type="button" class="button noprint textual   " id="domId_1774763520" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAAGENDA_TYPE').value='DAY';obj('AGWEDA').action='agendaWeekDay.jsp'; try {obj('AGWEDA').submit();} catch(e){};">天</button>
+
+                                    &nbsp;&nbsp;&nbsp;<button type="button" class="button noprint textual  focused " id="domId_750741593" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAAGENDA_TYPE').value='WEEK';obj('AGWEDA').action='agendaWeekDay.jsp'; try {obj('AGWEDA').submit();} catch(e){};">工作周数</button>
+
+                                    &nbsp;&nbsp;&nbsp;<button type="button" class="button noprint textual   " id="domId_566887368" style="" onclick="stopBubble(event);obj('AGWEDACM').value='';obj('AGWEDAAGENDA_TYPE').value='MONTH';obj('AGWEDA').action='agendaMonth.jsp'; try {obj('AGWEDA').submit();} catch(e){};">月</button>
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                    <div id="domId_441195089" class="container   draggable closeable absolutePosition centeredOnScreen  ui-draggable" status="HIDDEN" style="width: 600px; left: 331px; top: 350.5px; position: fixed; z-index: 30;" cmdsuffix="">
+
+                        <div id="cttitid_domId_441195089" class="containerTitle noTitle  ">
+                            <div class="titleIcon" style="padding-right:3px"></div>
+                            <div class="title" style=""></div>
+                        </div>
+                        <div class="stsButtons" align="right">
+
+                            <span class="stsButton stsIconize teamworkIcon" onclick="$(this).closest('.container').trigger('iconize');" style="float:left;cursor:pointer;">è</span>
+                            <span class="stsButton stsRestore teamworkIcon" onclick="$(this).closest('.container').trigger('restore');" style="float:left;cursor:pointer;">E</span>
+                            <span class="stsButton stsCollapse teamworkIcon" onclick="$(this).closest('.container').trigger('collapse');" style="float:left;cursor:pointer;">Q</span>
+                            <span title="关闭" class="stsButton stsHide teamworkIcon" onclick="$(this).closest('.container').trigger('hide');" style="float: left; cursor: pointer; display: inline;">x</span>
+                        </div>
+
+                        <div id="ctdivbdid_domId_441195089" class="containerBody ps" style="">
+                            复制 <a href="https://demo.twproject.com/agendaInIcal.ics?CM=EXTERNAL&amp;USR=7354&amp;CK=2a508d0943424c679f09a088b707559a&quot;" <textarea="" class="formElements" rows="2" cols="60" style="width:90%; font-size:12pt;" readonly="">https://demo.twproject.com/agendaInIcal.ics?CM=EXTERNAL&amp;USR=7354&amp;CK=2a508d0943424c679f09a088b707559a
+
+<hr>
+<br><img src="/img/ical.gif" border="0" name="d742888400" title="ICAL format" alt="ICAL format" id="d742888400"> 在下面的输入框中输入一个或多个外部日程链接到ICAL .ics (逗号分隔)
+ <br><span class="descrEl">例如, 在Google Calendar?, 转到 Settings -&gt; 在一个日程表上单击, 然后选择ICAL.</span>
+
+<input type="text" name="EXTERNAL_CAL_LINKS" id="EXTERNAL_CAL_LINKS" size="55" class="formElements" autocomplete="off" maxlength="255" value="" oldvalue="1">&nbsp;<button type="button" class="button noprint    first small" id="domId_2089964888" style="" onclick="stopBubble(event);obj('AGWEDACM').value='ADDEXTERNALCAL';try {obj('AGWEDA').submit();} catch(e){};">添加</button>
+
+<button type="button" class="button noprint textual   " id="domId_1231681800" style="" onclick="stopBubble(event);obj('AGWEDACM').value='REMOVEEXTERNALCAL';try {obj('AGWEDA').submit();} catch(e){};">隐藏外部日程</button>
+
+&nbsp;&nbsp;&nbsp;</a><a class="button  textual   " id="domId_710298419" style="" href="/applications/teamwork/agenda/importIcal.jsp?V_ID=2054815277">从Ical 文件</a>
+
+                            <br> <br> <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+    //$(function() {  bicch 7/7/17 non credo serva
+    $("#domId_441195089").containerBuilder();
+    $("#domId_441195089").bringContainerToFront(".container");
+    setCustomScroll("#domId_441195089 .containerBody");
+    //});
+                    </script>
+
+
+
+
+
+
+                </form>
+
+
+
+                <div style="position:relative;" id="offScreenAlertBox">
+
+                    <div style="width:100%;" id="calendarContainer">
+
+                        <div style="width: 100%; height: 28px; z-index: 2; position: relative;" id="calendarHeader"><div class="dayHeader" style="position: absolute; top: 0%; left: 0%; width: 2.77778%; height: 100%;">&nbsp;</div><div class="dayHeader dayHHeader" day="0" millis="1599321600000" style="cursor: pointer; position: absolute; top: 0%; left: 2.77778%; width: 13.8889%; height: 100%;">星期日 6 九月<div class="taskIssueBox" style="top: 56px;"></div></div><div class="dayHeader" day="1" millis="1599408000000" style="cursor: pointer; position: absolute; top: 0%; left: 16.6667%; width: 13.8889%; height: 100%;">星期一 7 九月<div class="taskIssueBox" style="top: 56px;"></div></div><div class="dayHeader" day="2" millis="1599494400000" style="cursor: pointer; position: absolute; top: 0%; left: 30.5556%; width: 13.8889%; height: 100%;">星期二 8 九月<div class="taskIssueBox" style="top: 56px;"><div class="tskIssBox linkEnabled" taskid="" title="T50698 - 信息技术环境下小学语文课堂教学研究" __template="TASKBOX">              <img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" class="face active" title="ktmanage kt" align="absmiddle" resid="14252">              <span class="teamworkIcon">t</span> <a href="#" onclick="openTeamworkLink('T','T50698',event);return stopBubble(event);">T#T50698#</a> <span class="wl">开始</span>     </div><div class="tskIssBox linkEnabled" taskid="" title="T50694 - 经典名著阅读在高中英语阅读中的应用研究" __template="TASKBOX">              <img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" class="face active" title="ktmanage kt" align="absmiddle" resid="14252">              <span class="teamworkIcon">t</span> <a href="#" onclick="openTeamworkLink('T','T50694',event);return stopBubble(event);">T#T50694#</a> <span class="wl">开始</span>     </div><div class="tskIssBox linkEnabled" taskid="" title="T50750 - 高中数学核心素养视域下的生活化学习情境创设研究" __template="TASKBOX">              <img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" class="face active" title="ktmanage kt" align="absmiddle" resid="14252">              <span class="teamworkIcon">t</span> <a href="#" onclick="openTeamworkLink('T','T50750',event);return stopBubble(event);">T#T50750#</a> <span class="wl">结束</span>     </div></div></div><div class="dayHeader dayTHeader" day="3" millis="1599580800000" style="cursor: pointer; position: absolute; top: 0%; left: 44.4444%; width: 13.8889%; height: 100%;">星期三 9 九月<div class="taskIssueBox" style="top: 56px;"></div></div><div class="dayHeader" day="4" millis="1599667200000" style="cursor: pointer; position: absolute; top: 0%; left: 58.3333%; width: 13.8889%; height: 100%;">星期四 10 九月<div class="taskIssueBox" style="top: 56px;"></div></div><div class="dayHeader" day="5" millis="1599753600000" style="cursor: pointer; position: absolute; top: 0%; left: 72.2222%; width: 13.8889%; height: 100%;">星期五 11 九月<div class="taskIssueBox" style="top: 56px;"></div></div><div class="dayHeader dayHHeader" day="6" millis="1599840000000" style="cursor: pointer; position: absolute; top: 0%; left: 86.1111%; width: 13.8889%; height: 100%;">星期六 12 九月<div class="taskIssueBox" style="top: 56px;"></div></div></div>
+
+                        <div id="spanEvents" style="position: relative; min-height: 30px; height: 1px;"><div class="agendaSpanEvents" style="position: absolute; top: 0%; left: 2.77778%; width: 97.2222%; height: 66.6667%;"></div></div>
+                        <div id="calendar" class="calendar" style="width: 100%; height: 675px; z-index: 1; position: relative;"><div class="day dayH" day="0" style="position: absolute; top: 0%; left: 2.77778%; width: 13.8889%; height: 171.429%;"></div><div class="day" day="1" style="position: absolute; top: 0%; left: 16.6667%; width: 13.8889%; height: 171.429%;"></div><div class="day" day="2" style="position: absolute; top: 0%; left: 30.5556%; width: 13.8889%; height: 171.429%;"></div><div class="day dayT" day="3" style="position: absolute; top: 0%; left: 44.4444%; width: 13.8889%; height: 171.429%;"></div><div class="day" day="4" style="position: absolute; top: 0%; left: 58.3333%; width: 13.8889%; height: 171.429%;"></div><div class="day" day="5" style="position: absolute; top: 0%; left: 72.2222%; width: 13.8889%; height: 171.429%;"></div><div class="day dayH" day="6" style="position: absolute; top: 0%; left: 86.1111%; width: 13.8889%; height: 171.429%;"></div><div class="hourSep" style="position: absolute; top: 0%; left: 0%; width: 100%; height: 7.14286%;">0:00</div><div class="hourSep" style="position: absolute; top: 7.14286%; left: 0%; width: 100%; height: 7.14286%;">1:00</div><div class="hourSep" style="position: absolute; top: 14.2857%; left: 0%; width: 100%; height: 7.14286%;">2:00</div><div class="hourSep" style="position: absolute; top: 21.4286%; left: 0%; width: 100%; height: 7.14286%;">3:00</div><div class="hourSep" style="position: absolute; top: 28.5714%; left: 0%; width: 100%; height: 7.14286%;">4:00</div><div class="hourSep" style="position: absolute; top: 35.7143%; left: 0%; width: 100%; height: 7.14286%;">5:00</div><div class="hourSep" style="position: absolute; top: 42.8571%; left: 0%; width: 100%; height: 7.14286%;">6:00</div><div class="hourSep" style="position: absolute; top: 50%; left: 0%; width: 100%; height: 7.14286%;">7:00</div><div class="hourSep" style="position: absolute; top: 57.1429%; left: 0%; width: 100%; height: 7.14286%;">8:00</div><div class="hourSep" style="position: absolute; top: 64.2857%; left: 0%; width: 100%; height: 7.14286%;">9:00</div><div class="hourSep" style="position: absolute; top: 71.4286%; left: 0%; width: 100%; height: 7.14286%;">10:00</div><div class="hourSep" style="position: absolute; top: 78.5714%; left: 0%; width: 100%; height: 7.14286%;">11:00</div><div class="hourSep" style="position: absolute; top: 85.7143%; left: 0%; width: 100%; height: 7.14286%;">12:00</div><div class="hourSep" style="position: absolute; top: 92.8571%; left: 0%; width: 100%; height: 7.14286%;">13:00</div><div class="hourSep" style="position: absolute; top: 100%; left: 0%; width: 100%; height: 7.14286%;">14:00</div><div class="hourSep" style="position: absolute; top: 107.143%; left: 0%; width: 100%; height: 7.14286%;">15:00</div><div class="hourSep" style="position: absolute; top: 114.286%; left: 0%; width: 100%; height: 7.14286%;">16:00</div><div class="hourSep" style="position: absolute; top: 121.429%; left: 0%; width: 100%; height: 7.14286%;">17:00</div><div class="hourSep" style="position: absolute; top: 128.571%; left: 0%; width: 100%; height: 7.14286%;">18:00</div><div class="hourSep" style="position: absolute; top: 135.714%; left: 0%; width: 100%; height: 7.14286%;">19:00</div><div class="hourSep" style="position: absolute; top: 142.857%; left: 0%; width: 100%; height: 7.14286%;">20:00</div><div class="hourSep" style="position: absolute; top: 150%; left: 0%; width: 100%; height: 7.14286%;">21:00</div><div class="hourSep" style="position: absolute; top: 157.143%; left: 0%; width: 100%; height: 7.14286%;">22:00</div><div class="hourSep" style="position: absolute; top: 164.286%; left: 0%; width: 100%; height: 7.14286%;">23:00</div><div class="workPlan" style="position: absolute; top: 0%; left: 2.77778%; width: 13.8889%; height: 0%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 2.77778%; width: 13.8889%; height: 0%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 2.77778%; width: 13.8889%; height: 171.429%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 16.6667%; width: 13.8889%; height: 64.2857%;"></div><div class="workPlan" style="position: absolute; top: 92.8571%; left: 16.6667%; width: 13.8889%; height: 14.2857%;"></div><div class="workPlan" style="position: absolute; top: 135.714%; left: 16.6667%; width: 13.8889%; height: 35.7143%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 30.5556%; width: 13.8889%; height: 64.2857%;"></div><div class="workPlan" style="position: absolute; top: 92.8571%; left: 30.5556%; width: 13.8889%; height: 14.2857%;"></div><div class="workPlan" style="position: absolute; top: 135.714%; left: 30.5556%; width: 13.8889%; height: 35.7143%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 44.4444%; width: 13.8889%; height: 64.2857%;"></div><div class="workPlan" style="position: absolute; top: 92.8571%; left: 44.4444%; width: 13.8889%; height: 14.2857%;"></div><div class="workPlan" style="position: absolute; top: 135.714%; left: 44.4444%; width: 13.8889%; height: 35.7143%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 58.3333%; width: 13.8889%; height: 64.2857%;"></div><div class="workPlan" style="position: absolute; top: 92.8571%; left: 58.3333%; width: 13.8889%; height: 14.2857%;"></div><div class="workPlan" style="position: absolute; top: 135.714%; left: 58.3333%; width: 13.8889%; height: 35.7143%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 72.2222%; width: 13.8889%; height: 64.2857%;"></div><div class="workPlan" style="position: absolute; top: 92.8571%; left: 72.2222%; width: 13.8889%; height: 14.2857%;"></div><div class="workPlan" style="position: absolute; top: 135.714%; left: 72.2222%; width: 13.8889%; height: 35.7143%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 86.1111%; width: 13.8889%; height: 0%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 86.1111%; width: 13.8889%; height: 0%;"></div><div class="workPlan" style="position: absolute; top: 0%; left: 86.1111%; width: 13.8889%; height: 171.429%;"></div><div class="now" id="nowBar" title="现在" style="position: absolute; top: 61.5276%; left: 44.4444%; width: 13.8889%; height: 0.148148%;"></div><div class="agendaEvent  isUnavailability" evid="614" __template="AGENDAEVENT" style="position: absolute; top: 66.0714%; left: 30.5556%; width: 13.1944%; height: 10.7143%;">       <div class="eventBody">                  <span class="summary">早站会</span>         <span class="hours">09:15 - 10:45</span>         <div class="location" style="display:none"></div>         <div class="description linkEnabled">早站会</div>       </div>     </div><div class="agendaEvent  isReminder isUnavailability" evid="605" __template="AGENDAEVENT" style="position: absolute; top: 71.4286%; left: 44.4444%; width: 13.1944%; height: 14.2857%; z-index: 0;">       <div class="eventBody">         <span class="eventAttendees"><img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" class="face smaller" title="ktmanage kt" resid="14252"><img src="/img/svgAvatar?code=NL&amp;fill=hsl%28300%2C70%25%2C80%25%29&amp;stroke=hsl%28300%2C90%25%2C20%25%29" class="face smaller" title="Li Ning" resid="14254"></span>         <span class="summary"><span class="teamworkIcon">b </span>教研活动</span>         <span class="hours">10:00 - 12:00</span>         <div class="location" style="">305会议室</div>         <div class="description linkEnabled">教研活动开展，请大家参加</div>       </div>     </div><div class="agendaEvent  isPersonal isUnavailability compact" evid="606" title="13:33 - 个人日程安排" __template="AGENDAEVENTCOMPACT" style="position: absolute; top: 96.7857%; left: 44.4444%; width: 13.1944%; height: 3.57143%;">       <div class="eventBody">                  <span class="hours">13:33</span>&nbsp;         个人日程安排        </div>     </div><div class="agendaEvent  isUnavailability" evid="609" __template="AGENDAEVENT" style="position: absolute; top: 110.714%; left: 44.4444%; width: 13.1944%; height: 5.35714%;">       <div class="eventBody">                  <span class="summary">课题研讨会01</span>         <span class="hours">15:30 - 16:15</span>         <div class="location" style="display:none"></div>         <div class="description linkEnabled">课题研讨会01</div>       </div>     </div><div class="agendaEvent  isUnavailability" evid="610" __template="AGENDAEVENT" style="position: absolute; top: 117.857%; left: 44.4444%; width: 13.1944%; height: 8.92857%;">       <div class="eventBody">         <span class="eventAttendees"><img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" class="face smaller" title="ktmanage kt" resid="14252"><img src="/img/svgAvatar?code=NL&amp;fill=hsl%28300%2C70%25%2C80%25%29&amp;stroke=hsl%28300%2C90%25%2C20%25%29" class="face smaller" title="Li Ning" resid="14254"></span>         <span class="summary">课题研讨会02</span>         <span class="hours">16:30 - 17:45</span>         <div class="location" style="display:none"></div>         <div class="description linkEnabled">课题研讨会02</div>       </div>     </div><div class="agendaEvent  isUnavailability" evid="607" __template="AGENDAEVENT" style="position: absolute; top: 73.2143%; left: 58.3333%; width: 13.1944%; height: 12.5%;">       <div class="eventBody">                  <span class="summary">周四的教研活动</span>         <span class="hours">10:15 - 12:00</span>         <div class="location" style="">307</div>         <div class="description linkEnabled"></div>       </div>     </div><div class="agendaEvent  isPersonal isUnavailability" evid="613" __template="AGENDAEVENT" style="position: absolute; top: 100%; left: 58.3333%; width: 13.1944%; height: 7.14286%;">       <div class="eventBody">         <span class="eventAttendees"><img src="/img/svgAvatar?code=KK&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" class="face smaller" title="ktmanage kt" resid="14252"><img src="/img/svgAvatar?code=NL&amp;fill=hsl%28300%2C70%25%2C80%25%29&amp;stroke=hsl%28300%2C90%25%2C20%25%29" class="face smaller" title="Li Ning" resid="14254"></span>         <span class="summary"><span class="teamworkIcon">o </span>测试个人日程</span>         <span class="hours">14:00 - 15:00</span>         <div class="location" style="display:none"></div>         <div class="description linkEnabled">测试个人日程</div>       </div>     </div><div class="agendaEvent  isUnavailability" evid="611" __template="AGENDAEVENT" style="position: absolute; top: 130.357%; left: 58.3333%; width: 13.1944%; height: 5.35714%;">       <div class="eventBody">                  <span class="summary">课题研讨会03</span>         <span class="hours">18:15 - 19:00</span>         <div class="location" style="display:none"></div>         <div class="description linkEnabled"></div>       </div>     </div><div class="agendaEvent  isUnavailability" evid="612" __template="AGENDAEVENT" style="position: absolute; top: 133.929%; left: 59.3056%; width: 12.2222%; height: 5.35714%;">       <div class="eventBody">                  <span class="summary">开会讨论问题</span>         <span class="hours">18:45 - 19:30</span>         <div class="location" style="display:none"></div>         <div class="description linkEnabled">开会讨论问题</div>       </div>     </div></div><div class="folio_scrollbar"><div class="folio_scrollbar_content" style="height: 1157px; position: relative; width: 100%;"></div></div>
+                    </div>
+                    <div style="top: 56px;" class="offTop offAlert">scroll up <span class="teamworkIcon" style="font-size: 100%; color:#fff">k</span></div>
+                    <div style="bottom:0;" class="offBottom offAlert">scroll down <span class="teamworkIcon" style="font-size: 100%; color:#fff">j</span></div>
+                </div>
+
+
+
+
+                <div class="bottomBar noprint" id="moveBar" onclick="moveBarClick($(this),event);"><span class="moveBarEl" style="position: absolute; top: 0%; left: 0%; width: 4.10397%; height: 100%;">09 2019</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 4.10397%; width: 4.10397%; height: 100%;">10 2019</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 8.34473%; width: 4.10397%; height: 100%;">11 2019</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 12.4487%; width: 4.10397%; height: 100%;">12 2019</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 16.6895%; width: 4.10397%; height: 100%;">01 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 20.9302%; width: 4.10397%; height: 100%;">02 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 24.8974%; width: 4.10397%; height: 100%;">03 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 29.1382%; width: 4.10397%; height: 100%;">04 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 33.2421%; width: 4.10397%; height: 100%;">05 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 37.4829%; width: 4.10397%; height: 100%;">06 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 41.5869%; width: 4.10397%; height: 100%;">07 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 45.8276%; width: 4.10397%; height: 100%;">08 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 50.0684%; width: 4.10397%; height: 100%;">09 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 54.1724%; width: 4.10397%; height: 100%;">10 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 58.4131%; width: 4.10397%; height: 100%;">11 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 62.5171%; width: 4.10397%; height: 100%;">12 2020</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 66.7579%; width: 4.10397%; height: 100%;">01 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 70.9986%; width: 4.10397%; height: 100%;">02 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 74.829%; width: 4.10397%; height: 100%;">03 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 79.0698%; width: 4.10397%; height: 100%;">04 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 83.1737%; width: 4.10397%; height: 100%;">05 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 87.4145%; width: 4.10397%; height: 100%;">06 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 91.5185%; width: 4.10397%; height: 100%;">07 2021</span><span class="moveBarEl" style="position: absolute; top: 0%; left: 95.7592%; width: 4.10397%; height: 100%;">08 2021</span><span title="今天" class="moveBarToday" style="position: absolute; top: 0%; left: 51.2119%; width: 0.158479%; height: 100%;"></span><span class="moveBarHL" style="position: absolute; top: 0%; left: 50.7524%; width: 0.820793%; height: 100%;"></span></div>
+
+            </div>
+
+            <script type="text/javascript">
+var focusMillis =1599840000000;
+var showTaskIssues =true;
+var minStep = 15 * 60000; //grid step
+var firstMillisOfPeriod = 0;
+var attendees =[{"resId":"14252","resName":"ktmanage kt","resAvatarUrl":"/img/svgAvatar?code=KK&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29","resConnectionStatus":"active","workingHoursPlan":{"2":[32400000,46800000,54000000,68400000],"3":[32400000,46800000,54000000,68400000],"4":[32400000,46800000,54000000,68400000],"5":[32400000,46800000,54000000,68400000],"6":[32400000,46800000,54000000,68400000],"7":[0,0,0,0],"1":[0,0,0,0],"useFlatCapacity":false,"dailyCapacity":0}}]; // list of attendees involved in this period, used for legenda
+var agendaType = "WEEK";
+var oneDayWidth = agendaType == "DAY" ? 700 : 100;
+
+
+$(function () {
+  //console.debug("startUp");
+  startUp();
+});
+
+var folio;
+var spanfolio;
+var headFolio;
+
+function startUp() {
+  $(".agendaTemplates").loadTemplates().remove();
+  //some decorators
+  function eveDec (domEv, ev) {
+    if (!ev.targets || ev.targets.length==0)
+      return;
+    var attendeesBox = domEv.find(".eventAttendees");
+    if (ev.targets.length > 1 || ev.targets[0].resId !=14252) {
+      fillAttendees(attendeesBox,ev.targets,"smaller",5);
+    } else {
+      attendeesBox.remove();
+    }
+
+    domEv.find(".linkEnabled").activateTeamworkLinks(true).emoticonize();
+    if (!ev.icalId.startsWith("TW_"))
+      domEv.prop("title", "事件外部管理")
+
+  };
+  $.JST.loadDecorator("AGENDAEVENT", eveDec);
+  $.JST.loadDecorator("AGENDAEVENTCOMPACT", eveDec);
+  $.JST.loadDecorator("AGENDAEVENTSPAN", eveDec);
+
+  $.JST.loadDecorator("MICROEDIT", function (domEv, ev) {
+    if (!ev.targets || ev.targets.length==0)
+      return;
+    fillAttendees(domEv.find(".eventAttendees"),ev.targets,"",200)
+  });
+
+
+  folio = createFolio();
+
+  var spanEvents = $("#spanEvents").height(15);
+  spanFolio = new Folio(spanEvents);
+
+  $(window).resize(winResize).resize();
+
+  //scroll to the working day start
+  folio.scrollTop(new Date().getTime() - new Date().clearTime().getTime() - folio.height / 4);
+
+  bindEventCreation(folio);
+  bindSpanEventCreation(spanFolio);
+  goToMillis(focusMillis);
+}
+
+
+function fillAttendees(ndo,attendees,addClass,maxToDisplay){
+  //console.debug("fillAttendees",attendees);
+  for (var i = 0; i < Math.min(attendees.length,maxToDisplay); i++) {
+    var targ = attendees[i];
+    var el = $("<img>").prop("src", targ.resAvatarUrl).addClass("face "+addClass).prop("title", targ.resName).attr("resId",targ.resId);
+    el.on("dragstart", function (e) {return false});
+    ndo.append(el);
+  }
+  if(attendees.length>maxToDisplay){
+    ndo.append("<span class='teamworkIcon' title='更多...'>&hellip;</span>")
+  }
+
+}
+
+function winResize() {
+  //Set the height of the calendar area on window resize
+  var calendarContainer = folio.element.parent();
+  var fh = $(window).height() - calendarContainer.offset().top - 70 - $("#spanEvents").height();
+  fh = fh < 200 ? 200 : fh;
+  folio.resize({height: fh});
+  spanFolio.resize();
+  if(headFolio) headFolio.resize();
+
+  $(".offAlert.offTop, .taskIssueBox").css({top:$("#spanEvents").height()+27})
+}
+
+function createFolio() {
+  //create folio div
+  var divFolio = $("<div>").prop("id", "calendar").addClass("calendar").css({width: "100%", height: 800, "z-index": 1});
+
+  var container = $("#calendarContainer");
+  container.append(divFolio);
+  var folio = new Folio(divFolio);
+  folio.inPercent = true;
+
+  folio.createScrollbar(container);
+
+  //set virtual dimensions
+  folio.width = 720;
+  folio.height = 14 * 3600000; // altezza in ore
+
+  //draw day separators
+  if (agendaType == "WEEK") {
+    var date = new Date(focusMillis);
+    date.clearTime();
+    date.setFirstDayOfThisWeek();
+
+    for (var i = 0; i < 7; i++) {
+      var daySep = $("<div>").addClass("day").attr("day", date.getDay());
+      folio.addElement(daySep, 0, 20 + i * 100, 100, 24 * 3600000);
+      date.add("d", 1);
+    }
+  }
+
+  //draw hours
+  for (var i = 0; i < 24 * 3600000; i += 3600000) {
+    var hSep = $("<div>").addClass("hourSep").html(getMillisInHoursMinutes(i));
+    folio.addElement(hSep, i, 0, folio.width, 3600000);
+  }
+
+  folio.redraw();
+
+  //bind check offScreen elements when scroll and
+  divFolio.scroll(function () {
+    $(this).stopTime("ckoffscrelmnt").oneTime(500, "ckoffscrelmnt", checkOffScreenElements);
+  });
+
+  return folio;
+}
+
+function drawWorkingHoursPlan(attendees){
+
+  $("#calendar .workPlan").remove();
+
+  for (var i=0;i<attendees.length;i++) {
+    var attendee = attendees[i];
+    var workPlan = attendee.workingHoursPlan;
+    if (agendaType == "WEEK") {
+      var col=0;
+      for (var day = Date.firstDayOfWeek; day < Date.firstDayOfWeek + 7; day++) {
+        var plan = workPlan[(day % 7 + 1) + ""];
+        drawOneDayWorkPlan(plan,col);
+        col++;
+      }
+
+    } else {
+      var plan = workPlan[(new Date(focusMillis).getDay() + 1) + ""];
+      drawOneDayWorkPlan(plan,0);
+    }
+  }
+
+  function drawOneDayWorkPlan(plan,col,w){
+    wp = $("<div>").addClass("workPlan");//.attr({title: "现在"});
+    folio.addElement(wp, 0, 20 + col * oneDayWidth, oneDayWidth, plan[0]);
+
+    wp = $("<div>").addClass("workPlan");//.attr({title: "现在"});
+    folio.addElement(wp, plan[1], 20 + col * oneDayWidth, oneDayWidth, plan[2] - plan[1]);
+
+    wp = $("<div>").addClass("workPlan");//.attr({title: "现在"});
+    folio.addElement(wp, plan[3], 20 + col * oneDayWidth, oneDayWidth, 24 * 3600000- plan[3]);
+
+  }
+}
+
+
+function deskRefill() {
+  var date = new Date(focusMillis);
+  date.clearTime();
+
+  drawWorkingHoursPlan(attendees);
+
+  var now = new Date();
+  $("#nowBar").remove();
+  var nowBar = $("<div>").addClass("now").attr({id: "nowBar", title: "现在"});
+
+  if (agendaType == "WEEK") {
+    date.setFirstDayOfThisWeek();
+    drawWeekCalendaHeader(date.getTime());
+    if (headFolio.element.find(".dayTHeader").size()>0){ // solo se Ã¨ la stessa settimana ovvero ho un dayTHeader
+      folio.addElement(nowBar, now.getTime() - new Date().clearTime().getTime(), 20 + (now.getDay() - Date.firstDayOfWeek) * 100, 100, folio.getPixelHeight());
+    }
+  } else {
+    if (date.isToday()) { // solo se Ã¨ lo stesso giorno
+      folio.addElement(nowBar, new Date().getTime() - new Date().clearTime().getTime(), 0, folio.width, folio.getPixelHeight());
+    }
+  }
+
+  firstMillisOfPeriod = date.getTime();
+  ajaxGetEvents();
+
+  if (showTaskIssues)
+    ajaxGetTaskIssues();
+  drawMoveBar();
+}
+
+
+function drawWeekCalendaHeader(firstMillisOfWeek) {
+  var calHead = $("#calendarHeader");
+  calHead.empty();
+  headFolio = new Folio(calHead);
+  headFolio.inPercent = true;
+  headFolio.width = 720;
+  headFolio.height = 50;
+  var date = new Date(firstMillisOfWeek);
+  var headLbl = $("<div>").addClass("dayHeader").html("&nbsp;");
+  headFolio.addElement(headLbl, 0, 0, 20, 50);
+
+  //clear holiday & today class
+  var calendar = $("#calendar");
+  calendar.find(".dayH,.dayT").removeClass("dayH dayT");
+  for (var i = 0; i < 7; i++) {
+    var headDay = $("<div>").addClass("dayHeader").css("cursor", "pointer").html(date.format("EE d MMM")).attr({"day": date.getDay(), "millis": date.getTime()});
+    headFolio.addElement(headDay, 0, 20 + i * 100, 100, 50);
+    if (date.isHoliday()) {
+      headDay.addClass("dayHHeader");
+      calendar.find("[day=" + date.getDay() + "]").addClass("dayH");
+    }
+    if (date.isToday()) {
+      headDay.addClass("dayTHeader");
+      calendar.find("[day=" + date.getDay() + "]").addClass("dayT");
+    }
+    headDay.click(goToDayView);
+    headDay.append("<div class='taskIssueBox'></div>");
+    date.add("d", 1);
+  }
+  headFolio.redraw();
+}
+
+
+function goToDayView() {
+  var headDay = $(this);
+  var form = $("#AGWEDA");
+  form.find("[name=AGENDA_TYPE]").val("DAY");
+  form.find("[name=FOCUS_MILLIS]").val(headDay.attr("millis"));
+  form.submit();
+}
+
+function bindEventsOnEvent(evDom, ev, folio) {
+  //bring in front when over
+  evDom.mouseenter(function () {
+    if(!$("body").is(".unselectable"))
+      $(this).oneTime(400, "toFront", function () {$(this).css("z-index", 100)}).stopTime("toBack");
+  }).mouseleave(function () {
+    if(!$("body").is(".unselectable"))
+      $(this).oneTime(100, "toBack", function () {$(this).css("z-index", 0)}).stopTime("toFront");
+  });
+
+  //move and resize
+  if (ev.canManage) {
+    var focusedElement;
+    var dragStarted = false;
+    var dragHappened = false; //horrible hack to discriminate click on event from a click as consequence of drag
+
+    var containment = folio.element;
+    evDom.on("mousemove", function (e) {
+
+      if (!focusedElement) {
+        var element = $(this);
+        var mousePos = e.pageY - element.offset().top;
+        if (element.height() - mousePos < 15) {
+          $("body").addClass("EVResize");
+        } else {
+          $("body").removeClass("EVResize");
+        }
+      }
+
+    }).on("mouseout", function (e) {
+      if (!focusedElement) {
+        $("body").removeClass("EVResize");
+      }
+
+    }).on("mousedown", function (e) {
+      if (e.which == 1) {
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        folio.folioCanScroll = false;
+
+        focusedElement = $(this);
+        var mousePos = e.pageY - focusedElement.offset().top;
+        var offsetTop = containment.offset().top;
+        var vGrid = folio.getScaleHeight() * minStep;
+
+        $("body").unselectable();
+
+        //delayed resize -> in order to discriminate click from drag-resize
+        focusedElement.oneTime(300, "manageResize", function () {
+          if (focusedElement.height() - mousePos < 15) {
+            dragHappened = false;
+            //bind event for start resizing
+            $(document).on("mousemove", function (e) {
+              //manage resizing
+              if (e.pageY - offsetTop < containment.height()) {
+                var h = (e.pageY - focusedElement.offset().top);
+                //grid
+                h = (parseInt(h / vGrid)) * vGrid;
+                h = h <= 0 ? vGrid : h;
+
+                focusedElement.height(h);
+
+                //upgrade hours during resize
+                focusedElement.find(".hours").html(getMillisInHoursMinutes(Math.round(folio.getPixelHeight() * h)));
+              }
+
+              //bind mouse up on body to stop resizing
+            }).on("mouseup", function (e) {
+              $(this).off("mousemove").off("mouseup");
+              $("body").removeClass("EVResize").clearUnselectable();
+
+              folio.folioCanScroll = true;
+
+              //upgrade hours when resize stops
+              ajaxMoveResizeEvent(focusedElement, folio);
+              focusedElement = undefined;
+            });
+
+            // drag
+          } else {
+            var elTop = parseInt(focusedElement.css("top"));
+            var elLeft = parseInt(focusedElement.css("left"));
+            var startY = e.pageY;
+            var startX = e.pageX;
+            $("body").addClass("EVDrag").unselectable();
+            var $calendar = $("#calendar");
+            $calendar.on("mousemove", function (e) {
+
+              //remove current editor if any
+              $(".microEdit .meClose").click();
+
+              if (dragStarted || Math.abs(e.pageY - startY) > 10 || Math.abs(e.pageX - startX) > 50) {
+
+                folio.folioCanScroll = false;
+
+                dragStarted = true;
+                var t = elTop + (e.pageY - startY);
+                var l = elLeft + (e.pageX - startX);
+
+                if (isSafari) {
+                  t = elTop + (e.pageY + $calendar.scrollTop() - startY);
+                  l = elLeft + (e.pageX + $calendar.scrollLeft() - startX);
+                }
+
+                if (t > 0 && (t + focusedElement.height() < containment.height() + containment.scrollTop())) {
+                  //grid
+                  t = (parseInt(t / vGrid)) * vGrid;
+                  focusedElement.css("top", t).addClass("dragging");
+
+
+                  //upgrade label
+                  var newEv = getNewHours(focusedElement, folio);
+                  focusedElement.find(".hours").html(printPeriod(newEv.start, newEv.end));
+
+                }
+
+                var originalEvent=focusedElement.data("originalEvent");
+                //change day
+                if (originalEvent.schedule.type=="period" && l > 0 && (l + focusedElement.width() < containment.width() + containment.scrollLeft())) {
+                  //grid
+                  l = folio.getScaleWidth() * 20 + Math.round((l - folio.getScaleWidth() * 20) / (folio.getScaleWidth() * 100)) * (folio.getScaleWidth() * 100);
+                  focusedElement.css("left", l);
+                }
+
+              }
+
+              focusedElement.css("z-index", 4000);
+
+
+              //bind mouse up on body to stop resizing
+            }).on("mouseup", function (e) {
+              $(this).off("mousemove").off("mouseup");
+              $("body").removeClass("EVDrag").clearUnselectable();
+              dragStarted = false;
+              ajaxMoveResizeEvent(focusedElement, folio);
+              focusedElement.removeClass("dragging");
+              focusedElement = undefined;
+              dragHappened = true;
+              folio.folioCanScroll = true;
+
+            });
+          }
+
+        });
+      }
+      //quick edit event
+    }).on("click",function (e) {
+      folio.folioCanScroll = true;
+      if (e.which == 1) {
+        //remove delayed manage resize -> if you click you are not dragging
+        var domEv = $(this);
+        domEv.stopTime("manageResize");
+        if (!dragHappened) {
+          domEv.oneTime(300, "shmeaaw", function () {
+            var ev = $(this).data("originalEvent");
+            microEdit(ev, folio, $(this), e);
+          });
+        }
+      }
+      $("body").clearUnselectable();
+
+    }).on("mouseup", function () {
+
+      folio.folioCanScroll = true;
+
+      $("body").unselectable();
+    }).dblclick(function () {
+      window.location.href = "agendaEditor.jsp?CM=ED&OBJID=" + $(this).attr("evid");
+    });
+  } else if (ev.isInvolved && !ev.isExternal) { // in this case you can remove yourself -> go stright to the full edit
+    evDom.mousedown(function (e) {
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+      fullEditEvent($(this));
+      return false;
+    });
+  }
+}
+
+function bindEventsOnSpanEvent(evDom, ev, folio) {
+  //console.debug("bindEventsOnSpanEvent",ev);
+  //move and resize
+  if (ev.canManage) {
+    evDom.click(function (e) {
+      if (e.which == 1) {
+        //remove delayed manage resize -> if you click you are not dragging
+        var domEv = $(this);
+        domEv.oneTime(300, "shmeaaw", function () {
+          microEdit(ev, folio, $(this), e);
+        });
+      }
+    }).dblclick(function () {
+      window.location.href = "agendaEditor.jsp?CM=ED&OBJID=" + $(this).attr("evid");
+    }).mousedown(function () {
+      $("body").unselectable();
+    }).mouseup(function () {
+      $("body").clearUnselectable();
+    });
+  } else if (ev.isInvolved && !ev.isExternal) { // in this case you can remove yourself -> go stright to the full edit
+    evDom.mousedown(function (e) {
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+      fullEditEvent($(this));
+      return false;
+    });
+  }
+}
+
+function bindEventCreation(folio) {
+  //console.debug("bindEventCreation");
+  // Todo: Add touch events to make it works on tablets
+  folio.element.on("mousedown.creat", function (e) {
+
+    if (e.which!=1)
+      return;
+
+    $(".microEdit .meClose").click();
+
+    //if not a creation is still pending and is not ctrl/left etc
+//    if ($(".microEdit .meClose").size() <= 0) {
+    $("body").unselectable();
+
+    var startX, startY;
+    startX = e.pageX;
+    startY = e.pageY;
+
+    //start creating event after few millis
+    folio.element.oneTime(200, "createCreator", function (e) {
+
+      //create a placeholder div
+      var creator = $("<div>").addClass("eventCreator agendaEvent");
+      folio.element.append(creator);
+      var offsX = folio.element.offset().left;
+      var offsY = folio.element.offset().top - folio.element.scrollTop();
+
+      var moveCreator = function (creator, e) {
+        //set coordinates
+        if (!startX)
+          startX = e.pageX;
+        if (!startY)
+          startY = e.pageY;
+
+        var vGrid = folio.getScaleHeight() * minStep;
+
+        var newDim = {
+          left  : Math.min(startX, e.pageX) - offsX,
+          top   : Math.min(startY, e.pageY) - offsY,
+          width : (folio.getScaleWidth() * oneDayWidth),
+          height: Math.abs(startY - e.pageY)
+        };
+
+        //set in grid
+        newDim.left = folio.getScaleWidth() * 20 + Math.floor((newDim.left - folio.getScaleWidth() * 20) / (folio.getScaleWidth() * oneDayWidth)) * (folio.getScaleWidth() * oneDayWidth);
+        newDim.top = (parseInt(newDim.top / vGrid)) * vGrid;
+        newDim.height = (parseInt(newDim.height / vGrid)) * vGrid;
+        newDim.height = newDim.height < vGrid ? vGrid : newDim.height;
+
+        var creatorHtml = $("<div/>").html((Math.round(folio.getPixelHeight() * newDim.height / 60000) + " 分钟"));
+        creatorHtml.addClass("creatorHtml");
+
+        creator.css(newDim).html(creatorHtml);
+
+      };
+
+      //bind move
+      folio.element.on("mousemove.creat", function (e) {
+        //remove current editor if any
+        moveCreator(creator, e);
+      });
+
+      //bind mouseUp on document
+
+      $("body").one("mouseup.creat", function (e) {
+
+        //stop timer
+        folio.element.stopTime("createCreator");
+
+        //unbind move
+        folio.element.off("mousemove.creat");
+
+        var creator = folio.element.find(".eventCreator:first");
+        moveCreator(creator, e);
+
+        //create a micro editor
+        if (creator.size() > 0) {
+          //get real millis
+          var start = Math.round((folio.getPixelHeight() * parseInt(creator.css("top"))) / minStep) * minStep;
+          var dur = Math.round(creator.outerHeight() * folio.getPixelHeight() / minStep) * minStep;
+          var day = 0;
+          if (agendaType == "WEEK")
+            day = Math.round((parseInt(creator.css("left")) - folio.getScaleWidth() * 20) / (folio.getScaleWidth() * 100));
+
+          var newEvent = {
+            id: "-1",
+            icalId:"TW_xxx",
+            startMillis: firstMillisOfPeriod + start + day * 24 * 3600000,
+            endMillis: firstMillisOfPeriod + start + day * 24 * 3600000 + dur,
+            targets:attendees
+          };
+          microEdit(newEvent, folio, creator, e, false);
+        }
+      });
+    });
+//    }
+
+  }).on("click.creat", function (e) {
+    $("body").clearUnselectable();
+    //stop timer
+    folio.element.stopTime("createCreator");
+  });
+}
+
+
+function bindSpanEventCreation(spanFolio) {
+  //console.debug("bindSpanEventCreation");
+  spanFolio.element.on("mousedown.creat", function (e) {
+
+    if (e.which!=1)
+      return;
+
+    //remove current editor if any
+    $(".microEdit .meClose").click();
+
+    //if not a creation is still pending and is not ctrl/left etc
+    if ($(".microEdit").size() <= 0) {
+      $("body").unselectable();
+
+      var startX, startY;
+      startX = e.pageX;
+      startY = e.pageY;
+
+      //start creating event after few millis
+      spanFolio.element.oneTime(200, "createCreator", function (e) {
+
+        //create a placeholder div
+        var creator = $("<div>").addClass("eventCreator agendaEvent");
+        spanFolio.element.append(creator);
+
+        var offsX = spanFolio.element.offset().left;
+        var offsY = spanFolio.element.offset().top - spanFolio.element.scrollTop();
+
+        var moveCreator = function (creator, e) {
+          //set coordinates
+          if (!startX)
+            startX = e.pageX;
+          if (!startY)
+            startY = e.pageY;
+
+          var vGrid = spanFolio.getScaleHeight() * minStep;
+
+          var newDim = {
+            left  : 0,
+            top   : 0,
+            width : 0,
+            height: $(".agendaSpanEvents").height()
+//            height: spanFolio.height * spanFolio.getScaleHeight()
+          };
+
+          //$("h1:first").html(newDim.width+ " "+folio.getScaleWidth() * oneDayWidth);
+
+
+          //set in grid
+          var start=startX-offsX;
+          var end= e.pageX-offsX;
+
+          if (e.pageX<startX) {
+            var oldStart=start;
+            start=end;
+            end=oldStart;
+          }
+          var startCol = (Math.floor((start - spanFolio.getScaleWidth() * 20) / (spanFolio.getScaleWidth() * oneDayWidth)));
+          var numCols = (Math.floor((end - spanFolio.getScaleWidth() * 20) / (spanFolio.getScaleWidth() * oneDayWidth)) + 1);
+          newDim.left= spanFolio.getScaleWidth() * 20 + startCol * (spanFolio.getScaleWidth() * oneDayWidth);
+          newDim.width = spanFolio.getScaleWidth() * 20 + numCols * (spanFolio.getScaleWidth() * oneDayWidth)-newDim.left;
+
+          var stDate=new Date(firstMillisOfPeriod);
+          stDate.setDate(stDate.getDate()+startCol);
+          var enDate=new Date(firstMillisOfPeriod);
+          enDate.setDate(enDate.getDate()+numCols-1);
+
+          var creatorHtml = $("<div/>").html(stDate.format("EEEE")+(startCol!=numCols-1? " - "+enDate.format("EEEE"):"" ));
+          creatorHtml.addClass("creatorHtml");
+          creator.css(newDim).html(creatorHtml);
+        };
+
+
+        //bind move
+        spanFolio.element.on("mousemove.creat", function (e) {
+          moveCreator(creator, e);
+        });
+
+        //bind mouseUp on document
+        $("body").one("mouseup.creat", function (e) {
+          //stop timer
+          spanFolio.element.stopTime("createCreator");
+
+          //unbind move\
+          spanFolio.element.off("mousemove.creat");
+
+          var creator = spanFolio.element.find(".eventCreator:first");
+          moveCreator(creator, e);
+
+          //create a micro editor
+          if (creator.size() > 0) {
+            //get real millis
+            var start = Math.round((parseInt(creator.css("left"))*spanFolio.getPixelWidth()-spanFolio.getPixelWidth()*20)/oneDayWidth);
+            var dur = Math.round(creator.outerWidth() * spanFolio.getPixelWidth() / oneDayWidth);
+            var stDate=new Date(firstMillisOfPeriod);
+            var enDate=new Date(firstMillisOfPeriod);
+            stDate.setDate(stDate.getDate()+start);
+            enDate.setDate(enDate.getDate()+start+dur);
+
+
+            var newEv = {id: "-1", startMillis: stDate.getTime(), endMillis: enDate.getTime() - 1000,targets:attendees};
+            microEdit(newEv, spanFolio, creator, e);
+            $(".microEdit :input[name=isFullDay]").hide();
+          }
+        });
+      });
+    }
+
+  }).on("mouseup.creat", function (e) {
+    $("body").clearUnselectable();
+    //stop timer
+    spanFolio.element.stopTime("createCreator");
+  });
+}
+
+
+function createBarFolio() {
+  var moveBar = $("#moveBar");
+  moveBar.empty();
+
+  var date = new Date(focusMillis);
+  date.clearTime();
+  date.setDate(1);
+  date.setMonth(date.getMonth() - 12);
+
+  var startMillis = date.getTime();
+  date.setMonth(date.getMonth() + 24);
+  var endMillis = date.getTime();
+
+
+  var barFolio = new Folio(moveBar);
+  barFolio.width = endMillis - startMillis;
+  barFolio.height = 50;
+  barFolio.left = startMillis;
+  barFolio.inPercent = true;
+
+
+  var d = new Date(startMillis);
+  while (d.getTime() < endMillis) {
+    var headLbl = $("<span>").html(d.format("MM yyyy")).addClass("moveBarEl");
+    barFolio.addElement(headLbl, 0, d.getTime(), 30 * 24 * 3600000, 50);
+    d.setMonth(d.getMonth() + 1);
+  }
+
+  //today
+  var today = $("<span>").prop("title", "今天").addClass("moveBarToday");
+  barFolio.addElement(today, 0, new Date().getTime(), barFolio.getPixelWidth() * 2, 50);
+
+  return barFolio;
+}
+
+
+function checkOffScreenElements() {
+  var divFolio = $(this);
+  var offTop = false;
+  var offBottom = false;
+  var h = divFolio.height();
+  divFolio.find(".agendaEvent").each(function () {
+    var el = $(this);
+    if (el.position().top < 0) {
+      offTop = true;
+      return false;
+    }
+  }).each(function () {
+    var el = $(this);
+    if (el.position().top > h) {
+      offBottom = true;
+      return false;
+    }
+  });
+  var offScreenAlertBox = $("#offScreenAlertBox");
+  if (offTop)
+    offScreenAlertBox.addClass("offTop");
+  else
+    offScreenAlertBox.removeClass("offTop");
+
+  if (offBottom)
+    offScreenAlertBox.addClass("offBottom");
+  else
+    offScreenAlertBox.removeClass("offBottom");
+}
+
+
+function goToMillis(newMillis) {
+  //console.debug("goToMillis"+ (new Date(newMillis)).format());
+  focusMillis = newMillis;
+  $("[name=FOCUS_MILLIS]").val(focusMillis); // in order to add in the right time
+  $("#topHeaderCentral").html(getTopCentralHeader(focusMillis));
+  deskRefill();
+}
+
+
+function printEditorPeriod(ev) {
+  var st= new Date(ev.startMillis);
+  var en= new Date(ev.endMillis);
+  if (ev.schedule && ev.schedule.type=="period" ){
+    st= new Date(ev.schedule.startMillis);
+    en= new Date(ev.schedule.endMillis);
+  }
+
+  if (en.getTime() - st.getTime() < 3600000 * 23.8) {
+    return st.format("EEEE")+"<span> "+ st.format("HH:mm") + " - " + en.format("HH:mm")+"</span>"
+  } else if (st.getDay() == en.getDay()) {
+    return st.format("EEEE dd");
+  } else if (st.getMonth() == en.getMonth()) {
+    return st.format("EEE dd") + " - " + en.format("EEE dd")
+  } else {
+    return st.format("EEE dd MMMM") + " - " + en.format("EEE dd MMMM")
+  }
+}
+
+
+function printPeriod(startMillis, endMillis) {
+  return new Date(startMillis).format("HH:mm") + " - " + new Date(endMillis).format("HH:mm");
+}
+
+function clickIsFullDay(el){
+  if (el.is(":checked"))
+    el.closest(".microEdit").find(".hours span").hide();
+  else
+    el.closest(".microEdit").find(".hours span").show();
+}
+
+function getNewHours(focusedElement, folio) {
+  var day = Math.round((parseInt(focusedElement.css("left")) * folio.getPixelWidth() -20 )/100);
+  var startDay = new Date(firstMillisOfPeriod);
+  startDay.setDate(startDay.getDate()+day);
+  var newStart = parseInt(focusedElement.css("top")) * folio.getPixelHeight() + folio.top;
+  newStart = Math.round(newStart / minStep) * minStep + startDay.getTime();
+  var newDur = Math.round((focusedElement.height() * folio.getPixelHeight()) / minStep) * minStep;
+  return {start: newStart, duration: newDur, end: newStart + newDur};
+}
+
+
+function moveBarClick(el, event) {
+  var pos = event.clientX - el.offset().left;
+  var folio = el.data("folio");
+  var millis = parseInt(folio.getVirtualLeft(pos));
+  goToMillis(millis);
+}
+
+function microEdit(jsonData, folio, creator, event, oncursor) {
+  //console.debug("microEdit",jsonData)
+
+  if(typeof oncursor == "undefined")
+    oncursor = true;
+
+  //remove current editor if any
+  $(".microEdit .meClose").click();
+
+  folio.folioCanScroll = true;
+
+  var miced = $.JST.createFromTemplate(jsonData, "MICROEDIT");
+
+  var balloonOpener = creator.showBalloon(event, {balloon: miced, oncursor: oncursor}, true);
+
+  var balloon = balloonOpener.getBalloon();
+  if(balloon.length)
+    balloon.on("closeBalloon", function(){
+      $(".eventCreator").remove();
+    });
+
+  var ed = balloon.find(".microEdit");
+  ed.data("balloonOpener", balloonOpener);
+
+  if (creator.hasClass("eventCreator"))
+    ed.data("creator", creator);
+
+  ed.find("input:first").focus().select();
+
+  //bind one click on folio to close editor
+  folio.element.oneTime(100, "bctcaup", function () {
+    folio.element.one("click.closeMicEd", function () {
+      $(".microEdit .meClose").click();
+    });
+  }).off("click.closeMicEd");
+}
+
+function closeMicroEditor(el) {
+  var miced = el.closest(".microEdit");
+  var opener = miced.data("creator");
+
+  var balloon = el.closest(".mbBalloon");
+  var target = balloon.get(0).opener;
+
+  $(target).hideBalloon();
+}
+
+function fullEditEvent(el) {
+  var editor = el.closest("[evId]");
+  var evId = editor.attr("evId");
+
+  var request = getDefaultRequest();
+  if (evId != "-1") {
+    $.extend(request, {
+      CM   : "ED",
+      OBJID: evId
+    });
+  } else {
+    $.extend(request, {
+      CM         : "AD",
+      OBJID      : evId,
+      SCHEDULE   : JSON.stringify({type: "period", startMillis: editor.attr("startMillis"), endMillis: editor.attr("endMillis")}),
+      summary    : editor.find("[name=summary]").val(),
+      description: editor.find("[name=description]").val(),
+      location   : editor.find("[name=location]").val(),
+      type   : editor.find("[name=typeId]").val(),
+      IS_PERSONAL   : editor.find("[name=isPersonal]").is(":checked") ? "yes" : "no",
+      IS_UNAVAILABLE: editor.find("[name=isUnavailable]").is(":checked") ? "yes" : "no",
+      IS_REMINDER   : editor.find("[name=isReminder]").is(":checked") ? "yes" : "no"
+
+    });
+  }
+  window.location.href = "agendaEditor.jsp?" + $.param(request);
+}
+
+
+function refillWorkgroup() {
+  var legenda = $("#workgroupLegenda").empty();
+  for (var i = 0; i < attendees.length; i++) {
+    legenda.append($.JST.createFromTemplate(attendees[i], "WORKGROUPELEMENT"));
+  }
+}
+
+
+function getDefaultRequest() {
+  return {
+    type         : agendaType,
+    focusMillis  : focusMillis,
+    FILTER       : "NONE",
+    WG_IDS       : "14252",
+    PERM_REQUIRED: "TW_res_r"
+  };
+}
+
+
+function ajaxMicroSaveEvent(el) {
+  var editor = el.closest(".microEdit");
+  if (editor.find(":input").isFullfilled()) {
+
+    var request = getDefaultRequest();
+
+    //si recuperano gli attendees dall'evento
+    var resids="";
+    editor.find(".eventAttendees .face[resId]").each(function(){
+      resids+=","+$(this).attr("resId");
+    });
+    if (resids!=""){
+      request.WG_IDS=resids.substr(1);
+    }
+
+
+    $.extend(request, {
+      CM           : "MICSAVE",
+      id           : editor.attr("evid"),
+      summary      : editor.find("[name=summary]").val(),
+      location     : editor.find("[name=location]").val(),
+      description  : editor.find("[name=description]").val(),
+      type         : editor.find("[name=typeId]").val(),
+      isPersonal   : editor.find("[name=isPersonal]").is(":checked") ? "yes" : "no",
+      isUnavailable: editor.find("[name=isUnavailable]").is(":checked") ? "yes" : "no",
+      isReminder   : editor.find("[name=isReminder]").is(":checked") ? "yes" : "no",
+      isFullDay    : editor.find("[name=isFullDay]").is(":checked") ? "yes" : "no",
+      startMillis  : editor.attr("startMillis"),
+      endMillis    : editor.attr("endMillis")
+    });
+    showSavingMessage();
+
+    $.getJSON("agendaAjaxController.jsp", request, function (response) {
+      jsonResponseHandling(response);
+      if (response.ok == true) {
+        //remove editor
+        closeMicroEditor(el);
+
+        //clear all old events;
+        drawEvents(response.events);
+      }
+      hideSavingMessage();
+    });
+  }
+}
+
+function ajaxMoveResizeEvent(focusedElement, folio) {
+  var newEv = getNewHours(focusedElement, folio);
+  var oldEv = focusedElement.data("originalEvent");
+
+  //check if something changed
+  if (oldEv.startMillis != newEv.start || oldEv.endMillis != newEv.end) {
+    showSavingMessage();
+    var request = getDefaultRequest();
+    $.extend(request, {
+      CM         : "MOVRESEV",
+      id         : oldEv.id,
+      startMillis: newEv.start,
+      duration   : newEv.duration
+    });
+
+    $.getJSON("agendaAjaxController.jsp", request, function (response) {
+      jsonResponseHandling(response);
+      if (response.ok == true) {
+        //clear all old events;
+        drawEvents(response.events);
+      }
+      hideSavingMessage();
+    });
+  } else {
+  }
+}
+
+
+function ajaxGetEvents() {
+  //console.debug("ajaxGetEvents")
+  var request = getDefaultRequest();
+  $.extend(request, {
+    CM: "GETEVENTS",
+    timeZone:jstz.determine().name
+  });
+
+  showSavingMessage();
+  $.getJSON("api/agenda/agendaAjax", request, function (response) {
+    jsonResponseHandling(response);
+    if (response.ok == true) {
+      refillWorkgroup();
+      drawEvents(response.events);
+    }
+    hideSavingMessage();
+  });
+}
+
+
+function ajaxGetTaskIssues() {
+  var request = getDefaultRequest();
+  $.extend(request, {
+    CM: "GETTASKISS"
+  });
+
+  showSavingMessage();
+  $.getJSON("api/agenda/agendaAjax", request, function (response) {
+    jsonResponseHandling(response);
+    if (response.ok == true) {
+      drawTaskIssues(response);
+    }
+    hideSavingMessage();
+  });
+}
+
+function ajaxDeleteEvent(el) {
+  el.confirm(function () {
+    var editor = el.closest(".microEdit");
+    showSavingMessage();
+    var request = getDefaultRequest();
+    $.extend(request, {
+      CM: "DELEV",
+      id: editor.attr("evId"),
+      startMillis:editor.attr("startMillis")
+    });
+    $.getJSON("agendaAjaxController.jsp", request, function (response) {
+      jsonResponseHandling(response);
+      if (response.ok) {
+
+        closeMicroEditor(el);
+
+        refillWorkgroup();
+        drawEvents(response.events);
+      }
+      hideSavingMessage();
+    });
+  }, "确认删除?");
+}
+
+
+function drawMoveBar() {
+  var barFolio = createBarFolio();
+  //displayed period
+  d = new Date(focusMillis);
+  d.clearTime();
+  if (agendaType == "DAY") {
+    var st = new Date(d.getTime());
+    d.add("d", 1);
+  } else {
+    d.setFirstDayOfThisWeek();
+    var st = new Date(d.getTime());
+    d.add("d", 6);
+  }
+  var highlight = $("<span>").addClass("moveBarHL");
+  barFolio.addElement(highlight, 0, st.getTime(), d.getTime() - st.getTime(), 50);
+  barFolio.redraw();
+}
+
+
+function getTopCentralHeader(millis) {
+  var header;
+  if (agendaType == "DAY") {
+    header = new Date(millis).format("EEEE d MMMM yyyy") + "<sup>(" + new Date(millis).format("ww") + ")</sup>";
+  } else {
+    var date = new Date(millis);
+    date.clearTime();
+    date.setFirstDayOfThisWeek();
+    var st = new Date(date.getTime());
+    date.add("d", 6);
+    header = st.format("dd" + (st.getMonth() != date.getMonth() ? " MMMM" : "")) + " - " + date.format("dd MMMM yyyy") + "<sup>(" + date.format("ww") + ")</sup>";
+  }
+  return header;
+}
+
+
+function drawTaskIssues(response) {
+  var tasks = response.tasks;
+  var issues = response.issues; //[[dayInt,resourceId,numOfIssues,totEstimated]]
+  //clear
+  $(".taskIssueBox").empty();
+
+  //tasks
+  if (tasks) {
+    for (var i = 0; i < tasks.length; i++) {
+      var data = tasks[i];
+
+      var date = new Date(data.millis);
+      var day = date.getDay();
+      var taskIssueBox;
+      if (agendaType == "WEEK") {
+        taskIssueBox = $("[day=" + day + "] .taskIssueBox");
+      } else {
+        taskIssueBox = $(".taskIssueBox");
+      }
+      var ib = $.JST.createFromTemplate(data, "TASKBOX");
+      ib.activateTeamworkLinks(false);
+      taskIssueBox.append(ib);
+
+    }
+  }
+
+
+  if (issues) {
+    for (var i = 0; i < issues.length; i++) {
+      var data = issues[i];
+      var date = Date.fromInt(data[0]);
+      var day = date.getDay();
+      var taskIssueBox;
+      if (agendaType == "WEEK") {
+        taskIssueBox = $("[day=" + day + "] .taskIssueBox");
+      } else {
+        taskIssueBox = $(".taskIssueBox");
+      }
+      var ib = $.JST.createFromTemplate(data, "ISSUEBOX");
+      ib.attr("day", date.format())
+      ib.click(function (ev) {
+        ev.stopPropagation();
+        ev.cancelBubble;
+        var el = $(this);
+        location.href = "../issue/issueList.jsp?CM=FN&FLT_ISSUE_ASSIGNED_TO=" + el.attr("resId") + "&FLT_ISSUE_DATE_CLOSE_BY=" + el.attr("day");
+
+      });
+      taskIssueBox.append(ib);
+    }
+  }
+}
+
+
+function drawEvents(events) {
+  //console.debug("drawEvents",events)
+
+  $("body").removeClass("EVResize");
+
+  var spannedEvents=[];
+  if (events) {
+    // remove events spanning on more days
+    var simpleEvents=[];
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      if (!ev.trimmed && (new Date(ev.endMillis).format("yyyMMdd")==new Date(ev.startMillis).format("yyyMMdd")) ){
+        simpleEvents.push(ev);  // same day
+      } else {
+        spannedEvents.push(ev); //span day
+      }
+    }
+    events=simpleEvents;
+
+
+    events.sort(function (a, b) {
+      if (a.startMillis < b.startMillis) {
+        return -1;
+      } else if (a.startMillis > b.startMillis) {
+        return 1;
+      } else {
+        if (a.endMillis < b.endMillis) {
+          return 1;
+        } else if (a.endMillis > b.endMillis) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    });
+  }
+
+  //clear all old events;
+  var calendar = $("#calendar");
+  calendar.find(".agendaEvent").remove();
+  var folio = calendar.data("folio");
+  //remove current editor if any
+  $(".microEdit .meClose").click();
+
+
+
+  drawSpannedEvents(spannedEvents,agendaType);
+
+  if (agendaType == "DAY") {
+    drawOneColumnEventsOptimized(folio, oneDayWidth - 60, 40, events);
+
+  } else { // WEEK
+    // split event in days
+    var ev4Days = {};
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      var startDate = new Date(ev.startMillis);
+      var day = (7 - Date.firstDayOfWeek + startDate.getDay()) % 7;  //column
+
+      var evD = ev4Days[day];
+      if (!evD)
+        evD = [];
+
+      evD.push(ev);
+      ev4Days[day] = evD;
+    }
+
+    for (var day in ev4Days) {
+      var evd = ev4Days[day];
+      drawOneColumnEvents(folio, 100, 20 + day * 100, evd);
+    }
+  }
+  winResize();
+  folio.redraw();
+  calendar.oneTime(500, "ckoffscrelmnt", checkOffScreenElements);
+}
+
+
+function drawSpannedEvents(spannedEvents,agendaType){
+
+  var rowSize=0;
+  if(agendaType == "DAY"){
+    for (var i = 0; i < spannedEvents.length; i++) {
+      var ev = spannedEvents[i];
+      ev.startDay = (7 - Date.firstDayOfWeek + new Date(ev.startMillis).getDay()) % 7;  //column
+      ev.endDay = (7 - Date.firstDayOfWeek + new Date(ev.endMillis).getDay()) % 7;  //column
+      ev.row=i;
+    }
+
+    rowSize=spannedEvents.length;
+
+  } else {
+    var rows = [];
+
+    for (var i = 0; i < spannedEvents.length; i++) {
+      var ev = spannedEvents[i];
+      ev.startDay = (7 - Date.firstDayOfWeek + new Date(ev.startMillis).getDay()) % 7;  //column
+      ev.endDay = (7 - Date.firstDayOfWeek + new Date(ev.endMillis).getDay()) % 7;  //column
+
+      var found = false;
+      for (var r = 0; r < rows.length; r++) {
+        var row = rows[r];
+        var allFree = true;
+        for (var c = ev.startDay; c <= ev.endDay; c++) {
+          if (row[c] > 0) {
+            allFree = false;
+            break;
+          }
+        }
+        if (allFree) {
+          for (var c = ev.startDay; c <= ev.endDay; c++) {
+            row[c] = 1;
+          }
+          found = true;
+        }
+
+        if (found) {
+          ev.row = r;
+          break;
+        }
+      }
+      if (!found) {
+        var row = [0, 0, 0, 0, 0, 0, 0];
+        for (var c = ev.startDay; c <= ev.endDay; c++) {
+          row[c] = 1;
+        }
+        rows.push(row);
+        ev.row = rows.length - 1;
+
+      }
+    }
+    rowSize=rows.length;
+  }
+  var rowH = 25;
+  var spanEvents = spanFolio.element;
+  spanEvents.height(rowH*rowSize);
+  spanEvents.empty();
+  spanFolio.width = 720;
+  spanFolio.height = rowH * rowSize+15;
+  spanFolio.inPercent = true;
+
+
+  var bg = $("<div>").addClass("agendaSpanEvents");
+  spanFolio.addElement(bg,0,20,700,spanFolio.height-5);
+
+  for (var i = 0; i < spannedEvents.length; i++) {
+    var ev = spannedEvents[i];
+    var evDom = $.JST.createFromTemplate(ev, "AGENDAEVENTSPAN");
+
+    evDom.data("originalEvent", ev);
+
+    if(Math.abs(ev.schedule.startMillis-ev.startMillis)>5)
+      evDom.addClass("leftArrow");
+
+    if(Math.abs(ev.schedule.endMillis-ev.endMillis)>5) {
+      evDom.addClass("rightArrow");
+    }
+
+
+    if (ev.isExternal)
+      evDom.addClass("external");
+    bindEventsOnSpanEvent(evDom, ev, folio);
+    if(agendaType == "DAY") {
+      spanFolio.addElement(evDom, ev.row * rowH, 20, 700, rowH);
+    } else {
+      spanFolio.addElement(evDom, ev.row * rowH, ev.startDay * 100 + 20, (ev.endDay - ev.startDay + 1) * 100, rowH);
+    }
+  }
+  spanFolio.redraw();
+
+}
+
+
+function getOverlaps(ev, levels) {
+  var over = 0;
+  if (ev.level < levels.length - 1) {
+    var levEv = levels[ev.level + 1];
+    for (var i = 0; i < levEv.length; i++) {
+      var ev2 = levEv[i];
+      if (!((ev2.endMillis <= ev.startMillis) || (ev2.startMillis >= ev.endMillis))) {
+        over = Math.max(getOverlaps(ev2, levels), over) + 1;
+      }
+    }
+  }
+  return over;
+}
+
+
+function drawOneColumnEventsOptimized(folio, colWidth, colOffset, events) {
+  if (events) {
+
+    //compute levels
+    var levels = [];//Ã¨ un array di eventi messi a strati come nel tetris
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      //controllo
+      var lastGoodLevel = -1;
+      var collisionDetected = false;
+      for (var lev = levels.length - 1; lev >= 0 && !collisionDetected; lev--) {
+        for (var j = 0; j < levels[lev].length; j++) {
+          var ev2 = levels[lev][j];
+          if (!((ev2.endMillis <= ev.startMillis) || (ev2.startMillis >= ev.endMillis))) {
+            //non entra su questo livello devo usare quello precedente
+            collisionDetected = true;
+            break;
+          }
+        }
+        if (!collisionDetected)
+          lastGoodLevel = lev;
+      }
+      if (lastGoodLevel == -1) {
+        lastGoodLevel = levels.length;
+      }
+      if (!levels[lastGoodLevel])
+        levels.push([]);
+      ev.level = lastGoodLevel;
+      levels[lastGoodLevel].push(ev);
+    }
+
+    //compute overlaps
+    for (var lev = 0; lev < levels.length; lev++) {
+      var levEv = levels[lev];
+      for (var i = 0; i < levEv.length; i++) {
+        var ev = levEv[i];
+        ev.overlaps = getOverlaps(ev, levels) + ev.level + 1;
+      }
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+
+      var startDate = new Date(ev.startMillis);
+      ev.offset = 0;
+      for (var j = i - 1; j >= 0; j--) {
+        var ev2 = events[j];
+        if (!((ev2.endMillis <= ev.startMillis) || (ev.endMillis <= ev2.startMillis))) {
+          ev.offset = ev2.offset + (colWidth / ev2.overlaps) * 0.9;
+          break;
+        }
+      }
+      var extSize = (ev.endMillis - ev.startMillis) * folio.getScaleHeight();
+      var evDom = $.JST.createFromTemplate(ev, extSize < 32 ? "AGENDAEVENTCOMPACT" : "AGENDAEVENT");
+      evDom.data("originalEvent", ev);
+
+      if (ev.isExternal)
+        evDom.addClass("external");
+      bindEventsOnEvent(evDom, ev, folio);
+
+      var w = colWidth / ev.overlaps;
+      folio.addElement(evDom, ev.startMillis - startDate.clearTime().getTime(), colOffset + ev.offset, w, ev.endMillis - ev.startMillis);
+    }
+  }
+}
+
+function drawOneColumnEvents(folio, colWidth, colOffset, events) {
+  if (events) {
+
+    //compute levels
+    var levels = [];//Ã¨ un array di eventi messi a strati come nel tetris
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      //controllo
+      var lastGoodLevel = -1;
+      var collisionDetected = false;
+      for (var lev = levels.length - 1; lev >= 0 && !collisionDetected; lev--) {
+        for (var j = 0; j < levels[lev].length; j++) {
+          var ev2 = levels[lev][j];
+          if (!((ev2.endMillis <= ev.startMillis) || (ev2.startMillis >= ev.endMillis))) {
+            //non entra su questo livello devo usare quello precedente
+            collisionDetected = true;
+            break;
+          }
+        }
+        if (!collisionDetected)
+          lastGoodLevel = lev;
+      }
+      if (lastGoodLevel == -1) {
+        lastGoodLevel = levels.length;
+      }
+      if (!levels[lastGoodLevel])
+        levels.push([]);
+      ev.level = lastGoodLevel;
+      levels[lastGoodLevel].push(ev);
+    }
+    var levelIndent = 7;
+
+    //draw events
+    for (var lev = 0; lev < levels.length; lev++) {
+      var levEv = levels[lev];
+      for (var i = 0; i < levEv.length; i++) {
+        var ev = levEv[i];
+        var startDate = new Date(ev.startMillis);
+
+        ev.offset = lev * levelIndent;
+        var w = colWidth - ev.offset - 5;
+        w = w < 30 ? 30 : w;
+
+        var extSize = (ev.endMillis - ev.startMillis) * folio.getScaleHeight();
+        var evDom = $.JST.createFromTemplate(ev, extSize < 32 ? "AGENDAEVENTCOMPACT" : "AGENDAEVENT");
+        evDom.data("originalEvent", ev);
+        if (ev.isExternal)
+          evDom.addClass("external");
+        bindEventsOnEvent(evDom, ev, folio);
+
+        folio.addElement(evDom, ev.startMillis - startDate.clearTime().getTime(), colOffset + ev.offset, w, ev.endMillis - ev.startMillis);
+      }
+    }
+  }
+}
+
+function getResourceById(resId) {
+  for (var i = 0; i < attendees.length; i++) {
+    if (resId == attendees[i].resId)
+      return attendees[i];
+  }
+}
+
+function openWorkGroup(el) {
+  var resids="";
+  $(".microEdit").find(".eventAttendees .face[resId]").each(function(){
+    resids+=","+$(this).attr("resId");
+  });
+  if (resids!=""){
+    resids=resids.substr(1);
+  }
+  //console.debug("openWorkGroup WG_IDS="+resids);
+
+  var url = contextPath+"/app/workgroup/workgroupPopup?" +
+    "canBeEmpty=no&" +
+    "useCallbackFunction=yes&" +
+    "title="+encodeURIComponent("选择您的团队")+"&" +
+    "WG_IDS="+encodeURIComponent(resids)+"&" +
+    "PERM_REQUIRED=TW_res_r";
+  openBlackPopup(url,700, 580,wgCallback);
+}
+
+
+function wgCallback(selectedResources) {
+  //console.debug("wgCallback", selectedResources);
+  if (selectedResources) {
+    var attendees = [];
+    for (var i = 0; i < selectedResources.length; i++) {
+      var res = selectedResources[i];
+      attendees.push({resId: res.id, resName: res.displayName, resConnectionStatus: res.resConnectionStatus, resAvatarUrl: res.avatarUrl})
+    }
+    fillAttendees($(".microEdit").find(".eventAttendees").empty(), attendees, "", 200);
+  }
+}
+
+
+            </script>
+
+
+        </div>
+
+        <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+        <script>
+    var __sns =[];
+    $(function () {
+      $("body").oneTime(500, function () {
+        manageStickyNotes(__sns);
+      });
+
+      //event da webSocket
+      $("body").on("ws-stickySaved.twScreen", function (e, data) {
+        //console.debug("ws-stickySaved.twScreen",data);
+        if (data && data.stickyId)
+          twSrc_drawSticky(data.stickyId);
+      }).on("ws-logSaved.twScreen", function (e, data) {
+        //console.debug("ws-logSaved twScreen",data);
+        if (data && data.messageId) {
+          $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+        }
+      }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+        //console.debug("ws-updateGlobalCounter.twScreen", data);
+        if (data) {
+          $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+          $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
+
+
+          if (data.totalUnreadChats) {
+            //top.twChat.chatWindow.addClass("hasUnreadChats");
+            $("#twChatOpener .notificationNumber").show();
+          } else {
+            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+            $("#twChatOpener .notificationNumber").hide();
+          }
+          // add total unread chats to the top page title
+          top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+          top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+        }
+      }).on("ws-socketClosed.twScreen", function (e, data) {
+          //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+        }
+      );
+
+
+      //gestione chiusura tutti dopo 2
+      var firstClosed = false;
+      var doNotAskAgain = false;
+      $("body").on("containerHidden", ".container.sticky", function (e) {
+        if (firstClosed && !doNotAskAgain) {
+          var firstStick = $(this);
+          var sticks = $(".container.sticky");
+          if (sticks.size() > 2) {
+            doNotAskAgain = true;
+            if (confirm("全部关闭？")) {
+              sticks.each(function () {
+                var stick = $(this);
+                if (stick.attr("status") != "ICONIZED")
+                  if (stick.prop("id") != firstStick.prop("id"))
+                    $(this).trigger("hide");
+              });
+            }
+          }
+          firstClosed = false;
+
+        } else {
+          firstClosed = true;
+        }
+
+      });
+
+    });
+
+
+    function manageStickyNotes(sns) {
+      //console.debug("manageStickyNotes",sns);
+      if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+        var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+        var d = $("<div>").append(message + "<br>");
+        var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+        var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+        d.append(closeAll).append(drawAll);
+        showFeedbackMessage("INFO", d.html(), "");
+      } else {
+        twSrc_drawAllSticky(sns)
+      }
+    }
+
+
+    function twSrc_drawAllSticky(sns) {
+      for (var i = 0; i < sns.length; i++) {
+        twSrc_drawSticky(sns[i]);
+      }
+    }
+    function twSrc_drawSticky(stickyId) {
+      $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", {CM: "DRW", sid: stickyId}, function (response) {
+        $("#STKN_" + stickyId).remove();
+        $("body").append(response);
+      })
+    }
+
+
+    function closeAllSticky() {
+      $.getJSON(contextPath + "/messaging/messageAjax", {CM: "REMOVEEALLSTK"}, function (response) {
+        twSrc_drawAllSticky(__sns);//disegna i rimanenti
+      });
+    }
+        </script>
+    </div>
+
+
+    <script>
+  $(function() {
+    if (false) {
+      window.focus();
+    }
+
+
+    $("#_errorTemplates").loadTemplates().remove();
+    var _messagesFromController =[];
+    if (_messagesFromController.length > 0) {
+      for (var i=0;i<_messagesFromController.length;i++) {
+        showFeedbackMessage(_messagesFromController[i]);
+      }
+    }
+
+
+    if (0)
+      $("#null").focus();
+
+
+    showUpgradeMessage();
+
+
+    // EX liveQuery:  si inizializzano i fields
+    $("body").initFields()
+  });
+
+
+  function showUpgradeMessage() {
+    var levpg = $(".lreqPage:first");
+    if (levpg.size() > 0) {
+
+      var lv =30;
+      var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+      if (lv > 0 && reqLev > lv) {
+        var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+        var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+        var inn = $("<div>").addClass("bwinPopupd").css({"max-width": "360px", "min-height": "200px", top: "20%"}).click(function () {
+          location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+        });
+        inn.append($("<h2>").html('Do you need more?'));
+        inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+        //inn.append("<br><br>");
+        inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+        wrp.append(inn)
+        levpg.after(wrp)
+      }
+    }
+  }
+
+
+
+    </script>
+
+
+</body>
+</html>

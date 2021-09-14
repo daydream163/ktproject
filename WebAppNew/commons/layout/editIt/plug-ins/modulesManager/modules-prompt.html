@@ -1,0 +1,64 @@
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+
+  file: modules-prompt.html
+  last modified: 12/24/18 5:59 PM
+  Version:  0.1.28
+  Build:  4009
+
+  Open Lab s.r.l., Florence - Italy
+  email:  matbicoc@gmail.com
+  blog: 	http://pupunzi.open-lab.com
+  site: 	http://pupunzi.com
+  	      http://open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+<div id="modulesManager-prompt">
+
+    <h2>[[Module manager]]</h2>
+    <h3>[[Choose a module:]]</h3>
+
+  <div class="prompt-list-container">
+    <ul id="modulesManager-list"></ul>
+  </div>
+    <p>
+
+    <h3>[[Where?]]</h3>
+
+    <input id="modulesManager-after" type="radio" name="position" value="after" checked> <label for="modulesManager-after">[[After the current block]]</label><br>
+    <input id="modulesManager-before" type="radio" name="position" value="before"> <label for="modulesManager-before">[[Before the current bloclk]]</label>
+
+    </p>
+
+</div>
+
+<script>
+
+    $.editIt.ui.prompt.onLoad = function (editor, plugin) {
+
+        var prompt = $("#modulesManager-prompt");
+        $.editIt.i18n.translate(prompt);
+
+        for (var temp in plugin.modules){
+            var listEl = $("<li/>");
+            var listChooser = $("<input/>").attr({
+                type: "radio",
+                name: "module-name",
+                value: temp,
+                id: "radio_" + temp,
+                checked: plugin.modules[temp].default ? true : false
+            });
+            var label = $("<label/>").attr({for: "radio_" + temp}).html(" "+_(plugin.modules[temp].name));
+            listEl.append(listChooser).append(label);
+            $("#modulesManager-list").append(listEl);
+        }
+
+    };
+
+</script>

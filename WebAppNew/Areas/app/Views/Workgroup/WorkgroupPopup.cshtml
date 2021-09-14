@@ -1,0 +1,347 @@
+﻿@{
+    ViewBag.Title = "成员选择";
+    Layout = "~/Areas/app/Views/Shared/_LayoutWin.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainerPopup" class="null">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/applications/teamwork/workgroup/workgroupPopup.jsp" name="d1637518679" id="d1637518679"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d1637518679V_ID" name="V_ID" value="1637518679" savedValue="">
+        <input type="hidden" id="d1637518679CM" name="CM" value="FN" savedValue="">
+        <input type="hidden" id="d1637518679POP" name="POP" value="yes" savedValue="">
+        <input type="hidden" id="d1637518679PERM_REQUIRED" name="PERM_REQUIRED" value="TW_res_r" savedValue="">
+        <input type="hidden" id="d1637518679useCallbackFunction" name="useCallbackFunction" value="yes" savedValue="">
+        <input type="hidden" id="d1637518679title" name="title" value="选择您的团队" savedValue="">
+
+
+        <h2>选择您的团队</h2>
+
+
+
+        <div class="filterBar clearfix">
+            <div class="filterActiveElements"></div>
+
+            <div class="filterInactiveElements">
+                <div class="filterElement filterDefault">
+                    <label for="PEOPLE">人员</label> &nbsp;&nbsp;&nbsp;&nbsp;<span style="display: inline-block">
+                        <input type=hidden name="HAVE_LOGIN" id="HAVE_LOGIN" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes" oldValue='1'>
+                        <input type="checkbox" id="ck_HAVE_LOGIN" name="ck_HAVE_LOGIN" checked value="yes" onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                        <label for="ck_HAVE_LOGIN">已登录</label>
+                    </span><br>
+                    <input type=text name="PEOPLE" id="PEOPLE" size=20 class="formElements" autocomplete='off' maxlength=255 value="" onkeydown="if (event.keyCode==13) { searchResources();event.preventDefault();return false;}" oldValue='1'>
+                </div>
+
+                <div class="filterElement">
+                    <label for="RESOURCE_TAGS" class=" ">标签</label><br>
+                    <input type=text name="RESOURCE_TAGS" id="RESOURCE_TAGS" size=15 class="formElements tagBox" autocomplete='off' maxlength=255 autocomplete='off' taggableClass="com.twproject.resource.Resource" maxResult="30" tagPropertyName="tags" areaId="5944" value="">
+                </div>
+
+                <div class="filterElement">
+                    <label for="DEPARTMENT_txt" class=" ">部</label><br>
+                    <input type=text name="DEPARTMENT_txt" id="DEPARTMENT_txt" size=15 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="">
+                    <span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span>
+                    <input type=hidden name="DEPARTMENT" id="DEPARTMENT" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo.jsp' value="">
+                </div>
+
+
+            </div>
+            <div class="filterButtons">
+                <div class="filterButtonsElement filterAdd">
+                    <span class="button" id="filterSelectorOpener" title="更多的过滤器" onclick="bjs_showMenuDiv('filterSelectorBox', 'filterSelectorOpener');"><span class="teamworkIcon">f</span></span>
+                </div>
+                <div class="filterButtonsElement filterSearch">
+                    <button type="button" class="button noprint    " id="domId_1183025909" style="" onclick="searchResources();return false; ">搜索</button>
+
+                </div>
+
+                <div class="filterActions">
+                    <div class="filterButtonsElement filterSave">
+                        <span onclick="lsfOpenEditor($(this))" lsfId="domId_169177576" title="保存这个搜索" class="button textual">保存这个搜索</span>
+                    </div>
+                    <div class="filterButtonsElement filterHelp">
+                        <button type="button" class="button noprint textual   " id="domId_60206178" style="" title="如何使用示例查询（QBE）组成强大的搜索.<br>您可以保存您的搜索条件以便将来使用." onclick="openBlackPopup('/commons/help/qbe.jsp?V_ID=1877758070','800px','700px');return false; ">Help</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="/commons/js/filterEngine.js"></script>
+
+        <div class="clearFloat clearfix"></div>
+
+        <div class="filtersInline">
+            <div class="customSavedFilters" formId="d1637518679" category="WORKGROUP" id="domId_169177576">
+                <input type="hidden" name="FLNMSEL" id="FLNMSEL">
+                <input type="hidden" name="FLCAT" id="FLCAT" value="WORKGROUP">
+                <input type="hidden" name="FLNM" id="FLNM" value="">
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#d1637518679").append($("#domId_169177576 input")); //sposta gli input dentro il form
+                    var bts = [];
+                    var div = $("#domId_169177576");
+                    for (var i = 0; i < bts.length; i++) {
+                        div.append(lsfCreateButton(bts[i]));
+                    }
+                });
+            </script>
+
+
+
+        </div>
+
+        <div style="margin-top: 10px">
+            <input type=hidden name="WG_CAND_IDS" id="WG_CAND_IDS" size=1 autocomplete='off' maxlength=255 value="">
+            <input type=hidden name="WG_IDS" id="WG_IDS" size=1 autocomplete='off' maxlength=255 value="@ViewBag.defaultid">
+
+
+            <table id="wgBoxExt" class="table dataTable edged" cellpadding="0" cellspacing="0">
+                <thead class="wgBoxTitle">
+                    <tr>
+                        <th width="40%" class="tableHead">候选</th>
+                        <th width="10%" style="text-align: center;" class="tableHead"><span class="teamworkIcon textual" style="cursor:pointer;" onclick="$('#wgCandBox .wgResEl').appendTo('#wgSelBox');updateFields();return false;" title="Move all to chosen">}</span></th>
+                        <th width="10%" style="text-align: center;" class="tableHead"><span class="teamworkIcon textual" style="cursor:pointer;" onclick="$('#wgSelBox .wgResEl').appendTo('#wgCandBox');updateFields();return false;" title="清除所有">{</span></th>
+                        <th width="40%" class="tableHead">选择</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td colspan="2" width="50%">
+                        <div id="wgCandBox" class="wgBox ui-draggable">
+                            @Html.Raw(ViewBag.ListHTML)
+                        </div>
+                    </td>
+                    <td colspan="2" width="50%">
+                        <div id="wgSelBox" class="wgBox ui-draggable">
+                            
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+        <table width="100%">
+            <tr>
+                <td align="left">
+                    <button type="button" class="button noprint    first" id="domId_696985814" style="" onclick="useCallBack();return false; ">插入</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+    <div id="wgTemplates" style="display:none">
+        <div class="__template__" type="WG_RESOURCE">
+            <!--
+            <div resId="(#=obj.id#)" class="wgResEl"><img  resId="(#=obj.id#)" class="face (#=obj.resConnectionStatus#)" src="(#=obj.avatarUrl#)" align="middle"/> (#!obj.displayName#)</div>
+            -->
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var resources = @Html.Raw(ViewBag.resourceList);
+        var selectedIds = "@ViewBag.selectedIds"; //comma separated
+        var candidateIds = ""; //comma separated
+
+        $(function () {
+            $("#wgTemplates").loadTemplates().remove();
+
+            var candPlace = $("#wgCandBox");
+            var selPlace = $("#wgSelBox");
+
+            $.JST.loadDecorator("WG_RESOURCE", function (domEl, json) {
+
+                domEl.data("jResource", json);
+
+                //draggable
+                domEl.draggable({
+                    revert: "invalid",
+                    containment: "#wgBoxExt",
+                    helper: 'clone'
+                });
+
+
+                domEl.dblclick(function () {
+                    var el = $(this);
+                    var mb = el.closest(".wgBox");
+                    var ob = $("#" + (mb.prop("id") == "wgSelBox" ? "wgCandBox" : "wgSelBox"));
+                    ob.append(el);
+                    updateFields();
+                });
+
+
+            });
+
+            function fillBox(box, idsString) {
+                var idsArr = idsString.split(",");
+                for (var i = 0; i < idsArr.length; i++) {
+                    var id = idsArr[i];
+                    for (var j = 0; j < resources.length; j++) {
+                        if (resources[j].id == id) {
+                            box.append($.JST.createFromTemplate(resources[j], "WG_RESOURCE"));
+                            break;
+                        }
+                    }
+                }
+            }
+
+            fillBox(candPlace, candidateIds);
+            fillBox(selPlace, selectedIds);
+
+            //droppable
+            $("#wgCandBox,#wgSelBox").droppable({
+                accept: function (ui) { return !ui.parent().is($(this)); },
+                tolerance: "pointer",
+                drop: function (ev, ui) {
+                    $(this).append(ui.draggable);
+                    ui.draggable.css({ position: "relative", left: 0, top: 0 });
+                    $("body").oneTime(50, "wgupdfld", updateFields); //this because during drop the element is stille there
+                }
+            });
+
+        });
+
+
+        function updateFields() {
+            var ids = "";
+            $("#wgCandBox .wgResEl").each(function () {
+                ids += (ids.length > 0 ? "," : "") + $(this).attr("resId");
+            });
+            $("#WG_CAND_IDS").val(ids);
+
+            ids = "";
+            $("#wgSelBox .wgResEl").each(function () {
+                ids += (ids.length > 0 ? "," : "") + $(this).attr("resId");
+            });
+            $("#WG_IDS").val(ids);
+        }
+
+
+        function searchResources() {
+            //console.debug("searchResources");
+            var search = $("#PEOPLE").val();
+            var data = {
+                CM: "WGSRCPEOPLE",
+                PEOPLE: search,
+                DEPARTMENT: $("#DEPARTMENT").val(),
+                RESOURCE_TAGS: $("#RESOURCE_TAGS").val(),
+                PERM_REQUIRED: $("[name=PERM_REQUIRED]").val(),
+                HAVE_LOGIN: $("#HAVE_LOGIN").val()
+            };
+
+            $.getJSON("/api/workgroup/wgajax?V_ID=1864765160", data, function (response) {
+                jsonResponseHandling(response);
+                if (response.ok) {
+                    var candBox = $("#wgCandBox");
+                    var selBox = $("#wgSelBox");
+                    candBox.empty();
+                    if (response.resources.length == 1) {
+                        addResInMem(response.resources[0]);
+                        if ($("[resId=" + response.resources[0].id + "]").size() == 0) {
+                            selBox.append($.JST.createFromTemplate(response.resources[0], "WG_RESOURCE"));
+                        }
+
+                    } else {
+                        for (var i = 0; i < response.resources.length; i++) {
+                            //if not already in selected
+                            var res = response.resources[i];
+                            addResInMem(res);
+
+                            if ($("[resId=" + res.id + "]").size() == 0) {
+                                candBox.append($.JST.createFromTemplate(res, "WG_RESOURCE"));
+                            }
+                        }
+                    }
+                    updateFields();
+                }
+            });
+        }
+
+
+        function submitParent() {
+            //console.debug("submitParent.");
+            var targetWin = getBlackPopupOpener();
+            var canBeEmpty = false;
+
+            var selIdsStr = $("#WG_IDS").val();
+            var parForm = targetWin.$(targetWin).data("openerForm");
+            parForm.attr('alertOnChange', 'false');
+            parForm.find("[name=WG_IDS]").val(selIdsStr);
+
+            //get names
+            var namesString = "";
+
+            if (!canBeEmpty || selIdsStr != "") {
+
+                var idsArr = selIdsStr.split(",");
+
+                if (!idsArr.length || (idsArr.length == 1 && !getResourceById(idsArr[0]))) {
+                    showFeedbackMessage("ERROR", "至少一个资源是必需", null, 3000);
+                    return;
+                }
+                for (var i = 0; i < idsArr.length; i++) {
+                    var id = idsArr[i];
+                    namesString += (namesString.length == 0 ? "" : ";") + getResourceById(id).displayName;
+                }
+            }
+            parForm.find("[name=WG_NAMES]").val(namesString);
+            parForm.submit();
+            closeBlackPopup()
+        }
+
+
+        function useCallBack() {
+            var selIdsStr = $("#WG_IDS").val();
+            var namesString = "";
+            var idsArr = selIdsStr.split(",");
+            var canBeEmpty = false;
+
+            if (canBeEmpty && selIdsStr == "") {
+                closeBlackPopup({});
+                return;
+            }
+
+
+            if (!idsArr.length || (idsArr.length == 1 && !getResourceById(idsArr[0]))) {
+                showFeedbackMessage("ERROR", "至少一个资源是必需", null, 3000);
+                return;
+            }
+
+            var callbackData = [];
+
+            for (var i = 0; i < idsArr.length; i++) {
+                var id = idsArr[i];
+                callbackData.push(getResourceById(id));
+            }
+            closeBlackPopup(callbackData);
+        }
+
+        function getResourceById(id) {
+            var ret = null;
+            for (var j = 0; j < resources.length; j++) {
+                if (resources[j].id == id) {
+                    ret = resources[j];
+                    break;
+                }
+            }
+            return ret;
+        }
+
+
+        function addResInMem(res) {
+            if (!getResourceById(res.id))
+                resources.push(res);
+        }
+
+    </script>
+
+
+</div>

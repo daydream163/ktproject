@@ -1,0 +1,243 @@
+﻿
+
+<div id="wpScrumBDDiv">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/portlethtml/wp_scrumBurnDown.html" name="d1364008446" id="d1364008446"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d1364008446V_ID" name="V_ID" value="1364008446" savedValue="">
+        <input type="hidden" id="d1364008446CM" name="CM" value="" savedValue="">
+
+        <div class="portletBox">
+
+            <div style="float:right" class="portletParamIcons">
+                <button type="button" class="button noprint textual icon  " id="domId_1508819977" style="" title="过滤" onclick="$('#burnDownParams').toggle();return false; "><span class='teamworkIcon '>g</span></button>
+
+            </div>
+            <h1 style="padding-bottom: 10px">Collect Customer Requirements</h1>
+            <div style="width:100px;float:left;margin-right:20px">
+
+
+
+                <div class="progressBar" style="width:100px;height:15px;position: relative">
+
+                    <div data-balloon="<strong>进度: 0%</strong> " data-timer="3000" data-forceposition="left" class="perc" style="width:100%;height:15px;background-color:#E50000;position:relative; display: inline-block; overflow:hidden;">
+                        <div style="background-color:#810000;width:0%;height:15px;"></div>
+                        <div style="cursor: pointer;width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 4px; text-align: left;font-size:11px;color:#FFFFFF">0%</div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="pathCodeWrapper">
+                <span class="teamworkIcon" style="color:#3BBF67;font-size:10px;" title="进行中">&copy;</span>
+                <span class='pathCode' title='参考代码'>T#45675#</span>
+            </div>
+            <div id="burnDownParams" class="portletParams" style="display:none">
+                <script>
+                    function letSubmitBURNDOWN_TASK() {
+                        obj('d1364008446CM').value = ''; ajaxSubmit('d1364008446', 'wpScrumBDDiv');
+                    }
+                </script><label for="BURNDOWN_TASK_txt" class=" ">选择一个项目</label>&nbsp;<input type=text name="BURNDOWN_TASK_txt" id="BURNDOWN_TASK_txt" size=40 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="Collect Customer Requirements"><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="BURNDOWN_TASK" id="BURNDOWN_TASK" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="45675" oldValue='1'>
+            </div>
+            <div class="container level_2">
+                <br>
+                <h2>燃尽图</h2>
+                <div id="plot" style="width:90%; height:400px; margin:0 auto"></div><br>
+
+
+
+                <div class="container level_1">
+                    <table class="table">
+                        <tr>
+                            <th class="tableHead">责任人</th>
+                            <th class="tableHead">已完成/已分工</th>
+                            <th class="tableHead">% on assigned</th>
+                            <th class="tableHead">% on total done</th>
+                        </tr>
+                        <tr class="alternate">
+                            <td width="20%">史 玉平</td>
+
+                            <td width="10%" align="right">2:00/0:00</td>
+                            <td align="center">
+
+
+
+                                <div style="width:120px;height:12px;position: relative" title="">
+                                    <div class="perc" style="width:100%;height:12px;background-color:#D02D1F;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                        <div style="background-color:#ffff00;width:0%;height:12px;"></div>
+                                        <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:8px;color:#FFFFFF">∞%</div>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                            <td align="center">
+
+
+
+                                <div style="width:120px;height:12px;position: relative" title="">
+                                    <div class="perc" style="width:100%;height:12px;background-color:#e0e0e0;position:relative; border-radius:4px;display: inline-block; overflow:hidden;">
+                                        <div style="background-color:#ffff00;width:100%;height:12px;"></div>
+                                        <div style="width: 100%;position: absolute; top:0;line-height: 100%; background:none; padding: 2px 3px; text-align: left;font-size:8px;color:#FFFFFF">100%</div>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </table>
+                </div><h2 style="padding-top: 30px">问题</h2><table width="100%"><tr><td valign="top"><div id="statusPie" style="width:100%;height:200px;"></div></td><td valign="top"><div id="gravityPie" style="width:100%;height:200px;"></div></td><td valign="top"><div id="gravityPieHis" style="width:100%;height:200px;"></div></td></tr></table><table width="100%"><tr><td valign="top"><div id="assigneePie" style="width:100%;height:250px;"></div></td><td valign="top"><div id="assigneePieHis" style="width:100%;height:250px;"></div></td></tr></table>
+
+
+                <script type="text/javascript">
+                    var defs = [initialize(contextPath + "/commons/js/jquery/jqplot/jquery.jqplot.min.css", "css"),
+                    initialize(contextPath + "/commons/js/jquery/jqplot/jquery.jqplot.min.js", "script")];
+
+                    $.when.apply(null, defs).done(function () {
+                        var defs1 = [initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.dateAxisRenderer.min.js", "script"),
+                        initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.highlighter.min.js", "script"),
+                        initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.cursor.min.js", "script"),
+                        initialize(contextPath + "/commons/js/jquery/jqplot/plugins/jqplot.pieRenderer.js", "script")];
+
+                        $.when.apply(null, defs1).done(startup)
+                    });
+
+                    function startup() {
+                        var plot = $.jqplot("plot", [[[1589756400000, 0], [1590793199000, 0]], [[1589756400000, 0], [1589793535000, 1], [1589793535000, 2], [1589796008000, 3], [1589849929000, 2], [1589850037000, 3], [1589850040000, 2], [1589850071000, 3], [1589850074000, 2], [1590793199000, 2]], [[1589756400000, 0], [1589850078000, -7200000], [1590793199000, -7200000]]], {
+                            title: "T1791.01 - Collect Customer Requirements: 2020-5-18 - 2020-5-29",
+                            legend: { show: true },
+                            series: [
+                                { label: "理想趋势" },
+                                {
+                                    label: "已发现的问题",
+                                    yaxis: "y2axis"
+                                },
+                                { label: "其余的时间" }
+
+                            ],
+                            axes: {
+                                xaxis: {
+                                    renderer: $.jqplot.DateAxisRenderer,
+                                    tickOptions: { formatString: '%b %#d' },
+                                    numberTicks: 20
+                                },
+                                yaxis: {
+                                    label: "hours",
+                                    tickOptions: { formatter: durationFromMillis },
+                                    min: 0,
+                                    numberTicks: 10
+                                },
+                                y2axis: {
+                                    label: "issues",
+                                    tickOptions: { formatString: "%i" },
+                                    min: 0,
+                                    padMin: 1
+                                }
+                            },
+                            cursor: { tooltipLocation: 'sw' }
+                        });
+                        drawPies();
+                    }
+
+
+                    function durationFromMillis(bo, millis) {
+                        return getMillisInHours(millis) + " h";
+                    }
+
+
+                    function drawPies() {
+                        if (parseInt("3") > 0) {
+                            $.jqplot("statusPie", [[["open: 2", 2], ["closed: 1", 1]]], {
+                                seriesColors: ["#3BBF67", "#6EBEF4"],
+                                title: "问题状态",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                        }
+
+
+                        if (parseInt("2") > 0) {
+                            $.jqplot("gravityPie", [[["高: 2", 2]]], {
+                                seriesColors: ["#F9791C"],
+                                title: "级别",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                        }
+
+                        if (parseInt("2") > 0) {
+                            var tort = $.jqplot("assigneePie", [[["取消分工: 2", 2]]], {
+                                title: "责任人",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                            wrapLegend(tort);
+                        }
+
+                        if (parseInt("3") > 0) {
+                            $.jqplot("gravityPieHis", [[["关键的: 1", 1], ["高: 2", 2]]], {
+                                seriesColors: ["#F9791C"],
+                                title: "项目开始的重要性",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+                        }
+
+                        if (parseInt("3") > 0) {
+                            var tort = $.jqplot("assigneePieHis", [[["史 玉平: 1", 1], ["取消分工: 2", 2]]], {
+                                title: "人员在该项目的开始",
+                                legend: {
+                                    show: true,
+                                    rowSpacing: "0",
+                                    location: "nw"
+                                },
+                                seriesDefaults: { renderer: $.jqplot.PieRenderer },
+                                cursor: { show: false }
+                            });
+
+                            wrapLegend(tort);
+                        }
+                    }
+
+
+                    function wrapLegend(tort) {
+                        var lege = tort.target.find("table");
+                        lege.css("position", "relative");
+                        lege.remove();
+                        tort.target.append(lege);
+                        lege.css({ top: 0, left: 0 });
+                        lege.wrap("<div style='height:190px;overflow:auto;position:absolute;top:28px;left:10px;'>");
+                    }
+
+                </script>
+
+
+            </div>
+
+    </form>
+</div>
+
+
+
+
+

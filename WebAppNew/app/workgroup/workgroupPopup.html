@@ -1,0 +1,516 @@
+﻿
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/app/security/login.html?V_ID=1172848616&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 isPopup" level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainerPopup">
+        <div id="savingMessage" class="noprint">请稍候...</div>
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainerPopup" class="null">
+            <form enctype="application/x-www-form-urlencoded" method="POST"
+                  action="/workgroupPopup.jsp" name="d1624835337" id="d1624835337"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="d1624835337V_ID" name="V_ID" value="1624835337" savedValue="">
+                <input type="hidden" id="d1624835337CM" name="CM" value="FN" savedValue="">
+                <input type="hidden" id="d1624835337POP" name="POP" value="yes" savedValue="">
+                <input type="hidden" id="d1624835337PERM_REQUIRED" name="PERM_REQUIRED" value="TW_ass_man" savedValue="">
+                <input type="hidden" id="d1624835337useCallbackFunction" name="useCallbackFunction" value="yes" savedValue="">
+                <input type="hidden" id="d1624835337title" name="title" value="批量分配" savedValue="">
+
+
+                <h2>批量分配: 所有人</h2>
+
+
+
+                <div class="filterBar clearfix">
+                    <div class="filterActiveElements"></div>
+
+                    <div class="filterInactiveElements">
+                        <div class="filterElement filterDefault">
+                            <label for="PEOPLE">人员</label> &nbsp;&nbsp;&nbsp;&nbsp;<span style="display: inline-block">
+                                <input type=hidden name="HAVE_LOGIN" id="HAVE_LOGIN" size=1 autocomplete='off' maxlength=255 data-checkfield value="no" oldValue='1'><input type="checkbox" id="ck_HAVE_LOGIN" name="ck_HAVE_LOGIN" value="yes"
+                                                                                                                                                                            onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');">
+                                <label for="ck_HAVE_LOGIN">已登录</label>
+                            </span><br>
+                            <input type=text name="PEOPLE" id="PEOPLE" size=20 class="formElements" autocomplete='off' maxlength=255 value="" onkeydown="if (event.keyCode==13) { searchResources();event.preventDefault();return false;}" oldValue='1'>
+                        </div>
+
+                        <div class="filterElement"><label for="RESOURCE_TAGS" class=" ">标签</label><br><input type=text name="RESOURCE_TAGS" id="RESOURCE_TAGS" size=15 class="formElements tagBox" autocomplete='off' maxlength=255 autocomplete='off' taggableClass="com.twproject.resource.Resource" maxResult="30" tagPropertyName="tags" areaId="5819" value=""></div>
+
+                        <div class="filterElement">
+                            <label for="DEPARTMENT_txt" class=" ">部</label><br><input type=text name="DEPARTMENT_txt" id="DEPARTMENT_txt" size=15 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value=""><span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="DEPARTMENT" id="DEPARTMENT" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="">
+                        </div>
+
+
+                    </div>
+                    <div class="filterButtons">
+                        <div class="filterButtonsElement filterAdd"><span class="button" id="filterSelectorOpener" title="更多的过滤器" onclick="bjs_showMenuDiv('filterSelectorBox', 'filterSelectorOpener');"><span class="teamworkIcon">f</span></span></div>
+                        <div class="filterButtonsElement filterSearch">
+                            <button type="button" class="button noprint    " id="domId_658522583" style="" onclick="searchResources();return false; ">搜索</button>
+
+                        </div>
+
+                        <div class="filterActions">
+                            <div class="filterButtonsElement filterSave">
+                                <span onclick="lsfOpenEditor($(this))" lsfId="domId_699727751" title="保存这个搜索" class="button textual">保存这个搜索</span>
+                            </div>
+                            <div class="filterButtonsElement filterHelp">
+                                <button type="button" class="button noprint textual   " id="domId_249163688" style="" title="如何使用示例查询（QBE）组成强大的搜索.<br>您可以保存您的搜索条件以便将来使用." onclick="openBlackPopup('/commons/help/qbe.jsp?V_ID=2086167351','800px','700px');return false; ">Help</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <script src="/commons/js/filterEngine.js"></script>
+
+
+
+
+
+                <div class="clearFloat clearfix"></div>
+
+                <div class="filtersInline">
+                    <div class="customSavedFilters" formId="d1624835337" category="WORKGROUP" id="domId_699727751">
+                        <input type="hidden" name="FLNMSEL" id="FLNMSEL">
+                        <input type="hidden" name="FLCAT" id="FLCAT" value="WORKGROUP">
+                        <input type="hidden" name="FLNM" id="FLNM" value="">
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#d1624835337").append($("#domId_699727751 input")); //sposta gli input dentro il form
+                            var bts = [{ "selected": true, "name": "所有人", "filterName": "WORKGROUP所有人" }];
+                            var div = $("#domId_699727751");
+                            for (var i = 0; i < bts.length; i++) {
+                                div.append(lsfCreateButton(bts[i]));
+                            }
+                        });
+                    </script>
+
+
+
+                </div>
+
+                <div style="margin-top: 10px">
+                    <input type=hidden name="WG_CAND_IDS" id="WG_CAND_IDS" size=1 autocomplete='off' maxlength=255 value="15163,15164,15189">
+                    <input type=hidden name="WG_IDS" id="WG_IDS" size=1 autocomplete='off' maxlength=255 value="15089">
+
+
+                    <table id="wgBoxExt" class="table dataTable edged" cellpadding="0" cellspacing="0">
+                        <thead class="wgBoxTitle">
+                            <tr>
+                                <th width="40%" class="tableHead">候选</th>
+                                <th width="10%" style="text-align: center;" class="tableHead"><span class="teamworkIcon textual" style="cursor:pointer;" onclick="$('#wgCandBox .wgResEl').appendTo('#wgSelBox');updateFields();return false;" title="Move all to chosen">}</span></th>
+                                <th width="10%" style="text-align: center;" class="tableHead"><span class="teamworkIcon textual" style="cursor:pointer;" onclick="$('#wgSelBox .wgResEl').appendTo('#wgCandBox');updateFields();return false;" title="清除所有">{</span></th>
+                                <th width="40%" class="tableHead">选择</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td colspan="2" width="50%">
+                                <div id="wgCandBox" class="wgBox"></div>
+                            </td>
+                            <td colspan="2" width="50%">
+                                <div id="wgSelBox" class="wgBox"></div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
+                <table width="100%">
+                    <tr>
+                        <td align="left">
+                            <button type="button" class="button noprint    first" id="domId_1611778248" style="" onclick="useCallBack();return false; ">插入</button>
+
+
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+
+
+            <div id="wgTemplates" style="display:none">
+                <div class="__template__" type="WG_RESOURCE">
+                    <!--
+                    <div resId="(#=obj.id#)" class="wgResEl"><img  resId="(#=obj.id#)" class="face (#=obj.resConnectionStatus#)" src="(#=obj.avatarUrl#)" align="middle"/> (#!obj.displayName#)</div>
+                    -->
+                </div>
+            </div>
+
+
+            <script type="text/javascript">
+
+                var resources = [
+                    { "id": "15089", "lastModifier": "Dream Wing", "lastModified": 1604293688000, "creationDate": 1604293688000, "area": "梦想飞扬", "areaId": 5819, "displayName": "Dream Wing", "loadComplete": false, "ads_id": 12922, "location": "office", "address": "", "city": "", "province": "", "country": "", "zip": "", "url": "", "email": "dreamtowing@163.com", "mobile": "", "fax": "", "telephone": "", "avatarUrl": "/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29", "resConnectionStatus": "active", "name": "Dream", "surname": "Wing" },
+                    { "id": "15163", "lastModifier": "Dream Wing", "lastModified": 1604915948000, "creator": "Dream Wing", "creationDate": 1604915948000, "area": "梦想飞扬", "areaId": 5819, "displayName": " 第一个员工", "loadComplete": false, "ads_id": 12987, "location": "", "address": "", "city": "", "province": "", "country": "", "zip": "", "url": "", "email": "", "mobile": "", "fax": "", "telephone": "", "avatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%B8%80&fill=hsl%28120%2C70%25%2C80%25%29&stroke=hsl%28120%2C90%25%2C20%25%29", "resConnectionStatus": "", "name": "", "surname": "第一个员工", "courtesyTitle": "" },
+                    { "id": "15164", "lastModifier": "Dream Wing", "lastModified": 1604915973000, "creator": "Dream Wing", "creationDate": 1604915973000, "area": "梦想飞扬", "areaId": 5819, "displayName": " 第二个员工", "loadComplete": false, "ads_id": 12988, "location": "", "address": "", "city": "", "province": "", "country": "", "zip": "", "url": "", "email": "", "mobile": "", "fax": "", "telephone": "", "avatarUrl": "/img/svgAvatar?code=%E7%AC%AC%E4%BA%8C&fill=hsl%28180%2C70%25%2C80%25%29&stroke=hsl%28180%2C90%25%2C20%25%29", "resConnectionStatus": "", "name": "", "surname": "第二个员工", "courtesyTitle": "" },
+                    { "id": "15189", "lastModifier": "Dream Wing", "lastModified": 1605071875000, "creator": "Dream Wing", "creationDate": 1605071875000, "area": "梦想飞扬", "areaId": 5819, "displayName": "Zhang Fei", "loadComplete": false, "ads_id": 13008, "location": "", "address": "", "city": "", "province": "", "country": "", "zip": "", "url": "", "email": "", "mobile": "", "fax": "", "telephone": "", "avatarUrl": "/img/svgAvatar?code=FZ&fill=hsl%28240%2C70%25%2C80%25%29&stroke=hsl%28240%2C90%25%2C20%25%29", "resConnectionStatus": "", "name": "Zhang", "surname": "Fei", "courtesyTitle": "" }];
+                var selectedIds = "15089"; //comma separated
+                var candidateIds = "15163,15164,15189"; //comma separated
+
+                $(function () {
+                    $("#wgTemplates").loadTemplates().remove();
+
+                    var candPlace = $("#wgCandBox");
+                    var selPlace = $("#wgSelBox");
+
+                    $.JST.loadDecorator("WG_RESOURCE", function (domEl, json) {
+
+                        domEl.data("jResource", json);
+
+                        //draggable
+                        domEl.draggable({
+                            revert: "invalid",
+                            containment: "#wgBoxExt",
+                            helper: 'clone'
+                        });
+
+
+                        domEl.dblclick(function () {
+                            var el = $(this);
+                            var mb = el.closest(".wgBox");
+                            var ob = $("#" + (mb.prop("id") == "wgSelBox" ? "wgCandBox" : "wgSelBox"));
+                            ob.append(el);
+                            updateFields();
+                        });
+
+
+                    });
+
+                    function fillBox(box, idsString) {
+                        var idsArr = idsString.split(",");
+                        for (var i = 0; i < idsArr.length; i++) {
+                            var id = idsArr[i];
+                            for (var j = 0; j < resources.length; j++) {
+                                if (resources[j].id == id) {
+                                    box.append($.JST.createFromTemplate(resources[j], "WG_RESOURCE"));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    fillBox(candPlace, candidateIds);
+                    fillBox(selPlace, selectedIds);
+
+                    //droppable
+                    $("#wgCandBox,#wgSelBox").droppable({
+                        accept: function (ui) { return !ui.parent().is($(this)); },
+                        tolerance: "pointer",
+                        drop: function (ev, ui) {
+                            $(this).append(ui.draggable);
+                            ui.draggable.css({ position: "relative", left: 0, top: 0 });
+                            $("body").oneTime(50, "wgupdfld", updateFields); //this because during drop the element is stille there
+                        }
+                    });
+
+                });
+
+
+                function updateFields() {
+                    var ids = "";
+                    $("#wgCandBox .wgResEl").each(function () {
+                        ids += (ids.length > 0 ? "," : "") + $(this).attr("resId");
+                    });
+                    $("#WG_CAND_IDS").val(ids);
+
+                    ids = "";
+                    $("#wgSelBox .wgResEl").each(function () {
+                        ids += (ids.length > 0 ? "," : "") + $(this).attr("resId");
+                    });
+                    $("#WG_IDS").val(ids);
+                }
+
+
+                function searchResources() {
+                    //console.debug("searchResources");
+                    var search = $("#PEOPLE").val();
+                    var data = {
+                        CM: "WGSRCPEOPLE",
+                        PEOPLE: search,
+                        DEPARTMENT: $("#DEPARTMENT").val(),
+                        RESOURCE_TAGS: $("#RESOURCE_TAGS").val(),
+                        PERM_REQUIRED: $("[name=PERM_REQUIRED]").val(),
+                        HAVE_LOGIN: $("#HAVE_LOGIN").val()
+                    };
+
+                    $.getJSON("/applications/teamwork/workgroup/wGAjaxController.jsp?V_ID=798290878", data, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            var candBox = $("#wgCandBox");
+                            var selBox = $("#wgSelBox");
+                            candBox.empty();
+                            if (response.resources.length == 1) {
+                                addResInMem(response.resources[0]);
+                                if ($("[resId=" + response.resources[0].id + "]").size() == 0) {
+                                    selBox.append($.JST.createFromTemplate(response.resources[0], "WG_RESOURCE"));
+                                }
+
+                            } else {
+                                for (var i = 0; i < response.resources.length; i++) {
+                                    //if not already in selected
+                                    var res = response.resources[i];
+                                    addResInMem(res);
+
+                                    if ($("[resId=" + res.id + "]").size() == 0) {
+                                        candBox.append($.JST.createFromTemplate(res, "WG_RESOURCE"));
+                                    }
+                                }
+                            }
+                            updateFields();
+                        }
+                    });
+                }
+
+
+                function submitParent() {
+                    //console.debug("submitParent.");
+                    var targetWin = getBlackPopupOpener();
+                    var canBeEmpty = false;
+
+                    var selIdsStr = $("#WG_IDS").val();
+                    var parForm = targetWin.$(targetWin).data("openerForm");
+                    parForm.attr('alertOnChange', 'false');
+                    parForm.find("[name=WG_IDS]").val(selIdsStr);
+
+                    //get names
+                    var namesString = "";
+
+                    if (!canBeEmpty || selIdsStr != "") {
+
+                        var idsArr = selIdsStr.split(",");
+
+                        if (!idsArr.length || (idsArr.length == 1 && !getResourceById(idsArr[0]))) {
+                            showFeedbackMessage("ERROR", "至少一个资源是必需", null, 3000);
+                            return;
+                        }
+                        for (var i = 0; i < idsArr.length; i++) {
+                            var id = idsArr[i];
+                            namesString += (namesString.length == 0 ? "" : ";") + getResourceById(id).displayName;
+                        }
+                    }
+                    parForm.find("[name=WG_NAMES]").val(namesString);
+                    parForm.submit();
+                    closeBlackPopup()
+                }
+
+
+                function useCallBack() {
+                    var selIdsStr = $("#WG_IDS").val();
+                    var namesString = "";
+                    var idsArr = selIdsStr.split(",");
+                    var canBeEmpty = false;
+
+                    if (canBeEmpty && selIdsStr == "") {
+                        closeBlackPopup({});
+                        return;
+                    }
+
+
+                    if (!idsArr.length || (idsArr.length == 1 && !getResourceById(idsArr[0]))) {
+                        showFeedbackMessage("ERROR", "至少一个资源是必需", null, 3000);
+                        return;
+                    }
+
+                    var callbackData = [];
+
+                    for (var i = 0; i < idsArr.length; i++) {
+                        var id = idsArr[i];
+                        callbackData.push(getResourceById(id));
+                    }
+                    closeBlackPopup(callbackData);
+                }
+
+                function getResourceById(id) {
+                    var ret = null;
+                    for (var j = 0; j < resources.length; j++) {
+                        if (resources[j].id == id) {
+                            ret = resources[j];
+                            break;
+                        }
+                    }
+                    return ret;
+                }
+
+
+                function addResInMem(res) {
+                    if (!getResourceById(res.id))
+                        resources.push(res);
+                }
+
+            </script>
+
+
+        </div>
+
+    </div>
+
+    <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (true) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (1)
+                $("#PEOPLE").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+

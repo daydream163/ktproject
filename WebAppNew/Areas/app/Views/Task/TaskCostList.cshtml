@@ -1,0 +1,1163 @@
+﻿
+@{
+    ViewBag.Title = "TaskForumList";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/app/task/TaskCostList" name="d426509287" alertOnChange="true" id="d426509287"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d426509287V_ID" name="V_ID" value="426509287" savedValue="">
+        <input type="hidden" id="d426509287CM" name="CM" value="" savedValue="">
+        <input type="hidden" id="d426509287OBJID" name="OBJID" value="54203" savedValue="">
+
+
+        <div class="mainColumn">
+
+
+
+            <div class="pathToObject">
+                <a class="button  textual   " id="domId_1608736466" style="" href="/app/task/taskList.jsp?V_ID=1543673773">任务列表 /</a>
+
+
+                <div class="currentNode">
+                    <span class="teamworkIcon" style="color:#3BBF67;font-size:22px;" title="进行中">&copy;</span>
+
+                    <a class="button  textual   objectName" id="domId_775163404" style="" href="/app/task/taskOverview?V_ID=1313589083&CM=ED&OBJID=54203">南水北调项目研发</a>
+
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_304195834', 'domId_707753681');  ">
+                        <button type="button" class="button noprint textual icon  " id="domId_707753681" style="" onclick=";return false; "><span class='teamworkIcon '>&ugrave;</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_304195834" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <a class="button  textual   " id="domId_1608302178" style="" href="/app/task/TaskCostList?V_ID=241529242&CM=ED&OBJID=54204">第一阶段-调研</a>
+
+                            <a class="button  textual   " id="domId_358040857" style="" href="/app/task/TaskCostList?V_ID=568171624&CM=ED&OBJID=54205">第二阶段-论证</a>
+
+                            <a class="button  textual   " id="domId_343504705" style="" href="/app/task/TaskCostList?V_ID=1517563790&CM=ED&OBJID=54206">第三阶段-考察比较</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="pathCodeWrapper">
+
+                <span class='pathCode' title='参考代码'>T#T54194#</span>
+                &nbsp;
+                <span class='pathCode'>
+                    开始日期 <b class="" title="">2020-11-27</b>&nbsp;&nbsp;&nbsp;
+                    结束日期 <b class="" title="">2021-1-29</b>&nbsp;&nbsp;&nbsp;
+                    (天: <b>46</b>)
+                </span>
+
+            </div>
+            <script>
+                $(function () {
+                    $("#TASK_MENU").addClass('selected');
+                });
+            </script>
+
+
+            <div class="tabSetBox" style="">
+                <input type=hidden name="TASK_TABSET" id="TASK_TABSET" size=20 class="formElements" autocomplete='off' maxlength=255 value="TASK_COST_TAB">
+                <div class="tabSetHeader noprint">
+                    <div class="tabSetPre"></div>
+                    <div class="tabSetTabs" id="TABSETTABS_TASK_TABSET">
+                        <div id="TASK_GENERAL_TAB" tabset="TASK_TABSET" class=" tabTaskColoured tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="btn_taskGeneralData" style="" href="/app/task/taskOverview?V_ID=1692258648&CM=ED&OBJID=54203">项目数据</a>
+
+
+                        </div>
+
+                        <div id="TASK_GANTT_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="btnGantt" style="" href="/app/task/gantt/gantt?V_ID=1125420879&CM=GANTT&OBJID=54203">甘特图</a>
+
+
+                        </div>
+
+                        <div id="TASK_ASSIGNMENT_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_967504888" style="" href="/app/task/taskAssignmentList?V_ID=330278540&CM=FN&TASK_ID=54203">责任人 (2)</a>
+
+
+                        </div>
+
+                        <div id="TASK_COST_TAB" tabset="TASK_TABSET" class="tabSelected tab" style="cursor:pointer;">
+                            <a class="button  textual  focused " id="btnCosts" style="" href="/app/task/TaskCostList?V_ID=1337354584&OBJID=54203">费用</a>
+
+
+                        </div>
+
+                        <div id="TASK_ISSUES_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_1111928436" style="" href="/app/task/taskIssueList?V_ID=2023969455&OBJID=54203">问题  (2/2)</a>
+
+
+                        </div>
+
+                        <div id="TASK_DOCS_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   " id="domId_1896169454" style="" href="/app/task/taskDocumentList?V_ID=816107440&CM=LIST_DOCS&TASK_ID=54203">文档 (0)</a>
+
+
+                        </div>
+
+                        <div id="TASK_TLOG_TAB" tabset="TASK_TABSET" class=" tab" style="cursor:pointer;">
+                            <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1983835101" style="" href="/app/task/taskForumList?V_ID=1169909911&TASK_ID=54203">讨论(0)</a>
+
+
+                        </div>
+
+                    </div>
+                    <div class="tabSetPost"></div>
+                </div>
+                <div class="tabContainer clearfix" id="TABSETPART_TASK_TABSET">
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="box" style="float:left;">
+                <label for="COST_ESTIMATED" class=" "><span style="font-size:20px;">预算</span></label>&nbsp;<input type=text name="COST_ESTIMATED" id="COST_ESTIMATED" size=10 class="formElements validated currency" autocomplete='off' maxlength=255 style="text-align:right;" onblur="recomputeGranTotale();" value="5,000,000.00" oldValue='1' entryType="CURRENCY">&nbsp;&nbsp;<small>(子节点预算: 70,000.00)</small>
+            </div>
+            <div class="listPagedisplayOptions" style="padding-top: 40px; ">
+                <input type=hidden name="INCLUDE_DESCS_COSTS" id="INCLUDE_DESCS_COSTS" size=1 autocomplete='off' maxlength=255 data-checkfield value="yes"><input type="checkbox" id="ck_INCLUDE_DESCS_COSTS" name="ck_INCLUDE_DESCS_COSTS" checked value="yes"
+                                                                                                                                                                  onClick="$(this).prevAll('[type=hidden]:first').val(this.checked ? 'yes' : 'no');obj('d426509287CM').value='';try {obj('d426509287').submit();} catch(e){};">
+                <label for="ck_INCLUDE_DESCS_COSTS">包含后代费用</label>&nbsp;&nbsp;&nbsp;&nbsp;<span class="lreq20 lreqHide">
+
+                    <script type="text/javascript">
+
+                        (function () {
+                            var cvd = { values: [{ "code": "", "color": "#DEDEDE", "value": "选择", "enabled": true, "textColor": "#000000", "index": 1 }, { "code": "0", "color": "#FFCC33", "value": "待审批", "enabled": true, "textColor": "#FFFFFF", "index": 2 }, { "code": "46944", "color": "#43CF43", "value": "0 - Approved", "enabled": true, "textColor": "#FFFFFF", "index": 3 }, { "code": "46945", "color": "#DA1D33", "value": "0 - Billed", "enabled": true, "textColor": "#FFFFFF", "index": 4 }] };
+
+
+                            var callback = function (hidden, data) {
+                                obj('d426509287CM').value = ''; try { obj('d426509287').submit(); } catch (e) { };
+                            };
+                            cvd.callback = callback;
+
+                            _colorValueData["WLSTATUS"] = cvd;
+
+                        })();
+                    </script>
+
+
+
+                    <label for="domId_1327066748">工作记录状态</label>&nbsp; <div class="cvcComponent cvcDisplayValue cvcShowOpener " style="cursor:pointer;" cvcType="WLSTATUS" displayValue='true'>
+                        <input type=hidden name="WORKLOG_STATUS" id="WORKLOG_STATUS" size=2 class="formElements" autocomplete='off' maxlength=255 value=""><div class="cvcColorSquare" onClick="cvc_clickColValSel($(this),event);">
+                            <div class="cvcStatuses ellipsis">
+                                <div class="cvcSelBox " title="选择" code=""
+                                     style=" color:#000000;background-color:#DEDEDE"><span class="cvcDescription">选择</span></div>
+                            </div><span class="teamworkIcon menuArrow">&ugrave;</span>
+                        </div>
+
+                    </div>
+                </span>
+            </div>
+
+            <br><br>
+            <table class="table fixHead fixFoot costs" id="assigCostsTbl" cellpadding="0" cellspacing="2">
+
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="tableHead" width="30%"><span class="tableHeadEl">责任人</span>           </th>
+                        <th colspan="2" class="tableHead firstRow"><span class="tableHeadEl">工作记录</span></th>
+                        <th colspan="3" class="tableHead firstRow"><span class="tableHeadEl">费用</span>            </th>
+                        <th colspan="2" class="tableHead firstRow lreq20 lreqHide"><span class="tableHeadEl">成本</span></th>
+                        <th rowspan="2" valign="middle" style="text-align: right" class="tableHead"><span class="tableHeadEl">增量</span></th>
+                    </tr>
+                    <tr>
+                        <th nowrap style="text-align: right" class="tableHead secondRow"><span class="tableHeadEl">估计</span></th>
+                        <th nowrap style="text-align: right" class="tableHead secondRow"><span class="tableHeadEl">完成</span></th>
+                        <th nowrap style="text-align: right" class="tableHead secondRow"><span class="tableHeadEl">小时薪酬</span></th>
+                        <th nowrap style="text-align: right" class="tableHead secondRow"><span class="tableHeadEl">Tot.est.</span></th>
+                        <th nowrap style="text-align: right" class="tableHead secondRow"><span class="tableHeadEl">Tot.done</span></th>
+                        <th nowrap style="text-align: right" class="tableHead secondRow lreq20 lreqHide"><span class="tableHeadEl">个人预算</span></th>
+                        <th nowrap style="text-align: right" class="tableHead secondRow lreq20 lreqHide"><span class="tableHeadEl">真实费用</span></th>
+                    </tr>
+                </thead>
+
+
+                <tr class="data" assId="28449">
+                    <td nowrap="">
+                        <a class="button  textual   " id="domId_335223991" style="" href="/app/task/taskAssignmentEditor?V_ID=1584161965&CM=ED&OBJID=28449&TASK_ID=54203">Kaiser Joe - &#39;PM&#39;</a>
+
+
+                    </td>
+                    <td align="right"><input type=text name="WL_ESTIM_28449" id="WL_ESTIM_28449" size=5 class="wlEstimInput formElements formElementsSmall validated time" autocomplete='off' maxlength=255 onchange='wlEstimChanged($(this));' style="text-align:right;width:100%" value="0:00" oldValue='1' entryType="TIME"></td>
+                    <td align="right">
+                        <span class="wlReal">
+                            <button type="button" class="button noprint textual   " disabled id="domId_2089376928" style="">0:00</button>
+
+                        </span>
+                    </td>
+
+                    <td align="right"><input type=text name="HOURLY_COST_28449" id="HOURLY_COST_28449" size=5 class="hourlyCost formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='hourlyCostChanged($(this));' style="text-align:right;width:100%" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    <td align="right" class="wlEstimTot ">
+                        0.00
+                    </td>
+                    <td align="right" class="wlRealTot ">
+                        0.00
+                    </td>
+
+                    <td align="right" class="assBudget lreq20 lreqHide">
+                        <input type=text name="BUDGET_28449" id="BUDGET_28449" size=5 class="assBudget formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='budgetChanged($(this));' style="text-align:right;width:100%" value="0.00" oldValue='1' entryType="CURRENCY">
+                    </td>
+                    <td align="right" class="lreq20 lreqHide" style="cursor:pointer;" onclick="editAssigCosts('28449');"><span class="button textual assReal">0.00</span></td>
+
+                    <td align="right" class="assDelta" style="color:black;">0.00            </td>
+                </tr>
+
+                <tr class="data" assId="28448">
+                    <td nowrap="">
+                        <a class="button  textual   " id="domId_1410937948" style="" href="/app/task/taskAssignmentEditor?V_ID=1388234973&CM=ED&OBJID=28448&TASK_ID=54203">史 小 - &#39;WK&#39;</a>
+
+
+                    </td>
+                    <td align="right"><input type=text name="WL_ESTIM_28448" id="WL_ESTIM_28448" size=5 class="wlEstimInput formElements formElementsSmall validated time" autocomplete='off' maxlength=255 onchange='wlEstimChanged($(this));' style="text-align:right;width:100%" value="0:00" oldValue='1' entryType="TIME"></td>
+                    <td align="right">
+                        <span class="wlReal">
+                            <button type="button" class="button noprint textual   " disabled id="domId_120427131" style="">0:00</button>
+
+                        </span>
+                    </td>
+
+                    <td align="right"><input type=text name="HOURLY_COST_28448" id="HOURLY_COST_28448" size=5 class="hourlyCost formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='hourlyCostChanged($(this));' style="text-align:right;width:100%" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    <td align="right" class="wlEstimTot ">
+                        0.00
+                    </td>
+                    <td align="right" class="wlRealTot ">
+                        0.00
+                    </td>
+
+                    <td align="right" class="assBudget lreq20 lreqHide">
+                        <input type=text name="BUDGET_28448" id="BUDGET_28448" size=5 class="assBudget formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='budgetChanged($(this));' style="text-align:right;width:100%" value="0.00" oldValue='1' entryType="CURRENCY">
+                    </td>
+                    <td align="right" class="lreq20 lreqHide" style="cursor:pointer;" onclick="editAssigCosts('28448');"><span class="button textual assReal">0.00</span></td>
+
+                    <td align="right" class="assDelta" style="color:black;">0.00            </td>
+                </tr>
+
+                <tr class="tableSectionSeparator">
+                    <td colspan="9"></td>
+                </tr>
+
+                <tr class="tableSection ">
+                    <td colspan="9" style="position:relative; padding-left: 10px">
+
+
+                        <div class="childNode">
+                            <div class="pathSmall"><span class="pathEl">南水北调项目研发</span></div>
+
+                            <h2>
+                                <a class="button  textual   " id="domId_856121790" style="" href="/app/task/TaskCostList?V_ID=1369596908&CM=ED&OBJID=54204">T54194.01 - 第一阶段-调研</a>
+
+                            </h2>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="data" assId="28457">
+                    <td nowrap="">
+                        <a class="button  textual   " id="domId_1483150240" style="" href="/app/task/taskAssignmentEditor?V_ID=115118366&CM=ED&OBJID=28457&TASK_ID=54204">Kaiser Joe - &#39;PM&#39;</a>
+
+
+                    </td>
+                    <td align="right"><input type=text name="WL_ESTIM_28457" id="WL_ESTIM_28457" size=5 class="wlEstimInput formElements formElementsSmall validated time" autocomplete='off' maxlength=255 onchange='wlEstimChanged($(this));' style="text-align:right;width:100%" value="0:00" oldValue='1' entryType="TIME"></td>
+                    <td align="right">
+                        <span class="wlReal">
+                            <button type="button" class="button noprint textual   " disabled id="domId_68710368" style="">0:00</button>
+
+                        </span>
+                    </td>
+
+                    <td align="right"><input type=text name="HOURLY_COST_28457" id="HOURLY_COST_28457" size=5 class="hourlyCost formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='hourlyCostChanged($(this));' style="text-align:right;width:100%" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    <td align="right" class="wlEstimTot ">
+                        0.00
+                    </td>
+                    <td align="right" class="wlRealTot ">
+                        0.00
+                    </td>
+
+                    <td align="right" class="assBudget lreq20 lreqHide">
+                        <input type=text name="BUDGET_28457" id="BUDGET_28457" size=5 class="assBudget formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='budgetChanged($(this));' style="text-align:right;width:100%" value="0.00" oldValue='1' entryType="CURRENCY">
+                    </td>
+                    <td align="right" class="lreq20 lreqHide" style="cursor:pointer;" onclick="editAssigCosts('28457');"><span class="button textual assReal">0.00</span></td>
+
+                    <td align="right" class="assDelta" style="color:black;">0.00            </td>
+                </tr>
+
+                <tr class="data" assId="28458">
+                    <td nowrap="">
+                        <a class="button  textual   " id="domId_56072882" style="" href="/app/task/taskAssignmentEditor?V_ID=1874952424&CM=ED&OBJID=28458&TASK_ID=54204">史 小 - &#39;WK&#39;</a>
+
+
+                    </td>
+                    <td align="right"><input type=text name="WL_ESTIM_28458" id="WL_ESTIM_28458" size=5 class="wlEstimInput formElements formElementsSmall validated time" autocomplete='off' maxlength=255 onchange='wlEstimChanged($(this));' style="text-align:right;width:100%" value="0:00" oldValue='1' entryType="TIME"></td>
+                    <td align="right">
+                        <span class="wlReal">
+                            <button type="button" class="button noprint textual   " disabled id="domId_938189542" style="">0:00</button>
+
+                        </span>
+                    </td>
+
+                    <td align="right"><input type=text name="HOURLY_COST_28458" id="HOURLY_COST_28458" size=5 class="hourlyCost formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='hourlyCostChanged($(this));' style="text-align:right;width:100%" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    <td align="right" class="wlEstimTot ">
+                        0.00
+                    </td>
+                    <td align="right" class="wlRealTot ">
+                        0.00
+                    </td>
+
+                    <td align="right" class="assBudget lreq20 lreqHide">
+                        <input type=text name="BUDGET_28458" id="BUDGET_28458" size=5 class="assBudget formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='budgetChanged($(this));' style="text-align:right;width:100%" value="0.00" oldValue='1' entryType="CURRENCY">
+                    </td>
+                    <td align="right" class="lreq20 lreqHide" style="cursor:pointer;" onclick="editAssigCosts('28458');"><span class="button textual assReal">0.00</span></td>
+
+                    <td align="right" class="assDelta" style="color:black;">0.00            </td>
+                </tr>
+
+                <tr class="tableSectionSeparator">
+                    <td colspan="9"></td>
+                </tr>
+
+                <tr class="tableSection ">
+                    <td colspan="9" style="position:relative; padding-left: 10px">
+
+
+                        <div class="childNode">
+                            <div class="pathSmall"><span class="pathEl">南水北调项目研发</span></div>
+
+                            <h2>
+                                <a class="button  textual   " id="domId_560514783" style="" href="/app/task/TaskCostList?V_ID=1669382489&CM=ED&OBJID=54205">T54194.02 - 第二阶段-论证</a>
+
+                            </h2>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="data" assId="28460">
+                    <td nowrap="">
+                        <a class="button  textual   " id="domId_1644558529" style="" href="/app/task/taskAssignmentEditor?V_ID=808826344&CM=ED&OBJID=28460&TASK_ID=54205">Kaiser Joe - &#39;PM&#39;</a>
+
+
+                    </td>
+                    <td align="right"><input type=text name="WL_ESTIM_28460" id="WL_ESTIM_28460" size=5 class="wlEstimInput formElements formElementsSmall validated time" autocomplete='off' maxlength=255 onchange='wlEstimChanged($(this));' style="text-align:right;width:100%" value="0:00" oldValue='1' entryType="TIME"></td>
+                    <td align="right">
+                        <span class="wlReal">
+                            <button type="button" class="button noprint textual   " disabled id="domId_553945082" style="">0:00</button>
+
+                        </span>
+                    </td>
+
+                    <td align="right"><input type=text name="HOURLY_COST_28460" id="HOURLY_COST_28460" size=5 class="hourlyCost formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='hourlyCostChanged($(this));' style="text-align:right;width:100%" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    <td align="right" class="wlEstimTot ">
+                        0.00
+                    </td>
+                    <td align="right" class="wlRealTot ">
+                        0.00
+                    </td>
+
+                    <td align="right" class="assBudget lreq20 lreqHide">
+                        <input type=text name="BUDGET_28460" id="BUDGET_28460" size=5 class="assBudget formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='budgetChanged($(this));' style="text-align:right;width:100%" value="0.00" oldValue='1' entryType="CURRENCY">
+                    </td>
+                    <td align="right" class="lreq20 lreqHide" style="cursor:pointer;" onclick="editAssigCosts('28460');"><span class="button textual assReal">0.00</span></td>
+
+                    <td align="right" class="assDelta" style="color:black;">0.00            </td>
+                </tr>
+
+                <tr class="tableSectionSeparator">
+                    <td colspan="9"></td>
+                </tr>
+
+                <tr class="tableSection ">
+                    <td colspan="9" style="position:relative; padding-left: 10px">
+
+
+                        <div class="childNode">
+                            <div class="pathSmall"><span class="pathEl">南水北调项目研发</span></div>
+
+                            <h2>
+                                <a class="button  textual   " id="domId_349962742" style="" href="/app/task/TaskCostList?V_ID=32636483&CM=ED&OBJID=54206">T54194.03 - 第三阶段-考察比较</a>
+
+                            </h2>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="data" assId="28461">
+                    <td nowrap="">
+                        <a class="button  textual   " id="domId_841782094" style="" href="/app/task/taskAssignmentEditor?V_ID=1596187768&CM=ED&OBJID=28461&TASK_ID=54206">史 小 - &#39;PM&#39;</a>
+
+
+                    </td>
+                    <td align="right"><input type=text name="WL_ESTIM_28461" id="WL_ESTIM_28461" size=5 class="wlEstimInput formElements formElementsSmall validated time" autocomplete='off' maxlength=255 onchange='wlEstimChanged($(this));' style="text-align:right;width:100%" value="0:00" oldValue='1' entryType="TIME"></td>
+                    <td align="right">
+                        <span class="wlReal">
+                            <button type="button" class="button noprint textual   " disabled id="domId_1553513180" style="">0:00</button>
+
+                        </span>
+                    </td>
+
+                    <td align="right"><input type=text name="HOURLY_COST_28461" id="HOURLY_COST_28461" size=5 class="hourlyCost formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='hourlyCostChanged($(this));' style="text-align:right;width:100%" value="20.00" oldValue='1' entryType="CURRENCY"></td>
+
+                    <td align="right" class="wlEstimTot ">
+                        0.00
+                    </td>
+                    <td align="right" class="wlRealTot ">
+                        0.00
+                    </td>
+
+                    <td align="right" class="assBudget lreq20 lreqHide">
+                        <input type=text name="BUDGET_28461" id="BUDGET_28461" size=5 class="assBudget formElements formElementsSmall validated currency" autocomplete='off' maxlength=255 onchange='budgetChanged($(this));' style="text-align:right;width:100%" value="0.00" oldValue='1' entryType="CURRENCY">
+                    </td>
+                    <td align="right" class="lreq20 lreqHide" style="cursor:pointer;" onclick="editAssigCosts('28461');"><span class="button textual assReal">0.00</span></td>
+
+                    <td align="right" class="assDelta" style="color:black;">0.00            </td>
+                </tr>
+
+                <tr class="tableSectionSeparator">
+                    <td colspan="9"></td>
+                </tr>
+
+                <tfoot>
+
+                    <tr id="gtWL" class="gtWL data totals">
+                        <td>总计</td>
+                        <td align="right" class="wlEstim"></td>
+                        <td align="right" class="wlReal"></td>
+                        <td align="right"><span class="avg"></span>平均</td>
+                        <td align="right" class="wlEstimTot" id="gtEstimWl"></td>
+                        <td align="right" class="wlRealTot" id="gtRealWl"></td>
+
+                        <td align="right" class="assBudget lreq20 lreqHide" id="gtassBudget"></td>
+                        <td align="right" class="assReal lreq20 lreqHide" id="gtAssReal"></td>
+
+                        <td align="right" class="assDelta"></td>
+                    </tr>
+                </tfoot>
+
+                <tr>
+                    <td colspan="99" class="buttonArea">
+                        <div class="bbButtons">
+                            <button type="button" class="button noprint    big first" id="domId_207112369" style="" onclick="saveCosts();return false; ">保存</button>
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+            <div class="lreq20 lreqHide">
+                <h2 class="sectionTitle">
+                    额外费用
+                </h2>
+
+                <table class="table fixHead fixFoot" id="tableAddCosts" cellpadding="0" cellspacing="1">
+                    <thead>
+                        <tr>
+                            <th class="tableHead">
+                                <div class="tableHeadEl">
+                                    描述
+                                </div>
+                            </th>
+                            <th class="tableHead"><div class="tableHeadEl">费用分类</div></th>
+                            <th class="tableHead">日期</th>
+                            <th class="tableHead" style="text-align: right"><div class="tableHeadEl">预估费用</div></th>
+                            <th class="tableHead" style="text-align: right"><div class="tableHeadEl">真实费用</div></th>
+
+
+
+
+                            <th class="tableHead">&nbsp;</th>
+                            <th class="tableHead" width="40">&nbsp;</th>
+                        </tr>
+                    </thead>
+
+                    <tr class="tableSectionSeparator">
+                        <td colspan="99"></td>
+                    </tr>
+
+                    <tr taskId="54203" class="tableSection">
+
+                        <td colspan='6' style="padding-left: 10px; position: relative">
+
+                            <div class="childNode">
+                                <div class="pathSmall"><span class="pathEl"></span></div>
+
+                                <h2>
+                                    T54194 - 南水北调项目研发
+                                </h2>
+                            </div>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  edit addAddCostBtn" id="domId_1430266622" style="" onclick="addAddCost($(this));return false; "><span class='teamworkIcon '>P</span></button>
+
+                        </td>
+                    </tr>
+
+
+
+                    <tr costId="833" taskId="54203" class="data">
+                        <td>
+                            <button type="button" class="button noprint textual   " id="domId_1960390649" style="" onclick="editAddCost($(this));return false; ">购买服务器2台</button>
+
+                        </td>
+                        <td>固定资产</td>
+                        <td>2020-11-27</td>
+                        <td style="text-align: right" class="addCstEstim">50,000.00</td>
+                        <td style="text-align: right" class="addCstReal ">48,000.00</td>
+                        <td align="center"></td>
+
+                        <td align="center" class="noprint" nowrap>
+
+                            <span class="teamworkIcon" style="cursor: pointer" onclick="editAddCost($(this));" style="cursor: pointer;">e</span>
+                            <span class="teamworkIcon delete" style="cursor: pointer" onclick="$(this).confirm(function(){deleteAddCost($(this))}, '是否确定？');" style="cursor: pointer;">d</span>
+
+                        </td>
+                    </tr>
+
+
+
+                    <tr costId="831" taskId="54203" class="data">
+                        <td>
+                            <button type="button" class="button noprint textual   " id="domId_1859734098" style="" onclick="editAddCost($(this));return false; ">第一笔花费</button>
+
+                        </td>
+                        <td></td>
+                        <td>2020-11-27</td>
+                        <td style="text-align: right" class="addCstEstim">100.00</td>
+                        <td style="text-align: right" class="addCstReal warning">105.00</td>
+                        <td align="center"></td>
+
+                        <td align="center" class="noprint" nowrap>
+
+                            <span class="teamworkIcon" style="cursor: pointer" onclick="editAddCost($(this));" style="cursor: pointer;">e</span>
+                            <span class="teamworkIcon delete" style="cursor: pointer" onclick="$(this).confirm(function(){deleteAddCost($(this))}, '是否确定？');" style="cursor: pointer;">d</span>
+
+                        </td>
+                    </tr>
+
+                    <tr class="tableSectionSeparator">
+                        <td colspan="99"></td>
+                    </tr>
+
+                    <tr taskId="54204" class="tableSection">
+
+                        <td colspan='6' style="padding-left: 10px; position: relative">
+
+                            <div class="childNode">
+                                <div class="pathSmall"><span class="pathEl">南水北调项目研发</span></div>
+
+                                <h2>
+                                    <a class="button  textual   " id="domId_2073986648" style="" href="/app/task/TaskCostList?V_ID=838027501&CM=ED&OBJID=54204">T54194.01 - 第一阶段-调研</a>
+
+
+                                </h2>
+                            </div>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  edit addAddCostBtn" id="domId_1686518479" style="" onclick="addAddCost($(this));return false; "><span class='teamworkIcon '>P</span></button>
+
+                        </td>
+                    </tr>
+
+
+
+                    <tr costId="835" taskId="54204" class="data">
+                        <td>
+                            <button type="button" class="button noprint textual   " id="domId_1899846648" style="" onclick="editAddCost($(this));return false; ">专家业务咨询</button>
+
+                        </td>
+                        <td>专家咨询费</td>
+                        <td>2020-11-26</td>
+                        <td style="text-align: right" class="addCstEstim">8,500.00</td>
+                        <td style="text-align: right" class="addCstReal warning">9,000.00</td>
+                        <td align="center"></td>
+
+                        <td align="center" class="noprint" nowrap>
+
+                            <span class="teamworkIcon" style="cursor: pointer" onclick="editAddCost($(this));" style="cursor: pointer;">e</span>
+                            <span class="teamworkIcon delete" style="cursor: pointer" onclick="$(this).confirm(function(){deleteAddCost($(this))}, '是否确定？');" style="cursor: pointer;">d</span>
+
+                        </td>
+                    </tr>
+
+
+
+                    <tr costId="834" taskId="54204" class="data">
+                        <td>
+                            <button type="button" class="button noprint textual   " id="domId_1909388977" style="" onclick="editAddCost($(this));return false; ">差旅费</button>
+
+                        </td>
+                        <td>Travel/Stay</td>
+                        <td>2020-11-27</td>
+                        <td style="text-align: right" class="addCstEstim">2,000.00</td>
+                        <td style="text-align: right" class="addCstReal ">1,850.00</td>
+                        <td align="center"></td>
+
+                        <td align="center" class="noprint" nowrap>
+
+                            <span class="teamworkIcon" style="cursor: pointer" onclick="editAddCost($(this));" style="cursor: pointer;">e</span>
+                            <span class="teamworkIcon delete" style="cursor: pointer" onclick="$(this).confirm(function(){deleteAddCost($(this))}, '是否确定？');" style="cursor: pointer;">d</span>
+
+                        </td>
+                    </tr>
+
+                    <tr class="tableSectionSeparator">
+                        <td colspan="99"></td>
+                    </tr>
+
+                    <tr taskId="54205" class="tableSection">
+
+                        <td colspan='6' style="padding-left: 10px; position: relative">
+
+                            <div class="childNode">
+                                <div class="pathSmall"><span class="pathEl">南水北调项目研发</span></div>
+
+                                <h2>
+                                    <a class="button  textual   " id="domId_1252399318" style="" href="/app/task/TaskCostList?V_ID=417105484&CM=ED&OBJID=54205">T54194.02 - 第二阶段-论证</a>
+
+
+                                </h2>
+                            </div>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  edit addAddCostBtn" id="domId_1588113379" style="" onclick="addAddCost($(this));return false; "><span class='teamworkIcon '>P</span></button>
+
+                        </td>
+                    </tr>
+
+
+
+                    <tr costId="836" taskId="54205" class="data">
+                        <td>
+                            <button type="button" class="button noprint textual   " id="domId_1691669112" style="" onclick="editAddCost($(this));return false; ">2人机票费用</button>
+
+                        </td>
+                        <td>Travel/Stay</td>
+                        <td>2020-11-27</td>
+                        <td style="text-align: right" class="addCstEstim">2,500.00</td>
+                        <td style="text-align: right" class="addCstReal warning">2,560.00</td>
+                        <td align="center"></td>
+
+                        <td align="center" class="noprint" nowrap>
+
+                            <span class="teamworkIcon" style="cursor: pointer" onclick="editAddCost($(this));" style="cursor: pointer;">e</span>
+                            <span class="teamworkIcon delete" style="cursor: pointer" onclick="$(this).confirm(function(){deleteAddCost($(this))}, '是否确定？');" style="cursor: pointer;">d</span>
+
+                        </td>
+                    </tr>
+
+                    <tr class="tableSectionSeparator">
+                        <td colspan="99"></td>
+                    </tr>
+
+                    <tr taskId="54206" class="tableSection">
+
+                        <td colspan='6' style="padding-left: 10px; position: relative">
+
+                            <div class="childNode">
+                                <div class="pathSmall"><span class="pathEl">南水北调项目研发</span></div>
+
+                                <h2>
+                                    <a class="button  textual   " id="domId_1346762751" style="" href="/app/task/TaskCostList?V_ID=836711829&CM=ED&OBJID=54206">T54194.03 - 第三阶段-考察比较</a>
+
+
+                                </h2>
+                            </div>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="button noprint textual icon  edit addAddCostBtn" id="domId_563916677" style="" onclick="addAddCost($(this));return false; "><span class='teamworkIcon '>P</span></button>
+
+                        </td>
+                    </tr>
+
+
+
+                    <tr costId="837" taskId="54206" class="data">
+                        <td>
+                            <button type="button" class="button noprint textual   " id="domId_643994140" style="" onclick="editAddCost($(this));return false; ">业务招待吃饭</button>
+
+                        </td>
+                        <td>业务招待费</td>
+                        <td>2020-11-27</td>
+                        <td style="text-align: right" class="addCstEstim">1,000.00</td>
+                        <td style="text-align: right" class="addCstReal ">950.00</td>
+                        <td align="center"></td>
+
+                        <td align="center" class="noprint" nowrap>
+
+                            <span class="teamworkIcon" style="cursor: pointer" onclick="editAddCost($(this));" style="cursor: pointer;">e</span>
+                            <span class="teamworkIcon delete" style="cursor: pointer" onclick="$(this).confirm(function(){deleteAddCost($(this))}, '是否确定？');" style="cursor: pointer;">d</span>
+
+                        </td>
+                    </tr>
+
+                    <tfoot>
+                        <tr class="data totals">
+                            <td colspan="3">
+                                总计
+                            </td>
+                            <td style="text-align: right" id="addCostEstimTot"></td>
+                            <td style="text-align: right" id="addCostRealTot"></td>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+            <br>
+            <div id="granTotale" style="border-top:1px solid #a5a5a5;" class="buttonArea">
+
+                <table class="granTotale table" border="0">
+                    <tr class="budgetRow">
+                        <td></td>
+                        <td align="right">预算</td>
+                        <td>&nbsp;</td>
+                        <td align="right">计划成本</td>
+                        <td>&nbsp;</td>
+                        <td align="right">预计利润率</td>
+                        <td align="right">百分比</td>
+                    </tr>
+                    <tr style="font-size:18px" class="budgetRow">
+                        <td width="60%" align="right">预测</td>
+                        <td align="right" class="gtBudget"></td>
+                        <td align="center">-</td>
+                        <td align="right" class="gtEstimated"></td>
+                        <td align="center">=</td>
+                        <td align="right" class="gtEstimDeltaBudget"></td>
+                        <td align="right" class="gtEstimDeltaBudgetPerc" style="font-size:15px"></td>
+                    </tr>
+                    <tr style="border-top:1px solid #cccccc;">
+                        <td></td>
+                        <td align="right">计划成本</td>
+                        <td>&nbsp;</td>
+                        <td align="right">Tot.done</td>
+                        <td>&nbsp;</td>
+                        <td align="right">增量</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr style="font-size:18px;border-bottom:1px solid #cccccc;">
+                        <td width="60%" align="right">计划</td>
+                        <td align="right" class="gtEstimated"></td>
+                        <td align="center" style="width: 50px">-</td>
+                        <td align="right" class="gtReal"></td>
+                        <td align="center" style="width: 50px">=</td>
+                        <td align="right" class="gtDelta"></td>
+                        <td align="right" class="gtDeltaPerc" style="font-size:15px"></td>
+                    </tr>
+                    <tr class="budgetRow">
+                        <td></td>
+                        <td align="right">预算</td>
+                        <td>&nbsp;</td>
+                        <td align="right">Tot.done</td>
+                        <td>&nbsp;</td>
+                        <td align="right">边</td>
+                    </tr>
+                    <tr style="font-size:18px" class="budgetRow">
+                        <td width="60%" align="right">实际</td>
+                        <td align="right" class="gtBudget"></td>
+                        <td align="center">-</td>
+                        <td align="right" class="gtReal"></td>
+                        <td align="center">=</td>
+                        <td align="right" class="gtDeltaBudget"></td>
+                        <td align="right" style="font-size:15px" class="gtDeltaBudgetPerc"></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <script type="text/javascript">
+
+                var costValues = { "28449": { "wlEstim": 0, "wlReal": 0, "hourlyCost": 20, "assBudget": 0, "assReal": 0 }, "28448": { "wlEstim": 0, "wlReal": 0, "hourlyCost": 20, "assBudget": 0, "assReal": 0 }, "28457": { "wlEstim": 0, "wlReal": 0, "hourlyCost": 20, "assBudget": 0, "assReal": 0 }, "28458": { "wlEstim": 0, "wlReal": 0, "hourlyCost": 20, "assBudget": 0, "assReal": 0 }, "28460": { "wlEstim": 0, "wlReal": 0, "hourlyCost": 20, "assBudget": 0, "assReal": 0 }, "28461": { "wlEstim": 0, "wlReal": 0, "hourlyCost": 20, "assBudget": 0, "assReal": 0 } };
+
+                $(function () {
+                    recomputeTotals();
+                    recomputeAddCosts();
+                });
+
+
+                function wlEstimChanged(inputEl) {
+                    var row = inputEl.closest("[assid]");
+                    var assId = row.attr("assId");
+                    costValues[assId].wlEstim = millisFromString(inputEl.val(), true);
+                    recomputeRow(row);
+                    recomputeTotals();
+                }
+
+                function hourlyCostChanged(inputEl) {
+                    var row = inputEl.closest("[assid]");
+                    var assId = row.attr("assId");
+                    costValues[assId].hourlyCost = getCurrencyValue(inputEl.val());
+                    recomputeRow(row);
+                    recomputeTotals();
+                }
+
+                function budgetChanged(inputEl) {
+                    var row = inputEl.closest("[assid]");
+                    var assId = row.attr("assId");
+                    costValues[assId].assBudget = getCurrencyValue(inputEl.val());
+                    recomputeRow(row);
+                    recomputeTotals();
+                }
+
+
+                function recomputeRow(row) {
+                    var assId = row.attr("assId");
+                    costs = costValues[assId];
+                    var delta = costs.wlEstim * costs.hourlyCost / 3600000 - costs.wlReal * costs.hourlyCost / 3600000 + costs.assBudget - costs.assReal;
+
+                    row.find(".wlEstimTot").html(formatCurrency(costs.wlEstim * costs.hourlyCost / 3600000));
+                    row.find(".wlRealTot").html(formatCurrency(costs.wlReal * costs.hourlyCost / 3600000));
+                    row.find(".assDelta").html(formatCurrency(delta)).css("color", delta >= 0 ? "black" : "#D30202");
+                }
+
+
+                function recomputeTotals() {
+                    var tot = {
+                        wlEstim: 0,
+                        wlReal: 0,
+                        hourlyCost: 0,
+                        wlTotEstim: 0,
+                        wlTotReal: 0,
+                        assBudget: 0,
+                        assReal: 0,
+                        delta: 0
+                    };
+                    var quant = 0;
+                    for (var i in costValues) {
+                        quant++;
+                        var cost = costValues[i];
+                        tot.wlEstim += cost.wlEstim;
+                        tot.wlReal += cost.wlReal;
+                        tot.hourlyCost += cost.hourlyCost;
+                        tot.wlTotEstim += cost.wlEstim * cost.hourlyCost / 3600000;
+                        tot.wlTotReal += cost.wlReal * cost.hourlyCost / 3600000;
+                        tot.assBudget += cost.assBudget;
+                        tot.assReal += cost.assReal;
+                        tot.delta += cost.wlEstim * cost.hourlyCost / 3600000 - cost.wlReal * cost.hourlyCost / 3600000 + cost.assBudget - cost.assReal;
+                    }
+                    tot.hourlyCost /= quant;
+
+                    var row = $("#gtWL");
+                    row.find(".wlEstim").html(getMillisInHoursMinutes(tot.wlEstim));
+                    row.find(".wlReal").html(getMillisInHoursMinutes(tot.wlReal));
+                    row.find(".avg").html(formatNumber(tot.hourlyCost));
+                    row.find(".wlEstimTot").html(formatCurrency(tot.wlTotEstim));
+                    row.find(".wlRealTot").html(formatCurrency(tot.wlTotReal));
+                    row.find(".assBudget").html(formatCurrency(tot.assBudget));
+                    row.find(".assReal").html(formatCurrency(tot.assReal));
+                    row.find(".assDelta").html(formatCurrency(tot.delta)).css("color", tot.delta >= 0 ? "black" : "#D30202");
+
+                    recomputeGranTotale();
+                    $(window).resize();
+                }
+
+
+                function recomputeAddCosts() {
+                    var addCostEstim = 0;
+                    var addCostReal = 0;
+                    $("#tableAddCosts .addCstEstim").each(function () {
+                        addCostEstim += getCurrencyValue($(this).text());
+                    });
+                    $("#tableAddCosts .addCstReal").each(function () {
+                        addCostReal += getCurrencyValue($(this).text());
+                    });
+                    $("#addCostEstimTot").html(formatCurrency(addCostEstim));
+                    $("#addCostRealTot").html(formatCurrency(addCostReal));
+
+                    recomputeGranTotale();
+                }
+
+
+                function recomputeGranTotale() {
+
+                    function getDbl(val) {
+                        return isNaN(val) ? 0 : val;
+                    }
+
+                    var bdg = getDbl(getCurrencyValue($("#COST_ESTIMATED").val()));
+                    var estim = getDbl(getCurrencyValue($("#addCostEstimTot").text())) + getDbl(getCurrencyValue($("#gtEstimWl").text())) + getDbl(getCurrencyValue($("#gtassBudget").text()));
+                    var real = getDbl(getCurrencyValue($("#addCostRealTot").text())) + getDbl(getCurrencyValue($("#gtRealWl").text())) + getDbl(getCurrencyValue($("#gtAssReal").text()));
+                    //console.debug("recomputeGranTotale",bdg,estim,real);
+
+                    //percentage
+                    var percPrevisto = parseFloat(((bdg - estim) * 100) / bdg).toFixed(2);
+                    var percLavorato = parseFloat((estim - real) * 100 / estim).toFixed(2);
+                    var percTotale = parseFloat(((bdg - real)) * 100 / bdg).toFixed(2);
+
+                    if (bdg) {
+                        $(".budgetRow").show();
+                        $(".gtBudget").html(formatCurrency(bdg));
+                        $(".gtDeltaBudget").html(formatCurrency(bdg - real)).css("color", bdg - real < 0 ? "rgb(182, 30, 45)" : "black");
+                        $(".gtDeltaBudgetPerc").html(percTotale + "%").css("color", percTotale < 0 ? "rgb(182, 30, 45)" : "black");
+                    } else {
+                        $(".budgetRow").hide();
+                    }
+
+                    $(".gtEstimated").html(formatCurrency(estim));
+                    $(".gtEstimDeltaBudget").html(formatCurrency(bdg - estim)).css("color", bdg - estim < 0 ? "rgb(182, 30, 45)" : "black");
+                    $(".gtReal").html(formatCurrency(real));
+                    $(".gtDelta").html(formatCurrency(estim - real)).css("color", estim - real < 0 ? "rgb(182, 30, 45)" : "black");
+
+                    $(".gtDeltaPerc").html(percLavorato + "%").css("color", percLavorato < 0 ? "rgb(182, 30, 45)" : "black");
+                    $(".gtEstimDeltaBudgetPerc").html(percPrevisto + "%").css("color", percPrevisto < 0 ? "rgb(182, 30, 45)" : "black");
+
+
+                }
+
+
+                function saveCosts() {
+                    var request = { CM: "SAVECOSTSBULK", OBJID: "54203" };
+
+                    //----------------save budget
+                    var bdg = $("#COST_ESTIMATED");
+                    if (bdg.isValueChanged()) {
+                        request.budget = bdg.val();
+                    }
+
+                    //---------------- save budget custom fields if any
+                    $('#budgCustomFields').fillJsonWithInputValues(request);
+
+
+                    //----------------save worklog estimations
+                    var worklogChanges = {};
+                    $("input.wlEstimInput").each(function () {
+                        var input = $(this);
+                        if (input.isValueChanged()) {
+                            var assId = input.closestAttr("assId");
+                            worklogChanges[assId] = millisFromString(input.val(), true);
+                        }
+                    });
+                    if (Object.size(worklogChanges) > 0)
+                        request.worklogChanges = JSON.stringify(worklogChanges);
+
+
+                    //----------------save hourly costs
+                    var hourlyCostChanges = {};
+                    $("input.hourlyCost").each(function () {
+                        var input = $(this);
+                        if (input.isValueChanged()) {
+                            var assId = input.closestAttr("assId");
+                            hourlyCostChanges[assId] = input.val();
+                        }
+                    });
+                    if (Object.size(hourlyCostChanges) > 0)
+                        request.assCosts = JSON.stringify(hourlyCostChanges);
+
+                    //----------------save budgets
+                    var budgetChanges = {};
+                    $("input.assBudget").each(function () {
+                        var input = $(this);
+                        if (input.isValueChanged()) {
+                            var assId = input.closestAttr("assId");
+                            budgetChanges[assId] = input.val();
+                        }
+                    });
+                    if (Object.size(budgetChanges) > 0)
+                        request.budgetChanges = JSON.stringify(budgetChanges);
+
+
+                    $.getJSON("costAjaxController.jsp", request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            //if new costs added
+                            if (response.newlyAddedCosts && response.newlyAddedCosts.length > 0) {
+                                //remove all new rows
+                                $("#tableAddCosts tr[costId=new]").remove();
+
+                                for (var i = 0; i < response.newlyAddedCosts.length; i++) {
+                                    var cost = response.newlyAddedCosts[i];
+                                    $("#tableAddCosts [taskId=" + cost.taskId + "]:last").after($.JST.createFromTemplate(cost, "ADDCSTTMPL"));
+                                }
+                            }
+                            bdg.val(response.budget);
+                            $(":input[oldValue]").updateOldValue();
+                            showFeedbackMessage("OK", "正确节省的开支");
+                        }
+                    });
+                }
+
+
+                function editAssigCosts(assId) {
+                    openBlackPopup(contextPath + "/app/task/financial/taskAssignmentCosts.jsp?OBJID=" + assId, '1180px', '768px', function (response) {
+
+                        //call server to load updated values
+                        var request = {
+                            CM: "GETCOSTS",
+                            assId: assId
+                        };
+                        $.getJSON('costAjaxController.jsp', request, function (response) {
+                            jsonResponseHandling(response);
+                            if (response.ok) {
+                                costValues[assId].assBudget = response.assBudget;
+                                costValues[assId].assReal = response.assReal;
+                                var row = $("tr[assId=" + assId + "]");
+                                recomputeRow(row);
+                                recomputeTotals();
+                                row.find("input.assBudget").val(formatCurrency(response.assBudget)).updateOldValue();
+                                row.find(".assReal").html(formatCurrency(response.assReal));
+                            }
+                        });
+                    });
+                }
+
+
+
+                function addAddCost(el) {
+                    var taskId = el.closestAttr("taskId");
+                    var url = contextPath + "/app/task/financial/additionalCostEditor?taskId=" + taskId;
+                    openBlackPopup(url, 500, 500, saveAddCostCallback);
+                }
+
+                function saveAddCostCallback(cost) {
+                    //console.debug("saveCostCallback",cost);
+                    if (cost) {
+                        $.get("partTaskAdditionalCostRow?costId=" + cost.id + "&taskId=" + cost.taskId, function (row) {
+                            row = $(row);
+                            var ndo = $("#tableAddCosts");
+                            var tr = ndo.find("tr[costId=" + cost.id + "]");
+                            if (tr.size() > 0) {
+                                tr.replaceWith(row);
+                            } else {
+                                ndo.find("tr[taskId=" + cost.taskId + "].tableSection").after(row);
+                            }
+                            window.scrollTo(0, row.offset().top - $(window).height() / 2);
+                            recomputeAddCosts();
+                            row.effect("highlight", { color: "#F9EFC5" }, 1500);
+                        });
+                    }
+                }
+
+
+                function editAddCost(el) {
+                    var row = el.closest("[costId]");
+                    var url = contextPath + "/app/task/financial/additionalCostEditor?costId=" + row.attr("costId") + "&taskId=" + row.attr("taskId");
+                    openBlackPopup(url, 500, 500, saveAddCostCallback);
+                }
+
+
+                function deleteAddCost(el) {
+                    var row = el.closest("tr");
+                    var request = {
+                        CM: "DLADDCOST",
+                        costId: parseInt(row.attr("costId")),
+                        taskId: parseInt(row.attr("taskId"))
+                    };
+                    $.getJSON('costAjaxController', request, function (response) {
+                        jsonResponseHandling(response);
+                        if (response.ok) {
+                            row.fadeOut(500, function () {
+                                $(this).remove();
+                                recomputeAddCosts();
+                            });
+                        }
+                    });
+                }
+
+
+            </script>
+        </div>
+
+
+
+
+        <div class="rightColumn noprint">
+            <div class="tools">
+                <div class="toolsElement">
+                    <button type="button" class="button noprint    first lreq20 lreqLabel" id="domId_1071893417" style="" onclick="$('#tableAddCosts .addAddCostBtn:first').click();return false; "><span class='teamworkIcon withLabel'>P</span>添加花费</button>
+
+                </div><div class="toolsElement">
+                    <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_423914450', 'domId_72344836');  ">
+                        <button type="button" class="button noprint  icon  " id="domId_72344836" style="" title="打印" onclick=";return false; "><span class='teamworkIcon '>p</span></button>
+
+
+                    </span>
+
+                    <div id="divdomo_domId_423914450" class="divomo "
+                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                        <div class="divomoArrow"></div>
+
+                        <div>
+                            <button type="button" class="button noprint textual   " id="domId_246803507" style="" onclick="openBlackPopup('/app/task/taskCostEditorPrint.jsp?V_ID=1526904051&CM=ED&OBJID=54203',$(window).width()-100,$(window).height()-50);return false; ">打印/导出 报告</button>
+
+                            <a class="button  textual   " id="domId_894977654" style="" href="/commons/tools/freezePDF.jsp?V_ID=1305723676&CM=ED&OBJID=54203&PRINTING_PDF=yes&PAGE_TO_PRINT=%2Fapplications%2Fteamwork%2Ftask%2FtaskEditorPrint.jsp&PRINT_TASK_ASSIGS_SUBTASKS=yes&PRINT_TASK_DESCENDANTS=yes&PRINT_TASK_DIARY_DETAIL=yes&REDIR_URL=%2Fapplications%2Fteamwork%2Ftask%2FtaskOverview.jsp%3FV_ID%3D1235619792%26CM%3DCREATE_SNAPSHOT%26OBJID%3D54203&FREEZE_PREFIX=task_54203">快照</a>
+
+                            <hr><button type="button" class="button noprint textual   lreq30 lreqLabel" id="domId_913967190" style="" onClick="stopBubble(event);saveFormValues('d426509287');  obj('d426509287CM').value='ED';obj('d426509287reportName').value='projectProgress';obj('d426509287').target='_blank'; obj('d426509287').action='/app/task/taskIReportHelper.jsp'; try {obj('d426509287').submit();} catch(e){};restoreFormValues('d426509287');  ">project  progress</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div><div class="rightColumnInner">
+                <div class="" style="display:block">
+                    <br><button type="button" class="button noprint textual   bolder lreq20 lreqLabel lreqActive" id="domId_1473565315" style="" onclick="openBlackPopup('/app/task/taskClone.jsp?V_ID=543251416&CM=ED&OBJID=54203&POP=yes','800px','650px');return false; "><span class='teamworkIcon withLabel'>D</span>复制</button>
+
+                    <button type="button" class="button noprint textual   bolder" id="domId_471561701" style="" onclick="openBlackPopup('/app/task/taskMove.jsp?V_ID=1430832001&CM=ED&OBJID=54203&POP=yes','700px','450px');return false; "><span class='teamworkIcon withLabel'>y</span>移动</button>
+
+                </div>
+
+
+
+
+                <div class="" style="display:block" id="tskSidBarMoreDiv">
+
+                    <div class="separator"></div><a class="button  textual   " id="domId_1322851277" style="" href="/app/task/scrum/sprintWizard.jsp?V_ID=40679616&CM=NEW_SPRINT&PARENT_ID=54203"><span class="teamworkIcon withLabel" style="">P</span> 启动一个新的“冲刺”</a>
+
+                    <a class="button  textual   lreq30 lreqLabel lreqHide" id="domId_802506366" style="" href="/app/processes/createProcess.jsp?V_ID=761176070&CM=AD&PARENT_ID=54203"><span class="teamworkIcon withLabel" style="">P</span> 添加一个子进程</a>
+
+                    <button type="button" class="button noprint textual   " id="domId_1364313278" style="" onclick="openBlackPopup('/app/task/taskAddFromTemplate.jsp?V_ID=526123311&CM=ED&OBJID=54203','800px','650px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 从添加模板</button>
+
+                    <div class="separator"></div><a class="button  textual   " id="domId_1330364327" style="" href="/app/task/worklog/worklogList.jsp?V_ID=2143514963&CM=FN&TASK=54203&TASK_WORKLOG_SHOW_CHILDREN=yes">工作记录分析</a>
+
+                    <button type="button" class="button noprint textual   " id="domId_182108388" style="" onclick="openBlackPopup('/app/task/worklog/worklogInPeriodForTask.jsp?V_ID=2017804716&CM=ED&OBJID=54203','800px','800px');return false; ">当前工作记录</button>
+
+                    <div class="separator"></div><button type="button" class="button noprint textual   lreq20 lreqLabel lreqActive" id="domId_1202241914" style="" onclick="openBlackPopup('/app/task/taskPublicPageEditor.jsp?V_ID=531480141&CM=TASK_EDIT_SECURITY&OBJID=54203','800px','600px');return false; ">项目的公共页面</button>
+
+                    <button type="button" class="button noprint textual   " id="domId_406213975" style="" onclick="openTaskImageEditor('54203');return false; ">选择一个项目形象</button>
+
+
+
+                    <script type="text/javascript">
+                        function openTaskImageEditor(resId) {
+                            $(".uploadizeDrop").attr("disabled", "true");
+                            openBlackPopup(contextPath + "/app/task/taskImageUploader.jsp?TASK_ID=" + 54203, '500px', '550px', function (response) {
+
+                            });
+                        }
+
+                    </script>
+                    <button type="button" class="button noprint textual   " id="domId_1684364686" style="" onclick="openBlackPopup('/app/task/recodeTaskTree.jsp?V_ID=387764012&CM=ED&OBJID=54203','500px','400px');return false; ">分配新码</button>
+
+                    <div class="separator"></div><button type="button" class="button noprint textual   " id="domId_478671379" style="" onclick="openBlackPopup('/app/task/taskArea.jsp?V_ID=987842848&CM=TASK_EDIT_SECURITY&OBJID=54203','600px','600px');return false; ">安全</button>
+
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="d426509287outType" name="outType" value="" savedValue="">
+        <input type="hidden" id="d426509287reportName" name="reportName" value="" savedValue="">
+
+    </form>
+
+</div>

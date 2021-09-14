@@ -1,0 +1,239 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <title>Twproject</title>
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile, 该页面自适应，不需要跳转到mobile，所以&&false
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && false) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/app/security/login.html?V_ID=613159622&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 " level="30">
+    <div id="floatWindow"></div>
+    <style type="text/css">
+        html { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        body { background-color: #356a8c; }
+    </style>
+
+    <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+    <div class="loginScreenContent">
+        <div class="headingLogo">
+            <img src="/img/logo_login.png" border="0" name="d1747228648" id="d1747228648">
+        </div>
+        <div class="accessWrapper">
+            <form enctype="multipart/form-data" method="POST"
+                  action="/login" name="LOGINFORMXXX" id="LOGINFORMXXX"
+                  savedAction="" savedTarget="">
+                <input type="hidden" id="LOGINFORMXXXV_ID" name="V_ID" value="980497858" savedValue="">
+                <input type="hidden" id="LOGINFORMXXXCM" name="CM" value="SV" savedValue="">
+                <script>
+                    //login page always open on top
+                    if (self != top)
+                        top.location.href = self.location.href;
+                </script>
+
+                <div class="loginBox">
+                    <h4 style="font-weight: 300; text-transform: uppercase">登录</h4>
+                    <div class="" style="width:100%; padding:2px 5px; color:red;">@ViewBag.ErrorMsg</div>
+                    <div class="helpOpener">
+                        <span class="teamworkIcon" onclick="var isVisible = $('.help').is(':visible'); !isVisible? $('.help').fadeIn():$('.help').fadeOut(); $(this).html(isVisible?'?':'x');" style="cursor:pointer">?</span>
+                    </div>
+                    <div class="help">
+                        <table align="center" border="0">
+                            <tr>
+                                <td>
+                                    <h2 style="margin: 0 0 10px">帮助与链接</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>您即将登录 Twproject 项目管理系统.</h4>
+                                    <h5>官方主页：<br><a href="http://twproject.com" class="" target="_blank" title="Twproject web site">twproject.com</a></h5>
+                                    <h5>文档：<br><a href="http://twproject.com/support" target="_blank" title="Twproject support site">twproject.com/support/</a></h5>
+                                    <h5>
+                                        求助<br><a href="http://twproject.com/support/submit-a-ticket/" target="_blank" title="Twproject contacts">http://twproject.com/support/submit-a-ticket//</a><h5>
+                                            <small><i>版本 6.5.65022&nbsp;lic. to "TH_DEMO"</i></small>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <table align="center" border="0" style="margin-bottom: 10px">
+                        <tr style="">
+                            <td height="40" nowrap style="padding-bottom: 5px">
+                                <input type=TEXT name="FLD_LOGIN_NAME" id="FLD_LOGIN_NAME" placeholder="登录名" size=20 class="formElements formElementsBig light"
+                                       tabindex="1" autocomplete='off' maxlength=255 value=""
+                                       onkeyup="if (event.keyCode==13) { obj('FLD_PWD').focus();event.preventDefault();return false;}" required="true" oldValue='1'>
+                            </td>
+                        </tr>
+                        <tr style="">
+                            <td height="40" nowrap>
+                                <input type=PASSWORD name="FLD_PWD" id="FLD_PWD" placeholder="密码" size=20 class="formElements formElementsBig light" tabindex="2"
+                                       autocomplete='off' maxlength=255 value=""
+                                       onkeyup="if (event.keyCode==13) { obj('LOGINFORMXXX').submit();event.preventDefault();return false;}" oldValue='1'>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="70" nowrap>
+                                <div class="hideOnMobile">
+                                    <a class="button  textual   " id="domId_1980751827" style="" href="/mobile?V_ID=395384965"><big>Teamwork移动</big></a>
+
+                                </div>
+                                <button type="submit" class="button noprint    first big access full" id="domId_920702937" style=""
+                                        onClick="">
+                                    执行
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap>
+                                <a class="button     full big" id="domId_768366168" style="" href="/applications/teamwork/welcome/createUserEnvironment.jsp?V_ID=478374490">Create a demo account</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td nowrap colspan="2" height='50'>
+                                <a class="button noprint textual   " href="forgotPassword.html">忘记密码</a>
+                                <!--<button type="button" class="button noprint textual   " id="domId_2008762709" style="" onClick="stopBubble(event);obj('LOGINFORMXXXCM').value='SV';obj('LOGINFORMXXX').action='/security/forgotPassword.html'; try {obj('LOGINFORMXXX').submit();} catch(e){};">忘记密码</button>-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+
+            <div id="_errorTemplates" style="display:none;">
+                <div class="__template__" type="errorTemplate">
+                    <!--
+                    <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+                      <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                        <tr>
+                          <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                          <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                            <b>(#!title#)</b><br>
+                            (#}#)(#=message#)<br></td>
+                          <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                        </tr>
+                      </table>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <script>
+                $(function () {
+                    if (false) {
+                        window.focus();
+                    }
+
+                    $("#_errorTemplates").loadTemplates().remove();
+                    var _messagesFromController = [];
+                    if (_messagesFromController.length > 0) {
+                        for (var i = 0; i < _messagesFromController.length; i++) {
+                            showFeedbackMessage(_messagesFromController[i]);
+                        }
+                    }
+
+                    if (1)
+                        $("#FLD_LOGIN_NAME").focus();
+
+                    showUpgradeMessage();
+
+                    // EX liveQuery:  si inizializzano i fields
+                    $("body").initFields()
+                });
+
+                function showUpgradeMessage() {
+                    var levpg = $(".lreqPage:first");
+                    if (levpg.size() > 0) {
+
+                        var lv = 30;
+                        var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                        if (lv > 0 && reqLev > lv) {
+                            var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                            var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                            var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                                location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                            });
+                            inn.append($("<h2>").html('Do you need more?'));
+                            inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                            //inn.append("<br><br>");
+                            inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                            wrp.append(inn)
+                            levpg.after(wrp)
+                        }
+                    }
+                }
+
+            </script>
+        </div>
+    </div>
+</body>
+</html>

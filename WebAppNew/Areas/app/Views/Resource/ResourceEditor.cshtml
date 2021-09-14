@@ -1,0 +1,509 @@
+﻿@{
+    ViewBag.Title = "资源信息";
+    Layout = "~/Areas/app/Views/Shared/_LayoutMain.cshtml";
+    var resourceinfo = ViewBag.ResourceInfo;
+    TempData["resource"] = ViewBag.ResourceInfo;
+}
+
+<div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+<div id="twInnerContainer" class="null">
+    <form enctype="application/x-www-form-urlencoded" method="POST"
+          action="/app/resource/resourceEditor" name="d1132737675" alertOnChange="true" id="d1132737675"
+          savedAction="" savedTarget="">
+        <input type="hidden" id="d1132737675V_ID" name="V_ID" value="1132737675" savedValue="">
+        <input type="hidden" id="d1132737675CM" name="CM" value="ED" savedValue="">
+        <input type="hidden" id="d1132737675OBJID" name="OBJID" value="newEmptyId" savedValue="">
+        <input type="hidden" id="d1132737675RESOURCE_TYPE" name="RESOURCE_TYPE" value="com.twproject.resource.Person" savedValue="">
+
+        <div class="mainColumn">
+            <div class="profileImage">
+                <img src="/img/svgAvatar?code=%3F%3F&fill=hsl%2860%2C70%25%2C80%25%29&stroke=hsl%2860%2C90%25%2C20%25%29" border="0" name="personalAvatar" id="personalAvatar" " resId="newEmptyId" class="face">
+            </div>
+
+            <script>
+                $("#RESOURCE_MENU").addClass('selected');
+
+                function openProfileImageEditor(resId, callback) {
+                    $(".uploadizeDrop").attr("disabled", "true");
+                    openBlackPopup(contextPath + "/applications/teamwork/resource/resourceImageUploader.jsp?RES_ID=" + resId, '500px', '550px', function (response) {
+                        if (response && response.imageUrl) {
+                            $(".profileImage img,.imageUploaderOpener img").prop("src", response.imageUrl);
+                            if (false) { //se sto cambiando l'utente loggato cambio subito anche il profilo
+                                $(".menuTools .avatarImage img").prop("src", response.imageUrl)
+                            }
+                        }
+                    });
+                }
+
+            </script>
+
+            <div class="pathToObject">
+                <a class="button  textual   " id="domId_157649402" style="" href="resourceList.jsp?V_ID=53585923">资源 /</a>
+                <div class="currentNode">
+                    <i>...</i>
+                </div>
+            </div>
+
+            <div class="pathCodeWrapper clearfix"><div class="pathCode">#</div></div>
+
+            <div class="tabSetBox" style="">
+                <input type=hidden name="RESOURCE_TABSET" id="RESOURCE_TABSET" size=20 class="formElements" autocomplete='off' maxlength=255 value="RESOURCE_GENERAL_TAB">
+                <div class="tabSetHeader noprint">
+                    <div class="tabSetPre"></div>
+                    <div class="tabSetTabs" id="TABSETTABS_RESOURCE_TABSET">
+
+                        @{ Html.RenderAction("EditorTabsPartial"); }
+
+                    </div>
+                    <div class="tabSetPost"></div>
+                </div>
+                <div class="tabContainer clearfix" id="TABSETPART_RESOURCE_TABSET">
+                </div>
+            </div>
+
+
+            <div class="inlineContainerWrapper">
+
+                <div class="container  new ">
+                    <div id="generalData">
+                        @{ Html.RenderAction("GeneralDataPartial"); }
+                    </div>
+
+                    <div id="boxAddress" style=""></div>
+
+                    <div style="padding:10px 0; text-align: right">
+                        <button type="button" class="button noprint    small" id="domId_347862997" style="" title="添加联系人数据" onclick="addAD();return false; "><span class='teamworkIcon withLabel'>P</span>添加联系人数据</button>
+                    </div>
+
+                    <br>
+                    <hr>
+                    <div id="personalData">
+
+
+                        <table border="0" cellspacing="0" cellpadding="3" class="table">
+                            <tr>
+
+                                <td nowrap style="width: 30%">
+                                    <label for="PARENT_ID_txt" class=" ">隶属于</label><br>
+                                    <input type=text name="PARENT_ID_txt" id="PARENT_ID_txt" size=25 class="formElements bold" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="">
+                                    <span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="PARENT_ID" id="PARENT_ID" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+
+                                </td>
+                                <td style="width: 30%">
+                                    <label for="MANAGER_txt" class=" ">上级主管</label><br>
+                                    <input type=text name="MANAGER_txt" id="MANAGER_txt" size=25 class="formElements smartCombo" autocomplete='off' maxlength=255 autocomplete="off" onfocus="createDropDown($(this),400,100); refreshDropDown ($(this).nextAll('.cbDropDown'),$(this)); setSelection(this,0,1024)" onblur="finalizeOperation($(this).nextAll('.cbDropDown:first'),false,false );" onKeyDown="manageKeyEvent ($(this),event,false,false);" onKeyPress="stopKeyEvent(event);" value="">
+                                    <span class="teamworkIcon menuArrow" style='cursor:pointer; margin-left: -15px' onClick="if ( $(this).prevAll('.cbDropDown:first').size()<=0) {$(this).prevAll('input:text:first').focus();} " style="">&ugrave;</span><input type=hidden name="MANAGER" id="MANAGER" size=10 class="formElements" autocomplete='off' maxlength=255 jspPart='partSmartCombo' value="" oldValue='1'>
+                                </td>
+                                <td class="">
+                                    <label for="AREA" class=" ">域</label><br>
+                                    <SELECT NAME="AREA" id="AREA" CLASS="formElements" oldValue='1'>
+                                        <option selected value="1">美丽之网</option>
+                                    </SELECT>
+                                </td>
+
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <label for="RESOURCE_TAGS" class=" ">标签</label><br><input type=text name="RESOURCE_TAGS" id="RESOURCE_TAGS" size=50 class="formElements tagBox" autocomplete='off' maxlength=255 style='width:100%;' autocomplete='off' taggableClass="com.twproject.resource.Resource" maxResult="30" tagPropertyName="tags" areaId="5944" value="" oldValue='1'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="40%" colspan="4">
+                                    <label>注释</label>
+                                    <textarea name="NOTE" id="NOTE" COLS="20" ROWS="3" class="formElements autosize" style='width:100%;' oldValue='1' maxHeight=400 minHeight=120 lineHeight=10 maxlength=2000 onKeyUp="limitSize(this);" onKeyDown="limitSize(this);" onBlur="limitSize(this);"></textarea>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <div class="noprint buttonArea" id="domId_176333102" style="text-align:left;">
+                        <div class="bbButtons">
+                            <button type="button" class="button noprint    big first" id="domId_103012454" style="" onclick="saveResource();return false; ">保存</button>
+
+                        </div><div class="bbLoggedInfo"><span>人员尚未保存。</span></div>
+                    </div>
+                </div>
+
+                <div class="container new">
+                    @if (ViewBag.Type == "person") {
+                        <div class="separator"></div>
+                        <div class="buttonBoxInline">
+                            <a class="button  textual   " id="domId_1537558440" style="" title="日程" href="/applications/teamwork/agenda/agendaWeekDay.jsp?V_ID=726831268&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15452"><span class="teamworkIcon withLabel">m</span>日程</a>
+                            <button type="button" class="button noprint textual   " id="domId_743057013" style="" onclick="openBlackPopup('/applications/teamwork/messaging/composeMessage.jsp?V_ID=966137140&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15452','800px','600px');return false; ">
+                                <span class="teamworkIcon withLabel">ì</span>发送消息
+                            </button>
+                            <div class="separator"></div>
+                            <a class="button  textual   small lreq30 lreqLabel" id="domId_941810186" style="" title="计划" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1540054998&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15452">计划</a>
+                            <a class="button  textual   small lreq20 lreqLabel lreqActive" id="domId_83954095" style="" title="工作负荷" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=2065581310&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15452">工作负荷</a>
+                            <a class="button  textual   small" id="domId_4439768" style="" title="时间表概述" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=563905173&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15452">时间表概述</a>
+                            <a class="button  textual   small lreq20 lreqLabel lreqActive" id="domId_708908400" style="" title="工作记录审核" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=2001693026&amp;CM=dummy&amp;RES_ID=15452">工作记录审核</a>
+                        </div>
+                        <div class="workgroup">
+                            <div class="separator dark"></div><h2>哈的同事</h2><div class="workgroupResource">
+                                <a class="button  textual   small" id="domId_2123357727" style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;width:100%;" href="/resource/resourceEditor?V_ID=1817374657&amp;CM=ED&amp;OBJID=15408">小 张</a>
+                                <div class="workgroupAD"></div>
+                            </div><div class="workgroupResource">
+                                <a class="button  textual   small" id="domId_955948918" style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;width:100%;" href="/resource/resourceEditor?V_ID=540248900&amp;CM=ED&amp;OBJID=15409">小 王</a>
+                                <div class="workgroupAD"></div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (ViewBag.Type == "company") {
+                        <div class="workgroup" style="max-width: 250px;">
+                            <h2>项目小组</h2>
+                            <div class="clearfix">
+                                <div class="workgroupElement">
+                                    <img src="/img/svgAvatar?code=%E5%93%88%E5%B0%8F&amp;fill=hsl%28180%2C70%25%2C80%25%29&amp;stroke=hsl%28180%2C90%25%2C20%25%29" border="0" name="d1676011942" title="小 哈" alt="小 哈" id="d1676011942" resid="15452" class="face ">
+                                </div>
+                                <div class="workgroupElement">
+                                    <img src="/img/svgAvatar?code=%E5%B0%8F%E5%BC%A0&amp;fill=hsl%2860%2C70%25%2C80%25%29&amp;stroke=hsl%2860%2C90%25%2C20%25%29" border="0" name="d1615364317" title="张 小" alt="张 小" id="d1615364317" resid=" 15408" class="face ">
+                                </div>
+                                <div class="workgroupElement">
+                                    <img src="/img/svgAvatar?code=%E5%B0%8F%E7%8E%8B&amp;fill=hsl%28120%2C70%25%2C80%25%29&amp;stroke=hsl%28120%2C90%25%2C20%25%29" border="0" name="d651925430" title="王 小" alt="王 小" id="d651925430" resid="15409" class="face ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="buttonBoxInline">
+                            <a class="button  textual   " id="domId_449135016" style="" title="日程" href="/applications/teamwork/agenda/agendaWeekDay.jsp?V_ID=1250448762&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15451"><span class="teamworkIcon withLabel">m</span>日程</a>
+                            <button type="button" class="button noprint textual   " id="domId_223701874" style="" onclick="top.twChat.createCompanyChat(15451);return false; "><span class="teamworkIcon withLabel">⬭</span>创建一个新的聊天</button>
+                            <button type="button" class="button noprint textual   " id="domId_1523513523" style="" onclick="openBlackPopup('/applications/teamwork/messaging/composeMessage.jsp?V_ID=1661014068&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15451','800px','600px');return false; ">
+                                <span class="teamworkIcon withLabel">ì</span>信息
+                            </button>
+                            <div class="separator"></div>
+                            <a class="button  textual   small lreq30 lreqLabel" id="domId_1244257880" style="" title="计划" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=891002057&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15451">计划</a>
+                            <a class="button  textual   small lreq20 lreqLabel lreqActive" id="domId_668101468" style="" title="工作负荷" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=764337449&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15451">工作负荷</a>
+                            <a class="button  textual   small" id="domId_2119812636" style="" title="时间表概述" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=896305509&amp;CM=FIND_BY_ENTITY&amp;REFERRAL_TYPE=com.twproject.resource.Resource&amp;REFERRAL_ID=15451">时间表概述</a>
+                            <a class="button  textual   small lreq20 lreqLabel lreqActive" id="domId_1756389705" style="" title="工作记录审核" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=1960927993&amp;CM=dummy&amp;RES_ID=15451">工作记录审核</a>
+                        </div>
+                        <div class="workgroup">
+                            <div class="separator dark"></div><h2>资源</h2><div class="workgroupResource">
+                                <a class="button  textual   small" id="domId_2032731489" style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;width:100%;" href="/applications/teamwork/resource/resourceEditor.jsp?V_ID=2044457820&amp;CM=ED&amp;OBJID=15405">基教部</a>
+
+
+                                <div class="workgroupAD"></div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                    <div class="separator dark"></div>
+                    <div class="documents">
+                        <h2>
+                            <span onclick="stopBubble(event);try{ window.open('/applications/teamwork/resource/resourceDocumentList.jsp?V_ID=1277322207&amp;CM=LIST_DOCS&amp;RES_ID=15451','_self','') } catch(e){};" style="cursor:pointer;display: inline">文档</span>
+
+
+                            <span style="float:right;font-size: 14px;padding-top: 7px;">
+                                <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1835942904', 'domId_1707797637');  ">
+                                    <button type="button" class="button noprint textual icon  edit" id="domId_1707797637" style="" title="添加" onclick=";return false; "><span class="teamworkIcon ">P</span></button>
+
+
+                                </span>
+
+                                <div id="divdomo_domId_1835942904" class="divomo " style="position: absolute; left: -10000px; top: -10000px; display: none;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <button type="button" class="button noprint textual   " id="domId_1609112500" style="" onclick="openBlackPopup('/applications/teamwork/resource/resourceDocumentEditor.jsp?V_ID=1647347432&amp;CM=AD&amp;RES_ID=15451&amp;DOCUMENT_TYPE=1','1000px','700px');return false; ">+ 上传文件</button>
+
+                                        <button type="button" class="button noprint textual   " id="domId_265258447" style="" onclick="openBlackPopup('/applications/teamwork/resource/resourceDocumentEditor.jsp?V_ID=1092220829&amp;CM=AD&amp;RES_ID=15451&amp;DOCUMENT_TYPE=4','1000px','700px');return false; ">+ 创建一个文件存储的链接</button>
+
+                                        <button type="button" class="button noprint textual   " id="domId_869024980" style="" onclick="openBlackPopup('/applications/teamwork/resource/resourceDocumentEditor.jsp?V_ID=22667557&amp;CM=AD&amp;RES_ID=15451&amp;DOCUMENT_TYPE=3','1000px','700px');return false; ">+ 添加一个链接（URL）</button>
+
+                                        <button type="button" class="button noprint textual   " id="domId_1525484939" style="" onclick="openBlackPopup('/applications/teamwork/resource/resourceDocumentEditor.jsp?V_ID=666555613&amp;CM=AD&amp;RES_ID=15451&amp;DOCUMENT_TYPE=2','1000px','700px');return false; ">+ 写一个文件</button>
+
+                                    </div>
+                                </div>
+                            </span>
+                        </h2>
+
+
+                        <div id="trDropLine"><div id="docDropArea" style="display: none" class="uploadizeDrop isUploadizer" title="此文件拖放" data-dropel="body"></div><input id="inputFile_docDropArea" type="file" multiple="" class="uploadizeInputFile"><div id="pendingUpload"></div></div>
+                        <script>
+                            $(function () {
+                                $("#docDropArea").uploadize({
+                                    url: "resourceAjaxController.jsp",
+                                    fileAreaSelector: "#pendingUpload",
+                                    maxSize: 20971520,
+                                    additionalRequestParameters: { CM: "DROPDOC", OBJID: 15451 },
+                                    onLoadCallback: function (response) {
+                                        jsonResponseHandling(response);
+                                        if (response.ok) {
+
+                                            var fileWrapper = $("<div/>").addClass("docLabelWrapper");
+                                            var dr = $(response.docHRef);
+                                            var image = $("<img>"); //response.docMime;
+                                            image.attr({ src: contextPath + "/img/mime/" + response.docMime }).css({ width: 20 });
+                                            fileWrapper.append(image).append(dr);
+                                            $("#documentList").append(fileWrapper);
+                                            dr.effect("highlight", { color: "#F9EFC5" }, 2500);
+
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+
+
+                        <div id="documentList" class="textSmall">
+                            <div class="docLabelWrapper">没有文件已被附着。</div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="jsTemplates" style="display:none;">
+                <div class="__template__" type="AD_EDITOR">
+                    <!--
+                      <table  class="ADEditor" idAD="(#=obj.id#)" order="(#=obj.order#)" border="0">
+
+                        <tr>
+                          <td class="dragHandler" width="13" rowspan="5" style="background-color: #eee">&nbsp;</td>
+
+                          <td style="padding-left: 10px"><label for="location" class=" ">描述</label><br><input type=text name="location" id="location" placeholder="办公室，家庭等。" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.location#)" oldValue='1' >
+                          </td>
+                          <td>
+                            <label for="telephone" class=" ">电话号码</label><br><input type=text name="telephone" id="telephone" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.telephone#)" oldValue='1' >
+                          </td>
+                          <td>
+                            <label for="email" class=" ">电子邮件</label><br><input type=text name="email" id="email" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.email#)" oldValue='1' >
+                          </td>
+
+                          <td rowspan="3" align="right" valign="top"><span onclick="closeEditAD($(this));" class="teamworkIcon" style="cursor:pointer" title="关闭">x</span></td>
+
+                        </tr>
+                        <tr>
+                          <td style="padding-left: 10px">
+                            <label for="mobile" class=" ">手机</label><br><input type=text name="mobile" id="mobile" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.mobile#)" oldValue='1' >
+                          </td>
+                          <td>
+                            <label for="fax" class=" ">传真</label><br><input type=text name="fax" id="fax" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.fax#)" oldValue='1' >
+                          </td>
+                          <td>
+                            <label for="url" class=" ">链接</label><br><input type=text name="url" id="url" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.url#)" oldValue='1' >
+                          </td>
+                        </tr>
+                    <tr>
+                      <td colspan="3"><hr></td>
+                    </tr>
+                    <tr>
+                      <td style="padding-left: 10px"><label for="address" class=" ">地址</label><br><input type=text name="address" id="address" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.address#)" oldValue='1' >
+                      </td>
+                      <td><label for="city" class=" ">城市</label><br><input type=text name="city" id="city" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.city#)" oldValue='1' >
+                      </td>
+                      <td>
+                        <label for="province" class=" ">省市</label><br><input type=text name="province" id="province" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.province#)" oldValue='1' ></td>
+
+                    </tr>
+                        <tr>
+                          <td style="padding-left: 10px"><label for="zip" class=" ">邮编</label><br><input type=text name="zip" id="zip" size=10 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.zip#)" oldValue='1' >
+                        </td>
+                          <td colspan="2">
+                            <label for="country" class=" ">民族</label><br><input type=text name="country" id="country" size=30 class="formElements" autocomplete='off' maxlength=255 value="(#!obj.country#)" oldValue='1' >
+                          </td>
+                          <td align="right"><span onclick="$(this).confirm(function(){deleteAD($(this))});" class="button textual icon delete" title="删除"><span class="teamworkIcon">d</span></span></td>
+                        </tr>
+                      </table>
+                      -->
+                </div>
+                <div class="__template__" type="AD_VIEWER">
+                    <!--
+                    <table class="ADViewer" idAD="(#=id#)" order="(#=order#)">
+                      <tr><td class="dragHandler" width="13" rowspan="2"style="background-color: #eee">&nbsp;</td>
+                        <td width="120" valign="top">
+                          <span onclick="editAD($(this));" style="cursor:pointer" ><label>(#!obj.location#)</label></span>
+                        </td>
+                        <td valign="top"  width="25%" nowrap>
+                          (#if (obj.telephone){#)<span id="telephone"><span class="teamworkIcon">&</span> (#!obj.telephone#)<br></span>(#}#)
+                          (#if (obj.mobile){#)<span id="mobile"><span class="teamworkIcon">U</span> (#!obj.mobile#)<br></span>(#}#)
+
+                        </td>
+                        <td valign="top" width="25%">
+                          (#if (obj.email){#)<span class="teamworkIcon">S</span> <a href="mailto:(#!obj.email#)">(#!obj.email#)</a><br>(#}#)
+                        </td>
+                        <td valign="top" width="25%" nowrap>
+                          (#if (obj.url){#)<span class="teamworkIcon">W</span> <a href="(#!obj.url#)" target="_blank">(#!obj.url#)</a>(#}#)
+                        </td>
+                        <td align="right"><span onclick="editAD($(this));" class="teamworkIcon editButton" style="cursor:pointer" title="编辑">e</span></td>
+                      </tr>
+                    </table>
+                    -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="rightColumn noprint"></div>
+
+        <script type="text/javascript">
+
+            var jsaAD = [];
+
+            $(function () {
+
+                $("#jsTemplates").loadTemplates().remove();
+                var boxAd = $("#boxAddress");
+                if (jsaAD.length == 0) {
+                    addAD();
+                } else {
+                    for (var i = 0; i < jsaAD.length; i++) {
+
+                        var ad = jsaAD[i];
+                        //if ad is empty open it in edit
+                        var empty = true;
+                        for (var key in ad) {
+                            if (key == "id" || key == "order" || key == "location")
+                                continue;
+                            if (ad[key] != "") {
+                                empty = false;
+                                break;
+                            }
+                        }
+
+                        var viewer = $.JST.createFromTemplate(ad, empty ? "AD_EDITOR" : "AD_VIEWER");
+                        boxAd.append(viewer);
+
+                    }
+                }
+
+                //se devo dare il focus alla mail
+                if (false) {
+                    $("#boxAddress .ADViewer:first .editButton").click();
+                    $("#email:first").focus();
+                }
+
+                boxAd.sortable({
+                    handle: ".dragHandler",
+                    axis: "y",
+                    stop: function (ev, ui) {
+                        var order = 0;
+                        $(this).children().each(function () {
+                            $(this).attr("order", order++);
+                        });
+                    }
+                });
+
+                var canWrite = true;
+            });
+
+            function getADfromId(id) {
+                for (var i = 0; i < jsaAD.length; i++) {
+                    if (jsaAD[i].id == id) {
+                        return jsaAD[i];
+                    }
+                }
+                return false;
+            }
+
+            function editAD(el) {
+                var view = el.closest("[idAd]");
+                var idAD = view.attr("idAD");
+                var editor = $.JST.createFromTemplate(getADfromId(idAD), "AD_EDITOR");
+                view.replaceWith(editor);
+            }
+
+            function addAD() {
+                var boxAd = $("#boxAddress");
+                var editor = $.JST.createFromTemplate({ id: "new" + new Date().getTime(), order: 0 }, "AD_EDITOR");
+                boxAd.append(editor);
+            }
+
+            function deleteAD(el) {
+                var ad = el.closest("[idAD]");
+                var idAD = ad.attr("idAD");
+                var request = {
+                    CM: "DELAD",
+                    idAD: idAD,
+                    resId: "newEmptyId"
+                };
+
+                $.getJSON("resourceAjaxController.jsp", request, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        ad.fadeOut(500, function () {
+                            $(this).remove();
+                            $(window).resize();
+                        });
+
+                        for (var i = 0; i < jsaAD.length; i++) {
+                            if (jsaAD[i].id == idAD) {
+                                jsaAD.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                });
+            }
+
+            function closeEditAD(el) {
+                var adEdit = el.closest("[idAD]");
+                var idAD = adEdit.attr("idAD");
+
+                var close = function () {
+                    if (idAD.startsWith("new"))
+                        adEdit.fadeOut(500, function () { $(this).remove(); });
+                    else
+                        adEdit.replaceWith($.JST.createFromTemplate(getADfromId(idAD), "AD_VIEWER"));
+                };
+
+                if (adEdit.find("[oldvalue]:input").isValueChanged())
+                    el.confirm(close);
+                else
+                    close();
+            }
+
+
+            function saveResource() {
+                //set command to save
+                var form = $("#d1132737675");
+
+                var ads = [];
+                //get data from open editor
+                $(".ADEditor").each(function (order) {
+                    var editor = $(this);
+                    var idAD = editor.attr("idAD");
+                    var fromEdi = {};
+                    fromEdi.id = idAD;
+                    fromEdi.order = parseInt(editor.attr("order") || order);  // la mette sempre per ultima
+                    editor.fillJsonWithInputValues(fromEdi);
+
+                    ads.push(fromEdi);
+                    editor.remove();// in order to avoid send inutil ce
+                });
+
+                //then check if viewer is resorted
+                $(".ADViewer").each(function () {
+                    var viewer = $(this);
+                    var idAD = viewer.attr("idAD");
+                    var inMem = getADfromId(idAD);
+                    if (viewer.attr("order") != inMem.order) {
+                        inMem.order = parseInt(viewer.attr("order"));
+                        ads.push(inMem);
+                    }
+                });
+
+                if (ads.length > 0) {
+                    // inject hidden field on form
+                    var hid = $("<input type='hidden' name='ads'>");
+                    hid.val(JSON.stringify(ads));
+                    form.append(hid);
+                }
+
+                obj('d1132737675CM').value = 'SV'; if (canSubmitForm('d1132737675')) { $(':focus').blur(); muteAlertOnChange = true; try { obj('d1132737675').submit(); } catch (e) { }; }
+            }
+
+        </script>
+    </form>
+</div>
+

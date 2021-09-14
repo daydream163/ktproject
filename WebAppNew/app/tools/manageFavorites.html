@@ -1,0 +1,837 @@
+﻿
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta id="Viewport" name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <title>Twproject</title>
+
+
+    <link id="twfavicon" rel="Shortcut Icon" type="image/ico" href="/img/favicon.png">
+    <link rel="stylesheet" href="/commons/skin/default/platform.css?_=65022" type="text/css">
+
+
+
+    <link rel=stylesheet href="/commons/skin/default/print.css?_=65022" type="text/css" media="print">
+
+
+
+    <script src="/commons/js/jquery/jquery-2.1.3.min.js?65022"></script>
+
+
+    <link href="/commons/js/scrollbar/perfect-scrollbar.css?_=65022" rel="stylesheet">
+    <script src="/commons/js/scrollbar/perfect-scrollbar.min.js?_=65022"></script>
+
+
+    <script src="/commons/js/platform.js?_=65022"></script>
+    <script src="/commons/js/i18nJs.js?_=65022"></script>
+
+    <script>
+        /**
+         * Check if is Mobile
+         */
+        if (typeof window.orientation !== 'undefined' && window.screen.width < 600 && readCookie("browseTwAsDefault") != 1 && true) {
+            top.location.href = contextPath + "/mobile";
+        }
+
+        // keep as top
+
+        if (getTop() == top) {
+            // quando si sta chiamando una pagina di TW (non nell'iframe) si fa il redirect sul wrapper /tw/...
+            //top.location.href = contextPath + "/tw" + location.pathname + location.search;
+        } else {
+            if (window.location != getTop().location) {
+                getTop().location = window.location;
+            } else {
+                // siamo giÃ  nel wrapper si modifica solo la url senza cambiare pagina
+                top.history.replaceState("", document.title, contextPath + "/tw" + location.pathname + location.search);
+            }
+        }
+
+
+
+        var bodyScroll;
+        var minutesToLock = 0;
+        var localActivity = new Date().getTime();
+        $(function () {
+
+            //bodyScroll = new PerfectScrollbar('#twBody');
+
+            $("body").on("mousemove keyup", function () {
+                if (top.twComm) {
+                    top.twComm.lastActivity = new Date().getTime();
+                    localActivity = new Date().getTime();
+                    if (top.twComm.isAway) // al primo movimento del mouse si dice che siamo svegli
+                        top.twComm.checkAlive();
+                }
+
+            }).everyTime(10000, "alive", function () { //controlla lo stato ogni 10 sec.
+
+                //websocket keep-alive
+                if (top.twComm)
+                    top.twComm.checkAlive();
+
+                //test autoLogoff
+                if (minutesToLock > 0 && (new Date().getTime() - localActivity) > minutesToLock * 60000) { //60 seconds
+                    $(this).stopTime("alive");
+                    muteAlertOnChange = true;
+                    top.location = "/applications/teamwork/security/login.jsp?V_ID=1325355413&CM=LO";
+                }
+            });
+
+            // http session keep alive
+            $("body").everyTime(10 * 60 * 1000, "pingServer", function () { //10 min.
+                $.get('/command.jsp');
+            });
+
+            if (typeof (top.manageFocusBlur) == "function")
+                $(window).on("focus blur", top.manageFocusBlur)
+
+        });
+
+    </script>
+
+</head>
+<body id="twBody" class="level30 " level="30">
+    <div id="floatWindow"></div>
+
+
+
+
+    <div id="twMainContainer" style="">
+        <div id="savingMessage">请稍候...</div>
+
+
+
+
+        <div class="twHeader noprint">
+            <div id="headerWrapper ">
+                <a href="/app/getsThingsDone?V_ID=274494834" class="twLogo withArrowRight" title="Home" id="twLogoMainMenu"></a>
+                <div id="mainNav" class="noprint mainNav">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td id="DASHBOARD_MENU" ttitle="返回到主页.您可以通过自定义页面设置自己的个性化主页" class="withArrowRight">
+                                <div style="position: relative">
+                                    <span>
+                                        <a class="button     hasDivomo noLabel" id="domId_639801282" style="" href="/app/getsThingsDone?V_ID=1920777119"></a>
+
+                                        <span id="arrowOpener_divdomo_domId_689526045" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_689526045', 'arrowOpener_divdomo_domId_689526045'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                    </span>
+
+                                    <div id="divdomo_domId_689526045" class="divomo divDark"
+                                         style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                        <div class="divomoArrow"></div>
+
+                                        <div>
+                                            <a class="button  textual   " id="domId_1545469462" style="" href="/helpDesk.page?V_ID=1609030500">Help Desk</a>
+
+                                            <a class="button  textual  focused " id="domId_890537369" style="" href="/getsThingsDone.page?V_ID=53456989">Get things done</a>
+
+                                            <a class="button  textual   " id="domId_1448024840" style="" href="/pm.page?V_ID=201549003">Project Manager</a>
+
+                                            <a class="button  textual   " id="domId_1668798076" style="" href="/supervisor.page?V_ID=122579177">Supervisor</a>
+
+                                            <a class="button  textual   " id="domId_1352833512" style="" href="/applications/teamwork/documentation/documentation.jsp?V_ID=1750177002">关于</a>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </td>
+
+                            <td id="TASK_MENU" ttitle="这是Twproject的入口点.一旦创建和分配,Twproject就将开始为团队工作.">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_1141359655" style="" href="/app/task/taskList?V_ID=1335641463">项目</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1507786581" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1507786581', 'arrowOpener_divdomo_domId_1507786581'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1507786581" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_1141359655" style="" href="/app/task/taskList?V_ID=1707942306">项目</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_1062032267" style="" href="/applications/teamwork/task/taskListAsGantt.jsp?V_ID=445342603">Portfolio</a>
+
+                                        <a class="button  textual   " id="domId_1839721252" style="" href="/app/document/documentList?V_ID=2071334287">文档</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_725532858" style="" href="/applications/teamwork/task/financial/additionalCostList.jsp?V_ID=1325174153">额外费用</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_92749793" style="" onclick="openBlackPopup('/applications/teamwork/task/taskNew.jsp?V_ID=1663228856&CM=AD','800px','720px');return false; "><span class="teamworkIcon withLabel" style="">P</span> 新建项目</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="TIMESHEET_MENU" ttitle="工时计划,工作记录,记录的有效性检查和分析.">
+                                <span>
+                                    <a class="button     lreq10 lreqActive hasDivomo" id="domId_649086434" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=1953103195">工时表</a>
+
+                                    <span id="arrowOpener_divdomo_WKLOGSM" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_WKLOGSM', 'arrowOpener_divdomo_WKLOGSM'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_WKLOGSM" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_1808385795" style="" href="/applications/teamwork/task/worklog/worklogWeek.jsp?V_ID=613431077">工时表</a>
+
+                                        <button type="button" class="button noprint textual   lreq10 lreqLabel lreqActive" id="domId_1253746606" style="" onclick="openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=204000574&FOCUS_MILLIS=1605237990658',$(window).width()-100,$(window).height()-50);return false; ">计时器</button>
+
+                                        <a class="button  textual   lreq20 lreqLabel" id="domId_609662678" style="" href="/applications/teamwork/task/worklog/worklogOverview.jsp?V_ID=100631724">时间表概述</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_956149309" style="" href="/applications/teamwork/task/worklog/attendanceOverview.jsp?V_ID=841799798">出勤概述</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_381305862" style="" href="/applications/teamwork/task/worklog/approval/worklogApprovalByResource.jsp?V_ID=1048582201&RES_ID=15089">工作记录审核</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel" id="domId_516419986" style="" href="/applications/teamwork/task/worklog/worklogList.jsp?V_ID=871519648">工作记录分析</a>
+
+                                        <a class="button  textual   lreq30 lreqLabel lreqActive" id="domId_1489287175" style="" href="/applications/teamwork/task/financial/expenseList.jsp?V_ID=1763579750">费用控制</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="PLAN_MENU" ttitle="PLAN_MENU_HELP" valign="bottom">
+                                <span>
+                                    <a class="button     lreq20 lreqActive hasDivomo" id="domId_915562356" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=181885411&CM=FIND_BY_ENTITY">计划</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1136186537" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1136186537', 'arrowOpener_divdomo_domId_1136186537'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1136186537" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   lreq30 lreqActive lreqLabel" id="domId_462538235" style="" href="/applications/teamwork/task/plan/planByResource.jsp?V_ID=1414012151&CM=FIND_BY_ENTITY">计划</a>
+
+                                        <a class="button  textual   lreq20 lreqActive lreqLabel" id="domId_2136797152" style="" href="/applications/teamwork/task/plan/operatorLoad.jsp?V_ID=1610829189">工作负荷</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="AGENDA_MENU" ttitle="个人的日程,共享的日程,会议">
+                                <a href="/app/agenda/agendaWeekDay?V_ID=2027325441&FOCUS_MILLIS=0" class="button">
+                                    日程
+                                </a>
+
+                            </td>
+                            <td id="ISSUES_MENU" ttitle="Twproject 提供了一个相当灵活的问题跟踪工具,并且将问题和项目很好的整合在一起.
+To-do能够成为问题, 问题能够成为任务. 问题能够批量的从一个任务移动到另一个任务">
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_1283143585" style="" href="/app/issue/issuelist?V_ID=2112258336">问题</a>
+
+                                    <span id="arrowOpener_divdomo_domId_763449921" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_763449921', 'arrowOpener_divdomo_domId_763449921'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_763449921" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_1283143585" style="" href="/app/issue/issuelist?V_ID=1083201181">问题</a>
+
+                                        <a class="button  textual   lreq10 lreqLabel lreqActive" id="domId_88031422" style="" href="/app/issue/issueOrganizer.html?V_ID=993867180">组织（看板）</a>
+
+                                        <a class="button  textual   lreq20 lreqLabel lreqActive" id="domId_2075360418" style="" href="/app/issue/issuePlanner.html?V_ID=1213942590">计划者</a>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td id="RESOURCE_MENU" ttitle="创建和管理用户,部门.他们可以作为资源被分派到项目/任务,问题中.">
+                                <a href="/app/resource/resourceList?V_ID=1638463630" class="button">
+                                    资源
+                                </a>
+                            </td>
+
+                            <td id="TOOLS_MENU" ttitle="TOOLS_MENU_HELP">
+
+                                <span>
+                                    <a class="button     hasDivomo" id="domId_475423929" style="" href="/app/tools/toolsIntro?V_ID=1253340743">工具</a>
+
+                                    <span id="arrowOpener_divdomo_domId_1810807863" class="arrowOpener menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_1810807863', 'arrowOpener_divdomo_domId_1810807863'); event.stopPropagation(); event.preventDefault(); return false; "><span></span></span>
+
+                                </span>
+
+                                <div id="divdomo_domId_1810807863" class="divomo divDark"
+                                     style=" position: absolute;left:-10000px; top:-10000px;">
+
+                                    <div class="divomoArrow"></div>
+
+                                    <div>
+                                        <a class="button  textual   hasDivomo" id="domId_475423929" style="" href="/app/tools/toolsIntro?V_ID=266143164">工具</a>
+
+                                        <a class="button  textual   " id="domId_109508157" style="" href="/app/board/boardList.html?V_ID=261958535&CM=FN">讨论板</a>
+
+                                        <hr><span class='menuTitle'>书签</span><a class="button  textual   " id="domId_469054865" style="" href="https://www.baidu.com" target="_blank">- baidu</a>
+
+                                        <a class="button  textual   " id="domId_2140131565" style="" href="https://oa.cnki.net" target="_blank">- OA</a>
+
+                                        <a class="button  textual   " id="domId_987609352" style="" href="https://www.cnki.net" target="_blank">- cnki</a>
+
+                                        <hr><a class="button  textual   " id="domId_849271401" style="" href="/app/tools/manageFavorites.html?V_ID=599414653"><span class='teamworkIcon withLabel'>g</span>管理书签&nbsp;</a>
+
+                                        <hr><button type="button" class="button noprint textual   " id="domId_1528118645" style="" onclick="saveThisPageAsPreferred();return false; "><span class='teamworkIcon withLabel'>P</span>增加当前视图到书签</button>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="menuTools">
+
+                    <div id="HINT_SEARCH_span" class="menuSearch">
+                        <input type=text name="search" id="search" size=15 class="searchInput" autocomplete='off' maxlength=255 value="" onkeyup="if (event.keyCode==13) { fastSearch($(this));event.preventDefault();return false;}" oldValue='1'><span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_keyDiv', 'domId_1366279578');  ">
+                            <button type="button" class="button noprint textual icon  fastSearchkeysButton" id="domId_1366279578" style="" onclick=";return false; "><span class='teamworkIcon '>[</span></button>
+
+
+                        </span>
+
+                        <div id="divdomo_keyDiv" class="divomo fSKeys"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class='menuTitle'>Search in:</span><button type="button" class="button noprint textual   ALL" id="domId_1450192651" style="" onclick="changeFastSearchKey('ALL');return false; ">全部</button>
+
+                                <button type="button" class="button noprint textual   W" id="domId_1595975554" style="" onclick="changeFastSearchKey('W');return false; ">工作记录</button>
+
+                                <button type="button" class="button noprint textual   T" id="domId_1490385048" style="" onclick="changeFastSearchKey('T');return false; ">项目</button>
+
+                                <button type="button" class="button noprint textual   R" id="domId_652243128" style="" onclick="changeFastSearchKey('R');return false; ">资源</button>
+
+                                <button type="button" class="button noprint textual   I" id="domId_1493718008" style="" onclick="changeFastSearchKey('I');return false; ">问题</button>
+
+                                <button type="button" class="button noprint textual   A" id="domId_834727026" style="" onclick="changeFastSearchKey('A');return false; ">日程</button>
+
+                                <button type="button" class="button noprint textual   B" id="domId_1893943778" style="" onclick="changeFastSearchKey('B');return false; ">讨论板</button>
+
+                                <button type="button" class="button noprint textual   D" id="domId_1510461012" style="" onclick="changeFastSearchKey('D');return false; ">文档</button>
+
+                            </div>
+                        </div><button type="button" class="button noprint textual icon  searchButton" id="domId_914037497" style="" onclick="fastSearch($('#search'));return false; "><span class='teamworkIcon '>L</span></button>
+
+                    </div>
+
+
+
+                    <div id="loggedOp" class="loggedOp">
+                        <span class="menuArrow" onclick="bjs_showMenuDiv('divdomo_domId_360399106', 'domId_899853022');  ">
+                            <span class="button buttonImg  operatorButton" id="domId_899853022" style=" " onclick=";return false; "><img src="/img/svgAvatar?code=WD&fill=hsl%28360%2C70%25%2C80%25%29&stroke=hsl%28360%2C90%25%2C20%25%29" border="0" name="d1364287663" title="Dream Wing" alt="Dream Wing" id="d1364287663" " resId="15089" class="face away"></span>
+
+                        </span>
+
+                        <div id="divdomo_domId_360399106" class="divomo divDark"
+                             style=" position: absolute;left:-10000px; top:-10000px;">
+
+                            <div class="divomoArrow"></div>
+
+                            <div>
+                                <span class="menuTitle">Dream Wing <em>(90)</em></span><a class="button  textual   " id="domId_1343925125" style="" href="/resource/resourceEditor?V_ID=919808181&CM=ED&OBJID=15089">我的联系方式</a>
+
+                                <a class="button  textual   " id="domId_116576729" style="" href="/resource/resourceSecurity?V_ID=1384545218&CM=ED&OBJID=15089">登录信息</a>
+
+                                <a class="button  textual   " id="domId_799998239" style="" href="/resource/resourceOptions?V_ID=1202414577&CM=EDIT_OPT&OBJID=15089">选项</a>
+
+                                <a class="button  textual   " id="domId_175289006" style="" href="/resource/resourceDocumentList?V_ID=1910575082&CM=LIST_DOCS&RES_ID=15089">文档</a>
+
+                                <hr><span class='menuTitle'>条消息</span><button type="button" class="button noprint textual   " id="domId_290026678" style="" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1882243805&CM=AD&POP=yes','600px','600px');return false; ">发送短消息</button>
+
+                                <button type="button" class="button noprint textual   " id="domId_1560426673" style="" onclick="openBlackPopup('/app/sticky/stickyEditor.html?V_ID=1837982103&POP=yes&receiver=15089','600px','600px');return false; ">给自己发消息</button>
+
+                                <hr><a class="button  textual   " id="domId_1020795947" style="" href="http://twproject.com/support" target="_blank">支持</a>
+
+                                <hr><a class="button  textual   " id="domId_270625346" style="" href="/applications/teamwork/security/login.jsp?V_ID=789690878&CM=LO" target="_top">注销</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="twChatNotifications">
+                        <div id="twChatOpener" class="messages button textual icon" onclick="twChatToggle();">
+
+                            <span class="teamworkIcon"></span>
+
+                            <span class="notificationNumber" style="display:none">0</span>
+                        </div>
+                    </div>
+                    &nbsp;
+                    &nbsp;
+
+                    <div id="notifications">
+                        <div id="messageListOpener" class="messages button textual icon" onclick="loadMessageList($(this));">
+                            <span class="teamworkIcon">b</span>
+                            <span class="notificationNumber" style="display:inline-block">10</span>
+                        </div>
+                    </div>
+
+                    <div id="messageListBox" class="divomo divDark" style="position: absolute;left:-1000px; top:-1000px;">
+                        <div class="divomoArrow"></div>
+                        <span class="menuTitle">通知</span>
+                        <div id="messageListPlace" class="messageListPlace"></div>
+                        <div class="showAllMessages" onclick="$('#messageListBox').trigger('hideDivOnMouseover');">
+                            <a class="button  textual   " id="domId_1630042785" style="" href="/applications/teamwork/messaging/messageListFull.jsp?V_ID=1111594831">全部显示</a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="menuTimeCounter" style="display:none;"><a href="javascript:openBlackPopup('/applications/teamwork/task/timeCounter.jsp?V_ID=451833920')" id="tcMenuCounter"></a></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // unread messages managament
+            $("#messageListBox").on("hideDivOnMouseover", function () {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "READALL" }, function (response) {
+                    jsonResponseHandling(response);
+                    if (response.ok) {
+                        $("#messageListOpener .notificationNumber").fadeOut().html("0");
+                        $("#twChatOpener").data("totalUnreadChats", false);
+                    }
+                });
+            });
+
+            function followMessageLink(el) {
+                var href = el.find(".message_link a:first").attr("href");
+                if (href)
+                    self.location.href = href;
+            }
+
+            function saveThisPageAsPreferred() {
+                location.href = contextPath + "/app/tools/manageFavorites.html?CM=POSTLINK&URL=" + encodeURIComponent(location.href) + "&TITLE=" + encodeURIComponent(document.title);
+            }
+
+            (function tmStartup() {
+                var counted = undefined;
+                var format = '%0h:%0m:%0s';
+                if (counted) {
+                    var ndo = $("#tcMenuCounter");
+                    ndo.attr("title", counted.taskName).data("time", counted.countingStartedMillis).activateTimeCounter(format);
+                    ndo.parent().show();
+                }
+
+                registerEvent("timeCounterEvent", function (e, data) {
+
+                    if (data.type == "start") {
+
+                        if (data.response.assignment) {
+
+                            //faccio partire il widget se c'Ã¨
+                            var ndoWidget = getTop().$("body").find("tr[assid=" + data.response.assignment.id + "]");
+                            if (ndoWidget) {
+                                ndoWidget.addClass("highlight");
+                                ndoWidget.find(".timeCounter").data("time", new Date().getTime()).show().activateTimeCounter();
+                                ndoWidget.find(".play").removeClass("play").addClass("stop").find(".teamworkIcon").html("s");
+                            }
+
+
+                            //faccio partire il counter sul menu
+                            var ndoMenu = $("#tcMenuCounter");
+                            ndoMenu.stopTimeCounter().attr("title", data.response.assignment.taskName).data("time", data.response.assignment.countingStartedMillis).activateTimeCounter(format);
+                            ndoMenu.parent().show();
+                        }
+
+                    } else if (data.type == "stop") {
+
+                        //fermo il widget
+                        var ndoWidget = getTop().$("body").find(".stop").closest("tr");
+                        if (ndoWidget) {
+                            ndoWidget.removeClass("highlight");
+                            ndoWidget.find(".timeCounter").stopTimeCounter().hide();
+                            ndoWidget.find(".stop").removeClass("stop").addClass("play").find(".teamworkIcon").html("a");
+                        }
+
+                        //faccio fermare il counter sul menu
+                        var ndoMenu = $("#tcMenuCounter");
+                        ndoMenu.stopTimeCounter();
+                        ndoMenu.parent().hide();
+                    }
+                })
+            })();
+
+            function twChatToggle() {
+                //console.debug(top.twChat.chatWindow.is(".closed"))
+
+                if (top.twChat.chatWindow.is(".closed")) {
+                    top.twChat.open();
+                } else if ($("#twChatOpener .notificationNumber").is(":visible")) {
+                    top.twChat.chatWindow.addClass('showChats');
+                } else {
+                    top.twChat.close();
+                }
+            }
+
+
+            $(function () {
+                //lo stato del socket lo sa solo il client lato js -> twComm
+                if (!top.twComm || !top.twComm.isOpen)
+                    getTop().$("#twChatOpener").addClass("disabled");
+
+                /**
+                 * Manage chat opener state at start (chat could be open)
+                 */
+                if (getTop() != top && top.twChat && top.twChat.chatWindow && top.twChat.chatWindow.is(".closed")) {
+                    $("#twChatOpener").removeClass("open");
+                } else {
+                    $("#twChatOpener").addClass("open");
+                }
+
+            })
+        </script>
+
+
+        <div id="__FEEDBACKMESSAGEPLACE" style="display:none;"></div>
+        <div id="twInnerContainer" class="null">
+            <script>$("#HOME_MENU").addClass('selected');</script>
+            <style type="text/css">
+
+                .bookmarksDiv, .customPagesDiv, .bookmarkletDiv { width: 30%; }
+            </style>
+            <div class="inlineContainerWrapper manageFavorites">
+
+
+
+                <div id="managFavDiv" class="bookmarksDiv portletBox small">
+                    <style>
+
+                        .bookmarksDiv h2, .customPagesDiv h2 { padding: 0; border: 0 }
+
+                        .customPagesDiv .button.textual { color: #617777; display: block; font-size: 14px; line-height: 24px; text-align: left; }
+
+                        .bookmarksDiv .linkLine, .customPagesDiv .linkLine { position: relative; border-bottom: 1px solid #CCCCCC; }
+
+                        .linkLine .button.textual { line-height: 30px; }
+                    </style>
+                    <form enctype="application/x-www-form-urlencoded" method="POST"
+                          action="/applications/teamwork/portal/portlet/wp_links.jsp" name="d470517648" id="d470517648"
+                          savedAction="" savedTarget="">
+                        <input type="hidden" id="d470517648V_ID" name="V_ID" value="470517648" savedValue="">
+                        <input type="hidden" id="d470517648CM" name="CM" value="" savedValue="">
+                        <input type="hidden" id="d470517648OBJID" name="OBJID" value="dummy" savedValue="">
+
+
+
+                        <div>
+
+
+                            <span style="float: right;">
+                                <button type="button" class="button noprint textual icon  edit " id="domId_1503764402" style="" title="添加链接" onclick="$('#addDiv').toggle();return false; "><span class='teamworkIcon '>P</span></button>
+
+
+                            </span>
+                            <h1>书签</h1>
+
+                            <div id="addDiv" style="display:none">
+                                <table class="table">
+                                    <tr>
+                                        <td><label for="TITLE" class="required">书签*</label><br><input type=text name="TITLE" id="TITLE" size=30 class="formElements" autocomplete='off' maxlength=255 style=width:100% value="" required="true" oldValue='1'></td>
+                                    </tr>
+                                    <tr><td><label for="URL" class="required">书签 URL*</label><br><input type=text name="URL" id="URL" size=30 class="formElements" autocomplete='off' maxlength=255 style=width:100% value="" required="true" oldValue='1'></td></tr>
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="button noprint    small" id="domId_1027853251" style="" onClick="stopBubble(event);obj('d470517648CM').value='SV';ajaxSubmit('d470517648','managFavDiv');">添加</button>
+
+                                        </td>
+                                    </tr>
+                                </table><div class="separator"></div>
+                            </div>
+
+                            <div class="linkLine">
+                                <a class="button  textual   " id="domId_1913552581" style="" href="https://www.baidu.com" target="_blank">baidu</a>
+
+                                <div style="float:right">
+                                    <button type="button" class="button noprint textual icon  delete" id="domId_363131395" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                                </div>
+                            </div><div class="linkLine">
+                                <a class="button  textual   " id="domId_830991" style="" href="https://www.cnki.net" target="_blank">cnki</a>
+
+                                <div style="float:right">
+                                    <button type="button" class="button noprint textual icon  delete" id="domId_1081563855" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                                </div>
+                            </div><div class="linkLine">
+                                <a class="button  textual   " id="domId_1542122777" style="" href="https://oa.cnki.net" target="_blank">OA</a>
+
+                                <div style="float:right">
+                                    <button type="button" class="button noprint textual icon  delete" id="domId_477377396" style="" title="删除它" onclick="$(this).confirm(function(){deleteBookmark($(this))});return false; "><span class='teamworkIcon '>d</span></button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            function deleteBookmark(el) {
+
+                                var row = el.closest(".linkLine");
+                                var link = row.find("a:first").text();
+                                var request = { CM: "DELBOOKMARK", "LNKLBL": link };
+                                showSavingMessage();
+                                $.getJSON(contextPath + "/applications/teamwork/portal/portalAjaxController.jsp", request, function (response) {
+                                    jsonResponseHandling(response);
+                                    if (response.ok == true) {
+                                        row.remove();
+                                    }
+                                    hideSavingMessage();
+                                });
+
+
+                            }
+
+
+                        </script>
+
+                    </form>
+                </div>
+
+
+
+
+                <div class="customPagesDiv portletBox small">
+                    <h1>可定制页</h1><div class="linkLine">
+                        <a class="button  textual   " id="domId_825258132" style="" href="/helpDesk.page?V_ID=709616905">helpDesk</a>
+
+                    </div><div class="linkLine">
+                        <a class="button  textual   " id="domId_1554630544" style="" href="/getsThingsDone.page?V_ID=295423495">getsThingsDone</a>
+
+                    </div><div class="linkLine">
+                        <a class="button  textual   " id="domId_200488601" style="" href="/pm.page?V_ID=265123580">pm</a>
+
+                    </div><div class="linkLine">
+                        <a class="button  textual   " id="domId_2050925182" style="" href="/supervisor.page?V_ID=187691504">supervisor</a>
+
+                    </div>
+                </div>
+
+                <div class="bookmarkletDiv">
+                    <h1>Bookmarklet</h1>
+                    单击下面的链接,将Teamwork站点增加到您的浏览器工具栏书签.:
+                    <a class="drag" href="javascript:location.href='https://demo.twproject.com/app/tools/manageFavorites.html?CM=POSTLINK&USR=7780&URL='+encodeURIComponent(location.href)+'&TITLE='+encodeURIComponent(document.title)+'&CK=318cda8bb76f5c51074c86f3983351a9'">post to Twproject</a>
+                    <br><br>
+                    将Teamwork站点增加到您跌浏览器收藏夹里:
+                    <a class="drag" href="javascript:location.href='https://demo.twproject.com/app/tools/manageFavorites.html?CM=VIEWLINK&USR=7780&CK=318cda8bb76f5c51074c86f3983351a9'">teamwork 链接</a><br>
+                </div>
+            </div>
+        </div>
+
+        <script src="/applications/teamwork/socket/userStatusManagement.js"></script>
+
+
+        <script>
+            var __sns = [];
+            $(function () {
+                $("body").oneTime(500, function () {
+                    manageStickyNotes(__sns);
+                });
+
+                //event da webSocket
+                $("body").on("ws-stickySaved.twScreen", function (e, data) {
+                    //console.debug("ws-stickySaved.twScreen",data);
+                    if (data && data.stickyId)
+                        twSrc_drawSticky(data.stickyId);
+                }).on("ws-logSaved.twScreen", function (e, data) {
+                    //console.debug("ws-logSaved twScreen",data);
+                    if (data && data.messageId) {
+                        $("#messageListOpener .notificationNumber").html(parseInt($("#messageListOpener .notificationNumber").text()) + 1).show();
+                    }
+                }).on("ws-updateGlobalCounter.twScreen", function (e, data) {
+                    //console.debug("ws-updateGlobalCounter.twScreen", data);
+                    if (data) {
+                        $("#twChatOpener .notificationNumber").html(data.totalUnreadChats);
+                        $("#twChatOpener").data("totalUnreadChats", data.totalUnreadChats);
+
+
+                        if (data.totalUnreadChats) {
+                            //top.twChat.chatWindow.addClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").show();
+                        } else {
+                            //top.twChat.chatWindow.removeClass("hasUnreadChats");
+                            $("#twChatOpener .notificationNumber").hide();
+                        }
+                        // add total unread chats to the top page title
+                        top.document.title = (data.totalUnreadChats ? "(" + data.totalUnreadChats + ") Twproject" : "Twproject");
+                        top.$("#twfavicon").attr("href", contextPath + "/img/favicons/fav" + (data.totalUnreadChats > 9 ? "N" : data.totalUnreadChats) + ".png?_=" + (Math.random()))
+                    }
+                }).on("ws-socketClosed.twScreen", function (e, data) {
+                    //alert("服务器连接已经丢失。\n请尝试重新加载页面。")
+                }
+                );
+
+
+                //gestione chiusura tutti dopo 2
+                var firstClosed = false;
+                var doNotAskAgain = false;
+                $("body").on("containerHidden", ".container.sticky", function (e) {
+                    if (firstClosed && !doNotAskAgain) {
+                        var firstStick = $(this);
+                        var sticks = $(".container.sticky");
+                        if (sticks.size() > 2) {
+                            doNotAskAgain = true;
+                            if (confirm("全部关闭？")) {
+                                sticks.each(function () {
+                                    var stick = $(this);
+                                    if (stick.attr("status") != "ICONIZED")
+                                        if (stick.prop("id") != firstStick.prop("id"))
+                                            $(this).trigger("hide");
+                                });
+                            }
+                        }
+                        firstClosed = false;
+
+                    } else {
+                        firstClosed = true;
+                    }
+
+                });
+
+            });
+
+
+            function manageStickyNotes(sns) {
+                //console.debug("manageStickyNotes",sns);
+                if (sns.length > 20) { //non disegna tutto se sono piÃ¹ di 20
+                    var message = "这有很多便条(--xxx--), 展现所有可能造成浏览器崩溃.您确实想这样做吗?".replace("--xxx--", sns.length);
+                    var d = $("<div>").append(message + "<br>");
+                    var closeAll = $("<button>").append("关闭所有").attr("onclick", "closeAllSticky();hideFeedbackMessages()");
+                    var drawAll = $("<button>").append("所有的绘制").attr("onclick", "twSrc_drawAllSticky(__sns);hideFeedbackMessages()");
+                    d.append(closeAll).append(drawAll);
+                    showFeedbackMessage("INFO", d.html(), "");
+                } else {
+                    twSrc_drawAllSticky(sns)
+                }
+            }
+
+
+            function twSrc_drawAllSticky(sns) {
+                for (var i = 0; i < sns.length; i++) {
+                    twSrc_drawSticky(sns[i]);
+                }
+            }
+            function twSrc_drawSticky(stickyId) {
+                $.get(contextPath + "/applications/teamwork/sticky/partAjaxStickyNote.jsp", { CM: "DRW", sid: stickyId }, function (response) {
+                    $("#STKN_" + stickyId).remove();
+                    $("body").append(response);
+                })
+            }
+
+
+            function closeAllSticky() {
+                $.getJSON(contextPath + "/messaging/messageAjax", { CM: "REMOVEEALLSTK" }, function (response) {
+                    twSrc_drawAllSticky(__sns);//disegna i rimanenti
+                });
+            }
+        </script>
+    </div>
+    <div id="_errorTemplates" style="display:none;">
+        <div class="__template__" type="errorTemplate">
+            <!--
+            <div style="padding:15px 12px" class="FFC_(#=type#) FFC_Global" type="(#=type#)">
+              <table cellpadding="0" cellspacing="0" align="center" style="width:100%;">
+                <tr>
+                  <td valign="top" width="1" nowrap><img src="/img/(#=type.toLowerCase()#).png"></td>
+                  <td valign="middle" class="_errorTemplateMessage" style="padding-left: 3px">(#if(obj.title){#)
+                    <b>(#!title#)</b><br>
+                    (#}#)(#=message#)<br></td>
+                  <td width="1" valign="top" onclick="$(this).parents('div:first').fadeOut(function(){$(this.remove())})"><span class="teamworkIcon" style="cursor:pointer">x</span></td>
+                </tr>
+              </table>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            if (false) {
+                window.focus();
+            }
+
+
+            $("#_errorTemplates").loadTemplates().remove();
+            var _messagesFromController = [];
+            if (_messagesFromController.length > 0) {
+                for (var i = 0; i < _messagesFromController.length; i++) {
+                    showFeedbackMessage(_messagesFromController[i]);
+                }
+            }
+
+
+            if (0)
+                $("#null").focus();
+
+
+            showUpgradeMessage();
+
+
+            // EX liveQuery:  si inizializzano i fields
+            $("body").initFields()
+        });
+
+
+        function showUpgradeMessage() {
+            var levpg = $(".lreqPage:first");
+            if (levpg.size() > 0) {
+
+                var lv = 30;
+                var reqLev = levpg.hasClass("lreq30") ? 30 : levpg.hasClass("lreq20") ? 20 : levpg.hasClass("lreq10") ? 10 : 0;
+                if (lv > 0 && reqLev > lv) {
+                    var str = reqLev == 0 ? "FULL" : reqLev == 5 ? "FREE" : reqLev == 10 ? "BASIC" : reqLev == 20 ? "ADVANCED" : reqLev == 30 ? "ENTERPRISE" : "TRIAL";
+
+                    var wrp = $("<div>").addClass("modalPopup upgradeMessage").css("background", "none");
+                    var inn = $("<div>").addClass("bwinPopupd").css({ "max-width": "360px", "min-height": "200px", top: "20%" }).click(function () {
+                        location.href = contextPath + "/applications/teamwork/buyTwprojectLicense.jsp?rqlv=" + reqLev;
+                    });
+                    inn.append($("<h2>").html('Do you need more?'));
+                    inn.append($("<p>").html('Your current plan does not include this feature. Upgrade your Twproject to "%%" plan in order to access it.'.replace("%%", str)));
+                    //inn.append("<br><br>");
+                    inn.append($("<p align='center'>").append($("<span>").addClass("button first").html('Twproject shop')));
+                    wrp.append(inn)
+                    levpg.after(wrp)
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
+
+
